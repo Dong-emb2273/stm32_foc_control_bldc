@@ -36,8 +36,6 @@ int AS5048A_Config(AS5048A_t *encd, SPI_HandleTypeDef *hspi, GPIO_TypeDef *cs_po
 	
 	return 1;
 }
-
-
 //
 
 int AS5048A_Config_ALL(AS5048A_t *encd){
@@ -49,7 +47,6 @@ int AS5048A_Config_ALL(AS5048A_t *encd){
 	
 	return 1;
 }
-
 //
 
 int AS5048A_CheckExist(AS5048A_t *encd) {
@@ -94,7 +91,7 @@ int AS5048A_DetectExit(AS5048A_t *encd){
 		Count += AS5048A_CheckExist(encd);
 		HAL_Delay(1);
 	}
-	if (Count > 4) return 1; // có deive
+	if (Count > 4) return 1; // cï¿½ deive
 	else if (Count < -4) return 0;// Have Device but erro
 	else  return 0;// No deive
 	
