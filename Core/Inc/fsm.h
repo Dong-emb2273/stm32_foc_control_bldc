@@ -1,0 +1,123 @@
+/*
+ * fsm.h
+ *
+ *  Created on: Mar 5, 2020
+ *      Author: Ben
+ */
+
+
+#ifndef INC_FSM_H_
+#define INC_FSM_H_
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <stdint.h>
+#include "main.h"
+
+
+
+#define I_BW                    __float_reg[2]                                  // Current loop bandwidth
+#define I_MAX                   __float_reg[3]                                  // Current limit
+#define THETA_MIN               __float_reg[4]                                  // Minimum position setpoint
+#define THETA_MAX               __float_reg[5]                                  // Maximum position setpoint
+#define I_FW_MAX                __float_reg[6]                                  // Maximum field weakening current
+#define R_NOMINAL               __float_reg[7]                                  // Nominal motor resistance, set during calibration
+#define TEMP_MAX                __float_reg[8]                                  // Temperature safety lmit
+#define I_MAX_CONT              __float_reg[9]                                  // Continuous max current
+#define PPAIRS					__float_reg[10]									// Number of motor pole-pairs
+//#define L_D						__float_reg[11]									// D-axis inductance
+//#define L_Q						__float_reg[12]									// Q-axis inductance
+#define R_PHASE					__float_reg[13]									// Single phase resistance
+#define KT						__float_reg[14]									// Torque Constant (N-m/A)
+#define R_TH					__float_reg[15]									// Thermal resistance (C/W)
+#define C_TH					__float_reg[16]									// Thermal mass (C/J)
+#define GR						__float_reg[17]									// Gear ratio
+#define I_CAL					__float_reg[18]									// Calibration Current
+#define P_MIN					__float_reg[19]									// Position setpoint lower limit (rad)
+#define P_MAX					__float_reg[20]									// Position setupoint upper bound (rad)
+#define V_MIN					__float_reg[21]									// Velocity setpoint lower bound (rad/s)
+#define V_MAX					__float_reg[22]									// Velocity setpoint upper bound (rad/s)
+#define T_MIN 					__float_reg[23]	
+#define T_MAX 					__float_reg[24]	
+#define KP_MAX					__float_reg[25]									// Max position gain (N-m/rad)
+#define KP_MIN					__float_reg[27]									// Min position gain (N-m/rad)
+#define KD_MAX					__float_reg[26]									// Max velocity gain (N-m/rad/s)
+#define KD_MIN					__float_reg[28]									// Min velocity gain (N-m/rad/s)
+#define VB_MIN					__float_reg[29]									// Min position gain (N-m/rad)
+#define VB_MAX					__float_reg[30]									// Max position gain (N-m/rad)
+
+#define PHASE_ORDER             __int_reg[0]                                    // Phase swapping during calibration
+#define CAN_ID                  __int_reg[1]                                    // CAN bus ID
+#define CAN_MASTER              __int_reg[2]                                    // CAN bus "master" ID
+#define CAN_TIMEOUT             __int_reg[3]                                    // CAN bus timeout period
+#define M_ZERO					__int_reg[4]
+#define E_ZERO					__int_reg[5]
+#define ENCODER_LUT             __int_reg[6]                                    // Encoder offset LUT - 128 elements long
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#define MENU_MODE           0
+#define CALIBRATION_MODE    1
+#define MOTOR_MODE          2
+#define SETUP_MODE          4
+#define ENCODER_MODE        5
+#define INIT_TEMP_MODE      6
+
+#define MENU_CMD			27
+#define MOTOR_CMD			'm'
+#define CAL_CMD				'c'
+#define ENCODER_CMD			'e'
+#define SETUP_CMD			's'
+#define ZERO_CMD			'z'
+#define ENTER_CMD			13
+
+
+
+typedef struct{
+	uint8_t state;
+	uint8_t next_state;
+	uint8_t state_change;
+	uint8_t ready;
+	char cmd_buff[8];
+	char bytecount;
+	char cmd_id;
+}FSMStruct;
+
+void run_fsm(FSMStruct* fsmstate);
+void update_fsm(FSMStruct * fsmstate, char fsm_input);
+void fsm_enter_state(FSMStruct * fsmstate);
+void fsm_exit_state(FSMStruct * fsmstate);
+void enter_menu_state(void);
+void enter_setup_state(void);
+void enter_motor_mode(void);
+void process_user_input(FSMStruct * fsmstate);
+
+
+
+
+
+
+extern FSMStruct state;
+
+extern float __float_reg[];
+extern int __int_reg[];
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* INC_FSM_H_ */
