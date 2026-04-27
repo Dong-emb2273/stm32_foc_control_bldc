@@ -142,7 +142,7 @@ uint8_t Serial2RxBuffer[1];
 float __float_reg[64];
 int __int_reg[256];
 
-float sPoint_Vel = 0;
+float sPoint_Vel = 50.0f;
 float sPoint_Pos = 0;
 float sPoint_Tor = 0;
 volatile uint8_t is_calibrating = 0;
@@ -205,29 +205,29 @@ int main(void)
 
 
   /* Sanitize configs in case flash is empty*/
-  if(E_ZERO==-1){E_ZERO = 0;}
-  if(M_ZERO==-1){M_ZERO = 0;}
-  if(isnan(I_BW) || I_BW==-1){I_BW = 1000;}
-  if(isnan(I_MAX) || I_MAX ==-1){I_MAX=40;}
-  if(isnan(I_FW_MAX) || I_FW_MAX ==-1){I_FW_MAX=0;}
-  if(CAN_ID==-1){CAN_ID = 1;}
-  if(CAN_MASTER==-1){CAN_MASTER = 0;}
-  if(CAN_TIMEOUT==-1){CAN_TIMEOUT = 1000;}
-  if(isnan(R_NOMINAL) || R_NOMINAL==-1){R_NOMINAL = 0.0f;}
-  if(isnan(TEMP_MAX) || TEMP_MAX==-1){TEMP_MAX = 125.0f;}
-  if(isnan(I_MAX_CONT) || I_MAX_CONT==-1){I_MAX_CONT = 14.0f;}
-  if(isnan(I_CAL)||I_CAL==-1){I_CAL = 5.0f;}
-  if(isnan(PPAIRS) || PPAIRS==-1){PPAIRS = 21.0f;}
-  if(isnan(GR) || GR==-1){GR = 1.0f;}
-  if(isnan(KT) || KT==-1){KT = 1.0f;}
-  if(isnan(KP_MAX) || KP_MAX==-1){KP_MAX = 500.0f;}
-  if(isnan(KP_MIN) || KP_MIN==-1){KP_MIN = 0.0f;}
-  if(isnan(KD_MAX) || KD_MAX==-1){KD_MAX = 5.0f;}
-  if(isnan(KD_MIN) || KD_MIN==-1){KD_MIN = 0.0f;}
-  if(isnan(P_MAX)){P_MAX = 12.5f;}
-  if(isnan(P_MIN)){P_MIN = -12.5f;}
-  if(isnan(V_MAX)){V_MAX = 65.0f;}
-  if(isnan(V_MIN)){V_MIN = -65.0f;}
+  // if(E_ZERO==-1){E_ZERO = 0;}
+  // if(M_ZERO==-1){M_ZERO = 0;}
+  // if(isnan(I_BW) || I_BW==-1){I_BW = 1000;}
+  // if(isnan(I_MAX) || I_MAX ==-1){I_MAX=40;}
+  // if(isnan(I_FW_MAX) || I_FW_MAX ==-1){I_FW_MAX=0;}
+  // if(CAN_ID==-1){CAN_ID = 1;}
+  // if(CAN_MASTER==-1){CAN_MASTER = 0;}
+  // if(CAN_TIMEOUT==-1){CAN_TIMEOUT = 1000;}
+  // if(isnan(R_NOMINAL) || R_NOMINAL==-1){R_NOMINAL = 0.0f;}
+  // if(isnan(TEMP_MAX) || TEMP_MAX==-1){TEMP_MAX = 125.0f;}
+  // if(isnan(I_MAX_CONT) || I_MAX_CONT==-1){I_MAX_CONT = 14.0f;}
+  // if(isnan(I_CAL)||I_CAL==-1){I_CAL = 5.0f;}
+  // if(isnan(PPAIRS) || PPAIRS==-1){PPAIRS = 21.0f;}
+  // if(isnan(GR) || GR==-1){GR = 1.0f;}
+  // if(isnan(KT) || KT==-1){KT = 1.0f;}
+  // if(isnan(KP_MAX) || KP_MAX==-1){KP_MAX = 500.0f;}
+  // if(isnan(KP_MIN) || KP_MIN==-1){KP_MIN = 0.0f;}
+  // if(isnan(KD_MAX) || KD_MAX==-1){KD_MAX = 5.0f;}
+  // if(isnan(KD_MIN) || KD_MIN==-1){KD_MIN = 0.0f;}
+  // if(isnan(P_MAX)){P_MAX = 12.5f;}
+  // if(isnan(P_MIN)){P_MIN = -12.5f;}
+  // if(isnan(V_MAX)){V_MAX = 65.0f;}
+  // if(isnan(V_MIN)){V_MIN = -65.0f;}
 
   
   // Load Config 
@@ -265,7 +265,7 @@ int main(void)
 	is_calibrating = 1;
   foc_cal_encoder(&hfoc);
 	is_calibrating = 0;
-	hfoc.control_mode = POSITION_CONTROL_MODE;
+	hfoc.control_mode = SPEED_CONTROL_MODE;
 
 
 
@@ -506,7 +506,7 @@ void ADC_IRQHandler(void) {
 				break;
 			}
 		}
-		run_fsm(&state);
+		// run_fsm(&state);
 		
 	}
 }

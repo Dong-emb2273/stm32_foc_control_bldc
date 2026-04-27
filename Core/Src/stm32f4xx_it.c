@@ -306,11 +306,6 @@ void SPI2_IRQHandler(void)
 void USART6_IRQHandler(void)
 {
   /* USER CODE BEGIN USART2_IRQn 0 */
-	HAL_UART_IRQHandler(&huart);
-
-	char c = Serial2RxBuffer[0];
-	update_fsm(&state, c);
-//	update_fsm(&state, c);
 
   /* USER CODE END USART2_IRQn 0 */
   HAL_UART_IRQHandler(&huart);

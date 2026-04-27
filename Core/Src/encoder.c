@@ -88,6 +88,10 @@ float ENCODER_GetRPM(Encoder_t *encd, uint32_t dt_us) {
 	float angle_diff = encd->angle_filtered - encd->prev_angle;
 	angle_diff -= 360.0f * floorf((angle_diff + 180.0f) * (1.0f/360.0f));
 	encd->prev_angle = encd->angle_filtered;
+	if (dt_us == 0) {
+        
+        return encd->filtered_rpm; 
+    }
 
 #if 0
 	// Accumulate angle and time for low-RPM precision
