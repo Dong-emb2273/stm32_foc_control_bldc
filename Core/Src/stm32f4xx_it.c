@@ -254,21 +254,8 @@ void DMA2_Stream2_IRQHandler(void)
 /**
   * @brief This function handles SPI2 global interrupt.
   */
-//void SPI2_IRQHandler(void)
-//{
-//  /* USER CODE BEGIN SPI2_IRQn 0 */
 
-//  /* USER CODE END SPI2_IRQn 0 */
-//  
-//  // B?n b?t bu?c ph?i g?i hàm này d? HAL t? d?ng gi?i quy?t các l?i SPI
 
-//  HAL_SPI_IRQHandler(&hspi2);
-//  
-//  /* USER CODE BEGIN SPI2_IRQn 1 */
-
-//  /* USER CODE END SPI2_IRQn 1 */
-//}
-/* USER CODE BEGIN 1 */
 void DMA1_Stream3_IRQHandler(void)
 {
   /* USER CODE BEGIN DMA1_Stream3_IRQn 0 */

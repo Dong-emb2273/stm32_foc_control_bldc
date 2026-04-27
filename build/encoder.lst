@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccFGjj8o.s 			page 1
+ARM GAS  /tmp/cc0VwqNX.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccFGjj8o.s 			page 1
   42 0008 9A60     		str	r2, [r3, #8]
   15:Core/Src/encoder.c **** 	encoder.enc_internal.cs_pin = GPIO_PIN_9;
   43              		.loc 1 15 2 is_stmt 1 view .LVU5
-ARM GAS  /tmp/ccFGjj8o.s 			page 2
+ARM GAS  /tmp/cc0VwqNX.s 			page 2
 
 
   44              		.loc 1 15 30 is_stmt 0 view .LVU6
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccFGjj8o.s 			page 1
   89              		@ frame_needed = 0, uses_anonymous_args = 0
   90 0000 38B5     		push	{r3, r4, r5, lr}
   91              	.LCFI0:
-ARM GAS  /tmp/ccFGjj8o.s 			page 3
+ARM GAS  /tmp/cc0VwqNX.s 			page 3
 
 
   92              		.cfi_def_cfa_offset 16
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccFGjj8o.s 			page 1
  137 0034 1A70     		strb	r2, [r3]
   36:Core/Src/encoder.c **** 		return 0;
  138              		.loc 1 36 3 view .LVU32
-ARM GAS  /tmp/ccFGjj8o.s 			page 4
+ARM GAS  /tmp/cc0VwqNX.s 			page 4
 
 
  139              		.loc 1 36 10 is_stmt 0 view .LVU33
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccFGjj8o.s 			page 1
  169              		.loc 1 42 4 view .LVU42
  170 005c 20B9     		cbnz	r0, .L9
   50:Core/Src/encoder.c **** 	return 1;
-ARM GAS  /tmp/ccFGjj8o.s 			page 5
+ARM GAS  /tmp/cc0VwqNX.s 			page 5
 
 
  171              		.loc 1 50 2 is_stmt 1 view .LVU43
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccFGjj8o.s 			page 1
  214              		.syntax unified
  215              		.thumb
  216              		.thumb_func
-ARM GAS  /tmp/ccFGjj8o.s 			page 6
+ARM GAS  /tmp/cc0VwqNX.s 			page 6
 
 
  217              		.fpu fpv4-sp-d16
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccFGjj8o.s 			page 1
  266              	.LVL8:
  267              		.loc 1 58 23 view .LVU69
  268 0032 20EE090A 		vmul.f32	s0, s0, s18
-ARM GAS  /tmp/ccFGjj8o.s 			page 7
+ARM GAS  /tmp/cc0VwqNX.s 			page 7
 
 
  269              		.loc 1 58 13 view .LVU70
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccFGjj8o.s 			page 1
   70:Core/Src/encoder.c **** 
   71:Core/Src/encoder.c **** 	// Filter IIR dengan wrap-around
   72:Core/Src/encoder.c **** 	float filtered_diff = encd->raw_angle - encd->angle_filtered;
-ARM GAS  /tmp/ccFGjj8o.s 			page 8
+ARM GAS  /tmp/cc0VwqNX.s 			page 8
 
 
  310              		.loc 1 72 2 is_stmt 1 view .LVU86
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccFGjj8o.s 			page 1
  353 00be BDEC048B 		vldm	sp!, {d8-d9}
  354              	.LCFI3:
  355              		.cfi_remember_state
-ARM GAS  /tmp/ccFGjj8o.s 			page 9
+ARM GAS  /tmp/cc0VwqNX.s 			page 9
 
 
  356              		.cfi_restore 82
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccFGjj8o.s 			page 1
  405              		.cfi_def_cfa_offset 8
  406              		.cfi_offset 4, -8
  407              		.cfi_offset 14, -4
-ARM GAS  /tmp/ccFGjj8o.s 			page 10
+ARM GAS  /tmp/cc0VwqNX.s 			page 10
 
 
  408 0002 2DED048B 		vpush.64	{d8, d9}
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccFGjj8o.s 			page 1
  106:Core/Src/encoder.c **** 	// Reset accumulators
  107:Core/Src/encoder.c **** 	encd->angle_accumulator = 0.0f;
  108:Core/Src/encoder.c **** 	encd->time_accumulator = 0;
-ARM GAS  /tmp/ccFGjj8o.s 			page 11
+ARM GAS  /tmp/cc0VwqNX.s 			page 11
 
 
  109:Core/Src/encoder.c **** #else
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccFGjj8o.s 			page 1
  486              	.L34:
  487              	.LVL26:
  120:Core/Src/encoder.c **** 			rpm_instant = encd->prev_rpm + limited_delta;
-ARM GAS  /tmp/ccFGjj8o.s 			page 12
+ARM GAS  /tmp/cc0VwqNX.s 			page 12
 
 
  488              		.loc 1 120 4 is_stmt 1 view .LVU136
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccFGjj8o.s 			page 1
  526              		.loc 1 136 1 is_stmt 0 view .LVU153
  527 00c4 BDEC048B 		vldm	sp!, {d8-d9}
  528              	.LCFI7:
-ARM GAS  /tmp/ccFGjj8o.s 			page 13
+ARM GAS  /tmp/cc0VwqNX.s 			page 13
 
 
  529              		.cfi_restore 82
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccFGjj8o.s 			page 1
  582              		.cfi_offset 80, -24
  583              		.cfi_offset 81, -20
  584 0006 0446     		mov	r4, r0
-ARM GAS  /tmp/ccFGjj8o.s 			page 14
+ARM GAS  /tmp/cc0VwqNX.s 			page 14
 
 
  140:Core/Src/encoder.c ****     const float m_current_angle = encd->angle_filtered;
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccFGjj8o.s 			page 1
  629 004e 3B46     		mov	r3, r7
  630 0050 FFF7FEFF 		bl	__aeabi_dadd
  631              	.LVL39:
-ARM GAS  /tmp/ccFGjj8o.s 			page 15
+ARM GAS  /tmp/cc0VwqNX.s 			page 15
 
 
  632              		.loc 1 149 8 view .LVU173
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccFGjj8o.s 			page 1
  676 0090 D0ED147A 		vldr.32	s15, [r0, #80]
  677              	.LVL44:
  147:Core/Src/encoder.c **** 	}
-ARM GAS  /tmp/ccFGjj8o.s 			page 16
+ARM GAS  /tmp/cc0VwqNX.s 			page 16
 
 
  678              		.loc 1 147 25 view .LVU189
@@ -951,32 +951,32 @@ ARM GAS  /tmp/ccFGjj8o.s 			page 1
  726              		.file 9 "Core/Inc/as5048a.h"
  727              		.file 10 "Core/Inc/encoder.h"
  728              		.file 11 "/usr/include/newlib/math.h"
-ARM GAS  /tmp/ccFGjj8o.s 			page 17
+ARM GAS  /tmp/cc0VwqNX.s 			page 17
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 encoder.c
-     /tmp/ccFGjj8o.s:18     .text.ENCODER_Setup:0000000000000000 $t
-     /tmp/ccFGjj8o.s:26     .text.ENCODER_Setup:0000000000000000 ENCODER_Setup
-     /tmp/ccFGjj8o.s:68     .text.ENCODER_Setup:0000000000000024 $d
-     /tmp/ccFGjj8o.s:77     .text.ENCODER_AutoDetect:0000000000000000 $t
-     /tmp/ccFGjj8o.s:84     .text.ENCODER_AutoDetect:0000000000000000 ENCODER_AutoDetect
-     /tmp/ccFGjj8o.s:203    .text.ENCODER_AutoDetect:000000000000007c $d
-     /tmp/ccFGjj8o.s:212    .text.ENCODER_GetDegree:0000000000000000 $t
-     /tmp/ccFGjj8o.s:219    .text.ENCODER_GetDegree:0000000000000000 ENCODER_GetDegree
-     /tmp/ccFGjj8o.s:380    .text.ENCODER_GetDegree:00000000000000dc $d
-     /tmp/ccFGjj8o.s:388    .text.ENCODER_GetRPM:0000000000000000 $t
-     /tmp/ccFGjj8o.s:395    .text.ENCODER_GetRPM:0000000000000000 ENCODER_GetRPM
-     /tmp/ccFGjj8o.s:541    .text.ENCODER_GetRPM:00000000000000cc $d
-     /tmp/ccFGjj8o.s:557    .text.ENCODER_GetActualDegree:0000000000000000 $t
-     /tmp/ccFGjj8o.s:564    .text.ENCODER_GetActualDegree:0000000000000000 ENCODER_GetActualDegree
-     /tmp/ccFGjj8o.s:686    .text.ENCODER_GetActualDegree:00000000000000a4 $d
-     /tmp/ccFGjj8o.s:708    .bss.encd_get_val_flag:0000000000000000 encd_get_val_flag
-     /tmp/ccFGjj8o.s:702    .bss.as5048a:0000000000000000 as5048a
-     /tmp/ccFGjj8o.s:715    .bss.encoder:0000000000000000 encoder
-     /tmp/ccFGjj8o.s:698    .bss.as5048a:0000000000000000 $d
-     /tmp/ccFGjj8o.s:709    .bss.encd_get_val_flag:0000000000000000 $d
-     /tmp/ccFGjj8o.s:711    .bss.encoder:0000000000000000 $d
+     /tmp/cc0VwqNX.s:18     .text.ENCODER_Setup:0000000000000000 $t
+     /tmp/cc0VwqNX.s:26     .text.ENCODER_Setup:0000000000000000 ENCODER_Setup
+     /tmp/cc0VwqNX.s:68     .text.ENCODER_Setup:0000000000000024 $d
+     /tmp/cc0VwqNX.s:77     .text.ENCODER_AutoDetect:0000000000000000 $t
+     /tmp/cc0VwqNX.s:84     .text.ENCODER_AutoDetect:0000000000000000 ENCODER_AutoDetect
+     /tmp/cc0VwqNX.s:203    .text.ENCODER_AutoDetect:000000000000007c $d
+     /tmp/cc0VwqNX.s:212    .text.ENCODER_GetDegree:0000000000000000 $t
+     /tmp/cc0VwqNX.s:219    .text.ENCODER_GetDegree:0000000000000000 ENCODER_GetDegree
+     /tmp/cc0VwqNX.s:380    .text.ENCODER_GetDegree:00000000000000dc $d
+     /tmp/cc0VwqNX.s:388    .text.ENCODER_GetRPM:0000000000000000 $t
+     /tmp/cc0VwqNX.s:395    .text.ENCODER_GetRPM:0000000000000000 ENCODER_GetRPM
+     /tmp/cc0VwqNX.s:541    .text.ENCODER_GetRPM:00000000000000cc $d
+     /tmp/cc0VwqNX.s:557    .text.ENCODER_GetActualDegree:0000000000000000 $t
+     /tmp/cc0VwqNX.s:564    .text.ENCODER_GetActualDegree:0000000000000000 ENCODER_GetActualDegree
+     /tmp/cc0VwqNX.s:686    .text.ENCODER_GetActualDegree:00000000000000a4 $d
+     /tmp/cc0VwqNX.s:708    .bss.encd_get_val_flag:0000000000000000 encd_get_val_flag
+     /tmp/cc0VwqNX.s:702    .bss.as5048a:0000000000000000 as5048a
+     /tmp/cc0VwqNX.s:715    .bss.encoder:0000000000000000 encoder
+     /tmp/cc0VwqNX.s:698    .bss.as5048a:0000000000000000 $d
+     /tmp/cc0VwqNX.s:709    .bss.encd_get_val_flag:0000000000000000 $d
+     /tmp/cc0VwqNX.s:711    .bss.encoder:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 hspi1

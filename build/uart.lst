@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc2kbDPB.s 			page 1
+ARM GAS  /tmp/cc7HIGko.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -31,7 +31,7 @@ ARM GAS  /tmp/cc2kbDPB.s 			page 1
    1:Core/Src/uart.c **** 
    2:Core/Src/uart.c **** /* Includes ------------------------------------------------------------------*/
    3:Core/Src/uart.c **** #include "uart.h"
-   4:Core/Src/uart.c **** 
+   4:Core/Src/uart.c **** #include "fsm.h"
    5:Core/Src/uart.c **** /* USER CODE BEGIN Includes */
    6:Core/Src/uart.c **** 
    7:Core/Src/uart.c **** /* USER CODE END Includes */
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc2kbDPB.s 			page 1
   36              		.cfi_offset 3, -8
   37              		.cfi_offset 14, -4
   21:Core/Src/uart.c **** 
-ARM GAS  /tmp/cc2kbDPB.s 			page 2
+ARM GAS  /tmp/cc7HIGko.s 			page 2
 
 
   22:Core/Src/uart.c ****   /* USER CODE BEGIN USART6_Init 0 */
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc2kbDPB.s 			page 1
   40:Core/Src/uart.c ****   }
   41:Core/Src/uart.c ****   /* USER CODE BEGIN USART6_Init 2 */
   42:Core/Src/uart.c **** 
-ARM GAS  /tmp/cc2kbDPB.s 			page 3
+ARM GAS  /tmp/cc7HIGko.s 			page 3
 
 
   43:Core/Src/uart.c ****   /* USER CODE END USART6_Init 2 */
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc2kbDPB.s 			page 1
  117 0004 0023     		movs	r3, #0
  118 0006 0393     		str	r3, [sp, #12]
  119 0008 0493     		str	r3, [sp, #16]
-ARM GAS  /tmp/cc2kbDPB.s 			page 4
+ARM GAS  /tmp/cc7HIGko.s 			page 4
 
 
  120 000a 0593     		str	r3, [sp, #20]
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc2kbDPB.s 			page 1
   97:Core/Src/uart.c ****     hdma_usart_tx.Init.Direction = DMA_MEMORY_TO_PERIPH;
   98:Core/Src/uart.c ****     hdma_usart_tx.Init.PeriphInc = DMA_PINC_DISABLE;
   99:Core/Src/uart.c ****     hdma_usart_tx.Init.MemInc = DMA_MINC_ENABLE;
-ARM GAS  /tmp/cc2kbDPB.s 			page 5
+ARM GAS  /tmp/cc7HIGko.s 			page 5
 
 
  100:Core/Src/uart.c ****     hdma_usart_tx.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc2kbDPB.s 			page 1
  156 002e 5A6C     		ldr	r2, [r3, #68]
  157 0030 02F02002 		and	r2, r2, #32
  158 0034 0192     		str	r2, [sp, #4]
-ARM GAS  /tmp/cc2kbDPB.s 			page 6
+ARM GAS  /tmp/cc7HIGko.s 			page 6
 
 
   61:Core/Src/uart.c **** 
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc2kbDPB.s 			page 1
   73:Core/Src/uart.c **** 
  196              		.loc 1 73 5 is_stmt 1 view .LVU53
  197 005c 03A9     		add	r1, sp, #12
-ARM GAS  /tmp/cc2kbDPB.s 			page 7
+ARM GAS  /tmp/cc7HIGko.s 			page 7
 
 
  198 005e 2448     		ldr	r0, .L15+4
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc2kbDPB.s 			page 1
  233              		.loc 1 85 33 is_stmt 0 view .LVU72
  234 0084 4FF48033 		mov	r3, #65536
  235 0088 0362     		str	r3, [r0, #32]
-ARM GAS  /tmp/cc2kbDPB.s 			page 8
+ARM GAS  /tmp/cc7HIGko.s 			page 8
 
 
   86:Core/Src/uart.c ****     if (HAL_DMA_Init(&hdma_usart_rx) != HAL_OK)
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc2kbDPB.s 			page 1
  271              		.loc 1 99 31 is_stmt 0 view .LVU91
  272 00ac 4FF48062 		mov	r2, #1024
  273 00b0 0261     		str	r2, [r0, #16]
-ARM GAS  /tmp/cc2kbDPB.s 			page 9
+ARM GAS  /tmp/cc7HIGko.s 			page 9
 
 
  100:Core/Src/uart.c ****     hdma_usart_tx.Init.MemDataAlignment = DMA_MDATAALIGN_BYTE;
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc2kbDPB.s 			page 1
  116:Core/Src/uart.c **** 		
  310              		.loc 1 116 5 view .LVU110
  311 00d6 4720     		movs	r0, #71
-ARM GAS  /tmp/cc2kbDPB.s 			page 10
+ARM GAS  /tmp/cc7HIGko.s 			page 10
 
 
  312 00d8 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc2kbDPB.s 			page 1
  356              		.loc 1 135 5 view .LVU117
  357 0002 0C4B     		ldr	r3, .L24
  358 0004 9A42     		cmp	r2, r3
-ARM GAS  /tmp/cc2kbDPB.s 			page 11
+ARM GAS  /tmp/cc7HIGko.s 			page 11
 
 
  359 0006 00D0     		beq	.L23
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cc2kbDPB.s 			page 1
  155:Core/Src/uart.c ****     /* USER CODE BEGIN USART6_MspDeInit 1 */
  156:Core/Src/uart.c **** 
  157:Core/Src/uart.c ****     /* USER CODE END USART6_MspDeInit 1 */
-ARM GAS  /tmp/cc2kbDPB.s 			page 12
+ARM GAS  /tmp/cc7HIGko.s 			page 12
 
 
  158:Core/Src/uart.c ****   }
@@ -688,20 +688,12 @@ ARM GAS  /tmp/cc2kbDPB.s 			page 1
  416              	.LFB137:
  161:Core/Src/uart.c **** 
  162:Core/Src/uart.c **** //
- 163:Core/Src/uart.c **** 
- 164:Core/Src/uart.c **** 
- 165:Core/Src/uart.c **** 
- 166:Core/Src/uart.c **** 
- 167:Core/Src/uart.c **** 
- 168:Core/Src/uart.c **** 
- 169:Core/Src/uart.c **** 
- 170:Core/Src/uart.c **** 
- 171:Core/Src/uart.c **** int __io_putchar(int ch) {
- 417              		.loc 1 171 26 is_stmt 1 view -0
+ 163:Core/Src/uart.c **** int __io_putchar(int ch) {
+ 417              		.loc 1 163 26 is_stmt 1 view -0
  418              		.cfi_startproc
  419              		@ args = 0, pretend = 0, frame = 8
  420              		@ frame_needed = 0, uses_anonymous_args = 0
- 421              		.loc 1 171 26 is_stmt 0 view .LVU128
+ 421              		.loc 1 163 26 is_stmt 0 view .LVU128
  422 0000 00B5     		push	{lr}
  423              	.LCFI6:
  424              		.cfi_def_cfa_offset 4
@@ -710,25 +702,25 @@ ARM GAS  /tmp/cc2kbDPB.s 			page 1
  427              	.LCFI7:
  428              		.cfi_def_cfa_offset 16
  429 0004 0190     		str	r0, [sp, #4]
- 172:Core/Src/uart.c **** HAL_UART_Transmit(&huart, (uint8_t*)&ch, 1, 0xffff);
- 430              		.loc 1 172 1 is_stmt 1 view .LVU129
+ 164:Core/Src/uart.c ****   HAL_UART_Transmit(&huart, (uint8_t*)&ch, 1, 0xffff);
+ 430              		.loc 1 164 3 is_stmt 1 view .LVU129
  431 0006 4FF6FF73 		movw	r3, #65535
  432 000a 0122     		movs	r2, #1
  433 000c 01A9     		add	r1, sp, #4
  434 000e 0348     		ldr	r0, .L28
  435              	.LVL21:
- 436              		.loc 1 172 1 is_stmt 0 view .LVU130
-ARM GAS  /tmp/cc2kbDPB.s 			page 13
-
-
+ 436              		.loc 1 164 3 is_stmt 0 view .LVU130
  437 0010 FFF7FEFF 		bl	HAL_UART_Transmit
  438              	.LVL22:
- 173:Core/Src/uart.c **** return 0;
- 439              		.loc 1 173 1 is_stmt 1 view .LVU131
- 174:Core/Src/uart.c **** }
- 440              		.loc 1 174 1 is_stmt 0 view .LVU132
+ 165:Core/Src/uart.c ****   return 0;
+ 439              		.loc 1 165 3 is_stmt 1 view .LVU131
+ 166:Core/Src/uart.c **** }
+ 440              		.loc 1 166 1 is_stmt 0 view .LVU132
  441 0014 0020     		movs	r0, #0
  442 0016 03B0     		add	sp, sp, #12
+ARM GAS  /tmp/cc7HIGko.s 			page 13
+
+
  443              	.LCFI8:
  444              		.cfi_def_cfa_offset 4
  445              		@ sp needed
@@ -749,44 +741,46 @@ ARM GAS  /tmp/cc2kbDPB.s 			page 1
  462              	HAL_UART_RxCpltCallback:
  463              	.LVL23:
  464              	.LFB138:
- 175:Core/Src/uart.c **** 
- 176:Core/Src/uart.c **** void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
- 177:Core/Src/uart.c **** {
- 465              		.loc 1 177 1 is_stmt 1 view -0
+ 167:Core/Src/uart.c **** 
+ 168:Core/Src/uart.c **** void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huartx)
+ 169:Core/Src/uart.c **** {
+ 465              		.loc 1 169 1 is_stmt 1 view -0
  466              		.cfi_startproc
  467              		@ args = 0, pretend = 0, frame = 0
  468              		@ frame_needed = 0, uses_anonymous_args = 0
- 469              		.loc 1 177 1 is_stmt 0 view .LVU134
+ 469              		.loc 1 169 1 is_stmt 0 view .LVU134
  470 0000 08B5     		push	{r3, lr}
  471              	.LCFI9:
  472              		.cfi_def_cfa_offset 8
  473              		.cfi_offset 3, -8
  474              		.cfi_offset 14, -4
- 178:Core/Src/uart.c ****   /* Prevent unused argument(s) compilation warning */
- 179:Core/Src/uart.c **** 	HAL_UART_Receive_IT(huart, (uint8_t *)Serial2RxBuffer, 1);
- 475              		.loc 1 179 2 is_stmt 1 view .LVU135
+ 170:Core/Src/uart.c ****   /* Prevent unused argument(s) compilation warning */
+ 171:Core/Src/uart.c ****   // char c = Serial2RxBuffer[0];
+ 172:Core/Src/uart.c ****   // update_fsm(&state, c);
+ 173:Core/Src/uart.c **** 	HAL_UART_Receive_IT(huartx, (uint8_t *)Serial2RxBuffer, 1);
+ 475              		.loc 1 173 2 is_stmt 1 view .LVU135
  476 0002 0122     		movs	r2, #1
  477 0004 0149     		ldr	r1, .L32
  478 0006 FFF7FEFF 		bl	HAL_UART_Receive_IT
  479              	.LVL24:
- 180:Core/Src/uart.c ****   /* NOTE: This function should not be modified, when the callback is needed,
- 181:Core/Src/uart.c ****            the HAL_UART_RxCpltCallback could be implemented in the user file
- 182:Core/Src/uart.c ****    */
- 183:Core/Src/uart.c **** }
- 480              		.loc 1 183 1 is_stmt 0 view .LVU136
+ 174:Core/Src/uart.c ****   /* NOTE: This function should not be modified, when the callback is needed,
+ 175:Core/Src/uart.c ****            the HAL_UART_RxCpltCallback could be implemented in the user file
+ 176:Core/Src/uart.c ****    */
+ 177:Core/Src/uart.c **** }
+ 480              		.loc 1 177 1 is_stmt 0 view .LVU136
  481 000a 08BD     		pop	{r3, pc}
  482              	.L33:
  483              		.align	2
  484              	.L32:
-ARM GAS  /tmp/cc2kbDPB.s 			page 14
-
-
  485 000c 00000000 		.word	Serial2RxBuffer
  486              		.cfi_endproc
  487              	.LFE138:
  489              		.global	hdma_usart_tx
  490              		.global	hdma_usart_rx
  491              		.global	huart
+ARM GAS  /tmp/cc7HIGko.s 			page 14
+
+
  492              		.section	.bss.hdma_usart_rx,"aw",%nobits
  493              		.align	2
  494              		.set	.LANCHOR1,. + 0
@@ -825,32 +819,32 @@ ARM GAS  /tmp/cc2kbDPB.s 			page 1
  521              		.file 8 "Core/Inc/uart.h"
  522              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
  523              		.file 10 "Core/Inc/main.h"
-ARM GAS  /tmp/cc2kbDPB.s 			page 15
+ARM GAS  /tmp/cc7HIGko.s 			page 15
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 uart.c
-     /tmp/cc2kbDPB.s:18     .text.MX_USART6_UART_Init:0000000000000000 $t
-     /tmp/cc2kbDPB.s:26     .text.MX_USART6_UART_Init:0000000000000000 MX_USART6_UART_Init
-     /tmp/cc2kbDPB.s:85     .text.MX_USART6_UART_Init:000000000000002c $d
-     /tmp/cc2kbDPB.s:91     .text.HAL_UART_MspInit:0000000000000000 $t
-     /tmp/cc2kbDPB.s:98     .text.HAL_UART_MspInit:0000000000000000 HAL_UART_MspInit
-     /tmp/cc2kbDPB.s:329    .text.HAL_UART_MspInit:00000000000000ec $d
-     /tmp/cc2kbDPB.s:339    .text.HAL_UART_MspDeInit:0000000000000000 $t
-     /tmp/cc2kbDPB.s:346    .text.HAL_UART_MspDeInit:0000000000000000 HAL_UART_MspDeInit
-     /tmp/cc2kbDPB.s:400    .text.HAL_UART_MspDeInit:0000000000000034 $d
-     /tmp/cc2kbDPB.s:407    .text.__io_putchar:0000000000000000 $t
-     /tmp/cc2kbDPB.s:414    .text.__io_putchar:0000000000000000 __io_putchar
-     /tmp/cc2kbDPB.s:450    .text.__io_putchar:000000000000001c $d
-     /tmp/cc2kbDPB.s:455    .text.HAL_UART_RxCpltCallback:0000000000000000 $t
-     /tmp/cc2kbDPB.s:462    .text.HAL_UART_RxCpltCallback:0000000000000000 HAL_UART_RxCpltCallback
-     /tmp/cc2kbDPB.s:485    .text.HAL_UART_RxCpltCallback:000000000000000c $d
-     /tmp/cc2kbDPB.s:504    .bss.hdma_usart_tx:0000000000000000 hdma_usart_tx
-     /tmp/cc2kbDPB.s:497    .bss.hdma_usart_rx:0000000000000000 hdma_usart_rx
-     /tmp/cc2kbDPB.s:511    .bss.huart:0000000000000000 huart
-     /tmp/cc2kbDPB.s:493    .bss.hdma_usart_rx:0000000000000000 $d
-     /tmp/cc2kbDPB.s:500    .bss.hdma_usart_tx:0000000000000000 $d
-     /tmp/cc2kbDPB.s:507    .bss.huart:0000000000000000 $d
+     /tmp/cc7HIGko.s:18     .text.MX_USART6_UART_Init:0000000000000000 $t
+     /tmp/cc7HIGko.s:26     .text.MX_USART6_UART_Init:0000000000000000 MX_USART6_UART_Init
+     /tmp/cc7HIGko.s:85     .text.MX_USART6_UART_Init:000000000000002c $d
+     /tmp/cc7HIGko.s:91     .text.HAL_UART_MspInit:0000000000000000 $t
+     /tmp/cc7HIGko.s:98     .text.HAL_UART_MspInit:0000000000000000 HAL_UART_MspInit
+     /tmp/cc7HIGko.s:329    .text.HAL_UART_MspInit:00000000000000ec $d
+     /tmp/cc7HIGko.s:339    .text.HAL_UART_MspDeInit:0000000000000000 $t
+     /tmp/cc7HIGko.s:346    .text.HAL_UART_MspDeInit:0000000000000000 HAL_UART_MspDeInit
+     /tmp/cc7HIGko.s:400    .text.HAL_UART_MspDeInit:0000000000000034 $d
+     /tmp/cc7HIGko.s:407    .text.__io_putchar:0000000000000000 $t
+     /tmp/cc7HIGko.s:414    .text.__io_putchar:0000000000000000 __io_putchar
+     /tmp/cc7HIGko.s:450    .text.__io_putchar:000000000000001c $d
+     /tmp/cc7HIGko.s:455    .text.HAL_UART_RxCpltCallback:0000000000000000 $t
+     /tmp/cc7HIGko.s:462    .text.HAL_UART_RxCpltCallback:0000000000000000 HAL_UART_RxCpltCallback
+     /tmp/cc7HIGko.s:485    .text.HAL_UART_RxCpltCallback:000000000000000c $d
+     /tmp/cc7HIGko.s:504    .bss.hdma_usart_tx:0000000000000000 hdma_usart_tx
+     /tmp/cc7HIGko.s:497    .bss.hdma_usart_rx:0000000000000000 hdma_usart_rx
+     /tmp/cc7HIGko.s:511    .bss.huart:0000000000000000 huart
+     /tmp/cc7HIGko.s:493    .bss.hdma_usart_rx:0000000000000000 $d
+     /tmp/cc7HIGko.s:500    .bss.hdma_usart_tx:0000000000000000 $d
+     /tmp/cc7HIGko.s:507    .bss.huart:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_UART_Init

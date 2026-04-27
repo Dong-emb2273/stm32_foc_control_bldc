@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccTADmDW.s 			page 1
+ARM GAS  /tmp/ccDcBK4H.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
   41              	.LCFI1:
   42              		.cfi_def_cfa_offset 24
   43              		.cfi_offset 80, -24
-ARM GAS  /tmp/ccTADmDW.s 			page 2
+ARM GAS  /tmp/ccDcBK4H.s 			page 2
 
 
   44              		.cfi_offset 81, -20
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
   91 0044 E1DB     		blt	.L3
   92              	.LBE2:
   20:Core/Src/foc_math.c **** 	}
-ARM GAS  /tmp/ccTADmDW.s 			page 3
+ARM GAS  /tmp/ccDcBK4H.s 			page 3
 
 
   21:Core/Src/foc_math.c **** }
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  145              	.L11:
   25:Core/Src/foc_math.c **** 	while (*theta >= TWO_PI) *theta -= TWO_PI;
  146              		.loc 1 25 27 is_stmt 1 discriminator 2 view .LVU27
-ARM GAS  /tmp/ccTADmDW.s 			page 4
+ARM GAS  /tmp/ccDcBK4H.s 			page 4
 
 
  147              		.loc 1 25 34 is_stmt 0 discriminator 2 view .LVU28
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  198              		.loc 1 30 8 is_stmt 0 view .LVU37
  199 000e DDED016A 		vldr.32	s13, [sp, #4]
  200 0012 9FED157A 		vldr.32	s14, .L16
-ARM GAS  /tmp/ccTADmDW.s 			page 5
+ARM GAS  /tmp/ccDcBK4H.s 			page 5
 
 
  201 0016 C6EE877A 		vdiv.f32	s15, s13, s14
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  248 0060 03B0     		add	sp, sp, #12
  249              	.LCFI5:
  250              		.cfi_def_cfa_offset 4
-ARM GAS  /tmp/ccTADmDW.s 			page 6
+ARM GAS  /tmp/ccDcBK4H.s 			page 6
 
 
  251              		@ sp needed
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  301              		.loc 1 43 23 is_stmt 0 view .LVU64
  302 0022 B8EEC70A 		vcvt.f32.s32	s0, s14
  303              		.loc 1 43 8 view .LVU65
-ARM GAS  /tmp/ccTADmDW.s 			page 7
+ARM GAS  /tmp/ccDcBK4H.s 			page 7
 
 
  304 0026 77EEC07A 		vsub.f32	s15, s15, s0
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  354              		.align	1
  355              		.global	float_to_uint
  356              		.syntax unified
-ARM GAS  /tmp/ccTADmDW.s 			page 8
+ARM GAS  /tmp/ccDcBK4H.s 			page 8
 
 
  357              		.thumb
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  407              	uint_to_float:
  408              	.LVL32:
  409              	.LFB5:
-ARM GAS  /tmp/ccTADmDW.s 			page 9
+ARM GAS  /tmp/ccDcBK4H.s 			page 9
 
 
   56:Core/Src/foc_math.c ****     
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  457              		.loc 1 64 72 is_stmt 1 view -0
  458              		.cfi_startproc
  459              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccTADmDW.s 			page 10
+ARM GAS  /tmp/ccDcBK4H.s 			page 10
 
 
  460              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  513              	.LFB7:
   68:Core/Src/foc_math.c **** 
   69:Core/Src/foc_math.c **** // Fast combined Clarke + Park Transform
-ARM GAS  /tmp/ccTADmDW.s 			page 11
+ARM GAS  /tmp/ccDcBK4H.s 			page 11
 
 
   70:Core/Src/foc_math.c **** void clarke_park_transform(float ia, float ib, float sin_theta, float cos_theta, float *id, float *
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  559              	.LFE7:
  561              		.section	.text.inverse_park_transform,"ax",%progbits
  562              		.align	1
-ARM GAS  /tmp/ccTADmDW.s 			page 12
+ARM GAS  /tmp/ccDcBK4H.s 			page 12
 
 
  563              		.global	inverse_park_transform
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
   86:Core/Src/foc_math.c **** // Inverse Clarke Transform
   87:Core/Src/foc_math.c **** void inverse_clarke_transform(float valpha, float vbeta, float *va, float *vb, float *vc) {
  613              		.loc 1 87 91 is_stmt 1 view -0
-ARM GAS  /tmp/ccTADmDW.s 			page 13
+ARM GAS  /tmp/ccDcBK4H.s 			page 13
 
 
  614              		.cfi_startproc
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
   98:Core/Src/foc_math.c ****  * @param pwm_period Full PWM period value
   99:Core/Src/foc_math.c ****  * @param pwm_u Output duty cycle for phase U (0 to pwm_period)
  100:Core/Src/foc_math.c ****  * @param pwm_v Output duty cycle for phase V
-ARM GAS  /tmp/ccTADmDW.s 			page 14
+ARM GAS  /tmp/ccDcBK4H.s 			page 14
 
 
  101:Core/Src/foc_math.c ****  * @param pwm_w Output duty cycle for phase W
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  116:Core/Src/foc_math.c **** 	} else {
  117:Core/Src/foc_math.c **** 		if (alpha >= 0.0f) {
  118:Core/Src/foc_math.c **** 				sector = (-ONE_BY_SQRT3 * beta > alpha) ? 5 : 6;
-ARM GAS  /tmp/ccTADmDW.s 			page 15
+ARM GAS  /tmp/ccDcBK4H.s 			page 15
 
 
  119:Core/Src/foc_math.c **** 		} else {
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  739              		.loc 1 132 4 is_stmt 1 view .LVU190
  740              		.loc 1 132 20 is_stmt 0 view .LVU191
  741 006a A4EB0C04 		sub	r4, r4, ip
-ARM GAS  /tmp/ccTADmDW.s 			page 16
+ARM GAS  /tmp/ccDcBK4H.s 			page 16
 
 
  742              		.loc 1 132 11 view .LVU192
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  778              	.LVL65:
  779              		.loc 1 145 27 view .LVU206
  780 00ae 77EEC77A 		vsub.f32	s15, s15, s14
-ARM GAS  /tmp/ccTADmDW.s 			page 17
+ARM GAS  /tmp/ccDcBK4H.s 			page 17
 
 
  781              		.loc 1 145 50 view .LVU207
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  825              		.loc 1 125 2 is_stmt 1 view .LVU226
  126:Core/Src/foc_math.c **** 		case 1:
  826              		.loc 1 126 2 view .LVU227
-ARM GAS  /tmp/ccTADmDW.s 			page 18
+ARM GAS  /tmp/ccDcBK4H.s 			page 18
 
 
  150:Core/Src/foc_math.c **** 
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  860              		.loc 1 170 11 view .LVU241
  861 012c 0D60     		str	r5, [r1]
  171:Core/Src/foc_math.c **** 			*pwm_w = *pwm_u - t2;
-ARM GAS  /tmp/ccTADmDW.s 			page 19
+ARM GAS  /tmp/ccDcBK4H.s 			page 19
 
 
  862              		.loc 1 171 4 is_stmt 1 view .LVU242
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  903 0168 27EE277A 		vmul.f32	s14, s14, s15
  904              	.LVL79:
  153:Core/Src/foc_math.c **** 			*pwm_w = (pwm_period + t1 + t2) / 2;
-ARM GAS  /tmp/ccTADmDW.s 			page 20
+ARM GAS  /tmp/ccDcBK4H.s 			page 20
 
 
  905              		.loc 1 153 40 view .LVU260
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  942              		.loc 1 136 49 view .LVU277
  943 0198 06EE900A 		vmov	s13, r0	@ int
  944 019c F8EE666A 		vcvt.f32.u32	s13, s13
-ARM GAS  /tmp/ccTADmDW.s 			page 21
+ARM GAS  /tmp/ccDcBK4H.s 			page 21
 
 
  945 01a0 26EE266A 		vmul.f32	s12, s12, s13
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  981              		.loc 1 141 4 is_stmt 1 view .LVU295
  982              	.LVL88:
  983              	.L39:
-ARM GAS  /tmp/ccTADmDW.s 			page 22
+ARM GAS  /tmp/ccDcBK4H.s 			page 22
 
 
  174:Core/Src/foc_math.c **** 	}
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  160:Core/Src/foc_math.c **** 			t2 = (int32_t)((alpha - ONE_BY_SQRT3 * beta) * pwm_period);
  1029              		.loc 1 160 42 view .LVU311
  1030 01f6 9FED116A 		vldr.32	s12, .L54
-ARM GAS  /tmp/ccTADmDW.s 			page 23
+ARM GAS  /tmp/ccDcBK4H.s 			page 23
 
 
  1031 01fa 27EE067A 		vmul.f32	s14, s14, s12
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  164:Core/Src/foc_math.c **** 			break;
  1069              		.loc 1 164 20 is_stmt 0 view .LVU328
  1070 0232 A4EB0C04 		sub	r4, r4, ip
-ARM GAS  /tmp/ccTADmDW.s 			page 24
+ARM GAS  /tmp/ccDcBK4H.s 			page 24
 
 
  164:Core/Src/foc_math.c **** 			break;
@@ -1419,44 +1419,44 @@ ARM GAS  /tmp/ccTADmDW.s 			page 1
  1101              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
  1102              		.file 3 "Core/Inc/foc_math.h"
  1103              		.file 4 "/usr/include/newlib/math.h"
-ARM GAS  /tmp/ccTADmDW.s 			page 25
+ARM GAS  /tmp/ccDcBK4H.s 			page 25
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 foc_math.c
-     /tmp/ccTADmDW.s:18     .text.init_trig_lut:0000000000000000 $t
-     /tmp/ccTADmDW.s:26     .text.init_trig_lut:0000000000000000 init_trig_lut
-     /tmp/ccTADmDW.s:105    .text.init_trig_lut:000000000000004c $d
-     /tmp/ccTADmDW.s:1097   .bss.sin_lut:0000000000000000 sin_lut
-     /tmp/ccTADmDW.s:1091   .bss.cos_lut:0000000000000000 cos_lut
-     /tmp/ccTADmDW.s:112    .text.norm_angle_rad:0000000000000000 $t
-     /tmp/ccTADmDW.s:119    .text.norm_angle_rad:0000000000000000 norm_angle_rad
-     /tmp/ccTADmDW.s:165    .text.norm_angle_rad:0000000000000040 $d
-     /tmp/ccTADmDW.s:170    .text.fast_sin:0000000000000000 $t
-     /tmp/ccTADmDW.s:177    .text.fast_sin:0000000000000000 fast_sin
-     /tmp/ccTADmDW.s:256    .text.fast_sin:0000000000000068 $d
-     /tmp/ccTADmDW.s:262    .text.fast_cos:0000000000000000 $t
-     /tmp/ccTADmDW.s:269    .text.fast_cos:0000000000000000 fast_cos
-     /tmp/ccTADmDW.s:348    .text.fast_cos:0000000000000068 $d
-     /tmp/ccTADmDW.s:354    .text.float_to_uint:0000000000000000 $t
-     /tmp/ccTADmDW.s:361    .text.float_to_uint:0000000000000000 float_to_uint
-     /tmp/ccTADmDW.s:400    .text.uint_to_float:0000000000000000 $t
-     /tmp/ccTADmDW.s:407    .text.uint_to_float:0000000000000000 uint_to_float
-     /tmp/ccTADmDW.s:447    .text.pre_calc_sin_cos:0000000000000000 $t
-     /tmp/ccTADmDW.s:454    .text.pre_calc_sin_cos:0000000000000000 pre_calc_sin_cos
-     /tmp/ccTADmDW.s:504    .text.clarke_park_transform:0000000000000000 $t
-     /tmp/ccTADmDW.s:511    .text.clarke_park_transform:0000000000000000 clarke_park_transform
-     /tmp/ccTADmDW.s:556    .text.clarke_park_transform:0000000000000038 $d
-     /tmp/ccTADmDW.s:562    .text.inverse_park_transform:0000000000000000 $t
-     /tmp/ccTADmDW.s:569    .text.inverse_park_transform:0000000000000000 inverse_park_transform
-     /tmp/ccTADmDW.s:603    .text.inverse_clarke_transform:0000000000000000 $t
-     /tmp/ccTADmDW.s:610    .text.inverse_clarke_transform:0000000000000000 inverse_clarke_transform
-     /tmp/ccTADmDW.s:645    .text.inverse_clarke_transform:0000000000000028 $d
-     /tmp/ccTADmDW.s:650    .text.svpwm:0000000000000000 $t
-     /tmp/ccTADmDW.s:657    .text.svpwm:0000000000000000 svpwm
-     /tmp/ccTADmDW.s:1078   .text.svpwm:000000000000023c $d
-     /tmp/ccTADmDW.s:1088   .bss.cos_lut:0000000000000000 $d
-     /tmp/ccTADmDW.s:1094   .bss.sin_lut:0000000000000000 $d
+     /tmp/ccDcBK4H.s:18     .text.init_trig_lut:0000000000000000 $t
+     /tmp/ccDcBK4H.s:26     .text.init_trig_lut:0000000000000000 init_trig_lut
+     /tmp/ccDcBK4H.s:105    .text.init_trig_lut:000000000000004c $d
+     /tmp/ccDcBK4H.s:1097   .bss.sin_lut:0000000000000000 sin_lut
+     /tmp/ccDcBK4H.s:1091   .bss.cos_lut:0000000000000000 cos_lut
+     /tmp/ccDcBK4H.s:112    .text.norm_angle_rad:0000000000000000 $t
+     /tmp/ccDcBK4H.s:119    .text.norm_angle_rad:0000000000000000 norm_angle_rad
+     /tmp/ccDcBK4H.s:165    .text.norm_angle_rad:0000000000000040 $d
+     /tmp/ccDcBK4H.s:170    .text.fast_sin:0000000000000000 $t
+     /tmp/ccDcBK4H.s:177    .text.fast_sin:0000000000000000 fast_sin
+     /tmp/ccDcBK4H.s:256    .text.fast_sin:0000000000000068 $d
+     /tmp/ccDcBK4H.s:262    .text.fast_cos:0000000000000000 $t
+     /tmp/ccDcBK4H.s:269    .text.fast_cos:0000000000000000 fast_cos
+     /tmp/ccDcBK4H.s:348    .text.fast_cos:0000000000000068 $d
+     /tmp/ccDcBK4H.s:354    .text.float_to_uint:0000000000000000 $t
+     /tmp/ccDcBK4H.s:361    .text.float_to_uint:0000000000000000 float_to_uint
+     /tmp/ccDcBK4H.s:400    .text.uint_to_float:0000000000000000 $t
+     /tmp/ccDcBK4H.s:407    .text.uint_to_float:0000000000000000 uint_to_float
+     /tmp/ccDcBK4H.s:447    .text.pre_calc_sin_cos:0000000000000000 $t
+     /tmp/ccDcBK4H.s:454    .text.pre_calc_sin_cos:0000000000000000 pre_calc_sin_cos
+     /tmp/ccDcBK4H.s:504    .text.clarke_park_transform:0000000000000000 $t
+     /tmp/ccDcBK4H.s:511    .text.clarke_park_transform:0000000000000000 clarke_park_transform
+     /tmp/ccDcBK4H.s:556    .text.clarke_park_transform:0000000000000038 $d
+     /tmp/ccDcBK4H.s:562    .text.inverse_park_transform:0000000000000000 $t
+     /tmp/ccDcBK4H.s:569    .text.inverse_park_transform:0000000000000000 inverse_park_transform
+     /tmp/ccDcBK4H.s:603    .text.inverse_clarke_transform:0000000000000000 $t
+     /tmp/ccDcBK4H.s:610    .text.inverse_clarke_transform:0000000000000000 inverse_clarke_transform
+     /tmp/ccDcBK4H.s:645    .text.inverse_clarke_transform:0000000000000028 $d
+     /tmp/ccDcBK4H.s:650    .text.svpwm:0000000000000000 $t
+     /tmp/ccDcBK4H.s:657    .text.svpwm:0000000000000000 svpwm
+     /tmp/ccDcBK4H.s:1078   .text.svpwm:000000000000023c $d
+     /tmp/ccDcBK4H.s:1088   .bss.cos_lut:0000000000000000 $d
+     /tmp/ccDcBK4H.s:1094   .bss.sin_lut:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 sinf
