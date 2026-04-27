@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cceRI8TT.s 			page 1
+ARM GAS  /tmp/cc9WaT4Y.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
   29:Core/Src/main.c **** #include "as5048a.h"
   30:Core/Src/main.c **** #include "drv8323s.h"
   31:Core/Src/main.c **** #include "flash.h"
-ARM GAS  /tmp/cceRI8TT.s 			page 2
+ARM GAS  /tmp/cc9WaT4Y.s 			page 2
 
 
   32:Core/Src/main.c **** #include "foc_utils.h"
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
   86:Core/Src/main.c **** 
   87:Core/Src/main.c ****   // Get current time (µs)
   88:Core/Src/main.c ****   uint32_t now_us = TIM10->CNT;
-ARM GAS  /tmp/cceRI8TT.s 			page 3
+ARM GAS  /tmp/cc9WaT4Y.s 			page 3
 
 
   89:Core/Src/main.c ****   uint32_t elapsed_us = now_us - last_us;
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  143:Core/Src/main.c **** int __int_reg[256];
  144:Core/Src/main.c **** 
  145:Core/Src/main.c **** float sPoint_Vel = 50.0f;
-ARM GAS  /tmp/cceRI8TT.s 			page 4
+ARM GAS  /tmp/cc9WaT4Y.s 			page 4
 
 
  146:Core/Src/main.c **** float sPoint_Pos = 0;
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  200:Core/Src/main.c ****   ADC1_DMA_CONFIG3();
  201:Core/Src/main.c **** 
  202:Core/Src/main.c ****   TIM1_PWM_DMA_CONFIG();
-ARM GAS  /tmp/cceRI8TT.s 			page 5
+ARM GAS  /tmp/cc9WaT4Y.s 			page 5
 
 
  203:Core/Src/main.c **** 	TIM_IQR_MS_CONGFIG();
@@ -246,29 +246,29 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  205:Core/Src/main.c **** 
  206:Core/Src/main.c **** 
  207:Core/Src/main.c ****   /* Sanitize configs in case flash is empty*/
- 208:Core/Src/main.c ****   // if(E_ZERO==-1){E_ZERO = 0;}
- 209:Core/Src/main.c ****   // if(M_ZERO==-1){M_ZERO = 0;}
- 210:Core/Src/main.c ****   // if(isnan(I_BW) || I_BW==-1){I_BW = 1000;}
- 211:Core/Src/main.c ****   // if(isnan(I_MAX) || I_MAX ==-1){I_MAX=40;}
- 212:Core/Src/main.c ****   // if(isnan(I_FW_MAX) || I_FW_MAX ==-1){I_FW_MAX=0;}
- 213:Core/Src/main.c ****   // if(CAN_ID==-1){CAN_ID = 1;}
- 214:Core/Src/main.c ****   // if(CAN_MASTER==-1){CAN_MASTER = 0;}
- 215:Core/Src/main.c ****   // if(CAN_TIMEOUT==-1){CAN_TIMEOUT = 1000;}
- 216:Core/Src/main.c ****   // if(isnan(R_NOMINAL) || R_NOMINAL==-1){R_NOMINAL = 0.0f;}
- 217:Core/Src/main.c ****   // if(isnan(TEMP_MAX) || TEMP_MAX==-1){TEMP_MAX = 125.0f;}
- 218:Core/Src/main.c ****   // if(isnan(I_MAX_CONT) || I_MAX_CONT==-1){I_MAX_CONT = 14.0f;}
- 219:Core/Src/main.c ****   // if(isnan(I_CAL)||I_CAL==-1){I_CAL = 5.0f;}
- 220:Core/Src/main.c ****   // if(isnan(PPAIRS) || PPAIRS==-1){PPAIRS = 21.0f;}
- 221:Core/Src/main.c ****   // if(isnan(GR) || GR==-1){GR = 1.0f;}
- 222:Core/Src/main.c ****   // if(isnan(KT) || KT==-1){KT = 1.0f;}
- 223:Core/Src/main.c ****   // if(isnan(KP_MAX) || KP_MAX==-1){KP_MAX = 500.0f;}
- 224:Core/Src/main.c ****   // if(isnan(KP_MIN) || KP_MIN==-1){KP_MIN = 0.0f;}
- 225:Core/Src/main.c ****   // if(isnan(KD_MAX) || KD_MAX==-1){KD_MAX = 5.0f;}
- 226:Core/Src/main.c ****   // if(isnan(KD_MIN) || KD_MIN==-1){KD_MIN = 0.0f;}
- 227:Core/Src/main.c ****   // if(isnan(P_MAX)){P_MAX = 12.5f;}
- 228:Core/Src/main.c ****   // if(isnan(P_MIN)){P_MIN = -12.5f;}
- 229:Core/Src/main.c ****   // if(isnan(V_MAX)){V_MAX = 65.0f;}
- 230:Core/Src/main.c ****   // if(isnan(V_MIN)){V_MIN = -65.0f;}
+ 208:Core/Src/main.c ****   if(E_ZERO==-1){E_ZERO = 0;}
+ 209:Core/Src/main.c ****   if(M_ZERO==-1){M_ZERO = 0;}
+ 210:Core/Src/main.c ****   if(isnan(I_BW) || I_BW==-1){I_BW = 1000;}
+ 211:Core/Src/main.c ****   if(isnan(I_MAX) || I_MAX ==-1){I_MAX=40;}
+ 212:Core/Src/main.c ****   if(isnan(I_FW_MAX) || I_FW_MAX ==-1){I_FW_MAX=0;}
+ 213:Core/Src/main.c ****   if(CAN_ID==-1){CAN_ID = 1;}
+ 214:Core/Src/main.c ****   if(CAN_MASTER==-1){CAN_MASTER = 0;}
+ 215:Core/Src/main.c ****   if(CAN_TIMEOUT==-1){CAN_TIMEOUT = 1000;}
+ 216:Core/Src/main.c ****   if(isnan(R_NOMINAL) || R_NOMINAL==-1){R_NOMINAL = 0.0f;}
+ 217:Core/Src/main.c ****   if(isnan(TEMP_MAX) || TEMP_MAX==-1){TEMP_MAX = 125.0f;}
+ 218:Core/Src/main.c ****   if(isnan(I_MAX_CONT) || I_MAX_CONT==-1){I_MAX_CONT = 14.0f;}
+ 219:Core/Src/main.c ****   if(isnan(I_CAL)||I_CAL==-1){I_CAL = 5.0f;}
+ 220:Core/Src/main.c ****   if(isnan(PPAIRS) || PPAIRS==-1){PPAIRS = 21.0f;}
+ 221:Core/Src/main.c ****   if(isnan(GR) || GR==-1){GR = 1.0f;}
+ 222:Core/Src/main.c ****   if(isnan(KT) || KT==-1){KT = 1.0f;}
+ 223:Core/Src/main.c ****   if(isnan(KP_MAX) || KP_MAX==-1){KP_MAX = 500.0f;}
+ 224:Core/Src/main.c ****   if(isnan(KP_MIN) || KP_MIN==-1){KP_MIN = 0.0f;}
+ 225:Core/Src/main.c ****   if(isnan(KD_MAX) || KD_MAX==-1){KD_MAX = 5.0f;}
+ 226:Core/Src/main.c ****   if(isnan(KD_MIN) || KD_MIN==-1){KD_MIN = 0.0f;}
+ 227:Core/Src/main.c ****   if(isnan(P_MAX)){P_MAX = 12.5f;}
+ 228:Core/Src/main.c ****   if(isnan(P_MIN)){P_MIN = -12.5f;}
+ 229:Core/Src/main.c ****   if(isnan(V_MAX)){V_MAX = 65.0f;}
+ 230:Core/Src/main.c ****   if(isnan(V_MIN)){V_MIN = -65.0f;}
  231:Core/Src/main.c **** 
  232:Core/Src/main.c ****   
  233:Core/Src/main.c ****   // Load Config 
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  257:Core/Src/main.c ****   TIM_COUNTER_ENABLE(TIM1); 
  258:Core/Src/main.c **** 
  259:Core/Src/main.c **** 
-ARM GAS  /tmp/cceRI8TT.s 			page 6
+ARM GAS  /tmp/cc9WaT4Y.s 			page 6
 
 
  260:Core/Src/main.c ****   // Output PWM
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  314:Core/Src/main.c ****   HAL_NVIC_SetPriority(DMA2_Stream7_IRQn, 0, 0);
  315:Core/Src/main.c ****   HAL_NVIC_EnableIRQ(DMA2_Stream7_IRQn);
  316:Core/Src/main.c **** 
-ARM GAS  /tmp/cceRI8TT.s 			page 7
+ARM GAS  /tmp/cc9WaT4Y.s 			page 7
 
 
  317:Core/Src/main.c **** }
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
   28              		.loc 1 370 1 view -0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 16
-ARM GAS  /tmp/cceRI8TT.s 			page 8
+ARM GAS  /tmp/cc9WaT4Y.s 			page 8
 
 
   31              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
   77 0036 1963     		str	r1, [r3, #48]
   78              		.loc 1 378 3 view .LVU16
   79 0038 196B     		ldr	r1, [r3, #48]
-ARM GAS  /tmp/cceRI8TT.s 			page 9
+ARM GAS  /tmp/cc9WaT4Y.s 			page 9
 
 
   80 003a 01F00401 		and	r1, r1, #4
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  129              	.LCFI2:
  130              		.cfi_def_cfa_offset 8
  131              		.cfi_offset 4, -8
-ARM GAS  /tmp/cceRI8TT.s 			page 10
+ARM GAS  /tmp/cc9WaT4Y.s 			page 10
 
 
  132              		.cfi_offset 14, -4
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  173 0034 0E20     		movs	r0, #14
  174 0036 FFF7FEFF 		bl	HAL_NVIC_SetPriority
  175              	.LVL0:
-ARM GAS  /tmp/cceRI8TT.s 			page 11
+ARM GAS  /tmp/cc9WaT4Y.s 			page 11
 
 
  296:Core/Src/main.c ****   /* DMA1_Stream4_IRQn interrupt configuration */
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  220              		.loc 1 314 3 view .LVU49
  221 0080 2246     		mov	r2, r4
  222 0082 2146     		mov	r1, r4
-ARM GAS  /tmp/cceRI8TT.s 			page 12
+ARM GAS  /tmp/cc9WaT4Y.s 			page 12
 
 
  223 0084 4620     		movs	r0, #70
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  270              	.L11:
  271 000a 00BF     		.align	2
  272              	.L10:
-ARM GAS  /tmp/cceRI8TT.s 			page 13
+ARM GAS  /tmp/cc9WaT4Y.s 			page 13
 
 
  273 000c 00440140 		.word	1073824768
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  319 0024 0020     		movs	r0, #0
  320              	.LVL16:
  321              	.L13:
-ARM GAS  /tmp/cceRI8TT.s 			page 14
+ARM GAS  /tmp/cc9WaT4Y.s 			page 14
 
 
  118:Core/Src/main.c **** 
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  115:Core/Src/main.c ****   }
  362              		.loc 1 115 5 is_stmt 0 view .LVU83
  363 0052 E8E7     		b	.L13
-ARM GAS  /tmp/cceRI8TT.s 			page 15
+ARM GAS  /tmp/cc9WaT4Y.s 			page 15
 
 
  364              	.L18:
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  416 0022 F0EE681A 		vmov.f32	s3, s17
  417 0026 B0EE481A 		vmov.f32	s2, s16
  418 002a D4ED020A 		vldr.32	s1, [r4, #8]
-ARM GAS  /tmp/cceRI8TT.s 			page 16
+ARM GAS  /tmp/cc9WaT4Y.s 			page 16
 
 
  419 002e 94ED010A 		vldr.32	s0, [r4, #4]
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  467              	.LVL26:
  134:Core/Src/main.c ****   foc_sensor_init(&hfoc, m_config.encd_offset, NORMAL_DIR);
  468              		.loc 1 134 3 view .LVU94
-ARM GAS  /tmp/cceRI8TT.s 			page 17
+ARM GAS  /tmp/cc9WaT4Y.s 			page 17
 
 
  469 00b6 9FED180A 		vldr.32	s0, .L21+44
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  520              		.align	1
  521              		.global	TIM3_IRQHandler
  522              		.syntax unified
-ARM GAS  /tmp/cceRI8TT.s 			page 18
+ARM GAS  /tmp/cc9WaT4Y.s 			page 18
 
 
  523              		.thumb
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  405:Core/Src/main.c **** 	
  406:Core/Src/main.c **** //	if(usart_rx.rx_buff[ID_HEADER] == HEADER){
  407:Core/Src/main.c **** 
-ARM GAS  /tmp/cceRI8TT.s 			page 19
+ARM GAS  /tmp/cc9WaT4Y.s 			page 19
 
 
  408:Core/Src/main.c **** //		memcpy(&crc_rev, &usart_rx.rx_buff[ID_CRC], 4);
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  452:Core/Src/main.c **** 	if (hspi->Instance == SPI2)
  570              		.loc 1 452 2 is_stmt 1 view .LVU105
  571              		.loc 1 452 10 is_stmt 0 view .LVU106
-ARM GAS  /tmp/cceRI8TT.s 			page 20
+ARM GAS  /tmp/cc9WaT4Y.s 			page 20
 
 
  572 0002 0268     		ldr	r2, [r0]
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  617              		.loc 1 461 5 view .LVU115
  618 0004 13F0040F 		tst	r3, #4
  619 0008 64D0     		beq	.L38
-ARM GAS  /tmp/cceRI8TT.s 			page 21
+ARM GAS  /tmp/cc9WaT4Y.s 			page 21
 
 
  459:Core/Src/main.c **** 
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  660              		.loc 1 474 14 is_stmt 0 view .LVU130
  661 0034 2C4B     		ldr	r3, .L42+16
  662 0036 2D4A     		ldr	r2, .L42+20
-ARM GAS  /tmp/cceRI8TT.s 			page 22
+ARM GAS  /tmp/cc9WaT4Y.s 			page 22
 
 
  663 0038 C3F88820 		str	r2, [r3, #136]	@ float
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  678              		.loc 1 479 5 is_stmt 1 view .LVU135
  479:Core/Src/main.c ****         foc_calc_mech_pos_encoder(&hfoc, deg_encd);
  679              		.loc 1 479 22 is_stmt 0 view .LVU136
-ARM GAS  /tmp/cceRI8TT.s 			page 23
+ARM GAS  /tmp/cc9WaT4Y.s 			page 23
 
 
  680 004c 2448     		ldr	r0, .L42+8
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  486:Core/Src/main.c **** 			}
  720              		.loc 1 486 9 view .LVU151
  721 0098 D7E7     		b	.L32
-ARM GAS  /tmp/cceRI8TT.s 			page 24
+ARM GAS  /tmp/cc9WaT4Y.s 			page 24
 
 
  722              	.L36:
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  763 00cc 0648     		ldr	r0, .L42+16
  764 00ce FFF7FEFF 		bl	foc_speed_control_update
  765              	.LVL45:
-ARM GAS  /tmp/cceRI8TT.s 			page 25
+ARM GAS  /tmp/cc9WaT4Y.s 			page 25
 
 
  766 00d2 BAE7     		b	.L32
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  810              		.cfi_offset 14, -4
  525:Core/Src/main.c ****   /* USER CODE BEGIN Callback 0 */
  526:Core/Src/main.c **** 
-ARM GAS  /tmp/cceRI8TT.s 			page 26
+ARM GAS  /tmp/cc9WaT4Y.s 			page 26
 
 
  527:Core/Src/main.c ****   /* USER CODE END Callback 0 */
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  850              		@ frame_needed = 0, uses_anonymous_args = 0
  851              		@ link register save eliminated.
  543:Core/Src/main.c ****   /* USER CODE BEGIN Error_Handler_Debug */
-ARM GAS  /tmp/cceRI8TT.s 			page 27
+ARM GAS  /tmp/cc9WaT4Y.s 			page 27
 
 
  544:Core/Src/main.c ****   /* User can add his own implementation to report the HAL error return state */
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
   49:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __STATIC_FORCEINLINE
   50:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __STATIC_FORCEINLINE                   __attribute__((always_inline)) static inline
   51:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
-ARM GAS  /tmp/cceRI8TT.s 			page 28
+ARM GAS  /tmp/cc9WaT4Y.s 			page 28
 
 
   52:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __NO_RETURN
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  106:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT32_READ { uint32_t v; };
  107:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
  108:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_READ(addr)          (((const struct T_UINT32_READ *)(const void *)(add
-ARM GAS  /tmp/cceRI8TT.s 			page 29
+ARM GAS  /tmp/cc9WaT4Y.s 			page 29
 
 
  109:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  163:Drivers/CMSIS/Include/cmsis_gcc.h ****   _start();
  164:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  165:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /tmp/cceRI8TT.s 			page 30
+ARM GAS  /tmp/cc9WaT4Y.s 			page 30
 
 
  166:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __PROGRAM_START           __cmsis_start
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  220:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __CMSIS_GCC_RW_REG(r) "+r" (r)
  221:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __CMSIS_GCC_USE_REG(r) "r" (r)
  222:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
-ARM GAS  /tmp/cceRI8TT.s 			page 31
+ARM GAS  /tmp/cc9WaT4Y.s 			page 31
 
 
  223:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  277:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Ensures the apparent order of the explicit memory operations before
  278:Drivers/CMSIS/Include/cmsis_gcc.h ****            and after the instruction, without ensuring their completion.
  279:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  /tmp/cceRI8TT.s 			page 32
+ARM GAS  /tmp/cc9WaT4Y.s 			page 32
 
 
  280:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __DMB(void)
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  334:Drivers/CMSIS/Include/cmsis_gcc.h ****   return result;
  335:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  336:Drivers/CMSIS/Include/cmsis_gcc.h **** }
-ARM GAS  /tmp/cceRI8TT.s 			page 33
+ARM GAS  /tmp/cc9WaT4Y.s 			page 33
 
 
  337:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  391:Drivers/CMSIS/Include/cmsis_gcc.h ****   result <<= s;                        /* shift when v's highest bits are zero */
  392:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  393:Drivers/CMSIS/Include/cmsis_gcc.h ****   return result;
-ARM GAS  /tmp/cceRI8TT.s 			page 34
+ARM GAS  /tmp/cc9WaT4Y.s 			page 34
 
 
  394:Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  448:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  449:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   LDR Exclusive (16 bit)
  450:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a exclusive LDR instruction for 16 bit values.
-ARM GAS  /tmp/cceRI8TT.s 			page 35
+ARM GAS  /tmp/cc9WaT4Y.s 			page 35
 
 
  451:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to data
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  505:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]  value  Value to store
  506:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to location
  507:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return          0  Function succeeded
-ARM GAS  /tmp/cceRI8TT.s 			page 36
+ARM GAS  /tmp/cc9WaT4Y.s 			page 36
 
 
  508:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return          1  Function failed
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  562:Drivers/CMSIS/Include/cmsis_gcc.h **** __extension__ \
  563:Drivers/CMSIS/Include/cmsis_gcc.h **** ({                          \
  564:Drivers/CMSIS/Include/cmsis_gcc.h ****   int32_t __RES, __ARG1 = (ARG1); \
-ARM GAS  /tmp/cceRI8TT.s 			page 37
+ARM GAS  /tmp/cc9WaT4Y.s 			page 37
 
 
  565:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("ssat %0, %1, %2" : "=r" (__RES) :  "I" (ARG2), "r" (__ARG1) : "cc" ); \
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  619:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  620:Drivers/CMSIS/Include/cmsis_gcc.h ****    return ((uint8_t) result);    /* Add explicit type cast here */
  621:Drivers/CMSIS/Include/cmsis_gcc.h **** }
-ARM GAS  /tmp/cceRI8TT.s 			page 38
+ARM GAS  /tmp/cc9WaT4Y.s 			page 38
 
 
  622:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  676:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]  value  Value to store
  677:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to location
  678:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  /tmp/cceRI8TT.s 			page 39
+ARM GAS  /tmp/cc9WaT4Y.s 			page 39
 
 
  679:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __STRHT(uint16_t value, volatile uint16_t *ptr)
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  733:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  734:Drivers/CMSIS/Include/cmsis_gcc.h ****   if (sat <= 31U)
  735:Drivers/CMSIS/Include/cmsis_gcc.h ****   {
-ARM GAS  /tmp/cceRI8TT.s 			page 40
+ARM GAS  /tmp/cc9WaT4Y.s 			page 40
 
 
  736:Drivers/CMSIS/Include/cmsis_gcc.h ****     const uint32_t max = ((1U << sat) - 1U);
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  790:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return        value of type uint32_t at (*ptr)
  791:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  792:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __LDA(volatile uint32_t *ptr)
-ARM GAS  /tmp/cceRI8TT.s 			page 41
+ARM GAS  /tmp/cc9WaT4Y.s 			page 41
 
 
  793:Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  847:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("ldaexb %0, %1" : "=r" (result) : "Q" (*ptr) : "memory" );
  848:Drivers/CMSIS/Include/cmsis_gcc.h ****    return ((uint8_t) result);
  849:Drivers/CMSIS/Include/cmsis_gcc.h **** }
-ARM GAS  /tmp/cceRI8TT.s 			page 42
+ARM GAS  /tmp/cc9WaT4Y.s 			page 42
 
 
  850:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  904:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return          0  Function succeeded
  905:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return          1  Function failed
  906:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  /tmp/cceRI8TT.s 			page 43
+ARM GAS  /tmp/cc9WaT4Y.s 			page 43
 
 
  907:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __STLEXH(uint16_t value, volatile uint16_t *ptr)
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  856              		.loc 2 960 27 view .LVU175
  857              	.LBB14:
  961:Drivers/CMSIS/Include/cmsis_gcc.h **** {
-ARM GAS  /tmp/cceRI8TT.s 			page 44
+ARM GAS  /tmp/cc9WaT4Y.s 			page 44
 
 
  962:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsid i" : : : "memory");
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  904              		.loc 1 325 22 is_stmt 0 view .LVU184
  905 000e 0023     		movs	r3, #0
  906 0010 0393     		str	r3, [sp, #12]
-ARM GAS  /tmp/cceRI8TT.s 			page 45
+ARM GAS  /tmp/cc9WaT4Y.s 			page 45
 
 
  907 0012 0493     		str	r3, [sp, #16]
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  947 0046 0123     		movs	r3, #1
  948 0048 0893     		str	r3, [sp, #32]
  336:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-ARM GAS  /tmp/cceRI8TT.s 			page 46
+ARM GAS  /tmp/cc9WaT4Y.s 			page 46
 
 
  949              		.loc 1 336 3 is_stmt 1 view .LVU199
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  985 0070 0393     		str	r3, [sp, #12]
  352:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
  986              		.loc 1 352 3 is_stmt 1 view .LVU218
-ARM GAS  /tmp/cceRI8TT.s 			page 47
+ARM GAS  /tmp/cc9WaT4Y.s 			page 47
 
 
  352:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  1028 009e 00BF     		.align	2
  1029              	.L58:
  1030 00a0 00380240 		.word	1073887232
-ARM GAS  /tmp/cceRI8TT.s 			page 48
+ARM GAS  /tmp/cc9WaT4Y.s 			page 48
 
 
  1031 00a4 00700040 		.word	1073770496
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  1078              	.LVL62:
  202:Core/Src/main.c **** 	TIM_IQR_MS_CONGFIG();
  1079              		.loc 1 202 3 view .LVU241
-ARM GAS  /tmp/cceRI8TT.s 			page 49
+ARM GAS  /tmp/cc9WaT4Y.s 			page 49
 
 
  1080 0022 FFF7FEFF 		bl	TIM1_PWM_DMA_CONFIG
@@ -2891,409 +2891,1006 @@ ARM GAS  /tmp/cceRI8TT.s 			page 1
  1085              		.loc 1 204 3 view .LVU243
  1086 002a FFF7FEFF 		bl	TIM_COUNT_US_CONFIG
  1087              	.LVL65:
+ 208:Core/Src/main.c ****   if(M_ZERO==-1){M_ZERO = 0;}
+ 1088              		.loc 1 208 3 view .LVU244
+ 208:Core/Src/main.c ****   if(M_ZERO==-1){M_ZERO = 0;}
+ 1089              		.loc 1 208 6 is_stmt 0 view .LVU245
+ 1090 002e B84B     		ldr	r3, .L109
+ 1091 0030 5B69     		ldr	r3, [r3, #20]
+ 208:Core/Src/main.c ****   if(M_ZERO==-1){M_ZERO = 0;}
+ 1092              		.loc 1 208 5 view .LVU246
+ 1093 0032 B3F1FF3F 		cmp	r3, #-1
+ 1094 0036 00F09281 		beq	.L100
+ 1095              	.L61:
+ 209:Core/Src/main.c ****   if(isnan(I_BW) || I_BW==-1){I_BW = 1000;}
+ 1096              		.loc 1 209 3 is_stmt 1 view .LVU247
+ 209:Core/Src/main.c ****   if(isnan(I_BW) || I_BW==-1){I_BW = 1000;}
+ 1097              		.loc 1 209 6 is_stmt 0 view .LVU248
+ 1098 003a B54B     		ldr	r3, .L109
+ 1099 003c 1B69     		ldr	r3, [r3, #16]
+ 209:Core/Src/main.c ****   if(isnan(I_BW) || I_BW==-1){I_BW = 1000;}
+ 1100              		.loc 1 209 5 view .LVU249
+ 1101 003e B3F1FF3F 		cmp	r3, #-1
+ 1102 0042 00F09081 		beq	.L101
+ 1103              	.L62:
+ 210:Core/Src/main.c ****   if(isnan(I_MAX) || I_MAX ==-1){I_MAX=40;}
+ 1104              		.loc 1 210 3 is_stmt 1 view .LVU250
+ 210:Core/Src/main.c ****   if(isnan(I_MAX) || I_MAX ==-1){I_MAX=40;}
+ 1105              		.loc 1 210 6 is_stmt 0 view .LVU251
+ 1106 0046 B34B     		ldr	r3, .L109+4
+ 1107 0048 D3ED027A 		vldr.32	s15, [r3, #8]
+ 210:Core/Src/main.c ****   if(isnan(I_MAX) || I_MAX ==-1){I_MAX=40;}
+ 1108              		.loc 1 210 5 view .LVU252
+ 1109 004c F4EE677A 		vcmp.f32	s15, s15
+ 1110 0050 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1111 0054 06D6     		bvs	.L63
+ 210:Core/Src/main.c ****   if(isnan(I_MAX) || I_MAX ==-1){I_MAX=40;}
+ 1112              		.loc 1 210 18 discriminator 2 view .LVU253
+ 1113 0056 BFEE007A 		vmov.f32	s14, #-1.0e+0
+ 1114 005a F4EE477A 		vcmp.f32	s15, s14
+ 1115 005e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1116 0062 02D1     		bne	.L64
+ 1117              	.L63:
+ 210:Core/Src/main.c ****   if(isnan(I_MAX) || I_MAX ==-1){I_MAX=40;}
+ 1118              		.loc 1 210 31 is_stmt 1 discriminator 3 view .LVU254
+ 210:Core/Src/main.c ****   if(isnan(I_MAX) || I_MAX ==-1){I_MAX=40;}
+ 1119              		.loc 1 210 36 is_stmt 0 discriminator 3 view .LVU255
+ 1120 0064 AB4B     		ldr	r3, .L109+4
+ 1121 0066 AC4A     		ldr	r2, .L109+8
+ 1122 0068 9A60     		str	r2, [r3, #8]	@ float
+ARM GAS  /tmp/cc9WaT4Y.s 			page 50
+
+
+ 1123              	.L64:
+ 211:Core/Src/main.c ****   if(isnan(I_FW_MAX) || I_FW_MAX ==-1){I_FW_MAX=0;}
+ 1124              		.loc 1 211 3 is_stmt 1 view .LVU256
+ 211:Core/Src/main.c ****   if(isnan(I_FW_MAX) || I_FW_MAX ==-1){I_FW_MAX=0;}
+ 1125              		.loc 1 211 6 is_stmt 0 view .LVU257
+ 1126 006a AA4B     		ldr	r3, .L109+4
+ 1127 006c D3ED037A 		vldr.32	s15, [r3, #12]
+ 211:Core/Src/main.c ****   if(isnan(I_FW_MAX) || I_FW_MAX ==-1){I_FW_MAX=0;}
+ 1128              		.loc 1 211 5 view .LVU258
+ 1129 0070 F4EE677A 		vcmp.f32	s15, s15
+ 1130 0074 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1131 0078 06D6     		bvs	.L65
+ 211:Core/Src/main.c ****   if(isnan(I_FW_MAX) || I_FW_MAX ==-1){I_FW_MAX=0;}
+ 1132              		.loc 1 211 19 discriminator 2 view .LVU259
+ 1133 007a BFEE007A 		vmov.f32	s14, #-1.0e+0
+ 1134 007e F4EE477A 		vcmp.f32	s15, s14
+ 1135 0082 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1136 0086 02D1     		bne	.L66
+ 1137              	.L65:
+ 211:Core/Src/main.c ****   if(isnan(I_FW_MAX) || I_FW_MAX ==-1){I_FW_MAX=0;}
+ 1138              		.loc 1 211 34 is_stmt 1 discriminator 3 view .LVU260
+ 211:Core/Src/main.c ****   if(isnan(I_FW_MAX) || I_FW_MAX ==-1){I_FW_MAX=0;}
+ 1139              		.loc 1 211 39 is_stmt 0 discriminator 3 view .LVU261
+ 1140 0088 A24B     		ldr	r3, .L109+4
+ 1141 008a A44A     		ldr	r2, .L109+12
+ 1142 008c DA60     		str	r2, [r3, #12]	@ float
+ 1143              	.L66:
+ 212:Core/Src/main.c ****   if(CAN_ID==-1){CAN_ID = 1;}
+ 1144              		.loc 1 212 3 is_stmt 1 view .LVU262
+ 212:Core/Src/main.c ****   if(CAN_ID==-1){CAN_ID = 1;}
+ 1145              		.loc 1 212 6 is_stmt 0 view .LVU263
+ 1146 008e A14B     		ldr	r3, .L109+4
+ 1147 0090 D3ED067A 		vldr.32	s15, [r3, #24]
+ 212:Core/Src/main.c ****   if(CAN_ID==-1){CAN_ID = 1;}
+ 1148              		.loc 1 212 5 view .LVU264
+ 1149 0094 F4EE677A 		vcmp.f32	s15, s15
+ 1150 0098 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1151 009c 06D6     		bvs	.L67
+ 212:Core/Src/main.c ****   if(CAN_ID==-1){CAN_ID = 1;}
+ 1152              		.loc 1 212 22 discriminator 2 view .LVU265
+ 1153 009e BFEE007A 		vmov.f32	s14, #-1.0e+0
+ 1154 00a2 F4EE477A 		vcmp.f32	s15, s14
+ 1155 00a6 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1156 00aa 02D1     		bne	.L68
+ 1157              	.L67:
+ 212:Core/Src/main.c ****   if(CAN_ID==-1){CAN_ID = 1;}
+ 1158              		.loc 1 212 40 is_stmt 1 discriminator 3 view .LVU266
+ 212:Core/Src/main.c ****   if(CAN_ID==-1){CAN_ID = 1;}
+ 1159              		.loc 1 212 48 is_stmt 0 discriminator 3 view .LVU267
+ 1160 00ac 994B     		ldr	r3, .L109+4
+ 1161 00ae 0022     		movs	r2, #0
+ 1162 00b0 9A61     		str	r2, [r3, #24]	@ float
+ 1163              	.L68:
+ 213:Core/Src/main.c ****   if(CAN_MASTER==-1){CAN_MASTER = 0;}
+ 1164              		.loc 1 213 3 is_stmt 1 view .LVU268
+ 213:Core/Src/main.c ****   if(CAN_MASTER==-1){CAN_MASTER = 0;}
+ 1165              		.loc 1 213 6 is_stmt 0 view .LVU269
+ARM GAS  /tmp/cc9WaT4Y.s 			page 51
+
+
+ 1166 00b2 974B     		ldr	r3, .L109
+ 1167 00b4 5B68     		ldr	r3, [r3, #4]
+ 213:Core/Src/main.c ****   if(CAN_MASTER==-1){CAN_MASTER = 0;}
+ 1168              		.loc 1 213 5 view .LVU270
+ 1169 00b6 B3F1FF3F 		cmp	r3, #-1
+ 1170 00ba 00F05881 		beq	.L102
+ 1171              	.L69:
+ 214:Core/Src/main.c ****   if(CAN_TIMEOUT==-1){CAN_TIMEOUT = 1000;}
+ 1172              		.loc 1 214 3 is_stmt 1 view .LVU271
+ 214:Core/Src/main.c ****   if(CAN_TIMEOUT==-1){CAN_TIMEOUT = 1000;}
+ 1173              		.loc 1 214 6 is_stmt 0 view .LVU272
+ 1174 00be 944B     		ldr	r3, .L109
+ 1175 00c0 9B68     		ldr	r3, [r3, #8]
+ 214:Core/Src/main.c ****   if(CAN_TIMEOUT==-1){CAN_TIMEOUT = 1000;}
+ 1176              		.loc 1 214 5 view .LVU273
+ 1177 00c2 B3F1FF3F 		cmp	r3, #-1
+ 1178 00c6 00F05681 		beq	.L103
+ 1179              	.L70:
+ 215:Core/Src/main.c ****   if(isnan(R_NOMINAL) || R_NOMINAL==-1){R_NOMINAL = 0.0f;}
+ 1180              		.loc 1 215 3 is_stmt 1 view .LVU274
+ 215:Core/Src/main.c ****   if(isnan(R_NOMINAL) || R_NOMINAL==-1){R_NOMINAL = 0.0f;}
+ 1181              		.loc 1 215 6 is_stmt 0 view .LVU275
+ 1182 00ca 914B     		ldr	r3, .L109
+ 1183 00cc DB68     		ldr	r3, [r3, #12]
+ 215:Core/Src/main.c ****   if(isnan(R_NOMINAL) || R_NOMINAL==-1){R_NOMINAL = 0.0f;}
+ 1184              		.loc 1 215 5 view .LVU276
+ 1185 00ce B3F1FF3F 		cmp	r3, #-1
+ 1186 00d2 00F05481 		beq	.L104
+ 1187              	.L71:
+ 216:Core/Src/main.c ****   if(isnan(TEMP_MAX) || TEMP_MAX==-1){TEMP_MAX = 125.0f;}
+ 1188              		.loc 1 216 3 is_stmt 1 view .LVU277
+ 216:Core/Src/main.c ****   if(isnan(TEMP_MAX) || TEMP_MAX==-1){TEMP_MAX = 125.0f;}
+ 1189              		.loc 1 216 6 is_stmt 0 view .LVU278
+ 1190 00d6 8F4B     		ldr	r3, .L109+4
+ 1191 00d8 D3ED077A 		vldr.32	s15, [r3, #28]
+ 216:Core/Src/main.c ****   if(isnan(TEMP_MAX) || TEMP_MAX==-1){TEMP_MAX = 125.0f;}
+ 1192              		.loc 1 216 5 view .LVU279
+ 1193 00dc F4EE677A 		vcmp.f32	s15, s15
+ 1194 00e0 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1195 00e4 06D6     		bvs	.L72
+ 216:Core/Src/main.c ****   if(isnan(TEMP_MAX) || TEMP_MAX==-1){TEMP_MAX = 125.0f;}
+ 1196              		.loc 1 216 23 discriminator 2 view .LVU280
+ 1197 00e6 BFEE007A 		vmov.f32	s14, #-1.0e+0
+ 1198 00ea F4EE477A 		vcmp.f32	s15, s14
+ 1199 00ee F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1200 00f2 02D1     		bne	.L73
+ 1201              	.L72:
+ 216:Core/Src/main.c ****   if(isnan(TEMP_MAX) || TEMP_MAX==-1){TEMP_MAX = 125.0f;}
+ 1202              		.loc 1 216 41 is_stmt 1 discriminator 3 view .LVU281
+ 216:Core/Src/main.c ****   if(isnan(TEMP_MAX) || TEMP_MAX==-1){TEMP_MAX = 125.0f;}
+ 1203              		.loc 1 216 51 is_stmt 0 discriminator 3 view .LVU282
+ 1204 00f4 874B     		ldr	r3, .L109+4
+ 1205 00f6 0022     		movs	r2, #0
+ 1206 00f8 DA61     		str	r2, [r3, #28]	@ float
+ 1207              	.L73:
+ 217:Core/Src/main.c ****   if(isnan(I_MAX_CONT) || I_MAX_CONT==-1){I_MAX_CONT = 14.0f;}
+ 1208              		.loc 1 217 3 is_stmt 1 view .LVU283
+ARM GAS  /tmp/cc9WaT4Y.s 			page 52
+
+
+ 217:Core/Src/main.c ****   if(isnan(I_MAX_CONT) || I_MAX_CONT==-1){I_MAX_CONT = 14.0f;}
+ 1209              		.loc 1 217 6 is_stmt 0 view .LVU284
+ 1210 00fa 864B     		ldr	r3, .L109+4
+ 1211 00fc D3ED087A 		vldr.32	s15, [r3, #32]
+ 217:Core/Src/main.c ****   if(isnan(I_MAX_CONT) || I_MAX_CONT==-1){I_MAX_CONT = 14.0f;}
+ 1212              		.loc 1 217 5 view .LVU285
+ 1213 0100 F4EE677A 		vcmp.f32	s15, s15
+ 1214 0104 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1215 0108 06D6     		bvs	.L74
+ 217:Core/Src/main.c ****   if(isnan(I_MAX_CONT) || I_MAX_CONT==-1){I_MAX_CONT = 14.0f;}
+ 1216              		.loc 1 217 22 discriminator 2 view .LVU286
+ 1217 010a BFEE007A 		vmov.f32	s14, #-1.0e+0
+ 1218 010e F4EE477A 		vcmp.f32	s15, s14
+ 1219 0112 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1220 0116 02D1     		bne	.L75
+ 1221              	.L74:
+ 217:Core/Src/main.c ****   if(isnan(I_MAX_CONT) || I_MAX_CONT==-1){I_MAX_CONT = 14.0f;}
+ 1222              		.loc 1 217 39 is_stmt 1 discriminator 3 view .LVU287
+ 217:Core/Src/main.c ****   if(isnan(I_MAX_CONT) || I_MAX_CONT==-1){I_MAX_CONT = 14.0f;}
+ 1223              		.loc 1 217 48 is_stmt 0 discriminator 3 view .LVU288
+ 1224 0118 7E4B     		ldr	r3, .L109+4
+ 1225 011a 814A     		ldr	r2, .L109+16
+ 1226 011c 1A62     		str	r2, [r3, #32]	@ float
+ 1227              	.L75:
+ 218:Core/Src/main.c ****   if(isnan(I_CAL)||I_CAL==-1){I_CAL = 5.0f;}
+ 1228              		.loc 1 218 3 is_stmt 1 view .LVU289
+ 218:Core/Src/main.c ****   if(isnan(I_CAL)||I_CAL==-1){I_CAL = 5.0f;}
+ 1229              		.loc 1 218 6 is_stmt 0 view .LVU290
+ 1230 011e 7D4B     		ldr	r3, .L109+4
+ 1231 0120 D3ED097A 		vldr.32	s15, [r3, #36]
+ 218:Core/Src/main.c ****   if(isnan(I_CAL)||I_CAL==-1){I_CAL = 5.0f;}
+ 1232              		.loc 1 218 5 view .LVU291
+ 1233 0124 F4EE677A 		vcmp.f32	s15, s15
+ 1234 0128 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1235 012c 06D6     		bvs	.L76
+ 218:Core/Src/main.c ****   if(isnan(I_CAL)||I_CAL==-1){I_CAL = 5.0f;}
+ 1236              		.loc 1 218 24 discriminator 2 view .LVU292
+ 1237 012e BFEE007A 		vmov.f32	s14, #-1.0e+0
+ 1238 0132 F4EE477A 		vcmp.f32	s15, s14
+ 1239 0136 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1240 013a 02D1     		bne	.L77
+ 1241              	.L76:
+ 218:Core/Src/main.c ****   if(isnan(I_CAL)||I_CAL==-1){I_CAL = 5.0f;}
+ 1242              		.loc 1 218 43 is_stmt 1 discriminator 3 view .LVU293
+ 218:Core/Src/main.c ****   if(isnan(I_CAL)||I_CAL==-1){I_CAL = 5.0f;}
+ 1243              		.loc 1 218 54 is_stmt 0 discriminator 3 view .LVU294
+ 1244 013c 754B     		ldr	r3, .L109+4
+ 1245 013e 794A     		ldr	r2, .L109+20
+ 1246 0140 5A62     		str	r2, [r3, #36]	@ float
+ 1247              	.L77:
+ 219:Core/Src/main.c ****   if(isnan(PPAIRS) || PPAIRS==-1){PPAIRS = 21.0f;}
+ 1248              		.loc 1 219 3 is_stmt 1 view .LVU295
+ 219:Core/Src/main.c ****   if(isnan(PPAIRS) || PPAIRS==-1){PPAIRS = 21.0f;}
+ 1249              		.loc 1 219 6 is_stmt 0 view .LVU296
+ 1250 0142 744B     		ldr	r3, .L109+4
+ 1251 0144 D3ED127A 		vldr.32	s15, [r3, #72]
+ 219:Core/Src/main.c ****   if(isnan(PPAIRS) || PPAIRS==-1){PPAIRS = 21.0f;}
+ARM GAS  /tmp/cc9WaT4Y.s 			page 53
+
+
+ 1252              		.loc 1 219 5 view .LVU297
+ 1253 0148 F4EE677A 		vcmp.f32	s15, s15
+ 1254 014c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1255 0150 06D6     		bvs	.L78
+ 219:Core/Src/main.c ****   if(isnan(PPAIRS) || PPAIRS==-1){PPAIRS = 21.0f;}
+ 1256              		.loc 1 219 18 discriminator 2 view .LVU298
+ 1257 0152 BFEE007A 		vmov.f32	s14, #-1.0e+0
+ 1258 0156 F4EE477A 		vcmp.f32	s15, s14
+ 1259 015a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1260 015e 02D1     		bne	.L79
+ 1261              	.L78:
+ 219:Core/Src/main.c ****   if(isnan(PPAIRS) || PPAIRS==-1){PPAIRS = 21.0f;}
+ 1262              		.loc 1 219 31 is_stmt 1 discriminator 3 view .LVU299
+ 219:Core/Src/main.c ****   if(isnan(PPAIRS) || PPAIRS==-1){PPAIRS = 21.0f;}
+ 1263              		.loc 1 219 37 is_stmt 0 discriminator 3 view .LVU300
+ 1264 0160 6C4B     		ldr	r3, .L109+4
+ 1265 0162 714A     		ldr	r2, .L109+24
+ 1266 0164 9A64     		str	r2, [r3, #72]	@ float
+ 1267              	.L79:
+ 220:Core/Src/main.c ****   if(isnan(GR) || GR==-1){GR = 1.0f;}
+ 1268              		.loc 1 220 3 is_stmt 1 view .LVU301
+ 220:Core/Src/main.c ****   if(isnan(GR) || GR==-1){GR = 1.0f;}
+ 1269              		.loc 1 220 6 is_stmt 0 view .LVU302
+ 1270 0166 6B4B     		ldr	r3, .L109+4
+ 1271 0168 D3ED0A7A 		vldr.32	s15, [r3, #40]
+ 220:Core/Src/main.c ****   if(isnan(GR) || GR==-1){GR = 1.0f;}
+ 1272              		.loc 1 220 5 view .LVU303
+ 1273 016c F4EE677A 		vcmp.f32	s15, s15
+ 1274 0170 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1275 0174 06D6     		bvs	.L80
+ 220:Core/Src/main.c ****   if(isnan(GR) || GR==-1){GR = 1.0f;}
+ 1276              		.loc 1 220 20 discriminator 2 view .LVU304
+ 1277 0176 BFEE007A 		vmov.f32	s14, #-1.0e+0
+ 1278 017a F4EE477A 		vcmp.f32	s15, s14
+ 1279 017e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1280 0182 02D1     		bne	.L81
+ 1281              	.L80:
+ 220:Core/Src/main.c ****   if(isnan(GR) || GR==-1){GR = 1.0f;}
+ 1282              		.loc 1 220 35 is_stmt 1 discriminator 3 view .LVU305
+ 220:Core/Src/main.c ****   if(isnan(GR) || GR==-1){GR = 1.0f;}
+ 1283              		.loc 1 220 42 is_stmt 0 discriminator 3 view .LVU306
+ 1284 0184 634B     		ldr	r3, .L109+4
+ 1285 0186 694A     		ldr	r2, .L109+28
+ 1286 0188 9A62     		str	r2, [r3, #40]	@ float
+ 1287              	.L81:
+ 221:Core/Src/main.c ****   if(isnan(KT) || KT==-1){KT = 1.0f;}
+ 1288              		.loc 1 221 3 is_stmt 1 view .LVU307
+ 221:Core/Src/main.c ****   if(isnan(KT) || KT==-1){KT = 1.0f;}
+ 1289              		.loc 1 221 6 is_stmt 0 view .LVU308
+ 1290 018a 624B     		ldr	r3, .L109+4
+ 1291 018c D3ED117A 		vldr.32	s15, [r3, #68]
+ 221:Core/Src/main.c ****   if(isnan(KT) || KT==-1){KT = 1.0f;}
+ 1292              		.loc 1 221 5 view .LVU309
+ 1293 0190 F4EE677A 		vcmp.f32	s15, s15
+ 1294 0194 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1295 0198 06D6     		bvs	.L82
+ 221:Core/Src/main.c ****   if(isnan(KT) || KT==-1){KT = 1.0f;}
+ARM GAS  /tmp/cc9WaT4Y.s 			page 54
+
+
+ 1296              		.loc 1 221 16 discriminator 2 view .LVU310
+ 1297 019a BFEE007A 		vmov.f32	s14, #-1.0e+0
+ 1298 019e F4EE477A 		vcmp.f32	s15, s14
+ 1299 01a2 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1300 01a6 03D1     		bne	.L83
+ 1301              	.L82:
+ 221:Core/Src/main.c ****   if(isnan(KT) || KT==-1){KT = 1.0f;}
+ 1302              		.loc 1 221 27 is_stmt 1 discriminator 3 view .LVU311
+ 221:Core/Src/main.c ****   if(isnan(KT) || KT==-1){KT = 1.0f;}
+ 1303              		.loc 1 221 30 is_stmt 0 discriminator 3 view .LVU312
+ 1304 01a8 5A4B     		ldr	r3, .L109+4
+ 1305 01aa 4FF07E52 		mov	r2, #1065353216
+ 1306 01ae 5A64     		str	r2, [r3, #68]	@ float
+ 1307              	.L83:
+ 222:Core/Src/main.c ****   if(isnan(KP_MAX) || KP_MAX==-1){KP_MAX = 500.0f;}
+ 1308              		.loc 1 222 3 is_stmt 1 view .LVU313
+ 222:Core/Src/main.c ****   if(isnan(KP_MAX) || KP_MAX==-1){KP_MAX = 500.0f;}
+ 1309              		.loc 1 222 6 is_stmt 0 view .LVU314
+ 1310 01b0 584B     		ldr	r3, .L109+4
+ 1311 01b2 D3ED0E7A 		vldr.32	s15, [r3, #56]
+ 222:Core/Src/main.c ****   if(isnan(KP_MAX) || KP_MAX==-1){KP_MAX = 500.0f;}
+ 1312              		.loc 1 222 5 view .LVU315
+ 1313 01b6 F4EE677A 		vcmp.f32	s15, s15
+ 1314 01ba F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1315 01be 06D6     		bvs	.L84
+ 222:Core/Src/main.c ****   if(isnan(KP_MAX) || KP_MAX==-1){KP_MAX = 500.0f;}
+ 1316              		.loc 1 222 16 discriminator 2 view .LVU316
+ 1317 01c0 BFEE007A 		vmov.f32	s14, #-1.0e+0
+ 1318 01c4 F4EE477A 		vcmp.f32	s15, s14
+ 1319 01c8 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1320 01cc 03D1     		bne	.L85
+ 1321              	.L84:
+ 222:Core/Src/main.c ****   if(isnan(KP_MAX) || KP_MAX==-1){KP_MAX = 500.0f;}
+ 1322              		.loc 1 222 27 is_stmt 1 discriminator 3 view .LVU317
+ 222:Core/Src/main.c ****   if(isnan(KP_MAX) || KP_MAX==-1){KP_MAX = 500.0f;}
+ 1323              		.loc 1 222 30 is_stmt 0 discriminator 3 view .LVU318
+ 1324 01ce 514B     		ldr	r3, .L109+4
+ 1325 01d0 4FF07E52 		mov	r2, #1065353216
+ 1326 01d4 9A63     		str	r2, [r3, #56]	@ float
+ 1327              	.L85:
+ 223:Core/Src/main.c ****   if(isnan(KP_MIN) || KP_MIN==-1){KP_MIN = 0.0f;}
+ 1328              		.loc 1 223 3 is_stmt 1 view .LVU319
+ 223:Core/Src/main.c ****   if(isnan(KP_MIN) || KP_MIN==-1){KP_MIN = 0.0f;}
+ 1329              		.loc 1 223 6 is_stmt 0 view .LVU320
+ 1330 01d6 4F4B     		ldr	r3, .L109+4
+ 1331 01d8 D3ED197A 		vldr.32	s15, [r3, #100]
+ 223:Core/Src/main.c ****   if(isnan(KP_MIN) || KP_MIN==-1){KP_MIN = 0.0f;}
+ 1332              		.loc 1 223 5 view .LVU321
+ 1333 01dc F4EE677A 		vcmp.f32	s15, s15
+ 1334 01e0 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1335 01e4 06D6     		bvs	.L86
+ 223:Core/Src/main.c ****   if(isnan(KP_MIN) || KP_MIN==-1){KP_MIN = 0.0f;}
+ 1336              		.loc 1 223 20 discriminator 2 view .LVU322
+ 1337 01e6 BFEE007A 		vmov.f32	s14, #-1.0e+0
+ 1338 01ea F4EE477A 		vcmp.f32	s15, s14
+ 1339 01ee F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1340 01f2 02D1     		bne	.L87
+ARM GAS  /tmp/cc9WaT4Y.s 			page 55
+
+
+ 1341              	.L86:
+ 223:Core/Src/main.c ****   if(isnan(KP_MIN) || KP_MIN==-1){KP_MIN = 0.0f;}
+ 1342              		.loc 1 223 35 is_stmt 1 discriminator 3 view .LVU323
+ 223:Core/Src/main.c ****   if(isnan(KP_MIN) || KP_MIN==-1){KP_MIN = 0.0f;}
+ 1343              		.loc 1 223 42 is_stmt 0 discriminator 3 view .LVU324
+ 1344 01f4 474B     		ldr	r3, .L109+4
+ 1345 01f6 4E4A     		ldr	r2, .L109+32
+ 1346 01f8 5A66     		str	r2, [r3, #100]	@ float
+ 1347              	.L87:
+ 224:Core/Src/main.c ****   if(isnan(KD_MAX) || KD_MAX==-1){KD_MAX = 5.0f;}
+ 1348              		.loc 1 224 3 is_stmt 1 view .LVU325
+ 224:Core/Src/main.c ****   if(isnan(KD_MAX) || KD_MAX==-1){KD_MAX = 5.0f;}
+ 1349              		.loc 1 224 6 is_stmt 0 view .LVU326
+ 1350 01fa 464B     		ldr	r3, .L109+4
+ 1351 01fc D3ED1B7A 		vldr.32	s15, [r3, #108]
+ 224:Core/Src/main.c ****   if(isnan(KD_MAX) || KD_MAX==-1){KD_MAX = 5.0f;}
+ 1352              		.loc 1 224 5 view .LVU327
+ 1353 0200 F4EE677A 		vcmp.f32	s15, s15
+ 1354 0204 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1355 0208 06D6     		bvs	.L88
+ 224:Core/Src/main.c ****   if(isnan(KD_MAX) || KD_MAX==-1){KD_MAX = 5.0f;}
+ 1356              		.loc 1 224 20 discriminator 2 view .LVU328
+ 1357 020a BFEE007A 		vmov.f32	s14, #-1.0e+0
+ 1358 020e F4EE477A 		vcmp.f32	s15, s14
+ 1359 0212 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1360 0216 02D1     		bne	.L89
+ 1361              	.L88:
+ 224:Core/Src/main.c ****   if(isnan(KD_MAX) || KD_MAX==-1){KD_MAX = 5.0f;}
+ 1362              		.loc 1 224 35 is_stmt 1 discriminator 3 view .LVU329
+ 224:Core/Src/main.c ****   if(isnan(KD_MAX) || KD_MAX==-1){KD_MAX = 5.0f;}
+ 1363              		.loc 1 224 42 is_stmt 0 discriminator 3 view .LVU330
+ 1364 0218 3E4B     		ldr	r3, .L109+4
+ 1365 021a 0022     		movs	r2, #0
+ 1366 021c DA66     		str	r2, [r3, #108]	@ float
+ 1367              	.L89:
+ 225:Core/Src/main.c ****   if(isnan(KD_MIN) || KD_MIN==-1){KD_MIN = 0.0f;}
+ 1368              		.loc 1 225 3 is_stmt 1 view .LVU331
+ 225:Core/Src/main.c ****   if(isnan(KD_MIN) || KD_MIN==-1){KD_MIN = 0.0f;}
+ 1369              		.loc 1 225 6 is_stmt 0 view .LVU332
+ 1370 021e 3D4B     		ldr	r3, .L109+4
+ 1371 0220 D3ED1A7A 		vldr.32	s15, [r3, #104]
+ 225:Core/Src/main.c ****   if(isnan(KD_MIN) || KD_MIN==-1){KD_MIN = 0.0f;}
+ 1372              		.loc 1 225 5 view .LVU333
+ 1373 0224 F4EE677A 		vcmp.f32	s15, s15
+ 1374 0228 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1375 022c 06D6     		bvs	.L90
+ 225:Core/Src/main.c ****   if(isnan(KD_MIN) || KD_MIN==-1){KD_MIN = 0.0f;}
+ 1376              		.loc 1 225 20 discriminator 2 view .LVU334
+ 1377 022e BFEE007A 		vmov.f32	s14, #-1.0e+0
+ 1378 0232 F4EE477A 		vcmp.f32	s15, s14
+ 1379 0236 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1380 023a 02D1     		bne	.L91
+ 1381              	.L90:
+ 225:Core/Src/main.c ****   if(isnan(KD_MIN) || KD_MIN==-1){KD_MIN = 0.0f;}
+ 1382              		.loc 1 225 35 is_stmt 1 discriminator 3 view .LVU335
+ 225:Core/Src/main.c ****   if(isnan(KD_MIN) || KD_MIN==-1){KD_MIN = 0.0f;}
+ 1383              		.loc 1 225 42 is_stmt 0 discriminator 3 view .LVU336
+ARM GAS  /tmp/cc9WaT4Y.s 			page 56
+
+
+ 1384 023c 354B     		ldr	r3, .L109+4
+ 1385 023e 3A4A     		ldr	r2, .L109+24
+ 1386 0240 9A66     		str	r2, [r3, #104]	@ float
+ 1387              	.L91:
+ 226:Core/Src/main.c ****   if(isnan(P_MAX)){P_MAX = 12.5f;}
+ 1388              		.loc 1 226 3 is_stmt 1 view .LVU337
+ 226:Core/Src/main.c ****   if(isnan(P_MAX)){P_MAX = 12.5f;}
+ 1389              		.loc 1 226 6 is_stmt 0 view .LVU338
+ 1390 0242 344B     		ldr	r3, .L109+4
+ 1391 0244 D3ED1C7A 		vldr.32	s15, [r3, #112]
+ 226:Core/Src/main.c ****   if(isnan(P_MAX)){P_MAX = 12.5f;}
+ 1392              		.loc 1 226 5 view .LVU339
+ 1393 0248 F4EE677A 		vcmp.f32	s15, s15
+ 1394 024c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1395 0250 06D6     		bvs	.L92
+ 226:Core/Src/main.c ****   if(isnan(P_MAX)){P_MAX = 12.5f;}
+ 1396              		.loc 1 226 20 discriminator 2 view .LVU340
+ 1397 0252 BFEE007A 		vmov.f32	s14, #-1.0e+0
+ 1398 0256 F4EE477A 		vcmp.f32	s15, s14
+ 1399 025a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1400 025e 02D1     		bne	.L93
+ 1401              	.L92:
+ 226:Core/Src/main.c ****   if(isnan(P_MAX)){P_MAX = 12.5f;}
+ 1402              		.loc 1 226 35 is_stmt 1 discriminator 3 view .LVU341
+ 226:Core/Src/main.c ****   if(isnan(P_MAX)){P_MAX = 12.5f;}
+ 1403              		.loc 1 226 42 is_stmt 0 discriminator 3 view .LVU342
+ 1404 0260 2C4B     		ldr	r3, .L109+4
+ 1405 0262 0022     		movs	r2, #0
+ 1406 0264 1A67     		str	r2, [r3, #112]	@ float
+ 1407              	.L93:
+ 227:Core/Src/main.c ****   if(isnan(P_MIN)){P_MIN = -12.5f;}
+ 1408              		.loc 1 227 3 is_stmt 1 view .LVU343
+ 227:Core/Src/main.c ****   if(isnan(P_MIN)){P_MIN = -12.5f;}
+ 1409              		.loc 1 227 6 is_stmt 0 view .LVU344
+ 1410 0266 2B4B     		ldr	r3, .L109+4
+ 1411 0268 D3ED147A 		vldr.32	s15, [r3, #80]
+ 227:Core/Src/main.c ****   if(isnan(P_MIN)){P_MIN = -12.5f;}
+ 1412              		.loc 1 227 5 view .LVU345
+ 1413 026c F4EE677A 		vcmp.f32	s15, s15
+ 1414 0270 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1415 0274 80F18880 		bvs	.L105
+ 1416              	.L94:
+ 228:Core/Src/main.c ****   if(isnan(V_MAX)){V_MAX = 65.0f;}
+ 1417              		.loc 1 228 3 is_stmt 1 view .LVU346
+ 228:Core/Src/main.c ****   if(isnan(V_MAX)){V_MAX = 65.0f;}
+ 1418              		.loc 1 228 6 is_stmt 0 view .LVU347
+ 1419 0278 264B     		ldr	r3, .L109+4
+ 1420 027a D3ED137A 		vldr.32	s15, [r3, #76]
+ 228:Core/Src/main.c ****   if(isnan(V_MAX)){V_MAX = 65.0f;}
+ 1421              		.loc 1 228 5 view .LVU348
+ 1422 027e F4EE677A 		vcmp.f32	s15, s15
+ 1423 0282 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1424 0286 80F18280 		bvs	.L106
+ 1425              	.L95:
+ 229:Core/Src/main.c ****   if(isnan(V_MIN)){V_MIN = -65.0f;}
+ 1426              		.loc 1 229 3 is_stmt 1 view .LVU349
+ 229:Core/Src/main.c ****   if(isnan(V_MIN)){V_MIN = -65.0f;}
+ARM GAS  /tmp/cc9WaT4Y.s 			page 57
+
+
+ 1427              		.loc 1 229 6 is_stmt 0 view .LVU350
+ 1428 028a 224B     		ldr	r3, .L109+4
+ 1429 028c D3ED167A 		vldr.32	s15, [r3, #88]
+ 229:Core/Src/main.c ****   if(isnan(V_MIN)){V_MIN = -65.0f;}
+ 1430              		.loc 1 229 5 view .LVU351
+ 1431 0290 F4EE677A 		vcmp.f32	s15, s15
+ 1432 0294 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1433 0298 7CD6     		bvs	.L107
+ 1434              	.L96:
+ 230:Core/Src/main.c **** 
+ 1435              		.loc 1 230 3 is_stmt 1 view .LVU352
+ 230:Core/Src/main.c **** 
+ 1436              		.loc 1 230 6 is_stmt 0 view .LVU353
+ 1437 029a 1E4B     		ldr	r3, .L109+4
+ 1438 029c D3ED157A 		vldr.32	s15, [r3, #84]
+ 230:Core/Src/main.c **** 
+ 1439              		.loc 1 230 5 view .LVU354
+ 1440 02a0 F4EE677A 		vcmp.f32	s15, s15
+ 1441 02a4 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1442 02a8 77D6     		bvs	.L108
+ 1443              	.L97:
  234:Core/Src/main.c **** 
- 1088              		.loc 1 234 3 view .LVU244
- 1089 002e 1948     		ldr	r0, .L63
- 1090 0030 FFF7FEFF 		bl	flash_read_config
- 1091              	.LVL66:
+ 1444              		.loc 1 234 3 is_stmt 1 view .LVU355
+ 1445 02aa 2248     		ldr	r0, .L109+36
+ 1446 02ac FFF7FEFF 		bl	flash_read_config
+ 1447              	.LVL66:
  236:Core/Src/main.c **** 
- 1092              		.loc 1 236 3 view .LVU245
- 1093 0034 FFF7FEFF 		bl	init_trig_lut
- 1094              	.LVL67:
+ 1448              		.loc 1 236 3 view .LVU356
+ 1449 02b0 FFF7FEFF 		bl	init_trig_lut
+ 1450              	.LVL67:
  238:Core/Src/main.c **** 	control_init();
- 1095              		.loc 1 238 2 view .LVU246
- 1096 0038 174D     		ldr	r5, .L63+4
- 1097 003a 2846     		mov	r0, r5
- 1098 003c FFF7FEFF 		bl	bldc_config
- 1099              	.LVL68:
+ 1451              		.loc 1 238 2 view .LVU357
+ 1452 02b4 204D     		ldr	r5, .L109+40
+ 1453 02b6 2846     		mov	r0, r5
+ 1454 02b8 FFF7FEFF 		bl	bldc_config
+ 1455              	.LVL68:
  239:Core/Src/main.c **** 	
- 1100              		.loc 1 239 2 view .LVU247
- 1101 0040 FFF7FEFF 		bl	control_init
- 1102              	.LVL69:
+ 1456              		.loc 1 239 2 view .LVU358
+ 1457 02bc FFF7FEFF 		bl	control_init
+ 1458              	.LVL69:
  244:Core/Src/main.c **** 	ENCODER_AutoDetect();
- 1103              		.loc 1 244 2 view .LVU248
- 1104 0044 FFF7FEFF 		bl	ENCODER_Setup
- 1105              	.LVL70:
+ 1459              		.loc 1 244 2 view .LVU359
+ 1460 02c0 FFF7FEFF 		bl	ENCODER_Setup
+ 1461              	.LVL70:
  245:Core/Src/main.c **** 	
- 1106              		.loc 1 245 2 view .LVU249
- 1107 0048 FFF7FEFF 		bl	ENCODER_AutoDetect
- 1108              	.LVL71:
+ 1462              		.loc 1 245 2 view .LVU360
+ 1463 02c4 FFF7FEFF 		bl	ENCODER_AutoDetect
+ 1464              	.LVL71:
  248:Core/Src/main.c ****   state.next_state = MENU_MODE;
- 1109              		.loc 1 248 3 view .LVU250
+ 1465              		.loc 1 248 3 view .LVU361
  248:Core/Src/main.c ****   state.next_state = MENU_MODE;
- 1110              		.loc 1 248 15 is_stmt 0 view .LVU251
- 1111 004c 134B     		ldr	r3, .L63+8
- 1112 004e 0026     		movs	r6, #0
- 1113 0050 1E70     		strb	r6, [r3]
+ 1466              		.loc 1 248 15 is_stmt 0 view .LVU362
+ 1467 02c8 1C4B     		ldr	r3, .L109+44
+ 1468 02ca 0026     		movs	r6, #0
+ 1469 02cc 1E70     		strb	r6, [r3]
  249:Core/Src/main.c ****   state.ready = 1;
- 1114              		.loc 1 249 3 is_stmt 1 view .LVU252
+ 1470              		.loc 1 249 3 is_stmt 1 view .LVU363
+ARM GAS  /tmp/cc9WaT4Y.s 			page 58
+
+
  249:Core/Src/main.c ****   state.ready = 1;
- 1115              		.loc 1 249 20 is_stmt 0 view .LVU253
- 1116 0052 5E70     		strb	r6, [r3, #1]
+ 1471              		.loc 1 249 20 is_stmt 0 view .LVU364
+ 1472 02ce 5E70     		strb	r6, [r3, #1]
  250:Core/Src/main.c **** 
- 1117              		.loc 1 250 3 is_stmt 1 view .LVU254
+ 1473              		.loc 1 250 3 is_stmt 1 view .LVU365
  250:Core/Src/main.c **** 
- 1118              		.loc 1 250 15 is_stmt 0 view .LVU255
- 1119 0054 0124     		movs	r4, #1
- 1120 0056 DC70     		strb	r4, [r3, #3]
+ 1474              		.loc 1 250 15 is_stmt 0 view .LVU366
+ 1475 02d0 0124     		movs	r4, #1
+ 1476 02d2 DC70     		strb	r4, [r3, #3]
  252:Core/Src/main.c **** 
- 1121              		.loc 1 252 3 is_stmt 1 view .LVU256
-ARM GAS  /tmp/cceRI8TT.s 			page 50
-
-
- 1122 0058 2246     		mov	r2, r4
- 1123 005a 1149     		ldr	r1, .L63+12
- 1124 005c 1148     		ldr	r0, .L63+16
- 1125 005e FFF7FEFF 		bl	HAL_UART_Receive_IT
- 1126              	.LVL72:
+ 1477              		.loc 1 252 3 is_stmt 1 view .LVU367
+ 1478 02d4 2246     		mov	r2, r4
+ 1479 02d6 1A49     		ldr	r1, .L109+48
+ 1480 02d8 1A48     		ldr	r0, .L109+52
+ 1481 02da FFF7FEFF 		bl	HAL_UART_Receive_IT
+ 1482              	.LVL72:
  255:Core/Src/main.c **** 	TIM_COUNTER_ENABLE(TIM3);
- 1127              		.loc 1 255 3 view .LVU257
- 1128 0062 1148     		ldr	r0, .L63+20
- 1129 0064 FFF7FEFF 		bl	TIM_COUNTER_ENABLE
- 1130              	.LVL73:
+ 1483              		.loc 1 255 3 view .LVU368
+ 1484 02de 1A48     		ldr	r0, .L109+56
+ 1485 02e0 FFF7FEFF 		bl	TIM_COUNTER_ENABLE
+ 1486              	.LVL73:
  256:Core/Src/main.c ****   TIM_COUNTER_ENABLE(TIM1); 
- 1131              		.loc 1 256 2 view .LVU258
- 1132 0068 1048     		ldr	r0, .L63+24
- 1133 006a FFF7FEFF 		bl	TIM_COUNTER_ENABLE
- 1134              	.LVL74:
+ 1487              		.loc 1 256 2 view .LVU369
+ 1488 02e4 1948     		ldr	r0, .L109+60
+ 1489 02e6 FFF7FEFF 		bl	TIM_COUNTER_ENABLE
+ 1490              	.LVL74:
  257:Core/Src/main.c **** 
- 1135              		.loc 1 257 3 view .LVU259
- 1136 006e 1048     		ldr	r0, .L63+28
- 1137 0070 FFF7FEFF 		bl	TIM_COUNTER_ENABLE
- 1138              	.LVL75:
+ 1491              		.loc 1 257 3 view .LVU370
+ 1492 02ea 1948     		ldr	r0, .L109+64
+ 1493 02ec FFF7FEFF 		bl	TIM_COUNTER_ENABLE
+ 1494              	.LVL75:
  261:Core/Src/main.c **** 
- 1139              		.loc 1 261 3 view .LVU260
- 1140 0074 2846     		mov	r0, r5
- 1141 0076 FFF7FEFF 		bl	DRV8323_Start_PWM
- 1142              	.LVL76:
+ 1495              		.loc 1 261 3 view .LVU371
+ 1496 02f0 2846     		mov	r0, r5
+ 1497 02f2 FFF7FEFF 		bl	DRV8323_Start_PWM
+ 1498              	.LVL76:
  264:Core/Src/main.c **** 	is_calibrating = 1;
- 1143              		.loc 1 264 3 view .LVU261
+ 1499              		.loc 1 264 3 view .LVU372
  264:Core/Src/main.c **** 	is_calibrating = 1;
- 1144              		.loc 1 264 21 is_stmt 0 view .LVU262
- 1145 007a 0E4D     		ldr	r5, .L63+32
- 1146 007c 85F89841 		strb	r4, [r5, #408]
+ 1500              		.loc 1 264 21 is_stmt 0 view .LVU373
+ 1501 02f6 174D     		ldr	r5, .L109+68
+ 1502 02f8 85F89841 		strb	r4, [r5, #408]
  265:Core/Src/main.c ****   foc_cal_encoder(&hfoc);
- 1147              		.loc 1 265 2 is_stmt 1 view .LVU263
+ 1503              		.loc 1 265 2 is_stmt 1 view .LVU374
  265:Core/Src/main.c ****   foc_cal_encoder(&hfoc);
- 1148              		.loc 1 265 17 is_stmt 0 view .LVU264
- 1149 0080 0D4F     		ldr	r7, .L63+36
- 1150 0082 3C70     		strb	r4, [r7]
+ 1504              		.loc 1 265 17 is_stmt 0 view .LVU375
+ 1505 02fc 164F     		ldr	r7, .L109+72
+ 1506 02fe 3C70     		strb	r4, [r7]
  266:Core/Src/main.c **** 	is_calibrating = 0;
- 1151              		.loc 1 266 3 is_stmt 1 view .LVU265
- 1152 0084 2846     		mov	r0, r5
- 1153 0086 FFF7FEFF 		bl	foc_cal_encoder
- 1154              	.LVL77:
+ 1507              		.loc 1 266 3 is_stmt 1 view .LVU376
+ 1508 0300 2846     		mov	r0, r5
+ 1509 0302 FFF7FEFF 		bl	foc_cal_encoder
+ 1510              	.LVL77:
  267:Core/Src/main.c **** 	hfoc.control_mode = SPEED_CONTROL_MODE;
- 1155              		.loc 1 267 2 view .LVU266
+ 1511              		.loc 1 267 2 view .LVU377
  267:Core/Src/main.c **** 	hfoc.control_mode = SPEED_CONTROL_MODE;
- 1156              		.loc 1 267 17 is_stmt 0 view .LVU267
- 1157 008a 3E70     		strb	r6, [r7]
+ 1512              		.loc 1 267 17 is_stmt 0 view .LVU378
+ARM GAS  /tmp/cc9WaT4Y.s 			page 59
+
+
+ 1513 0306 3E70     		strb	r6, [r7]
  268:Core/Src/main.c **** 
- 1158              		.loc 1 268 2 is_stmt 1 view .LVU268
+ 1514              		.loc 1 268 2 is_stmt 1 view .LVU379
  268:Core/Src/main.c **** 
- 1159              		.loc 1 268 20 is_stmt 0 view .LVU269
- 1160 008c 85F89841 		strb	r4, [r5, #408]
- 1161              	.L61:
+ 1515              		.loc 1 268 20 is_stmt 0 view .LVU380
+ 1516 0308 85F89841 		strb	r4, [r5, #408]
+ 1517 030c 26E0     		b	.L110
+ 1518              	.L111:
+ 1519 030e 00BF     		.align	2
+ 1520              	.L109:
+ 1521 0310 00000000 		.word	.LANCHOR10
+ 1522 0314 00000000 		.word	.LANCHOR11
+ 1523 0318 00007A44 		.word	1148846080
+ 1524 031c 00002042 		.word	1109393408
+ 1525 0320 0000FA42 		.word	1123680256
+ 1526 0324 00006041 		.word	1096810496
+ 1527 0328 0000A040 		.word	1084227584
+ 1528 032c 0000A841 		.word	1101529088
+ 1529 0330 0000FA43 		.word	1140457472
+ 1530 0334 00000000 		.word	m_config
+ 1531 0338 00000000 		.word	.LANCHOR1
+ 1532 033c 00000000 		.word	.LANCHOR12
+ 1533 0340 00000000 		.word	.LANCHOR13
+ 1534 0344 00000000 		.word	huart
+ 1535 0348 00440140 		.word	1073824768
+ 1536 034c 00040040 		.word	1073742848
+ 1537 0350 00000140 		.word	1073807360
+ 1538 0354 00000000 		.word	.LANCHOR0
+ 1539 0358 00000000 		.word	.LANCHOR4
+ 1540              	.L110:
+ 1541              	.L98:
  278:Core/Src/main.c ****   {
- 1162              		.loc 1 278 3 is_stmt 1 discriminator 1 view .LVU270
+ 1542              		.loc 1 278 3 is_stmt 1 discriminator 1 view .LVU381
  283:Core/Src/main.c ****   /* USER CODE END 3 */
- 1163              		.loc 1 283 3 discriminator 1 view .LVU271
-ARM GAS  /tmp/cceRI8TT.s 			page 51
-
-
+ 1543              		.loc 1 283 3 discriminator 1 view .LVU382
  278:Core/Src/main.c ****   {
- 1164              		.loc 1 278 9 discriminator 1 view .LVU272
- 1165 0090 FEE7     		b	.L61
- 1166              	.L64:
- 1167 0092 00BF     		.align	2
- 1168              	.L63:
- 1169 0094 00000000 		.word	m_config
- 1170 0098 00000000 		.word	.LANCHOR1
- 1171 009c 00000000 		.word	.LANCHOR10
- 1172 00a0 00000000 		.word	.LANCHOR11
- 1173 00a4 00000000 		.word	huart
- 1174 00a8 00440140 		.word	1073824768
- 1175 00ac 00040040 		.word	1073742848
- 1176 00b0 00000140 		.word	1073807360
- 1177 00b4 00000000 		.word	.LANCHOR0
- 1178 00b8 00000000 		.word	.LANCHOR4
- 1179              		.cfi_endproc
- 1180              	.LFE137:
- 1182              		.global	p
- 1183              		.global	k
- 1184              		.global	crc_rev
- 1185              		.global	crc_check
- 1186              		.global	is_calibrating
- 1187              		.global	sPoint_Tor
- 1188              		.global	sPoint_Pos
- 1189              		.global	sPoint_Vel
- 1190              		.global	__int_reg
- 1191              		.global	__float_reg
- 1192              		.global	Serial2RxBuffer
- 1193              		.global	dt_us
- 1194              		.global	my_as5048a_hw
- 1195              		.global	robot_joints
- 1196              		.global	can_rx
- 1197              		.global	can_tx
- 1198              		.global	m_config
- 1199              		.global	bldc
- 1200              		.global	hfoc
- 1201              		.global	state
- 1202              		.section	.bss.Serial2RxBuffer,"aw",%nobits
- 1203              		.align	2
- 1204              		.set	.LANCHOR11,. + 0
- 1207              	Serial2RxBuffer:
- 1208 0000 00       		.space	1
- 1209              		.section	.bss.__float_reg,"aw",%nobits
- 1210              		.align	2
- 1213              	__float_reg:
- 1214 0000 00000000 		.space	256
- 1214      00000000 
- 1214      00000000 
- 1214      00000000 
- 1214      00000000 
- 1215              		.section	.bss.__int_reg,"aw",%nobits
- 1216              		.align	2
- 1219              	__int_reg:
- 1220 0000 00000000 		.space	1024
- 1220      00000000 
- 1220      00000000 
-ARM GAS  /tmp/cceRI8TT.s 			page 52
+ 1544              		.loc 1 278 9 discriminator 1 view .LVU383
+ 1545 035c FEE7     		b	.L98
+ 1546              	.L100:
+ 208:Core/Src/main.c ****   if(M_ZERO==-1){M_ZERO = 0;}
+ 1547              		.loc 1 208 18 discriminator 1 view .LVU384
+ 208:Core/Src/main.c ****   if(M_ZERO==-1){M_ZERO = 0;}
+ 1548              		.loc 1 208 25 is_stmt 0 discriminator 1 view .LVU385
+ 1549 035e 104B     		ldr	r3, .L112
+ 1550 0360 0022     		movs	r2, #0
+ 1551 0362 5A61     		str	r2, [r3, #20]
+ 1552 0364 69E6     		b	.L61
+ 1553              	.L101:
+ 209:Core/Src/main.c ****   if(isnan(I_BW) || I_BW==-1){I_BW = 1000;}
+ 1554              		.loc 1 209 18 is_stmt 1 discriminator 1 view .LVU386
+ 209:Core/Src/main.c ****   if(isnan(I_BW) || I_BW==-1){I_BW = 1000;}
+ 1555              		.loc 1 209 25 is_stmt 0 discriminator 1 view .LVU387
+ 1556 0366 0E4B     		ldr	r3, .L112
+ 1557 0368 0022     		movs	r2, #0
+ 1558 036a 1A61     		str	r2, [r3, #16]
+ 1559 036c 6BE6     		b	.L62
+ 1560              	.L102:
+ARM GAS  /tmp/cc9WaT4Y.s 			page 60
 
 
- 1220      00000000 
- 1220      00000000 
- 1221              		.section	.bss.bldc,"aw",%nobits
- 1222              		.align	2
- 1223              		.set	.LANCHOR1,. + 0
- 1226              	bldc:
- 1227 0000 00000000 		.space	52
- 1227      00000000 
- 1227      00000000 
- 1227      00000000 
- 1227      00000000 
- 1228              		.section	.bss.can_rx,"aw",%nobits
- 1229              		.align	2
- 1232              	can_rx:
- 1233 0000 00000000 		.space	76
- 1233      00000000 
- 1233      00000000 
- 1233      00000000 
- 1233      00000000 
- 1234              		.section	.bss.can_tx,"aw",%nobits
- 1235              		.align	2
- 1238              	can_tx:
- 1239 0000 00000000 		.space	32
- 1239      00000000 
- 1239      00000000 
- 1239      00000000 
- 1239      00000000 
- 1240              		.section	.bss.crc_check,"aw",%nobits
- 1241              		.align	2
- 1244              	crc_check:
- 1245 0000 00000000 		.space	4
- 1246              		.section	.bss.crc_rev,"aw",%nobits
- 1247              		.align	2
- 1250              	crc_rev:
- 1251 0000 00000000 		.space	4
- 1252              		.section	.bss.dt_us,"aw",%nobits
- 1253              		.align	2
- 1254              		.set	.LANCHOR3,. + 0
- 1257              	dt_us:
- 1258 0000 00000000 		.space	4
- 1259              		.section	.bss.event_speed_loop_count.0,"aw",%nobits
- 1260              		.set	.LANCHOR2,. + 0
- 1263              	event_speed_loop_count.0:
- 1264 0000 00       		.space	1
- 1265              		.section	.bss.hfoc,"aw",%nobits
- 1266              		.align	2
- 1267              		.set	.LANCHOR0,. + 0
- 1270              	hfoc:
- 1271 0000 00000000 		.space	432
- 1271      00000000 
- 1271      00000000 
- 1271      00000000 
- 1271      00000000 
- 1272              		.section	.bss.is_calibrating,"aw",%nobits
- 1273              		.set	.LANCHOR4,. + 0
- 1276              	is_calibrating:
- 1277 0000 00       		.space	1
-ARM GAS  /tmp/cceRI8TT.s 			page 53
+ 213:Core/Src/main.c ****   if(CAN_MASTER==-1){CAN_MASTER = 0;}
+ 1561              		.loc 1 213 18 is_stmt 1 discriminator 1 view .LVU388
+ 213:Core/Src/main.c ****   if(CAN_MASTER==-1){CAN_MASTER = 0;}
+ 1562              		.loc 1 213 25 is_stmt 0 discriminator 1 view .LVU389
+ 1563 036e 0C4B     		ldr	r3, .L112
+ 1564 0370 0122     		movs	r2, #1
+ 1565 0372 5A60     		str	r2, [r3, #4]
+ 1566 0374 A3E6     		b	.L69
+ 1567              	.L103:
+ 214:Core/Src/main.c ****   if(CAN_TIMEOUT==-1){CAN_TIMEOUT = 1000;}
+ 1568              		.loc 1 214 22 is_stmt 1 discriminator 1 view .LVU390
+ 214:Core/Src/main.c ****   if(CAN_TIMEOUT==-1){CAN_TIMEOUT = 1000;}
+ 1569              		.loc 1 214 33 is_stmt 0 discriminator 1 view .LVU391
+ 1570 0376 0A4B     		ldr	r3, .L112
+ 1571 0378 0022     		movs	r2, #0
+ 1572 037a 9A60     		str	r2, [r3, #8]
+ 1573 037c A5E6     		b	.L70
+ 1574              	.L104:
+ 215:Core/Src/main.c ****   if(isnan(R_NOMINAL) || R_NOMINAL==-1){R_NOMINAL = 0.0f;}
+ 1575              		.loc 1 215 23 is_stmt 1 discriminator 1 view .LVU392
+ 215:Core/Src/main.c ****   if(isnan(R_NOMINAL) || R_NOMINAL==-1){R_NOMINAL = 0.0f;}
+ 1576              		.loc 1 215 35 is_stmt 0 discriminator 1 view .LVU393
+ 1577 037e 084B     		ldr	r3, .L112
+ 1578 0380 4FF47A72 		mov	r2, #1000
+ 1579 0384 DA60     		str	r2, [r3, #12]
+ 1580 0386 A6E6     		b	.L71
+ 1581              	.L105:
+ 227:Core/Src/main.c ****   if(isnan(P_MIN)){P_MIN = -12.5f;}
+ 1582              		.loc 1 227 20 is_stmt 1 discriminator 1 view .LVU394
+ 227:Core/Src/main.c ****   if(isnan(P_MIN)){P_MIN = -12.5f;}
+ 1583              		.loc 1 227 26 is_stmt 0 discriminator 1 view .LVU395
+ 1584 0388 064A     		ldr	r2, .L112+4
+ 1585 038a 1A65     		str	r2, [r3, #80]	@ float
+ 1586 038c 74E7     		b	.L94
+ 1587              	.L106:
+ 228:Core/Src/main.c ****   if(isnan(V_MAX)){V_MAX = 65.0f;}
+ 1588              		.loc 1 228 20 is_stmt 1 discriminator 1 view .LVU396
+ 228:Core/Src/main.c ****   if(isnan(V_MAX)){V_MAX = 65.0f;}
+ 1589              		.loc 1 228 26 is_stmt 0 discriminator 1 view .LVU397
+ 1590 038e 064A     		ldr	r2, .L112+8
+ 1591 0390 DA64     		str	r2, [r3, #76]	@ float
+ 1592 0392 7AE7     		b	.L95
+ 1593              	.L107:
+ 229:Core/Src/main.c ****   if(isnan(V_MIN)){V_MIN = -65.0f;}
+ 1594              		.loc 1 229 20 is_stmt 1 discriminator 1 view .LVU398
+ 229:Core/Src/main.c ****   if(isnan(V_MIN)){V_MIN = -65.0f;}
+ 1595              		.loc 1 229 26 is_stmt 0 discriminator 1 view .LVU399
+ 1596 0394 054A     		ldr	r2, .L112+12
+ 1597 0396 9A65     		str	r2, [r3, #88]	@ float
+ 1598 0398 7FE7     		b	.L96
+ 1599              	.L108:
+ 230:Core/Src/main.c **** 
+ 1600              		.loc 1 230 20 is_stmt 1 discriminator 1 view .LVU400
+ 230:Core/Src/main.c **** 
+ 1601              		.loc 1 230 26 is_stmt 0 discriminator 1 view .LVU401
+ 1602 039a 054A     		ldr	r2, .L112+16
+ 1603 039c 5A65     		str	r2, [r3, #84]	@ float
+ARM GAS  /tmp/cc9WaT4Y.s 			page 61
 
 
- 1278              		.section	.bss.m_config,"aw",%nobits
- 1279              		.align	2
- 1282              	m_config:
- 1283 0000 00000000 		.space	4212
- 1283      00000000 
- 1283      00000000 
- 1283      00000000 
- 1283      00000000 
- 1284              		.section	.bss.my_as5048a_hw,"aw",%nobits
- 1285              		.align	2
- 1288              	my_as5048a_hw:
- 1289 0000 00000000 		.space	12
- 1289      00000000 
- 1289      00000000 
- 1290              		.section	.bss.robot_joints,"aw",%nobits
- 1291              		.align	3
- 1294              	robot_joints:
- 1295 0000 00000000 		.space	72
- 1295      00000000 
- 1295      00000000 
- 1295      00000000 
- 1295      00000000 
- 1296              		.section	.bss.sPoint_Pos,"aw",%nobits
- 1297              		.align	2
- 1298              		.set	.LANCHOR5,. + 0
- 1301              	sPoint_Pos:
- 1302 0000 00000000 		.space	4
- 1303              		.section	.bss.sPoint_Tor,"aw",%nobits
- 1304              		.align	2
- 1305              		.set	.LANCHOR8,. + 0
- 1308              	sPoint_Tor:
- 1309 0000 00000000 		.space	4
- 1310              		.section	.bss.state,"aw",%nobits
- 1311              		.align	2
- 1312              		.set	.LANCHOR10,. + 0
- 1315              	state:
- 1316 0000 00000000 		.space	14
- 1316      00000000 
- 1316      00000000 
- 1316      0000
- 1317              		.section	.data.k,"aw"
- 1318              		.align	2
- 1319              		.set	.LANCHOR6,. + 0
- 1322              	k:
- 1323 0000 000080BF 		.word	-1082130432
- 1324              		.section	.data.p,"aw"
- 1325              		.align	2
- 1326              		.set	.LANCHOR7,. + 0
- 1329              	p:
- 1330 0000 CDCCCC3D 		.word	1036831949
- 1331              		.section	.data.sPoint_Vel,"aw"
- 1332              		.align	2
- 1333              		.set	.LANCHOR9,. + 0
- 1336              	sPoint_Vel:
- 1337 0000 00004842 		.word	1112014848
- 1338              		.text
- 1339              	.Letext0:
-ARM GAS  /tmp/cceRI8TT.s 			page 54
+ 1604 039e 84E7     		b	.L97
+ 1605              	.L113:
+ 1606              		.align	2
+ 1607              	.L112:
+ 1608 03a0 00000000 		.word	.LANCHOR10
+ 1609 03a4 00004841 		.word	1095237632
+ 1610 03a8 000048C1 		.word	-1052246016
+ 1611 03ac 00008242 		.word	1115815936
+ 1612 03b0 000082C2 		.word	-1031667712
+ 1613              		.cfi_endproc
+ 1614              	.LFE137:
+ 1616              		.global	p
+ 1617              		.global	k
+ 1618              		.global	crc_rev
+ 1619              		.global	crc_check
+ 1620              		.global	is_calibrating
+ 1621              		.global	sPoint_Tor
+ 1622              		.global	sPoint_Pos
+ 1623              		.global	sPoint_Vel
+ 1624              		.global	__int_reg
+ 1625              		.global	__float_reg
+ 1626              		.global	Serial2RxBuffer
+ 1627              		.global	dt_us
+ 1628              		.global	my_as5048a_hw
+ 1629              		.global	robot_joints
+ 1630              		.global	can_rx
+ 1631              		.global	can_tx
+ 1632              		.global	m_config
+ 1633              		.global	bldc
+ 1634              		.global	hfoc
+ 1635              		.global	state
+ 1636              		.section	.bss.Serial2RxBuffer,"aw",%nobits
+ 1637              		.align	2
+ 1638              		.set	.LANCHOR13,. + 0
+ 1641              	Serial2RxBuffer:
+ 1642 0000 00       		.space	1
+ 1643              		.section	.bss.__float_reg,"aw",%nobits
+ 1644              		.align	2
+ 1645              		.set	.LANCHOR11,. + 0
+ 1648              	__float_reg:
+ 1649 0000 00000000 		.space	256
+ 1649      00000000 
+ 1649      00000000 
+ 1649      00000000 
+ 1649      00000000 
+ 1650              		.section	.bss.__int_reg,"aw",%nobits
+ 1651              		.align	2
+ 1652              		.set	.LANCHOR10,. + 0
+ 1655              	__int_reg:
+ 1656 0000 00000000 		.space	1024
+ 1656      00000000 
+ 1656      00000000 
+ 1656      00000000 
+ 1656      00000000 
+ 1657              		.section	.bss.bldc,"aw",%nobits
+ 1658              		.align	2
+ 1659              		.set	.LANCHOR1,. + 0
+ARM GAS  /tmp/cc9WaT4Y.s 			page 62
 
 
- 1340              		.file 3 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
- 1341              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
- 1342              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
- 1343              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 1344              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
- 1345              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
- 1346              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 1347              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h"
- 1348              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h"
- 1349              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
- 1350              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
- 1351              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
- 1352              		.file 15 "Core/Inc/uart.h"
- 1353              		.file 16 "Core/Inc/hw_config.h"
- 1354              		.file 17 "Core/Inc/as5048a.h"
- 1355              		.file 18 "Core/Inc/drv8323s.h"
- 1356              		.file 19 "Core/Inc/pid_utils.h"
- 1357              		.file 20 "Core/Inc/foc_utils.h"
- 1358              		.file 21 "Core/Inc/flash.h"
- 1359              		.file 22 "Core/Inc/joint_acc.h"
- 1360              		.file 23 "Core/Inc/fsm.h"
- 1361              		.file 24 "Core/Inc/can.h"
- 1362              		.file 25 "Core/Inc/encoder.h"
- 1363              		.file 26 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
- 1364              		.file 27 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
- 1365              		.file 28 "Core/Inc/spi.h"
- 1366              		.file 29 "Core/Inc/foc_math.h"
- 1367              		.file 30 "<built-in>"
-ARM GAS  /tmp/cceRI8TT.s 			page 55
+ 1662              	bldc:
+ 1663 0000 00000000 		.space	52
+ 1663      00000000 
+ 1663      00000000 
+ 1663      00000000 
+ 1663      00000000 
+ 1664              		.section	.bss.can_rx,"aw",%nobits
+ 1665              		.align	2
+ 1668              	can_rx:
+ 1669 0000 00000000 		.space	76
+ 1669      00000000 
+ 1669      00000000 
+ 1669      00000000 
+ 1669      00000000 
+ 1670              		.section	.bss.can_tx,"aw",%nobits
+ 1671              		.align	2
+ 1674              	can_tx:
+ 1675 0000 00000000 		.space	32
+ 1675      00000000 
+ 1675      00000000 
+ 1675      00000000 
+ 1675      00000000 
+ 1676              		.section	.bss.crc_check,"aw",%nobits
+ 1677              		.align	2
+ 1680              	crc_check:
+ 1681 0000 00000000 		.space	4
+ 1682              		.section	.bss.crc_rev,"aw",%nobits
+ 1683              		.align	2
+ 1686              	crc_rev:
+ 1687 0000 00000000 		.space	4
+ 1688              		.section	.bss.dt_us,"aw",%nobits
+ 1689              		.align	2
+ 1690              		.set	.LANCHOR3,. + 0
+ 1693              	dt_us:
+ 1694 0000 00000000 		.space	4
+ 1695              		.section	.bss.event_speed_loop_count.0,"aw",%nobits
+ 1696              		.set	.LANCHOR2,. + 0
+ 1699              	event_speed_loop_count.0:
+ 1700 0000 00       		.space	1
+ 1701              		.section	.bss.hfoc,"aw",%nobits
+ 1702              		.align	2
+ 1703              		.set	.LANCHOR0,. + 0
+ 1706              	hfoc:
+ 1707 0000 00000000 		.space	432
+ 1707      00000000 
+ 1707      00000000 
+ 1707      00000000 
+ 1707      00000000 
+ 1708              		.section	.bss.is_calibrating,"aw",%nobits
+ 1709              		.set	.LANCHOR4,. + 0
+ 1712              	is_calibrating:
+ 1713 0000 00       		.space	1
+ 1714              		.section	.bss.m_config,"aw",%nobits
+ 1715              		.align	2
+ 1718              	m_config:
+ 1719 0000 00000000 		.space	4212
+ 1719      00000000 
+ARM GAS  /tmp/cc9WaT4Y.s 			page 63
+
+
+ 1719      00000000 
+ 1719      00000000 
+ 1719      00000000 
+ 1720              		.section	.bss.my_as5048a_hw,"aw",%nobits
+ 1721              		.align	2
+ 1724              	my_as5048a_hw:
+ 1725 0000 00000000 		.space	12
+ 1725      00000000 
+ 1725      00000000 
+ 1726              		.section	.bss.robot_joints,"aw",%nobits
+ 1727              		.align	3
+ 1730              	robot_joints:
+ 1731 0000 00000000 		.space	72
+ 1731      00000000 
+ 1731      00000000 
+ 1731      00000000 
+ 1731      00000000 
+ 1732              		.section	.bss.sPoint_Pos,"aw",%nobits
+ 1733              		.align	2
+ 1734              		.set	.LANCHOR5,. + 0
+ 1737              	sPoint_Pos:
+ 1738 0000 00000000 		.space	4
+ 1739              		.section	.bss.sPoint_Tor,"aw",%nobits
+ 1740              		.align	2
+ 1741              		.set	.LANCHOR8,. + 0
+ 1744              	sPoint_Tor:
+ 1745 0000 00000000 		.space	4
+ 1746              		.section	.bss.state,"aw",%nobits
+ 1747              		.align	2
+ 1748              		.set	.LANCHOR12,. + 0
+ 1751              	state:
+ 1752 0000 00000000 		.space	14
+ 1752      00000000 
+ 1752      00000000 
+ 1752      0000
+ 1753              		.section	.data.k,"aw"
+ 1754              		.align	2
+ 1755              		.set	.LANCHOR6,. + 0
+ 1758              	k:
+ 1759 0000 000080BF 		.word	-1082130432
+ 1760              		.section	.data.p,"aw"
+ 1761              		.align	2
+ 1762              		.set	.LANCHOR7,. + 0
+ 1765              	p:
+ 1766 0000 CDCCCC3D 		.word	1036831949
+ 1767              		.section	.data.sPoint_Vel,"aw"
+ 1768              		.align	2
+ 1769              		.set	.LANCHOR9,. + 0
+ 1772              	sPoint_Vel:
+ 1773 0000 00004842 		.word	1112014848
+ 1774              		.text
+ 1775              	.Letext0:
+ 1776              		.file 3 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
+ 1777              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
+ 1778              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
+ 1779              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 1780              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
+ARM GAS  /tmp/cc9WaT4Y.s 			page 64
+
+
+ 1781              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
+ 1782              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 1783              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h"
+ 1784              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h"
+ 1785              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
+ 1786              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 1787              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
+ 1788              		.file 15 "Core/Inc/uart.h"
+ 1789              		.file 16 "Core/Inc/hw_config.h"
+ 1790              		.file 17 "Core/Inc/as5048a.h"
+ 1791              		.file 18 "Core/Inc/drv8323s.h"
+ 1792              		.file 19 "Core/Inc/pid_utils.h"
+ 1793              		.file 20 "Core/Inc/foc_utils.h"
+ 1794              		.file 21 "Core/Inc/flash.h"
+ 1795              		.file 22 "Core/Inc/joint_acc.h"
+ 1796              		.file 23 "Core/Inc/fsm.h"
+ 1797              		.file 24 "Core/Inc/can.h"
+ 1798              		.file 25 "Core/Inc/encoder.h"
+ 1799              		.file 26 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 1800              		.file 27 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
+ 1801              		.file 28 "Core/Inc/spi.h"
+ 1802              		.file 29 "Core/Inc/foc_math.h"
+ 1803              		.file 30 "<built-in>"
+ARM GAS  /tmp/cc9WaT4Y.s 			page 65
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/cceRI8TT.s:18     .text.MX_GPIO_Init:0000000000000000 $t
-     /tmp/cceRI8TT.s:25     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
-     /tmp/cceRI8TT.s:111    .text.MX_GPIO_Init:000000000000005c $d
-     /tmp/cceRI8TT.s:116    .text.MX_DMA_Init:0000000000000000 $t
-     /tmp/cceRI8TT.s:122    .text.MX_DMA_Init:0000000000000000 MX_DMA_Init
-     /tmp/cceRI8TT.s:239    .text.MX_DMA_Init:0000000000000094 $d
-     /tmp/cceRI8TT.s:244    .text.get_dt_us:0000000000000000 $t
-     /tmp/cceRI8TT.s:251    .text.get_dt_us:0000000000000000 get_dt_us
-     /tmp/cceRI8TT.s:273    .text.get_dt_us:000000000000000c $d
-     /tmp/cceRI8TT.s:278    .text.torque_control_update:0000000000000000 $t
-     /tmp/cceRI8TT.s:284    .text.torque_control_update:0000000000000000 torque_control_update
-     /tmp/cceRI8TT.s:367    .text.torque_control_update:0000000000000054 $d
-     /tmp/cceRI8TT.s:378    .text.control_init:0000000000000000 $t
-     /tmp/cceRI8TT.s:385    .text.control_init:0000000000000000 control_init
-     /tmp/cceRI8TT.s:504    .text.control_init:00000000000000ec $d
-     /tmp/cceRI8TT.s:1282   .bss.m_config:0000000000000000 m_config
-     /tmp/cceRI8TT.s:520    .text.TIM3_IRQHandler:0000000000000000 $t
-     /tmp/cceRI8TT.s:527    .text.TIM3_IRQHandler:0000000000000000 TIM3_IRQHandler
-     /tmp/cceRI8TT.s:545    .text.TIM3_IRQHandler:000000000000000c $d
-     /tmp/cceRI8TT.s:550    .text.HAL_SPI_TxRxCpltCallback:0000000000000000 $t
-     /tmp/cceRI8TT.s:557    .text.HAL_SPI_TxRxCpltCallback:0000000000000000 HAL_SPI_TxRxCpltCallback
-     /tmp/cceRI8TT.s:594    .text.HAL_SPI_TxRxCpltCallback:0000000000000014 $d
-     /tmp/cceRI8TT.s:600    .text.ADC_IRQHandler:0000000000000000 $t
-     /tmp/cceRI8TT.s:607    .text.ADC_IRQHandler:0000000000000000 ADC_IRQHandler
-     /tmp/cceRI8TT.s:776    .text.ADC_IRQHandler:00000000000000d8 $d
-     /tmp/cceRI8TT.s:791    .text.HAL_TIM_PeriodElapsedCallback:0000000000000000 $t
-     /tmp/cceRI8TT.s:798    .text.HAL_TIM_PeriodElapsedCallback:0000000000000000 HAL_TIM_PeriodElapsedCallback
-     /tmp/cceRI8TT.s:832    .text.HAL_TIM_PeriodElapsedCallback:0000000000000014 $d
-     /tmp/cceRI8TT.s:837    .text.Error_Handler:0000000000000000 $t
-     /tmp/cceRI8TT.s:844    .text.Error_Handler:0000000000000000 Error_Handler
-     /tmp/cceRI8TT.s:876    .text.SystemClock_Config:0000000000000000 $t
-     /tmp/cceRI8TT.s:883    .text.SystemClock_Config:0000000000000000 SystemClock_Config
-     /tmp/cceRI8TT.s:1030   .text.SystemClock_Config:00000000000000a0 $d
-     /tmp/cceRI8TT.s:1036   .text.main:0000000000000000 $t
-     /tmp/cceRI8TT.s:1043   .text.main:0000000000000000 main
-     /tmp/cceRI8TT.s:1169   .text.main:0000000000000094 $d
-     /tmp/cceRI8TT.s:1329   .data.p:0000000000000000 p
-     /tmp/cceRI8TT.s:1322   .data.k:0000000000000000 k
-     /tmp/cceRI8TT.s:1250   .bss.crc_rev:0000000000000000 crc_rev
-     /tmp/cceRI8TT.s:1244   .bss.crc_check:0000000000000000 crc_check
-     /tmp/cceRI8TT.s:1276   .bss.is_calibrating:0000000000000000 is_calibrating
-     /tmp/cceRI8TT.s:1308   .bss.sPoint_Tor:0000000000000000 sPoint_Tor
-     /tmp/cceRI8TT.s:1301   .bss.sPoint_Pos:0000000000000000 sPoint_Pos
-     /tmp/cceRI8TT.s:1336   .data.sPoint_Vel:0000000000000000 sPoint_Vel
-     /tmp/cceRI8TT.s:1219   .bss.__int_reg:0000000000000000 __int_reg
-     /tmp/cceRI8TT.s:1213   .bss.__float_reg:0000000000000000 __float_reg
-     /tmp/cceRI8TT.s:1207   .bss.Serial2RxBuffer:0000000000000000 Serial2RxBuffer
-     /tmp/cceRI8TT.s:1257   .bss.dt_us:0000000000000000 dt_us
-     /tmp/cceRI8TT.s:1288   .bss.my_as5048a_hw:0000000000000000 my_as5048a_hw
-     /tmp/cceRI8TT.s:1294   .bss.robot_joints:0000000000000000 robot_joints
-     /tmp/cceRI8TT.s:1232   .bss.can_rx:0000000000000000 can_rx
-     /tmp/cceRI8TT.s:1238   .bss.can_tx:0000000000000000 can_tx
-     /tmp/cceRI8TT.s:1226   .bss.bldc:0000000000000000 bldc
-     /tmp/cceRI8TT.s:1270   .bss.hfoc:0000000000000000 hfoc
-     /tmp/cceRI8TT.s:1315   .bss.state:0000000000000000 state
-ARM GAS  /tmp/cceRI8TT.s 			page 56
+     /tmp/cc9WaT4Y.s:18     .text.MX_GPIO_Init:0000000000000000 $t
+     /tmp/cc9WaT4Y.s:25     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
+     /tmp/cc9WaT4Y.s:111    .text.MX_GPIO_Init:000000000000005c $d
+     /tmp/cc9WaT4Y.s:116    .text.MX_DMA_Init:0000000000000000 $t
+     /tmp/cc9WaT4Y.s:122    .text.MX_DMA_Init:0000000000000000 MX_DMA_Init
+     /tmp/cc9WaT4Y.s:239    .text.MX_DMA_Init:0000000000000094 $d
+     /tmp/cc9WaT4Y.s:244    .text.get_dt_us:0000000000000000 $t
+     /tmp/cc9WaT4Y.s:251    .text.get_dt_us:0000000000000000 get_dt_us
+     /tmp/cc9WaT4Y.s:273    .text.get_dt_us:000000000000000c $d
+     /tmp/cc9WaT4Y.s:278    .text.torque_control_update:0000000000000000 $t
+     /tmp/cc9WaT4Y.s:284    .text.torque_control_update:0000000000000000 torque_control_update
+     /tmp/cc9WaT4Y.s:367    .text.torque_control_update:0000000000000054 $d
+     /tmp/cc9WaT4Y.s:378    .text.control_init:0000000000000000 $t
+     /tmp/cc9WaT4Y.s:385    .text.control_init:0000000000000000 control_init
+     /tmp/cc9WaT4Y.s:504    .text.control_init:00000000000000ec $d
+     /tmp/cc9WaT4Y.s:1718   .bss.m_config:0000000000000000 m_config
+     /tmp/cc9WaT4Y.s:520    .text.TIM3_IRQHandler:0000000000000000 $t
+     /tmp/cc9WaT4Y.s:527    .text.TIM3_IRQHandler:0000000000000000 TIM3_IRQHandler
+     /tmp/cc9WaT4Y.s:545    .text.TIM3_IRQHandler:000000000000000c $d
+     /tmp/cc9WaT4Y.s:550    .text.HAL_SPI_TxRxCpltCallback:0000000000000000 $t
+     /tmp/cc9WaT4Y.s:557    .text.HAL_SPI_TxRxCpltCallback:0000000000000000 HAL_SPI_TxRxCpltCallback
+     /tmp/cc9WaT4Y.s:594    .text.HAL_SPI_TxRxCpltCallback:0000000000000014 $d
+     /tmp/cc9WaT4Y.s:600    .text.ADC_IRQHandler:0000000000000000 $t
+     /tmp/cc9WaT4Y.s:607    .text.ADC_IRQHandler:0000000000000000 ADC_IRQHandler
+     /tmp/cc9WaT4Y.s:776    .text.ADC_IRQHandler:00000000000000d8 $d
+     /tmp/cc9WaT4Y.s:791    .text.HAL_TIM_PeriodElapsedCallback:0000000000000000 $t
+     /tmp/cc9WaT4Y.s:798    .text.HAL_TIM_PeriodElapsedCallback:0000000000000000 HAL_TIM_PeriodElapsedCallback
+     /tmp/cc9WaT4Y.s:832    .text.HAL_TIM_PeriodElapsedCallback:0000000000000014 $d
+     /tmp/cc9WaT4Y.s:837    .text.Error_Handler:0000000000000000 $t
+     /tmp/cc9WaT4Y.s:844    .text.Error_Handler:0000000000000000 Error_Handler
+     /tmp/cc9WaT4Y.s:876    .text.SystemClock_Config:0000000000000000 $t
+     /tmp/cc9WaT4Y.s:883    .text.SystemClock_Config:0000000000000000 SystemClock_Config
+     /tmp/cc9WaT4Y.s:1030   .text.SystemClock_Config:00000000000000a0 $d
+     /tmp/cc9WaT4Y.s:1036   .text.main:0000000000000000 $t
+     /tmp/cc9WaT4Y.s:1043   .text.main:0000000000000000 main
+     /tmp/cc9WaT4Y.s:1521   .text.main:0000000000000310 $d
+     /tmp/cc9WaT4Y.s:1545   .text.main:000000000000035c $t
+     /tmp/cc9WaT4Y.s:1608   .text.main:00000000000003a0 $d
+     /tmp/cc9WaT4Y.s:1765   .data.p:0000000000000000 p
+     /tmp/cc9WaT4Y.s:1758   .data.k:0000000000000000 k
+     /tmp/cc9WaT4Y.s:1686   .bss.crc_rev:0000000000000000 crc_rev
+     /tmp/cc9WaT4Y.s:1680   .bss.crc_check:0000000000000000 crc_check
+     /tmp/cc9WaT4Y.s:1712   .bss.is_calibrating:0000000000000000 is_calibrating
+     /tmp/cc9WaT4Y.s:1744   .bss.sPoint_Tor:0000000000000000 sPoint_Tor
+     /tmp/cc9WaT4Y.s:1737   .bss.sPoint_Pos:0000000000000000 sPoint_Pos
+     /tmp/cc9WaT4Y.s:1772   .data.sPoint_Vel:0000000000000000 sPoint_Vel
+     /tmp/cc9WaT4Y.s:1655   .bss.__int_reg:0000000000000000 __int_reg
+     /tmp/cc9WaT4Y.s:1648   .bss.__float_reg:0000000000000000 __float_reg
+     /tmp/cc9WaT4Y.s:1641   .bss.Serial2RxBuffer:0000000000000000 Serial2RxBuffer
+     /tmp/cc9WaT4Y.s:1693   .bss.dt_us:0000000000000000 dt_us
+     /tmp/cc9WaT4Y.s:1724   .bss.my_as5048a_hw:0000000000000000 my_as5048a_hw
+     /tmp/cc9WaT4Y.s:1730   .bss.robot_joints:0000000000000000 robot_joints
+     /tmp/cc9WaT4Y.s:1668   .bss.can_rx:0000000000000000 can_rx
+     /tmp/cc9WaT4Y.s:1674   .bss.can_tx:0000000000000000 can_tx
+     /tmp/cc9WaT4Y.s:1662   .bss.bldc:0000000000000000 bldc
+ARM GAS  /tmp/cc9WaT4Y.s 			page 66
 
 
-     /tmp/cceRI8TT.s:1203   .bss.Serial2RxBuffer:0000000000000000 $d
-     /tmp/cceRI8TT.s:1210   .bss.__float_reg:0000000000000000 $d
-     /tmp/cceRI8TT.s:1216   .bss.__int_reg:0000000000000000 $d
-     /tmp/cceRI8TT.s:1222   .bss.bldc:0000000000000000 $d
-     /tmp/cceRI8TT.s:1229   .bss.can_rx:0000000000000000 $d
-     /tmp/cceRI8TT.s:1235   .bss.can_tx:0000000000000000 $d
-     /tmp/cceRI8TT.s:1241   .bss.crc_check:0000000000000000 $d
-     /tmp/cceRI8TT.s:1247   .bss.crc_rev:0000000000000000 $d
-     /tmp/cceRI8TT.s:1253   .bss.dt_us:0000000000000000 $d
-     /tmp/cceRI8TT.s:1263   .bss.event_speed_loop_count.0:0000000000000000 event_speed_loop_count.0
-     /tmp/cceRI8TT.s:1264   .bss.event_speed_loop_count.0:0000000000000000 $d
-     /tmp/cceRI8TT.s:1266   .bss.hfoc:0000000000000000 $d
-     /tmp/cceRI8TT.s:1277   .bss.is_calibrating:0000000000000000 $d
-     /tmp/cceRI8TT.s:1279   .bss.m_config:0000000000000000 $d
-     /tmp/cceRI8TT.s:1285   .bss.my_as5048a_hw:0000000000000000 $d
-     /tmp/cceRI8TT.s:1291   .bss.robot_joints:0000000000000000 $d
-     /tmp/cceRI8TT.s:1297   .bss.sPoint_Pos:0000000000000000 $d
-     /tmp/cceRI8TT.s:1304   .bss.sPoint_Tor:0000000000000000 $d
-     /tmp/cceRI8TT.s:1311   .bss.state:0000000000000000 $d
-     /tmp/cceRI8TT.s:1318   .data.k:0000000000000000 $d
-     /tmp/cceRI8TT.s:1325   .data.p:0000000000000000 $d
-     /tmp/cceRI8TT.s:1332   .data.sPoint_Vel:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1706   .bss.hfoc:0000000000000000 hfoc
+     /tmp/cc9WaT4Y.s:1751   .bss.state:0000000000000000 state
+     /tmp/cc9WaT4Y.s:1637   .bss.Serial2RxBuffer:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1644   .bss.__float_reg:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1651   .bss.__int_reg:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1658   .bss.bldc:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1665   .bss.can_rx:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1671   .bss.can_tx:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1677   .bss.crc_check:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1683   .bss.crc_rev:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1689   .bss.dt_us:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1699   .bss.event_speed_loop_count.0:0000000000000000 event_speed_loop_count.0
+     /tmp/cc9WaT4Y.s:1700   .bss.event_speed_loop_count.0:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1702   .bss.hfoc:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1713   .bss.is_calibrating:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1715   .bss.m_config:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1721   .bss.my_as5048a_hw:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1727   .bss.robot_joints:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1733   .bss.sPoint_Pos:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1740   .bss.sPoint_Tor:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1747   .bss.state:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1754   .data.k:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1761   .data.p:0000000000000000 $d
+     /tmp/cc9WaT4Y.s:1768   .data.sPoint_Vel:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_NVIC_SetPriority
@@ -3327,11 +3924,11 @@ MX_USART6_UART_Init
 ADC1_DMA_CONFIG3
 TIM1_PWM_DMA_CONFIG
 TIM_IQR_MS_CONGFIG
+ARM GAS  /tmp/cc9WaT4Y.s 			page 67
+
+
 TIM_COUNT_US_CONFIG
 flash_read_config
-ARM GAS  /tmp/cceRI8TT.s 			page 57
-
-
 init_trig_lut
 bldc_config
 ENCODER_Setup
