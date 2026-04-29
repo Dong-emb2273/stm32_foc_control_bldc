@@ -18,9 +18,6 @@
 
 #define ERROR_LUT_SIZE (1024)
 
-#define MAG_CAL_RES (1024*2)
-#define MAG_CAL_STEP ((TWO_PI * POLE_PAIR) / (float)MAG_CAL_RES)
-
 #define CAL_ITERATION 1000
 
 #define VD_CAL 0.5f
@@ -43,18 +40,13 @@ extern float Vq_buff[MAX_I_SAMPLE];
 extern float Id_buff[MAX_I_SAMPLE];
 extern float Iq_buff[MAX_I_SAMPLE];
 
-#if DEBUG_HFI
-extern float i_alpha_buff[MAX_SAMPLE_BUFF];
-extern float i_beta_buff[MAX_SAMPLE_BUFF];
-extern float i_alpha_l_buff[MAX_SAMPLE_BUFF];
-extern float i_beta_l_buff[MAX_SAMPLE_BUFF];
-#endif
+
 
 typedef enum {
 	TORQUE_CONTROL_MODE,
 	SPEED_CONTROL_MODE,
 	POSITION_CONTROL_MODE,
-	CALIBRATION_MODE,
+	CALIBRATION_MODE1,
 	AUDIO_MODE,
 	TEST_MODE,
 	POWER_UP_MODE,
@@ -78,6 +70,13 @@ typedef enum {
 	STARTUP_IDLE, STARTUP_ALIGN, STARTUP_OPEN_LOOP_RAMP
 }startup_state_t;
 
+typedef enum {
+    CAL_IDLE = 0,
+    CAL_ALIGNING,
+    CAL_SWEEPING,
+    CAL_DONE
+} cal_state_t;
+
 typedef struct {
 	
 //	AS5048A_t AS5048A;
@@ -89,12 +88,12 @@ typedef struct {
 	float Lq;
 	float max_current;
 
-	float meas_inj_freq;
-	float meas_inj_amp;
-	float meas_inj_omega;
-	inject_taregt_t meas_inj_target;
-	int meas_inj_n;
-	_Bool meas_inj_start_flag;
+	// float meas_inj_freq;
+	// float meas_inj_amp;
+	// float meas_inj_omega;
+	// inject_taregt_t meas_inj_target;
+	// int meas_inj_n;
+	// _Bool meas_inj_start_flag;
 
 	float m_angle_rad; 
 	float e_angle_rad; 
@@ -123,7 +122,7 @@ typedef struct {
 	float id_ref, iq_ref;
 	float rpm_ref;
 
-   uint8_t loop_count;
+    // uint8_t loop_count;
 
 	volatile uint32_t *pwm_a;
 	volatile uint32_t *pwm_b;
@@ -170,6 +169,10 @@ float foc_calc_mech_rpm_encoder(foc_t *hfoc, float encd_rpm);
 float foc_calc_mech_pos_encoder(foc_t *hfoc, float encd_deg);
 
 void foc_sensored_calc_electric_angle(foc_t *hfoc);
+
+void foc_start_calibration(void);
+
+void foc_auto_calibration_update(foc_t *hfoc);
 
 void foc_cal_encoder_misalignment(foc_t *hfoc);
 

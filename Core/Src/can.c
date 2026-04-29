@@ -20,6 +20,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "can.h"
 #include "hw_config.h"
+#include "user_config.h"
 
 /* USER CODE BEGIN 0 */
 

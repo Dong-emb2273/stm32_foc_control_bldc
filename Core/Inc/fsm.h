@@ -24,7 +24,7 @@ extern "C" {
 
 
 #define MENU_MODE           0
-#define CALIBRATION_MODE    1
+#define CALIBRATION_MODE    7
 #define MOTOR_MODE          2
 #define SETUP_MODE          4
 #define ENCODER_MODE        5

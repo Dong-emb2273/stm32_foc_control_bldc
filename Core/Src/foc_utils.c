@@ -8,6 +8,7 @@
 #include <stdint.h>
 #include <math.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "foc_utils.h"
 #include "flash.h"
@@ -27,8 +28,7 @@ float error_temp[ERROR_LUT_SIZE] = {0};
  * @param pwm_b Pointer to PWM channel B register (e.g., &TIM1->CCR2)
  * @param pwm_c Pointer to PWM channel C register (e.g., &TIM1->CCR3)
  */
-void foc_pwm_init(foc_t *hfoc, volatile uint32_t *pwm_a, volatile uint32_t *pwm_b, volatile uint32_t *pwm_c,
-		uint32_t pwm_res) {
+void foc_pwm_init(foc_t *hfoc, volatile uint32_t *pwm_a, volatile uint32_t *pwm_b, volatile uint32_t *pwm_c, uint32_t pwm_res) {
     // Validate pointers
     if(hfoc == NULL || pwm_a == NULL || pwm_b == NULL || pwm_c == NULL) {
         // Error handling (could be an assertion or error code)
@@ -85,7 +85,7 @@ void foc_set_limit_current(foc_t *hfoc, float i_limit) {
 //
 
 void foc_current_control_update(foc_t *hfoc) {
-	if (hfoc == NULL || hfoc->control_mode == AUDIO_MODE) {
+	if (hfoc == NULL ) {
 		hfoc->id_ctrl.integral = 0.0f;
 		hfoc->id_ctrl.last_error = 0.0f;
 		hfoc->iq_ctrl.integral = 0.0f;
@@ -219,16 +219,13 @@ float foc_calc_mech_rpm_encoder(foc_t *hfoc, float encd_rpm) {
 
 float foc_calc_mech_pos_encoder(foc_t *hfoc, float encd_deg) {
 	if (hfoc->sensor_dir == REVERSE_DIR) {
-			hfoc->actual_angle = -encd_deg;
+		hfoc->actual_angle = -encd_deg;
 	}
 	else {
-			hfoc->actual_angle = encd_deg;
+		hfoc->actual_angle = encd_deg;
 	}
 	return hfoc->actual_angle;
 }
-
-
-
 //
 
 void foc_cal_encoder_misalignment(foc_t *hfoc) {
@@ -298,38 +295,68 @@ void foc_cal_encoder(foc_t *hfoc) {
 }
 //
 
-float foc_get_mech_degree(foc_t *hfoc) {
-    float angle_diff = hfoc->e_rad - hfoc->last_e_rad;
-    hfoc->last_e_rad = hfoc->e_rad;
+cal_state_t current_cal_state = CAL_IDLE;
+uint32_t cal_start_time = 0;
+float theta_start = 0.0f;
 
-    if (angle_diff < -PI) {
-        hfoc->m_angle_overflow_count++;
-    } else if (angle_diff > PI) {
-        hfoc->m_angle_overflow_count--;
+// Hàm này gọi định kỳ trong ngắt (ví dụ ADC_IRQHandler)
+void foc_auto_calibration_update(foc_t *hfoc) {
+    if (current_cal_state == CAL_IDLE || current_cal_state == CAL_DONE) return;
+	
+    uint32_t current_time = HAL_GetTick(); // Hoặc dùng get_dt_us()
+    float elapsed_sec = (current_time - cal_start_time) / 1000.0f;
+
+    const float T1 = 1.0f; // 1 giây để khóa rotor
+    const float W_CAL = TWO_PI / 2.0f; // Vận tốc quét (hoàn thành 2PI trong 2s)
+
+    if (elapsed_sec < T1) {
+        // Giai đoạn 1: Khóa Rotor
+        current_cal_state = CAL_ALIGNING;
+        open_loop_voltage_control(hfoc, VD_CAL, 0.0f, 0.0f);
+        theta_start = ENCODER_GetDegree(&encoder);
+    } 
+    else if (elapsed_sec < T1 + (TWO_PI / W_CAL)) {
+        // Giai đoạn 2: Quét 1 vòng điện (Không dùng HAL_Delay)
+        current_cal_state = CAL_SWEEPING;
+        float elec_angle = W_CAL * (elapsed_sec - T1);
+        open_loop_voltage_control(hfoc, VD_CAL, 0.0f, elec_angle);
+    } 
+    else {
+        // Giai đoạn 3: Kết thúc và tính toán
+        float theta_end = ENCODER_GetDegree(&encoder);
+        open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
+        
+        float delta_mech = theta_end - theta_start;
+        
+        if (delta_mech > 180.0f) {
+            delta_mech -= 360.0f;
+        } else if (delta_mech < -180.0f) {
+            delta_mech += 360.0f;
+        }
+
+        // 2. Tính số cặp cực (dựa trên độ lớn)
+        if (fabs(delta_mech) > 0.1f) {
+            hfoc->pole_pairs = round(360.0f / fabs(delta_mech));
+            printf("Pole Pairs: %d\r\n", hfoc->pole_pairs);
+        }
+
+        // 3. Xác định chiều quay (dựa trên dấu của delta)
+        // Nếu quét điện áp tiến (thuận) mà góc cơ học tiến (delta > 0) -> Cùng chiều
+        if (delta_mech > 0) {
+            hfoc->sensor_dir = REVERSE_DIR;
+            printf("Phase order & Sensor match (NORMAL)\r\n");
+        } else {
+            hfoc->sensor_dir = NORMAL_DIR;
+            printf("Phase order & Sensor mismatched! Swapping (REVERSE)\r\n");
+        }
+        current_cal_state = CAL_DONE; // Hoàn thành
     }
-
-    float total_e_angle = hfoc->e_rad + (float)hfoc->m_angle_overflow_count * TWO_PI;
-
-    if (abs(hfoc->m_angle_overflow_count) > 1000000) {
-        hfoc->m_angle_overflow_count = 0;
-        hfoc->last_e_rad = hfoc->e_rad;
-    }
-
-    float mechanical_angle_deg = RAD_TO_DEG(total_e_angle) / hfoc->pole_pairs;
-
-    // Normalize to 0-360 degrees
-    mechanical_angle_deg = fmodf(mechanical_angle_deg, 360.0f);
-    if (mechanical_angle_deg < 0) {
-    mechanical_angle_deg += 360.0f;
-    }
-
-    hfoc->actual_angle = mechanical_angle_deg;
-
-    return hfoc->actual_angle;
 }
 
-
-
+void foc_start_calibration(void) {
+    current_cal_state = CAL_ALIGNING; // Thoát khỏi IDLE
+    cal_start_time = HAL_GetTick();   // Ghi lại mốc thời gian T0
+}
 
 //
 

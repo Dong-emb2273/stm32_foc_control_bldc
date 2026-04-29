@@ -25,6 +25,7 @@
 
 #include "uart.h"
 #include "hw_config.h"
+#include "user_config.h"
 #include "spi.h"
 #include "as5048a.h"
 #include "drv8323s.h"
@@ -265,7 +266,7 @@ int main(void)
 	is_calibrating = 1;
   foc_cal_encoder(&hfoc);
 	is_calibrating = 0;
-	hfoc.control_mode = SPEED_CONTROL_MODE;
+	hfoc.control_mode = POSITION_CONTROL_MODE;
 
 
 
@@ -463,22 +464,21 @@ void ADC_IRQHandler(void) {
 	
 
 		if (ENCODER_GetFlag()) {
-				ENCODER_Reset_Flag();
-				encoder.start_read(encoder.hw_encoder);
-			}
-
+      ENCODER_Reset_Flag();
+      encoder.start_read(encoder.hw_encoder);
+		}
+    run_fsm(&state);
 		if (is_calibrating == 1) {
 			return;
 		}
 		
 		hfoc.v_bus = 19.420f; 
-//		hfoc.v_bus = 12.4f; 
+		//hfoc.v_bus = 12.4f; 
 
 		switch (hfoc.control_mode) {
       case TORQUE_CONTROL_MODE: {
 				float deg_encd = ENCODER_GetActualDegree(&encoder);
         foc_calc_mech_pos_encoder(&hfoc, deg_encd);
-				
 				sPoint_Tor = k*(sPoint_Pos - hfoc.actual_angle) + p*hfoc.actual_rpm ;
         hfoc.id_ref = 0.0f;
         hfoc.iq_ref = sPoint_Tor;
@@ -500,13 +500,17 @@ void ADC_IRQHandler(void) {
 
         }
         break;
-
+      }
+      // case CALIBRATION_MODE: {
+      //   foc_auto_calibration_update(&hfoc);
+      //   break;
+      // }
 			default:
 				
 				break;
-			}
+			
 		}
-		// run_fsm(&state);
+		
 		
 	}
 }

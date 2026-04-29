@@ -7,12 +7,18 @@
 
 #include "fsm.h"
 #include "hw_config.h"
+#include "user_config.h"
+#include "foc_utils.h"
+#include "main.h"
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
+extern foc_t hfoc;
+extern uint8_t is_calibrating ;
+extern cal_state_t current_cal_state;
 
 void run_fsm(FSMStruct * fsmstate){
 	/* run_fsm is run every commutation interrupt cycle */
@@ -31,7 +37,18 @@ void run_fsm(FSMStruct * fsmstate){
 			break;
 
 		case CALIBRATION_MODE:
-			 
+			// Cập nhật trạng thái liên tục
+            foc_auto_calibration_update(&hfoc);
+            
+            // Kiểm tra xem đã quay xong chưa
+            if (current_cal_state == CAL_DONE) {
+                is_calibrating = 0; // Xong rồi, nhả FOC ra
+                printf("Calibration Successful!\r\n");
+                
+                // Tự động nhảy về MENU hoặc MOTOR_MODE
+                fsmstate->next_state = MENU_MODE; 
+                fsmstate->ready = 0;
+            }
 			 
 //				 /* Exit calibration mode when done */
 //				 //for(int i = 0; i<128*PPAIRS; i++){printf("%d\r\n", error_array[i]);}
@@ -91,15 +108,11 @@ void fsm_enter_state(FSMStruct * fsmstate){
 //				drv_enable_gd(drv);
 			break;
 		case CALIBRATION_MODE:
-			//printf("Entering Calibration Mode\r\n");
-			/* zero out all calibrations before starting */
-
-//				comm_encoder_cal.done_cal = 0;
-//				comm_encoder_cal.done_ordering = 0;
-//				comm_encoder_cal.started = 0;
-//				comm_encoder.e_zero = 0;
-//				memset(&comm_encoder.offset_lut, 0, sizeof(comm_encoder.offset_lut));
-//				drv_enable_gd(drv);
+			printf("Entering Calibration Mode\r\n");
+			
+            is_calibrating = 1;       // 1. Chặn các ngắt tính toán FOC
+            foc_start_calibration();  // 2. Kích hoạt bộ đếm thời gian
+            
 			break;
 
 	}

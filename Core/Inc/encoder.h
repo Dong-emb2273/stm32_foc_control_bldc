@@ -16,7 +16,7 @@
 #define MAX_RPM_JUMP          20.0f      // Conservative RPM jump threshold
 #define RPM_FILTER_ALPHA      0.71539f   //0.71539f      // Base filter coefficient (balanced response)
 #define DEGREES_PER_REV       360.0f     // For 1:1 gear ratio
-#define MICROS_TO_MINUTES     6e7f       // Conversion factor (µs to minutes)
+#define MICROS_TO_MINUTES     6e7f       // Conversion factor (ï¿½s to minutes)
 
 
 #define ACTUAL_ANGLE_FILTER_ALPHA 0.54187f
@@ -26,7 +26,7 @@ extern _Bool encd_get_val_flag;
 #define ENCODER_Set_Flag() (encd_get_val_flag = 1)
 #define ENCODER_Reset_Flag() (encd_get_val_flag = 0)
 
-/* Enum phân lo?i */
+/* Enum phï¿½n lo?i */
 typedef enum {
 	ENCODER_LOC_INTERNAL = 0,
 	ENCODER_LOC_EXTERNAL = 1
@@ -39,14 +39,9 @@ typedef enum {
 	ENCODER_TYPE_MT6835
 } EncoderType_t;
 
-//typedef struct {
-//	SPI_HandleTypeDef *hspi;
-//	GPIO_TypeDef      *cs_port;
-//	uint16_t          cs_pin;
 
-//} SPI_t;
 
-/* Struct c?u hình c?ng ph?n c?ng */
+/* Struct c?u hï¿½nh c?ng ph?n c?ng */
 typedef struct {
 	SPI_HandleTypeDef *hspi;
 	GPIO_TypeDef      *cs_port;
@@ -77,7 +72,7 @@ typedef struct {
     
 	float output_prev_angle;
 	float output_angle_ovf;
-  float output_angle_filtered;
+  	float output_angle_filtered;
 	
 	
 	void *hw_encoder;  
@@ -87,7 +82,7 @@ typedef struct {
 	float (*parse_data)(void *handle);
 }Encoder_t;
 
-/* Các bi?n toàn c?c qu?n lý FOC */
+/* Cï¿½c bi?n toï¿½n c?c qu?n lï¿½ FOC */
 extern Encoder_t encoder;
 
 

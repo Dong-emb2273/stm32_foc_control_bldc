@@ -30,7 +30,7 @@ build/can.o: Core/Src/can.c Core/Inc/can.h Core/Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  Core/Inc/joint_acc.h Core/Inc/fsm.h Core/Inc/hw_config.h \
- Core/Inc/math_ops.h
+ Core/Inc/user_config.h Core/Inc/math_ops.h
 Core/Inc/can.h:
 Core/Inc/main.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -68,4 +68,5 @@ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 Core/Inc/joint_acc.h:
 Core/Inc/fsm.h:
 Core/Inc/hw_config.h:
+Core/Inc/user_config.h:
 Core/Inc/math_ops.h:
