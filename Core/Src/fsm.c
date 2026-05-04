@@ -37,10 +37,10 @@ void run_fsm(FSMStruct * fsmstate){
 			break;
 
 		case CALIBRATION_MODE:
-			// Cập nhật trạng thái liên tục
+			
             foc_auto_calibration_update(&hfoc);
             
-            // Kiểm tra xem đã quay xong chưa
+            
             if (current_cal_state == CAL_DONE) {
                 is_calibrating = 0; // Xong rồi, nhả FOC ra
                 printf("Calibration Successful!\r\n");

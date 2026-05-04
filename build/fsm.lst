@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccADaCFn.s 			page 1
+ARM GAS  /tmp/ccVvFV2v.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
   27:Core/Src/fsm.c **** 	if(fsmstate->next_state != fsmstate->state){
   28:Core/Src/fsm.c **** 		fsm_exit_state(fsmstate);		// safely exit the old state
   29:Core/Src/fsm.c **** 		if(fsmstate->ready){			// if the previous state is ready, enter the new state
-ARM GAS  /tmp/ccADaCFn.s 			page 2
+ARM GAS  /tmp/ccVvFV2v.s 			page 2
 
 
   30:Core/Src/fsm.c **** 			fsmstate->state = fsmstate->next_state;
@@ -71,10 +71,10 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
   37:Core/Src/fsm.c **** 			break;
   38:Core/Src/fsm.c **** 
   39:Core/Src/fsm.c **** 		case CALIBRATION_MODE:
-  40:Core/Src/fsm.c **** 			// Cập nhật trạng thái liên tục
+  40:Core/Src/fsm.c **** 			
   41:Core/Src/fsm.c ****             foc_auto_calibration_update(&hfoc);
   42:Core/Src/fsm.c ****             
-  43:Core/Src/fsm.c ****             // Kiểm tra xem đã quay xong chưa
+  43:Core/Src/fsm.c ****             
   44:Core/Src/fsm.c ****             if (current_cal_state == CAL_DONE) {
   45:Core/Src/fsm.c ****                 is_calibrating = 0; // Xong rồi, nhả FOC ra
   46:Core/Src/fsm.c ****                 printf("Calibration Successful!\r\n");
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
   84:Core/Src/fsm.c **** 
   85:Core/Src/fsm.c **** }
   86:Core/Src/fsm.c **** 
-ARM GAS  /tmp/ccADaCFn.s 			page 3
+ARM GAS  /tmp/ccVvFV2v.s 			page 3
 
 
   87:Core/Src/fsm.c **** void fsm_enter_state(FSMStruct * fsmstate){
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
   45 000c 0D       		.byte	(.L7-.L4)/2
   46 000d 12       		.byte	(.L1-.L4)/2
   47 000e 07       		.byte	(.L6-.L4)/2
-ARM GAS  /tmp/ccADaCFn.s 			page 4
+ARM GAS  /tmp/ccVvFV2v.s 			page 4
 
 
   48 000f 0A       		.byte	(.L5-.L4)/2
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  147:Core/Src/fsm.c **** 			//printf("Exiting Calibration Mode\r\n");
  148:Core/Src/fsm.c **** 		
  149:Core/Src/fsm.c **** 			//free(error_array);
-ARM GAS  /tmp/ccADaCFn.s 			page 5
+ARM GAS  /tmp/ccVvFV2v.s 			page 5
 
 
  150:Core/Src/fsm.c **** 			//free(lut_array);
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  110      6F646572 
  111 006f 00       		.align	2
  112              	.LC6:
-ARM GAS  /tmp/ccADaCFn.s 			page 6
+ARM GAS  /tmp/ccVvFV2v.s 			page 6
 
 
  113 0070 207A202D 		.ascii	" z - Set Zero Position\012\015\000"
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  190:Core/Src/fsm.c **** 				}
  191:Core/Src/fsm.c **** 			break;
  192:Core/Src/fsm.c **** 		case SETUP_MODE:
-ARM GAS  /tmp/ccADaCFn.s 			page 7
+ARM GAS  /tmp/ccVvFV2v.s 			page 7
 
 
  193:Core/Src/fsm.c **** 			if(fsm_input == 10 || fsm_input == ' '){ 
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  226:Core/Src/fsm.c **** 	printf(" c - Calibrate Encoder\n\r");
  148              		.loc 1 226 2 view .LVU24
  149 0014 0A48     		ldr	r0, .L11+12
-ARM GAS  /tmp/ccADaCFn.s 			page 8
+ARM GAS  /tmp/ccVvFV2v.s 			page 8
 
 
  150 0016 FFF7FEFF 		bl	printf
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  193      6D657465 
  193      7200
  194 002a 0000     		.align	2
-ARM GAS  /tmp/ccADaCFn.s 			page 9
+ARM GAS  /tmp/ccVvFV2v.s 			page 9
 
 
  195              	.LC11:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  229              	.LC22:
  230 00c4 6B00     		.ascii	"k\000"
  231 00c6 0000     		.align	2
-ARM GAS  /tmp/ccADaCFn.s 			page 10
+ARM GAS  /tmp/ccVvFV2v.s 			page 10
 
 
  232              	.LC23:
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  265              	.LC34:
  266 0160 7000     		.ascii	"p\000"
  267 0162 0000     		.align	2
-ARM GAS  /tmp/ccADaCFn.s 			page 11
+ARM GAS  /tmp/ccVvFV2v.s 			page 11
 
 
  268              	.LC35:
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  302      75732043 
  302      75727265 
  302      6E742028 
-ARM GAS  /tmp/ccADaCFn.s 			page 12
+ARM GAS  /tmp/ccVvFV2v.s 			page 12
 
 
  303 0213 00       		.align	2
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  338              	.LFB142:
  234:Core/Src/fsm.c **** 
  235:Core/Src/fsm.c **** void enter_setup_state(void){
-ARM GAS  /tmp/ccADaCFn.s 			page 13
+ARM GAS  /tmp/ccVvFV2v.s 			page 13
 
 
  339              		.loc 1 235 29 is_stmt 1 view -0
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  389 0040 FFF7FEFF 		bl	printf
  390              	.LVL13:
  240:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.5f\n\r", "k", "Torque Constant (N-m/A)", "0", "-", KT);
-ARM GAS  /tmp/ccADaCFn.s 			page 14
+ARM GAS  /tmp/ccVvFV2v.s 			page 14
 
 
  391              		.loc 1 240 2 is_stmt 1 view .LVU37
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  441 00a6 484A     		ldr	r2, .L15+104
  442 00a8 4849     		ldr	r1, .L15+108
  443 00aa 2846     		mov	r0, r5
-ARM GAS  /tmp/ccADaCFn.s 			page 15
+ARM GAS  /tmp/ccVvFV2v.s 			page 15
 
 
  444 00ac FFF7FEFF 		bl	printf
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  494 0110 2846     		mov	r0, r5
  495 0112 FFF7FEFF 		bl	printf
  496              	.LVL30:
-ARM GAS  /tmp/ccADaCFn.s 			page 16
+ARM GAS  /tmp/ccVvFV2v.s 			page 16
 
 
  249:Core/Src/fsm.c **** 	//printf(" %-4s %-31s %-5s %-6s %.1f\n\r", "h", "Temp Cutoff (C) (0 = none)", "0", "150", TEMP_MAX
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  541              	.L16:
  542              		.align	2
  543              	.L15:
-ARM GAS  /tmp/ccADaCFn.s 			page 17
+ARM GAS  /tmp/ccVvFV2v.s 			page 17
 
 
  544 0160 00000000 		.word	.LC8
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  598      72696E67 
  598      20536574 
  598      75700D00 
-ARM GAS  /tmp/ccADaCFn.s 			page 18
+ARM GAS  /tmp/ccVvFV2v.s 			page 18
 
 
  599              		.align	2
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  642 0014 FBE7     		b	.L17
  643              	.LVL42:
  644              	.L18:
-ARM GAS  /tmp/ccADaCFn.s 			page 19
+ARM GAS  /tmp/ccVvFV2v.s 			page 19
 
 
   97:Core/Src/fsm.c **** 			enter_setup_state();
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  687      696F6E20 
  687      53756363 
  687      65737366 
-ARM GAS  /tmp/ccADaCFn.s 			page 20
+ARM GAS  /tmp/ccVvFV2v.s 			page 20
 
 
  688              		.section	.text.run_fsm,"ax",%progbits
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
   28:Core/Src/fsm.c **** 		if(fsmstate->ready){			// if the previous state is ready, enter the new state
  733              		.loc 1 28 3 is_stmt 1 view .LVU81
  734 0014 FFF7FEFF 		bl	fsm_exit_state
-ARM GAS  /tmp/ccADaCFn.s 			page 21
+ARM GAS  /tmp/ccVvFV2v.s 			page 21
 
 
  735              	.LVL53:
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
   49:Core/Src/fsm.c ****                 fsmstate->ready = 0;
  774              		.loc 1 49 38 is_stmt 0 view .LVU97
  775 0044 6570     		strb	r5, [r4, #1]
-ARM GAS  /tmp/ccADaCFn.s 			page 22
+ARM GAS  /tmp/ccVvFV2v.s 			page 22
 
 
   50:Core/Src/fsm.c ****             }
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  808 006f 00       		.align	2
  809              	.LC63:
  810 0070 495F4341 		.ascii	"I_CAL set to %f\015\012\000"
-ARM GAS  /tmp/ccADaCFn.s 			page 23
+ARM GAS  /tmp/ccVvFV2v.s 			page 23
 
 
  810      4C207365 
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  835              		.global	process_user_input
  836              		.syntax unified
  837              		.thumb
-ARM GAS  /tmp/ccADaCFn.s 			page 24
+ARM GAS  /tmp/ccVvFV2v.s 			page 24
 
 
  838              		.thumb_func
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  888              		.p2align 1
  889              	.L47:
  264:Core/Src/fsm.c **** 		case 'b':
-ARM GAS  /tmp/ccADaCFn.s 			page 25
+ARM GAS  /tmp/ccVvFV2v.s 			page 25
 
 
  265:Core/Src/fsm.c **** 			I_BW = fmaxf(fminf(atof(fsmstate->cmd_buff), 2000.0f), 100.0f);
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  287:Core/Src/fsm.c **** 			break;
  288:Core/Src/fsm.c **** 		case 'h':
  289:Core/Src/fsm.c **** 			TEMP_MAX = fmaxf(fminf(atof(fsmstate->cmd_buff), 150.0f), 0.0f);
-ARM GAS  /tmp/ccADaCFn.s 			page 26
+ARM GAS  /tmp/ccVvFV2v.s 			page 26
 
 
  290:Core/Src/fsm.c **** 			printf("TEMP_MAX set to %f\r\n", TEMP_MAX);
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  341:Core/Src/fsm.c **** 	fsmstate->bytecount = 0;
  925              		.loc 1 341 2 view .LVU114
  926              		.loc 1 341 22 is_stmt 0 view .LVU115
-ARM GAS  /tmp/ccADaCFn.s 			page 27
+ARM GAS  /tmp/ccVvFV2v.s 			page 27
 
 
  927 0082 0023     		movs	r3, #0
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  971              	.LVL74:
  972              	.L44:
  281:Core/Src/fsm.c **** 			printf("I_FW_MAX set to %f\r\n", I_FW_MAX);
-ARM GAS  /tmp/ccADaCFn.s 			page 28
+ARM GAS  /tmp/ccVvFV2v.s 			page 28
 
 
  973              		.loc 1 281 4 view .LVU127
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  1017              	.LVL85:
  1018 0114 DFED860A 		vldr.32	s1, .L50+36
  1019 0118 00EE100A 		vmov	s0, r0
-ARM GAS  /tmp/ccADaCFn.s 			page 29
+ARM GAS  /tmp/ccVvFV2v.s 			page 29
 
 
  1020 011c FFF7FEFF 		bl	fminf
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  1065              	.LVL96:
  1066 0172 0246     		mov	r2, r0
  1067 0174 0B46     		mov	r3, r1
-ARM GAS  /tmp/ccADaCFn.s 			page 30
+ARM GAS  /tmp/ccVvFV2v.s 			page 30
 
 
  1068 0176 7148     		ldr	r0, .L50+48
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  1112              	.LVL107:
  301:Core/Src/fsm.c **** 			printf("GR set to %f\r\n", GR);
  1113              		.loc 1 301 15 view .LVU157
-ARM GAS  /tmp/ccADaCFn.s 			page 31
+ARM GAS  /tmp/ccVvFV2v.s 			page 31
 
 
  1114 01bc FFF7FEFF 		bl	atof
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  306:Core/Src/fsm.c **** 			break;
  1159              		.loc 1 306 4 is_stmt 1 view .LVU167
  1160 0212 FFF7FEFF 		bl	__aeabi_f2d
-ARM GAS  /tmp/ccADaCFn.s 			page 32
+ARM GAS  /tmp/ccVvFV2v.s 			page 32
 
 
  1161              	.LVL118:
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  1205              	.LVL128:
  313:Core/Src/fsm.c **** 			printf("KD_MAX set to %f\r\n", KD_MAX);
  1206              		.loc 1 313 19 view .LVU178
-ARM GAS  /tmp/ccADaCFn.s 			page 33
+ARM GAS  /tmp/ccVvFV2v.s 			page 33
 
 
  1207 0258 FFF7FEFF 		bl	atof
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  318:Core/Src/fsm.c **** 			printf("P_MAX set to %f\r\n", P_MAX);
  1252              		.loc 1 318 4 is_stmt 1 view .LVU188
  318:Core/Src/fsm.c **** 			printf("P_MAX set to %f\r\n", P_MAX);
-ARM GAS  /tmp/ccADaCFn.s 			page 34
+ARM GAS  /tmp/ccVvFV2v.s 			page 34
 
 
  1253              		.loc 1 318 12 is_stmt 0 view .LVU189
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  1295              	.LVL146:
  1296 02f6 0246     		mov	r2, r0
  1297 02f8 0B46     		mov	r3, r1
-ARM GAS  /tmp/ccADaCFn.s 			page 35
+ARM GAS  /tmp/ccVvFV2v.s 			page 35
 
 
  1298 02fa 1948     		ldr	r0, .L50+84
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  1345      726F2070 
  1346              		.section	.text.update_fsm,"ax",%progbits
  1347              		.align	1
-ARM GAS  /tmp/ccADaCFn.s 			page 36
+ARM GAS  /tmp/ccVvFV2v.s 			page 36
 
 
  1348              		.global	update_fsm
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  165:Core/Src/fsm.c **** 	}
  1391              		.loc 1 165 3 is_stmt 1 view .LVU218
  1392 0016 FAE7     		b	.L52
-ARM GAS  /tmp/ccADaCFn.s 			page 37
+ARM GAS  /tmp/ccVvFV2v.s 			page 37
 
 
  1393              	.L55:
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  1440              	.L60:
  175:Core/Src/fsm.c **** 					fsmstate->ready = 0;
  1441              		.loc 1 175 6 view .LVU226
-ARM GAS  /tmp/ccADaCFn.s 			page 38
+ARM GAS  /tmp/ccVvFV2v.s 			page 38
 
 
  175:Core/Src/fsm.c **** 					fsmstate->ready = 0;
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  189:Core/Src/fsm.c **** 				}
  1480              		.loc 1 189 6 is_stmt 1 view .LVU243
  1481 00b2 ACE7     		b	.L52
-ARM GAS  /tmp/ccADaCFn.s 			page 39
+ARM GAS  /tmp/ccVvFV2v.s 			page 39
 
 
  1482              	.LVL157:
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  1519              		.loc 1 202 43 is_stmt 0 view .LVU260
  1520 00d2 5A1E     		subs	r2, r3, #1
  202:Core/Src/fsm.c **** 				//fsmstate->bytecount = fsmstate->bytecount%(sizeof(fsmstate->cmd_buff)/sizeof(fsmstate->cmd_bu
-ARM GAS  /tmp/ccADaCFn.s 			page 40
+ARM GAS  /tmp/ccVvFV2v.s 			page 40
 
 
  1521              		.loc 1 202 47 view .LVU261
@@ -2383,45 +2383,45 @@ ARM GAS  /tmp/ccADaCFn.s 			page 1
  1559              		.file 7 "/usr/include/newlib/math.h"
  1560              		.file 8 "/usr/include/newlib/stdio.h"
  1561              		.file 9 "<built-in>"
-ARM GAS  /tmp/ccADaCFn.s 			page 41
+ARM GAS  /tmp/ccVvFV2v.s 			page 41
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 fsm.c
-     /tmp/ccADaCFn.s:18     .text.fsm_exit_state:0000000000000000 $t
-     /tmp/ccADaCFn.s:26     .text.fsm_exit_state:0000000000000000 fsm_exit_state
-     /tmp/ccADaCFn.s:43     .text.fsm_exit_state:000000000000000a $d
-     /tmp/ccADaCFn.s:51     .text.fsm_exit_state:0000000000000012 $t
-     /tmp/ccADaCFn.s:93     .rodata.enter_menu_state.str1.4:0000000000000000 $d
-     /tmp/ccADaCFn.s:118    .text.enter_menu_state:0000000000000000 $t
-     /tmp/ccADaCFn.s:125    .text.enter_menu_state:0000000000000000 enter_menu_state
-     /tmp/ccADaCFn.s:173    .text.enter_menu_state:0000000000000034 $d
-     /tmp/ccADaCFn.s:185    .rodata.enter_setup_state.str1.4:0000000000000000 $d
-     /tmp/ccADaCFn.s:330    .text.enter_setup_state:0000000000000000 $t
-     /tmp/ccADaCFn.s:337    .text.enter_setup_state:0000000000000000 enter_setup_state
-     /tmp/ccADaCFn.s:544    .text.enter_setup_state:0000000000000160 $d
-     /tmp/ccADaCFn.s:596    .rodata.fsm_enter_state.str1.4:0000000000000000 $d
-     /tmp/ccADaCFn.s:603    .text.fsm_enter_state:0000000000000000 $t
-     /tmp/ccADaCFn.s:610    .text.fsm_enter_state:0000000000000000 fsm_enter_state
-     /tmp/ccADaCFn.s:678    .text.fsm_enter_state:0000000000000034 $d
-     /tmp/ccADaCFn.s:685    .rodata.run_fsm.str1.4:0000000000000000 $d
-     /tmp/ccADaCFn.s:689    .text.run_fsm:0000000000000000 $t
-     /tmp/ccADaCFn.s:696    .text.run_fsm:0000000000000000 run_fsm
-     /tmp/ccADaCFn.s:784    .text.run_fsm:000000000000004c $d
-     /tmp/ccADaCFn.s:793    .rodata.process_user_input.str1.4:0000000000000000 $d
-     /tmp/ccADaCFn.s:834    .text.process_user_input:0000000000000000 $t
-     /tmp/ccADaCFn.s:841    .text.process_user_input:0000000000000000 process_user_input
-     /tmp/ccADaCFn.s:864    .text.process_user_input:0000000000000014 $d
-     /tmp/ccADaCFn.s:888    .text.process_user_input:0000000000000044 $t
-     /tmp/ccADaCFn.s:1316   .text.process_user_input:000000000000030c $d
-     /tmp/ccADaCFn.s:1343   .rodata.update_fsm.str1.4:0000000000000000 $d
-     /tmp/ccADaCFn.s:1347   .text.update_fsm:0000000000000000 $t
-     /tmp/ccADaCFn.s:1354   .text.update_fsm:0000000000000000 update_fsm
-     /tmp/ccADaCFn.s:1404   .text.update_fsm:0000000000000024 $d
-     /tmp/ccADaCFn.s:1428   .text.update_fsm:0000000000000084 $t
-     /tmp/ccADaCFn.s:1528   .text.update_fsm:00000000000000dc $d
-     /tmp/ccADaCFn.s:1533   .text.enter_motor_mode:0000000000000000 $t
-     /tmp/ccADaCFn.s:1540   .text.enter_motor_mode:0000000000000000 enter_motor_mode
+     /tmp/ccVvFV2v.s:18     .text.fsm_exit_state:0000000000000000 $t
+     /tmp/ccVvFV2v.s:26     .text.fsm_exit_state:0000000000000000 fsm_exit_state
+     /tmp/ccVvFV2v.s:43     .text.fsm_exit_state:000000000000000a $d
+     /tmp/ccVvFV2v.s:51     .text.fsm_exit_state:0000000000000012 $t
+     /tmp/ccVvFV2v.s:93     .rodata.enter_menu_state.str1.4:0000000000000000 $d
+     /tmp/ccVvFV2v.s:118    .text.enter_menu_state:0000000000000000 $t
+     /tmp/ccVvFV2v.s:125    .text.enter_menu_state:0000000000000000 enter_menu_state
+     /tmp/ccVvFV2v.s:173    .text.enter_menu_state:0000000000000034 $d
+     /tmp/ccVvFV2v.s:185    .rodata.enter_setup_state.str1.4:0000000000000000 $d
+     /tmp/ccVvFV2v.s:330    .text.enter_setup_state:0000000000000000 $t
+     /tmp/ccVvFV2v.s:337    .text.enter_setup_state:0000000000000000 enter_setup_state
+     /tmp/ccVvFV2v.s:544    .text.enter_setup_state:0000000000000160 $d
+     /tmp/ccVvFV2v.s:596    .rodata.fsm_enter_state.str1.4:0000000000000000 $d
+     /tmp/ccVvFV2v.s:603    .text.fsm_enter_state:0000000000000000 $t
+     /tmp/ccVvFV2v.s:610    .text.fsm_enter_state:0000000000000000 fsm_enter_state
+     /tmp/ccVvFV2v.s:678    .text.fsm_enter_state:0000000000000034 $d
+     /tmp/ccVvFV2v.s:685    .rodata.run_fsm.str1.4:0000000000000000 $d
+     /tmp/ccVvFV2v.s:689    .text.run_fsm:0000000000000000 $t
+     /tmp/ccVvFV2v.s:696    .text.run_fsm:0000000000000000 run_fsm
+     /tmp/ccVvFV2v.s:784    .text.run_fsm:000000000000004c $d
+     /tmp/ccVvFV2v.s:793    .rodata.process_user_input.str1.4:0000000000000000 $d
+     /tmp/ccVvFV2v.s:834    .text.process_user_input:0000000000000000 $t
+     /tmp/ccVvFV2v.s:841    .text.process_user_input:0000000000000000 process_user_input
+     /tmp/ccVvFV2v.s:864    .text.process_user_input:0000000000000014 $d
+     /tmp/ccVvFV2v.s:888    .text.process_user_input:0000000000000044 $t
+     /tmp/ccVvFV2v.s:1316   .text.process_user_input:000000000000030c $d
+     /tmp/ccVvFV2v.s:1343   .rodata.update_fsm.str1.4:0000000000000000 $d
+     /tmp/ccVvFV2v.s:1347   .text.update_fsm:0000000000000000 $t
+     /tmp/ccVvFV2v.s:1354   .text.update_fsm:0000000000000000 update_fsm
+     /tmp/ccVvFV2v.s:1404   .text.update_fsm:0000000000000024 $d
+     /tmp/ccVvFV2v.s:1428   .text.update_fsm:0000000000000084 $t
+     /tmp/ccVvFV2v.s:1528   .text.update_fsm:00000000000000dc $d
+     /tmp/ccVvFV2v.s:1533   .text.enter_motor_mode:0000000000000000 $t
+     /tmp/ccVvFV2v.s:1540   .text.enter_motor_mode:0000000000000000 enter_motor_mode
 
 UNDEFINED SYMBOLS
 printf

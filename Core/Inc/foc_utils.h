@@ -88,12 +88,6 @@ typedef struct {
 	float Lq;
 	float max_current;
 
-	// float meas_inj_freq;
-	// float meas_inj_amp;
-	// float meas_inj_omega;
-	// inject_taregt_t meas_inj_target;
-	// int meas_inj_n;
-	// _Bool meas_inj_start_flag;
 
 	float m_angle_rad; 
 	float e_angle_rad; 
