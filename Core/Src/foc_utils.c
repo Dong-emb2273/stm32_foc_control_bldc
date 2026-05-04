@@ -105,7 +105,7 @@ void foc_current_control_update(foc_t *hfoc) {
 	// Get measured currents
 	clarke_park_transform(hfoc->ia, hfoc->ib, sin_theta, cos_theta, &hfoc->id, &hfoc->iq);
 
-	const float alpha_i_filt = 0.5f;
+	const float alpha_i_filt = 0.1f;
 	hfoc->id_filtered = (1.0f - alpha_i_filt) * hfoc->id_filtered + alpha_i_filt * hfoc->id;
 	hfoc->iq_filtered = (1.0f - alpha_i_filt) * hfoc->iq_filtered + alpha_i_filt * hfoc->iq;
 
@@ -133,7 +133,7 @@ void foc_speed_control_update(foc_t *hfoc, float rpm_reference) {
 	}
 
     hfoc->id_ref = 0.0f;
-    hfoc->iq_ref = -pi_control(&hfoc->speed_ctrl, rpm_reference - hfoc->actual_rpm);
+    hfoc->iq_ref = pi_control(&hfoc->speed_ctrl, rpm_reference - hfoc->actual_rpm);
 }
 //
 

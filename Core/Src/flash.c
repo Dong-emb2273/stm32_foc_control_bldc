@@ -52,12 +52,12 @@ void flash_read_config(motor_config_t *data) {
 void flash_default_config(motor_config_t *data) {
     data->id_kp = 0.01f;
     data->id_ki = 4.09f;
-    data->id_out_max = 0.000001f;
+    data->id_out_max = 0.01f;
     data->id_e_deadband = 0.0001f;
 
     data->iq_kp = 0.01f;
     data->iq_ki = 4.09f;
-    data->iq_out_max = 0.5f;
+    data->iq_out_max = 3.0f;
     data->iq_e_deadband = 0.0001f;
 
     data->I_ctrl_bandwidth = 50.0f;
@@ -90,12 +90,16 @@ void flash_default_config(motor_config_t *data) {
 void copy_to_local(motor_config_t *data, foc_t *hfoc) {
     hfoc->id_ctrl.kp = data->id_kp;
     hfoc->id_ctrl.ki = data->id_ki;
+    hfoc->id_ctrl.ts = FOC_TS;
     hfoc->id_ctrl.out_max = data->id_out_max;
+    hfoc->id_ctrl.out_min = -data->id_out_max;
     hfoc->id_ctrl.e_deadband = data->id_e_deadband;
     
     hfoc->iq_ctrl.kp = data->iq_kp;
     hfoc->iq_ctrl.ki = data->iq_ki;
+    hfoc->iq_ctrl.ts = FOC_TS;
     hfoc->iq_ctrl.out_max = data->iq_out_max;
+    hfoc->iq_ctrl.out_min = -data->iq_out_max;
     hfoc->iq_ctrl.e_deadband = data->iq_e_deadband;
 
     hfoc->I_ctrl_bandwidth = data->I_ctrl_bandwidth;
@@ -103,12 +107,14 @@ void copy_to_local(motor_config_t *data, foc_t *hfoc) {
     hfoc->speed_ctrl.kp = data->speed_kp;
     hfoc->speed_ctrl.ki = data->speed_ki;
     hfoc->speed_ctrl.out_max = data->speed_out_max;
+    hfoc->speed_ctrl.out_min = -data->speed_out_max;
     hfoc->speed_ctrl.e_deadband = data->speed_e_deadband;
     
     hfoc->pos_ctrl.kp = data->pos_kp;
     hfoc->pos_ctrl.ki = data->pos_ki;
     hfoc->pos_ctrl.kd = data->pos_kd;
     hfoc->pos_ctrl.out_max = data->pos_out_max;
+    hfoc->pos_ctrl.out_min = -data->pos_out_max;
     hfoc->pos_ctrl.e_deadband = data->pos_e_deadband;
 
 

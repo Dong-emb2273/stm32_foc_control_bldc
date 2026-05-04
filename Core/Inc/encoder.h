@@ -7,7 +7,7 @@
 #include "spi.h"
 #include "as5048a.h"
 
-#define ANGLE_FILTER_ALPHA    0.71539f  //0.71539f //   // Faktor filter
+#define ANGLE_FILTER_ALPHA    0.11539f  //0.71539f //   // Faktor filter
 #define MAX_ANGLE_JUMP_DEG    50.0f     // Batas maksimal lonjakan sudut (derajat)
 #define SPIKE_REJECT_COUNT    10        // Jumlah sampel untuk konfirmasi spike
 

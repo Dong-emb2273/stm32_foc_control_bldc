@@ -125,15 +125,52 @@ void control_init(void) {
 	hfoc.angle_filtered = &encoder.angle_filtered;
 
 	
-  pid_init(&hfoc.id_ctrl, m_config.id_kp, m_config.id_ki, 0.0f, FOC_TS, m_config.id_out_max, m_config.id_e_deadband);
-  pid_init(&hfoc.iq_ctrl, m_config.iq_kp, m_config.iq_ki, 0.0f, FOC_TS, m_config.iq_out_max, m_config.iq_e_deadband);
-  pid_init(&hfoc.speed_ctrl, m_config.speed_kp, m_config.speed_ki, 0.0f, FOC_TS * SPEED_CONTROL_CYCLE, m_config.speed_out_max, m_config.speed_e_deadband);
-	pid_init(&hfoc.pos_ctrl, m_config.pos_kp, m_config.pos_ki, m_config.pos_kd, FOC_TS * SPEED_CONTROL_CYCLE, m_config.pos_out_max, m_config.pos_e_deadband);
-  hfoc.pos_ctrl.d_alpha_filter = 0.85;
+  // pid_init(&hfoc.id_ctrl, m_config.id_kp, m_config.id_ki, 0.0f, FOC_TS, m_config.id_out_max, m_config.id_e_deadband);
+  // pid_init(&hfoc.iq_ctrl, m_config.iq_kp, m_config.iq_ki, 0.0f, FOC_TS, m_config.iq_out_max, m_config.iq_e_deadband);
+  // pid_init(&hfoc.speed_ctrl, m_config.speed_kp, m_config.speed_ki, 0.0f, FOC_TS * SPEED_CONTROL_CYCLE, m_config.speed_out_max, m_config.speed_e_deadband);
+	// pid_init(&hfoc.pos_ctrl, m_config.pos_kp, m_config.pos_ki, m_config.pos_kd, FOC_TS * SPEED_CONTROL_CYCLE, m_config.pos_out_max, m_config.pos_e_deadband);
+  // hfoc.pos_ctrl.d_alpha_filter = 0.85;
+
+  // Id PI parameter
+  pid_reset(&hfoc.id_ctrl);
+  pid_set_ts(&hfoc.id_ctrl, FOC_TS);
+  pid_set_kp(&hfoc.id_ctrl, m_config.id_kp);
+  pid_set_ki(&hfoc.id_ctrl, m_config.id_ki);
+  pid_set_out_constraint(&hfoc.id_ctrl, m_config.id_out_max, -m_config.id_out_max);
+  pid_set_deadband(&hfoc.id_ctrl, m_config.id_e_deadband);
+  // Id PI parameter
+  pid_reset(&hfoc.iq_ctrl);
+  pid_set_ts(&hfoc.iq_ctrl, FOC_TS);
+  pid_set_kp(&hfoc.iq_ctrl, m_config.iq_kp);
+  pid_set_ki(&hfoc.iq_ctrl, m_config.iq_ki);
+  pid_set_out_constraint(&hfoc.iq_ctrl, m_config.iq_out_max, -m_config.iq_out_max);
+  pid_set_deadband(&hfoc.iq_ctrl, m_config.iq_e_deadband);
+  // Speed PID parameter
+  pid_reset(&hfoc.speed_ctrl);
+  pid_set_ts(&hfoc.speed_ctrl, FOC_TS * SPEED_CONTROL_CYCLE);
+  pid_set_kp(&hfoc.speed_ctrl, m_config.speed_kp);
+  pid_set_ki(&hfoc.speed_ctrl, m_config.speed_ki);
+  pid_set_kd(&hfoc.speed_ctrl, 0.0001f);
+  pid_set_d_filter_fc(&hfoc.speed_ctrl, 100.0f);
+  pid_set_max_d(&hfoc.speed_ctrl, 10.0f);
+  pid_set_out_constraint(&hfoc.speed_ctrl, m_config.speed_out_max, -m_config.speed_out_max);
+  pid_set_deadband(&hfoc.speed_ctrl, m_config.speed_e_deadband);
+  // Position PID parameter
+  pid_reset(&hfoc.pos_ctrl);
+  pid_set_ts(&hfoc.pos_ctrl, FOC_TS * SPEED_CONTROL_CYCLE);
+  pid_set_kp(&hfoc.pos_ctrl, m_config.pos_kp);
+  pid_set_ki(&hfoc.pos_ctrl, m_config.pos_ki);
+  pid_set_kd(&hfoc.pos_ctrl, m_config.pos_kd);
+  pid_set_d_filter_fc(&hfoc.pos_ctrl, 20.0f);
+  pid_set_max_d(&hfoc.pos_ctrl, 100.0f);
+  pid_set_out_constraint(&hfoc.pos_ctrl, m_config.pos_out_max, -m_config.pos_out_max);
+  pid_set_deadband(&hfoc.pos_ctrl, m_config.pos_e_deadband);
+
+
 	
 	foc_pwm_init(&hfoc, &(TIM1->CCR1), &(TIM1->CCR2), &(TIM1->CCR3), bldc.pwm_resolution);
   foc_motor_init(&hfoc, POLE_PAIR, 750);
-  foc_sensor_init(&hfoc, m_config.encd_offset, NORMAL_DIR);
+  foc_sensor_init(&hfoc, m_config.encd_offset, REVERSE_DIR);
   foc_gear_reducer_init(&hfoc, 1.0);
   foc_set_limit_current(&hfoc, 10.0);
  
@@ -262,11 +299,11 @@ int main(void)
   DRV8323_Start_PWM(&bldc); //  MOE và CCxE
 
   // Calibration
-  hfoc.control_mode = CALIBRATION_MODE;
+  // hfoc.control_mode = CALIBRATION_MODE;
 	is_calibrating = 1;
   foc_cal_encoder(&hfoc);
 	is_calibrating = 0;
-	hfoc.control_mode = POSITION_CONTROL_MODE;
+	hfoc.control_mode = SPEED_CONTROL_MODE;
 
 
 

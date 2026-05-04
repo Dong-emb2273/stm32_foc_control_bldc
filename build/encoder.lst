@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccTVFzBr.s 			page 1
+ARM GAS  /tmp/ccZaI0GT.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccTVFzBr.s 			page 1
   42 0008 9A60     		str	r2, [r3, #8]
   15:Core/Src/encoder.c **** 	encoder.enc_internal.cs_pin = GPIO_PIN_9;
   43              		.loc 1 15 2 is_stmt 1 view .LVU5
-ARM GAS  /tmp/ccTVFzBr.s 			page 2
+ARM GAS  /tmp/ccZaI0GT.s 			page 2
 
 
   44              		.loc 1 15 30 is_stmt 0 view .LVU6
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccTVFzBr.s 			page 1
   89              		@ frame_needed = 0, uses_anonymous_args = 0
   90 0000 38B5     		push	{r3, r4, r5, lr}
   91              	.LCFI0:
-ARM GAS  /tmp/ccTVFzBr.s 			page 3
+ARM GAS  /tmp/ccZaI0GT.s 			page 3
 
 
   92              		.cfi_def_cfa_offset 16
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccTVFzBr.s 			page 1
  137 0034 1A70     		strb	r2, [r3]
   36:Core/Src/encoder.c **** 		return 0;
  138              		.loc 1 36 3 view .LVU32
-ARM GAS  /tmp/ccTVFzBr.s 			page 4
+ARM GAS  /tmp/ccZaI0GT.s 			page 4
 
 
  139              		.loc 1 36 10 is_stmt 0 view .LVU33
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccTVFzBr.s 			page 1
  169              		.loc 1 42 4 view .LVU42
  170 005c 20B9     		cbnz	r0, .L9
   50:Core/Src/encoder.c **** 	return 1;
-ARM GAS  /tmp/ccTVFzBr.s 			page 5
+ARM GAS  /tmp/ccZaI0GT.s 			page 5
 
 
  171              		.loc 1 50 2 is_stmt 1 view .LVU43
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccTVFzBr.s 			page 1
  214              		.syntax unified
  215              		.thumb
  216              		.thumb_func
-ARM GAS  /tmp/ccTVFzBr.s 			page 6
+ARM GAS  /tmp/ccZaI0GT.s 			page 6
 
 
  217              		.fpu fpv4-sp-d16
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccTVFzBr.s 			page 1
  266              	.LVL8:
  267              		.loc 1 58 23 view .LVU69
  268 0032 20EE090A 		vmul.f32	s0, s0, s18
-ARM GAS  /tmp/ccTVFzBr.s 			page 7
+ARM GAS  /tmp/ccZaI0GT.s 			page 7
 
 
  269              		.loc 1 58 13 view .LVU70
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccTVFzBr.s 			page 1
   70:Core/Src/encoder.c **** 
   71:Core/Src/encoder.c **** 	// Filter IIR dengan wrap-around
   72:Core/Src/encoder.c **** 	float filtered_diff = encd->raw_angle - encd->angle_filtered;
-ARM GAS  /tmp/ccTVFzBr.s 			page 8
+ARM GAS  /tmp/ccZaI0GT.s 			page 8
 
 
  310              		.loc 1 72 2 is_stmt 1 view .LVU86
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccTVFzBr.s 			page 1
  353 00be BDEC048B 		vldm	sp!, {d8-d9}
  354              	.LCFI3:
  355              		.cfi_remember_state
-ARM GAS  /tmp/ccTVFzBr.s 			page 9
+ARM GAS  /tmp/ccZaI0GT.s 			page 9
 
 
  356              		.cfi_restore 82
@@ -512,7 +512,7 @@ ARM GAS  /tmp/ccTVFzBr.s 			page 1
  380 00dc 00003443 		.word	1127481344
  381 00e0 0000B443 		.word	1135869952
  382 00e4 00004842 		.word	1112014848
- 383 00e8 CD23373F 		.word	1060578253
+ 383 00e8 9851EC3D 		.word	1038897560
  384              		.cfi_endproc
  385              	.LFE136:
  387              		.section	.text.ENCODER_GetRPM,"ax",%progbits
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccTVFzBr.s 			page 1
  405              		.cfi_def_cfa_offset 16
  406              		.cfi_offset 3, -16
  407              		.cfi_offset 4, -12
-ARM GAS  /tmp/ccTVFzBr.s 			page 10
+ARM GAS  /tmp/ccZaI0GT.s 			page 10
 
 
  408              		.cfi_offset 5, -8
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccTVFzBr.s 			page 1
  102:Core/Src/encoder.c **** 	if (encd->time_accumulator < MIN_DT_US && encd->filtered_rpm > 1.0f) {
  103:Core/Src/encoder.c **** 			return encd->filtered_rpm;
  104:Core/Src/encoder.c **** 	}
-ARM GAS  /tmp/ccTVFzBr.s 			page 11
+ARM GAS  /tmp/ccZaI0GT.s 			page 11
 
 
  105:Core/Src/encoder.c **** 
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccTVFzBr.s 			page 1
  482 0080 FFF7FEFF 		bl	fminf
  483              	.LVL24:
  484              		.loc 1 123 26 view .LVU136
-ARM GAS  /tmp/ccTVFzBr.s 			page 12
+ARM GAS  /tmp/ccZaI0GT.s 			page 12
 
 
  485 0084 B0EEC07A 		vabs.f32	s14, s0
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccTVFzBr.s 			page 1
  137:Core/Src/encoder.c **** 	encd->filtered_rpm = filtered;
  526              		.loc 1 137 2 is_stmt 1 view .LVU151
  527              		.loc 1 137 21 is_stmt 0 view .LVU152
-ARM GAS  /tmp/ccTVFzBr.s 			page 13
+ARM GAS  /tmp/ccZaI0GT.s 			page 13
 
 
  528 00ca 84ED0F0A 		vstr.32	s0, [r4, #60]
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccTVFzBr.s 			page 1
  143:Core/Src/encoder.c **** float ENCODER_GetActualDegree(Encoder_t *encd) {
  577              		.loc 1 143 48 is_stmt 1 view -0
  578              		.cfi_startproc
-ARM GAS  /tmp/ccTVFzBr.s 			page 14
+ARM GAS  /tmp/ccZaI0GT.s 			page 14
 
 
  579              		@ args = 0, pretend = 0, frame = 0
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccTVFzBr.s 			page 1
  623              	.LVL35:
  624              		.loc 1 153 41 view .LVU171
  625 0034 FFF7FEFF 		bl	__aeabi_f2d
-ARM GAS  /tmp/ccTVFzBr.s 			page 15
+ARM GAS  /tmp/ccZaI0GT.s 			page 15
 
 
  626              	.LVL36:
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccTVFzBr.s 			page 1
  674              	.LVL43:
  675              	.L51:
  676              	.LCFI12:
-ARM GAS  /tmp/ccTVFzBr.s 			page 16
+ARM GAS  /tmp/ccZaI0GT.s 			page 16
 
 
  677              		.cfi_restore_state
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccTVFzBr.s 			page 1
  727              		.text
  728              	.Letext0:
  729              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
-ARM GAS  /tmp/ccTVFzBr.s 			page 17
+ARM GAS  /tmp/ccZaI0GT.s 			page 17
 
 
  730              		.file 3 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
@@ -970,32 +970,32 @@ ARM GAS  /tmp/ccTVFzBr.s 			page 1
  736              		.file 9 "Core/Inc/as5048a.h"
  737              		.file 10 "Core/Inc/encoder.h"
  738              		.file 11 "/usr/include/newlib/math.h"
-ARM GAS  /tmp/ccTVFzBr.s 			page 18
+ARM GAS  /tmp/ccZaI0GT.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 encoder.c
-     /tmp/ccTVFzBr.s:18     .text.ENCODER_Setup:0000000000000000 $t
-     /tmp/ccTVFzBr.s:26     .text.ENCODER_Setup:0000000000000000 ENCODER_Setup
-     /tmp/ccTVFzBr.s:68     .text.ENCODER_Setup:0000000000000024 $d
-     /tmp/ccTVFzBr.s:77     .text.ENCODER_AutoDetect:0000000000000000 $t
-     /tmp/ccTVFzBr.s:84     .text.ENCODER_AutoDetect:0000000000000000 ENCODER_AutoDetect
-     /tmp/ccTVFzBr.s:203    .text.ENCODER_AutoDetect:000000000000007c $d
-     /tmp/ccTVFzBr.s:212    .text.ENCODER_GetDegree:0000000000000000 $t
-     /tmp/ccTVFzBr.s:219    .text.ENCODER_GetDegree:0000000000000000 ENCODER_GetDegree
-     /tmp/ccTVFzBr.s:380    .text.ENCODER_GetDegree:00000000000000dc $d
-     /tmp/ccTVFzBr.s:388    .text.ENCODER_GetRPM:0000000000000000 $t
-     /tmp/ccTVFzBr.s:395    .text.ENCODER_GetRPM:0000000000000000 ENCODER_GetRPM
-     /tmp/ccTVFzBr.s:551    .text.ENCODER_GetRPM:00000000000000dc $d
-     /tmp/ccTVFzBr.s:567    .text.ENCODER_GetActualDegree:0000000000000000 $t
-     /tmp/ccTVFzBr.s:574    .text.ENCODER_GetActualDegree:0000000000000000 ENCODER_GetActualDegree
-     /tmp/ccTVFzBr.s:696    .text.ENCODER_GetActualDegree:00000000000000a4 $d
-     /tmp/ccTVFzBr.s:718    .bss.encd_get_val_flag:0000000000000000 encd_get_val_flag
-     /tmp/ccTVFzBr.s:712    .bss.as5048a:0000000000000000 as5048a
-     /tmp/ccTVFzBr.s:725    .bss.encoder:0000000000000000 encoder
-     /tmp/ccTVFzBr.s:708    .bss.as5048a:0000000000000000 $d
-     /tmp/ccTVFzBr.s:719    .bss.encd_get_val_flag:0000000000000000 $d
-     /tmp/ccTVFzBr.s:721    .bss.encoder:0000000000000000 $d
+     /tmp/ccZaI0GT.s:18     .text.ENCODER_Setup:0000000000000000 $t
+     /tmp/ccZaI0GT.s:26     .text.ENCODER_Setup:0000000000000000 ENCODER_Setup
+     /tmp/ccZaI0GT.s:68     .text.ENCODER_Setup:0000000000000024 $d
+     /tmp/ccZaI0GT.s:77     .text.ENCODER_AutoDetect:0000000000000000 $t
+     /tmp/ccZaI0GT.s:84     .text.ENCODER_AutoDetect:0000000000000000 ENCODER_AutoDetect
+     /tmp/ccZaI0GT.s:203    .text.ENCODER_AutoDetect:000000000000007c $d
+     /tmp/ccZaI0GT.s:212    .text.ENCODER_GetDegree:0000000000000000 $t
+     /tmp/ccZaI0GT.s:219    .text.ENCODER_GetDegree:0000000000000000 ENCODER_GetDegree
+     /tmp/ccZaI0GT.s:380    .text.ENCODER_GetDegree:00000000000000dc $d
+     /tmp/ccZaI0GT.s:388    .text.ENCODER_GetRPM:0000000000000000 $t
+     /tmp/ccZaI0GT.s:395    .text.ENCODER_GetRPM:0000000000000000 ENCODER_GetRPM
+     /tmp/ccZaI0GT.s:551    .text.ENCODER_GetRPM:00000000000000dc $d
+     /tmp/ccZaI0GT.s:567    .text.ENCODER_GetActualDegree:0000000000000000 $t
+     /tmp/ccZaI0GT.s:574    .text.ENCODER_GetActualDegree:0000000000000000 ENCODER_GetActualDegree
+     /tmp/ccZaI0GT.s:696    .text.ENCODER_GetActualDegree:00000000000000a4 $d
+     /tmp/ccZaI0GT.s:718    .bss.encd_get_val_flag:0000000000000000 encd_get_val_flag
+     /tmp/ccZaI0GT.s:712    .bss.as5048a:0000000000000000 as5048a
+     /tmp/ccZaI0GT.s:725    .bss.encoder:0000000000000000 encoder
+     /tmp/ccZaI0GT.s:708    .bss.as5048a:0000000000000000 $d
+     /tmp/ccZaI0GT.s:719    .bss.encd_get_val_flag:0000000000000000 $d
+     /tmp/ccZaI0GT.s:721    .bss.encoder:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 hspi1

@@ -30,7 +30,7 @@
 
 #define ADC_2_POWER_VOLT							0.01651611328125f
 
-#define CURRENT_FILTER_ALPHA 					0.69f //0.466512f //0.71539f 
+#define CURRENT_FILTER_ALPHA 					0.1f //0.466512f //0.71539f 
 
 #define BLDC_PWM_FREQ 								25000
 #define BLDC_TIMX											TIM1

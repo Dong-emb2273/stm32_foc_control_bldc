@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccVvFV2v.s 			page 1
+ARM GAS  /tmp/ccTMXuIU.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccVvFV2v.s 			page 1
   27:Core/Src/fsm.c **** 	if(fsmstate->next_state != fsmstate->state){
   28:Core/Src/fsm.c **** 		fsm_exit_state(fsmstate);		// safely exit the old state
   29:Core/Src/fsm.c **** 		if(fsmstate->ready){			// if the previous state is ready, enter the new state
-ARM GAS  /tmp/ccVvFV2v.s 			page 2
+ARM GAS  /tmp/ccTMXuIU.s 			page 2
 
 
   30:Core/Src/fsm.c **** 			fsmstate->state = fsmstate->next_state;
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccVvFV2v.s 			page 1
   84:Core/Src/fsm.c **** 
   85:Core/Src/fsm.c **** }
   86:Core/Src/fsm.c **** 
-ARM GAS  /tmp/ccVvFV2v.s 			page 3
+ARM GAS  /tmp/ccTMXuIU.s 			page 3
 
 
   87:Core/Src/fsm.c **** void fsm_enter_state(FSMStruct * fsmstate){
@@ -169,159 +169,157 @@ ARM GAS  /tmp/ccVvFV2v.s 			page 1
   36              		.loc 1 125 17 is_stmt 0 view .LVU2
   37 0000 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
   38              		.loc 1 125 2 view .LVU3
-  39 0002 072B     		cmp	r3, #7
-  40 0004 13D8     		bhi	.L1
+  39 0002 052B     		cmp	r3, #5
+  40 0004 12D8     		bhi	.L1
   41 0006 DFE803F0 		tbb	[pc, r3]
   42              	.L4:
-  43 000a 04       		.byte	(.L8-.L4)/2
-  44 000b 12       		.byte	(.L1-.L4)/2
-  45 000c 0D       		.byte	(.L7-.L4)/2
-  46 000d 12       		.byte	(.L1-.L4)/2
-  47 000e 07       		.byte	(.L6-.L4)/2
-ARM GAS  /tmp/ccVvFV2v.s 			page 4
+  43 000a 03       		.byte	(.L8-.L4)/2
+  44 000b 0F       		.byte	(.L7-.L4)/2
+  45 000c 0C       		.byte	(.L6-.L4)/2
+  46 000d 11       		.byte	(.L1-.L4)/2
+  47 000e 06       		.byte	(.L5-.L4)/2
+ARM GAS  /tmp/ccTMXuIU.s 			page 4
 
 
-  48 000f 0A       		.byte	(.L5-.L4)/2
-  49 0010 12       		.byte	(.L1-.L4)/2
-  50 0011 10       		.byte	(.L3-.L4)/2
-  51              		.p2align 1
-  52              	.L8:
+  48 000f 09       		.byte	(.L3-.L4)/2
+  49              		.p2align 1
+  50              	.L8:
  126:Core/Src/fsm.c **** 		case MENU_MODE:
  127:Core/Src/fsm.c **** 			//printf("Leaving Main Menu\r\n");
  128:Core/Src/fsm.c **** 			fsmstate->ready = 1;
-  53              		.loc 1 128 4 is_stmt 1 view .LVU4
-  54              		.loc 1 128 20 is_stmt 0 view .LVU5
-  55 0012 0123     		movs	r3, #1
-  56 0014 C370     		strb	r3, [r0, #3]
+  51              		.loc 1 128 4 is_stmt 1 view .LVU4
+  52              		.loc 1 128 20 is_stmt 0 view .LVU5
+  53 0010 0123     		movs	r3, #1
+  54 0012 C370     		strb	r3, [r0, #3]
  129:Core/Src/fsm.c **** 			break;
-  57              		.loc 1 129 4 is_stmt 1 view .LVU6
-  58 0016 7047     		bx	lr
-  59              	.L6:
+  55              		.loc 1 129 4 is_stmt 1 view .LVU6
+  56 0014 7047     		bx	lr
+  57              	.L5:
  130:Core/Src/fsm.c **** 		case SETUP_MODE:
  131:Core/Src/fsm.c **** 			//printf("Leaving Setup Menu\r\n");
  132:Core/Src/fsm.c **** 			fsmstate->ready = 1;
-  60              		.loc 1 132 4 view .LVU7
-  61              		.loc 1 132 20 is_stmt 0 view .LVU8
-  62 0018 0123     		movs	r3, #1
-  63 001a C370     		strb	r3, [r0, #3]
+  58              		.loc 1 132 4 view .LVU7
+  59              		.loc 1 132 20 is_stmt 0 view .LVU8
+  60 0016 0123     		movs	r3, #1
+  61 0018 C370     		strb	r3, [r0, #3]
  133:Core/Src/fsm.c **** 			break;
-  64              		.loc 1 133 4 is_stmt 1 view .LVU9
-  65 001c 7047     		bx	lr
-  66              	.L5:
+  62              		.loc 1 133 4 is_stmt 1 view .LVU9
+  63 001a 7047     		bx	lr
+  64              	.L3:
  134:Core/Src/fsm.c **** 		case ENCODER_MODE:
  135:Core/Src/fsm.c **** 			//printf("Leaving Encoder Mode\r\n");
  136:Core/Src/fsm.c **** 			fsmstate->ready = 1;
-  67              		.loc 1 136 4 view .LVU10
-  68              		.loc 1 136 20 is_stmt 0 view .LVU11
-  69 001e 0123     		movs	r3, #1
-  70 0020 C370     		strb	r3, [r0, #3]
+  65              		.loc 1 136 4 view .LVU10
+  66              		.loc 1 136 20 is_stmt 0 view .LVU11
+  67 001c 0123     		movs	r3, #1
+  68 001e C370     		strb	r3, [r0, #3]
  137:Core/Src/fsm.c **** 			break;
-  71              		.loc 1 137 4 is_stmt 1 view .LVU12
-  72 0022 7047     		bx	lr
-  73              	.L7:
+  69              		.loc 1 137 4 is_stmt 1 view .LVU12
+  70 0020 7047     		bx	lr
+  71              	.L6:
  138:Core/Src/fsm.c **** 		case MOTOR_MODE:
  139:Core/Src/fsm.c **** 			/* Don't stop commutating if there are high currents or FW happening */
  140:Core/Src/fsm.c **** 			//if( (fabs(controller.i_q_filt)<1.0f) && (fabs(controller.i_d_filt)<1.0f) ){
  141:Core/Src/fsm.c **** 			fsmstate->ready = 1;
-  74              		.loc 1 141 4 view .LVU13
-  75              		.loc 1 141 20 is_stmt 0 view .LVU14
-  76 0024 0123     		movs	r3, #1
-  77 0026 C370     		strb	r3, [r0, #3]
+  72              		.loc 1 141 4 view .LVU13
+  73              		.loc 1 141 20 is_stmt 0 view .LVU14
+  74 0022 0123     		movs	r3, #1
+  75 0024 C370     		strb	r3, [r0, #3]
  142:Core/Src/fsm.c **** 				
  143:Core/Src/fsm.c **** 			
  144:Core/Src/fsm.c **** 				
  145:Core/Src/fsm.c **** 			break;
-  78              		.loc 1 145 4 is_stmt 1 view .LVU15
-  79 0028 7047     		bx	lr
-  80              	.L3:
+  76              		.loc 1 145 4 is_stmt 1 view .LVU15
+  77 0026 7047     		bx	lr
+  78              	.L7:
  146:Core/Src/fsm.c **** 		case CALIBRATION_MODE:
  147:Core/Src/fsm.c **** 			//printf("Exiting Calibration Mode\r\n");
  148:Core/Src/fsm.c **** 		
  149:Core/Src/fsm.c **** 			//free(error_array);
-ARM GAS  /tmp/ccVvFV2v.s 			page 5
-
-
  150:Core/Src/fsm.c **** 			//free(lut_array);
  151:Core/Src/fsm.c **** 
+ARM GAS  /tmp/ccTMXuIU.s 			page 5
+
+
  152:Core/Src/fsm.c **** 			fsmstate->ready = 1;
-  81              		.loc 1 152 4 view .LVU16
-  82              		.loc 1 152 20 is_stmt 0 view .LVU17
-  83 002a 0123     		movs	r3, #1
-  84 002c C370     		strb	r3, [r0, #3]
+  79              		.loc 1 152 4 view .LVU16
+  80              		.loc 1 152 20 is_stmt 0 view .LVU17
+  81 0028 0123     		movs	r3, #1
+  82 002a C370     		strb	r3, [r0, #3]
  153:Core/Src/fsm.c **** 			break;
-  85              		.loc 1 153 4 is_stmt 1 view .LVU18
-  86              	.L1:
+  83              		.loc 1 153 4 is_stmt 1 view .LVU18
+  84              	.L1:
  154:Core/Src/fsm.c **** 	}
  155:Core/Src/fsm.c **** 
  156:Core/Src/fsm.c **** }
-  87              		.loc 1 156 1 is_stmt 0 view .LVU19
-  88 002e 7047     		bx	lr
-  89              		.cfi_endproc
-  90              	.LFE139:
-  92              		.section	.rodata.enter_menu_state.str1.4,"aMS",%progbits,1
-  93              		.align	2
-  94              	.LC0:
-  95 0000 0A0D0A0D 		.ascii	"\012\015\012\015\000"
-  95      00
-  96 0005 000000   		.align	2
-  97              	.LC1:
-  98 0008 20436F6D 		.ascii	" Commands:\012\015\000"
-  98      6D616E64 
-  98      733A0A0D 
-  98      00
-  99 0015 000000   		.align	2
- 100              	.LC2:
- 101 0018 206D202D 		.ascii	" m - Motor Mode\012\015\000"
- 101      204D6F74 
- 101      6F72204D 
- 101      6F64650A 
- 101      0D00
- 102 002a 0000     		.align	2
- 103              	.LC3:
- 104 002c 2063202D 		.ascii	" c - Calibrate Encoder\012\015\000"
- 104      2043616C 
- 104      69627261 
- 104      74652045 
- 104      6E636F64 
- 105 0045 000000   		.align	2
- 106              	.LC4:
- 107 0048 2073202D 		.ascii	" s - Setup\012\015\000"
- 107      20536574 
- 107      75700A0D 
- 107      00
- 108 0055 000000   		.align	2
- 109              	.LC5:
- 110 0058 2065202D 		.ascii	" e - Display Encoder\012\015\000"
- 110      20446973 
- 110      706C6179 
- 110      20456E63 
- 110      6F646572 
- 111 006f 00       		.align	2
- 112              	.LC6:
-ARM GAS  /tmp/ccVvFV2v.s 			page 6
+  85              		.loc 1 156 1 is_stmt 0 view .LVU19
+  86 002c 7047     		bx	lr
+  87              		.cfi_endproc
+  88              	.LFE139:
+  90              		.section	.rodata.enter_menu_state.str1.4,"aMS",%progbits,1
+  91              		.align	2
+  92              	.LC0:
+  93 0000 0A0D0A0D 		.ascii	"\012\015\012\015\000"
+  93      00
+  94 0005 000000   		.align	2
+  95              	.LC1:
+  96 0008 20436F6D 		.ascii	" Commands:\012\015\000"
+  96      6D616E64 
+  96      733A0A0D 
+  96      00
+  97 0015 000000   		.align	2
+  98              	.LC2:
+  99 0018 206D202D 		.ascii	" m - Motor Mode\012\015\000"
+  99      204D6F74 
+  99      6F72204D 
+  99      6F64650A 
+  99      0D00
+ 100 002a 0000     		.align	2
+ 101              	.LC3:
+ 102 002c 2063202D 		.ascii	" c - Calibrate Encoder\012\015\000"
+ 102      2043616C 
+ 102      69627261 
+ 102      74652045 
+ 102      6E636F64 
+ 103 0045 000000   		.align	2
+ 104              	.LC4:
+ 105 0048 2073202D 		.ascii	" s - Setup\012\015\000"
+ 105      20536574 
+ 105      75700A0D 
+ 105      00
+ 106 0055 000000   		.align	2
+ 107              	.LC5:
+ 108 0058 2065202D 		.ascii	" e - Display Encoder\012\015\000"
+ 108      20446973 
+ 108      706C6179 
+ 108      20456E63 
+ 108      6F646572 
+ 109 006f 00       		.align	2
+ 110              	.LC6:
+ 111 0070 207A202D 		.ascii	" z - Set Zero Position\012\015\000"
+ 111      20536574 
+ARM GAS  /tmp/ccTMXuIU.s 			page 6
 
 
- 113 0070 207A202D 		.ascii	" z - Set Zero Position\012\015\000"
- 113      20536574 
- 113      205A6572 
- 113      6F20506F 
- 113      73697469 
- 114 0089 000000   		.align	2
- 115              	.LC7:
- 116 008c 20657363 		.ascii	" esc - Exit to Menu\012\015\000"
- 116      202D2045 
- 116      78697420 
- 116      746F204D 
- 116      656E750A 
- 117              		.section	.text.enter_menu_state,"ax",%progbits
- 118              		.align	1
- 119              		.global	enter_menu_state
- 120              		.syntax unified
- 121              		.thumb
- 122              		.thumb_func
- 123              		.fpu fpv4-sp-d16
- 125              	enter_menu_state:
- 126              	.LFB141:
+ 111      205A6572 
+ 111      6F20506F 
+ 111      73697469 
+ 112 0089 000000   		.align	2
+ 113              	.LC7:
+ 114 008c 20657363 		.ascii	" esc - Exit to Menu\012\015\000"
+ 114      202D2045 
+ 114      78697420 
+ 114      746F204D 
+ 114      656E750A 
+ 115              		.section	.text.enter_menu_state,"ax",%progbits
+ 116              		.align	1
+ 117              		.global	enter_menu_state
+ 118              		.syntax unified
+ 119              		.thumb
+ 120              		.thumb_func
+ 121              		.fpu fpv4-sp-d16
+ 123              	enter_menu_state:
+ 124              	.LFB141:
  157:Core/Src/fsm.c **** 
  158:Core/Src/fsm.c **** void update_fsm(FSMStruct * fsmstate, char fsm_input){
  159:Core/Src/fsm.c **** 	/*update_fsm is only run when new state-change information is received
@@ -358,11 +356,11 @@ ARM GAS  /tmp/ccVvFV2v.s 			page 1
  190:Core/Src/fsm.c **** 				}
  191:Core/Src/fsm.c **** 			break;
  192:Core/Src/fsm.c **** 		case SETUP_MODE:
-ARM GAS  /tmp/ccVvFV2v.s 			page 7
-
-
  193:Core/Src/fsm.c **** 			if(fsm_input == 10 || fsm_input == ' '){ 
  194:Core/Src/fsm.c ****         		break; // Bỏ qua ký tự Line Feed (\n) và phím Space để không bị nhiễu
+ARM GAS  /tmp/ccTMXuIU.s 			page 7
+
+
  195:Core/Src/fsm.c ****     		}	
  196:Core/Src/fsm.c **** 			if(fsm_input == ENTER_CMD){
  197:Core/Src/fsm.c **** 				process_user_input(fsmstate);
@@ -388,1094 +386,1094 @@ ARM GAS  /tmp/ccVvFV2v.s 			page 1
  217:Core/Src/fsm.c **** 
  218:Core/Src/fsm.c **** 
  219:Core/Src/fsm.c **** void enter_menu_state(void){
- 127              		.loc 1 219 28 is_stmt 1 view -0
- 128              		.cfi_startproc
- 129              		@ args = 0, pretend = 0, frame = 0
- 130              		@ frame_needed = 0, uses_anonymous_args = 0
- 131 0000 08B5     		push	{r3, lr}
- 132              	.LCFI0:
- 133              		.cfi_def_cfa_offset 8
- 134              		.cfi_offset 3, -8
- 135              		.cfi_offset 14, -4
+ 125              		.loc 1 219 28 is_stmt 1 view -0
+ 126              		.cfi_startproc
+ 127              		@ args = 0, pretend = 0, frame = 0
+ 128              		@ frame_needed = 0, uses_anonymous_args = 0
+ 129 0000 08B5     		push	{r3, lr}
+ 130              	.LCFI0:
+ 131              		.cfi_def_cfa_offset 8
+ 132              		.cfi_offset 3, -8
+ 133              		.cfi_offset 14, -4
  220:Core/Src/fsm.c **** 	//drv.disable_gd();
  221:Core/Src/fsm.c **** 	//reset_foc(&controller);
  222:Core/Src/fsm.c **** 	//gpio.enable->write(0);
  223:Core/Src/fsm.c **** 	printf("\n\r\n\r");
- 136              		.loc 1 223 2 view .LVU21
- 137 0002 0C48     		ldr	r0, .L11
- 138 0004 FFF7FEFF 		bl	printf
- 139              	.LVL1:
+ 134              		.loc 1 223 2 view .LVU21
+ 135 0002 0C48     		ldr	r0, .L11
+ 136 0004 FFF7FEFF 		bl	printf
+ 137              	.LVL1:
  224:Core/Src/fsm.c **** 	printf(" Commands:\n\r");
- 140              		.loc 1 224 2 view .LVU22
- 141 0008 0B48     		ldr	r0, .L11+4
- 142 000a FFF7FEFF 		bl	printf
- 143              	.LVL2:
+ 138              		.loc 1 224 2 view .LVU22
+ 139 0008 0B48     		ldr	r0, .L11+4
+ 140 000a FFF7FEFF 		bl	printf
+ 141              	.LVL2:
  225:Core/Src/fsm.c **** 	printf(" m - Motor Mode\n\r");
- 144              		.loc 1 225 2 view .LVU23
- 145 000e 0B48     		ldr	r0, .L11+8
- 146 0010 FFF7FEFF 		bl	printf
- 147              	.LVL3:
+ 142              		.loc 1 225 2 view .LVU23
+ 143 000e 0B48     		ldr	r0, .L11+8
+ 144 0010 FFF7FEFF 		bl	printf
+ 145              	.LVL3:
  226:Core/Src/fsm.c **** 	printf(" c - Calibrate Encoder\n\r");
- 148              		.loc 1 226 2 view .LVU24
- 149 0014 0A48     		ldr	r0, .L11+12
-ARM GAS  /tmp/ccVvFV2v.s 			page 8
+ 146              		.loc 1 226 2 view .LVU24
+ 147 0014 0A48     		ldr	r0, .L11+12
+ 148 0016 FFF7FEFF 		bl	printf
+ 149              	.LVL4:
+ARM GAS  /tmp/ccTMXuIU.s 			page 8
 
 
- 150 0016 FFF7FEFF 		bl	printf
- 151              	.LVL4:
  227:Core/Src/fsm.c **** 	printf(" s - Setup\n\r");
- 152              		.loc 1 227 2 view .LVU25
- 153 001a 0A48     		ldr	r0, .L11+16
- 154 001c FFF7FEFF 		bl	printf
- 155              	.LVL5:
+ 150              		.loc 1 227 2 view .LVU25
+ 151 001a 0A48     		ldr	r0, .L11+16
+ 152 001c FFF7FEFF 		bl	printf
+ 153              	.LVL5:
  228:Core/Src/fsm.c **** 	printf(" e - Display Encoder\n\r");
- 156              		.loc 1 228 2 view .LVU26
- 157 0020 0948     		ldr	r0, .L11+20
- 158 0022 FFF7FEFF 		bl	printf
- 159              	.LVL6:
+ 154              		.loc 1 228 2 view .LVU26
+ 155 0020 0948     		ldr	r0, .L11+20
+ 156 0022 FFF7FEFF 		bl	printf
+ 157              	.LVL6:
  229:Core/Src/fsm.c **** 	printf(" z - Set Zero Position\n\r");
- 160              		.loc 1 229 2 view .LVU27
- 161 0026 0948     		ldr	r0, .L11+24
- 162 0028 FFF7FEFF 		bl	printf
- 163              	.LVL7:
+ 158              		.loc 1 229 2 view .LVU27
+ 159 0026 0948     		ldr	r0, .L11+24
+ 160 0028 FFF7FEFF 		bl	printf
+ 161              	.LVL7:
  230:Core/Src/fsm.c **** 	printf(" esc - Exit to Menu\n\r");
- 164              		.loc 1 230 2 view .LVU28
- 165 002c 0848     		ldr	r0, .L11+28
- 166 002e FFF7FEFF 		bl	printf
- 167              	.LVL8:
+ 162              		.loc 1 230 2 view .LVU28
+ 163 002c 0848     		ldr	r0, .L11+28
+ 164 002e FFF7FEFF 		bl	printf
+ 165              	.LVL8:
  231:Core/Src/fsm.c **** 
  232:Core/Src/fsm.c **** 	//gpio.led->write(0);
  233:Core/Src/fsm.c **** }
- 168              		.loc 1 233 1 is_stmt 0 view .LVU29
- 169 0032 08BD     		pop	{r3, pc}
- 170              	.L12:
- 171              		.align	2
- 172              	.L11:
- 173 0034 00000000 		.word	.LC0
- 174 0038 08000000 		.word	.LC1
- 175 003c 18000000 		.word	.LC2
- 176 0040 2C000000 		.word	.LC3
- 177 0044 48000000 		.word	.LC4
- 178 0048 58000000 		.word	.LC5
- 179 004c 70000000 		.word	.LC6
- 180 0050 8C000000 		.word	.LC7
- 181              		.cfi_endproc
- 182              	.LFE141:
- 184              		.section	.rodata.enter_setup_state.str1.4,"aMS",%progbits,1
- 185              		.align	2
- 186              	.LC8:
- 187 0000 0D0A2043 		.ascii	"\015\012 Configuration Options \012\015\000"
- 187      6F6E6669 
- 187      67757261 
- 187      74696F6E 
- 187      204F7074 
- 188              		.align	2
- 189              	.LC9:
- 190 001c 6D696E00 		.ascii	"min\000"
- 191              		.align	2
- 192              	.LC10:
- 193 0020 70617261 		.ascii	"parameter\000"
- 193      6D657465 
- 193      7200
- 194 002a 0000     		.align	2
-ARM GAS  /tmp/ccVvFV2v.s 			page 9
+ 166              		.loc 1 233 1 is_stmt 0 view .LVU29
+ 167 0032 08BD     		pop	{r3, pc}
+ 168              	.L12:
+ 169              		.align	2
+ 170              	.L11:
+ 171 0034 00000000 		.word	.LC0
+ 172 0038 08000000 		.word	.LC1
+ 173 003c 18000000 		.word	.LC2
+ 174 0040 2C000000 		.word	.LC3
+ 175 0044 48000000 		.word	.LC4
+ 176 0048 58000000 		.word	.LC5
+ 177 004c 70000000 		.word	.LC6
+ 178 0050 8C000000 		.word	.LC7
+ 179              		.cfi_endproc
+ 180              	.LFE141:
+ 182              		.section	.rodata.enter_setup_state.str1.4,"aMS",%progbits,1
+ 183              		.align	2
+ 184              	.LC8:
+ 185 0000 0D0A2043 		.ascii	"\015\012 Configuration Options \012\015\000"
+ 185      6F6E6669 
+ 185      67757261 
+ 185      74696F6E 
+ 185      204F7074 
+ 186              		.align	2
+ 187              	.LC9:
+ 188 001c 6D696E00 		.ascii	"min\000"
+ 189              		.align	2
+ 190              	.LC10:
+ 191 0020 70617261 		.ascii	"parameter\000"
+ 191      6D657465 
+ 191      7200
+ 192 002a 0000     		.align	2
+ 193              	.LC11:
+ 194 002c 70726566 		.ascii	"prefix\000"
+ARM GAS  /tmp/ccTMXuIU.s 			page 9
 
 
- 195              	.LC11:
- 196 002c 70726566 		.ascii	"prefix\000"
- 196      697800
- 197 0033 00       		.align	2
- 198              	.LC12:
- 199 0034 20252D34 		.ascii	" %-4s %-31s %-5s %-6s %-2s\015\012\000"
- 199      7320252D 
- 199      33317320 
- 199      252D3573 
- 199      20252D36 
- 200 0051 000000   		.align	2
- 201              	.LC13:
- 202 0054 63757272 		.ascii	"current value\000"
- 202      656E7420 
- 202      76616C75 
- 202      6500
- 203 0062 0000     		.align	2
- 204              	.LC14:
- 205 0064 6D617800 		.ascii	"max\000"
- 206              		.align	2
- 207              	.LC15:
- 208 0068 0D0A204D 		.ascii	"\015\012 Motor:\015\000"
- 208      6F746F72 
- 208      3A0D00
- 209 0073 00       		.align	2
- 210              	.LC16:
- 211 0074 3000     		.ascii	"0\000"
- 212 0076 0000     		.align	2
- 213              	.LC17:
- 214 0078 47656172 		.ascii	"Gear Ratio\000"
- 214      20526174 
- 214      696F00
- 215 0083 00       		.align	2
- 216              	.LC18:
- 217 0084 6700     		.ascii	"g\000"
- 218 0086 0000     		.align	2
- 219              	.LC19:
- 220 0088 20252D34 		.ascii	" %-4s %-31s %-5s %-6s %.3f\012\015\000"
- 220      7320252D 
- 220      33317320 
- 220      252D3573 
- 220      20252D36 
- 221              		.global	__aeabi_f2d
- 222 00a5 000000   		.align	2
- 223              	.LC20:
- 224 00a8 2D00     		.ascii	"-\000"
- 225 00aa 0000     		.align	2
- 226              	.LC21:
- 227 00ac 546F7271 		.ascii	"Torque Constant (N-m/A)\000"
- 227      75652043 
- 227      6F6E7374 
- 227      616E7420 
- 227      284E2D6D 
- 228              		.align	2
- 229              	.LC22:
- 230 00c4 6B00     		.ascii	"k\000"
- 231 00c6 0000     		.align	2
-ARM GAS  /tmp/ccVvFV2v.s 			page 10
+ 194      697800
+ 195 0033 00       		.align	2
+ 196              	.LC12:
+ 197 0034 20252D34 		.ascii	" %-4s %-31s %-5s %-6s %-2s\015\012\000"
+ 197      7320252D 
+ 197      33317320 
+ 197      252D3573 
+ 197      20252D36 
+ 198 0051 000000   		.align	2
+ 199              	.LC13:
+ 200 0054 63757272 		.ascii	"current value\000"
+ 200      656E7420 
+ 200      76616C75 
+ 200      6500
+ 201 0062 0000     		.align	2
+ 202              	.LC14:
+ 203 0064 6D617800 		.ascii	"max\000"
+ 204              		.align	2
+ 205              	.LC15:
+ 206 0068 0D0A204D 		.ascii	"\015\012 Motor:\015\000"
+ 206      6F746F72 
+ 206      3A0D00
+ 207 0073 00       		.align	2
+ 208              	.LC16:
+ 209 0074 3000     		.ascii	"0\000"
+ 210 0076 0000     		.align	2
+ 211              	.LC17:
+ 212 0078 47656172 		.ascii	"Gear Ratio\000"
+ 212      20526174 
+ 212      696F00
+ 213 0083 00       		.align	2
+ 214              	.LC18:
+ 215 0084 6700     		.ascii	"g\000"
+ 216 0086 0000     		.align	2
+ 217              	.LC19:
+ 218 0088 20252D34 		.ascii	" %-4s %-31s %-5s %-6s %.3f\012\015\000"
+ 218      7320252D 
+ 218      33317320 
+ 218      252D3573 
+ 218      20252D36 
+ 219              		.global	__aeabi_f2d
+ 220 00a5 000000   		.align	2
+ 221              	.LC20:
+ 222 00a8 2D00     		.ascii	"-\000"
+ 223 00aa 0000     		.align	2
+ 224              	.LC21:
+ 225 00ac 546F7271 		.ascii	"Torque Constant (N-m/A)\000"
+ 225      75652043 
+ 225      6F6E7374 
+ 225      616E7420 
+ 225      284E2D6D 
+ 226              		.align	2
+ 227              	.LC22:
+ 228 00c4 6B00     		.ascii	"k\000"
+ 229 00c6 0000     		.align	2
+ 230              	.LC23:
+ 231 00c8 20252D34 		.ascii	" %-4s %-31s %-5s %-6s %.5f\012\015\000"
+ARM GAS  /tmp/ccTMXuIU.s 			page 10
 
 
- 232              	.LC23:
- 233 00c8 20252D34 		.ascii	" %-4s %-31s %-5s %-6s %.5f\012\015\000"
- 233      7320252D 
- 233      33317320 
- 233      252D3573 
- 233      20252D36 
- 234 00e5 000000   		.align	2
- 235              	.LC24:
- 236 00e8 0D0A2043 		.ascii	"\015\012 Control:\015\000"
- 236      6F6E7472 
- 236      6F6C3A0D 
- 236      00
- 237 00f5 000000   		.align	2
- 238              	.LC25:
- 239 00f8 31303000 		.ascii	"100\000"
- 240              		.align	2
- 241              	.LC26:
- 242 00fc 43757272 		.ascii	"Current Bandwidth (Hz)\000"
- 242      656E7420 
- 242      42616E64 
- 242      77696474 
- 242      68202848 
- 243 0113 00       		.align	2
- 244              	.LC27:
- 245 0114 6200     		.ascii	"b\000"
- 246 0116 0000     		.align	2
- 247              	.LC28:
- 248 0118 32303030 		.ascii	"2000\000"
- 248      00
- 249 011d 000000   		.align	2
- 250              	.LC29:
- 251 0120 302E3000 		.ascii	"0.0\000"
- 252              		.align	2
- 253              	.LC30:
- 254 0124 43757272 		.ascii	"Current Limit (A)\000"
- 254      656E7420 
- 254      4C696D69 
- 254      74202841 
- 254      2900
- 255 0136 0000     		.align	2
- 256              	.LC31:
- 257 0138 6C00     		.ascii	"l\000"
- 258 013a 0000     		.align	2
- 259              	.LC32:
- 260 013c 37352E30 		.ascii	"75.0\000"
- 260      00
- 261 0141 000000   		.align	2
- 262              	.LC33:
- 263 0144 4D617820 		.ascii	"Max Position Setpoint (rad)\000"
- 263      506F7369 
- 263      74696F6E 
- 263      20536574 
- 263      706F696E 
- 264              		.align	2
- 265              	.LC34:
- 266 0160 7000     		.ascii	"p\000"
- 267 0162 0000     		.align	2
-ARM GAS  /tmp/ccVvFV2v.s 			page 11
+ 231      7320252D 
+ 231      33317320 
+ 231      252D3573 
+ 231      20252D36 
+ 232 00e5 000000   		.align	2
+ 233              	.LC24:
+ 234 00e8 0D0A2043 		.ascii	"\015\012 Control:\015\000"
+ 234      6F6E7472 
+ 234      6F6C3A0D 
+ 234      00
+ 235 00f5 000000   		.align	2
+ 236              	.LC25:
+ 237 00f8 31303000 		.ascii	"100\000"
+ 238              		.align	2
+ 239              	.LC26:
+ 240 00fc 43757272 		.ascii	"Current Bandwidth (Hz)\000"
+ 240      656E7420 
+ 240      42616E64 
+ 240      77696474 
+ 240      68202848 
+ 241 0113 00       		.align	2
+ 242              	.LC27:
+ 243 0114 6200     		.ascii	"b\000"
+ 244 0116 0000     		.align	2
+ 245              	.LC28:
+ 246 0118 32303030 		.ascii	"2000\000"
+ 246      00
+ 247 011d 000000   		.align	2
+ 248              	.LC29:
+ 249 0120 302E3000 		.ascii	"0.0\000"
+ 250              		.align	2
+ 251              	.LC30:
+ 252 0124 43757272 		.ascii	"Current Limit (A)\000"
+ 252      656E7420 
+ 252      4C696D69 
+ 252      74202841 
+ 252      2900
+ 253 0136 0000     		.align	2
+ 254              	.LC31:
+ 255 0138 6C00     		.ascii	"l\000"
+ 256 013a 0000     		.align	2
+ 257              	.LC32:
+ 258 013c 37352E30 		.ascii	"75.0\000"
+ 258      00
+ 259 0141 000000   		.align	2
+ 260              	.LC33:
+ 261 0144 4D617820 		.ascii	"Max Position Setpoint (rad)\000"
+ 261      506F7369 
+ 261      74696F6E 
+ 261      20536574 
+ 261      706F696E 
+ 262              		.align	2
+ 263              	.LC34:
+ 264 0160 7000     		.ascii	"p\000"
+ 265 0162 0000     		.align	2
+ 266              	.LC35:
+ 267 0164 4D617820 		.ascii	"Max Velocity Setpoint (rad)/s\000"
+ARM GAS  /tmp/ccTMXuIU.s 			page 11
 
 
- 268              	.LC35:
- 269 0164 4D617820 		.ascii	"Max Velocity Setpoint (rad)/s\000"
- 269      56656C6F 
- 269      63697479 
- 269      20536574 
- 269      706F696E 
- 270 0182 0000     		.align	2
- 271              	.LC36:
- 272 0184 7600     		.ascii	"v\000"
- 273 0186 0000     		.align	2
- 274              	.LC37:
- 275 0188 4D617820 		.ascii	"Max Position Gain (N-m/rad)\000"
- 275      506F7369 
- 275      74696F6E 
- 275      20476169 
- 275      6E20284E 
- 276              		.align	2
- 277              	.LC38:
- 278 01a4 7800     		.ascii	"x\000"
- 279 01a6 0000     		.align	2
- 280              	.LC39:
- 281 01a8 31303030 		.ascii	"1000.0\000"
- 281      2E3000
- 282 01af 00       		.align	2
- 283              	.LC40:
- 284 01b0 4D617820 		.ascii	"Max Velocity Gain (N-m/rad/s)\000"
- 284      56656C6F 
- 284      63697479 
- 284      20476169 
- 284      6E20284E 
- 285 01ce 0000     		.align	2
- 286              	.LC41:
- 287 01d0 6400     		.ascii	"d\000"
- 288 01d2 0000     		.align	2
- 289              	.LC42:
- 290 01d4 352E3000 		.ascii	"5.0\000"
- 291              		.align	2
- 292              	.LC43:
- 293 01d8 46572043 		.ascii	"FW Current Limit (A)\000"
- 293      75727265 
- 293      6E74204C 
- 293      696D6974 
- 293      20284129 
- 294 01ed 000000   		.align	2
- 295              	.LC44:
- 296 01f0 6600     		.ascii	"f\000"
- 297 01f2 0000     		.align	2
- 298              	.LC45:
- 299 01f4 33332E30 		.ascii	"33.0\000"
- 299      00
- 300 01f9 000000   		.align	2
- 301              	.LC46:
- 302 01fc 436F6E74 		.ascii	"Continuous Current (A)\000"
- 302      696E756F 
- 302      75732043 
- 302      75727265 
- 302      6E742028 
-ARM GAS  /tmp/ccVvFV2v.s 			page 12
+ 267      56656C6F 
+ 267      63697479 
+ 267      20536574 
+ 267      706F696E 
+ 268 0182 0000     		.align	2
+ 269              	.LC36:
+ 270 0184 7600     		.ascii	"v\000"
+ 271 0186 0000     		.align	2
+ 272              	.LC37:
+ 273 0188 4D617820 		.ascii	"Max Position Gain (N-m/rad)\000"
+ 273      506F7369 
+ 273      74696F6E 
+ 273      20476169 
+ 273      6E20284E 
+ 274              		.align	2
+ 275              	.LC38:
+ 276 01a4 7800     		.ascii	"x\000"
+ 277 01a6 0000     		.align	2
+ 278              	.LC39:
+ 279 01a8 31303030 		.ascii	"1000.0\000"
+ 279      2E3000
+ 280 01af 00       		.align	2
+ 281              	.LC40:
+ 282 01b0 4D617820 		.ascii	"Max Velocity Gain (N-m/rad/s)\000"
+ 282      56656C6F 
+ 282      63697479 
+ 282      20476169 
+ 282      6E20284E 
+ 283 01ce 0000     		.align	2
+ 284              	.LC41:
+ 285 01d0 6400     		.ascii	"d\000"
+ 286 01d2 0000     		.align	2
+ 287              	.LC42:
+ 288 01d4 352E3000 		.ascii	"5.0\000"
+ 289              		.align	2
+ 290              	.LC43:
+ 291 01d8 46572043 		.ascii	"FW Current Limit (A)\000"
+ 291      75727265 
+ 291      6E74204C 
+ 291      696D6974 
+ 291      20284129 
+ 292 01ed 000000   		.align	2
+ 293              	.LC44:
+ 294 01f0 6600     		.ascii	"f\000"
+ 295 01f2 0000     		.align	2
+ 296              	.LC45:
+ 297 01f4 33332E30 		.ascii	"33.0\000"
+ 297      00
+ 298 01f9 000000   		.align	2
+ 299              	.LC46:
+ 300 01fc 436F6E74 		.ascii	"Continuous Current (A)\000"
+ 300      696E756F 
+ 300      75732043 
+ 300      75727265 
+ 300      6E742028 
+ 301 0213 00       		.align	2
+ 302              	.LC47:
+ARM GAS  /tmp/ccTMXuIU.s 			page 12
 
 
- 303 0213 00       		.align	2
- 304              	.LC47:
- 305 0214 6300     		.ascii	"c\000"
- 306 0216 0000     		.align	2
- 307              	.LC48:
- 308 0218 34302E30 		.ascii	"40.0\000"
- 308      00
- 309 021d 000000   		.align	2
- 310              	.LC49:
- 311 0220 43616C69 		.ascii	"Calibration Current (A)\000"
- 311      62726174 
- 311      696F6E20 
- 311      43757272 
- 311      656E7420 
- 312              		.align	2
- 313              	.LC50:
- 314 0238 6100     		.ascii	"a\000"
- 315 023a 0000     		.align	2
- 316              	.LC51:
- 317 023c 32302E30 		.ascii	"20.0\000"
- 317      00
- 318 0241 000000   		.align	2
- 319              	.LC52:
- 320 0244 0D0A2043 		.ascii	"\015\012 CAN:\015\000"
- 320      414E3A0D 
- 320      00
- 321 024d 000000   		.align	2
- 322              	.LC53:
- 323 0250 200A0D20 		.ascii	" \012\015 To change a value, type 'prefix''value''E"
- 323      546F2063 
- 323      68616E67 
- 323      65206120 
- 323      76616C75 
- 324 027d 4E544552 		.ascii	"NTER'\012\015 e.g. 'b1000''ENTER'\015\012 \000"
- 324      270A0D20 
- 324      652E672E 
- 324      20276231 
- 324      30303027 
- 325              		.align	2
- 326              	.LC54:
- 327 029c 56414C55 		.ascii	"VALUES NOT ACTIVE UNTIL POWER CYCLE! \012\015\012\015"
- 327      4553204E 
- 327      4F542041 
- 327      43544956 
- 327      4520554E 
- 328 02c5 00       		.ascii	"\000"
- 329              		.section	.text.enter_setup_state,"ax",%progbits
- 330              		.align	1
- 331              		.global	enter_setup_state
- 332              		.syntax unified
- 333              		.thumb
- 334              		.thumb_func
- 335              		.fpu fpv4-sp-d16
- 337              	enter_setup_state:
- 338              	.LFB142:
+ 303 0214 6300     		.ascii	"c\000"
+ 304 0216 0000     		.align	2
+ 305              	.LC48:
+ 306 0218 34302E30 		.ascii	"40.0\000"
+ 306      00
+ 307 021d 000000   		.align	2
+ 308              	.LC49:
+ 309 0220 43616C69 		.ascii	"Calibration Current (A)\000"
+ 309      62726174 
+ 309      696F6E20 
+ 309      43757272 
+ 309      656E7420 
+ 310              		.align	2
+ 311              	.LC50:
+ 312 0238 6100     		.ascii	"a\000"
+ 313 023a 0000     		.align	2
+ 314              	.LC51:
+ 315 023c 32302E30 		.ascii	"20.0\000"
+ 315      00
+ 316 0241 000000   		.align	2
+ 317              	.LC52:
+ 318 0244 0D0A2043 		.ascii	"\015\012 CAN:\015\000"
+ 318      414E3A0D 
+ 318      00
+ 319 024d 000000   		.align	2
+ 320              	.LC53:
+ 321 0250 200A0D20 		.ascii	" \012\015 To change a value, type 'prefix''value''E"
+ 321      546F2063 
+ 321      68616E67 
+ 321      65206120 
+ 321      76616C75 
+ 322 027d 4E544552 		.ascii	"NTER'\012\015 e.g. 'b1000''ENTER'\015\012 \000"
+ 322      270A0D20 
+ 322      652E672E 
+ 322      20276231 
+ 322      30303027 
+ 323              		.align	2
+ 324              	.LC54:
+ 325 029c 56414C55 		.ascii	"VALUES NOT ACTIVE UNTIL POWER CYCLE! \012\015\012\015"
+ 325      4553204E 
+ 325      4F542041 
+ 325      43544956 
+ 325      4520554E 
+ 326 02c5 00       		.ascii	"\000"
+ 327              		.section	.text.enter_setup_state,"ax",%progbits
+ 328              		.align	1
+ 329              		.global	enter_setup_state
+ 330              		.syntax unified
+ 331              		.thumb
+ 332              		.thumb_func
+ 333              		.fpu fpv4-sp-d16
+ 335              	enter_setup_state:
+ 336              	.LFB142:
  234:Core/Src/fsm.c **** 
  235:Core/Src/fsm.c **** void enter_setup_state(void){
-ARM GAS  /tmp/ccVvFV2v.s 			page 13
+ 337              		.loc 1 235 29 is_stmt 1 view -0
+ 338              		.cfi_startproc
+ARM GAS  /tmp/ccTMXuIU.s 			page 13
 
 
- 339              		.loc 1 235 29 is_stmt 1 view -0
- 340              		.cfi_startproc
- 341              		@ args = 0, pretend = 0, frame = 0
- 342              		@ frame_needed = 0, uses_anonymous_args = 0
- 343 0000 F0B5     		push	{r4, r5, r6, r7, lr}
- 344              	.LCFI1:
- 345              		.cfi_def_cfa_offset 20
- 346              		.cfi_offset 4, -20
- 347              		.cfi_offset 5, -16
- 348              		.cfi_offset 6, -12
- 349              		.cfi_offset 7, -8
- 350              		.cfi_offset 14, -4
- 351 0002 85B0     		sub	sp, sp, #20
- 352              	.LCFI2:
- 353              		.cfi_def_cfa_offset 40
+ 339              		@ args = 0, pretend = 0, frame = 0
+ 340              		@ frame_needed = 0, uses_anonymous_args = 0
+ 341 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 342              	.LCFI1:
+ 343              		.cfi_def_cfa_offset 20
+ 344              		.cfi_offset 4, -20
+ 345              		.cfi_offset 5, -16
+ 346              		.cfi_offset 6, -12
+ 347              		.cfi_offset 7, -8
+ 348              		.cfi_offset 14, -4
+ 349 0002 85B0     		sub	sp, sp, #20
+ 350              	.LCFI2:
+ 351              		.cfi_def_cfa_offset 40
  236:Core/Src/fsm.c **** 	printf("\r\n Configuration Options \n\r");
- 354              		.loc 1 236 2 view .LVU31
- 355 0004 5648     		ldr	r0, .L15
- 356 0006 FFF7FEFF 		bl	printf
- 357              	.LVL9:
+ 352              		.loc 1 236 2 view .LVU31
+ 353 0004 5648     		ldr	r0, .L15
+ 354 0006 FFF7FEFF 		bl	printf
+ 355              	.LVL9:
  237:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %-2s\r\n", "prefix", "parameter", "min", "max", "current value");
- 358              		.loc 1 237 2 view .LVU32
- 359 000a 564B     		ldr	r3, .L15+4
- 360 000c 0193     		str	r3, [sp, #4]
- 361 000e 564B     		ldr	r3, .L15+8
- 362 0010 0093     		str	r3, [sp]
- 363 0012 564B     		ldr	r3, .L15+12
- 364 0014 564A     		ldr	r2, .L15+16
- 365 0016 5749     		ldr	r1, .L15+20
- 366 0018 5748     		ldr	r0, .L15+24
- 367 001a FFF7FEFF 		bl	printf
- 368              	.LVL10:
+ 356              		.loc 1 237 2 view .LVU32
+ 357 000a 564B     		ldr	r3, .L15+4
+ 358 000c 0193     		str	r3, [sp, #4]
+ 359 000e 564B     		ldr	r3, .L15+8
+ 360 0010 0093     		str	r3, [sp]
+ 361 0012 564B     		ldr	r3, .L15+12
+ 362 0014 564A     		ldr	r2, .L15+16
+ 363 0016 5749     		ldr	r1, .L15+20
+ 364 0018 5748     		ldr	r0, .L15+24
+ 365 001a FFF7FEFF 		bl	printf
+ 366              	.LVL10:
  238:Core/Src/fsm.c **** 	printf("\r\n Motor:\r\n");
- 369              		.loc 1 238 2 view .LVU33
- 370 001e 5748     		ldr	r0, .L15+28
- 371 0020 FFF7FEFF 		bl	puts
- 372              	.LVL11:
+ 367              		.loc 1 238 2 view .LVU33
+ 368 001e 5748     		ldr	r0, .L15+28
+ 369 0020 FFF7FEFF 		bl	puts
+ 370              	.LVL11:
  239:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "g", "Gear Ratio", "0", "-", GR);
- 373              		.loc 1 239 2 view .LVU34
- 374              		.loc 1 239 72 is_stmt 0 view .LVU35
- 375 0024 564C     		ldr	r4, .L15+32
- 376              		.loc 1 239 2 view .LVU36
- 377 0026 574E     		ldr	r6, .L15+36
- 378 0028 574D     		ldr	r5, .L15+40
- 379 002a 606C     		ldr	r0, [r4, #68]	@ float
- 380 002c FFF7FEFF 		bl	__aeabi_f2d
- 381              	.LVL12:
- 382 0030 CDE90201 		strd	r0, [sp, #8]
- 383 0034 554F     		ldr	r7, .L15+44
- 384 0036 0097     		str	r7, [sp]
- 385 0038 3346     		mov	r3, r6
- 386 003a 554A     		ldr	r2, .L15+48
- 387 003c 5549     		ldr	r1, .L15+52
- 388 003e 2846     		mov	r0, r5
- 389 0040 FFF7FEFF 		bl	printf
- 390              	.LVL13:
+ 371              		.loc 1 239 2 view .LVU34
+ 372              		.loc 1 239 72 is_stmt 0 view .LVU35
+ 373 0024 564C     		ldr	r4, .L15+32
+ 374              		.loc 1 239 2 view .LVU36
+ 375 0026 574E     		ldr	r6, .L15+36
+ 376 0028 574D     		ldr	r5, .L15+40
+ 377 002a 606C     		ldr	r0, [r4, #68]	@ float
+ 378 002c FFF7FEFF 		bl	__aeabi_f2d
+ 379              	.LVL12:
+ 380 0030 CDE90201 		strd	r0, [sp, #8]
+ 381 0034 554F     		ldr	r7, .L15+44
+ 382 0036 0097     		str	r7, [sp]
+ 383 0038 3346     		mov	r3, r6
+ 384 003a 554A     		ldr	r2, .L15+48
+ 385 003c 5549     		ldr	r1, .L15+52
+ 386 003e 2846     		mov	r0, r5
+ 387 0040 FFF7FEFF 		bl	printf
+ 388              	.LVL13:
  240:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.5f\n\r", "k", "Torque Constant (N-m/A)", "0", "-", KT);
-ARM GAS  /tmp/ccVvFV2v.s 			page 14
+ 389              		.loc 1 240 2 is_stmt 1 view .LVU37
+ 390 0044 A06B     		ldr	r0, [r4, #56]	@ float
+ARM GAS  /tmp/ccTMXuIU.s 			page 14
 
 
- 391              		.loc 1 240 2 is_stmt 1 view .LVU37
- 392 0044 A06B     		ldr	r0, [r4, #56]	@ float
- 393 0046 FFF7FEFF 		bl	__aeabi_f2d
- 394              	.LVL14:
- 395 004a CDE90201 		strd	r0, [sp, #8]
- 396 004e 0097     		str	r7, [sp]
- 397 0050 3346     		mov	r3, r6
- 398 0052 514A     		ldr	r2, .L15+56
- 399 0054 5149     		ldr	r1, .L15+60
- 400 0056 5248     		ldr	r0, .L15+64
- 401 0058 FFF7FEFF 		bl	printf
- 402              	.LVL15:
+ 391 0046 FFF7FEFF 		bl	__aeabi_f2d
+ 392              	.LVL14:
+ 393 004a CDE90201 		strd	r0, [sp, #8]
+ 394 004e 0097     		str	r7, [sp]
+ 395 0050 3346     		mov	r3, r6
+ 396 0052 514A     		ldr	r2, .L15+56
+ 397 0054 5149     		ldr	r1, .L15+60
+ 398 0056 5248     		ldr	r0, .L15+64
+ 399 0058 FFF7FEFF 		bl	printf
+ 400              	.LVL15:
  241:Core/Src/fsm.c **** 	printf("\r\n Control:\r\n");
- 403              		.loc 1 241 2 view .LVU38
- 404 005c 5148     		ldr	r0, .L15+68
- 405 005e FFF7FEFF 		bl	puts
- 406              	.LVL16:
+ 401              		.loc 1 241 2 view .LVU38
+ 402 005c 5148     		ldr	r0, .L15+68
+ 403 005e FFF7FEFF 		bl	puts
+ 404              	.LVL16:
  242:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "b", "Current Bandwidth (Hz)", "100", "2000", I_BW);
- 407              		.loc 1 242 2 view .LVU39
- 408 0062 A068     		ldr	r0, [r4, #8]	@ float
- 409 0064 FFF7FEFF 		bl	__aeabi_f2d
- 410              	.LVL17:
- 411 0068 CDE90201 		strd	r0, [sp, #8]
- 412 006c 4E4B     		ldr	r3, .L15+72
- 413 006e 0093     		str	r3, [sp]
- 414 0070 4E4B     		ldr	r3, .L15+76
- 415 0072 4F4A     		ldr	r2, .L15+80
- 416 0074 4F49     		ldr	r1, .L15+84
- 417 0076 2846     		mov	r0, r5
- 418 0078 FFF7FEFF 		bl	printf
- 419              	.LVL18:
+ 405              		.loc 1 242 2 view .LVU39
+ 406 0062 A068     		ldr	r0, [r4, #8]	@ float
+ 407 0064 FFF7FEFF 		bl	__aeabi_f2d
+ 408              	.LVL17:
+ 409 0068 CDE90201 		strd	r0, [sp, #8]
+ 410 006c 4E4B     		ldr	r3, .L15+72
+ 411 006e 0093     		str	r3, [sp]
+ 412 0070 4E4B     		ldr	r3, .L15+76
+ 413 0072 4F4A     		ldr	r2, .L15+80
+ 414 0074 4F49     		ldr	r1, .L15+84
+ 415 0076 2846     		mov	r0, r5
+ 416 0078 FFF7FEFF 		bl	printf
+ 417              	.LVL18:
  243:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "l", "Current Limit (A)", "0.0", "75.0", I_MAX);
- 420              		.loc 1 243 2 view .LVU40
- 421 007c 4E4E     		ldr	r6, .L15+88
- 422 007e E068     		ldr	r0, [r4, #12]	@ float
- 423 0080 FFF7FEFF 		bl	__aeabi_f2d
- 424              	.LVL19:
- 425 0084 CDE90201 		strd	r0, [sp, #8]
- 426 0088 4C4B     		ldr	r3, .L15+92
- 427 008a 0093     		str	r3, [sp]
- 428 008c 3346     		mov	r3, r6
- 429 008e 4C4A     		ldr	r2, .L15+96
- 430 0090 4C49     		ldr	r1, .L15+100
- 431 0092 2846     		mov	r0, r5
- 432 0094 FFF7FEFF 		bl	printf
- 433              	.LVL20:
+ 418              		.loc 1 243 2 view .LVU40
+ 419 007c 4E4E     		ldr	r6, .L15+88
+ 420 007e E068     		ldr	r0, [r4, #12]	@ float
+ 421 0080 FFF7FEFF 		bl	__aeabi_f2d
+ 422              	.LVL19:
+ 423 0084 CDE90201 		strd	r0, [sp, #8]
+ 424 0088 4C4B     		ldr	r3, .L15+92
+ 425 008a 0093     		str	r3, [sp]
+ 426 008c 3346     		mov	r3, r6
+ 427 008e 4C4A     		ldr	r2, .L15+96
+ 428 0090 4C49     		ldr	r1, .L15+100
+ 429 0092 2846     		mov	r0, r5
+ 430 0094 FFF7FEFF 		bl	printf
+ 431              	.LVL20:
  244:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "p", "Max Position Setpoint (rad)", "-", "-", P_MAX);
- 434              		.loc 1 244 2 view .LVU41
- 435 0098 206D     		ldr	r0, [r4, #80]	@ float
- 436 009a FFF7FEFF 		bl	__aeabi_f2d
- 437              	.LVL21:
- 438 009e CDE90201 		strd	r0, [sp, #8]
- 439 00a2 0097     		str	r7, [sp]
- 440 00a4 3B46     		mov	r3, r7
- 441 00a6 484A     		ldr	r2, .L15+104
- 442 00a8 4849     		ldr	r1, .L15+108
- 443 00aa 2846     		mov	r0, r5
-ARM GAS  /tmp/ccVvFV2v.s 			page 15
+ 432              		.loc 1 244 2 view .LVU41
+ 433 0098 206D     		ldr	r0, [r4, #80]	@ float
+ 434 009a FFF7FEFF 		bl	__aeabi_f2d
+ 435              	.LVL21:
+ 436 009e CDE90201 		strd	r0, [sp, #8]
+ 437 00a2 0097     		str	r7, [sp]
+ 438 00a4 3B46     		mov	r3, r7
+ 439 00a6 484A     		ldr	r2, .L15+104
+ 440 00a8 4849     		ldr	r1, .L15+108
+ 441 00aa 2846     		mov	r0, r5
+ 442 00ac FFF7FEFF 		bl	printf
+ 443              	.LVL22:
+ARM GAS  /tmp/ccTMXuIU.s 			page 15
 
 
- 444 00ac FFF7FEFF 		bl	printf
- 445              	.LVL22:
  245:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "v", "Max Velocity Setpoint (rad)/s", "-", "-", V_MAX);
- 446              		.loc 1 245 2 view .LVU42
- 447 00b0 A06D     		ldr	r0, [r4, #88]	@ float
- 448 00b2 FFF7FEFF 		bl	__aeabi_f2d
- 449              	.LVL23:
- 450 00b6 CDE90201 		strd	r0, [sp, #8]
- 451 00ba 0097     		str	r7, [sp]
- 452 00bc 3B46     		mov	r3, r7
- 453 00be 444A     		ldr	r2, .L15+112
- 454 00c0 4449     		ldr	r1, .L15+116
- 455 00c2 2846     		mov	r0, r5
- 456 00c4 FFF7FEFF 		bl	printf
- 457              	.LVL24:
+ 444              		.loc 1 245 2 view .LVU42
+ 445 00b0 A06D     		ldr	r0, [r4, #88]	@ float
+ 446 00b2 FFF7FEFF 		bl	__aeabi_f2d
+ 447              	.LVL23:
+ 448 00b6 CDE90201 		strd	r0, [sp, #8]
+ 449 00ba 0097     		str	r7, [sp]
+ 450 00bc 3B46     		mov	r3, r7
+ 451 00be 444A     		ldr	r2, .L15+112
+ 452 00c0 4449     		ldr	r1, .L15+116
+ 453 00c2 2846     		mov	r0, r5
+ 454 00c4 FFF7FEFF 		bl	printf
+ 455              	.LVL24:
  246:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "x", "Max Position Gain (N-m/rad)", "0.0", "1000.0", KP_M
- 458              		.loc 1 246 2 view .LVU43
- 459 00c8 606E     		ldr	r0, [r4, #100]	@ float
- 460 00ca FFF7FEFF 		bl	__aeabi_f2d
- 461              	.LVL25:
- 462 00ce CDE90201 		strd	r0, [sp, #8]
- 463 00d2 414B     		ldr	r3, .L15+120
- 464 00d4 0093     		str	r3, [sp]
- 465 00d6 3346     		mov	r3, r6
- 466 00d8 404A     		ldr	r2, .L15+124
- 467 00da 4149     		ldr	r1, .L15+128
- 468 00dc 2846     		mov	r0, r5
- 469 00de FFF7FEFF 		bl	printf
- 470              	.LVL26:
+ 456              		.loc 1 246 2 view .LVU43
+ 457 00c8 606E     		ldr	r0, [r4, #100]	@ float
+ 458 00ca FFF7FEFF 		bl	__aeabi_f2d
+ 459              	.LVL25:
+ 460 00ce CDE90201 		strd	r0, [sp, #8]
+ 461 00d2 414B     		ldr	r3, .L15+120
+ 462 00d4 0093     		str	r3, [sp]
+ 463 00d6 3346     		mov	r3, r6
+ 464 00d8 404A     		ldr	r2, .L15+124
+ 465 00da 4149     		ldr	r1, .L15+128
+ 466 00dc 2846     		mov	r0, r5
+ 467 00de FFF7FEFF 		bl	printf
+ 468              	.LVL26:
  247:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "d", "Max Velocity Gain (N-m/rad/s)", "0.0", "5.0", KD_MA
- 471              		.loc 1 247 2 view .LVU44
- 472 00e2 A06E     		ldr	r0, [r4, #104]	@ float
- 473 00e4 FFF7FEFF 		bl	__aeabi_f2d
- 474              	.LVL27:
- 475 00e8 CDE90201 		strd	r0, [sp, #8]
- 476 00ec 3D4B     		ldr	r3, .L15+132
- 477 00ee 0093     		str	r3, [sp]
- 478 00f0 3346     		mov	r3, r6
- 479 00f2 3D4A     		ldr	r2, .L15+136
- 480 00f4 3D49     		ldr	r1, .L15+140
- 481 00f6 2846     		mov	r0, r5
- 482 00f8 FFF7FEFF 		bl	printf
- 483              	.LVL28:
+ 469              		.loc 1 247 2 view .LVU44
+ 470 00e2 A06E     		ldr	r0, [r4, #104]	@ float
+ 471 00e4 FFF7FEFF 		bl	__aeabi_f2d
+ 472              	.LVL27:
+ 473 00e8 CDE90201 		strd	r0, [sp, #8]
+ 474 00ec 3D4B     		ldr	r3, .L15+132
+ 475 00ee 0093     		str	r3, [sp]
+ 476 00f0 3346     		mov	r3, r6
+ 477 00f2 3D4A     		ldr	r2, .L15+136
+ 478 00f4 3D49     		ldr	r1, .L15+140
+ 479 00f6 2846     		mov	r0, r5
+ 480 00f8 FFF7FEFF 		bl	printf
+ 481              	.LVL28:
  248:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "f", "FW Current Limit (A)", "0.0", "33.0", I_FW_MAX);
- 484              		.loc 1 248 2 view .LVU45
- 485 00fc A069     		ldr	r0, [r4, #24]	@ float
- 486 00fe FFF7FEFF 		bl	__aeabi_f2d
- 487              	.LVL29:
- 488 0102 CDE90201 		strd	r0, [sp, #8]
- 489 0106 3A4B     		ldr	r3, .L15+144
- 490 0108 0093     		str	r3, [sp]
- 491 010a 3346     		mov	r3, r6
- 492 010c 394A     		ldr	r2, .L15+148
- 493 010e 3A49     		ldr	r1, .L15+152
- 494 0110 2846     		mov	r0, r5
- 495 0112 FFF7FEFF 		bl	printf
- 496              	.LVL30:
-ARM GAS  /tmp/ccVvFV2v.s 			page 16
-
-
+ 482              		.loc 1 248 2 view .LVU45
+ 483 00fc A069     		ldr	r0, [r4, #24]	@ float
+ 484 00fe FFF7FEFF 		bl	__aeabi_f2d
+ 485              	.LVL29:
+ 486 0102 CDE90201 		strd	r0, [sp, #8]
+ 487 0106 3A4B     		ldr	r3, .L15+144
+ 488 0108 0093     		str	r3, [sp]
+ 489 010a 3346     		mov	r3, r6
+ 490 010c 394A     		ldr	r2, .L15+148
+ 491 010e 3A49     		ldr	r1, .L15+152
+ 492 0110 2846     		mov	r0, r5
+ 493 0112 FFF7FEFF 		bl	printf
+ 494              	.LVL30:
  249:Core/Src/fsm.c **** 	//printf(" %-4s %-31s %-5s %-6s %.1f\n\r", "h", "Temp Cutoff (C) (0 = none)", "0", "150", TEMP_MAX
  250:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "c", "Continuous Current (A)", "0.0", "40.0", I_MAX_CONT)
- 497              		.loc 1 250 2 view .LVU46
- 498 0116 606A     		ldr	r0, [r4, #36]	@ float
- 499 0118 FFF7FEFF 		bl	__aeabi_f2d
- 500              	.LVL31:
- 501 011c CDE90201 		strd	r0, [sp, #8]
- 502 0120 364B     		ldr	r3, .L15+156
- 503 0122 0093     		str	r3, [sp]
- 504 0124 3346     		mov	r3, r6
- 505 0126 364A     		ldr	r2, .L15+160
- 506 0128 3649     		ldr	r1, .L15+164
- 507 012a 2846     		mov	r0, r5
- 508 012c FFF7FEFF 		bl	printf
- 509              	.LVL32:
+ARM GAS  /tmp/ccTMXuIU.s 			page 16
+
+
+ 495              		.loc 1 250 2 view .LVU46
+ 496 0116 606A     		ldr	r0, [r4, #36]	@ float
+ 497 0118 FFF7FEFF 		bl	__aeabi_f2d
+ 498              	.LVL31:
+ 499 011c CDE90201 		strd	r0, [sp, #8]
+ 500 0120 364B     		ldr	r3, .L15+156
+ 501 0122 0093     		str	r3, [sp]
+ 502 0124 3346     		mov	r3, r6
+ 503 0126 364A     		ldr	r2, .L15+160
+ 504 0128 3649     		ldr	r1, .L15+164
+ 505 012a 2846     		mov	r0, r5
+ 506 012c FFF7FEFF 		bl	printf
+ 507              	.LVL32:
  251:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "a", "Calibration Current (A)", "0.0", "20.0", I_CAL);
- 510              		.loc 1 251 2 view .LVU47
- 511 0130 A06C     		ldr	r0, [r4, #72]	@ float
- 512 0132 FFF7FEFF 		bl	__aeabi_f2d
- 513              	.LVL33:
- 514 0136 CDE90201 		strd	r0, [sp, #8]
- 515 013a 334B     		ldr	r3, .L15+168
- 516 013c 0093     		str	r3, [sp]
- 517 013e 3346     		mov	r3, r6
- 518 0140 324A     		ldr	r2, .L15+172
- 519 0142 3349     		ldr	r1, .L15+176
- 520 0144 2846     		mov	r0, r5
- 521 0146 FFF7FEFF 		bl	printf
- 522              	.LVL34:
+ 508              		.loc 1 251 2 view .LVU47
+ 509 0130 A06C     		ldr	r0, [r4, #72]	@ float
+ 510 0132 FFF7FEFF 		bl	__aeabi_f2d
+ 511              	.LVL33:
+ 512 0136 CDE90201 		strd	r0, [sp, #8]
+ 513 013a 334B     		ldr	r3, .L15+168
+ 514 013c 0093     		str	r3, [sp]
+ 515 013e 3346     		mov	r3, r6
+ 516 0140 324A     		ldr	r2, .L15+172
+ 517 0142 3349     		ldr	r1, .L15+176
+ 518 0144 2846     		mov	r0, r5
+ 519 0146 FFF7FEFF 		bl	printf
+ 520              	.LVL34:
  252:Core/Src/fsm.c **** 	printf("\r\n CAN:\r\n");
- 523              		.loc 1 252 2 view .LVU48
- 524 014a 3248     		ldr	r0, .L15+180
- 525 014c FFF7FEFF 		bl	puts
- 526              	.LVL35:
+ 521              		.loc 1 252 2 view .LVU48
+ 522 014a 3248     		ldr	r0, .L15+180
+ 523 014c FFF7FEFF 		bl	puts
+ 524              	.LVL35:
  253:Core/Src/fsm.c **** //	    printf(" %-4s %-31s %-5s %-6s %-5i\n\r", "i", "CAN ID", "0", "127", CAN_ID);
  254:Core/Src/fsm.c **** //	    printf(" %-4s %-31s %-5s %-6s %-5i\n\r", "m", "CAN TX ID", "0", "127", CAN_MASTER);
  255:Core/Src/fsm.c **** //	    printf(" %-4s %-31s %-5s %-6s %d\n\r", "t", "CAN Timeout (cycles)(0 = none)", "0", "100000",
  256:Core/Src/fsm.c **** 	printf(" \n\r To change a value, type 'prefix''value''ENTER'\n\r e.g. 'b1000''ENTER'\r\n ");
- 527              		.loc 1 256 2 view .LVU49
- 528 0150 3148     		ldr	r0, .L15+184
- 529 0152 FFF7FEFF 		bl	printf
- 530              	.LVL36:
+ 525              		.loc 1 256 2 view .LVU49
+ 526 0150 3148     		ldr	r0, .L15+184
+ 527 0152 FFF7FEFF 		bl	printf
+ 528              	.LVL36:
  257:Core/Src/fsm.c **** 	printf("VALUES NOT ACTIVE UNTIL POWER CYCLE! \n\r\n\r");
- 531              		.loc 1 257 2 view .LVU50
- 532 0156 3148     		ldr	r0, .L15+188
- 533 0158 FFF7FEFF 		bl	printf
- 534              	.LVL37:
+ 529              		.loc 1 257 2 view .LVU50
+ 530 0156 3148     		ldr	r0, .L15+188
+ 531 0158 FFF7FEFF 		bl	printf
+ 532              	.LVL37:
  258:Core/Src/fsm.c **** }
- 535              		.loc 1 258 1 is_stmt 0 view .LVU51
- 536 015c 05B0     		add	sp, sp, #20
- 537              	.LCFI3:
- 538              		.cfi_def_cfa_offset 20
- 539              		@ sp needed
- 540 015e F0BD     		pop	{r4, r5, r6, r7, pc}
- 541              	.L16:
- 542              		.align	2
- 543              	.L15:
-ARM GAS  /tmp/ccVvFV2v.s 			page 17
+ 533              		.loc 1 258 1 is_stmt 0 view .LVU51
+ 534 015c 05B0     		add	sp, sp, #20
+ 535              	.LCFI3:
+ 536              		.cfi_def_cfa_offset 20
+ 537              		@ sp needed
+ 538 015e F0BD     		pop	{r4, r5, r6, r7, pc}
+ 539              	.L16:
+ 540              		.align	2
+ 541              	.L15:
+ 542 0160 00000000 		.word	.LC8
+ 543 0164 54000000 		.word	.LC13
+ARM GAS  /tmp/ccTMXuIU.s 			page 17
 
 
- 544 0160 00000000 		.word	.LC8
- 545 0164 54000000 		.word	.LC13
- 546 0168 64000000 		.word	.LC14
- 547 016c 1C000000 		.word	.LC9
- 548 0170 20000000 		.word	.LC10
- 549 0174 2C000000 		.word	.LC11
- 550 0178 34000000 		.word	.LC12
- 551 017c 68000000 		.word	.LC15
- 552 0180 00000000 		.word	__float_reg
- 553 0184 74000000 		.word	.LC16
- 554 0188 88000000 		.word	.LC19
- 555 018c A8000000 		.word	.LC20
- 556 0190 78000000 		.word	.LC17
- 557 0194 84000000 		.word	.LC18
- 558 0198 AC000000 		.word	.LC21
- 559 019c C4000000 		.word	.LC22
- 560 01a0 C8000000 		.word	.LC23
- 561 01a4 E8000000 		.word	.LC24
- 562 01a8 18010000 		.word	.LC28
- 563 01ac F8000000 		.word	.LC25
- 564 01b0 FC000000 		.word	.LC26
- 565 01b4 14010000 		.word	.LC27
- 566 01b8 20010000 		.word	.LC29
- 567 01bc 3C010000 		.word	.LC32
- 568 01c0 24010000 		.word	.LC30
- 569 01c4 38010000 		.word	.LC31
- 570 01c8 44010000 		.word	.LC33
- 571 01cc 60010000 		.word	.LC34
- 572 01d0 64010000 		.word	.LC35
- 573 01d4 84010000 		.word	.LC36
- 574 01d8 A8010000 		.word	.LC39
- 575 01dc 88010000 		.word	.LC37
- 576 01e0 A4010000 		.word	.LC38
- 577 01e4 D4010000 		.word	.LC42
- 578 01e8 B0010000 		.word	.LC40
- 579 01ec D0010000 		.word	.LC41
- 580 01f0 F4010000 		.word	.LC45
- 581 01f4 D8010000 		.word	.LC43
- 582 01f8 F0010000 		.word	.LC44
- 583 01fc 18020000 		.word	.LC48
- 584 0200 FC010000 		.word	.LC46
- 585 0204 14020000 		.word	.LC47
- 586 0208 3C020000 		.word	.LC51
- 587 020c 20020000 		.word	.LC49
- 588 0210 38020000 		.word	.LC50
- 589 0214 44020000 		.word	.LC52
- 590 0218 50020000 		.word	.LC53
- 591 021c 9C020000 		.word	.LC54
- 592              		.cfi_endproc
- 593              	.LFE142:
- 595              		.section	.rodata.fsm_enter_state.str1.4,"aMS",%progbits,1
- 596              		.align	2
- 597              	.LC55:
- 598 0000 456E7465 		.ascii	"Entering Setup\015\000"
- 598      72696E67 
- 598      20536574 
- 598      75700D00 
-ARM GAS  /tmp/ccVvFV2v.s 			page 18
+ 544 0168 64000000 		.word	.LC14
+ 545 016c 1C000000 		.word	.LC9
+ 546 0170 20000000 		.word	.LC10
+ 547 0174 2C000000 		.word	.LC11
+ 548 0178 34000000 		.word	.LC12
+ 549 017c 68000000 		.word	.LC15
+ 550 0180 00000000 		.word	__float_reg
+ 551 0184 74000000 		.word	.LC16
+ 552 0188 88000000 		.word	.LC19
+ 553 018c A8000000 		.word	.LC20
+ 554 0190 78000000 		.word	.LC17
+ 555 0194 84000000 		.word	.LC18
+ 556 0198 AC000000 		.word	.LC21
+ 557 019c C4000000 		.word	.LC22
+ 558 01a0 C8000000 		.word	.LC23
+ 559 01a4 E8000000 		.word	.LC24
+ 560 01a8 18010000 		.word	.LC28
+ 561 01ac F8000000 		.word	.LC25
+ 562 01b0 FC000000 		.word	.LC26
+ 563 01b4 14010000 		.word	.LC27
+ 564 01b8 20010000 		.word	.LC29
+ 565 01bc 3C010000 		.word	.LC32
+ 566 01c0 24010000 		.word	.LC30
+ 567 01c4 38010000 		.word	.LC31
+ 568 01c8 44010000 		.word	.LC33
+ 569 01cc 60010000 		.word	.LC34
+ 570 01d0 64010000 		.word	.LC35
+ 571 01d4 84010000 		.word	.LC36
+ 572 01d8 A8010000 		.word	.LC39
+ 573 01dc 88010000 		.word	.LC37
+ 574 01e0 A4010000 		.word	.LC38
+ 575 01e4 D4010000 		.word	.LC42
+ 576 01e8 B0010000 		.word	.LC40
+ 577 01ec D0010000 		.word	.LC41
+ 578 01f0 F4010000 		.word	.LC45
+ 579 01f4 D8010000 		.word	.LC43
+ 580 01f8 F0010000 		.word	.LC44
+ 581 01fc 18020000 		.word	.LC48
+ 582 0200 FC010000 		.word	.LC46
+ 583 0204 14020000 		.word	.LC47
+ 584 0208 3C020000 		.word	.LC51
+ 585 020c 20020000 		.word	.LC49
+ 586 0210 38020000 		.word	.LC50
+ 587 0214 44020000 		.word	.LC52
+ 588 0218 50020000 		.word	.LC53
+ 589 021c 9C020000 		.word	.LC54
+ 590              		.cfi_endproc
+ 591              	.LFE142:
+ 593              		.section	.rodata.fsm_enter_state.str1.4,"aMS",%progbits,1
+ 594              		.align	2
+ 595              	.LC55:
+ 596 0000 456E7465 		.ascii	"Entering Setup\015\000"
+ 596      72696E67 
+ 596      20536574 
+ 596      75700D00 
+ 597              		.align	2
+ 598              	.LC56:
+ARM GAS  /tmp/ccTMXuIU.s 			page 18
 
 
- 599              		.align	2
- 600              	.LC56:
- 601 0010 456E7465 		.ascii	"Entering Calibration Mode\015\000"
- 601      72696E67 
- 601      2043616C 
- 601      69627261 
- 601      74696F6E 
- 602              		.section	.text.fsm_enter_state,"ax",%progbits
- 603              		.align	1
- 604              		.global	fsm_enter_state
- 605              		.syntax unified
- 606              		.thumb
- 607              		.thumb_func
- 608              		.fpu fpv4-sp-d16
- 610              	fsm_enter_state:
- 611              	.LVL38:
- 612              	.LFB138:
+ 599 0010 456E7465 		.ascii	"Entering Calibration Mode\015\000"
+ 599      72696E67 
+ 599      2043616C 
+ 599      69627261 
+ 599      74696F6E 
+ 600              		.section	.text.fsm_enter_state,"ax",%progbits
+ 601              		.align	1
+ 602              		.global	fsm_enter_state
+ 603              		.syntax unified
+ 604              		.thumb
+ 605              		.thumb_func
+ 606              		.fpu fpv4-sp-d16
+ 608              	fsm_enter_state:
+ 609              	.LVL38:
+ 610              	.LFB138:
   87:Core/Src/fsm.c **** 	/* Called when entering a new state
- 613              		.loc 1 87 43 is_stmt 1 view -0
- 614              		.cfi_startproc
- 615              		@ args = 0, pretend = 0, frame = 0
- 616              		@ frame_needed = 0, uses_anonymous_args = 0
+ 611              		.loc 1 87 43 is_stmt 1 view -0
+ 612              		.cfi_startproc
+ 613              		@ args = 0, pretend = 0, frame = 0
+ 614              		@ frame_needed = 0, uses_anonymous_args = 0
   87:Core/Src/fsm.c **** 	/* Called when entering a new state
- 617              		.loc 1 87 43 is_stmt 0 view .LVU53
- 618 0000 08B5     		push	{r3, lr}
- 619              	.LCFI4:
- 620              		.cfi_def_cfa_offset 8
- 621              		.cfi_offset 3, -8
- 622              		.cfi_offset 14, -4
+ 615              		.loc 1 87 43 is_stmt 0 view .LVU53
+ 616 0000 08B5     		push	{r3, lr}
+ 617              	.LCFI4:
+ 618              		.cfi_def_cfa_offset 8
+ 619              		.cfi_offset 3, -8
+ 620              		.cfi_offset 14, -4
   91:Core/Src/fsm.c **** 			case MENU_MODE:
- 623              		.loc 1 91 2 is_stmt 1 view .LVU54
+ 621              		.loc 1 91 2 is_stmt 1 view .LVU54
   91:Core/Src/fsm.c **** 			case MENU_MODE:
- 624              		.loc 1 91 17 is_stmt 0 view .LVU55
- 625 0002 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 622              		.loc 1 91 17 is_stmt 0 view .LVU55
+ 623 0002 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
   91:Core/Src/fsm.c **** 			case MENU_MODE:
- 626              		.loc 1 91 2 view .LVU56
- 627 0004 042B     		cmp	r3, #4
- 628 0006 06D0     		beq	.L18
- 629 0008 072B     		cmp	r3, #7
- 630 000a 0AD0     		beq	.L19
- 631 000c 03B1     		cbz	r3, .L22
- 632              	.LVL39:
- 633              	.L17:
+ 624              		.loc 1 91 2 view .LVU56
+ 625 0004 012B     		cmp	r3, #1
+ 626 0006 0CD0     		beq	.L18
+ 627 0008 042B     		cmp	r3, #4
+ 628 000a 04D0     		beq	.L19
+ 629 000c 03B1     		cbz	r3, .L22
+ 630              	.LVL39:
+ 631              	.L17:
  119:Core/Src/fsm.c **** 
- 634              		.loc 1 119 1 view .LVU57
- 635 000e 08BD     		pop	{r3, pc}
- 636              	.LVL40:
- 637              	.L22:
+ 632              		.loc 1 119 1 view .LVU57
+ 633 000e 08BD     		pop	{r3, pc}
+ 634              	.LVL40:
+ 635              	.L22:
   94:Core/Src/fsm.c **** 			break;
- 638              		.loc 1 94 4 is_stmt 1 view .LVU58
- 639 0010 FFF7FEFF 		bl	enter_menu_state
- 640              	.LVL41:
+ 636              		.loc 1 94 4 is_stmt 1 view .LVU58
+ 637 0010 FFF7FEFF 		bl	enter_menu_state
+ 638              	.LVL41:
   95:Core/Src/fsm.c **** 		case SETUP_MODE:
- 641              		.loc 1 95 4 view .LVU59
- 642 0014 FBE7     		b	.L17
- 643              	.LVL42:
- 644              	.L18:
-ARM GAS  /tmp/ccVvFV2v.s 			page 19
+ 639              		.loc 1 95 4 view .LVU59
+ 640 0014 FBE7     		b	.L17
+ 641              	.LVL42:
+ 642              	.L19:
+  97:Core/Src/fsm.c **** 			enter_setup_state();
+ 643              		.loc 1 97 4 view .LVU60
+ARM GAS  /tmp/ccTMXuIU.s 			page 19
 
 
+ 644 0016 0748     		ldr	r0, .L23
+ 645              	.LVL43:
   97:Core/Src/fsm.c **** 			enter_setup_state();
- 645              		.loc 1 97 4 view .LVU60
- 646 0016 0748     		ldr	r0, .L23
- 647              	.LVL43:
-  97:Core/Src/fsm.c **** 			enter_setup_state();
- 648              		.loc 1 97 4 is_stmt 0 view .LVU61
- 649 0018 FFF7FEFF 		bl	puts
- 650              	.LVL44:
+ 646              		.loc 1 97 4 is_stmt 0 view .LVU61
+ 647 0018 FFF7FEFF 		bl	puts
+ 648              	.LVL44:
   98:Core/Src/fsm.c **** 			break;
- 651              		.loc 1 98 4 is_stmt 1 view .LVU62
- 652 001c FFF7FEFF 		bl	enter_setup_state
- 653              	.LVL45:
+ 649              		.loc 1 98 4 is_stmt 1 view .LVU62
+ 650 001c FFF7FEFF 		bl	enter_setup_state
+ 651              	.LVL45:
   99:Core/Src/fsm.c **** 		case ENCODER_MODE:
- 654              		.loc 1 99 4 view .LVU63
- 655 0020 F5E7     		b	.L17
- 656              	.LVL46:
- 657              	.L19:
+ 652              		.loc 1 99 4 view .LVU63
+ 653 0020 F5E7     		b	.L17
+ 654              	.LVL46:
+ 655              	.L18:
  111:Core/Src/fsm.c **** 			
- 658              		.loc 1 111 4 view .LVU64
- 659 0022 0548     		ldr	r0, .L23+4
- 660              	.LVL47:
+ 656              		.loc 1 111 4 view .LVU64
+ 657 0022 0548     		ldr	r0, .L23+4
+ 658              	.LVL47:
  111:Core/Src/fsm.c **** 			
- 661              		.loc 1 111 4 is_stmt 0 view .LVU65
- 662 0024 FFF7FEFF 		bl	puts
- 663              	.LVL48:
+ 659              		.loc 1 111 4 is_stmt 0 view .LVU65
+ 660 0024 FFF7FEFF 		bl	puts
+ 661              	.LVL48:
  113:Core/Src/fsm.c ****             foc_start_calibration();  // 2. Kích hoạt bộ đếm thời gian
- 664              		.loc 1 113 13 is_stmt 1 view .LVU66
+ 662              		.loc 1 113 13 is_stmt 1 view .LVU66
  113:Core/Src/fsm.c ****             foc_start_calibration();  // 2. Kích hoạt bộ đếm thời gian
- 665              		.loc 1 113 28 is_stmt 0 view .LVU67
- 666 0028 044B     		ldr	r3, .L23+8
- 667 002a 0122     		movs	r2, #1
- 668 002c 1A70     		strb	r2, [r3]
+ 663              		.loc 1 113 28 is_stmt 0 view .LVU67
+ 664 0028 044B     		ldr	r3, .L23+8
+ 665 002a 0122     		movs	r2, #1
+ 666 002c 1A70     		strb	r2, [r3]
  114:Core/Src/fsm.c ****             
- 669              		.loc 1 114 13 is_stmt 1 view .LVU68
- 670 002e FFF7FEFF 		bl	foc_start_calibration
- 671              	.LVL49:
+ 667              		.loc 1 114 13 is_stmt 1 view .LVU68
+ 668 002e FFF7FEFF 		bl	foc_start_calibration
+ 669              	.LVL49:
  116:Core/Src/fsm.c **** 
- 672              		.loc 1 116 4 view .LVU69
+ 670              		.loc 1 116 4 view .LVU69
  119:Core/Src/fsm.c **** 
- 673              		.loc 1 119 1 is_stmt 0 view .LVU70
- 674 0032 ECE7     		b	.L17
- 675              	.L24:
- 676              		.align	2
- 677              	.L23:
- 678 0034 00000000 		.word	.LC55
- 679 0038 10000000 		.word	.LC56
- 680 003c 00000000 		.word	is_calibrating
- 681              		.cfi_endproc
- 682              	.LFE138:
- 684              		.section	.rodata.run_fsm.str1.4,"aMS",%progbits,1
- 685              		.align	2
- 686              	.LC57:
- 687 0000 43616C69 		.ascii	"Calibration Successful!\015\000"
- 687      62726174 
- 687      696F6E20 
- 687      53756363 
- 687      65737366 
-ARM GAS  /tmp/ccVvFV2v.s 			page 20
+ 671              		.loc 1 119 1 is_stmt 0 view .LVU70
+ 672 0032 ECE7     		b	.L17
+ 673              	.L24:
+ 674              		.align	2
+ 675              	.L23:
+ 676 0034 00000000 		.word	.LC55
+ 677 0038 10000000 		.word	.LC56
+ 678 003c 00000000 		.word	is_calibrating
+ 679              		.cfi_endproc
+ 680              	.LFE138:
+ 682              		.section	.rodata.run_fsm.str1.4,"aMS",%progbits,1
+ 683              		.align	2
+ 684              	.LC57:
+ 685 0000 43616C69 		.ascii	"Calibration Successful!\015\000"
+ 685      62726174 
+ 685      696F6E20 
+ 685      53756363 
+ 685      65737366 
+ 686              		.section	.text.run_fsm,"ax",%progbits
+ 687              		.align	1
+ARM GAS  /tmp/ccTMXuIU.s 			page 20
 
 
- 688              		.section	.text.run_fsm,"ax",%progbits
- 689              		.align	1
- 690              		.global	run_fsm
- 691              		.syntax unified
- 692              		.thumb
- 693              		.thumb_func
- 694              		.fpu fpv4-sp-d16
- 696              	run_fsm:
- 697              	.LVL50:
- 698              	.LFB137:
+ 688              		.global	run_fsm
+ 689              		.syntax unified
+ 690              		.thumb
+ 691              		.thumb_func
+ 692              		.fpu fpv4-sp-d16
+ 694              	run_fsm:
+ 695              	.LVL50:
+ 696              	.LFB137:
   23:Core/Src/fsm.c **** 	/* run_fsm is run every commutation interrupt cycle */
- 699              		.loc 1 23 35 is_stmt 1 view -0
- 700              		.cfi_startproc
- 701              		@ args = 0, pretend = 0, frame = 0
- 702              		@ frame_needed = 0, uses_anonymous_args = 0
+ 697              		.loc 1 23 35 is_stmt 1 view -0
+ 698              		.cfi_startproc
+ 699              		@ args = 0, pretend = 0, frame = 0
+ 700              		@ frame_needed = 0, uses_anonymous_args = 0
   23:Core/Src/fsm.c **** 	/* run_fsm is run every commutation interrupt cycle */
- 703              		.loc 1 23 35 is_stmt 0 view .LVU72
- 704 0000 38B5     		push	{r3, r4, r5, lr}
- 705              	.LCFI5:
- 706              		.cfi_def_cfa_offset 16
- 707              		.cfi_offset 3, -16
- 708              		.cfi_offset 4, -12
- 709              		.cfi_offset 5, -8
- 710              		.cfi_offset 14, -4
- 711 0002 0446     		mov	r4, r0
+ 701              		.loc 1 23 35 is_stmt 0 view .LVU72
+ 702 0000 38B5     		push	{r3, r4, r5, lr}
+ 703              	.LCFI5:
+ 704              		.cfi_def_cfa_offset 16
+ 705              		.cfi_offset 3, -16
+ 706              		.cfi_offset 4, -12
+ 707              		.cfi_offset 5, -8
+ 708              		.cfi_offset 14, -4
+ 709 0002 0446     		mov	r4, r0
   27:Core/Src/fsm.c **** 		fsm_exit_state(fsmstate);		// safely exit the old state
- 712              		.loc 1 27 2 is_stmt 1 view .LVU73
+ 710              		.loc 1 27 2 is_stmt 1 view .LVU73
   27:Core/Src/fsm.c **** 		fsm_exit_state(fsmstate);		// safely exit the old state
- 713              		.loc 1 27 13 is_stmt 0 view .LVU74
- 714 0004 4278     		ldrb	r2, [r0, #1]	@ zero_extendqisi2
+ 711              		.loc 1 27 13 is_stmt 0 view .LVU74
+ 712 0004 4278     		ldrb	r2, [r0, #1]	@ zero_extendqisi2
   27:Core/Src/fsm.c **** 		fsm_exit_state(fsmstate);		// safely exit the old state
- 715              		.loc 1 27 37 view .LVU75
- 716 0006 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 713              		.loc 1 27 37 view .LVU75
+ 714 0006 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
   27:Core/Src/fsm.c **** 		fsm_exit_state(fsmstate);		// safely exit the old state
- 717              		.loc 1 27 4 view .LVU76
- 718 0008 9A42     		cmp	r2, r3
- 719 000a 03D1     		bne	.L29
- 720              	.LVL51:
- 721              	.L26:
+ 715              		.loc 1 27 4 view .LVU76
+ 716 0008 9A42     		cmp	r2, r3
+ 717 000a 03D1     		bne	.L29
+ 718              	.LVL51:
+ 719              	.L26:
   35:Core/Src/fsm.c **** 		case MENU_MODE:
- 722              		.loc 1 35 2 is_stmt 1 view .LVU77
+ 720              		.loc 1 35 2 is_stmt 1 view .LVU77
   35:Core/Src/fsm.c **** 		case MENU_MODE:
- 723              		.loc 1 35 17 is_stmt 0 view .LVU78
- 724 000c 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 721              		.loc 1 35 17 is_stmt 0 view .LVU78
+ 722 000c 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
   35:Core/Src/fsm.c **** 		case MENU_MODE:
- 725              		.loc 1 35 2 view .LVU79
- 726 000e 072B     		cmp	r3, #7
- 727 0010 0BD0     		beq	.L30
- 728              	.L25:
+ 723              		.loc 1 35 2 view .LVU79
+ 724 000e 012B     		cmp	r3, #1
+ 725 0010 0BD0     		beq	.L30
+ 726              	.L25:
   85:Core/Src/fsm.c **** 
- 729              		.loc 1 85 1 view .LVU80
- 730 0012 38BD     		pop	{r3, r4, r5, pc}
- 731              	.LVL52:
- 732              	.L29:
+ 727              		.loc 1 85 1 view .LVU80
+ 728 0012 38BD     		pop	{r3, r4, r5, pc}
+ 729              	.LVL52:
+ 730              	.L29:
   28:Core/Src/fsm.c **** 		if(fsmstate->ready){			// if the previous state is ready, enter the new state
- 733              		.loc 1 28 3 is_stmt 1 view .LVU81
- 734 0014 FFF7FEFF 		bl	fsm_exit_state
-ARM GAS  /tmp/ccVvFV2v.s 			page 21
+ 731              		.loc 1 28 3 is_stmt 1 view .LVU81
+ 732 0014 FFF7FEFF 		bl	fsm_exit_state
+ 733              	.LVL53:
+  29:Core/Src/fsm.c **** 			fsmstate->state = fsmstate->next_state;
+ARM GAS  /tmp/ccTMXuIU.s 			page 21
 
 
- 735              	.LVL53:
+ 734              		.loc 1 29 3 view .LVU82
   29:Core/Src/fsm.c **** 			fsmstate->state = fsmstate->next_state;
- 736              		.loc 1 29 3 view .LVU82
+ 735              		.loc 1 29 14 is_stmt 0 view .LVU83
+ 736 0018 E378     		ldrb	r3, [r4, #3]	@ zero_extendqisi2
   29:Core/Src/fsm.c **** 			fsmstate->state = fsmstate->next_state;
- 737              		.loc 1 29 14 is_stmt 0 view .LVU83
- 738 0018 E378     		ldrb	r3, [r4, #3]	@ zero_extendqisi2
-  29:Core/Src/fsm.c **** 			fsmstate->state = fsmstate->next_state;
- 739              		.loc 1 29 5 view .LVU84
- 740 001a 002B     		cmp	r3, #0
- 741 001c F6D0     		beq	.L26
+ 737              		.loc 1 29 5 view .LVU84
+ 738 001a 002B     		cmp	r3, #0
+ 739 001c F6D0     		beq	.L26
   30:Core/Src/fsm.c **** 			fsm_enter_state(fsmstate);
- 742              		.loc 1 30 4 is_stmt 1 view .LVU85
+ 740              		.loc 1 30 4 is_stmt 1 view .LVU85
   30:Core/Src/fsm.c **** 			fsm_enter_state(fsmstate);
- 743              		.loc 1 30 30 is_stmt 0 view .LVU86
- 744 001e 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
+ 741              		.loc 1 30 30 is_stmt 0 view .LVU86
+ 742 001e 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
   30:Core/Src/fsm.c **** 			fsm_enter_state(fsmstate);
- 745              		.loc 1 30 20 view .LVU87
- 746 0020 2370     		strb	r3, [r4]
+ 743              		.loc 1 30 20 view .LVU87
+ 744 0020 2370     		strb	r3, [r4]
   31:Core/Src/fsm.c **** 		}
- 747              		.loc 1 31 4 is_stmt 1 view .LVU88
- 748 0022 2046     		mov	r0, r4
- 749 0024 FFF7FEFF 		bl	fsm_enter_state
- 750              	.LVL54:
- 751 0028 F0E7     		b	.L26
- 752              	.L30:
+ 745              		.loc 1 31 4 is_stmt 1 view .LVU88
+ 746 0022 2046     		mov	r0, r4
+ 747 0024 FFF7FEFF 		bl	fsm_enter_state
+ 748              	.LVL54:
+ 749 0028 F0E7     		b	.L26
+ 750              	.L30:
   41:Core/Src/fsm.c ****             
- 753              		.loc 1 41 13 view .LVU89
- 754 002a 0848     		ldr	r0, .L31
- 755 002c FFF7FEFF 		bl	foc_auto_calibration_update
- 756              	.LVL55:
+ 751              		.loc 1 41 13 view .LVU89
+ 752 002a 0848     		ldr	r0, .L31
+ 753 002c FFF7FEFF 		bl	foc_auto_calibration_update
+ 754              	.LVL55:
   44:Core/Src/fsm.c ****                 is_calibrating = 0; // Xong rồi, nhả FOC ra
- 757              		.loc 1 44 13 view .LVU90
+ 755              		.loc 1 44 13 view .LVU90
   44:Core/Src/fsm.c ****                 is_calibrating = 0; // Xong rồi, nhả FOC ra
- 758              		.loc 1 44 35 is_stmt 0 view .LVU91
- 759 0030 074B     		ldr	r3, .L31+4
- 760 0032 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 756              		.loc 1 44 35 is_stmt 0 view .LVU91
+ 757 0030 074B     		ldr	r3, .L31+4
+ 758 0032 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
   44:Core/Src/fsm.c ****                 is_calibrating = 0; // Xong rồi, nhả FOC ra
- 761              		.loc 1 44 16 view .LVU92
- 762 0034 032B     		cmp	r3, #3
- 763 0036 ECD1     		bne	.L25
+ 759              		.loc 1 44 16 view .LVU92
+ 760 0034 032B     		cmp	r3, #3
+ 761 0036 ECD1     		bne	.L25
   45:Core/Src/fsm.c ****                 printf("Calibration Successful!\r\n");
- 764              		.loc 1 45 17 is_stmt 1 view .LVU93
+ 762              		.loc 1 45 17 is_stmt 1 view .LVU93
   45:Core/Src/fsm.c ****                 printf("Calibration Successful!\r\n");
- 765              		.loc 1 45 32 is_stmt 0 view .LVU94
- 766 0038 0025     		movs	r5, #0
- 767 003a 064B     		ldr	r3, .L31+8
- 768 003c 1D70     		strb	r5, [r3]
+ 763              		.loc 1 45 32 is_stmt 0 view .LVU94
+ 764 0038 0025     		movs	r5, #0
+ 765 003a 064B     		ldr	r3, .L31+8
+ 766 003c 1D70     		strb	r5, [r3]
   46:Core/Src/fsm.c ****                 
- 769              		.loc 1 46 17 is_stmt 1 view .LVU95
- 770 003e 0648     		ldr	r0, .L31+12
- 771 0040 FFF7FEFF 		bl	puts
- 772              	.LVL56:
+ 767              		.loc 1 46 17 is_stmt 1 view .LVU95
+ 768 003e 0648     		ldr	r0, .L31+12
+ 769 0040 FFF7FEFF 		bl	puts
+ 770              	.LVL56:
   49:Core/Src/fsm.c ****                 fsmstate->ready = 0;
- 773              		.loc 1 49 17 view .LVU96
+ 771              		.loc 1 49 17 view .LVU96
   49:Core/Src/fsm.c ****                 fsmstate->ready = 0;
- 774              		.loc 1 49 38 is_stmt 0 view .LVU97
- 775 0044 6570     		strb	r5, [r4, #1]
-ARM GAS  /tmp/ccVvFV2v.s 			page 22
+ 772              		.loc 1 49 38 is_stmt 0 view .LVU97
+ 773 0044 6570     		strb	r5, [r4, #1]
+  50:Core/Src/fsm.c ****             }
+ 774              		.loc 1 50 17 is_stmt 1 view .LVU98
+ARM GAS  /tmp/ccTMXuIU.s 			page 22
 
 
   50:Core/Src/fsm.c ****             }
- 776              		.loc 1 50 17 is_stmt 1 view .LVU98
-  50:Core/Src/fsm.c ****             }
- 777              		.loc 1 50 33 is_stmt 0 view .LVU99
- 778 0046 E570     		strb	r5, [r4, #3]
+ 775              		.loc 1 50 33 is_stmt 0 view .LVU99
+ 776 0046 E570     		strb	r5, [r4, #3]
   85:Core/Src/fsm.c **** 
- 779              		.loc 1 85 1 view .LVU100
- 780 0048 E3E7     		b	.L25
- 781              	.L32:
- 782 004a 00BF     		.align	2
- 783              	.L31:
- 784 004c 00000000 		.word	hfoc
- 785 0050 00000000 		.word	current_cal_state
- 786 0054 00000000 		.word	is_calibrating
- 787 0058 00000000 		.word	.LC57
- 788              		.cfi_endproc
- 789              	.LFE137:
- 791              		.global	__aeabi_d2f
- 792              		.section	.rodata.process_user_input.str1.4,"aMS",%progbits,1
- 793              		.align	2
- 794              	.LC58:
- 795 0000 495F4257 		.ascii	"I_BW set to %f\015\012\000"
- 795      20736574 
- 795      20746F20 
- 795      25660D0A 
- 795      00
- 796 0011 000000   		.align	2
- 797              	.LC59:
- 798 0014 495F4D41 		.ascii	"I_MAX set to %f\015\012\000"
- 798      58207365 
- 798      7420746F 
- 798      2025660D 
- 798      0A00
- 799 0026 0000     		.align	2
- 800              	.LC60:
- 801 0028 495F4657 		.ascii	"I_FW_MAX set to %f\015\012\000"
- 801      5F4D4158 
- 801      20736574 
- 801      20746F20 
- 801      25660D0A 
- 802 003d 000000   		.align	2
- 803              	.LC61:
- 804 0040 54454D50 		.ascii	"TEMP_MAX set to %f\015\012\000"
- 804      5F4D4158 
- 804      20736574 
- 804      20746F20 
- 804      25660D0A 
- 805 0055 000000   		.align	2
- 806              	.LC62:
- 807 0058 495F4D41 		.ascii	"I_MAX_CONT set to %f\015\012\000"
- 807      585F434F 
- 807      4E542073 
- 807      65742074 
- 807      6F202566 
- 808 006f 00       		.align	2
- 809              	.LC63:
- 810 0070 495F4341 		.ascii	"I_CAL set to %f\015\012\000"
-ARM GAS  /tmp/ccVvFV2v.s 			page 23
+ 777              		.loc 1 85 1 view .LVU100
+ 778 0048 E3E7     		b	.L25
+ 779              	.L32:
+ 780 004a 00BF     		.align	2
+ 781              	.L31:
+ 782 004c 00000000 		.word	hfoc
+ 783 0050 00000000 		.word	current_cal_state
+ 784 0054 00000000 		.word	is_calibrating
+ 785 0058 00000000 		.word	.LC57
+ 786              		.cfi_endproc
+ 787              	.LFE137:
+ 789              		.global	__aeabi_d2f
+ 790              		.section	.rodata.process_user_input.str1.4,"aMS",%progbits,1
+ 791              		.align	2
+ 792              	.LC58:
+ 793 0000 495F4257 		.ascii	"I_BW set to %f\015\012\000"
+ 793      20736574 
+ 793      20746F20 
+ 793      25660D0A 
+ 793      00
+ 794 0011 000000   		.align	2
+ 795              	.LC59:
+ 796 0014 495F4D41 		.ascii	"I_MAX set to %f\015\012\000"
+ 796      58207365 
+ 796      7420746F 
+ 796      2025660D 
+ 796      0A00
+ 797 0026 0000     		.align	2
+ 798              	.LC60:
+ 799 0028 495F4657 		.ascii	"I_FW_MAX set to %f\015\012\000"
+ 799      5F4D4158 
+ 799      20736574 
+ 799      20746F20 
+ 799      25660D0A 
+ 800 003d 000000   		.align	2
+ 801              	.LC61:
+ 802 0040 54454D50 		.ascii	"TEMP_MAX set to %f\015\012\000"
+ 802      5F4D4158 
+ 802      20736574 
+ 802      20746F20 
+ 802      25660D0A 
+ 803 0055 000000   		.align	2
+ 804              	.LC62:
+ 805 0058 495F4D41 		.ascii	"I_MAX_CONT set to %f\015\012\000"
+ 805      585F434F 
+ 805      4E542073 
+ 805      65742074 
+ 805      6F202566 
+ 806 006f 00       		.align	2
+ 807              	.LC63:
+ 808 0070 495F4341 		.ascii	"I_CAL set to %f\015\012\000"
+ 808      4C207365 
+ 808      7420746F 
+ARM GAS  /tmp/ccTMXuIU.s 			page 23
 
 
- 810      4C207365 
- 810      7420746F 
- 810      2025660D 
- 810      0A00
- 811 0082 0000     		.align	2
- 812              	.LC64:
- 813 0084 47522073 		.ascii	"GR set to %f\015\012\000"
- 813      65742074 
- 813      6F202566 
- 813      0D0A00
- 814 0093 00       		.align	2
- 815              	.LC65:
- 816 0094 4B542073 		.ascii	"KT set to %f\015\012\000"
- 816      65742074 
- 816      6F202566 
- 816      0D0A00
- 817 00a3 00       		.align	2
- 818              	.LC66:
- 819 00a4 4B505F4D 		.ascii	"KP_MAX set to %f\015\012\000"
- 819      41582073 
- 819      65742074 
- 819      6F202566 
- 819      0D0A00
- 820 00b7 00       		.align	2
- 821              	.LC67:
- 822 00b8 4B445F4D 		.ascii	"KD_MAX set to %f\015\012\000"
- 822      41582073 
- 822      65742074 
- 822      6F202566 
- 822      0D0A00
- 823 00cb 00       		.align	2
- 824              	.LC68:
- 825 00cc 505F4D41 		.ascii	"P_MAX set to %f\015\012\000"
- 825      58207365 
- 825      7420746F 
- 825      2025660D 
- 825      0A00
- 826 00de 0000     		.align	2
- 827              	.LC69:
- 828 00e0 565F4D41 		.ascii	"V_MAX set to %f\015\012\000"
- 828      58207365 
- 828      7420746F 
- 828      2025660D 
- 828      0A00
- 829 00f2 0000     		.align	2
- 830              	.LC70:
- 831 00f4 0A0D2027 		.ascii	"\012\015 '%c' Not a valid command prefix\012\015\012"
- 831      25632720 
- 831      4E6F7420 
- 831      61207661 
- 831      6C696420 
- 832 0119 0D00     		.ascii	"\015\000"
- 833              		.section	.text.process_user_input,"ax",%progbits
- 834              		.align	1
- 835              		.global	process_user_input
- 836              		.syntax unified
- 837              		.thumb
-ARM GAS  /tmp/ccVvFV2v.s 			page 24
+ 808      2025660D 
+ 808      0A00
+ 809 0082 0000     		.align	2
+ 810              	.LC64:
+ 811 0084 47522073 		.ascii	"GR set to %f\015\012\000"
+ 811      65742074 
+ 811      6F202566 
+ 811      0D0A00
+ 812 0093 00       		.align	2
+ 813              	.LC65:
+ 814 0094 4B542073 		.ascii	"KT set to %f\015\012\000"
+ 814      65742074 
+ 814      6F202566 
+ 814      0D0A00
+ 815 00a3 00       		.align	2
+ 816              	.LC66:
+ 817 00a4 4B505F4D 		.ascii	"KP_MAX set to %f\015\012\000"
+ 817      41582073 
+ 817      65742074 
+ 817      6F202566 
+ 817      0D0A00
+ 818 00b7 00       		.align	2
+ 819              	.LC67:
+ 820 00b8 4B445F4D 		.ascii	"KD_MAX set to %f\015\012\000"
+ 820      41582073 
+ 820      65742074 
+ 820      6F202566 
+ 820      0D0A00
+ 821 00cb 00       		.align	2
+ 822              	.LC68:
+ 823 00cc 505F4D41 		.ascii	"P_MAX set to %f\015\012\000"
+ 823      58207365 
+ 823      7420746F 
+ 823      2025660D 
+ 823      0A00
+ 824 00de 0000     		.align	2
+ 825              	.LC69:
+ 826 00e0 565F4D41 		.ascii	"V_MAX set to %f\015\012\000"
+ 826      58207365 
+ 826      7420746F 
+ 826      2025660D 
+ 826      0A00
+ 827 00f2 0000     		.align	2
+ 828              	.LC70:
+ 829 00f4 0A0D2027 		.ascii	"\012\015 '%c' Not a valid command prefix\012\015\012"
+ 829      25632720 
+ 829      4E6F7420 
+ 829      61207661 
+ 829      6C696420 
+ 830 0119 0D00     		.ascii	"\015\000"
+ 831              		.section	.text.process_user_input,"ax",%progbits
+ 832              		.align	1
+ 833              		.global	process_user_input
+ 834              		.syntax unified
+ 835              		.thumb
+ 836              		.thumb_func
+ 837              		.fpu fpv4-sp-d16
+ARM GAS  /tmp/ccTMXuIU.s 			page 24
 
 
- 838              		.thumb_func
- 839              		.fpu fpv4-sp-d16
- 841              	process_user_input:
- 842              	.LVL57:
- 843              	.LFB143:
+ 839              	process_user_input:
+ 840              	.LVL57:
+ 841              	.LFB143:
  259:Core/Src/fsm.c **** 
  260:Core/Src/fsm.c **** void process_user_input(FSMStruct * fsmstate){
- 844              		.loc 1 260 46 is_stmt 1 view -0
- 845              		.cfi_startproc
- 846              		@ args = 0, pretend = 0, frame = 0
- 847              		@ frame_needed = 0, uses_anonymous_args = 0
- 848              		.loc 1 260 46 is_stmt 0 view .LVU102
- 849 0000 10B5     		push	{r4, lr}
- 850              	.LCFI6:
- 851              		.cfi_def_cfa_offset 8
- 852              		.cfi_offset 4, -8
- 853              		.cfi_offset 14, -4
- 854 0002 0446     		mov	r4, r0
+ 842              		.loc 1 260 46 is_stmt 1 view -0
+ 843              		.cfi_startproc
+ 844              		@ args = 0, pretend = 0, frame = 0
+ 845              		@ frame_needed = 0, uses_anonymous_args = 0
+ 846              		.loc 1 260 46 is_stmt 0 view .LVU102
+ 847 0000 10B5     		push	{r4, lr}
+ 848              	.LCFI6:
+ 849              		.cfi_def_cfa_offset 8
+ 850              		.cfi_offset 4, -8
+ 851              		.cfi_offset 14, -4
+ 852 0002 0446     		mov	r4, r0
  261:Core/Src/fsm.c **** 	/* Collects user input from serial (maybe eventually CAN) and updates settings */
  262:Core/Src/fsm.c **** 
  263:Core/Src/fsm.c **** 	switch (fsmstate->cmd_id){
- 855              		.loc 1 263 2 is_stmt 1 view .LVU103
- 856              		.loc 1 263 18 is_stmt 0 view .LVU104
- 857 0004 417B     		ldrb	r1, [r0, #13]	@ zero_extendqisi2
- 858              		.loc 1 263 2 view .LVU105
- 859 0006 A1F16103 		sub	r3, r1, #97
- 860 000a 172B     		cmp	r3, #23
- 861 000c 00F27981 		bhi	.L34
- 862 0010 DFE813F0 		tbh	[pc, r3, lsl #1]
- 863              	.L36:
- 864 0014 B500     		.2byte	(.L48-.L36)/2
- 865 0016 1800     		.2byte	(.L47-.L36)/2
- 866 0018 9700     		.2byte	(.L46-.L36)/2
- 867 001a 2101     		.2byte	(.L45-.L36)/2
- 868 001c 7701     		.2byte	(.L34-.L36)/2
- 869 001e 5B00     		.2byte	(.L44-.L36)/2
- 870 0020 D300     		.2byte	(.L43-.L36)/2
- 871 0022 7900     		.2byte	(.L42-.L36)/2
- 872 0024 3500     		.2byte	(.L38-.L36)/2
- 873 0026 7701     		.2byte	(.L34-.L36)/2
- 874 0028 ED00     		.2byte	(.L41-.L36)/2
- 875 002a 3D00     		.2byte	(.L40-.L36)/2
- 876 002c 3500     		.2byte	(.L38-.L36)/2
- 877 002e 7701     		.2byte	(.L34-.L36)/2
- 878 0030 7701     		.2byte	(.L34-.L36)/2
- 879 0032 3B01     		.2byte	(.L39-.L36)/2
- 880 0034 7701     		.2byte	(.L34-.L36)/2
- 881 0036 7701     		.2byte	(.L34-.L36)/2
- 882 0038 7701     		.2byte	(.L34-.L36)/2
- 883 003a 3500     		.2byte	(.L38-.L36)/2
- 884 003c 7701     		.2byte	(.L34-.L36)/2
- 885 003e 5901     		.2byte	(.L37-.L36)/2
- 886 0040 7701     		.2byte	(.L34-.L36)/2
- 887 0042 0701     		.2byte	(.L35-.L36)/2
- 888              		.p2align 1
- 889              	.L47:
+ 853              		.loc 1 263 2 is_stmt 1 view .LVU103
+ 854              		.loc 1 263 18 is_stmt 0 view .LVU104
+ 855 0004 417B     		ldrb	r1, [r0, #13]	@ zero_extendqisi2
+ 856              		.loc 1 263 2 view .LVU105
+ 857 0006 A1F16103 		sub	r3, r1, #97
+ 858 000a 172B     		cmp	r3, #23
+ 859 000c 00F27981 		bhi	.L34
+ 860 0010 DFE813F0 		tbh	[pc, r3, lsl #1]
+ 861              	.L36:
+ 862 0014 B500     		.2byte	(.L48-.L36)/2
+ 863 0016 1800     		.2byte	(.L47-.L36)/2
+ 864 0018 9700     		.2byte	(.L46-.L36)/2
+ 865 001a 2101     		.2byte	(.L45-.L36)/2
+ 866 001c 7701     		.2byte	(.L34-.L36)/2
+ 867 001e 5B00     		.2byte	(.L44-.L36)/2
+ 868 0020 D300     		.2byte	(.L43-.L36)/2
+ 869 0022 7900     		.2byte	(.L42-.L36)/2
+ 870 0024 3500     		.2byte	(.L38-.L36)/2
+ 871 0026 7701     		.2byte	(.L34-.L36)/2
+ 872 0028 ED00     		.2byte	(.L41-.L36)/2
+ 873 002a 3D00     		.2byte	(.L40-.L36)/2
+ 874 002c 3500     		.2byte	(.L38-.L36)/2
+ 875 002e 7701     		.2byte	(.L34-.L36)/2
+ 876 0030 7701     		.2byte	(.L34-.L36)/2
+ 877 0032 3B01     		.2byte	(.L39-.L36)/2
+ 878 0034 7701     		.2byte	(.L34-.L36)/2
+ 879 0036 7701     		.2byte	(.L34-.L36)/2
+ 880 0038 7701     		.2byte	(.L34-.L36)/2
+ 881 003a 3500     		.2byte	(.L38-.L36)/2
+ 882 003c 7701     		.2byte	(.L34-.L36)/2
+ 883 003e 5901     		.2byte	(.L37-.L36)/2
+ 884 0040 7701     		.2byte	(.L34-.L36)/2
+ 885 0042 0701     		.2byte	(.L35-.L36)/2
+ 886              		.p2align 1
+ 887              	.L47:
  264:Core/Src/fsm.c **** 		case 'b':
-ARM GAS  /tmp/ccVvFV2v.s 			page 25
-
-
  265:Core/Src/fsm.c **** 			I_BW = fmaxf(fminf(atof(fsmstate->cmd_buff), 2000.0f), 100.0f);
- 890              		.loc 1 265 4 is_stmt 1 view .LVU106
- 891              		.loc 1 265 23 is_stmt 0 view .LVU107
- 892 0044 0430     		adds	r0, r0, #4
- 893              	.LVL58:
- 894              		.loc 1 265 23 view .LVU108
- 895 0046 FFF7FEFF 		bl	atof
- 896              	.LVL59:
- 897 004a 51EC100B 		vmov	r0, r1, d0
- 898              		.loc 1 265 11 view .LVU109
- 899 004e FFF7FEFF 		bl	__aeabi_d2f
- 900              	.LVL60:
- 901 0052 DFEDAE0A 		vldr.32	s1, .L50
- 902 0056 00EE100A 		vmov	s0, r0
- 903 005a FFF7FEFF 		bl	fminf
- 904              	.LVL61:
- 905 005e DFEDAC0A 		vldr.32	s1, .L50+4
- 906 0062 FFF7FEFF 		bl	fmaxf
- 907              	.LVL62:
- 908 0066 10EE100A 		vmov	r0, s0
- 909              		.loc 1 265 9 view .LVU110
- 910 006a AA4B     		ldr	r3, .L50+8
- 911 006c 83ED020A 		vstr.32	s0, [r3, #8]
+ 888              		.loc 1 265 4 is_stmt 1 view .LVU106
+ARM GAS  /tmp/ccTMXuIU.s 			page 25
+
+
+ 889              		.loc 1 265 23 is_stmt 0 view .LVU107
+ 890 0044 0430     		adds	r0, r0, #4
+ 891              	.LVL58:
+ 892              		.loc 1 265 23 view .LVU108
+ 893 0046 FFF7FEFF 		bl	atof
+ 894              	.LVL59:
+ 895 004a 51EC100B 		vmov	r0, r1, d0
+ 896              		.loc 1 265 11 view .LVU109
+ 897 004e FFF7FEFF 		bl	__aeabi_d2f
+ 898              	.LVL60:
+ 899 0052 DFEDAE0A 		vldr.32	s1, .L50
+ 900 0056 00EE100A 		vmov	s0, r0
+ 901 005a FFF7FEFF 		bl	fminf
+ 902              	.LVL61:
+ 903 005e DFEDAC0A 		vldr.32	s1, .L50+4
+ 904 0062 FFF7FEFF 		bl	fmaxf
+ 905              	.LVL62:
+ 906 0066 10EE100A 		vmov	r0, s0
+ 907              		.loc 1 265 9 view .LVU110
+ 908 006a AA4B     		ldr	r3, .L50+8
+ 909 006c 83ED020A 		vstr.32	s0, [r3, #8]
  266:Core/Src/fsm.c **** 			printf("I_BW set to %f\r\n", I_BW);
- 912              		.loc 1 266 4 is_stmt 1 view .LVU111
- 913 0070 FFF7FEFF 		bl	__aeabi_f2d
- 914              	.LVL63:
- 915 0074 0246     		mov	r2, r0
- 916 0076 0B46     		mov	r3, r1
- 917 0078 A748     		ldr	r0, .L50+12
- 918 007a FFF7FEFF 		bl	printf
- 919              	.LVL64:
+ 910              		.loc 1 266 4 is_stmt 1 view .LVU111
+ 911 0070 FFF7FEFF 		bl	__aeabi_f2d
+ 912              	.LVL63:
+ 913 0074 0246     		mov	r2, r0
+ 914 0076 0B46     		mov	r3, r1
+ 915 0078 A748     		ldr	r0, .L50+12
+ 916 007a FFF7FEFF 		bl	printf
+ 917              	.LVL64:
  267:Core/Src/fsm.c **** 			break;
- 920              		.loc 1 267 4 view .LVU112
- 921              	.L38:
+ 918              		.loc 1 267 4 view .LVU112
+ 919              	.L38:
  268:Core/Src/fsm.c **** 		case 'i':
  269:Core/Src/fsm.c **** //			 CAN_ID = atoi(fsmstate->cmd_buff);
  270:Core/Src/fsm.c **** //			 printf("CAN_ID set to %d\r\n", CAN_ID);
@@ -1498,11 +1496,11 @@ ARM GAS  /tmp/ccVvFV2v.s 			page 1
  287:Core/Src/fsm.c **** 			break;
  288:Core/Src/fsm.c **** 		case 'h':
  289:Core/Src/fsm.c **** 			TEMP_MAX = fmaxf(fminf(atof(fsmstate->cmd_buff), 150.0f), 0.0f);
-ARM GAS  /tmp/ccVvFV2v.s 			page 26
-
-
  290:Core/Src/fsm.c **** 			printf("TEMP_MAX set to %f\r\n", TEMP_MAX);
  291:Core/Src/fsm.c **** 			break;
+ARM GAS  /tmp/ccTMXuIU.s 			page 26
+
+
  292:Core/Src/fsm.c **** 		case 'c':
  293:Core/Src/fsm.c **** 			I_MAX_CONT = fmaxf(fminf(atof(fsmstate->cmd_buff), 40.0f), 0.0f);
  294:Core/Src/fsm.c **** 			printf("I_MAX_CONT set to %f\r\n", I_MAX_CONT);
@@ -1551,877 +1549,877 @@ ARM GAS  /tmp/ccVvFV2v.s 			page 1
  337:Core/Src/fsm.c **** //	 preference_writer_load(prefs);
  338:Core/Src/fsm.c **** 
  339:Core/Src/fsm.c **** 	enter_setup_state();
- 922              		.loc 1 339 2 view .LVU113
- 923 007e FFF7FEFF 		bl	enter_setup_state
- 924              	.LVL65:
+ 920              		.loc 1 339 2 view .LVU113
+ 921 007e FFF7FEFF 		bl	enter_setup_state
+ 922              	.LVL65:
  340:Core/Src/fsm.c **** 
  341:Core/Src/fsm.c **** 	fsmstate->bytecount = 0;
- 925              		.loc 1 341 2 view .LVU114
- 926              		.loc 1 341 22 is_stmt 0 view .LVU115
-ARM GAS  /tmp/ccVvFV2v.s 			page 27
+ 923              		.loc 1 341 2 view .LVU114
+ 924              		.loc 1 341 22 is_stmt 0 view .LVU115
+ 925 0082 0023     		movs	r3, #0
+ 926 0084 2373     		strb	r3, [r4, #12]
+ARM GAS  /tmp/ccTMXuIU.s 			page 27
 
 
- 927 0082 0023     		movs	r3, #0
- 928 0084 2373     		strb	r3, [r4, #12]
  342:Core/Src/fsm.c **** 	fsmstate->cmd_id = 0;
- 929              		.loc 1 342 2 is_stmt 1 view .LVU116
- 930              		.loc 1 342 19 is_stmt 0 view .LVU117
- 931 0086 6373     		strb	r3, [r4, #13]
+ 927              		.loc 1 342 2 is_stmt 1 view .LVU116
+ 928              		.loc 1 342 19 is_stmt 0 view .LVU117
+ 929 0086 6373     		strb	r3, [r4, #13]
  343:Core/Src/fsm.c **** 	memset(&fsmstate->cmd_buff, 0, sizeof(fsmstate->cmd_buff));
- 932              		.loc 1 343 2 is_stmt 1 view .LVU118
- 933 0088 6360     		str	r3, [r4, #4]	@ unaligned
- 934 008a A360     		str	r3, [r4, #8]	@ unaligned
+ 930              		.loc 1 343 2 is_stmt 1 view .LVU118
+ 931 0088 6360     		str	r3, [r4, #4]	@ unaligned
+ 932 008a A360     		str	r3, [r4, #8]	@ unaligned
  344:Core/Src/fsm.c **** }
- 935              		.loc 1 344 1 is_stmt 0 view .LVU119
- 936 008c 10BD     		pop	{r4, pc}
- 937              	.LVL66:
- 938              	.L40:
+ 933              		.loc 1 344 1 is_stmt 0 view .LVU119
+ 934 008c 10BD     		pop	{r4, pc}
+ 935              	.LVL66:
+ 936              	.L40:
  277:Core/Src/fsm.c **** 			printf("I_MAX set to %f\r\n", I_MAX);
- 939              		.loc 1 277 4 is_stmt 1 view .LVU120
+ 937              		.loc 1 277 4 is_stmt 1 view .LVU120
  277:Core/Src/fsm.c **** 			printf("I_MAX set to %f\r\n", I_MAX);
- 940              		.loc 1 277 24 is_stmt 0 view .LVU121
- 941 008e 0430     		adds	r0, r0, #4
- 942              	.LVL67:
+ 938              		.loc 1 277 24 is_stmt 0 view .LVU121
+ 939 008e 0430     		adds	r0, r0, #4
+ 940              	.LVL67:
  277:Core/Src/fsm.c **** 			printf("I_MAX set to %f\r\n", I_MAX);
- 943              		.loc 1 277 24 view .LVU122
- 944 0090 FFF7FEFF 		bl	atof
- 945              	.LVL68:
- 946 0094 51EC100B 		vmov	r0, r1, d0
+ 941              		.loc 1 277 24 view .LVU122
+ 942 0090 FFF7FEFF 		bl	atof
+ 943              	.LVL68:
+ 944 0094 51EC100B 		vmov	r0, r1, d0
  277:Core/Src/fsm.c **** 			printf("I_MAX set to %f\r\n", I_MAX);
- 947              		.loc 1 277 12 view .LVU123
- 948 0098 FFF7FEFF 		bl	__aeabi_d2f
- 949              	.LVL69:
- 950 009c DFED9F0A 		vldr.32	s1, .L50+16
- 951 00a0 00EE100A 		vmov	s0, r0
- 952 00a4 FFF7FEFF 		bl	fminf
- 953              	.LVL70:
- 954 00a8 DFED9D0A 		vldr.32	s1, .L50+20
- 955 00ac FFF7FEFF 		bl	fmaxf
- 956              	.LVL71:
- 957 00b0 10EE100A 		vmov	r0, s0
+ 945              		.loc 1 277 12 view .LVU123
+ 946 0098 FFF7FEFF 		bl	__aeabi_d2f
+ 947              	.LVL69:
+ 948 009c DFED9F0A 		vldr.32	s1, .L50+16
+ 949 00a0 00EE100A 		vmov	s0, r0
+ 950 00a4 FFF7FEFF 		bl	fminf
+ 951              	.LVL70:
+ 952 00a8 DFED9D0A 		vldr.32	s1, .L50+20
+ 953 00ac FFF7FEFF 		bl	fmaxf
+ 954              	.LVL71:
+ 955 00b0 10EE100A 		vmov	r0, s0
  277:Core/Src/fsm.c **** 			printf("I_MAX set to %f\r\n", I_MAX);
- 958              		.loc 1 277 10 view .LVU124
- 959 00b4 974B     		ldr	r3, .L50+8
- 960 00b6 83ED030A 		vstr.32	s0, [r3, #12]
+ 956              		.loc 1 277 10 view .LVU124
+ 957 00b4 974B     		ldr	r3, .L50+8
+ 958 00b6 83ED030A 		vstr.32	s0, [r3, #12]
  278:Core/Src/fsm.c **** 			break;
- 961              		.loc 1 278 4 is_stmt 1 view .LVU125
- 962 00ba FFF7FEFF 		bl	__aeabi_f2d
- 963              	.LVL72:
- 964 00be 0246     		mov	r2, r0
- 965 00c0 0B46     		mov	r3, r1
- 966 00c2 9848     		ldr	r0, .L50+24
- 967 00c4 FFF7FEFF 		bl	printf
- 968              	.LVL73:
+ 959              		.loc 1 278 4 is_stmt 1 view .LVU125
+ 960 00ba FFF7FEFF 		bl	__aeabi_f2d
+ 961              	.LVL72:
+ 962 00be 0246     		mov	r2, r0
+ 963 00c0 0B46     		mov	r3, r1
+ 964 00c2 9848     		ldr	r0, .L50+24
+ 965 00c4 FFF7FEFF 		bl	printf
+ 966              	.LVL73:
  279:Core/Src/fsm.c **** 		case 'f':
- 969              		.loc 1 279 4 view .LVU126
- 970 00c8 D9E7     		b	.L38
- 971              	.LVL74:
- 972              	.L44:
+ 967              		.loc 1 279 4 view .LVU126
+ 968 00c8 D9E7     		b	.L38
+ 969              	.LVL74:
+ 970              	.L44:
  281:Core/Src/fsm.c **** 			printf("I_FW_MAX set to %f\r\n", I_FW_MAX);
-ARM GAS  /tmp/ccVvFV2v.s 			page 28
+ 971              		.loc 1 281 4 view .LVU127
+ 281:Core/Src/fsm.c **** 			printf("I_FW_MAX set to %f\r\n", I_FW_MAX);
+ARM GAS  /tmp/ccTMXuIU.s 			page 28
 
 
- 973              		.loc 1 281 4 view .LVU127
+ 972              		.loc 1 281 27 is_stmt 0 view .LVU128
+ 973 00ca 0430     		adds	r0, r0, #4
+ 974              	.LVL75:
  281:Core/Src/fsm.c **** 			printf("I_FW_MAX set to %f\r\n", I_FW_MAX);
- 974              		.loc 1 281 27 is_stmt 0 view .LVU128
- 975 00ca 0430     		adds	r0, r0, #4
- 976              	.LVL75:
+ 975              		.loc 1 281 27 view .LVU129
+ 976 00cc FFF7FEFF 		bl	atof
+ 977              	.LVL76:
+ 978 00d0 51EC100B 		vmov	r0, r1, d0
  281:Core/Src/fsm.c **** 			printf("I_FW_MAX set to %f\r\n", I_FW_MAX);
- 977              		.loc 1 281 27 view .LVU129
- 978 00cc FFF7FEFF 		bl	atof
- 979              	.LVL76:
- 980 00d0 51EC100B 		vmov	r0, r1, d0
+ 979              		.loc 1 281 15 view .LVU130
+ 980 00d4 FFF7FEFF 		bl	__aeabi_d2f
+ 981              	.LVL77:
+ 982 00d8 DFED930A 		vldr.32	s1, .L50+28
+ 983 00dc 00EE100A 		vmov	s0, r0
+ 984 00e0 FFF7FEFF 		bl	fminf
+ 985              	.LVL78:
+ 986 00e4 DFED8E0A 		vldr.32	s1, .L50+20
+ 987 00e8 FFF7FEFF 		bl	fmaxf
+ 988              	.LVL79:
+ 989 00ec 10EE100A 		vmov	r0, s0
  281:Core/Src/fsm.c **** 			printf("I_FW_MAX set to %f\r\n", I_FW_MAX);
- 981              		.loc 1 281 15 view .LVU130
- 982 00d4 FFF7FEFF 		bl	__aeabi_d2f
- 983              	.LVL77:
- 984 00d8 DFED930A 		vldr.32	s1, .L50+28
- 985 00dc 00EE100A 		vmov	s0, r0
- 986 00e0 FFF7FEFF 		bl	fminf
- 987              	.LVL78:
- 988 00e4 DFED8E0A 		vldr.32	s1, .L50+20
- 989 00e8 FFF7FEFF 		bl	fmaxf
- 990              	.LVL79:
- 991 00ec 10EE100A 		vmov	r0, s0
- 281:Core/Src/fsm.c **** 			printf("I_FW_MAX set to %f\r\n", I_FW_MAX);
- 992              		.loc 1 281 13 view .LVU131
- 993 00f0 884B     		ldr	r3, .L50+8
- 994 00f2 83ED060A 		vstr.32	s0, [r3, #24]
+ 990              		.loc 1 281 13 view .LVU131
+ 991 00f0 884B     		ldr	r3, .L50+8
+ 992 00f2 83ED060A 		vstr.32	s0, [r3, #24]
  282:Core/Src/fsm.c **** 			break;
- 995              		.loc 1 282 4 is_stmt 1 view .LVU132
- 996 00f6 FFF7FEFF 		bl	__aeabi_f2d
- 997              	.LVL80:
- 998 00fa 0246     		mov	r2, r0
- 999 00fc 0B46     		mov	r3, r1
- 1000 00fe 8B48     		ldr	r0, .L50+32
- 1001 0100 FFF7FEFF 		bl	printf
- 1002              	.LVL81:
+ 993              		.loc 1 282 4 is_stmt 1 view .LVU132
+ 994 00f6 FFF7FEFF 		bl	__aeabi_f2d
+ 995              	.LVL80:
+ 996 00fa 0246     		mov	r2, r0
+ 997 00fc 0B46     		mov	r3, r1
+ 998 00fe 8B48     		ldr	r0, .L50+32
+ 999 0100 FFF7FEFF 		bl	printf
+ 1000              	.LVL81:
  283:Core/Src/fsm.c **** 		case 't':
- 1003              		.loc 1 283 4 view .LVU133
- 1004 0104 BBE7     		b	.L38
- 1005              	.LVL82:
- 1006              	.L42:
+ 1001              		.loc 1 283 4 view .LVU133
+ 1002 0104 BBE7     		b	.L38
+ 1003              	.LVL82:
+ 1004              	.L42:
  289:Core/Src/fsm.c **** 			printf("TEMP_MAX set to %f\r\n", TEMP_MAX);
- 1007              		.loc 1 289 4 view .LVU134
+ 1005              		.loc 1 289 4 view .LVU134
  289:Core/Src/fsm.c **** 			printf("TEMP_MAX set to %f\r\n", TEMP_MAX);
- 1008              		.loc 1 289 27 is_stmt 0 view .LVU135
- 1009 0106 0430     		adds	r0, r0, #4
- 1010              	.LVL83:
+ 1006              		.loc 1 289 27 is_stmt 0 view .LVU135
+ 1007 0106 0430     		adds	r0, r0, #4
+ 1008              	.LVL83:
  289:Core/Src/fsm.c **** 			printf("TEMP_MAX set to %f\r\n", TEMP_MAX);
- 1011              		.loc 1 289 27 view .LVU136
- 1012 0108 FFF7FEFF 		bl	atof
- 1013              	.LVL84:
- 1014 010c 51EC100B 		vmov	r0, r1, d0
+ 1009              		.loc 1 289 27 view .LVU136
+ 1010 0108 FFF7FEFF 		bl	atof
+ 1011              	.LVL84:
+ 1012 010c 51EC100B 		vmov	r0, r1, d0
  289:Core/Src/fsm.c **** 			printf("TEMP_MAX set to %f\r\n", TEMP_MAX);
- 1015              		.loc 1 289 15 view .LVU137
- 1016 0110 FFF7FEFF 		bl	__aeabi_d2f
- 1017              	.LVL85:
- 1018 0114 DFED860A 		vldr.32	s1, .L50+36
- 1019 0118 00EE100A 		vmov	s0, r0
-ARM GAS  /tmp/ccVvFV2v.s 			page 29
+ 1013              		.loc 1 289 15 view .LVU137
+ 1014 0110 FFF7FEFF 		bl	__aeabi_d2f
+ 1015              	.LVL85:
+ 1016 0114 DFED860A 		vldr.32	s1, .L50+36
+ 1017 0118 00EE100A 		vmov	s0, r0
+ 1018 011c FFF7FEFF 		bl	fminf
+ 1019              	.LVL86:
+ARM GAS  /tmp/ccTMXuIU.s 			page 29
 
 
- 1020 011c FFF7FEFF 		bl	fminf
- 1021              	.LVL86:
- 1022 0120 DFED7F0A 		vldr.32	s1, .L50+20
- 1023 0124 FFF7FEFF 		bl	fmaxf
- 1024              	.LVL87:
- 1025 0128 10EE100A 		vmov	r0, s0
+ 1020 0120 DFED7F0A 		vldr.32	s1, .L50+20
+ 1021 0124 FFF7FEFF 		bl	fmaxf
+ 1022              	.LVL87:
+ 1023 0128 10EE100A 		vmov	r0, s0
  289:Core/Src/fsm.c **** 			printf("TEMP_MAX set to %f\r\n", TEMP_MAX);
- 1026              		.loc 1 289 13 view .LVU138
- 1027 012c 794B     		ldr	r3, .L50+8
- 1028 012e 83ED080A 		vstr.32	s0, [r3, #32]
+ 1024              		.loc 1 289 13 view .LVU138
+ 1025 012c 794B     		ldr	r3, .L50+8
+ 1026 012e 83ED080A 		vstr.32	s0, [r3, #32]
  290:Core/Src/fsm.c **** 			break;
- 1029              		.loc 1 290 4 is_stmt 1 view .LVU139
- 1030 0132 FFF7FEFF 		bl	__aeabi_f2d
- 1031              	.LVL88:
- 1032 0136 0246     		mov	r2, r0
- 1033 0138 0B46     		mov	r3, r1
- 1034 013a 7E48     		ldr	r0, .L50+40
- 1035 013c FFF7FEFF 		bl	printf
- 1036              	.LVL89:
+ 1027              		.loc 1 290 4 is_stmt 1 view .LVU139
+ 1028 0132 FFF7FEFF 		bl	__aeabi_f2d
+ 1029              	.LVL88:
+ 1030 0136 0246     		mov	r2, r0
+ 1031 0138 0B46     		mov	r3, r1
+ 1032 013a 7E48     		ldr	r0, .L50+40
+ 1033 013c FFF7FEFF 		bl	printf
+ 1034              	.LVL89:
  291:Core/Src/fsm.c **** 		case 'c':
- 1037              		.loc 1 291 4 view .LVU140
- 1038 0140 9DE7     		b	.L38
- 1039              	.LVL90:
- 1040              	.L46:
+ 1035              		.loc 1 291 4 view .LVU140
+ 1036 0140 9DE7     		b	.L38
+ 1037              	.LVL90:
+ 1038              	.L46:
  293:Core/Src/fsm.c **** 			printf("I_MAX_CONT set to %f\r\n", I_MAX_CONT);
- 1041              		.loc 1 293 4 view .LVU141
+ 1039              		.loc 1 293 4 view .LVU141
  293:Core/Src/fsm.c **** 			printf("I_MAX_CONT set to %f\r\n", I_MAX_CONT);
- 1042              		.loc 1 293 29 is_stmt 0 view .LVU142
- 1043 0142 0430     		adds	r0, r0, #4
- 1044              	.LVL91:
+ 1040              		.loc 1 293 29 is_stmt 0 view .LVU142
+ 1041 0142 0430     		adds	r0, r0, #4
+ 1042              	.LVL91:
  293:Core/Src/fsm.c **** 			printf("I_MAX_CONT set to %f\r\n", I_MAX_CONT);
- 1045              		.loc 1 293 29 view .LVU143
- 1046 0144 FFF7FEFF 		bl	atof
- 1047              	.LVL92:
- 1048 0148 51EC100B 		vmov	r0, r1, d0
+ 1043              		.loc 1 293 29 view .LVU143
+ 1044 0144 FFF7FEFF 		bl	atof
+ 1045              	.LVL92:
+ 1046 0148 51EC100B 		vmov	r0, r1, d0
  293:Core/Src/fsm.c **** 			printf("I_MAX_CONT set to %f\r\n", I_MAX_CONT);
- 1049              		.loc 1 293 17 view .LVU144
- 1050 014c FFF7FEFF 		bl	__aeabi_d2f
- 1051              	.LVL93:
- 1052 0150 DFED790A 		vldr.32	s1, .L50+44
- 1053 0154 00EE100A 		vmov	s0, r0
- 1054 0158 FFF7FEFF 		bl	fminf
- 1055              	.LVL94:
- 1056 015c DFED700A 		vldr.32	s1, .L50+20
- 1057 0160 FFF7FEFF 		bl	fmaxf
- 1058              	.LVL95:
- 1059 0164 10EE100A 		vmov	r0, s0
+ 1047              		.loc 1 293 17 view .LVU144
+ 1048 014c FFF7FEFF 		bl	__aeabi_d2f
+ 1049              	.LVL93:
+ 1050 0150 DFED790A 		vldr.32	s1, .L50+44
+ 1051 0154 00EE100A 		vmov	s0, r0
+ 1052 0158 FFF7FEFF 		bl	fminf
+ 1053              	.LVL94:
+ 1054 015c DFED700A 		vldr.32	s1, .L50+20
+ 1055 0160 FFF7FEFF 		bl	fmaxf
+ 1056              	.LVL95:
+ 1057 0164 10EE100A 		vmov	r0, s0
  293:Core/Src/fsm.c **** 			printf("I_MAX_CONT set to %f\r\n", I_MAX_CONT);
- 1060              		.loc 1 293 15 view .LVU145
- 1061 0168 6A4B     		ldr	r3, .L50+8
- 1062 016a 83ED090A 		vstr.32	s0, [r3, #36]
+ 1058              		.loc 1 293 15 view .LVU145
+ 1059 0168 6A4B     		ldr	r3, .L50+8
+ 1060 016a 83ED090A 		vstr.32	s0, [r3, #36]
  294:Core/Src/fsm.c **** 			break;
- 1063              		.loc 1 294 4 is_stmt 1 view .LVU146
- 1064 016e FFF7FEFF 		bl	__aeabi_f2d
- 1065              	.LVL96:
- 1066 0172 0246     		mov	r2, r0
- 1067 0174 0B46     		mov	r3, r1
-ARM GAS  /tmp/ccVvFV2v.s 			page 30
+ 1061              		.loc 1 294 4 is_stmt 1 view .LVU146
+ 1062 016e FFF7FEFF 		bl	__aeabi_f2d
+ 1063              	.LVL96:
+ 1064 0172 0246     		mov	r2, r0
+ 1065 0174 0B46     		mov	r3, r1
+ 1066 0176 7148     		ldr	r0, .L50+48
+ 1067 0178 FFF7FEFF 		bl	printf
+ARM GAS  /tmp/ccTMXuIU.s 			page 30
 
 
- 1068 0176 7148     		ldr	r0, .L50+48
- 1069 0178 FFF7FEFF 		bl	printf
- 1070              	.LVL97:
+ 1068              	.LVL97:
  295:Core/Src/fsm.c **** 		case 'a':
- 1071              		.loc 1 295 4 view .LVU147
- 1072 017c 7FE7     		b	.L38
- 1073              	.LVL98:
- 1074              	.L48:
+ 1069              		.loc 1 295 4 view .LVU147
+ 1070 017c 7FE7     		b	.L38
+ 1071              	.LVL98:
+ 1072              	.L48:
  297:Core/Src/fsm.c **** 			printf("I_CAL set to %f\r\n", I_CAL);
- 1075              		.loc 1 297 4 view .LVU148
+ 1073              		.loc 1 297 4 view .LVU148
  297:Core/Src/fsm.c **** 			printf("I_CAL set to %f\r\n", I_CAL);
- 1076              		.loc 1 297 24 is_stmt 0 view .LVU149
- 1077 017e 0430     		adds	r0, r0, #4
- 1078              	.LVL99:
+ 1074              		.loc 1 297 24 is_stmt 0 view .LVU149
+ 1075 017e 0430     		adds	r0, r0, #4
+ 1076              	.LVL99:
  297:Core/Src/fsm.c **** 			printf("I_CAL set to %f\r\n", I_CAL);
- 1079              		.loc 1 297 24 view .LVU150
- 1080 0180 FFF7FEFF 		bl	atof
- 1081              	.LVL100:
- 1082 0184 51EC100B 		vmov	r0, r1, d0
+ 1077              		.loc 1 297 24 view .LVU150
+ 1078 0180 FFF7FEFF 		bl	atof
+ 1079              	.LVL100:
+ 1080 0184 51EC100B 		vmov	r0, r1, d0
  297:Core/Src/fsm.c **** 			printf("I_CAL set to %f\r\n", I_CAL);
- 1083              		.loc 1 297 12 view .LVU151
- 1084 0188 FFF7FEFF 		bl	__aeabi_d2f
- 1085              	.LVL101:
- 1086 018c F3EE040A 		vmov.f32	s1, #2.0e+1
- 1087 0190 00EE100A 		vmov	s0, r0
- 1088 0194 FFF7FEFF 		bl	fminf
- 1089              	.LVL102:
- 1090 0198 DFED610A 		vldr.32	s1, .L50+20
- 1091 019c FFF7FEFF 		bl	fmaxf
- 1092              	.LVL103:
- 1093 01a0 10EE100A 		vmov	r0, s0
+ 1081              		.loc 1 297 12 view .LVU151
+ 1082 0188 FFF7FEFF 		bl	__aeabi_d2f
+ 1083              	.LVL101:
+ 1084 018c F3EE040A 		vmov.f32	s1, #2.0e+1
+ 1085 0190 00EE100A 		vmov	s0, r0
+ 1086 0194 FFF7FEFF 		bl	fminf
+ 1087              	.LVL102:
+ 1088 0198 DFED610A 		vldr.32	s1, .L50+20
+ 1089 019c FFF7FEFF 		bl	fmaxf
+ 1090              	.LVL103:
+ 1091 01a0 10EE100A 		vmov	r0, s0
  297:Core/Src/fsm.c **** 			printf("I_CAL set to %f\r\n", I_CAL);
- 1094              		.loc 1 297 10 view .LVU152
- 1095 01a4 5B4B     		ldr	r3, .L50+8
- 1096 01a6 83ED120A 		vstr.32	s0, [r3, #72]
+ 1092              		.loc 1 297 10 view .LVU152
+ 1093 01a4 5B4B     		ldr	r3, .L50+8
+ 1094 01a6 83ED120A 		vstr.32	s0, [r3, #72]
  298:Core/Src/fsm.c **** 			break;
- 1097              		.loc 1 298 4 is_stmt 1 view .LVU153
- 1098 01aa FFF7FEFF 		bl	__aeabi_f2d
- 1099              	.LVL104:
- 1100 01ae 0246     		mov	r2, r0
- 1101 01b0 0B46     		mov	r3, r1
- 1102 01b2 6348     		ldr	r0, .L50+52
- 1103 01b4 FFF7FEFF 		bl	printf
- 1104              	.LVL105:
+ 1095              		.loc 1 298 4 is_stmt 1 view .LVU153
+ 1096 01aa FFF7FEFF 		bl	__aeabi_f2d
+ 1097              	.LVL104:
+ 1098 01ae 0246     		mov	r2, r0
+ 1099 01b0 0B46     		mov	r3, r1
+ 1100 01b2 6348     		ldr	r0, .L50+52
+ 1101 01b4 FFF7FEFF 		bl	printf
+ 1102              	.LVL105:
  299:Core/Src/fsm.c **** 		case 'g':
- 1105              		.loc 1 299 4 view .LVU154
- 1106 01b8 61E7     		b	.L38
- 1107              	.LVL106:
- 1108              	.L43:
+ 1103              		.loc 1 299 4 view .LVU154
+ 1104 01b8 61E7     		b	.L38
+ 1105              	.LVL106:
+ 1106              	.L43:
  301:Core/Src/fsm.c **** 			printf("GR set to %f\r\n", GR);
- 1109              		.loc 1 301 4 view .LVU155
+ 1107              		.loc 1 301 4 view .LVU155
  301:Core/Src/fsm.c **** 			printf("GR set to %f\r\n", GR);
- 1110              		.loc 1 301 15 is_stmt 0 view .LVU156
- 1111 01ba 0430     		adds	r0, r0, #4
- 1112              	.LVL107:
+ 1108              		.loc 1 301 15 is_stmt 0 view .LVU156
+ 1109 01ba 0430     		adds	r0, r0, #4
+ 1110              	.LVL107:
  301:Core/Src/fsm.c **** 			printf("GR set to %f\r\n", GR);
- 1113              		.loc 1 301 15 view .LVU157
-ARM GAS  /tmp/ccVvFV2v.s 			page 31
+ 1111              		.loc 1 301 15 view .LVU157
+ 1112 01bc FFF7FEFF 		bl	atof
+ 1113              	.LVL108:
+ARM GAS  /tmp/ccTMXuIU.s 			page 31
 
 
- 1114 01bc FFF7FEFF 		bl	atof
- 1115              	.LVL108:
- 1116 01c0 51EC100B 		vmov	r0, r1, d0
+ 1114 01c0 51EC100B 		vmov	r0, r1, d0
  301:Core/Src/fsm.c **** 			printf("GR set to %f\r\n", GR);
- 1117              		.loc 1 301 9 view .LVU158
- 1118 01c4 FFF7FEFF 		bl	__aeabi_d2f
- 1119              	.LVL109:
- 1120 01c8 DFED5E0A 		vldr.32	s1, .L50+56
- 1121 01cc 00EE100A 		vmov	s0, r0
- 1122 01d0 FFF7FEFF 		bl	fmaxf
- 1123              	.LVL110:
- 1124 01d4 10EE100A 		vmov	r0, s0
+ 1115              		.loc 1 301 9 view .LVU158
+ 1116 01c4 FFF7FEFF 		bl	__aeabi_d2f
+ 1117              	.LVL109:
+ 1118 01c8 DFED5E0A 		vldr.32	s1, .L50+56
+ 1119 01cc 00EE100A 		vmov	s0, r0
+ 1120 01d0 FFF7FEFF 		bl	fmaxf
+ 1121              	.LVL110:
+ 1122 01d4 10EE100A 		vmov	r0, s0
  301:Core/Src/fsm.c **** 			printf("GR set to %f\r\n", GR);
- 1125              		.loc 1 301 7 view .LVU159
- 1126 01d8 4E4B     		ldr	r3, .L50+8
- 1127 01da 83ED110A 		vstr.32	s0, [r3, #68]
+ 1123              		.loc 1 301 7 view .LVU159
+ 1124 01d8 4E4B     		ldr	r3, .L50+8
+ 1125 01da 83ED110A 		vstr.32	s0, [r3, #68]
  302:Core/Src/fsm.c **** 			break;
- 1128              		.loc 1 302 4 is_stmt 1 view .LVU160
- 1129 01de FFF7FEFF 		bl	__aeabi_f2d
- 1130              	.LVL111:
- 1131 01e2 0246     		mov	r2, r0
- 1132 01e4 0B46     		mov	r3, r1
- 1133 01e6 5848     		ldr	r0, .L50+60
- 1134 01e8 FFF7FEFF 		bl	printf
- 1135              	.LVL112:
+ 1126              		.loc 1 302 4 is_stmt 1 view .LVU160
+ 1127 01de FFF7FEFF 		bl	__aeabi_f2d
+ 1128              	.LVL111:
+ 1129 01e2 0246     		mov	r2, r0
+ 1130 01e4 0B46     		mov	r3, r1
+ 1131 01e6 5848     		ldr	r0, .L50+60
+ 1132 01e8 FFF7FEFF 		bl	printf
+ 1133              	.LVL112:
  303:Core/Src/fsm.c **** 		case 'k':
- 1136              		.loc 1 303 4 view .LVU161
- 1137 01ec 47E7     		b	.L38
- 1138              	.LVL113:
- 1139              	.L41:
+ 1134              		.loc 1 303 4 view .LVU161
+ 1135 01ec 47E7     		b	.L38
+ 1136              	.LVL113:
+ 1137              	.L41:
  305:Core/Src/fsm.c **** 			printf("KT set to %f\r\n", KT);
- 1140              		.loc 1 305 4 view .LVU162
+ 1138              		.loc 1 305 4 view .LVU162
  305:Core/Src/fsm.c **** 			printf("KT set to %f\r\n", KT);
- 1141              		.loc 1 305 15 is_stmt 0 view .LVU163
- 1142 01ee 0430     		adds	r0, r0, #4
- 1143              	.LVL114:
+ 1139              		.loc 1 305 15 is_stmt 0 view .LVU163
+ 1140 01ee 0430     		adds	r0, r0, #4
+ 1141              	.LVL114:
  305:Core/Src/fsm.c **** 			printf("KT set to %f\r\n", KT);
- 1144              		.loc 1 305 15 view .LVU164
- 1145 01f0 FFF7FEFF 		bl	atof
- 1146              	.LVL115:
- 1147 01f4 51EC100B 		vmov	r0, r1, d0
+ 1142              		.loc 1 305 15 view .LVU164
+ 1143 01f0 FFF7FEFF 		bl	atof
+ 1144              	.LVL115:
+ 1145 01f4 51EC100B 		vmov	r0, r1, d0
  305:Core/Src/fsm.c **** 			printf("KT set to %f\r\n", KT);
- 1148              		.loc 1 305 9 view .LVU165
- 1149 01f8 FFF7FEFF 		bl	__aeabi_d2f
- 1150              	.LVL116:
- 1151 01fc DFED530A 		vldr.32	s1, .L50+64
- 1152 0200 00EE100A 		vmov	s0, r0
- 1153 0204 FFF7FEFF 		bl	fmaxf
- 1154              	.LVL117:
- 1155 0208 10EE100A 		vmov	r0, s0
+ 1146              		.loc 1 305 9 view .LVU165
+ 1147 01f8 FFF7FEFF 		bl	__aeabi_d2f
+ 1148              	.LVL116:
+ 1149 01fc DFED530A 		vldr.32	s1, .L50+64
+ 1150 0200 00EE100A 		vmov	s0, r0
+ 1151 0204 FFF7FEFF 		bl	fmaxf
+ 1152              	.LVL117:
+ 1153 0208 10EE100A 		vmov	r0, s0
  305:Core/Src/fsm.c **** 			printf("KT set to %f\r\n", KT);
- 1156              		.loc 1 305 7 view .LVU166
- 1157 020c 414B     		ldr	r3, .L50+8
- 1158 020e 83ED0E0A 		vstr.32	s0, [r3, #56]
+ 1154              		.loc 1 305 7 view .LVU166
+ 1155 020c 414B     		ldr	r3, .L50+8
+ 1156 020e 83ED0E0A 		vstr.32	s0, [r3, #56]
  306:Core/Src/fsm.c **** 			break;
- 1159              		.loc 1 306 4 is_stmt 1 view .LVU167
- 1160 0212 FFF7FEFF 		bl	__aeabi_f2d
-ARM GAS  /tmp/ccVvFV2v.s 			page 32
+ 1157              		.loc 1 306 4 is_stmt 1 view .LVU167
+ 1158 0212 FFF7FEFF 		bl	__aeabi_f2d
+ 1159              	.LVL118:
+ 1160 0216 0246     		mov	r2, r0
+ARM GAS  /tmp/ccTMXuIU.s 			page 32
 
 
- 1161              	.LVL118:
- 1162 0216 0246     		mov	r2, r0
- 1163 0218 0B46     		mov	r3, r1
- 1164 021a 4D48     		ldr	r0, .L50+68
- 1165 021c FFF7FEFF 		bl	printf
- 1166              	.LVL119:
+ 1161 0218 0B46     		mov	r3, r1
+ 1162 021a 4D48     		ldr	r0, .L50+68
+ 1163 021c FFF7FEFF 		bl	printf
+ 1164              	.LVL119:
  307:Core/Src/fsm.c **** 		case 'x':
- 1167              		.loc 1 307 4 view .LVU168
- 1168 0220 2DE7     		b	.L38
- 1169              	.LVL120:
- 1170              	.L35:
+ 1165              		.loc 1 307 4 view .LVU168
+ 1166 0220 2DE7     		b	.L38
+ 1167              	.LVL120:
+ 1168              	.L35:
  309:Core/Src/fsm.c **** 			printf("KP_MAX set to %f\r\n", KP_MAX);
- 1171              		.loc 1 309 4 view .LVU169
+ 1169              		.loc 1 309 4 view .LVU169
  309:Core/Src/fsm.c **** 			printf("KP_MAX set to %f\r\n", KP_MAX);
- 1172              		.loc 1 309 19 is_stmt 0 view .LVU170
- 1173 0222 0430     		adds	r0, r0, #4
- 1174              	.LVL121:
+ 1170              		.loc 1 309 19 is_stmt 0 view .LVU170
+ 1171 0222 0430     		adds	r0, r0, #4
+ 1172              	.LVL121:
  309:Core/Src/fsm.c **** 			printf("KP_MAX set to %f\r\n", KP_MAX);
- 1175              		.loc 1 309 19 view .LVU171
- 1176 0224 FFF7FEFF 		bl	atof
- 1177              	.LVL122:
- 1178 0228 51EC100B 		vmov	r0, r1, d0
+ 1173              		.loc 1 309 19 view .LVU171
+ 1174 0224 FFF7FEFF 		bl	atof
+ 1175              	.LVL122:
+ 1176 0228 51EC100B 		vmov	r0, r1, d0
  309:Core/Src/fsm.c **** 			printf("KP_MAX set to %f\r\n", KP_MAX);
- 1179              		.loc 1 309 13 view .LVU172
- 1180 022c FFF7FEFF 		bl	__aeabi_d2f
- 1181              	.LVL123:
- 1182 0230 DFED3B0A 		vldr.32	s1, .L50+20
- 1183 0234 00EE100A 		vmov	s0, r0
- 1184 0238 FFF7FEFF 		bl	fmaxf
- 1185              	.LVL124:
- 1186 023c 10EE100A 		vmov	r0, s0
+ 1177              		.loc 1 309 13 view .LVU172
+ 1178 022c FFF7FEFF 		bl	__aeabi_d2f
+ 1179              	.LVL123:
+ 1180 0230 DFED3B0A 		vldr.32	s1, .L50+20
+ 1181 0234 00EE100A 		vmov	s0, r0
+ 1182 0238 FFF7FEFF 		bl	fmaxf
+ 1183              	.LVL124:
+ 1184 023c 10EE100A 		vmov	r0, s0
  309:Core/Src/fsm.c **** 			printf("KP_MAX set to %f\r\n", KP_MAX);
- 1187              		.loc 1 309 11 view .LVU173
- 1188 0240 344B     		ldr	r3, .L50+8
- 1189 0242 83ED190A 		vstr.32	s0, [r3, #100]
+ 1185              		.loc 1 309 11 view .LVU173
+ 1186 0240 344B     		ldr	r3, .L50+8
+ 1187 0242 83ED190A 		vstr.32	s0, [r3, #100]
  310:Core/Src/fsm.c **** 			break;
- 1190              		.loc 1 310 4 is_stmt 1 view .LVU174
- 1191 0246 FFF7FEFF 		bl	__aeabi_f2d
- 1192              	.LVL125:
- 1193 024a 0246     		mov	r2, r0
- 1194 024c 0B46     		mov	r3, r1
- 1195 024e 4148     		ldr	r0, .L50+72
- 1196 0250 FFF7FEFF 		bl	printf
- 1197              	.LVL126:
+ 1188              		.loc 1 310 4 is_stmt 1 view .LVU174
+ 1189 0246 FFF7FEFF 		bl	__aeabi_f2d
+ 1190              	.LVL125:
+ 1191 024a 0246     		mov	r2, r0
+ 1192 024c 0B46     		mov	r3, r1
+ 1193 024e 4148     		ldr	r0, .L50+72
+ 1194 0250 FFF7FEFF 		bl	printf
+ 1195              	.LVL126:
  311:Core/Src/fsm.c **** 		case 'd':
- 1198              		.loc 1 311 4 view .LVU175
- 1199 0254 13E7     		b	.L38
- 1200              	.LVL127:
- 1201              	.L45:
+ 1196              		.loc 1 311 4 view .LVU175
+ 1197 0254 13E7     		b	.L38
+ 1198              	.LVL127:
+ 1199              	.L45:
  313:Core/Src/fsm.c **** 			printf("KD_MAX set to %f\r\n", KD_MAX);
- 1202              		.loc 1 313 4 view .LVU176
+ 1200              		.loc 1 313 4 view .LVU176
  313:Core/Src/fsm.c **** 			printf("KD_MAX set to %f\r\n", KD_MAX);
- 1203              		.loc 1 313 19 is_stmt 0 view .LVU177
- 1204 0256 0430     		adds	r0, r0, #4
- 1205              	.LVL128:
+ 1201              		.loc 1 313 19 is_stmt 0 view .LVU177
+ 1202 0256 0430     		adds	r0, r0, #4
+ 1203              	.LVL128:
  313:Core/Src/fsm.c **** 			printf("KD_MAX set to %f\r\n", KD_MAX);
- 1206              		.loc 1 313 19 view .LVU178
-ARM GAS  /tmp/ccVvFV2v.s 			page 33
+ 1204              		.loc 1 313 19 view .LVU178
+ 1205 0258 FFF7FEFF 		bl	atof
+ 1206              	.LVL129:
+ARM GAS  /tmp/ccTMXuIU.s 			page 33
 
 
- 1207 0258 FFF7FEFF 		bl	atof
- 1208              	.LVL129:
- 1209 025c 51EC100B 		vmov	r0, r1, d0
+ 1207 025c 51EC100B 		vmov	r0, r1, d0
  313:Core/Src/fsm.c **** 			printf("KD_MAX set to %f\r\n", KD_MAX);
- 1210              		.loc 1 313 13 view .LVU179
- 1211 0260 FFF7FEFF 		bl	__aeabi_d2f
- 1212              	.LVL130:
- 1213 0264 DFED2E0A 		vldr.32	s1, .L50+20
- 1214 0268 00EE100A 		vmov	s0, r0
- 1215 026c FFF7FEFF 		bl	fmaxf
- 1216              	.LVL131:
- 1217 0270 10EE100A 		vmov	r0, s0
+ 1208              		.loc 1 313 13 view .LVU179
+ 1209 0260 FFF7FEFF 		bl	__aeabi_d2f
+ 1210              	.LVL130:
+ 1211 0264 DFED2E0A 		vldr.32	s1, .L50+20
+ 1212 0268 00EE100A 		vmov	s0, r0
+ 1213 026c FFF7FEFF 		bl	fmaxf
+ 1214              	.LVL131:
+ 1215 0270 10EE100A 		vmov	r0, s0
  313:Core/Src/fsm.c **** 			printf("KD_MAX set to %f\r\n", KD_MAX);
- 1218              		.loc 1 313 11 view .LVU180
- 1219 0274 274B     		ldr	r3, .L50+8
- 1220 0276 83ED1A0A 		vstr.32	s0, [r3, #104]
+ 1216              		.loc 1 313 11 view .LVU180
+ 1217 0274 274B     		ldr	r3, .L50+8
+ 1218 0276 83ED1A0A 		vstr.32	s0, [r3, #104]
  314:Core/Src/fsm.c **** 			break;
- 1221              		.loc 1 314 4 is_stmt 1 view .LVU181
- 1222 027a FFF7FEFF 		bl	__aeabi_f2d
- 1223              	.LVL132:
- 1224 027e 0246     		mov	r2, r0
- 1225 0280 0B46     		mov	r3, r1
- 1226 0282 3548     		ldr	r0, .L50+76
- 1227 0284 FFF7FEFF 		bl	printf
- 1228              	.LVL133:
+ 1219              		.loc 1 314 4 is_stmt 1 view .LVU181
+ 1220 027a FFF7FEFF 		bl	__aeabi_f2d
+ 1221              	.LVL132:
+ 1222 027e 0246     		mov	r2, r0
+ 1223 0280 0B46     		mov	r3, r1
+ 1224 0282 3548     		ldr	r0, .L50+76
+ 1225 0284 FFF7FEFF 		bl	printf
+ 1226              	.LVL133:
  315:Core/Src/fsm.c **** 		case 'p':
- 1229              		.loc 1 315 4 view .LVU182
- 1230 0288 F9E6     		b	.L38
- 1231              	.LVL134:
- 1232              	.L39:
+ 1227              		.loc 1 315 4 view .LVU182
+ 1228 0288 F9E6     		b	.L38
+ 1229              	.LVL134:
+ 1230              	.L39:
  317:Core/Src/fsm.c **** 			P_MIN = -P_MAX;
- 1233              		.loc 1 317 4 view .LVU183
+ 1231              		.loc 1 317 4 view .LVU183
  317:Core/Src/fsm.c **** 			P_MIN = -P_MAX;
- 1234              		.loc 1 317 18 is_stmt 0 view .LVU184
- 1235 028a 0430     		adds	r0, r0, #4
- 1236              	.LVL135:
+ 1232              		.loc 1 317 18 is_stmt 0 view .LVU184
+ 1233 028a 0430     		adds	r0, r0, #4
+ 1234              	.LVL135:
  317:Core/Src/fsm.c **** 			P_MIN = -P_MAX;
- 1237              		.loc 1 317 18 view .LVU185
- 1238 028c FFF7FEFF 		bl	atof
- 1239              	.LVL136:
- 1240 0290 51EC100B 		vmov	r0, r1, d0
+ 1235              		.loc 1 317 18 view .LVU185
+ 1236 028c FFF7FEFF 		bl	atof
+ 1237              	.LVL136:
+ 1238 0290 51EC100B 		vmov	r0, r1, d0
  317:Core/Src/fsm.c **** 			P_MIN = -P_MAX;
- 1241              		.loc 1 317 12 view .LVU186
- 1242 0294 FFF7FEFF 		bl	__aeabi_d2f
- 1243              	.LVL137:
- 1244 0298 DFED210A 		vldr.32	s1, .L50+20
- 1245 029c 00EE100A 		vmov	s0, r0
- 1246 02a0 FFF7FEFF 		bl	fmaxf
- 1247              	.LVL138:
- 1248 02a4 10EE100A 		vmov	r0, s0
+ 1239              		.loc 1 317 12 view .LVU186
+ 1240 0294 FFF7FEFF 		bl	__aeabi_d2f
+ 1241              	.LVL137:
+ 1242 0298 DFED210A 		vldr.32	s1, .L50+20
+ 1243 029c 00EE100A 		vmov	s0, r0
+ 1244 02a0 FFF7FEFF 		bl	fmaxf
+ 1245              	.LVL138:
+ 1246 02a4 10EE100A 		vmov	r0, s0
  317:Core/Src/fsm.c **** 			P_MIN = -P_MAX;
- 1249              		.loc 1 317 10 view .LVU187
- 1250 02a8 1A4B     		ldr	r3, .L50+8
- 1251 02aa 83ED140A 		vstr.32	s0, [r3, #80]
+ 1247              		.loc 1 317 10 view .LVU187
+ 1248 02a8 1A4B     		ldr	r3, .L50+8
+ 1249 02aa 83ED140A 		vstr.32	s0, [r3, #80]
  318:Core/Src/fsm.c **** 			printf("P_MAX set to %f\r\n", P_MAX);
- 1252              		.loc 1 318 4 is_stmt 1 view .LVU188
+ 1250              		.loc 1 318 4 is_stmt 1 view .LVU188
  318:Core/Src/fsm.c **** 			printf("P_MAX set to %f\r\n", P_MAX);
-ARM GAS  /tmp/ccVvFV2v.s 			page 34
+ 1251              		.loc 1 318 12 is_stmt 0 view .LVU189
+ 1252 02ae F1EE407A 		vneg.f32	s15, s0
+ARM GAS  /tmp/ccTMXuIU.s 			page 34
 
 
- 1253              		.loc 1 318 12 is_stmt 0 view .LVU189
- 1254 02ae F1EE407A 		vneg.f32	s15, s0
  318:Core/Src/fsm.c **** 			printf("P_MAX set to %f\r\n", P_MAX);
- 1255              		.loc 1 318 10 view .LVU190
- 1256 02b2 C3ED137A 		vstr.32	s15, [r3, #76]
+ 1253              		.loc 1 318 10 view .LVU190
+ 1254 02b2 C3ED137A 		vstr.32	s15, [r3, #76]
  319:Core/Src/fsm.c **** 			break;
- 1257              		.loc 1 319 4 is_stmt 1 view .LVU191
- 1258 02b6 FFF7FEFF 		bl	__aeabi_f2d
- 1259              	.LVL139:
- 1260 02ba 0246     		mov	r2, r0
- 1261 02bc 0B46     		mov	r3, r1
- 1262 02be 2748     		ldr	r0, .L50+80
- 1263 02c0 FFF7FEFF 		bl	printf
- 1264              	.LVL140:
+ 1255              		.loc 1 319 4 is_stmt 1 view .LVU191
+ 1256 02b6 FFF7FEFF 		bl	__aeabi_f2d
+ 1257              	.LVL139:
+ 1258 02ba 0246     		mov	r2, r0
+ 1259 02bc 0B46     		mov	r3, r1
+ 1260 02be 2748     		ldr	r0, .L50+80
+ 1261 02c0 FFF7FEFF 		bl	printf
+ 1262              	.LVL140:
  320:Core/Src/fsm.c **** 		case 'v':
- 1265              		.loc 1 320 4 view .LVU192
- 1266 02c4 DBE6     		b	.L38
- 1267              	.LVL141:
- 1268              	.L37:
+ 1263              		.loc 1 320 4 view .LVU192
+ 1264 02c4 DBE6     		b	.L38
+ 1265              	.LVL141:
+ 1266              	.L37:
  322:Core/Src/fsm.c **** 			V_MIN = -V_MAX;
- 1269              		.loc 1 322 4 view .LVU193
+ 1267              		.loc 1 322 4 view .LVU193
  322:Core/Src/fsm.c **** 			V_MIN = -V_MAX;
- 1270              		.loc 1 322 18 is_stmt 0 view .LVU194
- 1271 02c6 0430     		adds	r0, r0, #4
- 1272              	.LVL142:
+ 1268              		.loc 1 322 18 is_stmt 0 view .LVU194
+ 1269 02c6 0430     		adds	r0, r0, #4
+ 1270              	.LVL142:
  322:Core/Src/fsm.c **** 			V_MIN = -V_MAX;
- 1273              		.loc 1 322 18 view .LVU195
- 1274 02c8 FFF7FEFF 		bl	atof
- 1275              	.LVL143:
- 1276 02cc 51EC100B 		vmov	r0, r1, d0
+ 1271              		.loc 1 322 18 view .LVU195
+ 1272 02c8 FFF7FEFF 		bl	atof
+ 1273              	.LVL143:
+ 1274 02cc 51EC100B 		vmov	r0, r1, d0
  322:Core/Src/fsm.c **** 			V_MIN = -V_MAX;
- 1277              		.loc 1 322 12 view .LVU196
- 1278 02d0 FFF7FEFF 		bl	__aeabi_d2f
- 1279              	.LVL144:
- 1280 02d4 DFED120A 		vldr.32	s1, .L50+20
- 1281 02d8 00EE100A 		vmov	s0, r0
- 1282 02dc FFF7FEFF 		bl	fmaxf
- 1283              	.LVL145:
- 1284 02e0 10EE100A 		vmov	r0, s0
+ 1275              		.loc 1 322 12 view .LVU196
+ 1276 02d0 FFF7FEFF 		bl	__aeabi_d2f
+ 1277              	.LVL144:
+ 1278 02d4 DFED120A 		vldr.32	s1, .L50+20
+ 1279 02d8 00EE100A 		vmov	s0, r0
+ 1280 02dc FFF7FEFF 		bl	fmaxf
+ 1281              	.LVL145:
+ 1282 02e0 10EE100A 		vmov	r0, s0
  322:Core/Src/fsm.c **** 			V_MIN = -V_MAX;
- 1285              		.loc 1 322 10 view .LVU197
- 1286 02e4 0B4B     		ldr	r3, .L50+8
- 1287 02e6 83ED160A 		vstr.32	s0, [r3, #88]
+ 1283              		.loc 1 322 10 view .LVU197
+ 1284 02e4 0B4B     		ldr	r3, .L50+8
+ 1285 02e6 83ED160A 		vstr.32	s0, [r3, #88]
  323:Core/Src/fsm.c **** 			printf("V_MAX set to %f\r\n", V_MAX);
- 1288              		.loc 1 323 4 is_stmt 1 view .LVU198
+ 1286              		.loc 1 323 4 is_stmt 1 view .LVU198
  323:Core/Src/fsm.c **** 			printf("V_MAX set to %f\r\n", V_MAX);
- 1289              		.loc 1 323 12 is_stmt 0 view .LVU199
- 1290 02ea F1EE407A 		vneg.f32	s15, s0
+ 1287              		.loc 1 323 12 is_stmt 0 view .LVU199
+ 1288 02ea F1EE407A 		vneg.f32	s15, s0
  323:Core/Src/fsm.c **** 			printf("V_MAX set to %f\r\n", V_MAX);
- 1291              		.loc 1 323 10 view .LVU200
- 1292 02ee C3ED157A 		vstr.32	s15, [r3, #84]
+ 1289              		.loc 1 323 10 view .LVU200
+ 1290 02ee C3ED157A 		vstr.32	s15, [r3, #84]
  324:Core/Src/fsm.c **** 			break;
- 1293              		.loc 1 324 4 is_stmt 1 view .LVU201
- 1294 02f2 FFF7FEFF 		bl	__aeabi_f2d
- 1295              	.LVL146:
- 1296 02f6 0246     		mov	r2, r0
- 1297 02f8 0B46     		mov	r3, r1
-ARM GAS  /tmp/ccVvFV2v.s 			page 35
+ 1291              		.loc 1 324 4 is_stmt 1 view .LVU201
+ 1292 02f2 FFF7FEFF 		bl	__aeabi_f2d
+ 1293              	.LVL146:
+ 1294 02f6 0246     		mov	r2, r0
+ 1295 02f8 0B46     		mov	r3, r1
+ 1296 02fa 1948     		ldr	r0, .L50+84
+ 1297 02fc FFF7FEFF 		bl	printf
+ARM GAS  /tmp/ccTMXuIU.s 			page 35
 
 
- 1298 02fa 1948     		ldr	r0, .L50+84
- 1299 02fc FFF7FEFF 		bl	printf
- 1300              	.LVL147:
+ 1298              	.LVL147:
  325:Core/Src/fsm.c **** 		default:
- 1301              		.loc 1 325 4 view .LVU202
- 1302 0300 BDE6     		b	.L38
- 1303              	.LVL148:
- 1304              	.L34:
+ 1299              		.loc 1 325 4 view .LVU202
+ 1300 0300 BDE6     		b	.L38
+ 1301              	.LVL148:
+ 1302              	.L34:
  327:Core/Src/fsm.c **** 			break;
- 1305              		.loc 1 327 5 view .LVU203
- 1306 0302 1848     		ldr	r0, .L50+88
- 1307              	.LVL149:
+ 1303              		.loc 1 327 5 view .LVU203
+ 1304 0302 1848     		ldr	r0, .L50+88
+ 1305              	.LVL149:
  327:Core/Src/fsm.c **** 			break;
- 1308              		.loc 1 327 5 is_stmt 0 view .LVU204
- 1309 0304 FFF7FEFF 		bl	printf
- 1310              	.LVL150:
+ 1306              		.loc 1 327 5 is_stmt 0 view .LVU204
+ 1307 0304 FFF7FEFF 		bl	printf
+ 1308              	.LVL150:
  328:Core/Src/fsm.c **** 
- 1311              		.loc 1 328 4 is_stmt 1 view .LVU205
- 1312 0308 B9E6     		b	.L38
- 1313              	.L51:
- 1314 030a 00BF     		.align	2
- 1315              	.L50:
- 1316 030c 0000FA44 		.word	1157234688
- 1317 0310 0000C842 		.word	1120403456
- 1318 0314 00000000 		.word	__float_reg
- 1319 0318 00000000 		.word	.LC58
- 1320 031c 00009642 		.word	1117126656
- 1321 0320 00000000 		.word	0
- 1322 0324 14000000 		.word	.LC59
- 1323 0328 00000442 		.word	1107558400
- 1324 032c 28000000 		.word	.LC60
- 1325 0330 00001643 		.word	1125515264
- 1326 0334 40000000 		.word	.LC61
- 1327 0338 00002042 		.word	1109393408
- 1328 033c 58000000 		.word	.LC62
- 1329 0340 70000000 		.word	.LC63
- 1330 0344 6F12833A 		.word	981668463
- 1331 0348 84000000 		.word	.LC64
- 1332 034c 17B7D138 		.word	953267991
- 1333 0350 94000000 		.word	.LC65
- 1334 0354 A4000000 		.word	.LC66
- 1335 0358 B8000000 		.word	.LC67
- 1336 035c CC000000 		.word	.LC68
- 1337 0360 E0000000 		.word	.LC69
- 1338 0364 F4000000 		.word	.LC70
- 1339              		.cfi_endproc
- 1340              	.LFE143:
- 1342              		.section	.rodata.update_fsm.str1.4,"aMS",%progbits,1
- 1343              		.align	2
- 1344              	.LC71:
- 1345 0000 0A0D2020 		.ascii	"\012\015  Saved new zero position: \000"
- 1345      53617665 
- 1345      64206E65 
- 1345      77207A65 
- 1345      726F2070 
- 1346              		.section	.text.update_fsm,"ax",%progbits
- 1347              		.align	1
-ARM GAS  /tmp/ccVvFV2v.s 			page 36
+ 1309              		.loc 1 328 4 is_stmt 1 view .LVU205
+ 1310 0308 B9E6     		b	.L38
+ 1311              	.L51:
+ 1312 030a 00BF     		.align	2
+ 1313              	.L50:
+ 1314 030c 0000FA44 		.word	1157234688
+ 1315 0310 0000C842 		.word	1120403456
+ 1316 0314 00000000 		.word	__float_reg
+ 1317 0318 00000000 		.word	.LC58
+ 1318 031c 00009642 		.word	1117126656
+ 1319 0320 00000000 		.word	0
+ 1320 0324 14000000 		.word	.LC59
+ 1321 0328 00000442 		.word	1107558400
+ 1322 032c 28000000 		.word	.LC60
+ 1323 0330 00001643 		.word	1125515264
+ 1324 0334 40000000 		.word	.LC61
+ 1325 0338 00002042 		.word	1109393408
+ 1326 033c 58000000 		.word	.LC62
+ 1327 0340 70000000 		.word	.LC63
+ 1328 0344 6F12833A 		.word	981668463
+ 1329 0348 84000000 		.word	.LC64
+ 1330 034c 17B7D138 		.word	953267991
+ 1331 0350 94000000 		.word	.LC65
+ 1332 0354 A4000000 		.word	.LC66
+ 1333 0358 B8000000 		.word	.LC67
+ 1334 035c CC000000 		.word	.LC68
+ 1335 0360 E0000000 		.word	.LC69
+ 1336 0364 F4000000 		.word	.LC70
+ 1337              		.cfi_endproc
+ 1338              	.LFE143:
+ 1340              		.section	.rodata.update_fsm.str1.4,"aMS",%progbits,1
+ 1341              		.align	2
+ 1342              	.LC71:
+ 1343 0000 0A0D2020 		.ascii	"\012\015  Saved new zero position: \000"
+ 1343      53617665 
+ 1343      64206E65 
+ 1343      77207A65 
+ 1343      726F2070 
+ 1344              		.section	.text.update_fsm,"ax",%progbits
+ 1345              		.align	1
+ 1346              		.global	update_fsm
+ 1347              		.syntax unified
+ARM GAS  /tmp/ccTMXuIU.s 			page 36
 
 
- 1348              		.global	update_fsm
- 1349              		.syntax unified
- 1350              		.thumb
- 1351              		.thumb_func
- 1352              		.fpu fpv4-sp-d16
- 1354              	update_fsm:
- 1355              	.LVL151:
- 1356              	.LFB140:
+ 1348              		.thumb
+ 1349              		.thumb_func
+ 1350              		.fpu fpv4-sp-d16
+ 1352              	update_fsm:
+ 1353              	.LVL151:
+ 1354              	.LFB140:
  158:Core/Src/fsm.c **** 	/*update_fsm is only run when new state-change information is received
- 1357              		.loc 1 158 54 view -0
- 1358              		.cfi_startproc
- 1359              		@ args = 0, pretend = 0, frame = 0
- 1360              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1355              		.loc 1 158 54 view -0
+ 1356              		.cfi_startproc
+ 1357              		@ args = 0, pretend = 0, frame = 0
+ 1358              		@ frame_needed = 0, uses_anonymous_args = 0
  158:Core/Src/fsm.c **** 	/*update_fsm is only run when new state-change information is received
- 1361              		.loc 1 158 54 is_stmt 0 view .LVU207
- 1362 0000 08B5     		push	{r3, lr}
- 1363              	.LCFI7:
- 1364              		.cfi_def_cfa_offset 8
- 1365              		.cfi_offset 3, -8
- 1366              		.cfi_offset 14, -4
+ 1359              		.loc 1 158 54 is_stmt 0 view .LVU207
+ 1360 0000 08B5     		push	{r3, lr}
+ 1361              	.LCFI7:
+ 1362              		.cfi_def_cfa_offset 8
+ 1363              		.cfi_offset 3, -8
+ 1364              		.cfi_offset 14, -4
  162:Core/Src/fsm.c **** 		fsmstate->next_state = MENU_MODE;
- 1367              		.loc 1 162 2 is_stmt 1 view .LVU208
+ 1365              		.loc 1 162 2 is_stmt 1 view .LVU208
  162:Core/Src/fsm.c **** 		fsmstate->next_state = MENU_MODE;
- 1368              		.loc 1 162 4 is_stmt 0 view .LVU209
- 1369 0002 1B29     		cmp	r1, #27
- 1370 0004 04D0     		beq	.L67
+ 1366              		.loc 1 162 4 is_stmt 0 view .LVU209
+ 1367 0002 1B29     		cmp	r1, #27
+ 1368 0004 04D0     		beq	.L67
  167:Core/Src/fsm.c **** 		case MENU_MODE:
- 1371              		.loc 1 167 2 is_stmt 1 view .LVU210
+ 1369              		.loc 1 167 2 is_stmt 1 view .LVU210
  167:Core/Src/fsm.c **** 		case MENU_MODE:
- 1372              		.loc 1 167 17 is_stmt 0 view .LVU211
- 1373 0006 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 1370              		.loc 1 167 17 is_stmt 0 view .LVU211
+ 1371 0006 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
  167:Core/Src/fsm.c **** 		case MENU_MODE:
- 1374              		.loc 1 167 2 view .LVU212
- 1375 0008 33B1     		cbz	r3, .L55
- 1376 000a 042B     		cmp	r3, #4
- 1377 000c 52D0     		beq	.L56
- 1378              	.LVL152:
- 1379              	.L52:
+ 1372              		.loc 1 167 2 view .LVU212
+ 1373 0008 33B1     		cbz	r3, .L55
+ 1374 000a 042B     		cmp	r3, #4
+ 1375 000c 52D0     		beq	.L56
+ 1376              	.LVL152:
+ 1377              	.L52:
  216:Core/Src/fsm.c **** 
- 1380              		.loc 1 216 1 view .LVU213
- 1381 000e 08BD     		pop	{r3, pc}
- 1382              	.LVL153:
- 1383              	.L67:
+ 1378              		.loc 1 216 1 view .LVU213
+ 1379 000e 08BD     		pop	{r3, pc}
+ 1380              	.LVL153:
+ 1381              	.L67:
  163:Core/Src/fsm.c **** 		fsmstate->ready = 0;
- 1384              		.loc 1 163 3 is_stmt 1 view .LVU214
+ 1382              		.loc 1 163 3 is_stmt 1 view .LVU214
  163:Core/Src/fsm.c **** 		fsmstate->ready = 0;
- 1385              		.loc 1 163 24 is_stmt 0 view .LVU215
- 1386 0010 0023     		movs	r3, #0
- 1387 0012 4370     		strb	r3, [r0, #1]
+ 1383              		.loc 1 163 24 is_stmt 0 view .LVU215
+ 1384 0010 0023     		movs	r3, #0
+ 1385 0012 4370     		strb	r3, [r0, #1]
  164:Core/Src/fsm.c **** 		return;
- 1388              		.loc 1 164 3 is_stmt 1 view .LVU216
+ 1386              		.loc 1 164 3 is_stmt 1 view .LVU216
  164:Core/Src/fsm.c **** 		return;
- 1389              		.loc 1 164 19 is_stmt 0 view .LVU217
- 1390 0014 C370     		strb	r3, [r0, #3]
+ 1387              		.loc 1 164 19 is_stmt 0 view .LVU217
+ 1388 0014 C370     		strb	r3, [r0, #3]
  165:Core/Src/fsm.c **** 	}
- 1391              		.loc 1 165 3 is_stmt 1 view .LVU218
- 1392 0016 FAE7     		b	.L52
-ARM GAS  /tmp/ccVvFV2v.s 			page 37
+ 1389              		.loc 1 165 3 is_stmt 1 view .LVU218
+ 1390 0016 FAE7     		b	.L52
+ 1391              	.L55:
+ 169:Core/Src/fsm.c **** 				case CAL_CMD:
+ARM GAS  /tmp/ccTMXuIU.s 			page 37
 
 
- 1393              	.L55:
+ 1392              		.loc 1 169 4 view .LVU219
+ 1393 0018 6339     		subs	r1, r1, #99
+ 1394              	.LVL154:
  169:Core/Src/fsm.c **** 				case CAL_CMD:
- 1394              		.loc 1 169 4 view .LVU219
- 1395 0018 6339     		subs	r1, r1, #99
- 1396              	.LVL154:
- 169:Core/Src/fsm.c **** 				case CAL_CMD:
- 1397              		.loc 1 169 4 is_stmt 0 view .LVU220
- 1398 001a 1729     		cmp	r1, #23
- 1399 001c F7D8     		bhi	.L52
- 1400 001e 01A3     		adr	r3, .L58
- 1401 0020 53F821F0 		ldr	pc, [r3, r1, lsl #2]
- 1402              		.p2align 2
- 1403              	.L58:
- 1404 0024 85000000 		.word	.L62+1
- 1405 0028 0F000000 		.word	.L52+1
- 1406 002c 99000000 		.word	.L61+1
- 1407 0030 0F000000 		.word	.L52+1
- 1408 0034 0F000000 		.word	.L52+1
- 1409 0038 0F000000 		.word	.L52+1
- 1410 003c 0F000000 		.word	.L52+1
- 1411 0040 0F000000 		.word	.L52+1
- 1412 0044 0F000000 		.word	.L52+1
- 1413 0048 0F000000 		.word	.L52+1
- 1414 004c 8F000000 		.word	.L60+1
- 1415 0050 0F000000 		.word	.L52+1
- 1416 0054 0F000000 		.word	.L52+1
- 1417 0058 0F000000 		.word	.L52+1
- 1418 005c 0F000000 		.word	.L52+1
- 1419 0060 0F000000 		.word	.L52+1
- 1420 0064 A3000000 		.word	.L59+1
- 1421 0068 0F000000 		.word	.L52+1
- 1422 006c 0F000000 		.word	.L52+1
- 1423 0070 0F000000 		.word	.L52+1
- 1424 0074 0F000000 		.word	.L52+1
- 1425 0078 0F000000 		.word	.L52+1
- 1426 007c 0F000000 		.word	.L52+1
- 1427 0080 AD000000 		.word	.L57+1
- 1428              		.p2align 1
- 1429              	.L62:
+ 1395              		.loc 1 169 4 is_stmt 0 view .LVU220
+ 1396 001a 1729     		cmp	r1, #23
+ 1397 001c F7D8     		bhi	.L52
+ 1398 001e 01A3     		adr	r3, .L58
+ 1399 0020 53F821F0 		ldr	pc, [r3, r1, lsl #2]
+ 1400              		.p2align 2
+ 1401              	.L58:
+ 1402 0024 85000000 		.word	.L62+1
+ 1403 0028 0F000000 		.word	.L52+1
+ 1404 002c 99000000 		.word	.L61+1
+ 1405 0030 0F000000 		.word	.L52+1
+ 1406 0034 0F000000 		.word	.L52+1
+ 1407 0038 0F000000 		.word	.L52+1
+ 1408 003c 0F000000 		.word	.L52+1
+ 1409 0040 0F000000 		.word	.L52+1
+ 1410 0044 0F000000 		.word	.L52+1
+ 1411 0048 0F000000 		.word	.L52+1
+ 1412 004c 8F000000 		.word	.L60+1
+ 1413 0050 0F000000 		.word	.L52+1
+ 1414 0054 0F000000 		.word	.L52+1
+ 1415 0058 0F000000 		.word	.L52+1
+ 1416 005c 0F000000 		.word	.L52+1
+ 1417 0060 0F000000 		.word	.L52+1
+ 1418 0064 A3000000 		.word	.L59+1
+ 1419 0068 0F000000 		.word	.L52+1
+ 1420 006c 0F000000 		.word	.L52+1
+ 1421 0070 0F000000 		.word	.L52+1
+ 1422 0074 0F000000 		.word	.L52+1
+ 1423 0078 0F000000 		.word	.L52+1
+ 1424 007c 0F000000 		.word	.L52+1
+ 1425 0080 AD000000 		.word	.L57+1
+ 1426              		.p2align 1
+ 1427              	.L62:
  171:Core/Src/fsm.c **** 					fsmstate->ready = 0;
- 1430              		.loc 1 171 6 is_stmt 1 view .LVU221
+ 1428              		.loc 1 171 6 is_stmt 1 view .LVU221
  171:Core/Src/fsm.c **** 					fsmstate->ready = 0;
- 1431              		.loc 1 171 27 is_stmt 0 view .LVU222
- 1432 0084 0723     		movs	r3, #7
- 1433 0086 4370     		strb	r3, [r0, #1]
+ 1429              		.loc 1 171 27 is_stmt 0 view .LVU222
+ 1430 0084 0123     		movs	r3, #1
+ 1431 0086 4370     		strb	r3, [r0, #1]
  172:Core/Src/fsm.c **** 					break;
- 1434              		.loc 1 172 6 is_stmt 1 view .LVU223
+ 1432              		.loc 1 172 6 is_stmt 1 view .LVU223
  172:Core/Src/fsm.c **** 					break;
- 1435              		.loc 1 172 22 is_stmt 0 view .LVU224
- 1436 0088 0023     		movs	r3, #0
- 1437 008a C370     		strb	r3, [r0, #3]
+ 1433              		.loc 1 172 22 is_stmt 0 view .LVU224
+ 1434 0088 0023     		movs	r3, #0
+ 1435 008a C370     		strb	r3, [r0, #3]
  173:Core/Src/fsm.c **** 				case MOTOR_CMD:
- 1438              		.loc 1 173 6 is_stmt 1 view .LVU225
- 1439 008c BFE7     		b	.L52
- 1440              	.L60:
+ 1436              		.loc 1 173 6 is_stmt 1 view .LVU225
+ 1437 008c BFE7     		b	.L52
+ 1438              	.L60:
  175:Core/Src/fsm.c **** 					fsmstate->ready = 0;
- 1441              		.loc 1 175 6 view .LVU226
-ARM GAS  /tmp/ccVvFV2v.s 			page 38
+ 1439              		.loc 1 175 6 view .LVU226
+ 175:Core/Src/fsm.c **** 					fsmstate->ready = 0;
+ 1440              		.loc 1 175 27 is_stmt 0 view .LVU227
+ARM GAS  /tmp/ccTMXuIU.s 			page 38
 
 
- 175:Core/Src/fsm.c **** 					fsmstate->ready = 0;
- 1442              		.loc 1 175 27 is_stmt 0 view .LVU227
- 1443 008e 0223     		movs	r3, #2
- 1444 0090 4370     		strb	r3, [r0, #1]
+ 1441 008e 0223     		movs	r3, #2
+ 1442 0090 4370     		strb	r3, [r0, #1]
  176:Core/Src/fsm.c **** 					break;
- 1445              		.loc 1 176 6 is_stmt 1 view .LVU228
+ 1443              		.loc 1 176 6 is_stmt 1 view .LVU228
  176:Core/Src/fsm.c **** 					break;
- 1446              		.loc 1 176 22 is_stmt 0 view .LVU229
- 1447 0092 0023     		movs	r3, #0
- 1448 0094 C370     		strb	r3, [r0, #3]
+ 1444              		.loc 1 176 22 is_stmt 0 view .LVU229
+ 1445 0092 0023     		movs	r3, #0
+ 1446 0094 C370     		strb	r3, [r0, #3]
  177:Core/Src/fsm.c **** 				case ENCODER_CMD:
- 1449              		.loc 1 177 6 is_stmt 1 view .LVU230
- 1450 0096 BAE7     		b	.L52
- 1451              	.L61:
+ 1447              		.loc 1 177 6 is_stmt 1 view .LVU230
+ 1448 0096 BAE7     		b	.L52
+ 1449              	.L61:
  179:Core/Src/fsm.c **** 					fsmstate->ready = 0;
- 1452              		.loc 1 179 6 view .LVU231
+ 1450              		.loc 1 179 6 view .LVU231
  179:Core/Src/fsm.c **** 					fsmstate->ready = 0;
- 1453              		.loc 1 179 27 is_stmt 0 view .LVU232
- 1454 0098 0523     		movs	r3, #5
- 1455 009a 4370     		strb	r3, [r0, #1]
+ 1451              		.loc 1 179 27 is_stmt 0 view .LVU232
+ 1452 0098 0523     		movs	r3, #5
+ 1453 009a 4370     		strb	r3, [r0, #1]
  180:Core/Src/fsm.c **** 					break;
- 1456              		.loc 1 180 6 is_stmt 1 view .LVU233
+ 1454              		.loc 1 180 6 is_stmt 1 view .LVU233
  180:Core/Src/fsm.c **** 					break;
- 1457              		.loc 1 180 22 is_stmt 0 view .LVU234
- 1458 009c 0023     		movs	r3, #0
- 1459 009e C370     		strb	r3, [r0, #3]
+ 1455              		.loc 1 180 22 is_stmt 0 view .LVU234
+ 1456 009c 0023     		movs	r3, #0
+ 1457 009e C370     		strb	r3, [r0, #3]
  181:Core/Src/fsm.c **** 				case SETUP_CMD:
- 1460              		.loc 1 181 6 is_stmt 1 view .LVU235
- 1461 00a0 B5E7     		b	.L52
- 1462              	.L59:
+ 1458              		.loc 1 181 6 is_stmt 1 view .LVU235
+ 1459 00a0 B5E7     		b	.L52
+ 1460              	.L59:
  183:Core/Src/fsm.c **** 					fsmstate->ready = 0;
- 1463              		.loc 1 183 6 view .LVU236
+ 1461              		.loc 1 183 6 view .LVU236
  183:Core/Src/fsm.c **** 					fsmstate->ready = 0;
- 1464              		.loc 1 183 27 is_stmt 0 view .LVU237
- 1465 00a2 0423     		movs	r3, #4
- 1466 00a4 4370     		strb	r3, [r0, #1]
+ 1462              		.loc 1 183 27 is_stmt 0 view .LVU237
+ 1463 00a2 0423     		movs	r3, #4
+ 1464 00a4 4370     		strb	r3, [r0, #1]
  184:Core/Src/fsm.c **** 					break;
- 1467              		.loc 1 184 6 is_stmt 1 view .LVU238
+ 1465              		.loc 1 184 6 is_stmt 1 view .LVU238
  184:Core/Src/fsm.c **** 					break;
- 1468              		.loc 1 184 22 is_stmt 0 view .LVU239
- 1469 00a6 0023     		movs	r3, #0
- 1470 00a8 C370     		strb	r3, [r0, #3]
+ 1466              		.loc 1 184 22 is_stmt 0 view .LVU239
+ 1467 00a6 0023     		movs	r3, #0
+ 1468 00a8 C370     		strb	r3, [r0, #3]
  185:Core/Src/fsm.c **** 				case ZERO_CMD:
- 1471              		.loc 1 185 6 is_stmt 1 view .LVU240
- 1472 00aa B0E7     		b	.L52
- 1473              	.L57:
+ 1469              		.loc 1 185 6 is_stmt 1 view .LVU240
+ 1470 00aa B0E7     		b	.L52
+ 1471              	.L57:
  188:Core/Src/fsm.c **** 					break;
- 1474              		.loc 1 188 6 view .LVU241
- 1475 00ac 0B48     		ldr	r0, .L69
- 1476              	.LVL155:
+ 1472              		.loc 1 188 6 view .LVU241
+ 1473 00ac 0B48     		ldr	r0, .L69
+ 1474              	.LVL155:
  188:Core/Src/fsm.c **** 					break;
- 1477              		.loc 1 188 6 is_stmt 0 view .LVU242
- 1478 00ae FFF7FEFF 		bl	printf
- 1479              	.LVL156:
+ 1475              		.loc 1 188 6 is_stmt 0 view .LVU242
+ 1476 00ae FFF7FEFF 		bl	printf
+ 1477              	.LVL156:
  189:Core/Src/fsm.c **** 				}
- 1480              		.loc 1 189 6 is_stmt 1 view .LVU243
- 1481 00b2 ACE7     		b	.L52
-ARM GAS  /tmp/ccVvFV2v.s 			page 39
+ 1478              		.loc 1 189 6 is_stmt 1 view .LVU243
+ 1479 00b2 ACE7     		b	.L52
+ 1480              	.LVL157:
+ 1481              	.L56:
+ARM GAS  /tmp/ccTMXuIU.s 			page 39
 
 
- 1482              	.LVL157:
- 1483              	.L56:
  193:Core/Src/fsm.c ****         		break; // Bỏ qua ký tự Line Feed (\n) và phím Space để không bị nhiễu
- 1484              		.loc 1 193 4 view .LVU244
+ 1482              		.loc 1 193 4 view .LVU244
  193:Core/Src/fsm.c ****         		break; // Bỏ qua ký tự Line Feed (\n) và phím Space để không bị nhiễu
- 1485              		.loc 1 193 6 is_stmt 0 view .LVU245
- 1486 00b4 0A29     		cmp	r1, #10
- 1487 00b6 AAD0     		beq	.L52
+ 1483              		.loc 1 193 6 is_stmt 0 view .LVU245
+ 1484 00b4 0A29     		cmp	r1, #10
+ 1485 00b6 AAD0     		beq	.L52
  193:Core/Src/fsm.c ****         		break; // Bỏ qua ký tự Line Feed (\n) và phím Space để không bị nhiễu
- 1488              		.loc 1 193 23 discriminator 1 view .LVU246
- 1489 00b8 2029     		cmp	r1, #32
- 1490 00ba A8D0     		beq	.L52
+ 1486              		.loc 1 193 23 discriminator 1 view .LVU246
+ 1487 00b8 2029     		cmp	r1, #32
+ 1488 00ba A8D0     		beq	.L52
  196:Core/Src/fsm.c **** 				process_user_input(fsmstate);
- 1491              		.loc 1 196 4 is_stmt 1 view .LVU247
+ 1489              		.loc 1 196 4 is_stmt 1 view .LVU247
  196:Core/Src/fsm.c **** 				process_user_input(fsmstate);
- 1492              		.loc 1 196 6 is_stmt 0 view .LVU248
- 1493 00bc 0D29     		cmp	r1, #13
- 1494 00be 05D0     		beq	.L68
+ 1490              		.loc 1 196 6 is_stmt 0 view .LVU248
+ 1491 00bc 0D29     		cmp	r1, #13
+ 1492 00be 05D0     		beq	.L68
  200:Core/Src/fsm.c **** 			else{
- 1495              		.loc 1 200 4 is_stmt 1 view .LVU249
+ 1493              		.loc 1 200 4 is_stmt 1 view .LVU249
  200:Core/Src/fsm.c **** 			else{
- 1496              		.loc 1 200 15 is_stmt 0 view .LVU250
- 1497 00c0 037B     		ldrb	r3, [r0, #12]	@ zero_extendqisi2
+ 1494              		.loc 1 200 15 is_stmt 0 view .LVU250
+ 1495 00c0 037B     		ldrb	r3, [r0, #12]	@ zero_extendqisi2
  200:Core/Src/fsm.c **** 			else{
- 1498              		.loc 1 200 6 view .LVU251
- 1499 00c2 33B9     		cbnz	r3, .L64
+ 1496              		.loc 1 200 6 view .LVU251
+ 1497 00c2 33B9     		cbnz	r3, .L64
  200:Core/Src/fsm.c **** 			else{
- 1500              		.loc 1 200 33 is_stmt 1 discriminator 1 view .LVU252
+ 1498              		.loc 1 200 33 is_stmt 1 discriminator 1 view .LVU252
  200:Core/Src/fsm.c **** 			else{
- 1501              		.loc 1 200 50 is_stmt 0 discriminator 1 view .LVU253
- 1502 00c4 4173     		strb	r1, [r0, #13]
- 1503              	.L65:
+ 1499              		.loc 1 200 50 is_stmt 0 discriminator 1 view .LVU253
+ 1500 00c4 4173     		strb	r1, [r0, #13]
+ 1501              	.L65:
  205:Core/Src/fsm.c **** 			/* If enter is typed, process user input */
- 1504              		.loc 1 205 4 is_stmt 1 view .LVU254
+ 1502              		.loc 1 205 4 is_stmt 1 view .LVU254
  205:Core/Src/fsm.c **** 			/* If enter is typed, process user input */
- 1505              		.loc 1 205 23 is_stmt 0 view .LVU255
- 1506 00c6 0133     		adds	r3, r3, #1
- 1507 00c8 0373     		strb	r3, [r0, #12]
+ 1503              		.loc 1 205 23 is_stmt 0 view .LVU255
+ 1504 00c6 0133     		adds	r3, r3, #1
+ 1505 00c8 0373     		strb	r3, [r0, #12]
  208:Core/Src/fsm.c **** 
- 1508              		.loc 1 208 4 is_stmt 1 view .LVU256
- 1509 00ca A0E7     		b	.L52
- 1510              	.L68:
+ 1506              		.loc 1 208 4 is_stmt 1 view .LVU256
+ 1507 00ca A0E7     		b	.L52
+ 1508              	.L68:
  197:Core/Src/fsm.c **** 				break;
- 1511              		.loc 1 197 5 view .LVU257
- 1512 00cc FFF7FEFF 		bl	process_user_input
- 1513              	.LVL158:
+ 1509              		.loc 1 197 5 view .LVU257
+ 1510 00cc FFF7FEFF 		bl	process_user_input
+ 1511              	.LVL158:
  198:Core/Src/fsm.c **** 			}
- 1514              		.loc 1 198 5 view .LVU258
- 1515 00d0 9DE7     		b	.L52
- 1516              	.LVL159:
- 1517              	.L64:
+ 1512              		.loc 1 198 5 view .LVU258
+ 1513 00d0 9DE7     		b	.L52
+ 1514              	.LVL159:
+ 1515              	.L64:
  202:Core/Src/fsm.c **** 				//fsmstate->bytecount = fsmstate->bytecount%(sizeof(fsmstate->cmd_buff)/sizeof(fsmstate->cmd_bu
- 1518              		.loc 1 202 5 view .LVU259
+ 1516              		.loc 1 202 5 view .LVU259
  202:Core/Src/fsm.c **** 				//fsmstate->bytecount = fsmstate->bytecount%(sizeof(fsmstate->cmd_buff)/sizeof(fsmstate->cmd_bu
- 1519              		.loc 1 202 43 is_stmt 0 view .LVU260
- 1520 00d2 5A1E     		subs	r2, r3, #1
+ 1517              		.loc 1 202 43 is_stmt 0 view .LVU260
+ 1518 00d2 5A1E     		subs	r2, r3, #1
  202:Core/Src/fsm.c **** 				//fsmstate->bytecount = fsmstate->bytecount%(sizeof(fsmstate->cmd_buff)/sizeof(fsmstate->cmd_bu
-ARM GAS  /tmp/ccVvFV2v.s 			page 40
+ 1519              		.loc 1 202 47 view .LVU261
+ 1520 00d4 0244     		add	r2, r2, r0
+ARM GAS  /tmp/ccTMXuIU.s 			page 40
 
 
- 1521              		.loc 1 202 47 view .LVU261
- 1522 00d4 0244     		add	r2, r2, r0
- 1523 00d6 1171     		strb	r1, [r2, #4]
- 1524 00d8 F5E7     		b	.L65
- 1525              	.L70:
- 1526 00da 00BF     		.align	2
- 1527              	.L69:
- 1528 00dc 00000000 		.word	.LC71
- 1529              		.cfi_endproc
- 1530              	.LFE140:
- 1532              		.section	.text.enter_motor_mode,"ax",%progbits
- 1533              		.align	1
- 1534              		.global	enter_motor_mode
- 1535              		.syntax unified
- 1536              		.thumb
- 1537              		.thumb_func
- 1538              		.fpu fpv4-sp-d16
- 1540              	enter_motor_mode:
- 1541              	.LFB144:
+ 1521 00d6 1171     		strb	r1, [r2, #4]
+ 1522 00d8 F5E7     		b	.L65
+ 1523              	.L70:
+ 1524 00da 00BF     		.align	2
+ 1525              	.L69:
+ 1526 00dc 00000000 		.word	.LC71
+ 1527              		.cfi_endproc
+ 1528              	.LFE140:
+ 1530              		.section	.text.enter_motor_mode,"ax",%progbits
+ 1531              		.align	1
+ 1532              		.global	enter_motor_mode
+ 1533              		.syntax unified
+ 1534              		.thumb
+ 1535              		.thumb_func
+ 1536              		.fpu fpv4-sp-d16
+ 1538              	enter_motor_mode:
+ 1539              	.LFB144:
  345:Core/Src/fsm.c **** 
  346:Core/Src/fsm.c **** void enter_motor_mode(void){
- 1542              		.loc 1 346 28 is_stmt 1 view -0
- 1543              		.cfi_startproc
- 1544              		@ args = 0, pretend = 0, frame = 0
- 1545              		@ frame_needed = 0, uses_anonymous_args = 0
- 1546              		@ link register save eliminated.
+ 1540              		.loc 1 346 28 is_stmt 1 view -0
+ 1541              		.cfi_startproc
+ 1542              		@ args = 0, pretend = 0, frame = 0
+ 1543              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1544              		@ link register save eliminated.
  347:Core/Src/fsm.c **** 
  348:Core/Src/fsm.c **** }
- 1547              		.loc 1 348 1 view .LVU263
- 1548 0000 7047     		bx	lr
- 1549              		.cfi_endproc
- 1550              	.LFE144:
- 1552              		.text
- 1553              	.Letext0:
- 1554              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
- 1555              		.file 3 "Core/Inc/fsm.h"
- 1556              		.file 4 "Core/Inc/pid_utils.h"
- 1557              		.file 5 "Core/Inc/foc_utils.h"
- 1558              		.file 6 "/usr/include/newlib/stdlib.h"
- 1559              		.file 7 "/usr/include/newlib/math.h"
- 1560              		.file 8 "/usr/include/newlib/stdio.h"
- 1561              		.file 9 "<built-in>"
-ARM GAS  /tmp/ccVvFV2v.s 			page 41
+ 1545              		.loc 1 348 1 view .LVU263
+ 1546 0000 7047     		bx	lr
+ 1547              		.cfi_endproc
+ 1548              	.LFE144:
+ 1550              		.text
+ 1551              	.Letext0:
+ 1552              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
+ 1553              		.file 3 "Core/Inc/fsm.h"
+ 1554              		.file 4 "Core/Inc/pid_utils.h"
+ 1555              		.file 5 "Core/Inc/foc_utils.h"
+ 1556              		.file 6 "/usr/include/newlib/stdlib.h"
+ 1557              		.file 7 "/usr/include/newlib/math.h"
+ 1558              		.file 8 "/usr/include/newlib/stdio.h"
+ 1559              		.file 9 "<built-in>"
+ARM GAS  /tmp/ccTMXuIU.s 			page 41
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 fsm.c
-     /tmp/ccVvFV2v.s:18     .text.fsm_exit_state:0000000000000000 $t
-     /tmp/ccVvFV2v.s:26     .text.fsm_exit_state:0000000000000000 fsm_exit_state
-     /tmp/ccVvFV2v.s:43     .text.fsm_exit_state:000000000000000a $d
-     /tmp/ccVvFV2v.s:51     .text.fsm_exit_state:0000000000000012 $t
-     /tmp/ccVvFV2v.s:93     .rodata.enter_menu_state.str1.4:0000000000000000 $d
-     /tmp/ccVvFV2v.s:118    .text.enter_menu_state:0000000000000000 $t
-     /tmp/ccVvFV2v.s:125    .text.enter_menu_state:0000000000000000 enter_menu_state
-     /tmp/ccVvFV2v.s:173    .text.enter_menu_state:0000000000000034 $d
-     /tmp/ccVvFV2v.s:185    .rodata.enter_setup_state.str1.4:0000000000000000 $d
-     /tmp/ccVvFV2v.s:330    .text.enter_setup_state:0000000000000000 $t
-     /tmp/ccVvFV2v.s:337    .text.enter_setup_state:0000000000000000 enter_setup_state
-     /tmp/ccVvFV2v.s:544    .text.enter_setup_state:0000000000000160 $d
-     /tmp/ccVvFV2v.s:596    .rodata.fsm_enter_state.str1.4:0000000000000000 $d
-     /tmp/ccVvFV2v.s:603    .text.fsm_enter_state:0000000000000000 $t
-     /tmp/ccVvFV2v.s:610    .text.fsm_enter_state:0000000000000000 fsm_enter_state
-     /tmp/ccVvFV2v.s:678    .text.fsm_enter_state:0000000000000034 $d
-     /tmp/ccVvFV2v.s:685    .rodata.run_fsm.str1.4:0000000000000000 $d
-     /tmp/ccVvFV2v.s:689    .text.run_fsm:0000000000000000 $t
-     /tmp/ccVvFV2v.s:696    .text.run_fsm:0000000000000000 run_fsm
-     /tmp/ccVvFV2v.s:784    .text.run_fsm:000000000000004c $d
-     /tmp/ccVvFV2v.s:793    .rodata.process_user_input.str1.4:0000000000000000 $d
-     /tmp/ccVvFV2v.s:834    .text.process_user_input:0000000000000000 $t
-     /tmp/ccVvFV2v.s:841    .text.process_user_input:0000000000000000 process_user_input
-     /tmp/ccVvFV2v.s:864    .text.process_user_input:0000000000000014 $d
-     /tmp/ccVvFV2v.s:888    .text.process_user_input:0000000000000044 $t
-     /tmp/ccVvFV2v.s:1316   .text.process_user_input:000000000000030c $d
-     /tmp/ccVvFV2v.s:1343   .rodata.update_fsm.str1.4:0000000000000000 $d
-     /tmp/ccVvFV2v.s:1347   .text.update_fsm:0000000000000000 $t
-     /tmp/ccVvFV2v.s:1354   .text.update_fsm:0000000000000000 update_fsm
-     /tmp/ccVvFV2v.s:1404   .text.update_fsm:0000000000000024 $d
-     /tmp/ccVvFV2v.s:1428   .text.update_fsm:0000000000000084 $t
-     /tmp/ccVvFV2v.s:1528   .text.update_fsm:00000000000000dc $d
-     /tmp/ccVvFV2v.s:1533   .text.enter_motor_mode:0000000000000000 $t
-     /tmp/ccVvFV2v.s:1540   .text.enter_motor_mode:0000000000000000 enter_motor_mode
+     /tmp/ccTMXuIU.s:18     .text.fsm_exit_state:0000000000000000 $t
+     /tmp/ccTMXuIU.s:26     .text.fsm_exit_state:0000000000000000 fsm_exit_state
+     /tmp/ccTMXuIU.s:43     .text.fsm_exit_state:000000000000000a $d
+     /tmp/ccTMXuIU.s:49     .text.fsm_exit_state:0000000000000010 $t
+     /tmp/ccTMXuIU.s:91     .rodata.enter_menu_state.str1.4:0000000000000000 $d
+     /tmp/ccTMXuIU.s:116    .text.enter_menu_state:0000000000000000 $t
+     /tmp/ccTMXuIU.s:123    .text.enter_menu_state:0000000000000000 enter_menu_state
+     /tmp/ccTMXuIU.s:171    .text.enter_menu_state:0000000000000034 $d
+     /tmp/ccTMXuIU.s:183    .rodata.enter_setup_state.str1.4:0000000000000000 $d
+     /tmp/ccTMXuIU.s:328    .text.enter_setup_state:0000000000000000 $t
+     /tmp/ccTMXuIU.s:335    .text.enter_setup_state:0000000000000000 enter_setup_state
+     /tmp/ccTMXuIU.s:542    .text.enter_setup_state:0000000000000160 $d
+     /tmp/ccTMXuIU.s:594    .rodata.fsm_enter_state.str1.4:0000000000000000 $d
+     /tmp/ccTMXuIU.s:601    .text.fsm_enter_state:0000000000000000 $t
+     /tmp/ccTMXuIU.s:608    .text.fsm_enter_state:0000000000000000 fsm_enter_state
+     /tmp/ccTMXuIU.s:676    .text.fsm_enter_state:0000000000000034 $d
+     /tmp/ccTMXuIU.s:683    .rodata.run_fsm.str1.4:0000000000000000 $d
+     /tmp/ccTMXuIU.s:687    .text.run_fsm:0000000000000000 $t
+     /tmp/ccTMXuIU.s:694    .text.run_fsm:0000000000000000 run_fsm
+     /tmp/ccTMXuIU.s:782    .text.run_fsm:000000000000004c $d
+     /tmp/ccTMXuIU.s:791    .rodata.process_user_input.str1.4:0000000000000000 $d
+     /tmp/ccTMXuIU.s:832    .text.process_user_input:0000000000000000 $t
+     /tmp/ccTMXuIU.s:839    .text.process_user_input:0000000000000000 process_user_input
+     /tmp/ccTMXuIU.s:862    .text.process_user_input:0000000000000014 $d
+     /tmp/ccTMXuIU.s:886    .text.process_user_input:0000000000000044 $t
+     /tmp/ccTMXuIU.s:1314   .text.process_user_input:000000000000030c $d
+     /tmp/ccTMXuIU.s:1341   .rodata.update_fsm.str1.4:0000000000000000 $d
+     /tmp/ccTMXuIU.s:1345   .text.update_fsm:0000000000000000 $t
+     /tmp/ccTMXuIU.s:1352   .text.update_fsm:0000000000000000 update_fsm
+     /tmp/ccTMXuIU.s:1402   .text.update_fsm:0000000000000024 $d
+     /tmp/ccTMXuIU.s:1426   .text.update_fsm:0000000000000084 $t
+     /tmp/ccTMXuIU.s:1526   .text.update_fsm:00000000000000dc $d
+     /tmp/ccTMXuIU.s:1531   .text.enter_motor_mode:0000000000000000 $t
+     /tmp/ccTMXuIU.s:1538   .text.enter_motor_mode:0000000000000000 enter_motor_mode
 
 UNDEFINED SYMBOLS
 printf
