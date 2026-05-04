@@ -19,7 +19,7 @@
 #define MICROS_TO_MINUTES     6e7f       // Conversion factor (�s to minutes)
 
 
-#define ACTUAL_ANGLE_FILTER_ALPHA 0.54187f
+#define ACTUAL_ANGLE_FILTER_ALPHA 0.1f
 //#define ACTUAL_ANGLE_FILTER_ALPHA 0.4187f
 extern _Bool encd_get_val_flag;
 #define ENCODER_GetFlag() (encd_get_val_flag == 1)

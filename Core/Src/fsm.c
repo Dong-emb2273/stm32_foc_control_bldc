@@ -4,11 +4,6 @@
  *  Created on: Mar 5, 2020
  *      Author: Ben
  */
-
-#include "fsm.h"
-#include "hw_config.h"
-#include "user_config.h"
-#include "foc_utils.h"
 #include "main.h"
 #include <stdio.h>
 #include <math.h>
@@ -16,9 +11,21 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "fsm.h"
+#include "hw_config.h"
+#include "user_config.h"
+#include "foc_utils.h"
+#include "encoder.h"
+
 extern foc_t hfoc;
 extern uint8_t is_calibrating ;
 extern cal_state_t current_cal_state;
+
+
+extern float sPoint_Vel ;
+extern float sPoint_Pos ;
+extern float sPoint_Tor;
+
 
 void run_fsm(FSMStruct * fsmstate){
 	/* run_fsm is run every commutation interrupt cycle */
@@ -69,6 +76,48 @@ void run_fsm(FSMStruct * fsmstate){
 		case MOTOR_MODE:
 			/* If CAN has timed out, reset all commands */
 		
+			if (ENCODER_GetFlag()) {
+				ENCODER_Reset_Flag();
+				encoder.start_read(encoder.hw_encoder);
+			}
+				
+					
+			hfoc.v_bus = 19.420f; 
+			//hfoc.v_bus = 12.4f; 
+
+			switch (hfoc.control_mode) {
+				case TORQUE_CONTROL_MODE: {
+					float deg_encd = ENCODER_GetActualDegree(&encoder);
+					foc_calc_mech_pos_encoder(&hfoc, deg_encd);
+							// sPoint_Tor = k*(sPoint_Pos - hfoc.actual_angle) + p*hfoc.actual_rpm ;
+					hfoc.id_ref = 0.0f;
+					hfoc.iq_ref = sPoint_Tor;
+					torque_control_update();
+					break;
+				}
+				case POSITION_CONTROL_MODE: {
+					if (torque_control_update() == 1) {
+						float deg_encd = ENCODER_GetActualDegree(&encoder);
+						foc_calc_mech_pos_encoder(&hfoc, deg_encd);
+						foc_position_control_update(&hfoc, sPoint_Pos);
+					}
+					break;
+				}	
+				case SPEED_CONTROL_MODE: {
+					if (torque_control_update() == 1) {
+						foc_speed_control_update(&hfoc, sPoint_Vel);
+
+					}
+					break;
+				}
+				default:
+							
+					break;
+						
+			}
+
+
+
 			break;
 
 		case SETUP_MODE:
@@ -102,7 +151,7 @@ void fsm_enter_state(FSMStruct * fsmstate){
 			break;
 		case MOTOR_MODE:
 
-			//printf("Entering Motor Mode\r\n");
+			printf("Entering Motor Mode\r\n");
 //				HAL_GPIO_WritePin(LED, GPIO_PIN_SET );
 //				reset_foc(&controller);
 //				drv_enable_gd(drv);

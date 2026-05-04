@@ -98,7 +98,7 @@ uint32_t get_dt_us(void) {
 }
 uint32_t dt_us;
 
-static int torque_control_update(void) {
+int torque_control_update(void) {
   int ret = 0;
   static uint8_t event_speed_loop_count = 0;
 	static float rpm_temp = 0.0f;
@@ -303,7 +303,7 @@ int main(void)
 	is_calibrating = 1;
   foc_cal_encoder(&hfoc);
 	is_calibrating = 0;
-	hfoc.control_mode = SPEED_CONTROL_MODE;
+	hfoc.control_mode = POSITION_CONTROL_MODE;
 
 
 
@@ -505,48 +505,48 @@ void ADC_IRQHandler(void) {
       encoder.start_read(encoder.hw_encoder);
 		}
     run_fsm(&state);
-		if (is_calibrating == 1) {
-			return;
-		}
+		// if (is_calibrating == 1) {
+		// 	return;
+		// }
 		
-		hfoc.v_bus = 19.420f; 
-		//hfoc.v_bus = 12.4f; 
+		// hfoc.v_bus = 19.420f; 
+		// //hfoc.v_bus = 12.4f; 
 
-		switch (hfoc.control_mode) {
-      case TORQUE_CONTROL_MODE: {
-				float deg_encd = ENCODER_GetActualDegree(&encoder);
-        foc_calc_mech_pos_encoder(&hfoc, deg_encd);
-				sPoint_Tor = k*(sPoint_Pos - hfoc.actual_angle) + p*hfoc.actual_rpm ;
-        hfoc.id_ref = 0.0f;
-        hfoc.iq_ref = sPoint_Tor;
-        torque_control_update();
-        break;
-			}
-			case POSITION_CONTROL_MODE: {
-        if (torque_control_update() == 1) {
-          float deg_encd = ENCODER_GetActualDegree(&encoder);
-          foc_calc_mech_pos_encoder(&hfoc, deg_encd);
-          foc_position_control_update(&hfoc, sPoint_Pos);
-        }
-        break;
-			}
+		// switch (hfoc.control_mode) {
+    //   case TORQUE_CONTROL_MODE: {
+		// 		float deg_encd = ENCODER_GetActualDegree(&encoder);
+    //     foc_calc_mech_pos_encoder(&hfoc, deg_encd);
+		// 		sPoint_Tor = k*(sPoint_Pos - hfoc.actual_angle) + p*hfoc.actual_rpm ;
+    //     hfoc.id_ref = 0.0f;
+    //     hfoc.iq_ref = sPoint_Tor;
+    //     torque_control_update();
+    //     break;
+		// 	}
+		// 	case POSITION_CONTROL_MODE: {
+    //     if (torque_control_update() == 1) {
+    //       float deg_encd = ENCODER_GetActualDegree(&encoder);
+    //       foc_calc_mech_pos_encoder(&hfoc, deg_encd);
+    //       foc_position_control_update(&hfoc, sPoint_Pos);
+    //     }
+    //     break;
+		// 	}
 			
-			case SPEED_CONTROL_MODE: {
-        if (torque_control_update() == 1) {
-          foc_speed_control_update(&hfoc, sPoint_Vel);
+		// 	case SPEED_CONTROL_MODE: {
+    //     if (torque_control_update() == 1) {
+    //       foc_speed_control_update(&hfoc, sPoint_Vel);
 
-        }
-        break;
-      }
-      // case CALIBRATION_MODE: {
-      //   foc_auto_calibration_update(&hfoc);
-      //   break;
-      // }
-			default:
+    //     }
+    //     break;
+    //   }
+    //   // case CALIBRATION_MODE: {
+    //   //   foc_auto_calibration_update(&hfoc);
+    //   //   break;
+    //   // }
+		// 	default:
 				
-				break;
+		// 		break;
 			
-		}
+		// }
 		
 		
 	}

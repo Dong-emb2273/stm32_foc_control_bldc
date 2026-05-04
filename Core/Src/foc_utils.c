@@ -302,51 +302,50 @@ float theta_start = 0.0f;
 // Hàm này gọi định kỳ trong ngắt (ví dụ ADC_IRQHandler)
 void foc_auto_calibration_update(foc_t *hfoc) {
     if (current_cal_state == CAL_IDLE || current_cal_state == CAL_DONE) return;
-	
+	static float actual_theta_start = 0.0f;
+
     uint32_t current_time = HAL_GetTick(); // Hoặc dùng get_dt_us()
     float elapsed_sec = (current_time - cal_start_time) / 1000.0f;
 
+    const float SWEEP_CYCLES = 20.0f; // Quét 20 vòng điện
     const float T1 = 1.0f; // 1 giây để khóa rotor
-    const float W_CAL = TWO_PI / 2.0f; // Vận tốc quét (hoàn thành 2PI trong 2s)
+    const float W_CAL = TWO_PI / 0.2f; // Vận tốc quét (hoàn thành 2PI trong 2s)
+    const float SWEEP_TIME = (SWEEP_CYCLES * TWO_PI) / W_CAL;
 
     if (elapsed_sec < T1) {
         // Giai đoạn 1: Khóa Rotor
         current_cal_state = CAL_ALIGNING;
         open_loop_voltage_control(hfoc, VD_CAL, 0.0f, 0.0f);
-        theta_start = ENCODER_GetDegree(&encoder);
+        actual_theta_start = ENCODER_GetActualDegree(&encoder);
     } 
-    else if (elapsed_sec < T1 + (TWO_PI / W_CAL)) {
+    else if (elapsed_sec < T1 + SWEEP_TIME) {
         // Giai đoạn 2: Quét 1 vòng điện (Không dùng HAL_Delay)
         current_cal_state = CAL_SWEEPING;
         float elec_angle = W_CAL * (elapsed_sec - T1);
         open_loop_voltage_control(hfoc, VD_CAL, 0.0f, elec_angle);
+        ENCODER_GetActualDegree(&encoder);
     } 
     else {
         // Giai đoạn 3: Kết thúc và tính toán
-        float theta_end = ENCODER_GetDegree(&encoder);
+        float actual_theta_end = ENCODER_GetActualDegree(&encoder);
         open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
         
-        float delta_mech = theta_end - theta_start;
+        float delta_mech = actual_theta_end - actual_theta_start;
         
-        if (delta_mech > 180.0f) {
-            delta_mech -= 360.0f;
-        } else if (delta_mech < -180.0f) {
-            delta_mech += 360.0f;
-        }
 
         // 2. Tính số cặp cực (dựa trên độ lớn)
         if (fabs(delta_mech) > 0.1f) {
-            hfoc->pole_pairs = round(360.0f / fabs(delta_mech));
+            hfoc->pole_pairs = round((SWEEP_CYCLES * 360.0f)/ fabs(delta_mech));
             printf("Pole Pairs: %d\r\n", hfoc->pole_pairs);
         }
 
         // 3. Xác định chiều quay (dựa trên dấu của delta)
         // Nếu quét điện áp tiến (thuận) mà góc cơ học tiến (delta > 0) -> Cùng chiều
         if (delta_mech > 0) {
-            hfoc->sensor_dir = REVERSE_DIR;
+            hfoc->sensor_dir = NORMAL_DIR;
             printf("Phase order & Sensor match (NORMAL)\r\n");
         } else {
-            hfoc->sensor_dir = NORMAL_DIR;
+            hfoc->sensor_dir = REVERSE_DIR;
             printf("Phase order & Sensor mismatched! Swapping (REVERSE)\r\n");
         }
         current_cal_state = CAL_DONE; // Hoàn thành

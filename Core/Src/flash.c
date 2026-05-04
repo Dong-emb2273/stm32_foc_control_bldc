@@ -57,7 +57,7 @@ void flash_default_config(motor_config_t *data) {
 
     data->iq_kp = 0.01f;
     data->iq_ki = 4.09f;
-    data->iq_out_max = 3.0f;
+    data->iq_out_max = 0.6f;
     data->iq_e_deadband = 0.0001f;
 
     data->I_ctrl_bandwidth = 50.0f;

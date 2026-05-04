@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccgbQbGQ.s 			page 1
+ARM GAS  /tmp/ccM36Fo5.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
   27:Core/Src/foc_utils.c ****  * @param pwm_a Pointer to PWM channel A register (e.g., &TIM1->CCR1)
   28:Core/Src/foc_utils.c ****  * @param pwm_b Pointer to PWM channel B register (e.g., &TIM1->CCR2)
   29:Core/Src/foc_utils.c ****  * @param pwm_c Pointer to PWM channel C register (e.g., &TIM1->CCR3)
-ARM GAS  /tmp/ccgbQbGQ.s 			page 2
+ARM GAS  /tmp/ccM36Fo5.s 			page 2
 
 
   30:Core/Src/foc_utils.c ****  */
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
   68              		.loc 1 45 18 view .LVU19
   69 0022 1360     		str	r3, [r2]
   46:Core/Src/foc_utils.c ****     *hfoc->pwm_c = 0;
-ARM GAS  /tmp/ccgbQbGQ.s 			page 3
+ARM GAS  /tmp/ccM36Fo5.s 			page 3
 
 
   70              		.loc 1 46 5 is_stmt 1 view .LVU20
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  114 0014 7047     		bx	lr
  115              		.cfi_endproc
  116              	.LFE138:
-ARM GAS  /tmp/ccgbQbGQ.s 			page 4
+ARM GAS  /tmp/ccM36Fo5.s 			page 4
 
 
  118              		.section	.text.foc_sensor_init,"ax",%progbits
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  162              		@ args = 0, pretend = 0, frame = 0
  163              		@ frame_needed = 0, uses_anonymous_args = 0
  164              		@ link register save eliminated.
-ARM GAS  /tmp/ccgbQbGQ.s 			page 5
+ARM GAS  /tmp/ccM36Fo5.s 			page 5
 
 
   72:Core/Src/foc_utils.c **** 	if (hfoc == NULL) return;
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  210              		.thumb_func
  211              		.fpu fpv4-sp-d16
  213              	foc_current_control_update:
-ARM GAS  /tmp/ccgbQbGQ.s 			page 6
+ARM GAS  /tmp/ccM36Fo5.s 			page 6
 
 
  214              	.LVL8:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  251 002e 0023     		movs	r3, #0
  252 0030 C0F8B430 		str	r3, [r0, #180]	@ float
   90:Core/Src/foc_utils.c **** 		hfoc->iq_ctrl.integral = 0.0f;
-ARM GAS  /tmp/ccgbQbGQ.s 			page 7
+ARM GAS  /tmp/ccM36Fo5.s 			page 7
 
 
  253              		.loc 1 90 3 is_stmt 1 view .LVU64
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  106:Core/Src/foc_utils.c **** 	clarke_park_transform(hfoc->ia, hfoc->ib, sin_theta, cos_theta, &hfoc->id, &hfoc->iq);
  294              		.loc 1 106 2 is_stmt 1 discriminator 8 view .LVU81
  295 0078 04F13C01 		add	r1, r4, #60
-ARM GAS  /tmp/ccgbQbGQ.s 			page 8
+ARM GAS  /tmp/ccM36Fo5.s 			page 8
 
 
  296 007c 04F13800 		add	r0, r4, #56
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  342              		.loc 1 114 2 is_stmt 1 discriminator 8 view .LVU101
  343              		.loc 1 114 44 is_stmt 0 discriminator 8 view .LVU102
  344 00e0 94ED240A 		vldr.32	s0, [r4, #144]
-ARM GAS  /tmp/ccgbQbGQ.s 			page 9
+ARM GAS  /tmp/ccM36Fo5.s 			page 9
 
 
  345              		.loc 1 114 59 discriminator 8 view .LVU103
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  390              		.loc 1 123 19 is_stmt 0 discriminator 4 view .LVU116
  391 013e 029B     		ldr	r3, [sp, #8]
  392 0140 23B1     		cbz	r3, .L19
-ARM GAS  /tmp/ccgbQbGQ.s 			page 10
+ARM GAS  /tmp/ccM36Fo5.s 			page 10
 
 
  393              		.loc 1 123 19 discriminator 1 view .LVU117
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  445              		.thumb
  446              		.thumb_func
  447              		.fpu fpv4-sp-d16
-ARM GAS  /tmp/ccgbQbGQ.s 			page 11
+ARM GAS  /tmp/ccM36Fo5.s 			page 11
 
 
  449              	foc_speed_control_update:
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  135:Core/Src/foc_utils.c ****     hfoc->iq_ref = pi_control(&hfoc->speed_ctrl, rpm_reference - hfoc->actual_rpm);
  490              		.loc 1 135 18 is_stmt 0 view .LVU141
  491 001e 0023     		movs	r3, #0
-ARM GAS  /tmp/ccgbQbGQ.s 			page 12
+ARM GAS  /tmp/ccM36Fo5.s 			page 12
 
 
  492 0020 C0F88C30 		str	r3, [r0, #140]	@ float
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  538              		.loc 1 141 19 discriminator 1 view .LVU153
  539 000a 022B     		cmp	r3, #2
  540 000c 05D0     		beq	.L37
-ARM GAS  /tmp/ccgbQbGQ.s 			page 13
+ARM GAS  /tmp/ccM36Fo5.s 			page 13
 
 
  541              	.L36:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  153:Core/Src/foc_utils.c **** #else
  572              		.loc 1 153 5 is_stmt 1 view .LVU167
  573 002e 2046     		mov	r0, r4
-ARM GAS  /tmp/ccgbQbGQ.s 			page 14
+ARM GAS  /tmp/ccM36Fo5.s 			page 14
 
 
  574 0030 FFF7FEFF 		bl	foc_speed_control_update
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  172:Core/Src/foc_utils.c **** 	norm_angle_rad(&hfoc->m_angle_rad);
  173:Core/Src/foc_utils.c **** 
  174:Core/Src/foc_utils.c **** 	// Calculate raw electric angle
-ARM GAS  /tmp/ccgbQbGQ.s 			page 15
+ARM GAS  /tmp/ccM36Fo5.s 			page 15
 
 
  175:Core/Src/foc_utils.c **** 	float e_rad = hfoc->m_angle_rad * hfoc->pole_pairs;
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  633              		.loc 1 171 2 is_stmt 1 view .LVU178
  171:Core/Src/foc_utils.c **** 	norm_angle_rad(&hfoc->m_angle_rad);
  634              		.loc 1 171 22 is_stmt 0 view .LVU179
-ARM GAS  /tmp/ccgbQbGQ.s 			page 16
+ARM GAS  /tmp/ccM36Fo5.s 			page 16
 
 
  635 001a DFED3D7A 		vldr.32	s15, .L55+4
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  673 0058 DFED2E7A 		vldr.32	s15, .L55+8
  674 005c 87EE270A 		vdiv.f32	s0, s14, s15
  185:Core/Src/foc_utils.c **** 	lut_idx_f = fmodf(lut_idx_f, ERROR_LUT_SIZE);
-ARM GAS  /tmp/ccgbQbGQ.s 			page 17
+ARM GAS  /tmp/ccM36Fo5.s 			page 17
 
 
  675              		.loc 1 185 8 view .LVU196
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  194:Core/Src/foc_utils.c **** 
  716              		.loc 1 194 8 view .LVU210
  717 00a4 30EE670A 		vsub.f32	s0, s0, s15
-ARM GAS  /tmp/ccgbQbGQ.s 			page 18
+ARM GAS  /tmp/ccM36Fo5.s 			page 18
 
 
  718              	.LVL44:
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  757 00e0 FFF7FEFF 		bl	norm_angle_rad
  758              	.LVL52:
  203:Core/Src/foc_utils.c **** 	
-ARM GAS  /tmp/ccgbQbGQ.s 			page 19
+ARM GAS  /tmp/ccM36Fo5.s 			page 19
 
 
  759              		.loc 1 203 2 view .LVU226
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  805              		.section	.text.foc_calc_mech_rpm_encoder,"ax",%progbits
  806              		.align	1
  807              		.global	foc_calc_mech_rpm_encoder
-ARM GAS  /tmp/ccgbQbGQ.s 			page 20
+ARM GAS  /tmp/ccM36Fo5.s 			page 20
 
 
  808              		.syntax unified
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  850              		.global	foc_calc_mech_pos_encoder
  851              		.syntax unified
  852              		.thumb
-ARM GAS  /tmp/ccgbQbGQ.s 			page 21
+ARM GAS  /tmp/ccM36Fo5.s 			page 21
 
 
  853              		.thumb_func
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  895              		.thumb
  896              		.thumb_func
  897              		.fpu fpv4-sp-d16
-ARM GAS  /tmp/ccgbQbGQ.s 			page 22
+ARM GAS  /tmp/ccM36Fo5.s 			page 22
 
 
  899              	foc_start_calibration:
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  281:Core/Src/foc_utils.c ****   
  282:Core/Src/foc_utils.c ****   for (int i = 0; i < ERROR_LUT_SIZE; i++) {
  283:Core/Src/foc_utils.c ****     if (error_temp[i] == 0) {
-ARM GAS  /tmp/ccgbQbGQ.s 			page 23
+ARM GAS  /tmp/ccM36Fo5.s 			page 23
 
 
  284:Core/Src/foc_utils.c ****       int last_i = i - 1;
@@ -1342,62 +1342,61 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  302:Core/Src/foc_utils.c **** // Hàm này gọi định kỳ trong ngắt (ví dụ ADC_IRQHandler)
  303:Core/Src/foc_utils.c **** void foc_auto_calibration_update(foc_t *hfoc) {
  304:Core/Src/foc_utils.c ****     if (current_cal_state == CAL_IDLE || current_cal_state == CAL_DONE) return;
- 305:Core/Src/foc_utils.c **** 	
- 306:Core/Src/foc_utils.c ****     uint32_t current_time = HAL_GetTick(); // Hoặc dùng get_dt_us()
- 307:Core/Src/foc_utils.c ****     float elapsed_sec = (current_time - cal_start_time) / 1000.0f;
- 308:Core/Src/foc_utils.c **** 
- 309:Core/Src/foc_utils.c ****     const float T1 = 1.0f; // 1 giây để khóa rotor
- 310:Core/Src/foc_utils.c ****     const float W_CAL = TWO_PI / 2.0f; // Vận tốc quét (hoàn thành 2PI trong 2s)
- 311:Core/Src/foc_utils.c **** 
- 312:Core/Src/foc_utils.c ****     if (elapsed_sec < T1) {
- 313:Core/Src/foc_utils.c ****         // Giai đoạn 1: Khóa Rotor
- 314:Core/Src/foc_utils.c ****         current_cal_state = CAL_ALIGNING;
- 315:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, VD_CAL, 0.0f, 0.0f);
- 316:Core/Src/foc_utils.c ****         theta_start = ENCODER_GetDegree(&encoder);
- 317:Core/Src/foc_utils.c ****     } 
- 318:Core/Src/foc_utils.c ****     else if (elapsed_sec < T1 + (TWO_PI / W_CAL)) {
- 319:Core/Src/foc_utils.c ****         // Giai đoạn 2: Quét 1 vòng điện (Không dùng HAL_Delay)
- 320:Core/Src/foc_utils.c ****         current_cal_state = CAL_SWEEPING;
- 321:Core/Src/foc_utils.c ****         float elec_angle = W_CAL * (elapsed_sec - T1);
- 322:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, VD_CAL, 0.0f, elec_angle);
- 323:Core/Src/foc_utils.c ****     } 
- 324:Core/Src/foc_utils.c ****     else {
- 325:Core/Src/foc_utils.c ****         // Giai đoạn 3: Kết thúc và tính toán
- 326:Core/Src/foc_utils.c ****         float theta_end = ENCODER_GetDegree(&encoder);
- 327:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
- 328:Core/Src/foc_utils.c ****         
- 329:Core/Src/foc_utils.c ****         float delta_mech = theta_end - theta_start;
- 330:Core/Src/foc_utils.c ****         
- 331:Core/Src/foc_utils.c ****         if (delta_mech > 180.0f) {
- 332:Core/Src/foc_utils.c ****             delta_mech -= 360.0f;
- 333:Core/Src/foc_utils.c ****         } else if (delta_mech < -180.0f) {
- 334:Core/Src/foc_utils.c ****             delta_mech += 360.0f;
- 335:Core/Src/foc_utils.c ****         }
- 336:Core/Src/foc_utils.c **** 
- 337:Core/Src/foc_utils.c ****         // 2. Tính số cặp cực (dựa trên độ lớn)
- 338:Core/Src/foc_utils.c ****         if (fabs(delta_mech) > 0.1f) {
- 339:Core/Src/foc_utils.c ****             hfoc->pole_pairs = round(360.0f / fabs(delta_mech));
- 340:Core/Src/foc_utils.c ****             printf("Pole Pairs: %d\r\n", hfoc->pole_pairs);
-ARM GAS  /tmp/ccgbQbGQ.s 			page 24
+ 305:Core/Src/foc_utils.c **** 	static float actual_theta_start = 0.0f;
+ 306:Core/Src/foc_utils.c **** 
+ 307:Core/Src/foc_utils.c ****     uint32_t current_time = HAL_GetTick(); // Hoặc dùng get_dt_us()
+ 308:Core/Src/foc_utils.c ****     float elapsed_sec = (current_time - cal_start_time) / 1000.0f;
+ 309:Core/Src/foc_utils.c **** 
+ 310:Core/Src/foc_utils.c ****     const float SWEEP_CYCLES = 20.0f; // Quét 20 vòng điện
+ 311:Core/Src/foc_utils.c ****     const float T1 = 1.0f; // 1 giây để khóa rotor
+ 312:Core/Src/foc_utils.c ****     const float W_CAL = TWO_PI / 0.2f; // Vận tốc quét (hoàn thành 2PI trong 2s)
+ 313:Core/Src/foc_utils.c ****     const float SWEEP_TIME = (SWEEP_CYCLES * TWO_PI) / W_CAL;
+ 314:Core/Src/foc_utils.c **** 
+ 315:Core/Src/foc_utils.c ****     if (elapsed_sec < T1) {
+ 316:Core/Src/foc_utils.c ****         // Giai đoạn 1: Khóa Rotor
+ 317:Core/Src/foc_utils.c ****         current_cal_state = CAL_ALIGNING;
+ 318:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, VD_CAL, 0.0f, 0.0f);
+ 319:Core/Src/foc_utils.c ****         actual_theta_start = ENCODER_GetActualDegree(&encoder);
+ 320:Core/Src/foc_utils.c ****     } 
+ 321:Core/Src/foc_utils.c ****     else if (elapsed_sec < T1 + SWEEP_TIME) {
+ 322:Core/Src/foc_utils.c ****         // Giai đoạn 2: Quét 1 vòng điện (Không dùng HAL_Delay)
+ 323:Core/Src/foc_utils.c ****         current_cal_state = CAL_SWEEPING;
+ 324:Core/Src/foc_utils.c ****         float elec_angle = W_CAL * (elapsed_sec - T1);
+ 325:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, VD_CAL, 0.0f, elec_angle);
+ 326:Core/Src/foc_utils.c ****         ENCODER_GetActualDegree(&encoder);
+ 327:Core/Src/foc_utils.c ****     } 
+ 328:Core/Src/foc_utils.c ****     else {
+ 329:Core/Src/foc_utils.c ****         // Giai đoạn 3: Kết thúc và tính toán
+ 330:Core/Src/foc_utils.c ****         float actual_theta_end = ENCODER_GetActualDegree(&encoder);
+ 331:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
+ 332:Core/Src/foc_utils.c ****         
+ 333:Core/Src/foc_utils.c ****         float delta_mech = actual_theta_end - actual_theta_start;
+ 334:Core/Src/foc_utils.c ****         
+ 335:Core/Src/foc_utils.c **** 
+ 336:Core/Src/foc_utils.c ****         // 2. Tính số cặp cực (dựa trên độ lớn)
+ 337:Core/Src/foc_utils.c ****         if (fabs(delta_mech) > 0.1f) {
+ 338:Core/Src/foc_utils.c ****             hfoc->pole_pairs = round((SWEEP_CYCLES * 360.0f)/ fabs(delta_mech));
+ 339:Core/Src/foc_utils.c ****             printf("Pole Pairs: %d\r\n", hfoc->pole_pairs);
+ 340:Core/Src/foc_utils.c ****         }
+ARM GAS  /tmp/ccM36Fo5.s 			page 24
 
 
- 341:Core/Src/foc_utils.c ****         }
- 342:Core/Src/foc_utils.c **** 
- 343:Core/Src/foc_utils.c ****         // 3. Xác định chiều quay (dựa trên dấu của delta)
- 344:Core/Src/foc_utils.c ****         // Nếu quét điện áp tiến (thuận) mà góc cơ học tiến (delta > 0) -> Cùng 
- 345:Core/Src/foc_utils.c ****         if (delta_mech > 0) {
- 346:Core/Src/foc_utils.c ****             hfoc->sensor_dir = REVERSE_DIR;
- 347:Core/Src/foc_utils.c ****             printf("Phase order & Sensor match (NORMAL)\r\n");
- 348:Core/Src/foc_utils.c ****         } else {
- 349:Core/Src/foc_utils.c ****             hfoc->sensor_dir = NORMAL_DIR;
- 350:Core/Src/foc_utils.c ****             printf("Phase order & Sensor mismatched! Swapping (REVERSE)\r\n");
- 351:Core/Src/foc_utils.c ****         }
- 352:Core/Src/foc_utils.c ****         current_cal_state = CAL_DONE; // Hoàn thành
- 353:Core/Src/foc_utils.c ****     }
- 354:Core/Src/foc_utils.c **** }
- 355:Core/Src/foc_utils.c **** 
- 356:Core/Src/foc_utils.c **** void foc_start_calibration(void) {
- 901              		.loc 1 356 34 is_stmt 1 view -0
+ 341:Core/Src/foc_utils.c **** 
+ 342:Core/Src/foc_utils.c ****         // 3. Xác định chiều quay (dựa trên dấu của delta)
+ 343:Core/Src/foc_utils.c ****         // Nếu quét điện áp tiến (thuận) mà góc cơ học tiến (delta > 0) -> Cùng 
+ 344:Core/Src/foc_utils.c ****         if (delta_mech > 0) {
+ 345:Core/Src/foc_utils.c ****             hfoc->sensor_dir = NORMAL_DIR;
+ 346:Core/Src/foc_utils.c ****             printf("Phase order & Sensor match (NORMAL)\r\n");
+ 347:Core/Src/foc_utils.c ****         } else {
+ 348:Core/Src/foc_utils.c ****             hfoc->sensor_dir = REVERSE_DIR;
+ 349:Core/Src/foc_utils.c ****             printf("Phase order & Sensor mismatched! Swapping (REVERSE)\r\n");
+ 350:Core/Src/foc_utils.c ****         }
+ 351:Core/Src/foc_utils.c ****         current_cal_state = CAL_DONE; // Hoàn thành
+ 352:Core/Src/foc_utils.c ****     }
+ 353:Core/Src/foc_utils.c **** }
+ 354:Core/Src/foc_utils.c **** 
+ 355:Core/Src/foc_utils.c **** void foc_start_calibration(void) {
+ 901              		.loc 1 355 34 is_stmt 1 view -0
  902              		.cfi_startproc
  903              		@ args = 0, pretend = 0, frame = 0
  904              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1406,22 +1405,22 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  907              		.cfi_def_cfa_offset 8
  908              		.cfi_offset 3, -8
  909              		.cfi_offset 14, -4
- 357:Core/Src/foc_utils.c ****     current_cal_state = CAL_ALIGNING; // Thoát khỏi IDLE
- 910              		.loc 1 357 5 view .LVU259
- 911              		.loc 1 357 23 is_stmt 0 view .LVU260
+ 356:Core/Src/foc_utils.c ****     current_cal_state = CAL_ALIGNING; // Thoát khỏi IDLE
+ 910              		.loc 1 356 5 view .LVU259
+ 911              		.loc 1 356 23 is_stmt 0 view .LVU260
  912 0002 044B     		ldr	r3, .L67
  913 0004 0122     		movs	r2, #1
  914 0006 1A70     		strb	r2, [r3]
- 358:Core/Src/foc_utils.c ****     cal_start_time = HAL_GetTick();   // Ghi lại mốc thời gian T0
- 915              		.loc 1 358 5 is_stmt 1 view .LVU261
- 916              		.loc 1 358 22 is_stmt 0 view .LVU262
+ 357:Core/Src/foc_utils.c ****     cal_start_time = HAL_GetTick();   // Ghi lại mốc thời gian T0
+ 915              		.loc 1 357 5 is_stmt 1 view .LVU261
+ 916              		.loc 1 357 22 is_stmt 0 view .LVU262
  917 0008 FFF7FEFF 		bl	HAL_GetTick
  918              	.LVL64:
- 919              		.loc 1 358 20 view .LVU263
+ 919              		.loc 1 357 20 view .LVU263
  920 000c 024B     		ldr	r3, .L67+4
  921 000e 1860     		str	r0, [r3]
- 359:Core/Src/foc_utils.c **** }
- 922              		.loc 1 359 1 view .LVU264
+ 358:Core/Src/foc_utils.c **** }
+ 922              		.loc 1 358 1 view .LVU264
  923 0010 08BD     		pop	{r3, pc}
  924              	.L68:
  925 0012 00BF     		.align	2
@@ -1438,20 +1437,20 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  937              		.thumb_func
  938              		.fpu fpv4-sp-d16
  940              	open_loop_voltage_control:
-ARM GAS  /tmp/ccgbQbGQ.s 			page 25
-
-
  941              	.LVL65:
+ARM GAS  /tmp/ccM36Fo5.s 			page 25
+
+
  942              	.LFB152:
- 360:Core/Src/foc_utils.c **** 
- 361:Core/Src/foc_utils.c **** //
- 362:Core/Src/foc_utils.c **** 
- 363:Core/Src/foc_utils.c **** void open_loop_voltage_control(foc_t *hfoc, float vd_ref, float vq_ref, float angle_rad) {
- 943              		.loc 1 363 90 is_stmt 1 view -0
+ 359:Core/Src/foc_utils.c **** 
+ 360:Core/Src/foc_utils.c **** //
+ 361:Core/Src/foc_utils.c **** 
+ 362:Core/Src/foc_utils.c **** void open_loop_voltage_control(foc_t *hfoc, float vd_ref, float vq_ref, float angle_rad) {
+ 943              		.loc 1 362 90 is_stmt 1 view -0
  944              		.cfi_startproc
  945              		@ args = 0, pretend = 0, frame = 32
  946              		@ frame_needed = 0, uses_anonymous_args = 0
- 947              		.loc 1 363 90 is_stmt 0 view .LVU266
+ 947              		.loc 1 362 90 is_stmt 0 view .LVU266
  948 0000 30B5     		push	{r4, r5, lr}
  949              	.LCFI12:
  950              		.cfi_def_cfa_offset 12
@@ -1469,44 +1468,44 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  962 0008 0446     		mov	r4, r0
  963 000a B0EE408A 		vmov.f32	s16, s0
  964 000e F0EE608A 		vmov.f32	s17, s1
- 364:Core/Src/foc_utils.c ****     float valpha, vbeta;
- 965              		.loc 1 364 5 is_stmt 1 view .LVU267
- 365:Core/Src/foc_utils.c ****     uint32_t da, db, dc;
- 966              		.loc 1 365 5 view .LVU268
- 366:Core/Src/foc_utils.c ****     const uint32_t pwm_res = hfoc->pwm_res;
- 967              		.loc 1 366 5 view .LVU269
- 968              		.loc 1 366 20 is_stmt 0 view .LVU270
+ 363:Core/Src/foc_utils.c ****     float valpha, vbeta;
+ 965              		.loc 1 363 5 is_stmt 1 view .LVU267
+ 364:Core/Src/foc_utils.c ****     uint32_t da, db, dc;
+ 966              		.loc 1 364 5 view .LVU268
+ 365:Core/Src/foc_utils.c ****     const uint32_t pwm_res = hfoc->pwm_res;
+ 967              		.loc 1 365 5 view .LVU269
+ 968              		.loc 1 365 20 is_stmt 0 view .LVU270
  969 0012 D0F8A450 		ldr	r5, [r0, #164]
  970              	.LVL66:
- 367:Core/Src/foc_utils.c **** 
- 368:Core/Src/foc_utils.c ****     float sin_theta, cos_theta;
- 971              		.loc 1 368 5 is_stmt 1 view .LVU271
- 369:Core/Src/foc_utils.c ****     pre_calc_sin_cos(angle_rad, &sin_theta, &cos_theta);
- 972              		.loc 1 369 5 view .LVU272
+ 366:Core/Src/foc_utils.c **** 
+ 367:Core/Src/foc_utils.c ****     float sin_theta, cos_theta;
+ 971              		.loc 1 367 5 is_stmt 1 view .LVU271
+ 368:Core/Src/foc_utils.c ****     pre_calc_sin_cos(angle_rad, &sin_theta, &cos_theta);
+ 972              		.loc 1 368 5 view .LVU272
  973 0016 01A9     		add	r1, sp, #4
  974 0018 02A8     		add	r0, sp, #8
  975              	.LVL67:
- 976              		.loc 1 369 5 is_stmt 0 view .LVU273
+ 976              		.loc 1 368 5 is_stmt 0 view .LVU273
  977 001a B0EE410A 		vmov.f32	s0, s2
  978              	.LVL68:
- 979              		.loc 1 369 5 view .LVU274
+ 979              		.loc 1 368 5 view .LVU274
  980 001e FFF7FEFF 		bl	pre_calc_sin_cos
  981              	.LVL69:
- 370:Core/Src/foc_utils.c ****     inverse_park_transform(vd_ref, vq_ref, sin_theta, cos_theta, &valpha, &vbeta);
- 982              		.loc 1 370 5 is_stmt 1 view .LVU275
+ 369:Core/Src/foc_utils.c ****     inverse_park_transform(vd_ref, vq_ref, sin_theta, cos_theta, &valpha, &vbeta);
+ 982              		.loc 1 369 5 is_stmt 1 view .LVU275
  983 0022 06A9     		add	r1, sp, #24
  984 0024 07A8     		add	r0, sp, #28
  985 0026 DDED011A 		vldr.32	s3, [sp, #4]
  986 002a 9DED021A 		vldr.32	s2, [sp, #8]
-ARM GAS  /tmp/ccgbQbGQ.s 			page 26
-
-
  987 002e F0EE680A 		vmov.f32	s1, s17
+ARM GAS  /tmp/ccM36Fo5.s 			page 26
+
+
  988 0032 B0EE480A 		vmov.f32	s0, s16
  989 0036 FFF7FEFF 		bl	inverse_park_transform
  990              	.LVL70:
- 371:Core/Src/foc_utils.c ****     svpwm(valpha, vbeta, 12.0, pwm_res, &da, &db, &dc);
- 991              		.loc 1 371 5 view .LVU276
+ 370:Core/Src/foc_utils.c ****     svpwm(valpha, vbeta, 12.0, pwm_res, &da, &db, &dc);
+ 991              		.loc 1 370 5 view .LVU276
  992 003a 03AB     		add	r3, sp, #12
  993 003c 04AA     		add	r2, sp, #16
  994 003e 05A9     		add	r1, sp, #20
@@ -1516,54 +1515,54 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  998 004a 9DED070A 		vldr.32	s0, [sp, #28]
  999 004e FFF7FEFF 		bl	svpwm
  1000              	.LVL71:
- 372:Core/Src/foc_utils.c **** 
- 373:Core/Src/foc_utils.c ****     *(hfoc->pwm_a) = CONSTRAIN(da, 0, pwm_res);
- 1001              		.loc 1 373 5 view .LVU277
- 1002              		.loc 1 373 22 is_stmt 0 view .LVU278
+ 371:Core/Src/foc_utils.c **** 
+ 372:Core/Src/foc_utils.c ****     *(hfoc->pwm_a) = CONSTRAIN(da, 0, pwm_res);
+ 1001              		.loc 1 372 5 view .LVU277
+ 1002              		.loc 1 372 22 is_stmt 0 view .LVU278
  1003 0052 059B     		ldr	r3, [sp, #20]
  1004 0054 13B1     		cbz	r3, .L70
- 1005              		.loc 1 373 22 discriminator 1 view .LVU279
+ 1005              		.loc 1 372 22 discriminator 1 view .LVU279
  1006 0056 AB42     		cmp	r3, r5
  1007 0058 28BF     		it	cs
  1008 005a 2B46     		movcs	r3, r5
  1009              	.L70:
- 1010              		.loc 1 373 11 discriminator 4 view .LVU280
+ 1010              		.loc 1 372 11 discriminator 4 view .LVU280
  1011 005c D4F89820 		ldr	r2, [r4, #152]
- 1012              		.loc 1 373 20 discriminator 4 view .LVU281
+ 1012              		.loc 1 372 20 discriminator 4 view .LVU281
  1013 0060 1360     		str	r3, [r2]
- 374:Core/Src/foc_utils.c ****     *(hfoc->pwm_b) = CONSTRAIN(db, 0, pwm_res);
- 1014              		.loc 1 374 5 is_stmt 1 discriminator 4 view .LVU282
- 1015              		.loc 1 374 22 is_stmt 0 discriminator 4 view .LVU283
+ 373:Core/Src/foc_utils.c ****     *(hfoc->pwm_b) = CONSTRAIN(db, 0, pwm_res);
+ 1014              		.loc 1 373 5 is_stmt 1 discriminator 4 view .LVU282
+ 1015              		.loc 1 373 22 is_stmt 0 discriminator 4 view .LVU283
  1016 0062 049B     		ldr	r3, [sp, #16]
  1017 0064 13B1     		cbz	r3, .L71
- 1018              		.loc 1 374 22 discriminator 1 view .LVU284
+ 1018              		.loc 1 373 22 discriminator 1 view .LVU284
  1019 0066 AB42     		cmp	r3, r5
  1020 0068 28BF     		it	cs
  1021 006a 2B46     		movcs	r3, r5
  1022              	.L71:
- 1023              		.loc 1 374 11 discriminator 4 view .LVU285
+ 1023              		.loc 1 373 11 discriminator 4 view .LVU285
  1024 006c D4F89C20 		ldr	r2, [r4, #156]
- 1025              		.loc 1 374 20 discriminator 4 view .LVU286
+ 1025              		.loc 1 373 20 discriminator 4 view .LVU286
  1026 0070 1360     		str	r3, [r2]
- 375:Core/Src/foc_utils.c ****     *(hfoc->pwm_c) = CONSTRAIN(dc, 0, pwm_res);
- 1027              		.loc 1 375 5 is_stmt 1 discriminator 4 view .LVU287
- 1028              		.loc 1 375 22 is_stmt 0 discriminator 4 view .LVU288
+ 374:Core/Src/foc_utils.c ****     *(hfoc->pwm_c) = CONSTRAIN(dc, 0, pwm_res);
+ 1027              		.loc 1 374 5 is_stmt 1 discriminator 4 view .LVU287
+ 1028              		.loc 1 374 22 is_stmt 0 discriminator 4 view .LVU288
  1029 0072 039B     		ldr	r3, [sp, #12]
  1030 0074 13B1     		cbz	r3, .L72
- 1031              		.loc 1 375 22 discriminator 1 view .LVU289
+ 1031              		.loc 1 374 22 discriminator 1 view .LVU289
  1032 0076 AB42     		cmp	r3, r5
  1033 0078 28BF     		it	cs
  1034 007a 2B46     		movcs	r3, r5
  1035              	.L72:
- 1036              		.loc 1 375 11 discriminator 4 view .LVU290
+ 1036              		.loc 1 374 11 discriminator 4 view .LVU290
  1037 007c D4F8A020 		ldr	r2, [r4, #160]
- 1038              		.loc 1 375 20 discriminator 4 view .LVU291
-ARM GAS  /tmp/ccgbQbGQ.s 			page 27
-
-
+ 1038              		.loc 1 374 20 discriminator 4 view .LVU291
  1039 0080 1360     		str	r3, [r2]
- 376:Core/Src/foc_utils.c **** }
- 1040              		.loc 1 376 1 discriminator 4 view .LVU292
+ARM GAS  /tmp/ccM36Fo5.s 			page 27
+
+
+ 375:Core/Src/foc_utils.c **** }
+ 1040              		.loc 1 375 1 discriminator 4 view .LVU292
  1041 0082 09B0     		add	sp, sp, #36
  1042              	.LCFI15:
  1043              		.cfi_def_cfa_offset 20
@@ -1574,9 +1573,9 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  1048              		.cfi_restore 81
  1049              		.cfi_def_cfa_offset 12
  1050              	.LVL72:
- 1051              		.loc 1 376 1 discriminator 4 view .LVU293
+ 1051              		.loc 1 375 1 discriminator 4 view .LVU293
  1052 0088 30BD     		pop	{r4, r5, pc}
- 1053              		.loc 1 376 1 discriminator 4 view .LVU294
+ 1053              		.loc 1 375 1 discriminator 4 view .LVU294
  1054              		.cfi_endproc
  1055              	.LFE152:
  1057              		.section	.text.foc_cal_encoder_misalignment,"ax",%progbits
@@ -1618,10 +1617,10 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  1091 0018 FFF7FEFF 		bl	open_loop_voltage_control
  1092              	.LVL74:
  233:Core/Src/foc_utils.c ****   float rad_offset = 0.0f;
-ARM GAS  /tmp/ccgbQbGQ.s 			page 28
-
-
  1093              		.loc 1 233 3 view .LVU298
+ARM GAS  /tmp/ccM36Fo5.s 			page 28
+
+
  1094 001c 4FF4FA70 		mov	r0, #500
  1095 0020 FFF7FEFF 		bl	HAL_Delay
  1096              	.LVL75:
@@ -1678,10 +1677,10 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  1133 0052 F0EE400A 		vmov.f32	s1, s0
  1134 0056 2846     		mov	r0, r5
  1135 0058 FFF7FEFF 		bl	open_loop_voltage_control
-ARM GAS  /tmp/ccgbQbGQ.s 			page 29
-
-
  1136              	.LVL80:
+ARM GAS  /tmp/ccM36Fo5.s 			page 29
+
+
  240:Core/Src/foc_utils.c ****   hfoc->m_angle_offset = rad_offset;
  1137              		.loc 1 240 3 view .LVU313
  240:Core/Src/foc_utils.c ****   hfoc->m_angle_offset = rad_offset;
@@ -1738,10 +1737,10 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  246:Core/Src/foc_utils.c ****   memset(error_temp, 0, sizeof(error_temp));
  1183              		.loc 1 246 35 is_stmt 0 view .LVU322
  1184 0000 30B5     		push	{r4, r5, lr}
-ARM GAS  /tmp/ccgbQbGQ.s 			page 30
-
-
  1185              	.LCFI20:
+ARM GAS  /tmp/ccM36Fo5.s 			page 30
+
+
  1186              		.cfi_def_cfa_offset 12
  1187              		.cfi_offset 4, -12
  1188              		.cfi_offset 5, -8
@@ -1798,10 +1797,10 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  267:Core/Src/foc_utils.c ****       index += ERROR_LUT_SIZE;
  1230              		.loc 1 267 11 is_stmt 1 view .LVU332
  1231 0024 002B     		cmp	r3, #0
-ARM GAS  /tmp/ccgbQbGQ.s 			page 31
-
-
  1232 0026 FBDB     		blt	.L83
+ARM GAS  /tmp/ccM36Fo5.s 			page 31
+
+
  270:Core/Src/foc_utils.c **** 
  1233              		.loc 1 270 5 discriminator 2 view .LVU333
  270:Core/Src/foc_utils.c **** 
@@ -1858,10 +1857,10 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  1270 0054 DFED447A 		vldr.32	s15, .L94+4
  1271 0058 68EE277A 		vmul.f32	s15, s16, s15
  1272              	.LVL93:
-ARM GAS  /tmp/ccgbQbGQ.s 			page 32
-
-
  253:Core/Src/foc_utils.c ****     open_loop_voltage_control(hfoc, VD_CAL, VQ_CAL, elec_rad);
+ARM GAS  /tmp/ccM36Fo5.s 			page 32
+
+
  1273              		.loc 1 253 5 is_stmt 1 view .LVU349
  253:Core/Src/foc_utils.c ****     open_loop_voltage_control(hfoc, VD_CAL, VQ_CAL, elec_rad);
  1274              		.loc 1 253 22 is_stmt 0 view .LVU350
@@ -1918,10 +1917,10 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  1312              		.loc 1 261 5 is_stmt 1 view .LVU363
  261:Core/Src/foc_utils.c ****     delta -= TWO_PI * floorf((delta + PI) / TWO_PI);
  1313              		.loc 1 261 45 is_stmt 0 view .LVU364
-ARM GAS  /tmp/ccgbQbGQ.s 			page 33
-
-
  1314 009e DFED359A 		vldr.32	s19, .L94+16
+ARM GAS  /tmp/ccM36Fo5.s 			page 33
+
+
  1315 00a2 38EEA90A 		vadd.f32	s0, s17, s19
  261:Core/Src/foc_utils.c ****     delta -= TWO_PI * floorf((delta + PI) / TWO_PI);
  1316              		.loc 1 261 27 view .LVU365
@@ -1978,10 +1977,10 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  1353              		.loc 1 267 11 view .LVU379
  1354              	.LBE5:
  1355              	.LBE3:
-ARM GAS  /tmp/ccgbQbGQ.s 			page 34
-
-
  1356              	.LBB6:
+ARM GAS  /tmp/ccM36Fo5.s 			page 34
+
+
  282:Core/Src/foc_utils.c ****     if (error_temp[i] == 0) {
  1357              		.loc 1 282 12 view .LVU380
  1358 00e0 0023     		movs	r3, #0
@@ -2038,10 +2037,10 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  282:Core/Src/foc_utils.c ****     if (error_temp[i] == 0) {
  1396              		.loc 1 282 19 is_stmt 1 discriminator 1 view .LVU394
  282:Core/Src/foc_utils.c ****     if (error_temp[i] == 0) {
-ARM GAS  /tmp/ccgbQbGQ.s 			page 35
-
-
  1397              		.loc 1 282 3 is_stmt 0 discriminator 1 view .LVU395
+ARM GAS  /tmp/ccM36Fo5.s 			page 35
+
+
  1398 0112 B3F5806F 		cmp	r3, #1024
  1399 0116 12DA     		bge	.L93
  283:Core/Src/foc_utils.c ****       int last_i = i - 1;
@@ -2098,10 +2097,10 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  1436              	.L93:
  287:Core/Src/foc_utils.c ****       error_temp[i] = (error_temp[last_i] + error_temp[next_i]) / 2.0f;
  1437              		.loc 1 287 43 discriminator 1 view .LVU411
-ARM GAS  /tmp/ccgbQbGQ.s 			page 36
-
-
  1438              	.LBE8:
+ARM GAS  /tmp/ccM36Fo5.s 			page 36
+
+
  1439              	.LBE6:
  292:Core/Src/foc_utils.c **** 
  1440              		.loc 1 292 3 is_stmt 1 view .LVU412
@@ -2158,10 +2157,10 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  1489 0000 506F6C65 		.ascii	"Pole Pairs: %d\015\012\000"
  1489      20506169 
  1489      72733A20 
-ARM GAS  /tmp/ccgbQbGQ.s 			page 37
-
-
  1489      25640D0A 
+ARM GAS  /tmp/ccM36Fo5.s 			page 37
+
+
  1489      00
  1490 0011 000000   		.align	2
  1491              	.LC1:
@@ -2193,16 +2192,16 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  1509              		.cfi_startproc
  1510              		@ args = 0, pretend = 0, frame = 0
  1511              		@ frame_needed = 0, uses_anonymous_args = 0
- 304:Core/Src/foc_utils.c **** 	
+ 304:Core/Src/foc_utils.c **** 	static float actual_theta_start = 0.0f;
  1512              		.loc 1 304 5 view .LVU417
- 304:Core/Src/foc_utils.c **** 	
+ 304:Core/Src/foc_utils.c **** 	static float actual_theta_start = 0.0f;
  1513              		.loc 1 304 27 is_stmt 0 view .LVU418
- 1514 0000 574B     		ldr	r3, .L127
+ 1514 0000 514B     		ldr	r3, .L120+8
  1515 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 304:Core/Src/foc_utils.c **** 	
+ 304:Core/Src/foc_utils.c **** 	static float actual_theta_start = 0.0f;
  1516              		.loc 1 304 8 view .LVU419
  1517 0004 002B     		cmp	r3, #0
- 1518 0006 00F0AA80 		beq	.L122
+ 1518 0006 00F09780 		beq	.L115
  303:Core/Src/foc_utils.c ****     if (current_cal_state == CAL_IDLE || current_cal_state == CAL_DONE) return;
  1519              		.loc 1 303 47 discriminator 2 view .LVU420
  1520 000a 10B5     		push	{r4, lr}
@@ -2216,452 +2215,430 @@ ARM GAS  /tmp/ccgbQbGQ.s 			page 1
  1528              		.cfi_offset 80, -16
  1529              		.cfi_offset 81, -12
  1530 0010 0446     		mov	r4, r0
- 304:Core/Src/foc_utils.c **** 	
+ 304:Core/Src/foc_utils.c **** 	static float actual_theta_start = 0.0f;
  1531              		.loc 1 304 39 discriminator 2 view .LVU421
-ARM GAS  /tmp/ccgbQbGQ.s 			page 38
-
-
  1532 0012 032B     		cmp	r3, #3
- 1533 0014 2CD0     		beq	.L96
- 306:Core/Src/foc_utils.c ****     float elapsed_sec = (current_time - cal_start_time) / 1000.0f;
- 1534              		.loc 1 306 5 is_stmt 1 view .LVU422
- 306:Core/Src/foc_utils.c ****     float elapsed_sec = (current_time - cal_start_time) / 1000.0f;
- 1535              		.loc 1 306 29 is_stmt 0 view .LVU423
- 1536 0016 FFF7FEFF 		bl	HAL_GetTick
- 1537              	.LVL122:
- 307:Core/Src/foc_utils.c **** 
- 1538              		.loc 1 307 5 is_stmt 1 view .LVU424
- 307:Core/Src/foc_utils.c **** 
- 1539              		.loc 1 307 39 is_stmt 0 view .LVU425
- 1540 001a 524B     		ldr	r3, .L127+4
- 1541 001c 1B68     		ldr	r3, [r3]
- 1542 001e C31A     		subs	r3, r0, r3
- 1543 0020 07EE903A 		vmov	s15, r3	@ int
- 307:Core/Src/foc_utils.c **** 
- 1544              		.loc 1 307 57 view .LVU426
- 1545 0024 F8EE677A 		vcvt.f32.u32	s15, s15
- 307:Core/Src/foc_utils.c **** 
- 1546              		.loc 1 307 11 view .LVU427
- 1547 0028 9FED4F7A 		vldr.32	s14, .L127+8
- 1548 002c 87EE871A 		vdiv.f32	s2, s15, s14
- 1549              	.LVL123:
- 309:Core/Src/foc_utils.c ****     const float W_CAL = TWO_PI / 2.0f; // Vận tốc quét (hoàn thành 2PI trong 2s)
- 1550              		.loc 1 309 5 is_stmt 1 view .LVU428
- 310:Core/Src/foc_utils.c **** 
- 1551              		.loc 1 310 5 view .LVU429
- 312:Core/Src/foc_utils.c ****         // Giai đoạn 1: Khóa Rotor
- 1552              		.loc 1 312 5 view .LVU430
- 312:Core/Src/foc_utils.c ****         // Giai đoạn 1: Khóa Rotor
- 1553              		.loc 1 312 8 is_stmt 0 view .LVU431
- 1554 0030 F7EE007A 		vmov.f32	s15, #1.0e+0
- 1555 0034 B4EEE71A 		vcmpe.f32	s2, s15
- 1556 0038 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 1557 003c 1BD4     		bmi	.L125
- 318:Core/Src/foc_utils.c ****         // Giai đoạn 2: Quét 1 vòng điện (Không dùng HAL_Delay)
- 1558              		.loc 1 318 10 is_stmt 1 view .LVU432
- 318:Core/Src/foc_utils.c ****         // Giai đoạn 2: Quét 1 vòng điện (Không dùng HAL_Delay)
- 1559              		.loc 1 318 13 is_stmt 0 view .LVU433
- 1560 003e F0EE087A 		vmov.f32	s15, #3.0e+0
- 1561 0042 B4EEE71A 		vcmpe.f32	s2, s15
- 1562 0046 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 1563 004a 27D5     		bpl	.L118
- 1564              	.LBB9:
- 320:Core/Src/foc_utils.c ****         float elec_angle = W_CAL * (elapsed_sec - T1);
- 1565              		.loc 1 320 9 is_stmt 1 view .LVU434
- 320:Core/Src/foc_utils.c ****         float elec_angle = W_CAL * (elapsed_sec - T1);
- 1566              		.loc 1 320 27 is_stmt 0 view .LVU435
- 1567 004c 444B     		ldr	r3, .L127
- 1568 004e 0222     		movs	r2, #2
- 1569 0050 1A70     		strb	r2, [r3]
- 321:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, VD_CAL, 0.0f, elec_angle);
- 1570              		.loc 1 321 9 is_stmt 1 view .LVU436
- 321:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, VD_CAL, 0.0f, elec_angle);
- 1571              		.loc 1 321 49 is_stmt 0 view .LVU437
- 1572 0052 F7EE007A 		vmov.f32	s15, #1.0e+0
-ARM GAS  /tmp/ccgbQbGQ.s 			page 39
+ARM GAS  /tmp/ccM36Fo5.s 			page 38
 
 
- 1573 0056 31EE671A 		vsub.f32	s2, s2, s15
- 1574              	.LVL124:
- 322:Core/Src/foc_utils.c ****     } 
- 1575              		.loc 1 322 9 is_stmt 1 view .LVU438
- 1576 005a DFED447A 		vldr.32	s15, .L127+12
- 1577 005e 21EE271A 		vmul.f32	s2, s2, s15
- 1578              	.LVL125:
- 322:Core/Src/foc_utils.c ****     } 
- 1579              		.loc 1 322 9 is_stmt 0 view .LVU439
- 1580 0062 DFED430A 		vldr.32	s1, .L127+16
- 1581 0066 B6EE000A 		vmov.f32	s0, #5.0e-1
- 1582 006a 2046     		mov	r0, r4
- 1583              	.LVL126:
- 322:Core/Src/foc_utils.c ****     } 
- 1584              		.loc 1 322 9 view .LVU440
- 1585 006c FFF7FEFF 		bl	open_loop_voltage_control
- 1586              	.LVL127:
- 1587              	.L96:
- 322:Core/Src/foc_utils.c ****     } 
- 1588              		.loc 1 322 9 view .LVU441
- 1589              	.LBE9:
- 354:Core/Src/foc_utils.c **** 
- 1590              		.loc 1 354 1 view .LVU442
- 1591 0070 BDEC028B 		vldm	sp!, {d8}
- 1592              	.LCFI27:
- 1593              		.cfi_remember_state
- 1594              		.cfi_restore 80
- 1595              		.cfi_restore 81
- 1596              		.cfi_def_cfa_offset 8
- 1597 0074 10BD     		pop	{r4, pc}
- 1598              	.LVL128:
- 1599              	.L125:
- 1600              	.LCFI28:
- 1601              		.cfi_restore_state
- 314:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, VD_CAL, 0.0f, 0.0f);
- 1602              		.loc 1 314 9 is_stmt 1 view .LVU443
- 314:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, VD_CAL, 0.0f, 0.0f);
- 1603              		.loc 1 314 27 is_stmt 0 view .LVU444
- 1604 0076 3A4B     		ldr	r3, .L127
- 1605 0078 0122     		movs	r2, #1
- 1606 007a 1A70     		strb	r2, [r3]
- 315:Core/Src/foc_utils.c ****         theta_start = ENCODER_GetDegree(&encoder);
- 1607              		.loc 1 315 9 is_stmt 1 view .LVU445
- 1608 007c DFED3C0A 		vldr.32	s1, .L127+16
- 1609 0080 B0EE601A 		vmov.f32	s2, s1
- 1610              	.LVL129:
- 315:Core/Src/foc_utils.c ****         theta_start = ENCODER_GetDegree(&encoder);
- 1611              		.loc 1 315 9 is_stmt 0 view .LVU446
- 1612 0084 B6EE000A 		vmov.f32	s0, #5.0e-1
- 1613 0088 2046     		mov	r0, r4
- 1614              	.LVL130:
- 315:Core/Src/foc_utils.c ****         theta_start = ENCODER_GetDegree(&encoder);
- 1615              		.loc 1 315 9 view .LVU447
- 1616 008a FFF7FEFF 		bl	open_loop_voltage_control
- 1617              	.LVL131:
- 316:Core/Src/foc_utils.c ****     } 
- 1618              		.loc 1 316 9 is_stmt 1 view .LVU448
-ARM GAS  /tmp/ccgbQbGQ.s 			page 40
+ 1533 0014 2FD0     		beq	.L96
+ 305:Core/Src/foc_utils.c **** 
+ 1534              		.loc 1 305 2 is_stmt 1 view .LVU422
+ 307:Core/Src/foc_utils.c ****     float elapsed_sec = (current_time - cal_start_time) / 1000.0f;
+ 1535              		.loc 1 307 5 view .LVU423
+ 307:Core/Src/foc_utils.c ****     float elapsed_sec = (current_time - cal_start_time) / 1000.0f;
+ 1536              		.loc 1 307 29 is_stmt 0 view .LVU424
+ 1537 0016 FFF7FEFF 		bl	HAL_GetTick
+ 1538              	.LVL122:
+ 308:Core/Src/foc_utils.c **** 
+ 1539              		.loc 1 308 5 is_stmt 1 view .LVU425
+ 308:Core/Src/foc_utils.c **** 
+ 1540              		.loc 1 308 39 is_stmt 0 view .LVU426
+ 1541 001a 4C4B     		ldr	r3, .L120+12
+ 1542 001c 1B68     		ldr	r3, [r3]
+ 1543 001e C31A     		subs	r3, r0, r3
+ 1544 0020 07EE903A 		vmov	s15, r3	@ int
+ 308:Core/Src/foc_utils.c **** 
+ 1545              		.loc 1 308 57 view .LVU427
+ 1546 0024 F8EE677A 		vcvt.f32.u32	s15, s15
+ 308:Core/Src/foc_utils.c **** 
+ 1547              		.loc 1 308 11 view .LVU428
+ 1548 0028 9FED497A 		vldr.32	s14, .L120+16
+ 1549 002c 87EE871A 		vdiv.f32	s2, s15, s14
+ 1550              	.LVL123:
+ 310:Core/Src/foc_utils.c ****     const float T1 = 1.0f; // 1 giây để khóa rotor
+ 1551              		.loc 1 310 5 is_stmt 1 view .LVU429
+ 311:Core/Src/foc_utils.c ****     const float W_CAL = TWO_PI / 0.2f; // Vận tốc quét (hoàn thành 2PI trong 2s)
+ 1552              		.loc 1 311 5 view .LVU430
+ 312:Core/Src/foc_utils.c ****     const float SWEEP_TIME = (SWEEP_CYCLES * TWO_PI) / W_CAL;
+ 1553              		.loc 1 312 5 view .LVU431
+ 313:Core/Src/foc_utils.c **** 
+ 1554              		.loc 1 313 5 view .LVU432
+ 315:Core/Src/foc_utils.c ****         // Giai đoạn 1: Khóa Rotor
+ 1555              		.loc 1 315 5 view .LVU433
+ 315:Core/Src/foc_utils.c ****         // Giai đoạn 1: Khóa Rotor
+ 1556              		.loc 1 315 8 is_stmt 0 view .LVU434
+ 1557 0030 F7EE007A 		vmov.f32	s15, #1.0e+0
+ 1558 0034 B4EEE71A 		vcmpe.f32	s2, s15
+ 1559 0038 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1560 003c 1ED4     		bmi	.L118
+ 321:Core/Src/foc_utils.c ****         // Giai đoạn 2: Quét 1 vòng điện (Không dùng HAL_Delay)
+ 1561              		.loc 1 321 10 is_stmt 1 view .LVU435
+ 321:Core/Src/foc_utils.c ****         // Giai đoạn 2: Quét 1 vòng điện (Không dùng HAL_Delay)
+ 1562              		.loc 1 321 13 is_stmt 0 view .LVU436
+ 1563 003e F1EE047A 		vmov.f32	s15, #5.0e+0
+ 1564 0042 B4EEE71A 		vcmpe.f32	s2, s15
+ 1565 0046 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1566 004a 2AD5     		bpl	.L112
+ 1567              	.LBB9:
+ 323:Core/Src/foc_utils.c ****         float elec_angle = W_CAL * (elapsed_sec - T1);
+ 1568              		.loc 1 323 9 is_stmt 1 view .LVU437
+ 323:Core/Src/foc_utils.c ****         float elec_angle = W_CAL * (elapsed_sec - T1);
+ 1569              		.loc 1 323 27 is_stmt 0 view .LVU438
+ 1570 004c 3E4B     		ldr	r3, .L120+8
+ 1571 004e 0222     		movs	r2, #2
+ 1572 0050 1A70     		strb	r2, [r3]
+ARM GAS  /tmp/ccM36Fo5.s 			page 39
 
 
- 316:Core/Src/foc_utils.c ****     } 
- 1619              		.loc 1 316 23 is_stmt 0 view .LVU449
- 1620 008e 3948     		ldr	r0, .L127+20
- 1621 0090 FFF7FEFF 		bl	ENCODER_GetDegree
- 1622              	.LVL132:
- 316:Core/Src/foc_utils.c ****     } 
- 1623              		.loc 1 316 21 view .LVU450
- 1624 0094 384B     		ldr	r3, .L127+24
- 1625 0096 83ED000A 		vstr.32	s0, [r3]
- 1626 009a E9E7     		b	.L96
- 1627              	.LVL133:
- 1628              	.L118:
- 1629              	.LBB10:
- 326:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
- 1630              		.loc 1 326 9 is_stmt 1 view .LVU451
- 326:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
- 1631              		.loc 1 326 27 is_stmt 0 view .LVU452
- 1632 009c 3548     		ldr	r0, .L127+20
- 1633              	.LVL134:
- 326:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
- 1634              		.loc 1 326 27 view .LVU453
- 1635 009e FFF7FEFF 		bl	ENCODER_GetDegree
- 1636              	.LVL135:
- 326:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
- 1637              		.loc 1 326 27 view .LVU454
- 1638 00a2 B0EE408A 		vmov.f32	s16, s0
- 1639              	.LVL136:
- 327:Core/Src/foc_utils.c ****         
- 1640              		.loc 1 327 9 is_stmt 1 view .LVU455
- 1641 00a6 9FED320A 		vldr.32	s0, .L127+16
- 1642              	.LVL137:
- 327:Core/Src/foc_utils.c ****         
- 1643              		.loc 1 327 9 is_stmt 0 view .LVU456
- 1644 00aa B0EE401A 		vmov.f32	s2, s0
- 1645 00ae F0EE400A 		vmov.f32	s1, s0
- 1646 00b2 2046     		mov	r0, r4
- 1647 00b4 FFF7FEFF 		bl	open_loop_voltage_control
- 1648              	.LVL138:
- 329:Core/Src/foc_utils.c ****         
- 1649              		.loc 1 329 9 is_stmt 1 view .LVU457
- 329:Core/Src/foc_utils.c ****         
- 1650              		.loc 1 329 38 is_stmt 0 view .LVU458
- 1651 00b8 2F4B     		ldr	r3, .L127+24
- 1652 00ba 93ED000A 		vldr.32	s0, [r3]
- 329:Core/Src/foc_utils.c ****         
- 1653              		.loc 1 329 15 view .LVU459
- 1654 00be 38EE408A 		vsub.f32	s16, s16, s0
+ 324:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, VD_CAL, 0.0f, elec_angle);
+ 1573              		.loc 1 324 9 is_stmt 1 view .LVU439
+ 324:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, VD_CAL, 0.0f, elec_angle);
+ 1574              		.loc 1 324 49 is_stmt 0 view .LVU440
+ 1575 0052 F7EE007A 		vmov.f32	s15, #1.0e+0
+ 1576 0056 31EE671A 		vsub.f32	s2, s2, s15
+ 1577              	.LVL124:
+ 325:Core/Src/foc_utils.c ****         ENCODER_GetActualDegree(&encoder);
+ 1578              		.loc 1 325 9 is_stmt 1 view .LVU441
+ 1579 005a DFED3E7A 		vldr.32	s15, .L120+20
+ 1580 005e 21EE271A 		vmul.f32	s2, s2, s15
+ 1581              	.LVL125:
+ 325:Core/Src/foc_utils.c ****         ENCODER_GetActualDegree(&encoder);
+ 1582              		.loc 1 325 9 is_stmt 0 view .LVU442
+ 1583 0062 DFED3D0A 		vldr.32	s1, .L120+24
+ 1584 0066 B6EE000A 		vmov.f32	s0, #5.0e-1
+ 1585 006a 2046     		mov	r0, r4
+ 1586              	.LVL126:
+ 325:Core/Src/foc_utils.c ****         ENCODER_GetActualDegree(&encoder);
+ 1587              		.loc 1 325 9 view .LVU443
+ 1588 006c FFF7FEFF 		bl	open_loop_voltage_control
+ 1589              	.LVL127:
+ 326:Core/Src/foc_utils.c ****     } 
+ 1590              		.loc 1 326 9 is_stmt 1 view .LVU444
+ 1591 0070 3A48     		ldr	r0, .L120+28
+ 1592 0072 FFF7FEFF 		bl	ENCODER_GetActualDegree
+ 1593              	.LVL128:
+ 1594              	.L96:
+ 326:Core/Src/foc_utils.c ****     } 
+ 1595              		.loc 1 326 9 is_stmt 0 view .LVU445
+ 1596              	.LBE9:
+ 353:Core/Src/foc_utils.c **** 
+ 1597              		.loc 1 353 1 view .LVU446
+ 1598 0076 BDEC028B 		vldm	sp!, {d8}
+ 1599              	.LCFI27:
+ 1600              		.cfi_remember_state
+ 1601              		.cfi_restore 80
+ 1602              		.cfi_restore 81
+ 1603              		.cfi_def_cfa_offset 8
+ 1604 007a 10BD     		pop	{r4, pc}
+ 1605              	.LVL129:
+ 1606              	.L118:
+ 1607              	.LCFI28:
+ 1608              		.cfi_restore_state
+ 317:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, VD_CAL, 0.0f, 0.0f);
+ 1609              		.loc 1 317 9 is_stmt 1 view .LVU447
+ 317:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, VD_CAL, 0.0f, 0.0f);
+ 1610              		.loc 1 317 27 is_stmt 0 view .LVU448
+ 1611 007c 324B     		ldr	r3, .L120+8
+ 1612 007e 0122     		movs	r2, #1
+ 1613 0080 1A70     		strb	r2, [r3]
+ 318:Core/Src/foc_utils.c ****         actual_theta_start = ENCODER_GetActualDegree(&encoder);
+ 1614              		.loc 1 318 9 is_stmt 1 view .LVU449
+ 1615 0082 DFED350A 		vldr.32	s1, .L120+24
+ 1616 0086 B0EE601A 		vmov.f32	s2, s1
+ 1617              	.LVL130:
+ 318:Core/Src/foc_utils.c ****         actual_theta_start = ENCODER_GetActualDegree(&encoder);
+ARM GAS  /tmp/ccM36Fo5.s 			page 40
+
+
+ 1618              		.loc 1 318 9 is_stmt 0 view .LVU450
+ 1619 008a B6EE000A 		vmov.f32	s0, #5.0e-1
+ 1620 008e 2046     		mov	r0, r4
+ 1621              	.LVL131:
+ 318:Core/Src/foc_utils.c ****         actual_theta_start = ENCODER_GetActualDegree(&encoder);
+ 1622              		.loc 1 318 9 view .LVU451
+ 1623 0090 FFF7FEFF 		bl	open_loop_voltage_control
+ 1624              	.LVL132:
+ 319:Core/Src/foc_utils.c ****     } 
+ 1625              		.loc 1 319 9 is_stmt 1 view .LVU452
+ 319:Core/Src/foc_utils.c ****     } 
+ 1626              		.loc 1 319 30 is_stmt 0 view .LVU453
+ 1627 0094 3148     		ldr	r0, .L120+28
+ 1628 0096 FFF7FEFF 		bl	ENCODER_GetActualDegree
+ 1629              	.LVL133:
+ 319:Core/Src/foc_utils.c ****     } 
+ 1630              		.loc 1 319 28 view .LVU454
+ 1631 009a 314B     		ldr	r3, .L120+32
+ 1632 009c 83ED000A 		vstr.32	s0, [r3]
+ 1633 00a0 E9E7     		b	.L96
+ 1634              	.LVL134:
+ 1635              	.L112:
+ 1636              	.LBB10:
+ 330:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
+ 1637              		.loc 1 330 9 is_stmt 1 view .LVU455
+ 330:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
+ 1638              		.loc 1 330 34 is_stmt 0 view .LVU456
+ 1639 00a2 2E48     		ldr	r0, .L120+28
+ 1640              	.LVL135:
+ 330:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
+ 1641              		.loc 1 330 34 view .LVU457
+ 1642 00a4 FFF7FEFF 		bl	ENCODER_GetActualDegree
+ 1643              	.LVL136:
+ 330:Core/Src/foc_utils.c ****         open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
+ 1644              		.loc 1 330 34 view .LVU458
+ 1645 00a8 B0EE408A 		vmov.f32	s16, s0
+ 1646              	.LVL137:
+ 331:Core/Src/foc_utils.c ****         
+ 1647              		.loc 1 331 9 is_stmt 1 view .LVU459
+ 1648 00ac 9FED2A0A 		vldr.32	s0, .L120+24
+ 1649              	.LVL138:
+ 331:Core/Src/foc_utils.c ****         
+ 1650              		.loc 1 331 9 is_stmt 0 view .LVU460
+ 1651 00b0 B0EE401A 		vmov.f32	s2, s0
+ 1652 00b4 F0EE400A 		vmov.f32	s1, s0
+ 1653 00b8 2046     		mov	r0, r4
+ 1654 00ba FFF7FEFF 		bl	open_loop_voltage_control
  1655              	.LVL139:
- 331:Core/Src/foc_utils.c ****             delta_mech -= 360.0f;
- 1656              		.loc 1 331 9 is_stmt 1 view .LVU460
- 331:Core/Src/foc_utils.c ****             delta_mech -= 360.0f;
- 1657              		.loc 1 331 12 is_stmt 0 view .LVU461
- 1658 00c2 DFED2E7A 		vldr.32	s15, .L127+28
- 1659 00c6 B4EEE78A 		vcmpe.f32	s16, s15
- 1660 00ca F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 1661 00ce 1BDD     		ble	.L119
- 332:Core/Src/foc_utils.c ****         } else if (delta_mech < -180.0f) {
-ARM GAS  /tmp/ccgbQbGQ.s 			page 41
+ 333:Core/Src/foc_utils.c ****         
+ 1656              		.loc 1 333 9 is_stmt 1 view .LVU461
+ 333:Core/Src/foc_utils.c ****         
+ 1657              		.loc 1 333 45 is_stmt 0 view .LVU462
+ 1658 00be 284B     		ldr	r3, .L120+32
+ 1659 00c0 93ED000A 		vldr.32	s0, [r3]
+ 333:Core/Src/foc_utils.c ****         
+ 1660              		.loc 1 333 15 view .LVU463
+ 1661 00c4 38EE408A 		vsub.f32	s16, s16, s0
+ARM GAS  /tmp/ccM36Fo5.s 			page 41
 
 
- 1662              		.loc 1 332 13 is_stmt 1 view .LVU462
- 332:Core/Src/foc_utils.c ****         } else if (delta_mech < -180.0f) {
- 1663              		.loc 1 332 24 is_stmt 0 view .LVU463
- 1664 00d0 DFED2B7A 		vldr.32	s15, .L127+32
- 1665 00d4 38EE678A 		vsub.f32	s16, s16, s15
- 1666              	.LVL140:
- 1667              	.L104:
- 338:Core/Src/foc_utils.c ****             hfoc->pole_pairs = round(360.0f / fabs(delta_mech));
- 1668              		.loc 1 338 9 is_stmt 1 view .LVU464
- 338:Core/Src/foc_utils.c ****             hfoc->pole_pairs = round(360.0f / fabs(delta_mech));
- 1669              		.loc 1 338 13 is_stmt 0 view .LVU465
- 1670 00d8 F0EEC87A 		vabs.f32	s15, s16
- 338:Core/Src/foc_utils.c ****             hfoc->pole_pairs = round(360.0f / fabs(delta_mech));
- 1671              		.loc 1 338 12 view .LVU466
- 1672 00dc 9FED297A 		vldr.32	s14, .L127+36
- 1673 00e0 F4EEC77A 		vcmpe.f32	s15, s14
- 1674 00e4 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 1675 00e8 1ADC     		bgt	.L126
- 1676              	.L106:
- 345:Core/Src/foc_utils.c ****             hfoc->sensor_dir = REVERSE_DIR;
- 1677              		.loc 1 345 9 is_stmt 1 view .LVU467
- 345:Core/Src/foc_utils.c ****             hfoc->sensor_dir = REVERSE_DIR;
- 1678              		.loc 1 345 12 is_stmt 0 view .LVU468
- 1679 00ea B5EEC08A 		vcmpe.f32	s16, #0
- 1680 00ee F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 1681 00f2 2DDD     		ble	.L120
- 346:Core/Src/foc_utils.c ****             printf("Phase order & Sensor match (NORMAL)\r\n");
- 1682              		.loc 1 346 13 is_stmt 1 view .LVU469
- 346:Core/Src/foc_utils.c ****             printf("Phase order & Sensor match (NORMAL)\r\n");
- 1683              		.loc 1 346 30 is_stmt 0 view .LVU470
- 1684 00f4 0123     		movs	r3, #1
- 1685 00f6 84F89431 		strb	r3, [r4, #404]
- 347:Core/Src/foc_utils.c ****         } else {
- 1686              		.loc 1 347 13 is_stmt 1 view .LVU471
- 1687 00fa 2348     		ldr	r0, .L127+40
- 1688 00fc FFF7FEFF 		bl	puts
- 1689              	.LVL141:
- 1690              	.L110:
- 352:Core/Src/foc_utils.c ****     }
- 1691              		.loc 1 352 9 view .LVU472
- 352:Core/Src/foc_utils.c ****     }
- 1692              		.loc 1 352 27 is_stmt 0 view .LVU473
- 1693 0100 174B     		ldr	r3, .L127
- 1694 0102 0322     		movs	r2, #3
- 1695 0104 1A70     		strb	r2, [r3]
- 1696 0106 B3E7     		b	.L96
- 1697              	.L119:
- 333:Core/Src/foc_utils.c ****             delta_mech += 360.0f;
- 1698              		.loc 1 333 16 is_stmt 1 view .LVU474
- 333:Core/Src/foc_utils.c ****             delta_mech += 360.0f;
- 1699              		.loc 1 333 19 is_stmt 0 view .LVU475
- 1700 0108 DFED207A 		vldr.32	s15, .L127+44
- 1701 010c B4EEE78A 		vcmpe.f32	s16, s15
- 1702 0110 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 1703 0114 E0D5     		bpl	.L104
- 334:Core/Src/foc_utils.c ****         }
- 1704              		.loc 1 334 13 is_stmt 1 view .LVU476
-ARM GAS  /tmp/ccgbQbGQ.s 			page 42
+ 1662              	.LVL140:
+ 337:Core/Src/foc_utils.c ****             hfoc->pole_pairs = round((SWEEP_CYCLES * 360.0f)/ fabs(delta_mech));
+ 1663              		.loc 1 337 9 is_stmt 1 view .LVU464
+ 337:Core/Src/foc_utils.c ****             hfoc->pole_pairs = round((SWEEP_CYCLES * 360.0f)/ fabs(delta_mech));
+ 1664              		.loc 1 337 13 is_stmt 0 view .LVU465
+ 1665 00c8 F0EEC87A 		vabs.f32	s15, s16
+ 337:Core/Src/foc_utils.c ****             hfoc->pole_pairs = round((SWEEP_CYCLES * 360.0f)/ fabs(delta_mech));
+ 1666              		.loc 1 337 12 view .LVU466
+ 1667 00cc 9FED257A 		vldr.32	s14, .L120+36
+ 1668 00d0 F4EEC77A 		vcmpe.f32	s15, s14
+ 1669 00d4 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1670 00d8 0EDC     		bgt	.L119
+ 1671              	.L102:
+ 344:Core/Src/foc_utils.c ****             hfoc->sensor_dir = NORMAL_DIR;
+ 1672              		.loc 1 344 9 is_stmt 1 view .LVU467
+ 344:Core/Src/foc_utils.c ****             hfoc->sensor_dir = NORMAL_DIR;
+ 1673              		.loc 1 344 12 is_stmt 0 view .LVU468
+ 1674 00da B5EEC08A 		vcmpe.f32	s16, #0
+ 1675 00de F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1676 00e2 22DD     		ble	.L113
+ 345:Core/Src/foc_utils.c ****             printf("Phase order & Sensor match (NORMAL)\r\n");
+ 1677              		.loc 1 345 13 is_stmt 1 view .LVU469
+ 345:Core/Src/foc_utils.c ****             printf("Phase order & Sensor match (NORMAL)\r\n");
+ 1678              		.loc 1 345 30 is_stmt 0 view .LVU470
+ 1679 00e4 0023     		movs	r3, #0
+ 1680 00e6 84F89431 		strb	r3, [r4, #404]
+ 346:Core/Src/foc_utils.c ****         } else {
+ 1681              		.loc 1 346 13 is_stmt 1 view .LVU471
+ 1682 00ea 1F48     		ldr	r0, .L120+40
+ 1683 00ec FFF7FEFF 		bl	puts
+ 1684              	.LVL141:
+ 1685              	.L106:
+ 351:Core/Src/foc_utils.c ****     }
+ 1686              		.loc 1 351 9 view .LVU472
+ 351:Core/Src/foc_utils.c ****     }
+ 1687              		.loc 1 351 27 is_stmt 0 view .LVU473
+ 1688 00f0 154B     		ldr	r3, .L120+8
+ 1689 00f2 0322     		movs	r2, #3
+ 1690 00f4 1A70     		strb	r2, [r3]
+ 1691 00f6 BEE7     		b	.L96
+ 1692              	.L119:
+ 338:Core/Src/foc_utils.c ****             printf("Pole Pairs: %d\r\n", hfoc->pole_pairs);
+ 1693              		.loc 1 338 13 is_stmt 1 view .LVU474
+ 338:Core/Src/foc_utils.c ****             printf("Pole Pairs: %d\r\n", hfoc->pole_pairs);
+ 1694              		.loc 1 338 63 is_stmt 0 view .LVU475
+ 1695 00f8 17EE900A 		vmov	r0, s15
+ 1696 00fc FFF7FEFF 		bl	__aeabi_f2d
+ 1697              	.LVL142:
+ 1698 0100 0246     		mov	r2, r0
+ 1699 0102 0B46     		mov	r3, r1
+ 338:Core/Src/foc_utils.c ****             printf("Pole Pairs: %d\r\n", hfoc->pole_pairs);
+ 1700              		.loc 1 338 32 view .LVU476
+ 1701 0104 0EA1     		adr	r1, .L120
+ 1702 0106 D1E90001 		ldrd	r0, [r1]
+ 1703 010a FFF7FEFF 		bl	__aeabi_ddiv
+ 1704              	.LVL143:
+ 1705 010e 41EC100B 		vmov	d0, r0, r1
+ARM GAS  /tmp/ccM36Fo5.s 			page 42
 
 
- 334:Core/Src/foc_utils.c ****         }
- 1705              		.loc 1 334 24 is_stmt 0 view .LVU477
- 1706 0116 DFED1A7A 		vldr.32	s15, .L127+32
- 1707 011a 38EE278A 		vadd.f32	s16, s16, s15
- 1708              	.LVL142:
- 334:Core/Src/foc_utils.c ****         }
- 1709              		.loc 1 334 24 view .LVU478
- 1710 011e DBE7     		b	.L104
- 1711              	.L126:
- 339:Core/Src/foc_utils.c ****             printf("Pole Pairs: %d\r\n", hfoc->pole_pairs);
- 1712              		.loc 1 339 13 is_stmt 1 view .LVU479
- 339:Core/Src/foc_utils.c ****             printf("Pole Pairs: %d\r\n", hfoc->pole_pairs);
- 1713              		.loc 1 339 47 is_stmt 0 view .LVU480
- 1714 0120 17EE900A 		vmov	r0, s15
- 1715 0124 FFF7FEFF 		bl	__aeabi_f2d
- 1716              	.LVL143:
- 1717 0128 0246     		mov	r2, r0
- 1718 012a 0B46     		mov	r3, r1
- 339:Core/Src/foc_utils.c ****             printf("Pole Pairs: %d\r\n", hfoc->pole_pairs);
- 1719              		.loc 1 339 32 view .LVU481
- 1720 012c 0020     		movs	r0, #0
- 1721 012e 1849     		ldr	r1, .L127+48
- 1722 0130 FFF7FEFF 		bl	__aeabi_ddiv
- 1723              	.LVL144:
- 1724 0134 41EC100B 		vmov	d0, r0, r1
- 1725 0138 FFF7FEFF 		bl	round
- 1726              	.LVL145:
- 1727 013c 51EC100B 		vmov	r0, r1, d0
- 339:Core/Src/foc_utils.c ****             printf("Pole Pairs: %d\r\n", hfoc->pole_pairs);
- 1728              		.loc 1 339 30 view .LVU482
- 1729 0140 FFF7FEFF 		bl	__aeabi_d2uiz
- 1730              	.LVL146:
- 1731 0144 C1B2     		uxtb	r1, r0
- 1732 0146 2170     		strb	r1, [r4]
- 340:Core/Src/foc_utils.c ****         }
- 1733              		.loc 1 340 13 is_stmt 1 view .LVU483
- 1734 0148 1248     		ldr	r0, .L127+52
- 1735 014a FFF7FEFF 		bl	printf
- 1736              	.LVL147:
- 1737 014e CCE7     		b	.L106
- 1738              	.L120:
- 349:Core/Src/foc_utils.c ****             printf("Phase order & Sensor mismatched! Swapping (REVERSE)\r\n");
- 1739              		.loc 1 349 13 view .LVU484
- 349:Core/Src/foc_utils.c ****             printf("Phase order & Sensor mismatched! Swapping (REVERSE)\r\n");
- 1740              		.loc 1 349 30 is_stmt 0 view .LVU485
- 1741 0150 0023     		movs	r3, #0
- 1742 0152 84F89431 		strb	r3, [r4, #404]
- 350:Core/Src/foc_utils.c ****         }
- 1743              		.loc 1 350 13 is_stmt 1 view .LVU486
- 1744 0156 1048     		ldr	r0, .L127+56
- 1745 0158 FFF7FEFF 		bl	puts
- 1746              	.LVL148:
- 1747 015c D0E7     		b	.L110
- 1748              	.LVL149:
- 1749              	.L122:
- 1750              	.LCFI29:
- 1751              		.cfi_def_cfa_offset 0
-ARM GAS  /tmp/ccgbQbGQ.s 			page 43
+ 1706 0112 FFF7FEFF 		bl	round
+ 1707              	.LVL144:
+ 1708 0116 51EC100B 		vmov	r0, r1, d0
+ 338:Core/Src/foc_utils.c ****             printf("Pole Pairs: %d\r\n", hfoc->pole_pairs);
+ 1709              		.loc 1 338 30 view .LVU477
+ 1710 011a FFF7FEFF 		bl	__aeabi_d2uiz
+ 1711              	.LVL145:
+ 1712 011e C1B2     		uxtb	r1, r0
+ 1713 0120 2170     		strb	r1, [r4]
+ 339:Core/Src/foc_utils.c ****         }
+ 1714              		.loc 1 339 13 is_stmt 1 view .LVU478
+ 1715 0122 1248     		ldr	r0, .L120+44
+ 1716 0124 FFF7FEFF 		bl	printf
+ 1717              	.LVL146:
+ 1718 0128 D7E7     		b	.L102
+ 1719              	.L113:
+ 348:Core/Src/foc_utils.c ****             printf("Phase order & Sensor mismatched! Swapping (REVERSE)\r\n");
+ 1720              		.loc 1 348 13 view .LVU479
+ 348:Core/Src/foc_utils.c ****             printf("Phase order & Sensor mismatched! Swapping (REVERSE)\r\n");
+ 1721              		.loc 1 348 30 is_stmt 0 view .LVU480
+ 1722 012a 0123     		movs	r3, #1
+ 1723 012c 84F89431 		strb	r3, [r4, #404]
+ 349:Core/Src/foc_utils.c ****         }
+ 1724              		.loc 1 349 13 is_stmt 1 view .LVU481
+ 1725 0130 0F48     		ldr	r0, .L120+48
+ 1726 0132 FFF7FEFF 		bl	puts
+ 1727              	.LVL147:
+ 1728 0136 DBE7     		b	.L106
+ 1729              	.LVL148:
+ 1730              	.L115:
+ 1731              	.LCFI29:
+ 1732              		.cfi_def_cfa_offset 0
+ 1733              		.cfi_restore 4
+ 1734              		.cfi_restore 14
+ 1735              		.cfi_restore 80
+ 1736              		.cfi_restore 81
+ 349:Core/Src/foc_utils.c ****         }
+ 1737              		.loc 1 349 13 is_stmt 0 view .LVU482
+ 1738 0138 7047     		bx	lr
+ 1739              	.L121:
+ 1740 013a 00BFAFF3 		.align	3
+ 1740      0080
+ 1741              	.L120:
+ 1742 0140 00000000 		.word	0
+ 1743 0144 0020BC40 		.word	1086070784
+ 1744 0148 00000000 		.word	.LANCHOR0
+ 1745 014c 00000000 		.word	.LANCHOR1
+ 1746 0150 00007A44 		.word	1148846080
+ 1747 0154 D253FB41 		.word	1106990034
+ 1748 0158 00000000 		.word	0
+ 1749 015c 00000000 		.word	encoder
+ 1750 0160 00000000 		.word	.LANCHOR2
+ 1751 0164 CDCCCC3D 		.word	1036831949
+ 1752 0168 14000000 		.word	.LC1
+ 1753 016c 00000000 		.word	.LC0
+ 1754 0170 3C000000 		.word	.LC2
+ 1755              	.LBE10:
+ARM GAS  /tmp/ccM36Fo5.s 			page 43
 
 
- 1752              		.cfi_restore 4
- 1753              		.cfi_restore 14
- 1754              		.cfi_restore 80
- 1755              		.cfi_restore 81
- 350:Core/Src/foc_utils.c ****         }
- 1756              		.loc 1 350 13 is_stmt 0 view .LVU487
- 1757 015e 7047     		bx	lr
- 1758              	.L128:
- 1759              		.align	2
- 1760              	.L127:
- 1761 0160 00000000 		.word	.LANCHOR0
- 1762 0164 00000000 		.word	.LANCHOR1
- 1763 0168 00007A44 		.word	1148846080
- 1764 016c DB0F4940 		.word	1078530011
- 1765 0170 00000000 		.word	0
- 1766 0174 00000000 		.word	encoder
- 1767 0178 00000000 		.word	.LANCHOR2
- 1768 017c 00003443 		.word	1127481344
- 1769 0180 0000B443 		.word	1135869952
- 1770 0184 CDCCCC3D 		.word	1036831949
- 1771 0188 14000000 		.word	.LC1
- 1772 018c 000034C3 		.word	-1020002304
- 1773 0190 00807640 		.word	1081507840
- 1774 0194 00000000 		.word	.LC0
- 1775 0198 3C000000 		.word	.LC2
- 1776              	.LBE10:
- 1777              		.cfi_endproc
- 1778              	.LFE150:
- 1780              		.global	theta_start
- 1781              		.global	cal_start_time
- 1782              		.global	current_cal_state
- 1783              		.global	error_temp
- 1784              		.global	foc_ready
- 1785              		.section	.bss.cal_start_time,"aw",%nobits
- 1786              		.align	2
- 1787              		.set	.LANCHOR1,. + 0
- 1790              	cal_start_time:
- 1791 0000 00000000 		.space	4
- 1792              		.section	.bss.current_cal_state,"aw",%nobits
- 1793              		.set	.LANCHOR0,. + 0
- 1796              	current_cal_state:
- 1797 0000 00       		.space	1
- 1798              		.section	.bss.error_temp,"aw",%nobits
- 1799              		.align	2
- 1802              	error_temp:
- 1803 0000 00000000 		.space	4096
- 1803      00000000 
- 1803      00000000 
- 1803      00000000 
- 1803      00000000 
- 1804              		.section	.bss.foc_ready,"aw",%nobits
- 1807              	foc_ready:
- 1808 0000 00       		.space	1
- 1809              		.section	.bss.theta_start,"aw",%nobits
- 1810              		.align	2
- 1811              		.set	.LANCHOR2,. + 0
- 1814              	theta_start:
-ARM GAS  /tmp/ccgbQbGQ.s 			page 44
-
-
- 1815 0000 00000000 		.space	4
- 1816              		.text
- 1817              	.Letext0:
- 1818              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
- 1819              		.file 3 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
- 1820              		.file 4 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 1821              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 1822              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h"
- 1823              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
- 1824              		.file 8 "Core/Inc/pid_utils.h"
- 1825              		.file 9 "Core/Inc/foc_utils.h"
- 1826              		.file 10 "Core/Inc/flash.h"
- 1827              		.file 11 "Core/Inc/encoder.h"
- 1828              		.file 12 "Core/Inc/foc_math.h"
- 1829              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
- 1830              		.file 14 "/usr/include/newlib/math.h"
- 1831              		.file 15 "/usr/include/newlib/stdio.h"
- 1832              		.file 16 "<built-in>"
-ARM GAS  /tmp/ccgbQbGQ.s 			page 45
+ 1756              		.cfi_endproc
+ 1757              	.LFE150:
+ 1759              		.global	theta_start
+ 1760              		.global	cal_start_time
+ 1761              		.global	current_cal_state
+ 1762              		.global	error_temp
+ 1763              		.global	foc_ready
+ 1764              		.section	.bss.actual_theta_start.0,"aw",%nobits
+ 1765              		.align	2
+ 1766              		.set	.LANCHOR2,. + 0
+ 1769              	actual_theta_start.0:
+ 1770 0000 00000000 		.space	4
+ 1771              		.section	.bss.cal_start_time,"aw",%nobits
+ 1772              		.align	2
+ 1773              		.set	.LANCHOR1,. + 0
+ 1776              	cal_start_time:
+ 1777 0000 00000000 		.space	4
+ 1778              		.section	.bss.current_cal_state,"aw",%nobits
+ 1779              		.set	.LANCHOR0,. + 0
+ 1782              	current_cal_state:
+ 1783 0000 00       		.space	1
+ 1784              		.section	.bss.error_temp,"aw",%nobits
+ 1785              		.align	2
+ 1788              	error_temp:
+ 1789 0000 00000000 		.space	4096
+ 1789      00000000 
+ 1789      00000000 
+ 1789      00000000 
+ 1789      00000000 
+ 1790              		.section	.bss.foc_ready,"aw",%nobits
+ 1793              	foc_ready:
+ 1794 0000 00       		.space	1
+ 1795              		.section	.bss.theta_start,"aw",%nobits
+ 1796              		.align	2
+ 1799              	theta_start:
+ 1800 0000 00000000 		.space	4
+ 1801              		.text
+ 1802              	.Letext0:
+ 1803              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
+ 1804              		.file 3 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
+ 1805              		.file 4 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 1806              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 1807              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h"
+ 1808              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
+ 1809              		.file 8 "Core/Inc/pid_utils.h"
+ 1810              		.file 9 "Core/Inc/foc_utils.h"
+ 1811              		.file 10 "Core/Inc/flash.h"
+ 1812              		.file 11 "Core/Inc/encoder.h"
+ 1813              		.file 12 "Core/Inc/foc_math.h"
+ 1814              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 1815              		.file 14 "/usr/include/newlib/math.h"
+ 1816              		.file 15 "/usr/include/newlib/stdio.h"
+ 1817              		.file 16 "<built-in>"
+ARM GAS  /tmp/ccM36Fo5.s 			page 44
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 foc_utils.c
-     /tmp/ccgbQbGQ.s:18     .text.foc_pwm_init:0000000000000000 $t
-     /tmp/ccgbQbGQ.s:26     .text.foc_pwm_init:0000000000000000 foc_pwm_init
-     /tmp/ccgbQbGQ.s:82     .text.foc_motor_init:0000000000000000 $t
-     /tmp/ccgbQbGQ.s:89     .text.foc_motor_init:0000000000000000 foc_motor_init
-     /tmp/ccgbQbGQ.s:119    .text.foc_sensor_init:0000000000000000 $t
-     /tmp/ccgbQbGQ.s:126    .text.foc_sensor_init:0000000000000000 foc_sensor_init
-     /tmp/ccgbQbGQ.s:150    .text.foc_gear_reducer_init:0000000000000000 $t
-     /tmp/ccgbQbGQ.s:157    .text.foc_gear_reducer_init:0000000000000000 foc_gear_reducer_init
-     /tmp/ccgbQbGQ.s:178    .text.foc_set_limit_current:0000000000000000 $t
-     /tmp/ccgbQbGQ.s:185    .text.foc_set_limit_current:0000000000000000 foc_set_limit_current
-     /tmp/ccgbQbGQ.s:206    .text.foc_current_control_update:0000000000000000 $t
-     /tmp/ccgbQbGQ.s:213    .text.foc_current_control_update:0000000000000000 foc_current_control_update
-     /tmp/ccgbQbGQ.s:436    .text.foc_current_control_update:0000000000000170 $d
-     /tmp/ccgbQbGQ.s:442    .text.foc_speed_control_update:0000000000000000 $t
-     /tmp/ccgbQbGQ.s:449    .text.foc_speed_control_update:0000000000000000 foc_speed_control_update
-     /tmp/ccgbQbGQ.s:512    .text.foc_position_control_update:0000000000000000 $t
-     /tmp/ccgbQbGQ.s:519    .text.foc_position_control_update:0000000000000000 foc_position_control_update
-     /tmp/ccgbQbGQ.s:581    .text.foc_sensored_calc_electric_angle:0000000000000000 $t
-     /tmp/ccgbQbGQ.s:588    .text.foc_sensored_calc_electric_angle:0000000000000000 foc_sensored_calc_electric_angle
-     /tmp/ccgbQbGQ.s:796    .text.foc_sensored_calc_electric_angle:000000000000010c $d
-     /tmp/ccgbQbGQ.s:806    .text.foc_calc_mech_rpm_encoder:0000000000000000 $t
-     /tmp/ccgbQbGQ.s:813    .text.foc_calc_mech_rpm_encoder:0000000000000000 foc_calc_mech_rpm_encoder
-     /tmp/ccgbQbGQ.s:849    .text.foc_calc_mech_pos_encoder:0000000000000000 $t
-     /tmp/ccgbQbGQ.s:856    .text.foc_calc_mech_pos_encoder:0000000000000000 foc_calc_mech_pos_encoder
-     /tmp/ccgbQbGQ.s:892    .text.foc_start_calibration:0000000000000000 $t
-     /tmp/ccgbQbGQ.s:899    .text.foc_start_calibration:0000000000000000 foc_start_calibration
-     /tmp/ccgbQbGQ.s:927    .text.foc_start_calibration:0000000000000014 $d
-     /tmp/ccgbQbGQ.s:933    .text.open_loop_voltage_control:0000000000000000 $t
-     /tmp/ccgbQbGQ.s:940    .text.open_loop_voltage_control:0000000000000000 open_loop_voltage_control
-     /tmp/ccgbQbGQ.s:1058   .text.foc_cal_encoder_misalignment:0000000000000000 $t
-     /tmp/ccgbQbGQ.s:1065   .text.foc_cal_encoder_misalignment:0000000000000000 foc_cal_encoder_misalignment
-     /tmp/ccgbQbGQ.s:1161   .text.foc_cal_encoder_misalignment:0000000000000074 $d
-     /tmp/ccgbQbGQ.s:1169   .text.foc_cal_encoder:0000000000000000 $t
-     /tmp/ccgbQbGQ.s:1176   .text.foc_cal_encoder:0000000000000000 foc_cal_encoder
-     /tmp/ccgbQbGQ.s:1473   .text.foc_cal_encoder:0000000000000164 $d
-     /tmp/ccgbQbGQ.s:1802   .bss.error_temp:0000000000000000 error_temp
-     /tmp/ccgbQbGQ.s:1487   .rodata.foc_auto_calibration_update.str1.4:0000000000000000 $d
-     /tmp/ccgbQbGQ.s:1498   .text.foc_auto_calibration_update:0000000000000000 $t
-     /tmp/ccgbQbGQ.s:1505   .text.foc_auto_calibration_update:0000000000000000 foc_auto_calibration_update
-     /tmp/ccgbQbGQ.s:1761   .text.foc_auto_calibration_update:0000000000000160 $d
-     /tmp/ccgbQbGQ.s:1814   .bss.theta_start:0000000000000000 theta_start
-     /tmp/ccgbQbGQ.s:1790   .bss.cal_start_time:0000000000000000 cal_start_time
-     /tmp/ccgbQbGQ.s:1796   .bss.current_cal_state:0000000000000000 current_cal_state
-     /tmp/ccgbQbGQ.s:1807   .bss.foc_ready:0000000000000000 foc_ready
-     /tmp/ccgbQbGQ.s:1786   .bss.cal_start_time:0000000000000000 $d
-     /tmp/ccgbQbGQ.s:1797   .bss.current_cal_state:0000000000000000 $d
-     /tmp/ccgbQbGQ.s:1799   .bss.error_temp:0000000000000000 $d
-     /tmp/ccgbQbGQ.s:1808   .bss.foc_ready:0000000000000000 $d
-     /tmp/ccgbQbGQ.s:1810   .bss.theta_start:0000000000000000 $d
+     /tmp/ccM36Fo5.s:18     .text.foc_pwm_init:0000000000000000 $t
+     /tmp/ccM36Fo5.s:26     .text.foc_pwm_init:0000000000000000 foc_pwm_init
+     /tmp/ccM36Fo5.s:82     .text.foc_motor_init:0000000000000000 $t
+     /tmp/ccM36Fo5.s:89     .text.foc_motor_init:0000000000000000 foc_motor_init
+     /tmp/ccM36Fo5.s:119    .text.foc_sensor_init:0000000000000000 $t
+     /tmp/ccM36Fo5.s:126    .text.foc_sensor_init:0000000000000000 foc_sensor_init
+     /tmp/ccM36Fo5.s:150    .text.foc_gear_reducer_init:0000000000000000 $t
+     /tmp/ccM36Fo5.s:157    .text.foc_gear_reducer_init:0000000000000000 foc_gear_reducer_init
+     /tmp/ccM36Fo5.s:178    .text.foc_set_limit_current:0000000000000000 $t
+     /tmp/ccM36Fo5.s:185    .text.foc_set_limit_current:0000000000000000 foc_set_limit_current
+     /tmp/ccM36Fo5.s:206    .text.foc_current_control_update:0000000000000000 $t
+     /tmp/ccM36Fo5.s:213    .text.foc_current_control_update:0000000000000000 foc_current_control_update
+     /tmp/ccM36Fo5.s:436    .text.foc_current_control_update:0000000000000170 $d
+     /tmp/ccM36Fo5.s:442    .text.foc_speed_control_update:0000000000000000 $t
+     /tmp/ccM36Fo5.s:449    .text.foc_speed_control_update:0000000000000000 foc_speed_control_update
+     /tmp/ccM36Fo5.s:512    .text.foc_position_control_update:0000000000000000 $t
+     /tmp/ccM36Fo5.s:519    .text.foc_position_control_update:0000000000000000 foc_position_control_update
+     /tmp/ccM36Fo5.s:581    .text.foc_sensored_calc_electric_angle:0000000000000000 $t
+     /tmp/ccM36Fo5.s:588    .text.foc_sensored_calc_electric_angle:0000000000000000 foc_sensored_calc_electric_angle
+     /tmp/ccM36Fo5.s:796    .text.foc_sensored_calc_electric_angle:000000000000010c $d
+     /tmp/ccM36Fo5.s:806    .text.foc_calc_mech_rpm_encoder:0000000000000000 $t
+     /tmp/ccM36Fo5.s:813    .text.foc_calc_mech_rpm_encoder:0000000000000000 foc_calc_mech_rpm_encoder
+     /tmp/ccM36Fo5.s:849    .text.foc_calc_mech_pos_encoder:0000000000000000 $t
+     /tmp/ccM36Fo5.s:856    .text.foc_calc_mech_pos_encoder:0000000000000000 foc_calc_mech_pos_encoder
+     /tmp/ccM36Fo5.s:892    .text.foc_start_calibration:0000000000000000 $t
+     /tmp/ccM36Fo5.s:899    .text.foc_start_calibration:0000000000000000 foc_start_calibration
+     /tmp/ccM36Fo5.s:927    .text.foc_start_calibration:0000000000000014 $d
+     /tmp/ccM36Fo5.s:933    .text.open_loop_voltage_control:0000000000000000 $t
+     /tmp/ccM36Fo5.s:940    .text.open_loop_voltage_control:0000000000000000 open_loop_voltage_control
+     /tmp/ccM36Fo5.s:1058   .text.foc_cal_encoder_misalignment:0000000000000000 $t
+     /tmp/ccM36Fo5.s:1065   .text.foc_cal_encoder_misalignment:0000000000000000 foc_cal_encoder_misalignment
+     /tmp/ccM36Fo5.s:1161   .text.foc_cal_encoder_misalignment:0000000000000074 $d
+     /tmp/ccM36Fo5.s:1169   .text.foc_cal_encoder:0000000000000000 $t
+     /tmp/ccM36Fo5.s:1176   .text.foc_cal_encoder:0000000000000000 foc_cal_encoder
+     /tmp/ccM36Fo5.s:1473   .text.foc_cal_encoder:0000000000000164 $d
+     /tmp/ccM36Fo5.s:1788   .bss.error_temp:0000000000000000 error_temp
+     /tmp/ccM36Fo5.s:1487   .rodata.foc_auto_calibration_update.str1.4:0000000000000000 $d
+     /tmp/ccM36Fo5.s:1498   .text.foc_auto_calibration_update:0000000000000000 $t
+     /tmp/ccM36Fo5.s:1505   .text.foc_auto_calibration_update:0000000000000000 foc_auto_calibration_update
+     /tmp/ccM36Fo5.s:1742   .text.foc_auto_calibration_update:0000000000000140 $d
+     /tmp/ccM36Fo5.s:1799   .bss.theta_start:0000000000000000 theta_start
+     /tmp/ccM36Fo5.s:1776   .bss.cal_start_time:0000000000000000 cal_start_time
+     /tmp/ccM36Fo5.s:1782   .bss.current_cal_state:0000000000000000 current_cal_state
+     /tmp/ccM36Fo5.s:1793   .bss.foc_ready:0000000000000000 foc_ready
+     /tmp/ccM36Fo5.s:1765   .bss.actual_theta_start.0:0000000000000000 $d
+     /tmp/ccM36Fo5.s:1769   .bss.actual_theta_start.0:0000000000000000 actual_theta_start.0
+     /tmp/ccM36Fo5.s:1772   .bss.cal_start_time:0000000000000000 $d
+     /tmp/ccM36Fo5.s:1783   .bss.current_cal_state:0000000000000000 $d
+     /tmp/ccM36Fo5.s:1785   .bss.error_temp:0000000000000000 $d
+     /tmp/ccM36Fo5.s:1794   .bss.foc_ready:0000000000000000 $d
+     /tmp/ccM36Fo5.s:1796   .bss.theta_start:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 pre_calc_sin_cos
 clarke_park_transform
+ARM GAS  /tmp/ccM36Fo5.s 			page 45
+
+
 pi_control
 inverse_park_transform
-ARM GAS  /tmp/ccgbQbGQ.s 			page 46
-
-
 svpwm
 pid_control
 ENCODER_GetDegree
@@ -2678,6 +2655,7 @@ memcpy
 __aeabi_f2d
 __aeabi_ddiv
 __aeabi_d2uiz
+ENCODER_GetActualDegree
 puts
 round
 printf
