@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccDcBK4H.s 			page 1
+ARM GAS  /tmp/cc9bUalI.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccDcBK4H.s 			page 1
   41              	.LCFI1:
   42              		.cfi_def_cfa_offset 24
   43              		.cfi_offset 80, -24
-ARM GAS  /tmp/ccDcBK4H.s 			page 2
+ARM GAS  /tmp/cc9bUalI.s 			page 2
 
 
   44              		.cfi_offset 81, -20
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccDcBK4H.s 			page 1
   91 0044 E1DB     		blt	.L3
   92              	.LBE2:
   20:Core/Src/foc_math.c **** 	}
-ARM GAS  /tmp/ccDcBK4H.s 			page 3
+ARM GAS  /tmp/cc9bUalI.s 			page 3
 
 
   21:Core/Src/foc_math.c **** }
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccDcBK4H.s 			page 1
  145              	.L11:
   25:Core/Src/foc_math.c **** 	while (*theta >= TWO_PI) *theta -= TWO_PI;
  146              		.loc 1 25 27 is_stmt 1 discriminator 2 view .LVU27
-ARM GAS  /tmp/ccDcBK4H.s 			page 4
+ARM GAS  /tmp/cc9bUalI.s 			page 4
 
 
  147              		.loc 1 25 34 is_stmt 0 discriminator 2 view .LVU28
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccDcBK4H.s 			page 1
  198              		.loc 1 30 8 is_stmt 0 view .LVU37
  199 000e DDED016A 		vldr.32	s13, [sp, #4]
  200 0012 9FED157A 		vldr.32	s14, .L16
-ARM GAS  /tmp/ccDcBK4H.s 			page 5
+ARM GAS  /tmp/cc9bUalI.s 			page 5
 
 
  201 0016 C6EE877A 		vdiv.f32	s15, s13, s14
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccDcBK4H.s 			page 1
  248 0060 03B0     		add	sp, sp, #12
  249              	.LCFI5:
  250              		.cfi_def_cfa_offset 4
-ARM GAS  /tmp/ccDcBK4H.s 			page 6
+ARM GAS  /tmp/cc9bUalI.s 			page 6
 
 
  251              		@ sp needed
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccDcBK4H.s 			page 1
  301              		.loc 1 43 23 is_stmt 0 view .LVU64
  302 0022 B8EEC70A 		vcvt.f32.s32	s0, s14
  303              		.loc 1 43 8 view .LVU65
-ARM GAS  /tmp/ccDcBK4H.s 			page 7
+ARM GAS  /tmp/cc9bUalI.s 			page 7
 
 
  304 0026 77EEC07A 		vsub.f32	s15, s15, s0
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccDcBK4H.s 			page 1
  354              		.align	1
  355              		.global	float_to_uint
  356              		.syntax unified
-ARM GAS  /tmp/ccDcBK4H.s 			page 8
+ARM GAS  /tmp/cc9bUalI.s 			page 8
 
 
  357              		.thumb
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccDcBK4H.s 			page 1
  407              	uint_to_float:
  408              	.LVL32:
  409              	.LFB5:
-ARM GAS  /tmp/ccDcBK4H.s 			page 9
+ARM GAS  /tmp/cc9bUalI.s 			page 9
 
 
   56:Core/Src/foc_math.c ****     
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccDcBK4H.s 			page 1
  457              		.loc 1 64 72 is_stmt 1 view -0
  458              		.cfi_startproc
  459              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccDcBK4H.s 			page 10
+ARM GAS  /tmp/cc9bUalI.s 			page 10
 
 
  460              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccDcBK4H.s 			page 1
  513              	.LFB7:
   68:Core/Src/foc_math.c **** 
   69:Core/Src/foc_math.c **** // Fast combined Clarke + Park Transform
-ARM GAS  /tmp/ccDcBK4H.s 			page 11
+ARM GAS  /tmp/cc9bUalI.s 			page 11
 
 
   70:Core/Src/foc_math.c **** void clarke_park_transform(float ia, float ib, float sin_theta, float cos_theta, float *id, float *
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccDcBK4H.s 			page 1
  559              	.LFE7:
  561              		.section	.text.inverse_park_transform,"ax",%progbits
  562              		.align	1
-ARM GAS  /tmp/ccDcBK4H.s 			page 12
+ARM GAS  /tmp/cc9bUalI.s 			page 12
 
 
  563              		.global	inverse_park_transform
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccDcBK4H.s 			page 1
   86:Core/Src/foc_math.c **** // Inverse Clarke Transform
   87:Core/Src/foc_math.c **** void inverse_clarke_transform(float valpha, float vbeta, float *va, float *vb, float *vc) {
  613              		.loc 1 87 91 is_stmt 1 view -0
-ARM GAS  /tmp/ccDcBK4H.s 			page 13
+ARM GAS  /tmp/cc9bUalI.s 			page 13
 
 
  614              		.cfi_startproc
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccDcBK4H.s 			page 1
   98:Core/Src/foc_math.c ****  * @param pwm_period Full PWM period value
   99:Core/Src/foc_math.c ****  * @param pwm_u Output duty cycle for phase U (0 to pwm_period)
  100:Core/Src/foc_math.c ****  * @param pwm_v Output duty cycle for phase V
-ARM GAS  /tmp/ccDcBK4H.s 			page 14
+ARM GAS  /tmp/cc9bUalI.s 			page 14
 
 
  101:Core/Src/foc_math.c ****  * @param pwm_w Output duty cycle for phase W
@@ -790,57 +790,58 @@ ARM GAS  /tmp/ccDcBK4H.s 			page 1
  663              		@ frame_needed = 0, uses_anonymous_args = 0
  664              		@ link register save eliminated.
  665              		.loc 1 103 122 is_stmt 0 view .LVU159
- 666 0000 30B4     		push	{r4, r5}
+ 666 0000 70B4     		push	{r4, r5, r6}
  667              	.LCFI12:
- 668              		.cfi_def_cfa_offset 8
- 669              		.cfi_offset 4, -8
- 670              		.cfi_offset 5, -4
+ 668              		.cfi_def_cfa_offset 12
+ 669              		.cfi_offset 4, -12
+ 670              		.cfi_offset 5, -8
+ 671              		.cfi_offset 6, -4
  104:Core/Src/foc_math.c **** 	// 1. Normalize voltages by vbus
  105:Core/Src/foc_math.c **** 	float alpha = valpha / vbus;
- 671              		.loc 1 105 2 is_stmt 1 view .LVU160
- 672              		.loc 1 105 8 is_stmt 0 view .LVU161
- 673 0002 C0EE017A 		vdiv.f32	s15, s0, s2
- 674              	.LVL53:
+ 672              		.loc 1 105 2 is_stmt 1 view .LVU160
+ 673              		.loc 1 105 8 is_stmt 0 view .LVU161
+ 674 0002 80EE014A 		vdiv.f32	s8, s0, s2
+ 675              	.LVL53:
  106:Core/Src/foc_math.c **** 	float beta = vbeta / vbus;
- 675              		.loc 1 106 2 is_stmt 1 view .LVU162
- 676              		.loc 1 106 8 is_stmt 0 view .LVU163
- 677 0006 80EE817A 		vdiv.f32	s14, s1, s2
- 678              	.LVL54:
+ 676              		.loc 1 106 2 is_stmt 1 view .LVU162
+ 677              		.loc 1 106 8 is_stmt 0 view .LVU163
+ 678 0006 C0EE817A 		vdiv.f32	s15, s1, s2
+ 679              	.LVL54:
  107:Core/Src/foc_math.c **** 
  108:Core/Src/foc_math.c **** 	// 2. Sector determination
  109:Core/Src/foc_math.c **** 	uint8_t sector;
- 679              		.loc 1 109 2 is_stmt 1 view .LVU164
+ 680              		.loc 1 109 2 is_stmt 1 view .LVU164
  110:Core/Src/foc_math.c **** 	if (beta >= 0.0f) {
- 680              		.loc 1 110 2 view .LVU165
- 681              		.loc 1 110 5 is_stmt 0 view .LVU166
- 682 000a B5EEC07A 		vcmpe.f32	s14, #0
- 683 000e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 684 0012 5EDB     		blt	.L50
+ 681              		.loc 1 110 2 view .LVU165
+ 682              		.loc 1 110 5 is_stmt 0 view .LVU166
+ 683 000a F5EEC07A 		vcmpe.f32	s15, #0
+ 684 000e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 685 0012 5BDB     		blt	.L56
  111:Core/Src/foc_math.c **** 		if (alpha >= 0.0f) {
- 685              		.loc 1 111 3 is_stmt 1 view .LVU167
- 686              		.loc 1 111 6 is_stmt 0 view .LVU168
- 687 0014 F5EEC07A 		vcmpe.f32	s15, #0
- 688 0018 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 689 001c 29DB     		blt	.L51
+ 686              		.loc 1 111 3 is_stmt 1 view .LVU167
+ 687              		.loc 1 111 6 is_stmt 0 view .LVU168
+ 688 0014 B5EEC04A 		vcmpe.f32	s8, #0
+ 689 0018 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 690 001c 28DB     		blt	.L57
  112:Core/Src/foc_math.c **** 				sector = (ONE_BY_SQRT3 * beta > alpha) ? 2 : 1;  // 1/sqrt(3) ≈ 0.577
- 690              		.loc 1 112 5 is_stmt 1 view .LVU169
- 691              		.loc 1 112 28 is_stmt 0 view .LVU170
- 692 001e DFED876A 		vldr.32	s13, .L54
- 693 0022 67EE266A 		vmul.f32	s13, s14, s13
- 694              		.loc 1 112 12 view .LVU171
- 695 0026 F4EEE76A 		vcmpe.f32	s13, s15
- 696 002a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 697 002e 00F3AD80 		bgt	.L38
- 698              	.LVL55:
+ 691              		.loc 1 112 5 is_stmt 1 view .LVU169
+ 692              		.loc 1 112 28 is_stmt 0 view .LVU170
+ 693 001e 9FED867A 		vldr.32	s14, .L60
+ 694 0022 27EE877A 		vmul.f32	s14, s15, s14
+ 695              		.loc 1 112 12 view .LVU171
+ 696 0026 B4EEC47A 		vcmpe.f32	s14, s8
+ 697 002a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 698 002e 00F3A680 		bgt	.L38
+ 699              	.LVL55:
  113:Core/Src/foc_math.c **** 		} else {
  114:Core/Src/foc_math.c **** 				sector = (-ONE_BY_SQRT3 * beta > alpha) ? 3 : 2;
  115:Core/Src/foc_math.c **** 		}
  116:Core/Src/foc_math.c **** 	} else {
  117:Core/Src/foc_math.c **** 		if (alpha >= 0.0f) {
+ARM GAS  /tmp/cc9bUalI.s 			page 15
+
+
  118:Core/Src/foc_math.c **** 				sector = (-ONE_BY_SQRT3 * beta > alpha) ? 5 : 6;
-ARM GAS  /tmp/ccDcBK4H.s 			page 15
-
-
  119:Core/Src/foc_math.c **** 		} else {
  120:Core/Src/foc_math.c **** 				sector = (ONE_BY_SQRT3 * beta > alpha) ? 4 : 5;
  121:Core/Src/foc_math.c **** 		}
@@ -848,615 +849,625 @@ ARM GAS  /tmp/ccDcBK4H.s 			page 1
  123:Core/Src/foc_math.c **** 
  124:Core/Src/foc_math.c **** 	// 3. Calculate active vector times
  125:Core/Src/foc_math.c **** 	int32_t t1, t2;
- 699              		.loc 1 125 2 is_stmt 1 view .LVU172
- 126:Core/Src/foc_math.c **** 	switch(sector) {
- 700              		.loc 1 126 2 view .LVU173
- 127:Core/Src/foc_math.c **** 		case 1:
- 128:Core/Src/foc_math.c **** 			t1 = (int32_t)((alpha - ONE_BY_SQRT3 * beta) * pwm_period);
- 701              		.loc 1 128 4 view .LVU174
- 702              		.loc 1 128 26 is_stmt 0 view .LVU175
- 703 0032 77EEE67A 		vsub.f32	s15, s15, s13
- 704              	.LVL56:
- 705              		.loc 1 128 49 view .LVU176
- 706 0036 06EE900A 		vmov	s13, r0	@ int
- 707 003a F8EE666A 		vcvt.f32.u32	s13, s13
- 708 003e 67EEA67A 		vmul.f32	s15, s15, s13
- 709              		.loc 1 128 7 view .LVU177
- 710 0042 FDEEE77A 		vcvt.s32.f32	s15, s15
- 711 0046 17EE904A 		vmov	r4, s15	@ int
- 712              	.LVL57:
- 129:Core/Src/foc_math.c **** 			t2 = (int32_t)(TWO_BY_SQRT3 * beta * pwm_period);
- 713              		.loc 1 129 4 is_stmt 1 view .LVU178
- 714              		.loc 1 129 32 is_stmt 0 view .LVU179
- 715 004a DFED7D7A 		vldr.32	s15, .L54+4
- 716 004e 27EE277A 		vmul.f32	s14, s14, s15
- 717              	.LVL58:
- 718              		.loc 1 129 39 view .LVU180
- 719 0052 66EE876A 		vmul.f32	s13, s13, s14
- 720              		.loc 1 129 7 view .LVU181
- 721 0056 FDEEE67A 		vcvt.s32.f32	s15, s13
- 722 005a 17EE90CA 		vmov	ip, s15	@ int
- 723              	.LVL59:
- 130:Core/Src/foc_math.c **** 			*pwm_u = (pwm_period + t1 + t2) / 2;
- 724              		.loc 1 130 4 is_stmt 1 view .LVU182
- 725              		.loc 1 130 25 is_stmt 0 view .LVU183
- 726 005e 2518     		adds	r5, r4, r0
- 727              		.loc 1 130 30 view .LVU184
- 728 0060 6544     		add	r5, r5, ip
- 729              		.loc 1 130 36 view .LVU185
- 730 0062 6D08     		lsrs	r5, r5, #1
- 731              		.loc 1 130 11 view .LVU186
- 732 0064 0D60     		str	r5, [r1]
- 131:Core/Src/foc_math.c **** 			*pwm_v = *pwm_u - t1;
- 733              		.loc 1 131 4 is_stmt 1 view .LVU187
- 734              		.loc 1 131 20 is_stmt 0 view .LVU188
- 735 0066 2C1B     		subs	r4, r5, r4
+ 700              		.loc 1 125 2 is_stmt 1 view .LVU172
+ 126:Core/Src/foc_math.c **** 	int32_t tu = 0, tv = 0, tw = 0;
+ 701              		.loc 1 126 2 view .LVU173
+ 127:Core/Src/foc_math.c **** 	switch(sector) {
+ 702              		.loc 1 127 2 view .LVU174
+ 128:Core/Src/foc_math.c **** 		case 1:
+ 129:Core/Src/foc_math.c **** 			t1 = (int32_t)((alpha - ONE_BY_SQRT3 * beta) * pwm_period);
+ 703              		.loc 1 129 4 view .LVU175
+ 704              		.loc 1 129 26 is_stmt 0 view .LVU176
+ 705 0032 34EE477A 		vsub.f32	s14, s8, s14
+ 706              		.loc 1 129 49 view .LVU177
+ 707 0036 06EE900A 		vmov	s13, r0	@ int
+ 708 003a B8EE666A 		vcvt.f32.u32	s12, s13
+ 709 003e 27EE067A 		vmul.f32	s14, s14, s12
+ 710              		.loc 1 129 7 view .LVU178
+ 711 0042 BDEEC77A 		vcvt.s32.f32	s14, s14
+ 712 0046 17EE105A 		vmov	r5, s14	@ int
+ 713              	.LVL56:
+ 130:Core/Src/foc_math.c **** 			t2 = (int32_t)(TWO_BY_SQRT3 * beta * pwm_period);
+ 714              		.loc 1 130 4 is_stmt 1 view .LVU179
+ 715              		.loc 1 130 32 is_stmt 0 view .LVU180
+ 716 004a DFED7C5A 		vldr.32	s11, .L60+4
+ 717 004e 67EEA57A 		vmul.f32	s15, s15, s11
+ 718              	.LVL57:
+ 719              		.loc 1 130 39 view .LVU181
+ 720 0052 26EE276A 		vmul.f32	s12, s12, s15
+ 721              		.loc 1 130 7 view .LVU182
+ 722 0056 FDEEC67A 		vcvt.s32.f32	s15, s12
+ 723 005a 17EE906A 		vmov	r6, s15	@ int
+ 724              	.LVL58:
+ 131:Core/Src/foc_math.c **** 			tu = (pwm_period + t1 + t2) / 2;
+ 725              		.loc 1 131 4 is_stmt 1 view .LVU183
+ 726              		.loc 1 131 21 is_stmt 0 view .LVU184
+ 727 005e 05EB000C 		add	ip, r5, r0
+ 728              		.loc 1 131 26 view .LVU185
+ 729 0062 B444     		add	ip, ip, r6
+ 730              		.loc 1 131 32 view .LVU186
+ 731 0064 4FEA5C04 		lsr	r4, ip, #1
+ 732              	.LVL59:
+ 132:Core/Src/foc_math.c **** 			tv = tu - t1;
+ 733              		.loc 1 132 4 is_stmt 1 view .LVU187
+ 734              		.loc 1 132 7 is_stmt 0 view .LVU188
+ 735 0068 C5EB5C05 		rsb	r5, r5, ip, lsr #1
  736              	.LVL60:
- 737              		.loc 1 131 11 view .LVU189
- 738 0068 1460     		str	r4, [r2]
- 132:Core/Src/foc_math.c **** 			*pwm_w = *pwm_v - t2;
- 739              		.loc 1 132 4 is_stmt 1 view .LVU190
- 740              		.loc 1 132 20 is_stmt 0 view .LVU191
- 741 006a A4EB0C04 		sub	r4, r4, ip
-ARM GAS  /tmp/ccDcBK4H.s 			page 16
+ 133:Core/Src/foc_math.c **** 			tw = tv - t2;
+ 737              		.loc 1 133 4 is_stmt 1 view .LVU189
+ 738              		.loc 1 133 7 is_stmt 0 view .LVU190
+ 739 006c AE1B     		subs	r6, r5, r6
+ 740              	.LVL61:
+ARM GAS  /tmp/cc9bUalI.s 			page 16
 
 
- 742              		.loc 1 132 11 view .LVU192
- 743 006e 1C60     		str	r4, [r3]
- 133:Core/Src/foc_math.c **** 			break;
- 744              		.loc 1 133 4 is_stmt 1 view .LVU193
- 745 0070 AEE0     		b	.L39
- 746              	.LVL61:
- 747              	.L51:
+ 134:Core/Src/foc_math.c **** 			break;
+ 741              		.loc 1 134 4 is_stmt 1 view .LVU191
+ 742 006e A6E0     		b	.L39
+ 743              	.LVL62:
+ 744              	.L57:
  114:Core/Src/foc_math.c **** 		}
- 748              		.loc 1 114 5 view .LVU194
+ 745              		.loc 1 114 5 view .LVU192
  114:Core/Src/foc_math.c **** 		}
- 749              		.loc 1 114 29 is_stmt 0 view .LVU195
- 750 0072 DFED746A 		vldr.32	s13, .L54+8
- 751 0076 67EE266A 		vmul.f32	s13, s14, s13
+ 746              		.loc 1 114 29 is_stmt 0 view .LVU193
+ 747 0070 9FED735A 		vldr.32	s10, .L60+8
+ 748 0074 27EE855A 		vmul.f32	s10, s15, s10
  114:Core/Src/foc_math.c **** 		}
- 752              		.loc 1 114 12 view .LVU196
- 753 007a F4EEE76A 		vcmpe.f32	s13, s15
- 754 007e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 755 0082 40F38380 		ble	.L38
- 756              	.LVL62:
- 125:Core/Src/foc_math.c **** 	switch(sector) {
- 757              		.loc 1 125 2 is_stmt 1 view .LVU197
- 126:Core/Src/foc_math.c **** 		case 1:
- 758              		.loc 1 126 2 view .LVU198
- 134:Core/Src/foc_math.c **** 
- 135:Core/Src/foc_math.c **** 		case 2:
- 136:Core/Src/foc_math.c **** 			t1 = (int32_t)((alpha + ONE_BY_SQRT3 * beta) * pwm_period);
- 137:Core/Src/foc_math.c **** 			t2 = (int32_t)((-alpha + ONE_BY_SQRT3 * beta) * pwm_period);
- 138:Core/Src/foc_math.c **** 			*pwm_v = (pwm_period + t1 + t2) / 2;
- 139:Core/Src/foc_math.c **** 			*pwm_u = *pwm_v - t2;
- 140:Core/Src/foc_math.c **** 			*pwm_w = *pwm_u - t1;
- 141:Core/Src/foc_math.c **** 			break;
- 142:Core/Src/foc_math.c **** 
- 143:Core/Src/foc_math.c **** 		case 3:
- 144:Core/Src/foc_math.c **** 			t1 = (int32_t)(TWO_BY_SQRT3 * beta * pwm_period);
- 759              		.loc 1 144 4 view .LVU199
- 760              		.loc 1 144 32 is_stmt 0 view .LVU200
- 761 0086 DFED6E6A 		vldr.32	s13, .L54+4
- 762 008a 67EE266A 		vmul.f32	s13, s14, s13
- 763              		.loc 1 144 39 view .LVU201
- 764 008e 06EE100A 		vmov	s12, r0	@ int
- 765 0092 B8EE466A 		vcvt.f32.u32	s12, s12
- 766 0096 66EE866A 		vmul.f32	s13, s13, s12
- 767              		.loc 1 144 7 view .LVU202
- 768 009a FDEEE66A 		vcvt.s32.f32	s13, s13
- 769 009e 16EE904A 		vmov	r4, s13	@ int
- 770              	.LVL63:
- 145:Core/Src/foc_math.c **** 			t2 = (int32_t)((-alpha - ONE_BY_SQRT3 * beta) * pwm_period);
- 771              		.loc 1 145 4 is_stmt 1 view .LVU203
- 772              		.loc 1 145 20 is_stmt 0 view .LVU204
- 773 00a2 F1EE677A 		vneg.f32	s15, s15
- 774              	.LVL64:
- 775              		.loc 1 145 42 view .LVU205
- 776 00a6 DFED656A 		vldr.32	s13, .L54
- 777 00aa 27EE267A 		vmul.f32	s14, s14, s13
- 778              	.LVL65:
- 779              		.loc 1 145 27 view .LVU206
- 780 00ae 77EEC77A 		vsub.f32	s15, s15, s14
-ARM GAS  /tmp/ccDcBK4H.s 			page 17
+ 749              		.loc 1 114 12 view .LVU194
+ 750 0078 B4EEC45A 		vcmpe.f32	s10, s8
+ 751 007c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 752 0080 7DDD     		ble	.L38
+ 753              	.LVL63:
+ 125:Core/Src/foc_math.c **** 	int32_t tu = 0, tv = 0, tw = 0;
+ 754              		.loc 1 125 2 is_stmt 1 view .LVU195
+ 126:Core/Src/foc_math.c **** 	switch(sector) {
+ 755              		.loc 1 126 2 view .LVU196
+ 127:Core/Src/foc_math.c **** 		case 1:
+ 756              		.loc 1 127 2 view .LVU197
+ 135:Core/Src/foc_math.c **** 
+ 136:Core/Src/foc_math.c **** 		case 2:
+ 137:Core/Src/foc_math.c **** 			t1 = (int32_t)((alpha + ONE_BY_SQRT3 * beta) * pwm_period);
+ 138:Core/Src/foc_math.c **** 			t2 = (int32_t)((-alpha + ONE_BY_SQRT3 * beta) * pwm_period);
+ 139:Core/Src/foc_math.c **** 			tv = (pwm_period + t1 + t2) / 2;
+ 140:Core/Src/foc_math.c **** 			tu = tv - t2;
+ 141:Core/Src/foc_math.c **** 			tw = tu - t1;
+ 142:Core/Src/foc_math.c **** 			break;
+ 143:Core/Src/foc_math.c **** 
+ 144:Core/Src/foc_math.c **** 		case 3:
+ 145:Core/Src/foc_math.c **** 			t1 = (int32_t)(TWO_BY_SQRT3 * beta * pwm_period);
+ 757              		.loc 1 145 4 view .LVU198
+ 758              		.loc 1 145 32 is_stmt 0 view .LVU199
+ 759 0082 DFED6E4A 		vldr.32	s9, .L60+4
+ 760 0086 67EEA44A 		vmul.f32	s9, s15, s9
+ 761              		.loc 1 145 39 view .LVU200
+ 762 008a 07EE100A 		vmov	s14, r0	@ int
+ 763 008e F8EE473A 		vcvt.f32.u32	s7, s14
+ 764 0092 64EEA34A 		vmul.f32	s9, s9, s7
+ 765              		.loc 1 145 7 view .LVU201
+ 766 0096 BDEEE47A 		vcvt.s32.f32	s14, s9
+ 767 009a 17EE106A 		vmov	r6, s14	@ int
+ 768              	.LVL64:
+ 146:Core/Src/foc_math.c **** 			t2 = (int32_t)((-alpha - ONE_BY_SQRT3 * beta) * pwm_period);
+ 769              		.loc 1 146 4 is_stmt 1 view .LVU202
+ 770              		.loc 1 146 20 is_stmt 0 view .LVU203
+ 771 009e B1EE447A 		vneg.f32	s14, s8
+ 772              		.loc 1 146 42 view .LVU204
+ 773 00a2 DFED655A 		vldr.32	s11, .L60
+ 774 00a6 67EEA57A 		vmul.f32	s15, s15, s11
+ 775              	.LVL65:
+ 776              		.loc 1 146 27 view .LVU205
+ 777 00aa 77EE677A 		vsub.f32	s15, s14, s15
+ 778              		.loc 1 146 50 view .LVU206
+ARM GAS  /tmp/cc9bUalI.s 			page 17
 
 
- 781              		.loc 1 145 50 view .LVU207
- 782 00b2 26EE276A 		vmul.f32	s12, s12, s15
- 783              		.loc 1 145 7 view .LVU208
- 784 00b6 FDEEC67A 		vcvt.s32.f32	s15, s12
- 785 00ba 17EE90CA 		vmov	ip, s15	@ int
- 786              	.LVL66:
- 146:Core/Src/foc_math.c **** 			*pwm_v = (pwm_period + t1 + t2) / 2;
- 787              		.loc 1 146 4 is_stmt 1 view .LVU209
- 788              		.loc 1 146 25 is_stmt 0 view .LVU210
- 789 00be 2518     		adds	r5, r4, r0
- 790              		.loc 1 146 30 view .LVU211
- 791 00c0 6544     		add	r5, r5, ip
- 792              		.loc 1 146 36 view .LVU212
- 793 00c2 6D08     		lsrs	r5, r5, #1
- 794              		.loc 1 146 11 view .LVU213
- 795 00c4 1560     		str	r5, [r2]
- 147:Core/Src/foc_math.c **** 			*pwm_w = *pwm_v - t1;
- 796              		.loc 1 147 4 is_stmt 1 view .LVU214
- 797              		.loc 1 147 20 is_stmt 0 view .LVU215
- 798 00c6 2C1B     		subs	r4, r5, r4
- 799              	.LVL67:
- 800              		.loc 1 147 11 view .LVU216
- 801 00c8 1C60     		str	r4, [r3]
- 148:Core/Src/foc_math.c **** 			*pwm_u = *pwm_w - t2;
- 802              		.loc 1 148 4 is_stmt 1 view .LVU217
- 803              		.loc 1 148 20 is_stmt 0 view .LVU218
- 804 00ca A4EB0C04 		sub	r4, r4, ip
- 805              		.loc 1 148 11 view .LVU219
- 806 00ce 0C60     		str	r4, [r1]
- 149:Core/Src/foc_math.c **** 			break;
- 807              		.loc 1 149 4 is_stmt 1 view .LVU220
- 808 00d0 7EE0     		b	.L39
- 809              	.LVL68:
- 810              	.L50:
+ 779 00ae 63EEA73A 		vmul.f32	s7, s7, s15
+ 780              		.loc 1 146 7 view .LVU207
+ 781 00b2 FDEEE37A 		vcvt.s32.f32	s15, s7
+ 782 00b6 17EE904A 		vmov	r4, s15	@ int
+ 783              	.LVL66:
+ 147:Core/Src/foc_math.c **** 			tv = (pwm_period + t1 + t2) / 2;
+ 784              		.loc 1 147 4 is_stmt 1 view .LVU208
+ 785              		.loc 1 147 21 is_stmt 0 view .LVU209
+ 786 00ba 06EB000C 		add	ip, r6, r0
+ 787              		.loc 1 147 26 view .LVU210
+ 788 00be A444     		add	ip, ip, r4
+ 789              		.loc 1 147 32 view .LVU211
+ 790 00c0 4FEA5C05 		lsr	r5, ip, #1
+ 791              	.LVL67:
+ 148:Core/Src/foc_math.c **** 			tw = tv - t1;
+ 792              		.loc 1 148 4 is_stmt 1 view .LVU212
+ 793              		.loc 1 148 7 is_stmt 0 view .LVU213
+ 794 00c4 C6EB5C06 		rsb	r6, r6, ip, lsr #1
+ 795              	.LVL68:
+ 149:Core/Src/foc_math.c **** 			tu = tw - t2;
+ 796              		.loc 1 149 4 is_stmt 1 view .LVU214
+ 797              		.loc 1 149 7 is_stmt 0 view .LVU215
+ 798 00c8 341B     		subs	r4, r6, r4
+ 799              	.LVL69:
+ 150:Core/Src/foc_math.c **** 			break;
+ 800              		.loc 1 150 4 is_stmt 1 view .LVU216
+ 801 00ca 78E0     		b	.L39
+ 802              	.LVL70:
+ 803              	.L56:
  117:Core/Src/foc_math.c **** 				sector = (-ONE_BY_SQRT3 * beta > alpha) ? 5 : 6;
- 811              		.loc 1 117 3 view .LVU221
+ 804              		.loc 1 117 3 view .LVU217
  117:Core/Src/foc_math.c **** 				sector = (-ONE_BY_SQRT3 * beta > alpha) ? 5 : 6;
- 812              		.loc 1 117 6 is_stmt 0 view .LVU222
- 813 00d2 F5EEC07A 		vcmpe.f32	s15, #0
- 814 00d6 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 815 00da 2EDB     		blt	.L52
+ 805              		.loc 1 117 6 is_stmt 0 view .LVU218
+ 806 00cc B5EEC04A 		vcmpe.f32	s8, #0
+ 807 00d0 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 808 00d4 2BDB     		blt	.L58
  118:Core/Src/foc_math.c **** 		} else {
- 816              		.loc 1 118 5 is_stmt 1 view .LVU223
+ 809              		.loc 1 118 5 is_stmt 1 view .LVU219
  118:Core/Src/foc_math.c **** 		} else {
- 817              		.loc 1 118 29 is_stmt 0 view .LVU224
- 818 00dc DFED596A 		vldr.32	s13, .L54+8
- 819 00e0 67EE266A 		vmul.f32	s13, s14, s13
+ 810              		.loc 1 118 29 is_stmt 0 view .LVU220
+ 811 00d6 9FED5A5A 		vldr.32	s10, .L60+8
+ 812 00da 27EE855A 		vmul.f32	s10, s15, s10
  118:Core/Src/foc_math.c **** 		} else {
- 820              		.loc 1 118 12 view .LVU225
- 821 00e4 F4EEE76A 		vcmpe.f32	s13, s15
- 822 00e8 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 823 00ec 00F38180 		bgt	.L43
- 824              	.LVL69:
- 125:Core/Src/foc_math.c **** 	switch(sector) {
- 825              		.loc 1 125 2 is_stmt 1 view .LVU226
- 126:Core/Src/foc_math.c **** 		case 1:
- 826              		.loc 1 126 2 view .LVU227
-ARM GAS  /tmp/ccDcBK4H.s 			page 18
+ 813              		.loc 1 118 12 view .LVU221
+ 814 00de B4EEC45A 		vcmpe.f32	s10, s8
+ 815 00e2 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 816 00e6 70DC     		bgt	.L43
+ 817              	.LVL71:
+ 125:Core/Src/foc_math.c **** 	int32_t tu = 0, tv = 0, tw = 0;
+ 818              		.loc 1 125 2 is_stmt 1 view .LVU222
+ 126:Core/Src/foc_math.c **** 	switch(sector) {
+ 819              		.loc 1 126 2 view .LVU223
+ 127:Core/Src/foc_math.c **** 		case 1:
+ 820              		.loc 1 127 2 view .LVU224
+ 151:Core/Src/foc_math.c **** 
+ 152:Core/Src/foc_math.c **** 		case 4:
+ 153:Core/Src/foc_math.c **** 			t1 = (int32_t)((-alpha + ONE_BY_SQRT3 * beta) * pwm_period);
+ARM GAS  /tmp/cc9bUalI.s 			page 18
 
 
- 150:Core/Src/foc_math.c **** 
- 151:Core/Src/foc_math.c **** 		case 4:
- 152:Core/Src/foc_math.c **** 			t1 = (int32_t)((-alpha + ONE_BY_SQRT3 * beta) * pwm_period);
+ 154:Core/Src/foc_math.c **** 			t2 = (int32_t)(-TWO_BY_SQRT3 * beta * pwm_period);
+ 155:Core/Src/foc_math.c **** 			tw = (pwm_period + t1 + t2) / 2;
+ 156:Core/Src/foc_math.c **** 			tv = tw - t2;
+ 157:Core/Src/foc_math.c **** 			tu = tv - t1;
+ 158:Core/Src/foc_math.c **** 			break;
+ 159:Core/Src/foc_math.c **** 
+ 160:Core/Src/foc_math.c **** 		case 5:
+ 161:Core/Src/foc_math.c **** 			t1 = (int32_t)((-alpha - ONE_BY_SQRT3 * beta) * pwm_period);
+ 162:Core/Src/foc_math.c **** 			t2 = (int32_t)((alpha - ONE_BY_SQRT3 * beta) * pwm_period);
+ 163:Core/Src/foc_math.c **** 			tw = (pwm_period + t1 + t2) / 2;
+ 164:Core/Src/foc_math.c **** 			tu = tw - t1;
+ 165:Core/Src/foc_math.c **** 			tv = tu - t2;
+ 166:Core/Src/foc_math.c **** 			break;
+ 167:Core/Src/foc_math.c **** 
+ 168:Core/Src/foc_math.c **** 		case 6:
+ 169:Core/Src/foc_math.c **** 			t1 = (int32_t)(-TWO_BY_SQRT3 * beta * pwm_period);
+ 821              		.loc 1 169 4 view .LVU225
+ 822              		.loc 1 169 33 is_stmt 0 view .LVU226
+ 823 00e8 DFED564A 		vldr.32	s9, .L60+12
+ 824 00ec 67EEA44A 		vmul.f32	s9, s15, s9
+ 825              		.loc 1 169 40 view .LVU227
+ 826 00f0 07EE100A 		vmov	s14, r0	@ int
+ 827 00f4 F8EE473A 		vcvt.f32.u32	s7, s14
+ 828 00f8 64EEA34A 		vmul.f32	s9, s9, s7
+ 829              		.loc 1 169 7 view .LVU228
+ 830 00fc BDEEE47A 		vcvt.s32.f32	s14, s9
+ 831 0100 17EE105A 		vmov	r5, s14	@ int
+ 832              	.LVL72:
+ 170:Core/Src/foc_math.c **** 			t2 = (int32_t)((alpha + ONE_BY_SQRT3 * beta) * pwm_period);
+ 833              		.loc 1 170 4 is_stmt 1 view .LVU229
+ 834              		.loc 1 170 41 is_stmt 0 view .LVU230
+ 835 0104 9FED4C7A 		vldr.32	s14, .L60
+ 836 0108 67EE877A 		vmul.f32	s15, s15, s14
+ 837              	.LVL73:
+ 838              		.loc 1 170 26 view .LVU231
+ 839 010c 37EE847A 		vadd.f32	s14, s15, s8
+ 840              		.loc 1 170 49 view .LVU232
+ 841 0110 63EE873A 		vmul.f32	s7, s7, s14
+ 842              		.loc 1 170 7 view .LVU233
+ 843 0114 FDEEE37A 		vcvt.s32.f32	s15, s7
+ 844 0118 17EE906A 		vmov	r6, s15	@ int
+ 845              	.LVL74:
+ 171:Core/Src/foc_math.c **** 			tu = (pwm_period + t1 + t2) / 2;
+ 846              		.loc 1 171 4 is_stmt 1 view .LVU234
+ 847              		.loc 1 171 21 is_stmt 0 view .LVU235
+ 848 011c 05EB000C 		add	ip, r5, r0
+ 849              		.loc 1 171 26 view .LVU236
+ 850 0120 B444     		add	ip, ip, r6
+ 851              		.loc 1 171 32 view .LVU237
+ 852 0122 4FEA5C04 		lsr	r4, ip, #1
+ 853              	.LVL75:
+ 172:Core/Src/foc_math.c **** 			tw = tu - t2;
+ 854              		.loc 1 172 4 is_stmt 1 view .LVU238
+ 855              		.loc 1 172 7 is_stmt 0 view .LVU239
+ 856 0126 C6EB5C06 		rsb	r6, r6, ip, lsr #1
+ 857              	.LVL76:
+ 173:Core/Src/foc_math.c **** 			tv = tw - t1;
+ARM GAS  /tmp/cc9bUalI.s 			page 19
+
+
+ 858              		.loc 1 173 4 is_stmt 1 view .LVU240
+ 859              		.loc 1 173 7 is_stmt 0 view .LVU241
+ 860 012a 751B     		subs	r5, r6, r5
+ 861              	.LVL77:
+ 174:Core/Src/foc_math.c **** 			break;
+ 862              		.loc 1 174 4 is_stmt 1 view .LVU242
+ 863 012c 47E0     		b	.L39
+ 864              	.LVL78:
+ 865              	.L58:
+ 120:Core/Src/foc_math.c **** 		}
+ 866              		.loc 1 120 5 view .LVU243
+ 120:Core/Src/foc_math.c **** 		}
+ 867              		.loc 1 120 28 is_stmt 0 view .LVU244
+ 868 012e 9FED425A 		vldr.32	s10, .L60
+ 869 0132 27EE855A 		vmul.f32	s10, s15, s10
+ 120:Core/Src/foc_math.c **** 		}
+ 870              		.loc 1 120 12 view .LVU245
+ 871 0136 B4EEC45A 		vcmpe.f32	s10, s8
+ 872 013a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 873 013e 44DD     		ble	.L43
+ 874              	.LVL79:
+ 125:Core/Src/foc_math.c **** 	int32_t tu = 0, tv = 0, tw = 0;
+ 875              		.loc 1 125 2 is_stmt 1 view .LVU246
+ 126:Core/Src/foc_math.c **** 	switch(sector) {
+ 876              		.loc 1 126 2 view .LVU247
+ 127:Core/Src/foc_math.c **** 		case 1:
+ 877              		.loc 1 127 2 view .LVU248
  153:Core/Src/foc_math.c **** 			t2 = (int32_t)(-TWO_BY_SQRT3 * beta * pwm_period);
- 154:Core/Src/foc_math.c **** 			*pwm_w = (pwm_period + t1 + t2) / 2;
- 155:Core/Src/foc_math.c **** 			*pwm_v = *pwm_w - t2;
- 156:Core/Src/foc_math.c **** 			*pwm_u = *pwm_v - t1;
+ 878              		.loc 1 153 4 view .LVU249
+ 153:Core/Src/foc_math.c **** 			t2 = (int32_t)(-TWO_BY_SQRT3 * beta * pwm_period);
+ 879              		.loc 1 153 27 is_stmt 0 view .LVU250
+ 880 0140 35EE445A 		vsub.f32	s10, s10, s8
+ 153:Core/Src/foc_math.c **** 			t2 = (int32_t)(-TWO_BY_SQRT3 * beta * pwm_period);
+ 881              		.loc 1 153 50 view .LVU251
+ 882 0144 07EE100A 		vmov	s14, r0	@ int
+ 883 0148 B8EE477A 		vcvt.f32.u32	s14, s14
+ 884 014c 25EE075A 		vmul.f32	s10, s10, s14
+ 153:Core/Src/foc_math.c **** 			t2 = (int32_t)(-TWO_BY_SQRT3 * beta * pwm_period);
+ 885              		.loc 1 153 7 view .LVU252
+ 886 0150 FDEEC56A 		vcvt.s32.f32	s13, s10
+ 887 0154 16EE904A 		vmov	r4, s13	@ int
+ 888              	.LVL80:
+ 154:Core/Src/foc_math.c **** 			tw = (pwm_period + t1 + t2) / 2;
+ 889              		.loc 1 154 4 is_stmt 1 view .LVU253
+ 154:Core/Src/foc_math.c **** 			tw = (pwm_period + t1 + t2) / 2;
+ 890              		.loc 1 154 33 is_stmt 0 view .LVU254
+ 891 0158 DFED3A5A 		vldr.32	s11, .L60+12
+ 892 015c 67EEA57A 		vmul.f32	s15, s15, s11
+ 893              	.LVL81:
+ 154:Core/Src/foc_math.c **** 			tw = (pwm_period + t1 + t2) / 2;
+ 894              		.loc 1 154 40 view .LVU255
+ 895 0160 27EE277A 		vmul.f32	s14, s14, s15
+ 154:Core/Src/foc_math.c **** 			tw = (pwm_period + t1 + t2) / 2;
+ 896              		.loc 1 154 7 view .LVU256
+ 897 0164 FDEEC77A 		vcvt.s32.f32	s15, s14
+ 898 0168 17EE905A 		vmov	r5, s15	@ int
+ 899              	.LVL82:
+ARM GAS  /tmp/cc9bUalI.s 			page 20
+
+
+ 155:Core/Src/foc_math.c **** 			tv = tw - t2;
+ 900              		.loc 1 155 4 is_stmt 1 view .LVU257
+ 155:Core/Src/foc_math.c **** 			tv = tw - t2;
+ 901              		.loc 1 155 21 is_stmt 0 view .LVU258
+ 902 016c 04EB000C 		add	ip, r4, r0
+ 155:Core/Src/foc_math.c **** 			tv = tw - t2;
+ 903              		.loc 1 155 26 view .LVU259
+ 904 0170 AC44     		add	ip, ip, r5
+ 155:Core/Src/foc_math.c **** 			tv = tw - t2;
+ 905              		.loc 1 155 32 view .LVU260
+ 906 0172 4FEA5C06 		lsr	r6, ip, #1
+ 907              	.LVL83:
+ 156:Core/Src/foc_math.c **** 			tu = tv - t1;
+ 908              		.loc 1 156 4 is_stmt 1 view .LVU261
+ 156:Core/Src/foc_math.c **** 			tu = tv - t1;
+ 909              		.loc 1 156 7 is_stmt 0 view .LVU262
+ 910 0176 C5EB5C05 		rsb	r5, r5, ip, lsr #1
+ 911              	.LVL84:
  157:Core/Src/foc_math.c **** 			break;
+ 912              		.loc 1 157 4 is_stmt 1 view .LVU263
+ 157:Core/Src/foc_math.c **** 			break;
+ 913              		.loc 1 157 7 is_stmt 0 view .LVU264
+ 914 017a 2C1B     		subs	r4, r5, r4
+ 915              	.LVL85:
  158:Core/Src/foc_math.c **** 
- 159:Core/Src/foc_math.c **** 		case 5:
- 160:Core/Src/foc_math.c **** 			t1 = (int32_t)((-alpha - ONE_BY_SQRT3 * beta) * pwm_period);
+ 916              		.loc 1 158 4 is_stmt 1 view .LVU265
+ 917 017c 1FE0     		b	.L39
+ 918              	.LVL86:
+ 919              	.L38:
+ 137:Core/Src/foc_math.c **** 			t2 = (int32_t)((-alpha + ONE_BY_SQRT3 * beta) * pwm_period);
+ 920              		.loc 1 137 4 view .LVU266
+ 137:Core/Src/foc_math.c **** 			t2 = (int32_t)((-alpha + ONE_BY_SQRT3 * beta) * pwm_period);
+ 921              		.loc 1 137 41 is_stmt 0 view .LVU267
+ 922 017e DFED2E5A 		vldr.32	s11, .L60
+ 923 0182 67EEA55A 		vmul.f32	s11, s15, s11
+ 137:Core/Src/foc_math.c **** 			t2 = (int32_t)((-alpha + ONE_BY_SQRT3 * beta) * pwm_period);
+ 924              		.loc 1 137 26 view .LVU268
+ 925 0186 35EE846A 		vadd.f32	s12, s11, s8
+ 137:Core/Src/foc_math.c **** 			t2 = (int32_t)((-alpha + ONE_BY_SQRT3 * beta) * pwm_period);
+ 926              		.loc 1 137 49 view .LVU269
+ 927 018a 07EE900A 		vmov	s15, r0	@ int
+ 928              	.LVL87:
+ 137:Core/Src/foc_math.c **** 			t2 = (int32_t)((-alpha + ONE_BY_SQRT3 * beta) * pwm_period);
+ 929              		.loc 1 137 49 view .LVU270
+ 930 018e F8EE676A 		vcvt.f32.u32	s13, s15
+ 931 0192 26EE266A 		vmul.f32	s12, s12, s13
+ 137:Core/Src/foc_math.c **** 			t2 = (int32_t)((-alpha + ONE_BY_SQRT3 * beta) * pwm_period);
+ 932              		.loc 1 137 7 view .LVU271
+ 933 0196 FDEEC67A 		vcvt.s32.f32	s15, s12
+ 934 019a 17EE906A 		vmov	r6, s15	@ int
+ 935              	.LVL88:
+ 138:Core/Src/foc_math.c **** 			tv = (pwm_period + t1 + t2) / 2;
+ 936              		.loc 1 138 4 is_stmt 1 view .LVU272
+ 138:Core/Src/foc_math.c **** 			tv = (pwm_period + t1 + t2) / 2;
+ 937              		.loc 1 138 27 is_stmt 0 view .LVU273
+ 938 019e 75EEC45A 		vsub.f32	s11, s11, s8
+ 138:Core/Src/foc_math.c **** 			tv = (pwm_period + t1 + t2) / 2;
+ARM GAS  /tmp/cc9bUalI.s 			page 21
+
+
+ 939              		.loc 1 138 50 view .LVU274
+ 940 01a2 66EEA56A 		vmul.f32	s13, s13, s11
+ 138:Core/Src/foc_math.c **** 			tv = (pwm_period + t1 + t2) / 2;
+ 941              		.loc 1 138 7 view .LVU275
+ 942 01a6 FDEEE67A 		vcvt.s32.f32	s15, s13
+ 943 01aa 17EE904A 		vmov	r4, s15	@ int
+ 944              	.LVL89:
+ 139:Core/Src/foc_math.c **** 			tu = tv - t2;
+ 945              		.loc 1 139 4 is_stmt 1 view .LVU276
+ 139:Core/Src/foc_math.c **** 			tu = tv - t2;
+ 946              		.loc 1 139 21 is_stmt 0 view .LVU277
+ 947 01ae 06EB000C 		add	ip, r6, r0
+ 139:Core/Src/foc_math.c **** 			tu = tv - t2;
+ 948              		.loc 1 139 26 view .LVU278
+ 949 01b2 A444     		add	ip, ip, r4
+ 139:Core/Src/foc_math.c **** 			tu = tv - t2;
+ 950              		.loc 1 139 32 view .LVU279
+ 951 01b4 4FEA5C05 		lsr	r5, ip, #1
+ 952              	.LVL90:
+ 140:Core/Src/foc_math.c **** 			tw = tu - t1;
+ 953              		.loc 1 140 4 is_stmt 1 view .LVU280
+ 140:Core/Src/foc_math.c **** 			tw = tu - t1;
+ 954              		.loc 1 140 7 is_stmt 0 view .LVU281
+ 955 01b8 C4EB5C04 		rsb	r4, r4, ip, lsr #1
+ 956              	.LVL91:
+ 141:Core/Src/foc_math.c **** 			break;
+ 957              		.loc 1 141 4 is_stmt 1 view .LVU282
+ 141:Core/Src/foc_math.c **** 			break;
+ 958              		.loc 1 141 7 is_stmt 0 view .LVU283
+ 959 01bc A61B     		subs	r6, r4, r6
+ 960              	.LVL92:
+ 142:Core/Src/foc_math.c **** 
+ 961              		.loc 1 142 4 is_stmt 1 view .LVU284
+ 962              	.L39:
+ 175:Core/Src/foc_math.c **** 	}
+ 176:Core/Src/foc_math.c **** 
+ 177:Core/Src/foc_math.c **** 	// 4. Clamp outputs safely to valid range [0, pwm_period]
+ 178:Core/Src/foc_math.c **** 	if (tu < 0) tu = 0; else if (tu > pwm_period) tu = pwm_period;
+ 963              		.loc 1 178 2 view .LVU285
+ 964              		.loc 1 178 5 is_stmt 0 view .LVU286
+ 965 01be 002C     		cmp	r4, #0
+ 966 01c0 26DB     		blt	.L48
+ 967              		.loc 1 178 27 is_stmt 1 discriminator 2 view .LVU287
+ 968              		.loc 1 178 30 is_stmt 0 discriminator 2 view .LVU288
+ 969 01c2 8442     		cmp	r4, r0
+ 970 01c4 25D9     		bls	.L45
+ 971              		.loc 1 178 48 is_stmt 1 discriminator 3 view .LVU289
+ 972              		.loc 1 178 51 is_stmt 0 discriminator 3 view .LVU290
+ 973 01c6 0446     		mov	r4, r0
+ 974              	.LVL93:
+ 975              		.loc 1 178 51 discriminator 3 view .LVU291
+ 976 01c8 23E0     		b	.L45
+ 977              	.LVL94:
+ 978              	.L43:
  161:Core/Src/foc_math.c **** 			t2 = (int32_t)((alpha - ONE_BY_SQRT3 * beta) * pwm_period);
- 162:Core/Src/foc_math.c **** 			*pwm_w = (pwm_period + t1 + t2) / 2;
- 163:Core/Src/foc_math.c **** 			*pwm_u = *pwm_w - t1;
- 164:Core/Src/foc_math.c **** 			*pwm_v = *pwm_u - t2;
+ 979              		.loc 1 161 4 is_stmt 1 view .LVU292
+ 161:Core/Src/foc_math.c **** 			t2 = (int32_t)((alpha - ONE_BY_SQRT3 * beta) * pwm_period);
+ARM GAS  /tmp/cc9bUalI.s 			page 22
+
+
+ 980              		.loc 1 161 20 is_stmt 0 view .LVU293
+ 981 01ca B1EE446A 		vneg.f32	s12, s8
+ 161:Core/Src/foc_math.c **** 			t2 = (int32_t)((alpha - ONE_BY_SQRT3 * beta) * pwm_period);
+ 982              		.loc 1 161 42 view .LVU294
+ 983 01ce 9FED1A7A 		vldr.32	s14, .L60
+ 984 01d2 67EE877A 		vmul.f32	s15, s15, s14
+ 985              	.LVL95:
+ 161:Core/Src/foc_math.c **** 			t2 = (int32_t)((alpha - ONE_BY_SQRT3 * beta) * pwm_period);
+ 986              		.loc 1 161 27 view .LVU295
+ 987 01d6 36EE676A 		vsub.f32	s12, s12, s15
+ 161:Core/Src/foc_math.c **** 			t2 = (int32_t)((alpha - ONE_BY_SQRT3 * beta) * pwm_period);
+ 988              		.loc 1 161 50 view .LVU296
+ 989 01da 07EE100A 		vmov	s14, r0	@ int
+ 990 01de B8EE475A 		vcvt.f32.u32	s10, s14
+ 991 01e2 26EE056A 		vmul.f32	s12, s12, s10
+ 161:Core/Src/foc_math.c **** 			t2 = (int32_t)((alpha - ONE_BY_SQRT3 * beta) * pwm_period);
+ 992              		.loc 1 161 7 view .LVU297
+ 993 01e6 BDEEC67A 		vcvt.s32.f32	s14, s12
+ 994 01ea 17EE104A 		vmov	r4, s14	@ int
+ 995              	.LVL96:
+ 162:Core/Src/foc_math.c **** 			tw = (pwm_period + t1 + t2) / 2;
+ 996              		.loc 1 162 4 is_stmt 1 view .LVU298
+ 162:Core/Src/foc_math.c **** 			tw = (pwm_period + t1 + t2) / 2;
+ 997              		.loc 1 162 26 is_stmt 0 view .LVU299
+ 998 01ee 74EE677A 		vsub.f32	s15, s8, s15
+ 162:Core/Src/foc_math.c **** 			tw = (pwm_period + t1 + t2) / 2;
+ 999              		.loc 1 162 49 view .LVU300
+ 1000 01f2 65EE277A 		vmul.f32	s15, s10, s15
+ 162:Core/Src/foc_math.c **** 			tw = (pwm_period + t1 + t2) / 2;
+ 1001              		.loc 1 162 7 view .LVU301
+ 1002 01f6 FDEEE77A 		vcvt.s32.f32	s15, s15
+ 1003 01fa 17EE905A 		vmov	r5, s15	@ int
+ 1004              	.LVL97:
+ 163:Core/Src/foc_math.c **** 			tu = tw - t1;
+ 1005              		.loc 1 163 4 is_stmt 1 view .LVU302
+ 163:Core/Src/foc_math.c **** 			tu = tw - t1;
+ 1006              		.loc 1 163 21 is_stmt 0 view .LVU303
+ 1007 01fe 04EB000C 		add	ip, r4, r0
+ 163:Core/Src/foc_math.c **** 			tu = tw - t1;
+ 1008              		.loc 1 163 26 view .LVU304
+ 1009 0202 AC44     		add	ip, ip, r5
+ 163:Core/Src/foc_math.c **** 			tu = tw - t1;
+ 1010              		.loc 1 163 32 view .LVU305
+ 1011 0204 4FEA5C06 		lsr	r6, ip, #1
+ 1012              	.LVL98:
+ 164:Core/Src/foc_math.c **** 			tv = tu - t2;
+ 1013              		.loc 1 164 4 is_stmt 1 view .LVU306
+ 164:Core/Src/foc_math.c **** 			tv = tu - t2;
+ 1014              		.loc 1 164 7 is_stmt 0 view .LVU307
+ 1015 0208 C4EB5C04 		rsb	r4, r4, ip, lsr #1
+ 1016              	.LVL99:
  165:Core/Src/foc_math.c **** 			break;
+ 1017              		.loc 1 165 4 is_stmt 1 view .LVU308
+ 165:Core/Src/foc_math.c **** 			break;
+ 1018              		.loc 1 165 7 is_stmt 0 view .LVU309
+ 1019 020c 651B     		subs	r5, r4, r5
+ 1020              	.LVL100:
+ARM GAS  /tmp/cc9bUalI.s 			page 23
+
+
  166:Core/Src/foc_math.c **** 
- 167:Core/Src/foc_math.c **** 		case 6:
- 168:Core/Src/foc_math.c **** 			t1 = (int32_t)(-TWO_BY_SQRT3 * beta * pwm_period);
- 827              		.loc 1 168 4 view .LVU228
- 828              		.loc 1 168 33 is_stmt 0 view .LVU229
- 829 00f0 DFED556A 		vldr.32	s13, .L54+12
- 830 00f4 67EE266A 		vmul.f32	s13, s14, s13
- 831              		.loc 1 168 40 view .LVU230
- 832 00f8 06EE100A 		vmov	s12, r0	@ int
- 833 00fc B8EE466A 		vcvt.f32.u32	s12, s12
- 834 0100 66EE866A 		vmul.f32	s13, s13, s12
- 835              		.loc 1 168 7 view .LVU231
- 836 0104 FDEEE66A 		vcvt.s32.f32	s13, s13
- 837 0108 16EE90CA 		vmov	ip, s13	@ int
- 838              	.LVL70:
- 169:Core/Src/foc_math.c **** 			t2 = (int32_t)((alpha + ONE_BY_SQRT3 * beta) * pwm_period);
- 839              		.loc 1 169 4 is_stmt 1 view .LVU232
- 840              		.loc 1 169 41 is_stmt 0 view .LVU233
- 841 010c DFED4B6A 		vldr.32	s13, .L54
- 842 0110 27EE267A 		vmul.f32	s14, s14, s13
- 843              	.LVL71:
- 844              		.loc 1 169 26 view .LVU234
- 845 0114 77EE277A 		vadd.f32	s15, s14, s15
- 846              	.LVL72:
- 847              		.loc 1 169 49 view .LVU235
- 848 0118 26EE276A 		vmul.f32	s12, s12, s15
- 849              		.loc 1 169 7 view .LVU236
- 850 011c FDEEC67A 		vcvt.s32.f32	s15, s12
- 851 0120 17EE904A 		vmov	r4, s15	@ int
- 852              	.LVL73:
- 170:Core/Src/foc_math.c **** 			*pwm_u = (pwm_period + t1 + t2) / 2;
- 853              		.loc 1 170 4 is_stmt 1 view .LVU237
- 854              		.loc 1 170 25 is_stmt 0 view .LVU238
- 855 0124 0CEB0005 		add	r5, ip, r0
- 856              		.loc 1 170 30 view .LVU239
- 857 0128 2544     		add	r5, r5, r4
- 858              		.loc 1 170 36 view .LVU240
- 859 012a 6D08     		lsrs	r5, r5, #1
- 860              		.loc 1 170 11 view .LVU241
- 861 012c 0D60     		str	r5, [r1]
- 171:Core/Src/foc_math.c **** 			*pwm_w = *pwm_u - t2;
-ARM GAS  /tmp/ccDcBK4H.s 			page 19
+ 1021              		.loc 1 166 4 is_stmt 1 view .LVU310
+ 1022 020e D6E7     		b	.L39
+ 1023              	.LVL101:
+ 1024              	.L48:
+ 1025              		.loc 1 178 17 is_stmt 0 view .LVU311
+ 1026 0210 0024     		movs	r4, #0
+ 1027              	.LVL102:
+ 1028              	.L45:
+ 179:Core/Src/foc_math.c **** 	if (tv < 0) tv = 0; else if (tv > pwm_period) tv = pwm_period;
+ 1029              		.loc 1 179 2 is_stmt 1 view .LVU312
+ 1030              		.loc 1 179 5 is_stmt 0 view .LVU313
+ 1031 0212 002D     		cmp	r5, #0
+ 1032 0214 03DB     		blt	.L49
+ 1033              		.loc 1 179 27 is_stmt 1 discriminator 2 view .LVU314
+ 1034              		.loc 1 179 30 is_stmt 0 discriminator 2 view .LVU315
+ 1035 0216 8542     		cmp	r5, r0
+ 1036 0218 02D9     		bls	.L46
+ 1037              		.loc 1 179 48 is_stmt 1 discriminator 3 view .LVU316
+ 1038              		.loc 1 179 51 is_stmt 0 discriminator 3 view .LVU317
+ 1039 021a 0546     		mov	r5, r0
+ 1040              	.LVL103:
+ 1041              		.loc 1 179 51 discriminator 3 view .LVU318
+ 1042 021c 00E0     		b	.L46
+ 1043              	.L49:
+ 1044              		.loc 1 179 17 view .LVU319
+ 1045 021e 0025     		movs	r5, #0
+ 1046              	.LVL104:
+ 1047              	.L46:
+ 180:Core/Src/foc_math.c **** 	if (tw < 0) tw = 0; else if (tw > pwm_period) tw = pwm_period;
+ 1048              		.loc 1 180 2 is_stmt 1 view .LVU320
+ 1049              		.loc 1 180 5 is_stmt 0 view .LVU321
+ 1050 0220 002E     		cmp	r6, #0
+ 1051 0222 03DB     		blt	.L50
+ 1052              		.loc 1 180 27 is_stmt 1 discriminator 2 view .LVU322
+ 1053              		.loc 1 180 30 is_stmt 0 discriminator 2 view .LVU323
+ 1054 0224 8642     		cmp	r6, r0
+ 1055 0226 02D9     		bls	.L47
+ 1056              		.loc 1 180 48 is_stmt 1 discriminator 3 view .LVU324
+ 1057              		.loc 1 180 51 is_stmt 0 discriminator 3 view .LVU325
+ 1058 0228 0646     		mov	r6, r0
+ 1059              	.LVL105:
+ 1060              		.loc 1 180 51 discriminator 3 view .LVU326
+ 1061 022a 00E0     		b	.L47
+ 1062              	.L50:
+ 1063              		.loc 1 180 17 view .LVU327
+ 1064 022c 0026     		movs	r6, #0
+ 1065              	.LVL106:
+ 1066              	.L47:
+ 181:Core/Src/foc_math.c **** 
+ 182:Core/Src/foc_math.c ****     // 5. Cast back to unsigned integers
+ 183:Core/Src/foc_math.c **** 	*pwm_u = (uint32_t)tu;
+ 1067              		.loc 1 183 2 is_stmt 1 view .LVU328
+ 1068              		.loc 1 183 9 is_stmt 0 view .LVU329
+ 1069 022e 0C60     		str	r4, [r1]
+ 184:Core/Src/foc_math.c **** 	*pwm_v = (uint32_t)tv;
+ 1070              		.loc 1 184 2 is_stmt 1 view .LVU330
+ARM GAS  /tmp/cc9bUalI.s 			page 24
 
 
- 862              		.loc 1 171 4 is_stmt 1 view .LVU242
- 863              		.loc 1 171 20 is_stmt 0 view .LVU243
- 864 012e 2C1B     		subs	r4, r5, r4
- 865              	.LVL74:
- 866              		.loc 1 171 11 view .LVU244
- 867 0130 1C60     		str	r4, [r3]
- 172:Core/Src/foc_math.c **** 			*pwm_v = *pwm_w - t1;
- 868              		.loc 1 172 4 is_stmt 1 view .LVU245
- 869              		.loc 1 172 20 is_stmt 0 view .LVU246
- 870 0132 A4EB0C04 		sub	r4, r4, ip
- 871              		.loc 1 172 11 view .LVU247
- 872 0136 1460     		str	r4, [r2]
- 173:Core/Src/foc_math.c **** 			break;
- 873              		.loc 1 173 4 is_stmt 1 view .LVU248
- 874 0138 4AE0     		b	.L39
- 875              	.LVL75:
- 876              	.L52:
- 120:Core/Src/foc_math.c **** 		}
- 877              		.loc 1 120 5 view .LVU249
- 120:Core/Src/foc_math.c **** 		}
- 878              		.loc 1 120 28 is_stmt 0 view .LVU250
- 879 013a DFED406A 		vldr.32	s13, .L54
- 880 013e 67EE266A 		vmul.f32	s13, s14, s13
- 120:Core/Src/foc_math.c **** 		}
- 881              		.loc 1 120 12 view .LVU251
- 882 0142 F4EEE76A 		vcmpe.f32	s13, s15
- 883 0146 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 884 014a 52DD     		ble	.L43
- 885              	.LVL76:
- 125:Core/Src/foc_math.c **** 	switch(sector) {
- 886              		.loc 1 125 2 is_stmt 1 view .LVU252
- 126:Core/Src/foc_math.c **** 		case 1:
- 887              		.loc 1 126 2 view .LVU253
- 152:Core/Src/foc_math.c **** 			t2 = (int32_t)(-TWO_BY_SQRT3 * beta * pwm_period);
- 888              		.loc 1 152 4 view .LVU254
- 152:Core/Src/foc_math.c **** 			t2 = (int32_t)(-TWO_BY_SQRT3 * beta * pwm_period);
- 889              		.loc 1 152 27 is_stmt 0 view .LVU255
- 890 014c 76EEE77A 		vsub.f32	s15, s13, s15
- 891              	.LVL77:
- 152:Core/Src/foc_math.c **** 			t2 = (int32_t)(-TWO_BY_SQRT3 * beta * pwm_period);
- 892              		.loc 1 152 50 view .LVU256
- 893 0150 06EE900A 		vmov	s13, r0	@ int
- 894 0154 F8EE666A 		vcvt.f32.u32	s13, s13
- 895 0158 67EEA67A 		vmul.f32	s15, s15, s13
- 152:Core/Src/foc_math.c **** 			t2 = (int32_t)(-TWO_BY_SQRT3 * beta * pwm_period);
- 896              		.loc 1 152 7 view .LVU257
- 897 015c FDEEE77A 		vcvt.s32.f32	s15, s15
- 898 0160 17EE904A 		vmov	r4, s15	@ int
- 899              	.LVL78:
- 153:Core/Src/foc_math.c **** 			*pwm_w = (pwm_period + t1 + t2) / 2;
- 900              		.loc 1 153 4 is_stmt 1 view .LVU258
- 153:Core/Src/foc_math.c **** 			*pwm_w = (pwm_period + t1 + t2) / 2;
- 901              		.loc 1 153 33 is_stmt 0 view .LVU259
- 902 0164 DFED387A 		vldr.32	s15, .L54+12
- 903 0168 27EE277A 		vmul.f32	s14, s14, s15
- 904              	.LVL79:
- 153:Core/Src/foc_math.c **** 			*pwm_w = (pwm_period + t1 + t2) / 2;
-ARM GAS  /tmp/ccDcBK4H.s 			page 20
-
-
- 905              		.loc 1 153 40 view .LVU260
- 906 016c 66EE876A 		vmul.f32	s13, s13, s14
- 153:Core/Src/foc_math.c **** 			*pwm_w = (pwm_period + t1 + t2) / 2;
- 907              		.loc 1 153 7 view .LVU261
- 908 0170 FDEEE67A 		vcvt.s32.f32	s15, s13
- 909 0174 17EE90CA 		vmov	ip, s15	@ int
- 910              	.LVL80:
- 154:Core/Src/foc_math.c **** 			*pwm_v = *pwm_w - t2;
- 911              		.loc 1 154 4 is_stmt 1 view .LVU262
- 154:Core/Src/foc_math.c **** 			*pwm_v = *pwm_w - t2;
- 912              		.loc 1 154 25 is_stmt 0 view .LVU263
- 913 0178 2518     		adds	r5, r4, r0
- 154:Core/Src/foc_math.c **** 			*pwm_v = *pwm_w - t2;
- 914              		.loc 1 154 30 view .LVU264
- 915 017a 6544     		add	r5, r5, ip
- 154:Core/Src/foc_math.c **** 			*pwm_v = *pwm_w - t2;
- 916              		.loc 1 154 36 view .LVU265
- 917 017c 6D08     		lsrs	r5, r5, #1
- 154:Core/Src/foc_math.c **** 			*pwm_v = *pwm_w - t2;
- 918              		.loc 1 154 11 view .LVU266
- 919 017e 1D60     		str	r5, [r3]
- 155:Core/Src/foc_math.c **** 			*pwm_u = *pwm_v - t1;
- 920              		.loc 1 155 4 is_stmt 1 view .LVU267
- 155:Core/Src/foc_math.c **** 			*pwm_u = *pwm_v - t1;
- 921              		.loc 1 155 20 is_stmt 0 view .LVU268
- 922 0180 A5EB0C05 		sub	r5, r5, ip
- 155:Core/Src/foc_math.c **** 			*pwm_u = *pwm_v - t1;
- 923              		.loc 1 155 11 view .LVU269
- 924 0184 1560     		str	r5, [r2]
- 156:Core/Src/foc_math.c **** 			break;
- 925              		.loc 1 156 4 is_stmt 1 view .LVU270
- 156:Core/Src/foc_math.c **** 			break;
- 926              		.loc 1 156 20 is_stmt 0 view .LVU271
- 927 0186 2C1B     		subs	r4, r5, r4
- 928              	.LVL81:
- 156:Core/Src/foc_math.c **** 			break;
- 929              		.loc 1 156 11 view .LVU272
- 930 0188 0C60     		str	r4, [r1]
- 157:Core/Src/foc_math.c **** 
- 931              		.loc 1 157 4 is_stmt 1 view .LVU273
- 932 018a 21E0     		b	.L39
- 933              	.LVL82:
- 934              	.L38:
- 136:Core/Src/foc_math.c **** 			t2 = (int32_t)((-alpha + ONE_BY_SQRT3 * beta) * pwm_period);
- 935              		.loc 1 136 4 view .LVU274
- 136:Core/Src/foc_math.c **** 			t2 = (int32_t)((-alpha + ONE_BY_SQRT3 * beta) * pwm_period);
- 936              		.loc 1 136 41 is_stmt 0 view .LVU275
- 937 018c DFED2B6A 		vldr.32	s13, .L54
- 938 0190 27EE267A 		vmul.f32	s14, s14, s13
- 939              	.LVL83:
- 136:Core/Src/foc_math.c **** 			t2 = (int32_t)((-alpha + ONE_BY_SQRT3 * beta) * pwm_period);
- 940              		.loc 1 136 26 view .LVU276
- 941 0194 37EE276A 		vadd.f32	s12, s14, s15
- 136:Core/Src/foc_math.c **** 			t2 = (int32_t)((-alpha + ONE_BY_SQRT3 * beta) * pwm_period);
- 942              		.loc 1 136 49 view .LVU277
- 943 0198 06EE900A 		vmov	s13, r0	@ int
- 944 019c F8EE666A 		vcvt.f32.u32	s13, s13
-ARM GAS  /tmp/ccDcBK4H.s 			page 21
-
-
- 945 01a0 26EE266A 		vmul.f32	s12, s12, s13
- 136:Core/Src/foc_math.c **** 			t2 = (int32_t)((-alpha + ONE_BY_SQRT3 * beta) * pwm_period);
- 946              		.loc 1 136 7 view .LVU278
- 947 01a4 BDEEC66A 		vcvt.s32.f32	s12, s12
- 948 01a8 16EE10CA 		vmov	ip, s12	@ int
- 949              	.LVL84:
- 137:Core/Src/foc_math.c **** 			*pwm_v = (pwm_period + t1 + t2) / 2;
- 950              		.loc 1 137 4 is_stmt 1 view .LVU279
- 137:Core/Src/foc_math.c **** 			*pwm_v = (pwm_period + t1 + t2) / 2;
- 951              		.loc 1 137 27 is_stmt 0 view .LVU280
- 952 01ac 37EE677A 		vsub.f32	s14, s14, s15
- 137:Core/Src/foc_math.c **** 			*pwm_v = (pwm_period + t1 + t2) / 2;
- 953              		.loc 1 137 50 view .LVU281
- 954 01b0 66EE876A 		vmul.f32	s13, s13, s14
- 137:Core/Src/foc_math.c **** 			*pwm_v = (pwm_period + t1 + t2) / 2;
- 955              		.loc 1 137 7 view .LVU282
- 956 01b4 FDEEE67A 		vcvt.s32.f32	s15, s13
- 957              	.LVL85:
- 137:Core/Src/foc_math.c **** 			*pwm_v = (pwm_period + t1 + t2) / 2;
- 958              		.loc 1 137 7 view .LVU283
- 959 01b8 17EE904A 		vmov	r4, s15	@ int
- 960              	.LVL86:
- 138:Core/Src/foc_math.c **** 			*pwm_u = *pwm_v - t2;
- 961              		.loc 1 138 4 is_stmt 1 view .LVU284
- 138:Core/Src/foc_math.c **** 			*pwm_u = *pwm_v - t2;
- 962              		.loc 1 138 25 is_stmt 0 view .LVU285
- 963 01bc 0CEB0005 		add	r5, ip, r0
- 138:Core/Src/foc_math.c **** 			*pwm_u = *pwm_v - t2;
- 964              		.loc 1 138 30 view .LVU286
- 965 01c0 2544     		add	r5, r5, r4
- 138:Core/Src/foc_math.c **** 			*pwm_u = *pwm_v - t2;
- 966              		.loc 1 138 36 view .LVU287
- 967 01c2 6D08     		lsrs	r5, r5, #1
- 138:Core/Src/foc_math.c **** 			*pwm_u = *pwm_v - t2;
- 968              		.loc 1 138 11 view .LVU288
- 969 01c4 1560     		str	r5, [r2]
- 139:Core/Src/foc_math.c **** 			*pwm_w = *pwm_u - t1;
- 970              		.loc 1 139 4 is_stmt 1 view .LVU289
- 139:Core/Src/foc_math.c **** 			*pwm_w = *pwm_u - t1;
- 971              		.loc 1 139 20 is_stmt 0 view .LVU290
- 972 01c6 2C1B     		subs	r4, r5, r4
- 973              	.LVL87:
- 139:Core/Src/foc_math.c **** 			*pwm_w = *pwm_u - t1;
- 974              		.loc 1 139 11 view .LVU291
- 975 01c8 0C60     		str	r4, [r1]
- 140:Core/Src/foc_math.c **** 			break;
- 976              		.loc 1 140 4 is_stmt 1 view .LVU292
- 140:Core/Src/foc_math.c **** 			break;
- 977              		.loc 1 140 20 is_stmt 0 view .LVU293
- 978 01ca A4EB0C04 		sub	r4, r4, ip
- 140:Core/Src/foc_math.c **** 			break;
- 979              		.loc 1 140 11 view .LVU294
- 980 01ce 1C60     		str	r4, [r3]
- 141:Core/Src/foc_math.c **** 
- 981              		.loc 1 141 4 is_stmt 1 view .LVU295
- 982              	.LVL88:
- 983              	.L39:
-ARM GAS  /tmp/ccDcBK4H.s 			page 22
-
-
- 174:Core/Src/foc_math.c **** 	}
- 175:Core/Src/foc_math.c **** 
- 176:Core/Src/foc_math.c **** 	// 4. Clamp outputs to valid range
- 177:Core/Src/foc_math.c **** 	*pwm_u = (*pwm_u > pwm_period) ? pwm_period : *pwm_u;
- 984              		.loc 1 177 2 view .LVU296
- 985              		.loc 1 177 12 is_stmt 0 view .LVU297
- 986 01d0 0C68     		ldr	r4, [r1]
- 987              		.loc 1 177 46 view .LVU298
- 988 01d2 8442     		cmp	r4, r0
- 989 01d4 28BF     		it	cs
- 990 01d6 0446     		movcs	r4, r0
- 991              		.loc 1 177 9 view .LVU299
- 992 01d8 0C60     		str	r4, [r1]
- 178:Core/Src/foc_math.c **** 	*pwm_v = (*pwm_v > pwm_period) ? pwm_period : *pwm_v;
- 993              		.loc 1 178 2 is_stmt 1 view .LVU300
- 994              		.loc 1 178 12 is_stmt 0 view .LVU301
- 995 01da 1168     		ldr	r1, [r2]
- 996              	.LVL89:
- 997              		.loc 1 178 46 view .LVU302
- 998 01dc 8142     		cmp	r1, r0
- 999 01de 28BF     		it	cs
- 1000 01e0 0146     		movcs	r1, r0
- 1001              		.loc 1 178 9 view .LVU303
- 1002 01e2 1160     		str	r1, [r2]
- 179:Core/Src/foc_math.c **** 	*pwm_w = (*pwm_w > pwm_period) ? pwm_period : *pwm_w;
- 1003              		.loc 1 179 2 is_stmt 1 view .LVU304
- 1004              		.loc 1 179 12 is_stmt 0 view .LVU305
- 1005 01e4 1A68     		ldr	r2, [r3]
- 1006              	.LVL90:
- 1007              		.loc 1 179 46 view .LVU306
- 1008 01e6 9042     		cmp	r0, r2
- 1009 01e8 28BF     		it	cs
- 1010 01ea 1046     		movcs	r0, r2
- 1011              	.LVL91:
- 1012              		.loc 1 179 9 view .LVU307
- 1013 01ec 1860     		str	r0, [r3]
- 180:Core/Src/foc_math.c **** }
- 1014              		.loc 1 180 1 view .LVU308
- 1015 01ee 30BC     		pop	{r4, r5}
- 1016              	.LCFI13:
- 1017              		.cfi_remember_state
- 1018              		.cfi_restore 5
- 1019              		.cfi_restore 4
- 1020              		.cfi_def_cfa_offset 0
- 1021 01f0 7047     		bx	lr
- 1022              	.LVL92:
- 1023              	.L43:
- 1024              	.LCFI14:
- 1025              		.cfi_restore_state
- 160:Core/Src/foc_math.c **** 			t2 = (int32_t)((alpha - ONE_BY_SQRT3 * beta) * pwm_period);
- 1026              		.loc 1 160 4 is_stmt 1 view .LVU309
- 160:Core/Src/foc_math.c **** 			t2 = (int32_t)((alpha - ONE_BY_SQRT3 * beta) * pwm_period);
- 1027              		.loc 1 160 20 is_stmt 0 view .LVU310
- 1028 01f2 F1EE676A 		vneg.f32	s13, s15
- 160:Core/Src/foc_math.c **** 			t2 = (int32_t)((alpha - ONE_BY_SQRT3 * beta) * pwm_period);
- 1029              		.loc 1 160 42 view .LVU311
- 1030 01f6 9FED116A 		vldr.32	s12, .L54
-ARM GAS  /tmp/ccDcBK4H.s 			page 23
-
-
- 1031 01fa 27EE067A 		vmul.f32	s14, s14, s12
- 1032              	.LVL93:
- 160:Core/Src/foc_math.c **** 			t2 = (int32_t)((alpha - ONE_BY_SQRT3 * beta) * pwm_period);
- 1033              		.loc 1 160 27 view .LVU312
- 1034 01fe 76EEC76A 		vsub.f32	s13, s13, s14
- 160:Core/Src/foc_math.c **** 			t2 = (int32_t)((alpha - ONE_BY_SQRT3 * beta) * pwm_period);
- 1035              		.loc 1 160 50 view .LVU313
- 1036 0202 06EE100A 		vmov	s12, r0	@ int
- 1037 0206 B8EE466A 		vcvt.f32.u32	s12, s12
- 1038 020a 66EE866A 		vmul.f32	s13, s13, s12
- 160:Core/Src/foc_math.c **** 			t2 = (int32_t)((alpha - ONE_BY_SQRT3 * beta) * pwm_period);
- 1039              		.loc 1 160 7 view .LVU314
- 1040 020e FDEEE66A 		vcvt.s32.f32	s13, s13
- 1041 0212 16EE904A 		vmov	r4, s13	@ int
- 1042              	.LVL94:
- 161:Core/Src/foc_math.c **** 			*pwm_w = (pwm_period + t1 + t2) / 2;
- 1043              		.loc 1 161 4 is_stmt 1 view .LVU315
- 161:Core/Src/foc_math.c **** 			*pwm_w = (pwm_period + t1 + t2) / 2;
- 1044              		.loc 1 161 26 is_stmt 0 view .LVU316
- 1045 0216 77EEC77A 		vsub.f32	s15, s15, s14
- 1046              	.LVL95:
- 161:Core/Src/foc_math.c **** 			*pwm_w = (pwm_period + t1 + t2) / 2;
- 1047              		.loc 1 161 49 view .LVU317
- 1048 021a 66EE277A 		vmul.f32	s15, s12, s15
- 161:Core/Src/foc_math.c **** 			*pwm_w = (pwm_period + t1 + t2) / 2;
- 1049              		.loc 1 161 7 view .LVU318
- 1050 021e FDEEE77A 		vcvt.s32.f32	s15, s15
- 1051 0222 17EE90CA 		vmov	ip, s15	@ int
- 1052              	.LVL96:
- 162:Core/Src/foc_math.c **** 			*pwm_u = *pwm_w - t1;
- 1053              		.loc 1 162 4 is_stmt 1 view .LVU319
- 162:Core/Src/foc_math.c **** 			*pwm_u = *pwm_w - t1;
- 1054              		.loc 1 162 25 is_stmt 0 view .LVU320
- 1055 0226 2518     		adds	r5, r4, r0
- 162:Core/Src/foc_math.c **** 			*pwm_u = *pwm_w - t1;
- 1056              		.loc 1 162 30 view .LVU321
- 1057 0228 6544     		add	r5, r5, ip
- 162:Core/Src/foc_math.c **** 			*pwm_u = *pwm_w - t1;
- 1058              		.loc 1 162 36 view .LVU322
- 1059 022a 6D08     		lsrs	r5, r5, #1
- 162:Core/Src/foc_math.c **** 			*pwm_u = *pwm_w - t1;
- 1060              		.loc 1 162 11 view .LVU323
- 1061 022c 1D60     		str	r5, [r3]
- 163:Core/Src/foc_math.c **** 			*pwm_v = *pwm_u - t2;
- 1062              		.loc 1 163 4 is_stmt 1 view .LVU324
- 163:Core/Src/foc_math.c **** 			*pwm_v = *pwm_u - t2;
- 1063              		.loc 1 163 20 is_stmt 0 view .LVU325
- 1064 022e 2C1B     		subs	r4, r5, r4
- 1065              	.LVL97:
- 163:Core/Src/foc_math.c **** 			*pwm_v = *pwm_u - t2;
- 1066              		.loc 1 163 11 view .LVU326
- 1067 0230 0C60     		str	r4, [r1]
- 164:Core/Src/foc_math.c **** 			break;
- 1068              		.loc 1 164 4 is_stmt 1 view .LVU327
- 164:Core/Src/foc_math.c **** 			break;
- 1069              		.loc 1 164 20 is_stmt 0 view .LVU328
- 1070 0232 A4EB0C04 		sub	r4, r4, ip
-ARM GAS  /tmp/ccDcBK4H.s 			page 24
-
-
- 164:Core/Src/foc_math.c **** 			break;
- 1071              		.loc 1 164 11 view .LVU329
- 1072 0236 1460     		str	r4, [r2]
- 165:Core/Src/foc_math.c **** 
- 1073              		.loc 1 165 4 is_stmt 1 view .LVU330
- 1074 0238 CAE7     		b	.L39
- 1075              	.L55:
- 1076 023a 00BF     		.align	2
- 1077              	.L54:
- 1078 023c 3ACD133F 		.word	1058262330
- 1079 0240 3ACD933F 		.word	1066650938
- 1080 0244 3ACD13BF 		.word	-1089221318
- 1081 0248 3ACD93BF 		.word	-1080832710
- 1082              		.cfi_endproc
- 1083              	.LFE10:
- 1085              		.global	cos_lut
- 1086              		.global	sin_lut
- 1087              		.section	.bss.cos_lut,"aw",%nobits
- 1088              		.align	2
- 1091              	cos_lut:
- 1092 0000 00000000 		.space	16384
- 1092      00000000 
- 1092      00000000 
- 1092      00000000 
- 1092      00000000 
- 1093              		.section	.bss.sin_lut,"aw",%nobits
- 1094              		.align	2
- 1097              	sin_lut:
- 1098 0000 00000000 		.space	16384
- 1098      00000000 
- 1098      00000000 
- 1098      00000000 
- 1098      00000000 
- 1099              		.text
- 1100              	.Letext0:
- 1101              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
- 1102              		.file 3 "Core/Inc/foc_math.h"
- 1103              		.file 4 "/usr/include/newlib/math.h"
-ARM GAS  /tmp/ccDcBK4H.s 			page 25
+ 1071              		.loc 1 184 9 is_stmt 0 view .LVU331
+ 1072 0230 1560     		str	r5, [r2]
+ 185:Core/Src/foc_math.c **** 	*pwm_w = (uint32_t)tw;
+ 1073              		.loc 1 185 2 is_stmt 1 view .LVU332
+ 1074              		.loc 1 185 9 is_stmt 0 view .LVU333
+ 1075 0232 1E60     		str	r6, [r3]
+ 186:Core/Src/foc_math.c **** }
+ 1076              		.loc 1 186 1 view .LVU334
+ 1077 0234 70BC     		pop	{r4, r5, r6}
+ 1078              	.LCFI13:
+ 1079              		.cfi_restore 6
+ 1080              		.cfi_restore 5
+ 1081              		.cfi_restore 4
+ 1082              		.cfi_def_cfa_offset 0
+ 1083              	.LVL107:
+ 1084              		.loc 1 186 1 view .LVU335
+ 1085 0236 7047     		bx	lr
+ 1086              	.L61:
+ 1087              		.align	2
+ 1088              	.L60:
+ 1089 0238 3ACD133F 		.word	1058262330
+ 1090 023c 3ACD933F 		.word	1066650938
+ 1091 0240 3ACD13BF 		.word	-1089221318
+ 1092 0244 3ACD93BF 		.word	-1080832710
+ 1093              		.cfi_endproc
+ 1094              	.LFE10:
+ 1096              		.global	cos_lut
+ 1097              		.global	sin_lut
+ 1098              		.section	.bss.cos_lut,"aw",%nobits
+ 1099              		.align	2
+ 1102              	cos_lut:
+ 1103 0000 00000000 		.space	16384
+ 1103      00000000 
+ 1103      00000000 
+ 1103      00000000 
+ 1103      00000000 
+ 1104              		.section	.bss.sin_lut,"aw",%nobits
+ 1105              		.align	2
+ 1108              	sin_lut:
+ 1109 0000 00000000 		.space	16384
+ 1109      00000000 
+ 1109      00000000 
+ 1109      00000000 
+ 1109      00000000 
+ 1110              		.text
+ 1111              	.Letext0:
+ 1112              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
+ 1113              		.file 3 "Core/Inc/foc_math.h"
+ 1114              		.file 4 "/usr/include/newlib/math.h"
+ARM GAS  /tmp/cc9bUalI.s 			page 25
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 foc_math.c
-     /tmp/ccDcBK4H.s:18     .text.init_trig_lut:0000000000000000 $t
-     /tmp/ccDcBK4H.s:26     .text.init_trig_lut:0000000000000000 init_trig_lut
-     /tmp/ccDcBK4H.s:105    .text.init_trig_lut:000000000000004c $d
-     /tmp/ccDcBK4H.s:1097   .bss.sin_lut:0000000000000000 sin_lut
-     /tmp/ccDcBK4H.s:1091   .bss.cos_lut:0000000000000000 cos_lut
-     /tmp/ccDcBK4H.s:112    .text.norm_angle_rad:0000000000000000 $t
-     /tmp/ccDcBK4H.s:119    .text.norm_angle_rad:0000000000000000 norm_angle_rad
-     /tmp/ccDcBK4H.s:165    .text.norm_angle_rad:0000000000000040 $d
-     /tmp/ccDcBK4H.s:170    .text.fast_sin:0000000000000000 $t
-     /tmp/ccDcBK4H.s:177    .text.fast_sin:0000000000000000 fast_sin
-     /tmp/ccDcBK4H.s:256    .text.fast_sin:0000000000000068 $d
-     /tmp/ccDcBK4H.s:262    .text.fast_cos:0000000000000000 $t
-     /tmp/ccDcBK4H.s:269    .text.fast_cos:0000000000000000 fast_cos
-     /tmp/ccDcBK4H.s:348    .text.fast_cos:0000000000000068 $d
-     /tmp/ccDcBK4H.s:354    .text.float_to_uint:0000000000000000 $t
-     /tmp/ccDcBK4H.s:361    .text.float_to_uint:0000000000000000 float_to_uint
-     /tmp/ccDcBK4H.s:400    .text.uint_to_float:0000000000000000 $t
-     /tmp/ccDcBK4H.s:407    .text.uint_to_float:0000000000000000 uint_to_float
-     /tmp/ccDcBK4H.s:447    .text.pre_calc_sin_cos:0000000000000000 $t
-     /tmp/ccDcBK4H.s:454    .text.pre_calc_sin_cos:0000000000000000 pre_calc_sin_cos
-     /tmp/ccDcBK4H.s:504    .text.clarke_park_transform:0000000000000000 $t
-     /tmp/ccDcBK4H.s:511    .text.clarke_park_transform:0000000000000000 clarke_park_transform
-     /tmp/ccDcBK4H.s:556    .text.clarke_park_transform:0000000000000038 $d
-     /tmp/ccDcBK4H.s:562    .text.inverse_park_transform:0000000000000000 $t
-     /tmp/ccDcBK4H.s:569    .text.inverse_park_transform:0000000000000000 inverse_park_transform
-     /tmp/ccDcBK4H.s:603    .text.inverse_clarke_transform:0000000000000000 $t
-     /tmp/ccDcBK4H.s:610    .text.inverse_clarke_transform:0000000000000000 inverse_clarke_transform
-     /tmp/ccDcBK4H.s:645    .text.inverse_clarke_transform:0000000000000028 $d
-     /tmp/ccDcBK4H.s:650    .text.svpwm:0000000000000000 $t
-     /tmp/ccDcBK4H.s:657    .text.svpwm:0000000000000000 svpwm
-     /tmp/ccDcBK4H.s:1078   .text.svpwm:000000000000023c $d
-     /tmp/ccDcBK4H.s:1088   .bss.cos_lut:0000000000000000 $d
-     /tmp/ccDcBK4H.s:1094   .bss.sin_lut:0000000000000000 $d
+     /tmp/cc9bUalI.s:18     .text.init_trig_lut:0000000000000000 $t
+     /tmp/cc9bUalI.s:26     .text.init_trig_lut:0000000000000000 init_trig_lut
+     /tmp/cc9bUalI.s:105    .text.init_trig_lut:000000000000004c $d
+     /tmp/cc9bUalI.s:1108   .bss.sin_lut:0000000000000000 sin_lut
+     /tmp/cc9bUalI.s:1102   .bss.cos_lut:0000000000000000 cos_lut
+     /tmp/cc9bUalI.s:112    .text.norm_angle_rad:0000000000000000 $t
+     /tmp/cc9bUalI.s:119    .text.norm_angle_rad:0000000000000000 norm_angle_rad
+     /tmp/cc9bUalI.s:165    .text.norm_angle_rad:0000000000000040 $d
+     /tmp/cc9bUalI.s:170    .text.fast_sin:0000000000000000 $t
+     /tmp/cc9bUalI.s:177    .text.fast_sin:0000000000000000 fast_sin
+     /tmp/cc9bUalI.s:256    .text.fast_sin:0000000000000068 $d
+     /tmp/cc9bUalI.s:262    .text.fast_cos:0000000000000000 $t
+     /tmp/cc9bUalI.s:269    .text.fast_cos:0000000000000000 fast_cos
+     /tmp/cc9bUalI.s:348    .text.fast_cos:0000000000000068 $d
+     /tmp/cc9bUalI.s:354    .text.float_to_uint:0000000000000000 $t
+     /tmp/cc9bUalI.s:361    .text.float_to_uint:0000000000000000 float_to_uint
+     /tmp/cc9bUalI.s:400    .text.uint_to_float:0000000000000000 $t
+     /tmp/cc9bUalI.s:407    .text.uint_to_float:0000000000000000 uint_to_float
+     /tmp/cc9bUalI.s:447    .text.pre_calc_sin_cos:0000000000000000 $t
+     /tmp/cc9bUalI.s:454    .text.pre_calc_sin_cos:0000000000000000 pre_calc_sin_cos
+     /tmp/cc9bUalI.s:504    .text.clarke_park_transform:0000000000000000 $t
+     /tmp/cc9bUalI.s:511    .text.clarke_park_transform:0000000000000000 clarke_park_transform
+     /tmp/cc9bUalI.s:556    .text.clarke_park_transform:0000000000000038 $d
+     /tmp/cc9bUalI.s:562    .text.inverse_park_transform:0000000000000000 $t
+     /tmp/cc9bUalI.s:569    .text.inverse_park_transform:0000000000000000 inverse_park_transform
+     /tmp/cc9bUalI.s:603    .text.inverse_clarke_transform:0000000000000000 $t
+     /tmp/cc9bUalI.s:610    .text.inverse_clarke_transform:0000000000000000 inverse_clarke_transform
+     /tmp/cc9bUalI.s:645    .text.inverse_clarke_transform:0000000000000028 $d
+     /tmp/cc9bUalI.s:650    .text.svpwm:0000000000000000 $t
+     /tmp/cc9bUalI.s:657    .text.svpwm:0000000000000000 svpwm
+     /tmp/cc9bUalI.s:1089   .text.svpwm:0000000000000238 $d
+     /tmp/cc9bUalI.s:1099   .bss.cos_lut:0000000000000000 $d
+     /tmp/cc9bUalI.s:1105   .bss.sin_lut:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 sinf

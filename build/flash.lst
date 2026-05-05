@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccr9rPry.s 			page 1
+ARM GAS  /tmp/ccICR6pB.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccr9rPry.s 			page 1
    7:Core/Src/flash.c ****     uint32_t SectorError = 0;
   50              		.loc 1 7 5 view .LVU4
   51              		.loc 1 7 14 is_stmt 0 view .LVU5
-ARM GAS  /tmp/ccr9rPry.s 			page 2
+ARM GAS  /tmp/ccICR6pB.s 			page 2
 
 
   52 0008 0024     		movs	r4, #0
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccr9rPry.s 			page 1
   22:Core/Src/flash.c ****         return status;
   23:Core/Src/flash.c ****     }
   24:Core/Src/flash.c **** 
-ARM GAS  /tmp/ccr9rPry.s 			page 3
+ARM GAS  /tmp/ccICR6pB.s 			page 3
 
 
   25:Core/Src/flash.c ****     uint32_t address = FLASH_SECTOR_ADDR;
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccr9rPry.s 			page 1
   28:Core/Src/flash.c ****         uint32_t word = *(uint32_t*)(src + i);
  132              		.loc 1 28 56 discriminator 2 view .LVU38
  133 0058 F0E7     		b	.L2
-ARM GAS  /tmp/ccr9rPry.s 			page 4
+ARM GAS  /tmp/ccICR6pB.s 			page 4
 
 
  134              	.LVL9:
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccr9rPry.s 			page 1
  173              		.loc 1 39 12 is_stmt 0 view .LVU49
  174 0072 4746     		mov	r7, r8
  175 0074 F7E7     		b	.L3
-ARM GAS  /tmp/ccr9rPry.s 			page 5
+ARM GAS  /tmp/ccICR6pB.s 			page 5
 
 
  176              	.L12:
@@ -290,793 +290,797 @@ ARM GAS  /tmp/ccr9rPry.s 			page 1
  210              		.loc 1 54 17 is_stmt 0 view .LVU55
  211 0008 1C49     		ldr	r1, .L15+4
  212 000a 8160     		str	r1, [r0, #8]	@ float
-  55:Core/Src/flash.c ****     data->id_out_max = 0.01f;
+  55:Core/Src/flash.c ****     data->id_out_max = 0.0000001f;
  213              		.loc 1 55 5 is_stmt 1 view .LVU56
  214              		.loc 1 55 22 is_stmt 0 view .LVU57
- 215 000c C360     		str	r3, [r0, #12]	@ float
+ 215 000c 1C4A     		ldr	r2, .L15+8
+ 216 000e C260     		str	r2, [r0, #12]	@ float
   56:Core/Src/flash.c ****     data->id_e_deadband = 0.0001f;
- 216              		.loc 1 56 5 is_stmt 1 view .LVU58
- 217              		.loc 1 56 25 is_stmt 0 view .LVU59
- 218 000e 1C4A     		ldr	r2, .L15+8
-ARM GAS  /tmp/ccr9rPry.s 			page 6
+ 217              		.loc 1 56 5 is_stmt 1 view .LVU58
+ 218              		.loc 1 56 25 is_stmt 0 view .LVU59
+ARM GAS  /tmp/ccICR6pB.s 			page 6
 
 
- 219 0010 0261     		str	r2, [r0, #16]	@ float
+ 219 0010 1C4A     		ldr	r2, .L15+12
+ 220 0012 0261     		str	r2, [r0, #16]	@ float
   57:Core/Src/flash.c **** 
   58:Core/Src/flash.c ****     data->iq_kp = 0.01f;
- 220              		.loc 1 58 5 is_stmt 1 view .LVU60
- 221              		.loc 1 58 17 is_stmt 0 view .LVU61
- 222 0012 4361     		str	r3, [r0, #20]	@ float
+ 221              		.loc 1 58 5 is_stmt 1 view .LVU60
+ 222              		.loc 1 58 17 is_stmt 0 view .LVU61
+ 223 0014 4361     		str	r3, [r0, #20]	@ float
   59:Core/Src/flash.c ****     data->iq_ki = 4.09f;
- 223              		.loc 1 59 5 is_stmt 1 view .LVU62
- 224              		.loc 1 59 17 is_stmt 0 view .LVU63
- 225 0014 8161     		str	r1, [r0, #24]	@ float
-  60:Core/Src/flash.c ****     data->iq_out_max = 0.6f;
- 226              		.loc 1 60 5 is_stmt 1 view .LVU64
- 227              		.loc 1 60 22 is_stmt 0 view .LVU65
- 228 0016 1B49     		ldr	r1, .L15+12
- 229 0018 C161     		str	r1, [r0, #28]	@ float
+ 224              		.loc 1 59 5 is_stmt 1 view .LVU62
+ 225              		.loc 1 59 17 is_stmt 0 view .LVU63
+ 226 0016 8161     		str	r1, [r0, #24]	@ float
+  60:Core/Src/flash.c ****     data->iq_out_max = 3.0f;
+ 227              		.loc 1 60 5 is_stmt 1 view .LVU64
+ 228              		.loc 1 60 22 is_stmt 0 view .LVU65
+ 229 0018 1B49     		ldr	r1, .L15+16
+ 230 001a C161     		str	r1, [r0, #28]	@ float
   61:Core/Src/flash.c ****     data->iq_e_deadband = 0.0001f;
- 230              		.loc 1 61 5 is_stmt 1 view .LVU66
- 231              		.loc 1 61 25 is_stmt 0 view .LVU67
- 232 001a 0262     		str	r2, [r0, #32]	@ float
+ 231              		.loc 1 61 5 is_stmt 1 view .LVU66
+ 232              		.loc 1 61 25 is_stmt 0 view .LVU67
+ 233 001c 0262     		str	r2, [r0, #32]	@ float
   62:Core/Src/flash.c **** 
   63:Core/Src/flash.c ****     data->I_ctrl_bandwidth = 50.0f;
- 233              		.loc 1 63 5 is_stmt 1 view .LVU68
- 234              		.loc 1 63 28 is_stmt 0 view .LVU69
- 235 001c 1A4A     		ldr	r2, .L15+16
- 236 001e 4262     		str	r2, [r0, #36]	@ float
+ 234              		.loc 1 63 5 is_stmt 1 view .LVU68
+ 235              		.loc 1 63 28 is_stmt 0 view .LVU69
+ 236 001e 1B4A     		ldr	r2, .L15+20
+ 237 0020 4262     		str	r2, [r0, #36]	@ float
   64:Core/Src/flash.c **** 
   65:Core/Src/flash.c ****     data->speed_kp = 0.31f;
- 237              		.loc 1 65 5 is_stmt 1 view .LVU70
- 238              		.loc 1 65 20 is_stmt 0 view .LVU71
- 239 0020 1A4A     		ldr	r2, .L15+20
- 240 0022 8262     		str	r2, [r0, #40]	@ float
+ 238              		.loc 1 65 5 is_stmt 1 view .LVU70
+ 239              		.loc 1 65 20 is_stmt 0 view .LVU71
+ 240 0022 1B4A     		ldr	r2, .L15+24
+ 241 0024 8262     		str	r2, [r0, #40]	@ float
   66:Core/Src/flash.c ****     data->speed_ki = 10.5f;
- 241              		.loc 1 66 5 is_stmt 1 view .LVU72
- 242              		.loc 1 66 20 is_stmt 0 view .LVU73
- 243 0024 1A4A     		ldr	r2, .L15+24
- 244 0026 C262     		str	r2, [r0, #44]	@ float
+ 242              		.loc 1 66 5 is_stmt 1 view .LVU72
+ 243              		.loc 1 66 20 is_stmt 0 view .LVU73
+ 244 0026 1B4A     		ldr	r2, .L15+28
+ 245 0028 C262     		str	r2, [r0, #44]	@ float
   67:Core/Src/flash.c ****     data->speed_out_max = 10.0f;
- 245              		.loc 1 67 5 is_stmt 1 view .LVU74
- 246              		.loc 1 67 25 is_stmt 0 view .LVU75
- 247 0028 1A4A     		ldr	r2, .L15+28
- 248 002a 0263     		str	r2, [r0, #48]	@ float
+ 246              		.loc 1 67 5 is_stmt 1 view .LVU74
+ 247              		.loc 1 67 25 is_stmt 0 view .LVU75
+ 248 002a 1B4A     		ldr	r2, .L15+32
+ 249 002c 0263     		str	r2, [r0, #48]	@ float
   68:Core/Src/flash.c ****     data->speed_e_deadband = 0.01f;
- 249              		.loc 1 68 5 is_stmt 1 view .LVU76
- 250              		.loc 1 68 28 is_stmt 0 view .LVU77
- 251 002c 4363     		str	r3, [r0, #52]	@ float
+ 250              		.loc 1 68 5 is_stmt 1 view .LVU76
+ 251              		.loc 1 68 28 is_stmt 0 view .LVU77
+ 252 002e 4363     		str	r3, [r0, #52]	@ float
   69:Core/Src/flash.c **** 
   70:Core/Src/flash.c ****     data->pos_kp = 4.1f;
- 252              		.loc 1 70 5 is_stmt 1 view .LVU78
- 253              		.loc 1 70 18 is_stmt 0 view .LVU79
- 254 002e 1A4A     		ldr	r2, .L15+32
- 255 0030 8263     		str	r2, [r0, #56]	@ float
+ 253              		.loc 1 70 5 is_stmt 1 view .LVU78
+ 254              		.loc 1 70 18 is_stmt 0 view .LVU79
+ 255 0030 1A4A     		ldr	r2, .L15+36
+ 256 0032 8263     		str	r2, [r0, #56]	@ float
   71:Core/Src/flash.c ****     data->pos_ki = 0.0f;
- 256              		.loc 1 71 5 is_stmt 1 view .LVU80
- 257              		.loc 1 71 18 is_stmt 0 view .LVU81
- 258 0032 0022     		movs	r2, #0
- 259 0034 C263     		str	r2, [r0, #60]	@ float
+ 257              		.loc 1 71 5 is_stmt 1 view .LVU80
+ 258              		.loc 1 71 18 is_stmt 0 view .LVU81
+ 259 0034 0022     		movs	r2, #0
+ 260 0036 C263     		str	r2, [r0, #60]	@ float
+ARM GAS  /tmp/ccICR6pB.s 			page 7
+
+
   72:Core/Src/flash.c ****     data->pos_kd = 0.01f;
-ARM GAS  /tmp/ccr9rPry.s 			page 7
-
-
- 260              		.loc 1 72 5 is_stmt 1 view .LVU82
- 261              		.loc 1 72 18 is_stmt 0 view .LVU83
- 262 0036 0364     		str	r3, [r0, #64]	@ float
+ 261              		.loc 1 72 5 is_stmt 1 view .LVU82
+ 262              		.loc 1 72 18 is_stmt 0 view .LVU83
+ 263 0038 0364     		str	r3, [r0, #64]	@ float
   73:Core/Src/flash.c ****     data->pos_out_max = 1200.0f;
- 263              		.loc 1 73 5 is_stmt 1 view .LVU84
- 264              		.loc 1 73 23 is_stmt 0 view .LVU85
- 265 0038 184B     		ldr	r3, .L15+36
- 266 003a 4364     		str	r3, [r0, #68]	@ float
-  74:Core/Src/flash.c ****     data->pos_e_deadband = 0.1f;
- 267              		.loc 1 74 5 is_stmt 1 view .LVU86
- 268              		.loc 1 74 26 is_stmt 0 view .LVU87
- 269 003c 184B     		ldr	r3, .L15+40
- 270 003e 8364     		str	r3, [r0, #72]	@ float
+ 264              		.loc 1 73 5 is_stmt 1 view .LVU84
+ 265              		.loc 1 73 23 is_stmt 0 view .LVU85
+ 266 003a 194B     		ldr	r3, .L15+40
+ 267 003c 4364     		str	r3, [r0, #68]	@ float
+  74:Core/Src/flash.c ****     data->pos_e_deadband = 0.05f;
+ 268              		.loc 1 74 5 is_stmt 1 view .LVU86
+ 269              		.loc 1 74 26 is_stmt 0 view .LVU87
+ 270 003e 194B     		ldr	r3, .L15+44
+ 271 0040 8364     		str	r3, [r0, #72]	@ float
   75:Core/Src/flash.c **** 
   76:Core/Src/flash.c ****     data->voffset_a = 1.65f;
- 271              		.loc 1 76 5 is_stmt 1 view .LVU88
- 272              		.loc 1 76 21 is_stmt 0 view .LVU89
- 273 0040 184B     		ldr	r3, .L15+44
- 274 0042 C364     		str	r3, [r0, #76]	@ float
+ 272              		.loc 1 76 5 is_stmt 1 view .LVU88
+ 273              		.loc 1 76 21 is_stmt 0 view .LVU89
+ 274 0042 194B     		ldr	r3, .L15+48
+ 275 0044 C364     		str	r3, [r0, #76]	@ float
   77:Core/Src/flash.c ****     data->voffset_b = 1.65f;
- 275              		.loc 1 77 5 is_stmt 1 view .LVU90
- 276              		.loc 1 77 21 is_stmt 0 view .LVU91
- 277 0044 0365     		str	r3, [r0, #80]	@ float
+ 276              		.loc 1 77 5 is_stmt 1 view .LVU90
+ 277              		.loc 1 77 21 is_stmt 0 view .LVU91
+ 278 0046 0365     		str	r3, [r0, #80]	@ float
   78:Core/Src/flash.c **** 
   79:Core/Src/flash.c ****     data->encd_offset = 0.0f;
- 278              		.loc 1 79 5 is_stmt 1 view .LVU92
- 279              		.loc 1 79 23 is_stmt 0 view .LVU93
- 280 0046 4265     		str	r2, [r0, #84]	@ float
+ 279              		.loc 1 79 5 is_stmt 1 view .LVU92
+ 280              		.loc 1 79 23 is_stmt 0 view .LVU93
+ 281 0048 4265     		str	r2, [r0, #84]	@ float
   80:Core/Src/flash.c ****     memset(data->encd_error_comp, 0, sizeof(data->encd_error_comp));
- 281              		.loc 1 80 5 is_stmt 1 view .LVU94
- 282 0048 4FF48052 		mov	r2, #4096
- 283 004c 0021     		movs	r1, #0
- 284 004e 5830     		adds	r0, r0, #88
- 285              	.LVL16:
- 286              		.loc 1 80 5 is_stmt 0 view .LVU95
- 287 0050 FFF7FEFF 		bl	memset
- 288              	.LVL17:
+ 282              		.loc 1 80 5 is_stmt 1 view .LVU94
+ 283 004a 4FF48052 		mov	r2, #4096
+ 284 004e 0021     		movs	r1, #0
+ 285 0050 5830     		adds	r0, r0, #88
+ 286              	.LVL16:
+ 287              		.loc 1 80 5 is_stmt 0 view .LVU95
+ 288 0052 FFF7FEFF 		bl	memset
+ 289              	.LVL17:
   81:Core/Src/flash.c **** 
   82:Core/Src/flash.c ****     data->freq = 25000;
- 289              		.loc 1 82 5 is_stmt 1 view .LVU96
- 290              		.loc 1 82 16 is_stmt 0 view .LVU97
- 291 0054 04F58054 		add	r4, r4, #4096
- 292              	.LVL18:
- 293              		.loc 1 82 16 view .LVU98
- 294 0058 46F2A813 		movw	r3, #25000
- 295 005c A365     		str	r3, [r4, #88]
+ 290              		.loc 1 82 5 is_stmt 1 view .LVU96
+ 291              		.loc 1 82 16 is_stmt 0 view .LVU97
+ 292 0056 04F58054 		add	r4, r4, #4096
+ 293              	.LVL18:
+ 294              		.loc 1 82 16 view .LVU98
+ 295 005a 46F2A813 		movw	r3, #25000
+ 296 005e A365     		str	r3, [r4, #88]
   83:Core/Src/flash.c ****     data->dir = NORMAL_DIR;
- 296              		.loc 1 83 5 is_stmt 1 view .LVU99
- 297              		.loc 1 83 15 is_stmt 0 view .LVU100
- 298 005e 0023     		movs	r3, #0
- 299 0060 84F85C30 		strb	r3, [r4, #92]
+ 297              		.loc 1 83 5 is_stmt 1 view .LVU99
+ 298              		.loc 1 83 15 is_stmt 0 view .LVU100
+ 299 0060 0023     		movs	r3, #0
+ 300 0062 84F85C30 		strb	r3, [r4, #92]
   84:Core/Src/flash.c ****     data->gear_ratio = 1.0f;
- 300              		.loc 1 84 5 is_stmt 1 view .LVU101
- 301              		.loc 1 84 22 is_stmt 0 view .LVU102
- 302 0064 4FF07E53 		mov	r3, #1065353216
- 303 0068 2366     		str	r3, [r4, #96]	@ float
+ 301              		.loc 1 84 5 is_stmt 1 view .LVU101
+ 302              		.loc 1 84 22 is_stmt 0 view .LVU102
+ 303 0066 4FF07E53 		mov	r3, #1065353216
+ 304 006a 2366     		str	r3, [r4, #96]	@ float
+ARM GAS  /tmp/ccICR6pB.s 			page 8
+
+
   85:Core/Src/flash.c **** 
-ARM GAS  /tmp/ccr9rPry.s 			page 8
-
-
   86:Core/Src/flash.c ****     data->Rs = 0.26f;
- 304              		.loc 1 86 5 is_stmt 1 view .LVU103
- 305              		.loc 1 86 14 is_stmt 0 view .LVU104
- 306 006a 0F4B     		ldr	r3, .L15+48
- 307 006c 6366     		str	r3, [r4, #100]	@ float
+ 305              		.loc 1 86 5 is_stmt 1 view .LVU103
+ 306              		.loc 1 86 14 is_stmt 0 view .LVU104
+ 307 006c 0F4B     		ldr	r3, .L15+52
+ 308 006e 6366     		str	r3, [r4, #100]	@ float
   87:Core/Src/flash.c ****     data->Ld = 0.000160f;
- 308              		.loc 1 87 5 is_stmt 1 view .LVU105
- 309              		.loc 1 87 14 is_stmt 0 view .LVU106
- 310 006e 0F4B     		ldr	r3, .L15+52
- 311 0070 A366     		str	r3, [r4, #104]	@ float
+ 309              		.loc 1 87 5 is_stmt 1 view .LVU105
+ 310              		.loc 1 87 14 is_stmt 0 view .LVU106
+ 311 0070 0F4B     		ldr	r3, .L15+56
+ 312 0072 A366     		str	r3, [r4, #104]	@ float
   88:Core/Src/flash.c ****     data->Lq = 0.000160f;
- 312              		.loc 1 88 5 is_stmt 1 view .LVU107
- 313              		.loc 1 88 14 is_stmt 0 view .LVU108
- 314 0072 E366     		str	r3, [r4, #108]	@ float
+ 313              		.loc 1 88 5 is_stmt 1 view .LVU107
+ 314              		.loc 1 88 14 is_stmt 0 view .LVU108
+ 315 0074 E366     		str	r3, [r4, #108]	@ float
   89:Core/Src/flash.c **** }
- 315              		.loc 1 89 1 view .LVU109
- 316 0074 10BD     		pop	{r4, pc}
- 317              	.LVL19:
- 318              	.L16:
- 319              		.loc 1 89 1 view .LVU110
- 320 0076 00BF     		.align	2
- 321              	.L15:
- 322 0078 0AD7233C 		.word	1008981770
- 323 007c 48E18240 		.word	1082319176
- 324 0080 17B7D138 		.word	953267991
- 325 0084 9A99193F 		.word	1058642330
- 326 0088 00004842 		.word	1112014848
- 327 008c 52B89E3E 		.word	1050589266
- 328 0090 00002841 		.word	1093140480
- 329 0094 00002041 		.word	1092616192
- 330 0098 33338340 		.word	1082340147
- 331 009c 00009644 		.word	1150681088
- 332 00a0 CDCCCC3D 		.word	1036831949
- 333 00a4 3333D33F 		.word	1070805811
- 334 00a8 B81E853E 		.word	1048911544
- 335 00ac ACC52739 		.word	958907820
- 336              		.cfi_endproc
- 337              	.LFE136:
- 339              		.section	.text.flash_read_config,"ax",%progbits
- 340              		.align	1
- 341              		.global	flash_read_config
- 342              		.syntax unified
- 343              		.thumb
- 344              		.thumb_func
- 345              		.fpu fpv4-sp-d16
- 347              	flash_read_config:
- 348              	.LVL20:
- 349              	.LFB135:
+ 316              		.loc 1 89 1 view .LVU109
+ 317 0076 10BD     		pop	{r4, pc}
+ 318              	.LVL19:
+ 319              	.L16:
+ 320              		.loc 1 89 1 view .LVU110
+ 321              		.align	2
+ 322              	.L15:
+ 323 0078 0AD7233C 		.word	1008981770
+ 324 007c 48E18240 		.word	1082319176
+ 325 0080 95BFD633 		.word	869711765
+ 326 0084 17B7D138 		.word	953267991
+ 327 0088 00004040 		.word	1077936128
+ 328 008c 00004842 		.word	1112014848
+ 329 0090 52B89E3E 		.word	1050589266
+ 330 0094 00002841 		.word	1093140480
+ 331 0098 00002041 		.word	1092616192
+ 332 009c 33338340 		.word	1082340147
+ 333 00a0 00009644 		.word	1150681088
+ 334 00a4 CDCC4C3D 		.word	1028443341
+ 335 00a8 3333D33F 		.word	1070805811
+ 336 00ac B81E853E 		.word	1048911544
+ 337 00b0 ACC52739 		.word	958907820
+ 338              		.cfi_endproc
+ 339              	.LFE136:
+ 341              		.section	.text.flash_read_config,"ax",%progbits
+ 342              		.align	1
+ 343              		.global	flash_read_config
+ 344              		.syntax unified
+ 345              		.thumb
+ 346              		.thumb_func
+ 347              		.fpu fpv4-sp-d16
+ 349              	flash_read_config:
+ 350              	.LVL20:
+ 351              	.LFB135:
   42:Core/Src/flash.c ****     memcpy(data, (void*)FLASH_SECTOR_ADDR, sizeof(motor_config_t));
- 350              		.loc 1 42 46 is_stmt 1 view -0
- 351              		.cfi_startproc
- 352              		@ args = 0, pretend = 0, frame = 0
- 353              		@ frame_needed = 0, uses_anonymous_args = 0
+ 352              		.loc 1 42 46 is_stmt 1 view -0
+ 353              		.cfi_startproc
+ 354              		@ args = 0, pretend = 0, frame = 0
+ 355              		@ frame_needed = 0, uses_anonymous_args = 0
   42:Core/Src/flash.c ****     memcpy(data, (void*)FLASH_SECTOR_ADDR, sizeof(motor_config_t));
- 354              		.loc 1 42 46 is_stmt 0 view .LVU112
- 355 0000 10B5     		push	{r4, lr}
- 356              	.LCFI5:
-ARM GAS  /tmp/ccr9rPry.s 			page 9
+ 356              		.loc 1 42 46 is_stmt 0 view .LVU112
+ARM GAS  /tmp/ccICR6pB.s 			page 9
 
 
- 357              		.cfi_def_cfa_offset 8
- 358              		.cfi_offset 4, -8
- 359              		.cfi_offset 14, -4
- 360 0002 0446     		mov	r4, r0
+ 357 0000 10B5     		push	{r4, lr}
+ 358              	.LCFI5:
+ 359              		.cfi_def_cfa_offset 8
+ 360              		.cfi_offset 4, -8
+ 361              		.cfi_offset 14, -4
+ 362 0002 0446     		mov	r4, r0
   43:Core/Src/flash.c **** 
- 361              		.loc 1 43 5 is_stmt 1 view .LVU113
- 362 0004 41F27402 		movw	r2, #4212
- 363 0008 0749     		ldr	r1, .L21
- 364 000a FFF7FEFF 		bl	memcpy
- 365              	.LVL21:
+ 363              		.loc 1 43 5 is_stmt 1 view .LVU113
+ 364 0004 41F27402 		movw	r2, #4212
+ 365 0008 0749     		ldr	r1, .L21
+ 366 000a FFF7FEFF 		bl	memcpy
+ 367              	.LVL21:
   46:Core/Src/flash.c ****         // set default
- 366              		.loc 1 46 5 view .LVU114
+ 368              		.loc 1 46 5 view .LVU114
   46:Core/Src/flash.c ****         // set default
- 367              		.loc 1 46 13 is_stmt 0 view .LVU115
- 368 000e 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 369              		.loc 1 46 13 is_stmt 0 view .LVU115
+ 370 000e 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
   46:Core/Src/flash.c ****         // set default
- 369              		.loc 1 46 8 view .LVU116
- 370 0010 AA2B     		cmp	r3, #170
- 371 0012 05D1     		bne	.L18
+ 371              		.loc 1 46 8 view .LVU116
+ 372 0010 AA2B     		cmp	r3, #170
+ 373 0012 05D1     		bne	.L18
   46:Core/Src/flash.c ****         // set default
- 372              		.loc 1 46 44 discriminator 1 view .LVU117
- 373 0014 04F58053 		add	r3, r4, #4096
- 374 0018 93F87030 		ldrb	r3, [r3, #112]	@ zero_extendqisi2
+ 374              		.loc 1 46 44 discriminator 1 view .LVU117
+ 375 0014 04F58053 		add	r3, r4, #4096
+ 376 0018 93F87030 		ldrb	r3, [r3, #112]	@ zero_extendqisi2
   46:Core/Src/flash.c ****         // set default
- 375              		.loc 1 46 37 discriminator 1 view .LVU118
- 376 001c 552B     		cmp	r3, #85
- 377 001e 02D0     		beq	.L17
- 378              	.L18:
+ 377              		.loc 1 46 37 discriminator 1 view .LVU118
+ 378 001c 552B     		cmp	r3, #85
+ 379 001e 02D0     		beq	.L17
+ 380              	.L18:
   48:Core/Src/flash.c ****     }
- 379              		.loc 1 48 9 is_stmt 1 view .LVU119
- 380 0020 2046     		mov	r0, r4
- 381 0022 FFF7FEFF 		bl	flash_default_config
- 382              	.LVL22:
- 383              	.L17:
+ 381              		.loc 1 48 9 is_stmt 1 view .LVU119
+ 382 0020 2046     		mov	r0, r4
+ 383 0022 FFF7FEFF 		bl	flash_default_config
+ 384              	.LVL22:
+ 385              	.L17:
   50:Core/Src/flash.c **** 
- 384              		.loc 1 50 1 is_stmt 0 view .LVU120
- 385 0026 10BD     		pop	{r4, pc}
- 386              	.LVL23:
- 387              	.L22:
+ 386              		.loc 1 50 1 is_stmt 0 view .LVU120
+ 387 0026 10BD     		pop	{r4, pc}
+ 388              	.LVL23:
+ 389              	.L22:
   50:Core/Src/flash.c **** 
- 388              		.loc 1 50 1 view .LVU121
- 389              		.align	2
- 390              	.L21:
- 391 0028 00000E08 		.word	135135232
- 392              		.cfi_endproc
- 393              	.LFE135:
- 395              		.section	.text.copy_to_local,"ax",%progbits
- 396              		.align	1
- 397              		.global	copy_to_local
- 398              		.syntax unified
- 399              		.thumb
- 400              		.thumb_func
- 401              		.fpu fpv4-sp-d16
- 403              	copy_to_local:
- 404              	.LVL24:
- 405              	.LFB137:
+ 390              		.loc 1 50 1 view .LVU121
+ 391              		.align	2
+ 392              	.L21:
+ 393 0028 00000E08 		.word	135135232
+ 394              		.cfi_endproc
+ 395              	.LFE135:
+ 397              		.section	.text.copy_to_local,"ax",%progbits
+ 398              		.align	1
+ 399              		.global	copy_to_local
+ 400              		.syntax unified
+ 401              		.thumb
+ 402              		.thumb_func
+ 403              		.fpu fpv4-sp-d16
+ 405              	copy_to_local:
+ 406              	.LVL24:
+ARM GAS  /tmp/ccICR6pB.s 			page 10
+
+
+ 407              	.LFB137:
   90:Core/Src/flash.c **** void copy_to_local(motor_config_t *data, foc_t *hfoc) {
-ARM GAS  /tmp/ccr9rPry.s 			page 10
-
-
- 406              		.loc 1 90 55 is_stmt 1 view -0
- 407              		.cfi_startproc
- 408              		@ args = 0, pretend = 0, frame = 0
- 409              		@ frame_needed = 0, uses_anonymous_args = 0
- 410              		@ link register save eliminated.
+ 408              		.loc 1 90 55 is_stmt 1 view -0
+ 409              		.cfi_startproc
+ 410              		@ args = 0, pretend = 0, frame = 0
+ 411              		@ frame_needed = 0, uses_anonymous_args = 0
+ 412              		@ link register save eliminated.
   91:Core/Src/flash.c ****     hfoc->id_ctrl.kp = data->id_kp;
- 411              		.loc 1 91 5 view .LVU123
- 412              		.loc 1 91 28 is_stmt 0 view .LVU124
- 413 0000 4368     		ldr	r3, [r0, #4]	@ float
- 414              		.loc 1 91 22 view .LVU125
- 415 0002 C1F8A830 		str	r3, [r1, #168]	@ float
+ 413              		.loc 1 91 5 view .LVU123
+ 414              		.loc 1 91 28 is_stmt 0 view .LVU124
+ 415 0000 4368     		ldr	r3, [r0, #4]	@ float
+ 416              		.loc 1 91 22 view .LVU125
+ 417 0002 C1F8E030 		str	r3, [r1, #224]	@ float
   92:Core/Src/flash.c ****     hfoc->id_ctrl.ki = data->id_ki;
- 416              		.loc 1 92 5 is_stmt 1 view .LVU126
- 417              		.loc 1 92 28 is_stmt 0 view .LVU127
- 418 0006 8368     		ldr	r3, [r0, #8]	@ float
- 419              		.loc 1 92 22 view .LVU128
- 420 0008 C1F8AC30 		str	r3, [r1, #172]	@ float
+ 418              		.loc 1 92 5 is_stmt 1 view .LVU126
+ 419              		.loc 1 92 28 is_stmt 0 view .LVU127
+ 420 0006 8368     		ldr	r3, [r0, #8]	@ float
+ 421              		.loc 1 92 22 view .LVU128
+ 422 0008 C1F8E430 		str	r3, [r1, #228]	@ float
   93:Core/Src/flash.c ****     hfoc->id_ctrl.ts = FOC_TS;
- 421              		.loc 1 93 5 is_stmt 1 view .LVU129
- 422              		.loc 1 93 22 is_stmt 0 view .LVU130
- 423 000c 2D4B     		ldr	r3, .L24
- 424 000e C1F8C030 		str	r3, [r1, #192]	@ float
+ 423              		.loc 1 93 5 is_stmt 1 view .LVU129
+ 424              		.loc 1 93 22 is_stmt 0 view .LVU130
+ 425 000c 2D4B     		ldr	r3, .L24
+ 426 000e C1F8F830 		str	r3, [r1, #248]	@ float
   94:Core/Src/flash.c ****     hfoc->id_ctrl.out_max = data->id_out_max;
- 425              		.loc 1 94 5 is_stmt 1 view .LVU131
- 426              		.loc 1 94 33 is_stmt 0 view .LVU132
- 427 0012 D0ED037A 		vldr.32	s15, [r0, #12]
- 428              		.loc 1 94 27 view .LVU133
- 429 0016 C1ED2E7A 		vstr.32	s15, [r1, #184]
+ 427              		.loc 1 94 5 is_stmt 1 view .LVU131
+ 428              		.loc 1 94 33 is_stmt 0 view .LVU132
+ 429 0012 D0ED037A 		vldr.32	s15, [r0, #12]
+ 430              		.loc 1 94 27 view .LVU133
+ 431 0016 C1ED3C7A 		vstr.32	s15, [r1, #240]
   95:Core/Src/flash.c ****     hfoc->id_ctrl.out_min = -data->id_out_max;
- 430              		.loc 1 95 5 is_stmt 1 view .LVU134
- 431              		.loc 1 95 29 is_stmt 0 view .LVU135
- 432 001a F1EE677A 		vneg.f32	s15, s15
- 433              		.loc 1 95 27 view .LVU136
- 434 001e C1ED2F7A 		vstr.32	s15, [r1, #188]
+ 432              		.loc 1 95 5 is_stmt 1 view .LVU134
+ 433              		.loc 1 95 29 is_stmt 0 view .LVU135
+ 434 001a F1EE677A 		vneg.f32	s15, s15
+ 435              		.loc 1 95 27 view .LVU136
+ 436 001e C1ED3D7A 		vstr.32	s15, [r1, #244]
   96:Core/Src/flash.c ****     hfoc->id_ctrl.e_deadband = data->id_e_deadband;
- 435              		.loc 1 96 5 is_stmt 1 view .LVU137
- 436              		.loc 1 96 36 is_stmt 0 view .LVU138
- 437 0022 0269     		ldr	r2, [r0, #16]	@ float
- 438              		.loc 1 96 30 view .LVU139
- 439 0024 C1F8C420 		str	r2, [r1, #196]	@ float
+ 437              		.loc 1 96 5 is_stmt 1 view .LVU137
+ 438              		.loc 1 96 36 is_stmt 0 view .LVU138
+ 439 0022 0269     		ldr	r2, [r0, #16]	@ float
+ 440              		.loc 1 96 30 view .LVU139
+ 441 0024 C1F8FC20 		str	r2, [r1, #252]	@ float
   97:Core/Src/flash.c ****     
   98:Core/Src/flash.c ****     hfoc->iq_ctrl.kp = data->iq_kp;
- 440              		.loc 1 98 5 is_stmt 1 view .LVU140
- 441              		.loc 1 98 28 is_stmt 0 view .LVU141
- 442 0028 4269     		ldr	r2, [r0, #20]	@ float
- 443              		.loc 1 98 22 view .LVU142
- 444 002a C1F8DC20 		str	r2, [r1, #220]	@ float
+ 442              		.loc 1 98 5 is_stmt 1 view .LVU140
+ 443              		.loc 1 98 28 is_stmt 0 view .LVU141
+ 444 0028 4269     		ldr	r2, [r0, #20]	@ float
+ 445              		.loc 1 98 22 view .LVU142
+ 446 002a C1F81421 		str	r2, [r1, #276]	@ float
   99:Core/Src/flash.c ****     hfoc->iq_ctrl.ki = data->iq_ki;
- 445              		.loc 1 99 5 is_stmt 1 view .LVU143
- 446              		.loc 1 99 28 is_stmt 0 view .LVU144
- 447 002e 8269     		ldr	r2, [r0, #24]	@ float
- 448              		.loc 1 99 22 view .LVU145
- 449 0030 C1F8E020 		str	r2, [r1, #224]	@ float
+ 447              		.loc 1 99 5 is_stmt 1 view .LVU143
+ 448              		.loc 1 99 28 is_stmt 0 view .LVU144
+ 449 002e 8269     		ldr	r2, [r0, #24]	@ float
+ 450              		.loc 1 99 22 view .LVU145
+ 451 0030 C1F81821 		str	r2, [r1, #280]	@ float
  100:Core/Src/flash.c ****     hfoc->iq_ctrl.ts = FOC_TS;
- 450              		.loc 1 100 5 is_stmt 1 view .LVU146
- 451              		.loc 1 100 22 is_stmt 0 view .LVU147
- 452 0034 C1F8F430 		str	r3, [r1, #244]	@ float
-ARM GAS  /tmp/ccr9rPry.s 			page 11
+ 452              		.loc 1 100 5 is_stmt 1 view .LVU146
+ARM GAS  /tmp/ccICR6pB.s 			page 11
 
 
+ 453              		.loc 1 100 22 is_stmt 0 view .LVU147
+ 454 0034 C1F82C31 		str	r3, [r1, #300]	@ float
  101:Core/Src/flash.c ****     hfoc->iq_ctrl.out_max = data->iq_out_max;
- 453              		.loc 1 101 5 is_stmt 1 view .LVU148
- 454              		.loc 1 101 33 is_stmt 0 view .LVU149
- 455 0038 D0ED077A 		vldr.32	s15, [r0, #28]
- 456              		.loc 1 101 27 view .LVU150
- 457 003c C1ED3B7A 		vstr.32	s15, [r1, #236]
+ 455              		.loc 1 101 5 is_stmt 1 view .LVU148
+ 456              		.loc 1 101 33 is_stmt 0 view .LVU149
+ 457 0038 D0ED077A 		vldr.32	s15, [r0, #28]
+ 458              		.loc 1 101 27 view .LVU150
+ 459 003c C1ED497A 		vstr.32	s15, [r1, #292]
  102:Core/Src/flash.c ****     hfoc->iq_ctrl.out_min = -data->iq_out_max;
- 458              		.loc 1 102 5 is_stmt 1 view .LVU151
- 459              		.loc 1 102 29 is_stmt 0 view .LVU152
- 460 0040 F1EE677A 		vneg.f32	s15, s15
- 461              		.loc 1 102 27 view .LVU153
- 462 0044 C1ED3C7A 		vstr.32	s15, [r1, #240]
+ 460              		.loc 1 102 5 is_stmt 1 view .LVU151
+ 461              		.loc 1 102 29 is_stmt 0 view .LVU152
+ 462 0040 F1EE677A 		vneg.f32	s15, s15
+ 463              		.loc 1 102 27 view .LVU153
+ 464 0044 C1ED4A7A 		vstr.32	s15, [r1, #296]
  103:Core/Src/flash.c ****     hfoc->iq_ctrl.e_deadband = data->iq_e_deadband;
- 463              		.loc 1 103 5 is_stmt 1 view .LVU154
- 464              		.loc 1 103 36 is_stmt 0 view .LVU155
- 465 0048 036A     		ldr	r3, [r0, #32]	@ float
- 466              		.loc 1 103 30 view .LVU156
- 467 004a C1F8F830 		str	r3, [r1, #248]	@ float
+ 465              		.loc 1 103 5 is_stmt 1 view .LVU154
+ 466              		.loc 1 103 36 is_stmt 0 view .LVU155
+ 467 0048 036A     		ldr	r3, [r0, #32]	@ float
+ 468              		.loc 1 103 30 view .LVU156
+ 469 004a C1F83031 		str	r3, [r1, #304]	@ float
  104:Core/Src/flash.c **** 
  105:Core/Src/flash.c ****     hfoc->I_ctrl_bandwidth = data->I_ctrl_bandwidth;
- 468              		.loc 1 105 5 is_stmt 1 view .LVU157
- 469              		.loc 1 105 34 is_stmt 0 view .LVU158
- 470 004e 436A     		ldr	r3, [r0, #36]	@ float
- 471              		.loc 1 105 28 view .LVU159
- 472 0050 C1F88830 		str	r3, [r1, #136]	@ float
+ 470              		.loc 1 105 5 is_stmt 1 view .LVU157
+ 471              		.loc 1 105 34 is_stmt 0 view .LVU158
+ 472 004e 436A     		ldr	r3, [r0, #36]	@ float
+ 473              		.loc 1 105 28 view .LVU159
+ 474 0050 C1F8C030 		str	r3, [r1, #192]	@ float
  106:Core/Src/flash.c ****     
  107:Core/Src/flash.c ****     hfoc->speed_ctrl.kp = data->speed_kp;
- 473              		.loc 1 107 5 is_stmt 1 view .LVU160
- 474              		.loc 1 107 31 is_stmt 0 view .LVU161
- 475 0054 836A     		ldr	r3, [r0, #40]	@ float
- 476              		.loc 1 107 25 view .LVU162
- 477 0056 C1F81031 		str	r3, [r1, #272]	@ float
+ 475              		.loc 1 107 5 is_stmt 1 view .LVU160
+ 476              		.loc 1 107 31 is_stmt 0 view .LVU161
+ 477 0054 836A     		ldr	r3, [r0, #40]	@ float
+ 478              		.loc 1 107 25 view .LVU162
+ 479 0056 C1F84831 		str	r3, [r1, #328]	@ float
  108:Core/Src/flash.c ****     hfoc->speed_ctrl.ki = data->speed_ki;
- 478              		.loc 1 108 5 is_stmt 1 view .LVU163
- 479              		.loc 1 108 31 is_stmt 0 view .LVU164
- 480 005a C36A     		ldr	r3, [r0, #44]	@ float
- 481              		.loc 1 108 25 view .LVU165
- 482 005c C1F81431 		str	r3, [r1, #276]	@ float
+ 480              		.loc 1 108 5 is_stmt 1 view .LVU163
+ 481              		.loc 1 108 31 is_stmt 0 view .LVU164
+ 482 005a C36A     		ldr	r3, [r0, #44]	@ float
+ 483              		.loc 1 108 25 view .LVU165
+ 484 005c C1F84C31 		str	r3, [r1, #332]	@ float
  109:Core/Src/flash.c ****     hfoc->speed_ctrl.out_max = data->speed_out_max;
- 483              		.loc 1 109 5 is_stmt 1 view .LVU166
- 484              		.loc 1 109 36 is_stmt 0 view .LVU167
- 485 0060 D0ED0C7A 		vldr.32	s15, [r0, #48]
- 486              		.loc 1 109 30 view .LVU168
- 487 0064 C1ED487A 		vstr.32	s15, [r1, #288]
+ 485              		.loc 1 109 5 is_stmt 1 view .LVU166
+ 486              		.loc 1 109 36 is_stmt 0 view .LVU167
+ 487 0060 D0ED0C7A 		vldr.32	s15, [r0, #48]
+ 488              		.loc 1 109 30 view .LVU168
+ 489 0064 C1ED567A 		vstr.32	s15, [r1, #344]
  110:Core/Src/flash.c ****     hfoc->speed_ctrl.out_min = -data->speed_out_max;
- 488              		.loc 1 110 5 is_stmt 1 view .LVU169
- 489              		.loc 1 110 32 is_stmt 0 view .LVU170
- 490 0068 F1EE677A 		vneg.f32	s15, s15
- 491              		.loc 1 110 30 view .LVU171
- 492 006c C1ED497A 		vstr.32	s15, [r1, #292]
+ 490              		.loc 1 110 5 is_stmt 1 view .LVU169
+ 491              		.loc 1 110 32 is_stmt 0 view .LVU170
+ 492 0068 F1EE677A 		vneg.f32	s15, s15
+ 493              		.loc 1 110 30 view .LVU171
+ 494 006c C1ED577A 		vstr.32	s15, [r1, #348]
  111:Core/Src/flash.c ****     hfoc->speed_ctrl.e_deadband = data->speed_e_deadband;
- 493              		.loc 1 111 5 is_stmt 1 view .LVU172
- 494              		.loc 1 111 39 is_stmt 0 view .LVU173
- 495 0070 436B     		ldr	r3, [r0, #52]	@ float
- 496              		.loc 1 111 33 view .LVU174
- 497 0072 C1F82C31 		str	r3, [r1, #300]	@ float
+ 495              		.loc 1 111 5 is_stmt 1 view .LVU172
+ 496              		.loc 1 111 39 is_stmt 0 view .LVU173
+ 497 0070 436B     		ldr	r3, [r0, #52]	@ float
+ 498              		.loc 1 111 33 view .LVU174
+ARM GAS  /tmp/ccICR6pB.s 			page 12
+
+
+ 499 0072 C1F86431 		str	r3, [r1, #356]	@ float
  112:Core/Src/flash.c ****     
-ARM GAS  /tmp/ccr9rPry.s 			page 12
-
-
  113:Core/Src/flash.c ****     hfoc->pos_ctrl.kp = data->pos_kp;
- 498              		.loc 1 113 5 is_stmt 1 view .LVU175
- 499              		.loc 1 113 29 is_stmt 0 view .LVU176
- 500 0076 836B     		ldr	r3, [r0, #56]	@ float
- 501              		.loc 1 113 23 view .LVU177
- 502 0078 C1F84431 		str	r3, [r1, #324]	@ float
+ 500              		.loc 1 113 5 is_stmt 1 view .LVU175
+ 501              		.loc 1 113 29 is_stmt 0 view .LVU176
+ 502 0076 836B     		ldr	r3, [r0, #56]	@ float
+ 503              		.loc 1 113 23 view .LVU177
+ 504 0078 C1F87C31 		str	r3, [r1, #380]	@ float
  114:Core/Src/flash.c ****     hfoc->pos_ctrl.ki = data->pos_ki;
- 503              		.loc 1 114 5 is_stmt 1 view .LVU178
- 504              		.loc 1 114 29 is_stmt 0 view .LVU179
- 505 007c C36B     		ldr	r3, [r0, #60]	@ float
- 506              		.loc 1 114 23 view .LVU180
- 507 007e C1F84831 		str	r3, [r1, #328]	@ float
+ 505              		.loc 1 114 5 is_stmt 1 view .LVU178
+ 506              		.loc 1 114 29 is_stmt 0 view .LVU179
+ 507 007c C36B     		ldr	r3, [r0, #60]	@ float
+ 508              		.loc 1 114 23 view .LVU180
+ 509 007e C1F88031 		str	r3, [r1, #384]	@ float
  115:Core/Src/flash.c ****     hfoc->pos_ctrl.kd = data->pos_kd;
- 508              		.loc 1 115 5 is_stmt 1 view .LVU181
- 509              		.loc 1 115 29 is_stmt 0 view .LVU182
- 510 0082 036C     		ldr	r3, [r0, #64]	@ float
- 511              		.loc 1 115 23 view .LVU183
- 512 0084 C1F84C31 		str	r3, [r1, #332]	@ float
+ 510              		.loc 1 115 5 is_stmt 1 view .LVU181
+ 511              		.loc 1 115 29 is_stmt 0 view .LVU182
+ 512 0082 036C     		ldr	r3, [r0, #64]	@ float
+ 513              		.loc 1 115 23 view .LVU183
+ 514 0084 C1F88431 		str	r3, [r1, #388]	@ float
  116:Core/Src/flash.c ****     hfoc->pos_ctrl.out_max = data->pos_out_max;
- 513              		.loc 1 116 5 is_stmt 1 view .LVU184
- 514              		.loc 1 116 34 is_stmt 0 view .LVU185
- 515 0088 D0ED117A 		vldr.32	s15, [r0, #68]
- 516              		.loc 1 116 28 view .LVU186
- 517 008c C1ED557A 		vstr.32	s15, [r1, #340]
+ 515              		.loc 1 116 5 is_stmt 1 view .LVU184
+ 516              		.loc 1 116 34 is_stmt 0 view .LVU185
+ 517 0088 D0ED117A 		vldr.32	s15, [r0, #68]
+ 518              		.loc 1 116 28 view .LVU186
+ 519 008c C1ED637A 		vstr.32	s15, [r1, #396]
  117:Core/Src/flash.c ****     hfoc->pos_ctrl.out_min = -data->pos_out_max;
- 518              		.loc 1 117 5 is_stmt 1 view .LVU187
- 519              		.loc 1 117 30 is_stmt 0 view .LVU188
- 520 0090 F1EE677A 		vneg.f32	s15, s15
- 521              		.loc 1 117 28 view .LVU189
- 522 0094 C1ED567A 		vstr.32	s15, [r1, #344]
+ 520              		.loc 1 117 5 is_stmt 1 view .LVU187
+ 521              		.loc 1 117 30 is_stmt 0 view .LVU188
+ 522 0090 F1EE677A 		vneg.f32	s15, s15
+ 523              		.loc 1 117 28 view .LVU189
+ 524 0094 C1ED647A 		vstr.32	s15, [r1, #400]
  118:Core/Src/flash.c ****     hfoc->pos_ctrl.e_deadband = data->pos_e_deadband;
- 523              		.loc 1 118 5 is_stmt 1 view .LVU190
- 524              		.loc 1 118 37 is_stmt 0 view .LVU191
- 525 0098 836C     		ldr	r3, [r0, #72]	@ float
- 526              		.loc 1 118 31 view .LVU192
- 527 009a C1F86031 		str	r3, [r1, #352]	@ float
+ 525              		.loc 1 118 5 is_stmt 1 view .LVU190
+ 526              		.loc 1 118 37 is_stmt 0 view .LVU191
+ 527 0098 836C     		ldr	r3, [r0, #72]	@ float
+ 528              		.loc 1 118 31 view .LVU192
+ 529 009a C1F89831 		str	r3, [r1, #408]	@ float
  119:Core/Src/flash.c **** 
  120:Core/Src/flash.c **** 
  121:Core/Src/flash.c ****     hfoc->sensor_dir = data->dir;
- 528              		.loc 1 121 5 is_stmt 1 view .LVU193
- 529              		.loc 1 121 28 is_stmt 0 view .LVU194
- 530 009e 00F58053 		add	r3, r0, #4096
- 531 00a2 93F85C20 		ldrb	r2, [r3, #92]	@ zero_extendqisi2
- 532              		.loc 1 121 22 view .LVU195
- 533 00a6 81F89421 		strb	r2, [r1, #404]
+ 530              		.loc 1 121 5 is_stmt 1 view .LVU193
+ 531              		.loc 1 121 28 is_stmt 0 view .LVU194
+ 532 009e 00F58053 		add	r3, r0, #4096
+ 533 00a2 93F85C20 		ldrb	r2, [r3, #92]	@ zero_extendqisi2
+ 534              		.loc 1 121 22 view .LVU195
+ 535 00a6 81F80822 		strb	r2, [r1, #520]
  122:Core/Src/flash.c ****     hfoc->gear_ratio = data->gear_ratio;
- 534              		.loc 1 122 5 is_stmt 1 view .LVU196
- 535              		.loc 1 122 28 is_stmt 0 view .LVU197
- 536 00aa 1A6E     		ldr	r2, [r3, #96]	@ float
- 537              		.loc 1 122 22 view .LVU198
- 538 00ac C1F89021 		str	r2, [r1, #400]	@ float
+ 536              		.loc 1 122 5 is_stmt 1 view .LVU196
+ 537              		.loc 1 122 28 is_stmt 0 view .LVU197
+ 538 00aa 1A6E     		ldr	r2, [r3, #96]	@ float
+ 539              		.loc 1 122 22 view .LVU198
+ 540 00ac C1F80422 		str	r2, [r1, #516]	@ float
  123:Core/Src/flash.c ****     hfoc->m_angle_offset = data->encd_offset;
- 539              		.loc 1 123 5 is_stmt 1 view .LVU199
- 540              		.loc 1 123 32 is_stmt 0 view .LVU200
- 541 00b0 426D     		ldr	r2, [r0, #84]	@ float
- 542              		.loc 1 123 26 view .LVU201
- 543 00b2 4A62     		str	r2, [r1, #36]	@ float
-ARM GAS  /tmp/ccr9rPry.s 			page 13
+ 541              		.loc 1 123 5 is_stmt 1 view .LVU199
+ 542              		.loc 1 123 32 is_stmt 0 view .LVU200
+ 543 00b0 426D     		ldr	r2, [r0, #84]	@ float
+ARM GAS  /tmp/ccICR6pB.s 			page 13
 
 
+ 544              		.loc 1 123 26 view .LVU201
+ 545 00b2 CA65     		str	r2, [r1, #92]	@ float
  124:Core/Src/flash.c **** 
  125:Core/Src/flash.c ****     hfoc->Rs = data->Rs;
- 544              		.loc 1 125 5 is_stmt 1 view .LVU202
- 545              		.loc 1 125 20 is_stmt 0 view .LVU203
- 546 00b4 5A6E     		ldr	r2, [r3, #100]	@ float
- 547              		.loc 1 125 14 view .LVU204
- 548 00b6 8A60     		str	r2, [r1, #8]	@ float
+ 546              		.loc 1 125 5 is_stmt 1 view .LVU202
+ 547              		.loc 1 125 20 is_stmt 0 view .LVU203
+ 548 00b4 5A6E     		ldr	r2, [r3, #100]	@ float
+ 549              		.loc 1 125 14 view .LVU204
+ 550 00b6 CA63     		str	r2, [r1, #60]	@ float
  126:Core/Src/flash.c ****     hfoc->Ld = data->Ld;
- 549              		.loc 1 126 5 is_stmt 1 view .LVU205
- 550              		.loc 1 126 20 is_stmt 0 view .LVU206
- 551 00b8 9A6E     		ldr	r2, [r3, #104]	@ float
- 552              		.loc 1 126 14 view .LVU207
- 553 00ba CA60     		str	r2, [r1, #12]	@ float
+ 551              		.loc 1 126 5 is_stmt 1 view .LVU205
+ 552              		.loc 1 126 20 is_stmt 0 view .LVU206
+ 553 00b8 9A6E     		ldr	r2, [r3, #104]	@ float
+ 554              		.loc 1 126 14 view .LVU207
+ 555 00ba 0A64     		str	r2, [r1, #64]	@ float
  127:Core/Src/flash.c ****     hfoc->Lq = data->Lq;
- 554              		.loc 1 127 5 is_stmt 1 view .LVU208
- 555              		.loc 1 127 20 is_stmt 0 view .LVU209
- 556 00bc DB6E     		ldr	r3, [r3, #108]	@ float
- 557              		.loc 1 127 14 view .LVU210
- 558 00be 0B61     		str	r3, [r1, #16]	@ float
+ 556              		.loc 1 127 5 is_stmt 1 view .LVU208
+ 557              		.loc 1 127 20 is_stmt 0 view .LVU209
+ 558 00bc DB6E     		ldr	r3, [r3, #108]	@ float
+ 559              		.loc 1 127 14 view .LVU210
+ 560 00be 4B64     		str	r3, [r1, #68]	@ float
  128:Core/Src/flash.c **** }
- 559              		.loc 1 128 1 view .LVU211
- 560 00c0 7047     		bx	lr
- 561              	.L25:
- 562 00c2 00BF     		.align	2
- 563              	.L24:
- 564 00c4 ACC52738 		.word	942130604
- 565              		.cfi_endproc
- 566              	.LFE137:
- 568              		.section	.text.copy_from_local,"ax",%progbits
- 569              		.align	1
- 570              		.global	copy_from_local
- 571              		.syntax unified
- 572              		.thumb
- 573              		.thumb_func
- 574              		.fpu fpv4-sp-d16
- 576              	copy_from_local:
- 577              	.LVL25:
- 578              	.LFB138:
+ 561              		.loc 1 128 1 view .LVU211
+ 562 00c0 7047     		bx	lr
+ 563              	.L25:
+ 564 00c2 00BF     		.align	2
+ 565              	.L24:
+ 566 00c4 ACC52738 		.word	942130604
+ 567              		.cfi_endproc
+ 568              	.LFE137:
+ 570              		.section	.text.copy_from_local,"ax",%progbits
+ 571              		.align	1
+ 572              		.global	copy_from_local
+ 573              		.syntax unified
+ 574              		.thumb
+ 575              		.thumb_func
+ 576              		.fpu fpv4-sp-d16
+ 578              	copy_from_local:
+ 579              	.LVL25:
+ 580              	.LFB138:
  129:Core/Src/flash.c **** 
  130:Core/Src/flash.c **** void copy_from_local(motor_config_t *data, foc_t *hfoc) {
- 579              		.loc 1 130 57 is_stmt 1 view -0
- 580              		.cfi_startproc
- 581              		@ args = 0, pretend = 0, frame = 0
- 582              		@ frame_needed = 0, uses_anonymous_args = 0
- 583              		@ link register save eliminated.
+ 581              		.loc 1 130 57 is_stmt 1 view -0
+ 582              		.cfi_startproc
+ 583              		@ args = 0, pretend = 0, frame = 0
+ 584              		@ frame_needed = 0, uses_anonymous_args = 0
+ 585              		@ link register save eliminated.
  131:Core/Src/flash.c ****     data->id_kp = hfoc->id_ctrl.kp;
- 584              		.loc 1 131 5 view .LVU213
- 585              		.loc 1 131 32 is_stmt 0 view .LVU214
- 586 0000 D1F8A830 		ldr	r3, [r1, #168]	@ float
- 587              		.loc 1 131 17 view .LVU215
- 588 0004 4360     		str	r3, [r0, #4]	@ float
+ 586              		.loc 1 131 5 view .LVU213
+ 587              		.loc 1 131 32 is_stmt 0 view .LVU214
+ 588 0000 D1F8E030 		ldr	r3, [r1, #224]	@ float
+ 589              		.loc 1 131 17 view .LVU215
+ 590 0004 4360     		str	r3, [r0, #4]	@ float
  132:Core/Src/flash.c ****     data->id_ki = hfoc->id_ctrl.ki;
- 589              		.loc 1 132 5 is_stmt 1 view .LVU216
- 590              		.loc 1 132 32 is_stmt 0 view .LVU217
- 591 0006 D1F8AC30 		ldr	r3, [r1, #172]	@ float
- 592              		.loc 1 132 17 view .LVU218
- 593 000a 8360     		str	r3, [r0, #8]	@ float
-ARM GAS  /tmp/ccr9rPry.s 			page 14
+ 591              		.loc 1 132 5 is_stmt 1 view .LVU216
+ 592              		.loc 1 132 32 is_stmt 0 view .LVU217
+ 593 0006 D1F8E430 		ldr	r3, [r1, #228]	@ float
+ARM GAS  /tmp/ccICR6pB.s 			page 14
 
 
+ 594              		.loc 1 132 17 view .LVU218
+ 595 000a 8360     		str	r3, [r0, #8]	@ float
  133:Core/Src/flash.c ****     data->id_out_max = hfoc->id_ctrl.out_max;
- 594              		.loc 1 133 5 is_stmt 1 view .LVU219
- 595              		.loc 1 133 37 is_stmt 0 view .LVU220
- 596 000c D1F8B830 		ldr	r3, [r1, #184]	@ float
- 597              		.loc 1 133 22 view .LVU221
- 598 0010 C360     		str	r3, [r0, #12]	@ float
+ 596              		.loc 1 133 5 is_stmt 1 view .LVU219
+ 597              		.loc 1 133 37 is_stmt 0 view .LVU220
+ 598 000c D1F8F030 		ldr	r3, [r1, #240]	@ float
+ 599              		.loc 1 133 22 view .LVU221
+ 600 0010 C360     		str	r3, [r0, #12]	@ float
  134:Core/Src/flash.c ****     data->id_e_deadband = hfoc->id_ctrl.e_deadband;
- 599              		.loc 1 134 5 is_stmt 1 view .LVU222
- 600              		.loc 1 134 40 is_stmt 0 view .LVU223
- 601 0012 D1F8C430 		ldr	r3, [r1, #196]	@ float
- 602              		.loc 1 134 25 view .LVU224
- 603 0016 0361     		str	r3, [r0, #16]	@ float
+ 601              		.loc 1 134 5 is_stmt 1 view .LVU222
+ 602              		.loc 1 134 40 is_stmt 0 view .LVU223
+ 603 0012 D1F8FC30 		ldr	r3, [r1, #252]	@ float
+ 604              		.loc 1 134 25 view .LVU224
+ 605 0016 0361     		str	r3, [r0, #16]	@ float
  135:Core/Src/flash.c **** 
  136:Core/Src/flash.c ****     data->iq_kp = hfoc->iq_ctrl.kp;
- 604              		.loc 1 136 5 is_stmt 1 view .LVU225
- 605              		.loc 1 136 32 is_stmt 0 view .LVU226
- 606 0018 D1F8DC30 		ldr	r3, [r1, #220]	@ float
- 607              		.loc 1 136 17 view .LVU227
- 608 001c 4361     		str	r3, [r0, #20]	@ float
+ 606              		.loc 1 136 5 is_stmt 1 view .LVU225
+ 607              		.loc 1 136 32 is_stmt 0 view .LVU226
+ 608 0018 D1F81431 		ldr	r3, [r1, #276]	@ float
+ 609              		.loc 1 136 17 view .LVU227
+ 610 001c 4361     		str	r3, [r0, #20]	@ float
  137:Core/Src/flash.c ****     data->iq_ki = hfoc->iq_ctrl.ki;
- 609              		.loc 1 137 5 is_stmt 1 view .LVU228
- 610              		.loc 1 137 32 is_stmt 0 view .LVU229
- 611 001e D1F8E030 		ldr	r3, [r1, #224]	@ float
- 612              		.loc 1 137 17 view .LVU230
- 613 0022 8361     		str	r3, [r0, #24]	@ float
+ 611              		.loc 1 137 5 is_stmt 1 view .LVU228
+ 612              		.loc 1 137 32 is_stmt 0 view .LVU229
+ 613 001e D1F81831 		ldr	r3, [r1, #280]	@ float
+ 614              		.loc 1 137 17 view .LVU230
+ 615 0022 8361     		str	r3, [r0, #24]	@ float
  138:Core/Src/flash.c ****     data->iq_out_max = hfoc->iq_ctrl.out_max;
- 614              		.loc 1 138 5 is_stmt 1 view .LVU231
- 615              		.loc 1 138 37 is_stmt 0 view .LVU232
- 616 0024 D1F8EC30 		ldr	r3, [r1, #236]	@ float
- 617              		.loc 1 138 22 view .LVU233
- 618 0028 C361     		str	r3, [r0, #28]	@ float
+ 616              		.loc 1 138 5 is_stmt 1 view .LVU231
+ 617              		.loc 1 138 37 is_stmt 0 view .LVU232
+ 618 0024 D1F82431 		ldr	r3, [r1, #292]	@ float
+ 619              		.loc 1 138 22 view .LVU233
+ 620 0028 C361     		str	r3, [r0, #28]	@ float
  139:Core/Src/flash.c ****     data->iq_e_deadband = hfoc->iq_ctrl.e_deadband;
- 619              		.loc 1 139 5 is_stmt 1 view .LVU234
- 620              		.loc 1 139 40 is_stmt 0 view .LVU235
- 621 002a D1F8F830 		ldr	r3, [r1, #248]	@ float
- 622              		.loc 1 139 25 view .LVU236
- 623 002e 0362     		str	r3, [r0, #32]	@ float
+ 621              		.loc 1 139 5 is_stmt 1 view .LVU234
+ 622              		.loc 1 139 40 is_stmt 0 view .LVU235
+ 623 002a D1F83031 		ldr	r3, [r1, #304]	@ float
+ 624              		.loc 1 139 25 view .LVU236
+ 625 002e 0362     		str	r3, [r0, #32]	@ float
  140:Core/Src/flash.c **** 
  141:Core/Src/flash.c ****     data->I_ctrl_bandwidth = hfoc->I_ctrl_bandwidth;
- 624              		.loc 1 141 5 is_stmt 1 view .LVU237
- 625              		.loc 1 141 34 is_stmt 0 view .LVU238
- 626 0030 D1F88830 		ldr	r3, [r1, #136]	@ float
- 627              		.loc 1 141 28 view .LVU239
- 628 0034 4362     		str	r3, [r0, #36]	@ float
+ 626              		.loc 1 141 5 is_stmt 1 view .LVU237
+ 627              		.loc 1 141 34 is_stmt 0 view .LVU238
+ 628 0030 D1F8C030 		ldr	r3, [r1, #192]	@ float
+ 629              		.loc 1 141 28 view .LVU239
+ 630 0034 4362     		str	r3, [r0, #36]	@ float
  142:Core/Src/flash.c **** 
  143:Core/Src/flash.c ****     data->speed_kp = hfoc->speed_ctrl.kp;
- 629              		.loc 1 143 5 is_stmt 1 view .LVU240
- 630              		.loc 1 143 38 is_stmt 0 view .LVU241
- 631 0036 D1F81031 		ldr	r3, [r1, #272]	@ float
- 632              		.loc 1 143 20 view .LVU242
- 633 003a 8362     		str	r3, [r0, #40]	@ float
+ 631              		.loc 1 143 5 is_stmt 1 view .LVU240
+ 632              		.loc 1 143 38 is_stmt 0 view .LVU241
+ 633 0036 D1F84831 		ldr	r3, [r1, #328]	@ float
+ 634              		.loc 1 143 20 view .LVU242
+ 635 003a 8362     		str	r3, [r0, #40]	@ float
  144:Core/Src/flash.c ****     data->speed_ki = hfoc->speed_ctrl.ki;
- 634              		.loc 1 144 5 is_stmt 1 view .LVU243
- 635              		.loc 1 144 38 is_stmt 0 view .LVU244
- 636 003c D1F81431 		ldr	r3, [r1, #276]	@ float
- 637              		.loc 1 144 20 view .LVU245
- 638 0040 C362     		str	r3, [r0, #44]	@ float
-ARM GAS  /tmp/ccr9rPry.s 			page 15
+ 636              		.loc 1 144 5 is_stmt 1 view .LVU243
+ 637              		.loc 1 144 38 is_stmt 0 view .LVU244
+ 638 003c D1F84C31 		ldr	r3, [r1, #332]	@ float
+ARM GAS  /tmp/ccICR6pB.s 			page 15
 
 
+ 639              		.loc 1 144 20 view .LVU245
+ 640 0040 C362     		str	r3, [r0, #44]	@ float
  145:Core/Src/flash.c ****     data->speed_out_max = hfoc->speed_ctrl.out_max;
- 639              		.loc 1 145 5 is_stmt 1 view .LVU246
- 640              		.loc 1 145 43 is_stmt 0 view .LVU247
- 641 0042 D1F82031 		ldr	r3, [r1, #288]	@ float
- 642              		.loc 1 145 25 view .LVU248
- 643 0046 0363     		str	r3, [r0, #48]	@ float
+ 641              		.loc 1 145 5 is_stmt 1 view .LVU246
+ 642              		.loc 1 145 43 is_stmt 0 view .LVU247
+ 643 0042 D1F85831 		ldr	r3, [r1, #344]	@ float
+ 644              		.loc 1 145 25 view .LVU248
+ 645 0046 0363     		str	r3, [r0, #48]	@ float
  146:Core/Src/flash.c ****     data->speed_e_deadband = hfoc->speed_ctrl.e_deadband;
- 644              		.loc 1 146 5 is_stmt 1 view .LVU249
- 645              		.loc 1 146 46 is_stmt 0 view .LVU250
- 646 0048 D1F82C31 		ldr	r3, [r1, #300]	@ float
- 647              		.loc 1 146 28 view .LVU251
- 648 004c 4363     		str	r3, [r0, #52]	@ float
+ 646              		.loc 1 146 5 is_stmt 1 view .LVU249
+ 647              		.loc 1 146 46 is_stmt 0 view .LVU250
+ 648 0048 D1F86431 		ldr	r3, [r1, #356]	@ float
+ 649              		.loc 1 146 28 view .LVU251
+ 650 004c 4363     		str	r3, [r0, #52]	@ float
  147:Core/Src/flash.c **** 
  148:Core/Src/flash.c ****     data->pos_kp = hfoc->pos_ctrl.kp;
- 649              		.loc 1 148 5 is_stmt 1 view .LVU252
- 650              		.loc 1 148 34 is_stmt 0 view .LVU253
- 651 004e D1F84431 		ldr	r3, [r1, #324]	@ float
- 652              		.loc 1 148 18 view .LVU254
- 653 0052 8363     		str	r3, [r0, #56]	@ float
+ 651              		.loc 1 148 5 is_stmt 1 view .LVU252
+ 652              		.loc 1 148 34 is_stmt 0 view .LVU253
+ 653 004e D1F87C31 		ldr	r3, [r1, #380]	@ float
+ 654              		.loc 1 148 18 view .LVU254
+ 655 0052 8363     		str	r3, [r0, #56]	@ float
  149:Core/Src/flash.c ****     data->pos_ki = hfoc->pos_ctrl.ki;
- 654              		.loc 1 149 5 is_stmt 1 view .LVU255
- 655              		.loc 1 149 34 is_stmt 0 view .LVU256
- 656 0054 D1F84831 		ldr	r3, [r1, #328]	@ float
- 657              		.loc 1 149 18 view .LVU257
- 658 0058 C363     		str	r3, [r0, #60]	@ float
+ 656              		.loc 1 149 5 is_stmt 1 view .LVU255
+ 657              		.loc 1 149 34 is_stmt 0 view .LVU256
+ 658 0054 D1F88031 		ldr	r3, [r1, #384]	@ float
+ 659              		.loc 1 149 18 view .LVU257
+ 660 0058 C363     		str	r3, [r0, #60]	@ float
  150:Core/Src/flash.c ****     data->pos_kd = hfoc->pos_ctrl.kd;
- 659              		.loc 1 150 5 is_stmt 1 view .LVU258
- 660              		.loc 1 150 34 is_stmt 0 view .LVU259
- 661 005a D1F84C31 		ldr	r3, [r1, #332]	@ float
- 662              		.loc 1 150 18 view .LVU260
- 663 005e 0364     		str	r3, [r0, #64]	@ float
+ 661              		.loc 1 150 5 is_stmt 1 view .LVU258
+ 662              		.loc 1 150 34 is_stmt 0 view .LVU259
+ 663 005a D1F88431 		ldr	r3, [r1, #388]	@ float
+ 664              		.loc 1 150 18 view .LVU260
+ 665 005e 0364     		str	r3, [r0, #64]	@ float
  151:Core/Src/flash.c ****     data->pos_out_max = hfoc->pos_ctrl.out_max;
- 664              		.loc 1 151 5 is_stmt 1 view .LVU261
- 665              		.loc 1 151 39 is_stmt 0 view .LVU262
- 666 0060 D1F85431 		ldr	r3, [r1, #340]	@ float
- 667              		.loc 1 151 23 view .LVU263
- 668 0064 4364     		str	r3, [r0, #68]	@ float
+ 666              		.loc 1 151 5 is_stmt 1 view .LVU261
+ 667              		.loc 1 151 39 is_stmt 0 view .LVU262
+ 668 0060 D1F88C31 		ldr	r3, [r1, #396]	@ float
+ 669              		.loc 1 151 23 view .LVU263
+ 670 0064 4364     		str	r3, [r0, #68]	@ float
  152:Core/Src/flash.c ****     data->pos_e_deadband = hfoc->pos_ctrl.e_deadband;
- 669              		.loc 1 152 5 is_stmt 1 view .LVU264
- 670              		.loc 1 152 42 is_stmt 0 view .LVU265
- 671 0066 D1F86031 		ldr	r3, [r1, #352]	@ float
- 672              		.loc 1 152 26 view .LVU266
- 673 006a 8364     		str	r3, [r0, #72]	@ float
+ 671              		.loc 1 152 5 is_stmt 1 view .LVU264
+ 672              		.loc 1 152 42 is_stmt 0 view .LVU265
+ 673 0066 D1F89831 		ldr	r3, [r1, #408]	@ float
+ 674              		.loc 1 152 26 view .LVU266
+ 675 006a 8364     		str	r3, [r0, #72]	@ float
  153:Core/Src/flash.c **** 
  154:Core/Src/flash.c ****     data->dir = hfoc->sensor_dir;
- 674              		.loc 1 154 5 is_stmt 1 view .LVU267
- 675              		.loc 1 154 21 is_stmt 0 view .LVU268
- 676 006c 91F89421 		ldrb	r2, [r1, #404]	@ zero_extendqisi2
- 677              		.loc 1 154 15 view .LVU269
- 678 0070 00F58053 		add	r3, r0, #4096
- 679 0074 83F85C20 		strb	r2, [r3, #92]
+ 676              		.loc 1 154 5 is_stmt 1 view .LVU267
+ 677              		.loc 1 154 21 is_stmt 0 view .LVU268
+ 678 006c 91F80822 		ldrb	r2, [r1, #520]	@ zero_extendqisi2
+ 679              		.loc 1 154 15 view .LVU269
+ 680 0070 00F58053 		add	r3, r0, #4096
+ 681 0074 83F85C20 		strb	r2, [r3, #92]
  155:Core/Src/flash.c ****     data->gear_ratio = hfoc->gear_ratio;
- 680              		.loc 1 155 5 is_stmt 1 view .LVU270
- 681              		.loc 1 155 28 is_stmt 0 view .LVU271
- 682 0078 D1F89021 		ldr	r2, [r1, #400]	@ float
- 683              		.loc 1 155 22 view .LVU272
- 684 007c 1A66     		str	r2, [r3, #96]	@ float
-ARM GAS  /tmp/ccr9rPry.s 			page 16
+ 682              		.loc 1 155 5 is_stmt 1 view .LVU270
+ 683              		.loc 1 155 28 is_stmt 0 view .LVU271
+ 684 0078 D1F80422 		ldr	r2, [r1, #516]	@ float
+ARM GAS  /tmp/ccICR6pB.s 			page 16
 
 
+ 685              		.loc 1 155 22 view .LVU272
+ 686 007c 1A66     		str	r2, [r3, #96]	@ float
  156:Core/Src/flash.c ****     data->encd_offset = hfoc->m_angle_offset;
- 685              		.loc 1 156 5 is_stmt 1 view .LVU273
- 686              		.loc 1 156 29 is_stmt 0 view .LVU274
- 687 007e 4A6A     		ldr	r2, [r1, #36]	@ float
- 688              		.loc 1 156 23 view .LVU275
- 689 0080 4265     		str	r2, [r0, #84]	@ float
+ 687              		.loc 1 156 5 is_stmt 1 view .LVU273
+ 688              		.loc 1 156 29 is_stmt 0 view .LVU274
+ 689 007e CA6D     		ldr	r2, [r1, #92]	@ float
+ 690              		.loc 1 156 23 view .LVU275
+ 691 0080 4265     		str	r2, [r0, #84]	@ float
  157:Core/Src/flash.c **** 
  158:Core/Src/flash.c ****     data->Rs = hfoc->Rs;
- 690              		.loc 1 158 5 is_stmt 1 view .LVU276
- 691              		.loc 1 158 20 is_stmt 0 view .LVU277
- 692 0082 8A68     		ldr	r2, [r1, #8]	@ float
- 693              		.loc 1 158 14 view .LVU278
- 694 0084 5A66     		str	r2, [r3, #100]	@ float
+ 692              		.loc 1 158 5 is_stmt 1 view .LVU276
+ 693              		.loc 1 158 20 is_stmt 0 view .LVU277
+ 694 0082 CA6B     		ldr	r2, [r1, #60]	@ float
+ 695              		.loc 1 158 14 view .LVU278
+ 696 0084 5A66     		str	r2, [r3, #100]	@ float
  159:Core/Src/flash.c ****     data->Ld = hfoc->Ld;
- 695              		.loc 1 159 5 is_stmt 1 view .LVU279
- 696              		.loc 1 159 20 is_stmt 0 view .LVU280
- 697 0086 CA68     		ldr	r2, [r1, #12]	@ float
- 698              		.loc 1 159 14 view .LVU281
- 699 0088 9A66     		str	r2, [r3, #104]	@ float
+ 697              		.loc 1 159 5 is_stmt 1 view .LVU279
+ 698              		.loc 1 159 20 is_stmt 0 view .LVU280
+ 699 0086 0A6C     		ldr	r2, [r1, #64]	@ float
+ 700              		.loc 1 159 14 view .LVU281
+ 701 0088 9A66     		str	r2, [r3, #104]	@ float
  160:Core/Src/flash.c ****     data->Lq = hfoc->Lq;
- 700              		.loc 1 160 5 is_stmt 1 view .LVU282
- 701              		.loc 1 160 20 is_stmt 0 view .LVU283
- 702 008a 0A69     		ldr	r2, [r1, #16]	@ float
- 703              		.loc 1 160 14 view .LVU284
- 704 008c DA66     		str	r2, [r3, #108]	@ float
+ 702              		.loc 1 160 5 is_stmt 1 view .LVU282
+ 703              		.loc 1 160 20 is_stmt 0 view .LVU283
+ 704 008a 4A6C     		ldr	r2, [r1, #68]	@ float
+ 705              		.loc 1 160 14 view .LVU284
+ 706 008c DA66     		str	r2, [r3, #108]	@ float
  161:Core/Src/flash.c **** }
- 705              		.loc 1 161 1 view .LVU285
- 706 008e 7047     		bx	lr
- 707              		.cfi_endproc
- 708              	.LFE138:
- 710              		.section	.text.flash_auto_tuning_torque_control,"ax",%progbits
- 711              		.align	1
- 712              		.global	flash_auto_tuning_torque_control
- 713              		.syntax unified
- 714              		.thumb
- 715              		.thumb_func
- 716              		.fpu fpv4-sp-d16
- 718              	flash_auto_tuning_torque_control:
- 719              	.LVL26:
- 720              	.LFB139:
+ 707              		.loc 1 161 1 view .LVU285
+ 708 008e 7047     		bx	lr
+ 709              		.cfi_endproc
+ 710              	.LFE138:
+ 712              		.section	.text.flash_auto_tuning_torque_control,"ax",%progbits
+ 713              		.align	1
+ 714              		.global	flash_auto_tuning_torque_control
+ 715              		.syntax unified
+ 716              		.thumb
+ 717              		.thumb_func
+ 718              		.fpu fpv4-sp-d16
+ 720              	flash_auto_tuning_torque_control:
+ 721              	.LVL26:
+ 722              	.LFB139:
  162:Core/Src/flash.c **** 
  163:Core/Src/flash.c **** 
  164:Core/Src/flash.c **** void flash_auto_tuning_torque_control(motor_config_t *data) {
- 721              		.loc 1 164 61 is_stmt 1 view -0
- 722              		.cfi_startproc
- 723              		@ args = 0, pretend = 0, frame = 0
- 724              		@ frame_needed = 0, uses_anonymous_args = 0
- 725              		@ link register save eliminated.
+ 723              		.loc 1 164 61 is_stmt 1 view -0
+ 724              		.cfi_startproc
+ 725              		@ args = 0, pretend = 0, frame = 0
+ 726              		@ frame_needed = 0, uses_anonymous_args = 0
+ 727              		@ link register save eliminated.
  165:Core/Src/flash.c ****   if (data->Rs <= 0.0f || data->Rs > 3.0f ||
- 726              		.loc 1 165 3 view .LVU287
- 727              		.loc 1 165 11 is_stmt 0 view .LVU288
- 728 0000 00F58053 		add	r3, r0, #4096
- 729 0004 D3ED197A 		vldr.32	s15, [r3, #100]
- 730              		.loc 1 165 6 view .LVU289
- 731 0008 F5EEC07A 		vcmpe.f32	s15, #0
- 732 000c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 733 0010 3BD9     		bls	.L27
-ARM GAS  /tmp/ccr9rPry.s 			page 17
+ 728              		.loc 1 165 3 view .LVU287
+ 729              		.loc 1 165 11 is_stmt 0 view .LVU288
+ 730 0000 00F58053 		add	r3, r0, #4096
+ 731 0004 D3ED197A 		vldr.32	s15, [r3, #100]
+ 732              		.loc 1 165 6 view .LVU289
+ 733 0008 F5EEC07A 		vcmpe.f32	s15, #0
+ARM GAS  /tmp/ccICR6pB.s 			page 17
 
 
- 734              		.loc 1 165 24 discriminator 1 view .LVU290
- 735 0012 B0EE087A 		vmov.f32	s14, #3.0e+0
- 736 0016 F4EEC77A 		vcmpe.f32	s15, s14
- 737 001a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 738 001e 34DC     		bgt	.L27
+ 734 000c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 735 0010 3BD9     		bls	.L27
+ 736              		.loc 1 165 24 discriminator 1 view .LVU290
+ 737 0012 B0EE087A 		vmov.f32	s14, #3.0e+0
+ 738 0016 F4EEC77A 		vcmpe.f32	s15, s14
+ 739 001a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 740 001e 34DC     		bgt	.L27
  166:Core/Src/flash.c ****       data->Ld <= 0.0f || data->Ld > 3.0f ||
- 739              		.loc 1 166 11 discriminator 2 view .LVU291
- 740 0020 93ED1A7A 		vldr.32	s14, [r3, #104]
+ 741              		.loc 1 166 11 discriminator 2 view .LVU291
+ 742 0020 93ED1A7A 		vldr.32	s14, [r3, #104]
  165:Core/Src/flash.c ****   if (data->Rs <= 0.0f || data->Rs > 3.0f ||
- 741              		.loc 1 165 43 discriminator 2 view .LVU292
- 742 0024 B5EEC07A 		vcmpe.f32	s14, #0
- 743 0028 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 744 002c 2DD9     		bls	.L27
- 745              		.loc 1 166 24 view .LVU293
- 746 002e F0EE086A 		vmov.f32	s13, #3.0e+0
- 747 0032 B4EEE67A 		vcmpe.f32	s14, s13
- 748 0036 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 749 003a 26DC     		bgt	.L27
+ 743              		.loc 1 165 43 discriminator 2 view .LVU292
+ 744 0024 B5EEC07A 		vcmpe.f32	s14, #0
+ 745 0028 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 746 002c 2DD9     		bls	.L27
+ 747              		.loc 1 166 24 view .LVU293
+ 748 002e F0EE086A 		vmov.f32	s13, #3.0e+0
+ 749 0032 B4EEE67A 		vcmpe.f32	s14, s13
+ 750 0036 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 751 003a 26DC     		bgt	.L27
  167:Core/Src/flash.c ****       data->Lq <= 0.0f || data->Lq > 3.0f ||
- 750              		.loc 1 167 11 discriminator 1 view .LVU294
- 751 003c D3ED1B6A 		vldr.32	s13, [r3, #108]
+ 752              		.loc 1 167 11 discriminator 1 view .LVU294
+ 753 003c D3ED1B6A 		vldr.32	s13, [r3, #108]
  166:Core/Src/flash.c ****       data->Ld <= 0.0f || data->Ld > 3.0f ||
- 752              		.loc 1 166 43 discriminator 1 view .LVU295
- 753 0040 F5EEC06A 		vcmpe.f32	s13, #0
- 754 0044 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 755 0048 1FD9     		bls	.L27
- 756              		.loc 1 167 24 view .LVU296
- 757 004a B0EE086A 		vmov.f32	s12, #3.0e+0
- 758 004e F4EEC66A 		vcmpe.f32	s13, s12
- 759 0052 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 760 0056 18DC     		bgt	.L27
+ 754              		.loc 1 166 43 discriminator 1 view .LVU295
+ 755 0040 F5EEC06A 		vcmpe.f32	s13, #0
+ 756 0044 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 757 0048 1FD9     		bls	.L27
+ 758              		.loc 1 167 24 view .LVU296
+ 759 004a B0EE086A 		vmov.f32	s12, #3.0e+0
+ 760 004e F4EEC66A 		vcmpe.f32	s13, s12
+ 761 0052 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 762 0056 18DC     		bgt	.L27
  168:Core/Src/flash.c ****       data->I_ctrl_bandwidth <= 0.0f)
- 761              		.loc 1 168 11 discriminator 1 view .LVU297
- 762 0058 90ED096A 		vldr.32	s12, [r0, #36]
+ 763              		.loc 1 168 11 discriminator 1 view .LVU297
+ 764 0058 90ED096A 		vldr.32	s12, [r0, #36]
  167:Core/Src/flash.c ****       data->Lq <= 0.0f || data->Lq > 3.0f ||
- 763              		.loc 1 167 43 discriminator 1 view .LVU298
- 764 005c B5EEC06A 		vcmpe.f32	s12, #0
- 765 0060 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 766 0064 11D9     		bls	.L27
+ 765              		.loc 1 167 43 discriminator 1 view .LVU298
+ 766 005c B5EEC06A 		vcmpe.f32	s12, #0
+ 767 0060 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 768 0064 11D9     		bls	.L27
  169:Core/Src/flash.c ****       return;
  170:Core/Src/flash.c **** 
  171:Core/Src/flash.c ****   float omega = TWO_PI * data->I_ctrl_bandwidth;
- 767              		.loc 1 171 3 is_stmt 1 view .LVU299
- 768              		.loc 1 171 9 is_stmt 0 view .LVU300
- 769 0066 DFED095A 		vldr.32	s11, .L29
- 770 006a 26EE256A 		vmul.f32	s12, s12, s11
- 771              	.LVL27:
+ 769              		.loc 1 171 3 is_stmt 1 view .LVU299
+ 770              		.loc 1 171 9 is_stmt 0 view .LVU300
+ 771 0066 DFED095A 		vldr.32	s11, .L29
+ 772 006a 26EE256A 		vmul.f32	s12, s12, s11
+ 773              	.LVL27:
  172:Core/Src/flash.c **** 
  173:Core/Src/flash.c ****   data->id_kp = data->Ld * omega;
- 772              		.loc 1 173 3 is_stmt 1 view .LVU301
- 773              		.loc 1 173 26 is_stmt 0 view .LVU302
- 774 006e 27EE067A 		vmul.f32	s14, s14, s12
- 775              		.loc 1 173 15 view .LVU303
- 776 0072 80ED017A 		vstr.32	s14, [r0, #4]
+ 774              		.loc 1 173 3 is_stmt 1 view .LVU301
+ 775              		.loc 1 173 26 is_stmt 0 view .LVU302
+ 776 006e 27EE067A 		vmul.f32	s14, s14, s12
+ 777              		.loc 1 173 15 view .LVU303
+ 778 0072 80ED017A 		vstr.32	s14, [r0, #4]
  174:Core/Src/flash.c ****   data->id_ki = data->Rs * omega;
- 777              		.loc 1 174 3 is_stmt 1 view .LVU304
- 778              		.loc 1 174 26 is_stmt 0 view .LVU305
-ARM GAS  /tmp/ccr9rPry.s 			page 18
+ARM GAS  /tmp/ccICR6pB.s 			page 18
 
 
- 779 0076 67EE867A 		vmul.f32	s15, s15, s12
- 780              		.loc 1 174 15 view .LVU306
- 781 007a C0ED027A 		vstr.32	s15, [r0, #8]
+ 779              		.loc 1 174 3 is_stmt 1 view .LVU304
+ 780              		.loc 1 174 26 is_stmt 0 view .LVU305
+ 781 0076 67EE867A 		vmul.f32	s15, s15, s12
+ 782              		.loc 1 174 15 view .LVU306
+ 783 007a C0ED027A 		vstr.32	s15, [r0, #8]
  175:Core/Src/flash.c ****   data->iq_kp = data->Lq * omega;
- 782              		.loc 1 175 3 is_stmt 1 view .LVU307
- 783              		.loc 1 175 26 is_stmt 0 view .LVU308
- 784 007e 66EE866A 		vmul.f32	s13, s13, s12
- 785              		.loc 1 175 15 view .LVU309
- 786 0082 C0ED056A 		vstr.32	s13, [r0, #20]
+ 784              		.loc 1 175 3 is_stmt 1 view .LVU307
+ 785              		.loc 1 175 26 is_stmt 0 view .LVU308
+ 786 007e 66EE866A 		vmul.f32	s13, s13, s12
+ 787              		.loc 1 175 15 view .LVU309
+ 788 0082 C0ED056A 		vstr.32	s13, [r0, #20]
  176:Core/Src/flash.c ****   data->iq_ki = data->Rs * omega;
- 787              		.loc 1 176 3 is_stmt 1 view .LVU310
- 788              		.loc 1 176 15 is_stmt 0 view .LVU311
- 789 0086 C0ED067A 		vstr.32	s15, [r0, #24]
- 790              	.LVL28:
- 791              	.L27:
+ 789              		.loc 1 176 3 is_stmt 1 view .LVU310
+ 790              		.loc 1 176 15 is_stmt 0 view .LVU311
+ 791 0086 C0ED067A 		vstr.32	s15, [r0, #24]
+ 792              	.LVL28:
+ 793              	.L27:
  177:Core/Src/flash.c **** }...
- 792              		.loc 1 177 1 view .LVU312
- 793 008a 7047     		bx	lr
- 794              	.L30:
- 795              		.align	2
- 796              	.L29:
- 797 008c DB0FC940 		.word	1086918619
- 798              		.cfi_endproc
- 799              	.LFE139:
- 801              		.text
- 802              	.Letext0:
- 803              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
- 804              		.file 3 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 805              		.file 4 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h"
- 806              		.file 5 "Core/Inc/pid_utils.h"
- 807              		.file 6 "Core/Inc/foc_utils.h"
- 808              		.file 7 "Core/Inc/flash.h"
- 809              		.file 8 "<built-in>"
- 810              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h"
-ARM GAS  /tmp/ccr9rPry.s 			page 19
+ 794              		.loc 1 177 1 view .LVU312
+ 795 008a 7047     		bx	lr
+ 796              	.L30:
+ 797              		.align	2
+ 798              	.L29:
+ 799 008c DB0FC940 		.word	1086918619
+ 800              		.cfi_endproc
+ 801              	.LFE139:
+ 803              		.text
+ 804              	.Letext0:
+ 805              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
+ 806              		.file 3 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
+ 807              		.file 4 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 808              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h"
+ 809              		.file 6 "Core/Inc/drv8323s.h"
+ 810              		.file 7 "Core/Inc/pid_utils.h"
+ 811              		.file 8 "Core/Inc/foc_utils.h"
+ 812              		.file 9 "Core/Inc/flash.h"
+ 813              		.file 10 "<built-in>"
+ 814              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h"
+ARM GAS  /tmp/ccICR6pB.s 			page 19
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 flash.c
-     /tmp/ccr9rPry.s:18     .text.flash_save_config:0000000000000000 $t
-     /tmp/ccr9rPry.s:26     .text.flash_save_config:0000000000000000 flash_save_config
-     /tmp/ccr9rPry.s:179    .text.flash_save_config:0000000000000078 $d
-     /tmp/ccr9rPry.s:184    .text.flash_default_config:0000000000000000 $t
-     /tmp/ccr9rPry.s:191    .text.flash_default_config:0000000000000000 flash_default_config
-     /tmp/ccr9rPry.s:322    .text.flash_default_config:0000000000000078 $d
-     /tmp/ccr9rPry.s:340    .text.flash_read_config:0000000000000000 $t
-     /tmp/ccr9rPry.s:347    .text.flash_read_config:0000000000000000 flash_read_config
-     /tmp/ccr9rPry.s:391    .text.flash_read_config:0000000000000028 $d
-     /tmp/ccr9rPry.s:396    .text.copy_to_local:0000000000000000 $t
-     /tmp/ccr9rPry.s:403    .text.copy_to_local:0000000000000000 copy_to_local
-     /tmp/ccr9rPry.s:564    .text.copy_to_local:00000000000000c4 $d
-     /tmp/ccr9rPry.s:569    .text.copy_from_local:0000000000000000 $t
-     /tmp/ccr9rPry.s:576    .text.copy_from_local:0000000000000000 copy_from_local
-     /tmp/ccr9rPry.s:711    .text.flash_auto_tuning_torque_control:0000000000000000 $t
-     /tmp/ccr9rPry.s:718    .text.flash_auto_tuning_torque_control:0000000000000000 flash_auto_tuning_torque_control
-     /tmp/ccr9rPry.s:797    .text.flash_auto_tuning_torque_control:000000000000008c $d
+     /tmp/ccICR6pB.s:18     .text.flash_save_config:0000000000000000 $t
+     /tmp/ccICR6pB.s:26     .text.flash_save_config:0000000000000000 flash_save_config
+     /tmp/ccICR6pB.s:179    .text.flash_save_config:0000000000000078 $d
+     /tmp/ccICR6pB.s:184    .text.flash_default_config:0000000000000000 $t
+     /tmp/ccICR6pB.s:191    .text.flash_default_config:0000000000000000 flash_default_config
+     /tmp/ccICR6pB.s:323    .text.flash_default_config:0000000000000078 $d
+     /tmp/ccICR6pB.s:342    .text.flash_read_config:0000000000000000 $t
+     /tmp/ccICR6pB.s:349    .text.flash_read_config:0000000000000000 flash_read_config
+     /tmp/ccICR6pB.s:393    .text.flash_read_config:0000000000000028 $d
+     /tmp/ccICR6pB.s:398    .text.copy_to_local:0000000000000000 $t
+     /tmp/ccICR6pB.s:405    .text.copy_to_local:0000000000000000 copy_to_local
+     /tmp/ccICR6pB.s:566    .text.copy_to_local:00000000000000c4 $d
+     /tmp/ccICR6pB.s:571    .text.copy_from_local:0000000000000000 $t
+     /tmp/ccICR6pB.s:578    .text.copy_from_local:0000000000000000 copy_from_local
+     /tmp/ccICR6pB.s:713    .text.flash_auto_tuning_torque_control:0000000000000000 $t
+     /tmp/ccICR6pB.s:720    .text.flash_auto_tuning_torque_control:0000000000000000 flash_auto_tuning_torque_control
+     /tmp/ccICR6pB.s:799    .text.flash_auto_tuning_torque_control:000000000000008c $d
 
 UNDEFINED SYMBOLS
 HAL_FLASH_Unlock

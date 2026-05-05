@@ -17,9 +17,8 @@
 #include "foc_utils.h"
 #include "encoder.h"
 
-extern foc_t hfoc;
-extern uint8_t is_calibrating ;
-extern cal_state_t current_cal_state;
+
+
 
 
 extern float sPoint_Vel ;
@@ -44,17 +43,17 @@ void run_fsm(FSMStruct * fsmstate){
 			break;
 
 		case CALIBRATION_MODE:
-			
-            foc_auto_calibration_update(&hfoc);
+			if(!hfoc.done_orderphase){foc_auto_calibration_update(&hfoc);}
+			else if(!hfoc.done_cal_encoder){foc_auto_cal_encoder_update(&hfoc);}
             
-            
-            if (current_cal_state == CAL_DONE) {
-                is_calibrating = 0; // Xong rồi, nhả FOC ra
+        
+            if(hfoc.done_cal_encoder == 1 && hfoc.done_orderphase == 1){
+                
                 printf("Calibration Successful!\r\n");
                 
-                // Tự động nhảy về MENU hoặc MOTOR_MODE
-                fsmstate->next_state = MENU_MODE; 
-                fsmstate->ready = 0;
+                
+                update_fsm(fsmstate, 27);
+				
             }
 			 
 //				 /* Exit calibration mode when done */
@@ -76,10 +75,10 @@ void run_fsm(FSMStruct * fsmstate){
 		case MOTOR_MODE:
 			/* If CAN has timed out, reset all commands */
 		
-			if (ENCODER_GetFlag()) {
-				ENCODER_Reset_Flag();
-				encoder.start_read(encoder.hw_encoder);
-			}
+			// if (ENCODER_GetFlag()) {
+			// 	ENCODER_Reset_Flag();
+			// 	encoder.start_read(encoder.hw_encoder);
+			// }
 				
 					
 			hfoc.v_bus = 19.420f; 
@@ -89,7 +88,7 @@ void run_fsm(FSMStruct * fsmstate){
 				case TORQUE_CONTROL_MODE: {
 					float deg_encd = ENCODER_GetActualDegree(&encoder);
 					foc_calc_mech_pos_encoder(&hfoc, deg_encd);
-							// sPoint_Tor = k*(sPoint_Pos - hfoc.actual_angle) + p*hfoc.actual_rpm ;
+					// sPoint_Tor = k*(sPoint_Pos - hfoc.actual_angle) + p*hfoc.actual_rpm ;
 					hfoc.id_ref = 0.0f;
 					hfoc.iq_ref = sPoint_Tor;
 					torque_control_update();
@@ -150,18 +149,12 @@ void fsm_enter_state(FSMStruct * fsmstate){
 			//printf("Entering Encoder Mode\r\n");
 			break;
 		case MOTOR_MODE:
-
 			printf("Entering Motor Mode\r\n");
-//				HAL_GPIO_WritePin(LED, GPIO_PIN_SET );
-//				reset_foc(&controller);
-//				drv_enable_gd(drv);
+	
 			break;
 		case CALIBRATION_MODE:
 			printf("Entering Calibration Mode\r\n");
-			
-            is_calibrating = 1;       // 1. Chặn các ngắt tính toán FOC
-            foc_start_calibration();  // 2. Kích hoạt bộ đếm thời gian
-            
+            foc_start_calibration(&hfoc);  
 			break;
 
 	}
@@ -177,7 +170,7 @@ void fsm_exit_state(FSMStruct * fsmstate){
 			fsmstate->ready = 1;
 			break;
 		case SETUP_MODE:
-			//printf("Leaving Setup Menu\r\n");
+			printf("Leaving Setup Menu\r\n");
 			fsmstate->ready = 1;
 			break;
 		case ENCODER_MODE:
@@ -187,16 +180,19 @@ void fsm_exit_state(FSMStruct * fsmstate){
 		case MOTOR_MODE:
 			/* Don't stop commutating if there are high currents or FW happening */
 			//if( (fabs(controller.i_q_filt)<1.0f) && (fabs(controller.i_d_filt)<1.0f) ){
+			DRV8323_Set_PWM(&hfoc.drv8323s, 0, 0, 0);
+			pid_reset(&hfoc.id_ctrl);
+			pid_reset(&hfoc.iq_ctrl);
+
 			fsmstate->ready = 1;
-				
+			
 			
 				
 			break;
 		case CALIBRATION_MODE:
-			//printf("Exiting Calibration Mode\r\n");
+			printf("Exiting Calibration Mode\r\n");
 		
-			//free(error_array);
-			//free(lut_array);
+			
 
 			fsmstate->ready = 1;
 			break;
@@ -280,15 +276,15 @@ void enter_menu_state(void){
 
 	//gpio.led->write(0);
 }
-
+   
 void enter_setup_state(void){
 	printf("\r\n Configuration Options \n\r");
 	printf(" %-4s %-31s %-5s %-6s %-2s\r\n", "prefix", "parameter", "min", "max", "current value");
 	printf("\r\n Motor:\r\n");
-	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "g", "Gear Ratio", "0", "-", GR);
+	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "g", "Gear Ratio", "0", "-", hfoc.gear_ratio);
 	printf(" %-4s %-31s %-5s %-6s %.5f\n\r", "k", "Torque Constant (N-m/A)", "0", "-", KT);
 	printf("\r\n Control:\r\n");
-	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "b", "Current Bandwidth (Hz)", "100", "2000", I_BW);
+	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "b", "Current Bandwidth (Hz)", "50", "2000", hfoc.I_ctrl_bandwidth);
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "l", "Current Limit (A)", "0.0", "75.0", I_MAX);
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "p", "Max Position Setpoint (rad)", "-", "-", P_MAX);
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "v", "Max Velocity Setpoint (rad)/s", "-", "-", V_MAX);
@@ -297,7 +293,7 @@ void enter_setup_state(void){
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "f", "FW Current Limit (A)", "0.0", "33.0", I_FW_MAX);
 	//printf(" %-4s %-31s %-5s %-6s %.1f\n\r", "h", "Temp Cutoff (C) (0 = none)", "0", "150", TEMP_MAX);
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "c", "Continuous Current (A)", "0.0", "40.0", I_MAX_CONT);
-	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "a", "Calibration Current (A)", "0.0", "20.0", I_CAL);
+	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "a", "Calibration Current (A)", "0.0", "2.0", I_CAL);
 	printf("\r\n CAN:\r\n");
 //	    printf(" %-4s %-31s %-5s %-6s %-5i\n\r", "i", "CAN ID", "0", "127", CAN_ID);
 //	    printf(" %-4s %-31s %-5s %-6s %-5i\n\r", "m", "CAN TX ID", "0", "127", CAN_MASTER);

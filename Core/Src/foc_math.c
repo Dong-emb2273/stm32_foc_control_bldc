@@ -123,60 +123,66 @@ void svpwm(float valpha, float vbeta, float vbus, uint32_t pwm_period, uint32_t 
 
 	// 3. Calculate active vector times
 	int32_t t1, t2;
+	int32_t tu = 0, tv = 0, tw = 0;
 	switch(sector) {
 		case 1:
 			t1 = (int32_t)((alpha - ONE_BY_SQRT3 * beta) * pwm_period);
 			t2 = (int32_t)(TWO_BY_SQRT3 * beta * pwm_period);
-			*pwm_u = (pwm_period + t1 + t2) / 2;
-			*pwm_v = *pwm_u - t1;
-			*pwm_w = *pwm_v - t2;
+			tu = (pwm_period + t1 + t2) / 2;
+			tv = tu - t1;
+			tw = tv - t2;
 			break;
 
 		case 2:
 			t1 = (int32_t)((alpha + ONE_BY_SQRT3 * beta) * pwm_period);
 			t2 = (int32_t)((-alpha + ONE_BY_SQRT3 * beta) * pwm_period);
-			*pwm_v = (pwm_period + t1 + t2) / 2;
-			*pwm_u = *pwm_v - t2;
-			*pwm_w = *pwm_u - t1;
+			tv = (pwm_period + t1 + t2) / 2;
+			tu = tv - t2;
+			tw = tu - t1;
 			break;
 
 		case 3:
 			t1 = (int32_t)(TWO_BY_SQRT3 * beta * pwm_period);
 			t2 = (int32_t)((-alpha - ONE_BY_SQRT3 * beta) * pwm_period);
-			*pwm_v = (pwm_period + t1 + t2) / 2;
-			*pwm_w = *pwm_v - t1;
-			*pwm_u = *pwm_w - t2;
+			tv = (pwm_period + t1 + t2) / 2;
+			tw = tv - t1;
+			tu = tw - t2;
 			break;
 
 		case 4:
 			t1 = (int32_t)((-alpha + ONE_BY_SQRT3 * beta) * pwm_period);
 			t2 = (int32_t)(-TWO_BY_SQRT3 * beta * pwm_period);
-			*pwm_w = (pwm_period + t1 + t2) / 2;
-			*pwm_v = *pwm_w - t2;
-			*pwm_u = *pwm_v - t1;
+			tw = (pwm_period + t1 + t2) / 2;
+			tv = tw - t2;
+			tu = tv - t1;
 			break;
 
 		case 5:
 			t1 = (int32_t)((-alpha - ONE_BY_SQRT3 * beta) * pwm_period);
 			t2 = (int32_t)((alpha - ONE_BY_SQRT3 * beta) * pwm_period);
-			*pwm_w = (pwm_period + t1 + t2) / 2;
-			*pwm_u = *pwm_w - t1;
-			*pwm_v = *pwm_u - t2;
+			tw = (pwm_period + t1 + t2) / 2;
+			tu = tw - t1;
+			tv = tu - t2;
 			break;
 
 		case 6:
 			t1 = (int32_t)(-TWO_BY_SQRT3 * beta * pwm_period);
 			t2 = (int32_t)((alpha + ONE_BY_SQRT3 * beta) * pwm_period);
-			*pwm_u = (pwm_period + t1 + t2) / 2;
-			*pwm_w = *pwm_u - t2;
-			*pwm_v = *pwm_w - t1;
+			tu = (pwm_period + t1 + t2) / 2;
+			tw = tu - t2;
+			tv = tw - t1;
 			break;
 	}
 
-	// 4. Clamp outputs to valid range
-	*pwm_u = (*pwm_u > pwm_period) ? pwm_period : *pwm_u;
-	*pwm_v = (*pwm_v > pwm_period) ? pwm_period : *pwm_v;
-	*pwm_w = (*pwm_w > pwm_period) ? pwm_period : *pwm_w;
+	// 4. Clamp outputs safely to valid range [0, pwm_period]
+	if (tu < 0) tu = 0; else if (tu > pwm_period) tu = pwm_period;
+	if (tv < 0) tv = 0; else if (tv > pwm_period) tv = pwm_period;
+	if (tw < 0) tw = 0; else if (tw > pwm_period) tw = pwm_period;
+
+    // 5. Cast back to unsigned integers
+	*pwm_u = (uint32_t)tu;
+	*pwm_v = (uint32_t)tv;
+	*pwm_w = (uint32_t)tw;
 }
 //
 

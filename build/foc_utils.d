@@ -1,5 +1,16 @@
-build/foc_utils.o: Core/Src/foc_utils.c Core/Inc/foc_utils.h \
- Core/Inc/drv8323s.h Core/Inc/main.h \
+build/foc_utils.o: Core/Src/foc_utils.c \
+ Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h \
+ Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
+ Core/Inc/FreeRTOSConfig.h \
+ Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
+ Middlewares/Third_Party/FreeRTOS/Source/include/portable.h \
+ Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h \
+ Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h \
+ Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
+ Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
+ Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
+ Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
+ Core/Inc/foc_utils.h Core/Inc/drv8323s.h Core/Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  Core/Inc/stm32f4xx_hal_conf.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -32,6 +43,17 @@ build/foc_utils.o: Core/Src/foc_utils.c Core/Inc/foc_utils.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h Core/Inc/spi.h \
  Core/Inc/foc_math.h Core/Inc/pid_utils.h Core/Inc/as5048a.h \
  Core/Inc/flash.h Core/Inc/foc_utils.h Core/Inc/encoder.h
+Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h:
+Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
+Core/Inc/FreeRTOSConfig.h:
+Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
+Middlewares/Third_Party/FreeRTOS/Source/include/portable.h:
+Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h:
+Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h:
+Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h:
+Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
+Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
+Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:
 Core/Inc/foc_utils.h:
 Core/Inc/drv8323s.h:
 Core/Inc/main.h:

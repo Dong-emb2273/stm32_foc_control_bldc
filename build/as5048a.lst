@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccIlTgnS.s 			page 1
+ARM GAS  /tmp/ccnlTiVl.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccIlTgnS.s 			page 1
   19:Core/Src/as5048a.c **** 	value ^= value >> 4;
   38              		.loc 1 19 2 is_stmt 1 view .LVU3
   39              		.loc 1 19 8 is_stmt 0 view .LVU4
-ARM GAS  /tmp/ccIlTgnS.s 			page 2
+ARM GAS  /tmp/ccnlTiVl.s 			page 2
 
 
   40 0004 80EA1010 		eor	r0, r0, r0, lsr #4
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccIlTgnS.s 			page 1
   88 000e 0593     		str	r3, [sp, #20]
    9:Core/Src/as5048a.c **** 	as5048a.Mode = GPIO_MODE_OUTPUT_PP;
   89              		.loc 1 9 2 is_stmt 1 view .LVU16
-ARM GAS  /tmp/ccIlTgnS.s 			page 3
+ARM GAS  /tmp/ccnlTiVl.s 			page 3
 
 
    9:Core/Src/as5048a.c **** 	as5048a.Mode = GPIO_MODE_OUTPUT_PP;
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccIlTgnS.s 			page 1
  133              		@ frame_needed = 0, uses_anonymous_args = 0
   27:Core/Src/as5048a.c **** 	if (encd == NULL || hspi == NULL || cs_port == NULL || cs_pin == 0) {
  134              		.loc 1 27 2 view .LVU28
-ARM GAS  /tmp/ccIlTgnS.s 			page 4
+ARM GAS  /tmp/ccnlTiVl.s 			page 4
 
 
  135              		.loc 1 27 5 is_stmt 0 view .LVU29
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccIlTgnS.s 			page 1
   35:Core/Src/as5048a.c **** 	
  170              		.loc 1 35 2 view .LVU43
  171 001a 6368     		ldr	r3, [r4, #4]
-ARM GAS  /tmp/ccIlTgnS.s 			page 5
+ARM GAS  /tmp/ccnlTiVl.s 			page 5
 
 
  172 001c 2289     		ldrh	r2, [r4, #8]
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccIlTgnS.s 			page 1
   39:Core/Src/as5048a.c **** //
   40:Core/Src/as5048a.c **** 
   41:Core/Src/as5048a.c **** int AS5048A_Config_ALL(AS5048A_t *encd){
-ARM GAS  /tmp/ccIlTgnS.s 			page 6
+ARM GAS  /tmp/ccnlTiVl.s 			page 6
 
 
  221              		.loc 1 41 40 is_stmt 1 view -0
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccIlTgnS.s 			page 1
  266              		.thumb_func
  267              		.fpu fpv4-sp-d16
  269              	AS5048A_CheckExist:
-ARM GAS  /tmp/ccIlTgnS.s 			page 7
+ARM GAS  /tmp/ccnlTiVl.s 			page 7
 
 
  270              	.LVL23:
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccIlTgnS.s 			page 1
  314 002e 0223     		movs	r3, #2
  315 0030 2A46     		mov	r2, r5
  316 0032 0DF10E01 		add	r1, sp, #14
-ARM GAS  /tmp/ccIlTgnS.s 			page 8
+ARM GAS  /tmp/ccnlTiVl.s 			page 8
 
 
  317 0036 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccIlTgnS.s 			page 1
   70:Core/Src/as5048a.c **** 	}
   71:Core/Src/as5048a.c **** 
   72:Core/Src/as5048a.c **** 	uint16_t data_15bit = raw_data & 0x7FFF;
-ARM GAS  /tmp/ccIlTgnS.s 			page 9
+ARM GAS  /tmp/ccnlTiVl.s 			page 9
 
 
  361              		.loc 1 72 2 is_stmt 1 view .LVU87
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccIlTgnS.s 			page 1
  399              		.cfi_endproc
  400              	.LFE138:
  402              		.section	.text.AS5048A_DetectExit,"ax",%progbits
-ARM GAS  /tmp/ccIlTgnS.s 			page 10
+ARM GAS  /tmp/ccnlTiVl.s 			page 10
 
 
  403              		.align	1
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccIlTgnS.s 			page 1
  451              	.LVL42:
   92:Core/Src/as5048a.c **** 		HAL_Delay(1);
  452              		.loc 1 92 3 is_stmt 1 discriminator 3 view .LVU111
-ARM GAS  /tmp/ccIlTgnS.s 			page 11
+ARM GAS  /tmp/ccnlTiVl.s 			page 11
 
 
  453 0014 0120     		movs	r0, #1
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccIlTgnS.s 			page 1
   99:Core/Src/as5048a.c **** //
  100:Core/Src/as5048a.c **** 
  101:Core/Src/as5048a.c **** int AS5048A_StartRead(void *handle) {
-ARM GAS  /tmp/ccIlTgnS.s 			page 12
+ARM GAS  /tmp/ccnlTiVl.s 			page 12
 
 
  497              		.loc 1 101 37 is_stmt 1 view -0
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccIlTgnS.s 			page 1
  109:Core/Src/as5048a.c **** 		return 0;
  110:Core/Src/as5048a.c **** 	}
  111:Core/Src/as5048a.c **** 
-ARM GAS  /tmp/ccIlTgnS.s 			page 13
+ARM GAS  /tmp/ccnlTiVl.s 			page 13
 
 
  112:Core/Src/as5048a.c **** 	return 1;
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccIlTgnS.s 			page 1
  120:Core/Src/as5048a.c **** 	const uint16_t raw_data = ((uint16_t)self->spi_rx_buffer[0] << 8) | self->spi_rx_buffer[1];
  591              		.loc 1 120 2 view .LVU143
  592              		.loc 1 120 58 is_stmt 0 view .LVU144
-ARM GAS  /tmp/ccIlTgnS.s 			page 14
+ARM GAS  /tmp/ccnlTiVl.s 			page 14
 
 
  593 0008 837A     		ldrb	r3, [r0, #10]	@ zero_extendqisi2
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccIlTgnS.s 			page 1
  630 003a 00BF     		.align	2
  631              	.L42:
  632 003c D002B43C 		.word	1018430160
-ARM GAS  /tmp/ccIlTgnS.s 			page 15
+ARM GAS  /tmp/ccnlTiVl.s 			page 15
 
 
  633              		.cfi_endproc
@@ -853,28 +853,28 @@ ARM GAS  /tmp/ccIlTgnS.s 			page 1
  643              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
  644              		.file 8 "Core/Inc/as5048a.h"
  645              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
-ARM GAS  /tmp/ccIlTgnS.s 			page 16
+ARM GAS  /tmp/ccnlTiVl.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 as5048a.c
-     /tmp/ccIlTgnS.s:18     .text.calc_even_parity:0000000000000000 $t
-     /tmp/ccIlTgnS.s:25     .text.calc_even_parity:0000000000000000 calc_even_parity
-     /tmp/ccIlTgnS.s:60     .text.AS5048A_Config_CS:0000000000000000 $t
-     /tmp/ccIlTgnS.s:66     .text.AS5048A_Config_CS:0000000000000000 AS5048A_Config_CS
-     /tmp/ccIlTgnS.s:120    .text.AS5048A_Config:0000000000000000 $t
-     /tmp/ccIlTgnS.s:127    .text.AS5048A_Config:0000000000000000 AS5048A_Config
-     /tmp/ccIlTgnS.s:211    .text.AS5048A_Config_ALL:0000000000000000 $t
-     /tmp/ccIlTgnS.s:218    .text.AS5048A_Config_ALL:0000000000000000 AS5048A_Config_ALL
-     /tmp/ccIlTgnS.s:262    .text.AS5048A_CheckExist:0000000000000000 $t
-     /tmp/ccIlTgnS.s:269    .text.AS5048A_CheckExist:0000000000000000 AS5048A_CheckExist
-     /tmp/ccIlTgnS.s:403    .text.AS5048A_DetectExit:0000000000000000 $t
-     /tmp/ccIlTgnS.s:410    .text.AS5048A_DetectExit:0000000000000000 AS5048A_DetectExit
-     /tmp/ccIlTgnS.s:487    .text.AS5048A_StartRead:0000000000000000 $t
-     /tmp/ccIlTgnS.s:494    .text.AS5048A_StartRead:0000000000000000 AS5048A_StartRead
-     /tmp/ccIlTgnS.s:565    .text.AS5048A_ParseData:0000000000000000 $t
-     /tmp/ccIlTgnS.s:572    .text.AS5048A_ParseData:0000000000000000 AS5048A_ParseData
-     /tmp/ccIlTgnS.s:632    .text.AS5048A_ParseData:000000000000003c $d
+     /tmp/ccnlTiVl.s:18     .text.calc_even_parity:0000000000000000 $t
+     /tmp/ccnlTiVl.s:25     .text.calc_even_parity:0000000000000000 calc_even_parity
+     /tmp/ccnlTiVl.s:60     .text.AS5048A_Config_CS:0000000000000000 $t
+     /tmp/ccnlTiVl.s:66     .text.AS5048A_Config_CS:0000000000000000 AS5048A_Config_CS
+     /tmp/ccnlTiVl.s:120    .text.AS5048A_Config:0000000000000000 $t
+     /tmp/ccnlTiVl.s:127    .text.AS5048A_Config:0000000000000000 AS5048A_Config
+     /tmp/ccnlTiVl.s:211    .text.AS5048A_Config_ALL:0000000000000000 $t
+     /tmp/ccnlTiVl.s:218    .text.AS5048A_Config_ALL:0000000000000000 AS5048A_Config_ALL
+     /tmp/ccnlTiVl.s:262    .text.AS5048A_CheckExist:0000000000000000 $t
+     /tmp/ccnlTiVl.s:269    .text.AS5048A_CheckExist:0000000000000000 AS5048A_CheckExist
+     /tmp/ccnlTiVl.s:403    .text.AS5048A_DetectExit:0000000000000000 $t
+     /tmp/ccnlTiVl.s:410    .text.AS5048A_DetectExit:0000000000000000 AS5048A_DetectExit
+     /tmp/ccnlTiVl.s:487    .text.AS5048A_StartRead:0000000000000000 $t
+     /tmp/ccnlTiVl.s:494    .text.AS5048A_StartRead:0000000000000000 AS5048A_StartRead
+     /tmp/ccnlTiVl.s:565    .text.AS5048A_ParseData:0000000000000000 $t
+     /tmp/ccnlTiVl.s:572    .text.AS5048A_ParseData:0000000000000000 AS5048A_ParseData
+     /tmp/ccnlTiVl.s:632    .text.AS5048A_ParseData:000000000000003c $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_Init

@@ -52,12 +52,12 @@ void flash_read_config(motor_config_t *data) {
 void flash_default_config(motor_config_t *data) {
     data->id_kp = 0.01f;
     data->id_ki = 4.09f;
-    data->id_out_max = 0.01f;
+    data->id_out_max = 0.0000001f;
     data->id_e_deadband = 0.0001f;
 
     data->iq_kp = 0.01f;
     data->iq_ki = 4.09f;
-    data->iq_out_max = 0.6f;
+    data->iq_out_max = 3.0f;
     data->iq_e_deadband = 0.0001f;
 
     data->I_ctrl_bandwidth = 50.0f;
@@ -71,7 +71,7 @@ void flash_default_config(motor_config_t *data) {
     data->pos_ki = 0.0f;
     data->pos_kd = 0.01f;
     data->pos_out_max = 1200.0f;
-    data->pos_e_deadband = 0.1f;
+    data->pos_e_deadband = 0.05f;
 
     data->voffset_a = 1.65f;
     data->voffset_b = 1.65f;

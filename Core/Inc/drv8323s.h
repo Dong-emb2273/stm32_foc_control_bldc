@@ -49,7 +49,7 @@
 
 typedef struct {
 
-  TIM_TypeDef *Timx;
+	TIM_TypeDef *Timx;
 	
 	uint32_t pwm_freq;
 	uint32_t pwm_resolution;

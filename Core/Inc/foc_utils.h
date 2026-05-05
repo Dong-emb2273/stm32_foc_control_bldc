@@ -80,14 +80,15 @@ typedef enum {
 typedef struct {
 	
 //	AS5048A_t AS5048A;
-	
+	DRV8323_t drv8323s;
+
 	uint8_t pole_pairs;
 	float kv;
 	float Rs;
 	float Ld;
 	float Lq;
 	float max_current;
-
+	float flux_linkage;
 
 	float m_angle_rad; 
 	float e_angle_rad; 
@@ -126,6 +127,11 @@ typedef struct {
 	PID_Controller_t id_ctrl, iq_ctrl;
 	PID_Controller_t speed_ctrl;
 	PID_Controller_t pos_ctrl;
+
+	//field weakening
+	PID_Controller_t fw_ctrl;
+	float fw_vs_ref;
+	_Bool fw_enable;
 	
 	float sp_pos, sp_vel, sp_iq, kp, kd;
 
@@ -135,12 +141,17 @@ typedef struct {
 	dir_mode_t sensor_dir;
 	float *angle_filtered;
 
+	uint8_t done_orderphase;
+	uint8_t done_cal_encoder;
 
 
 	//debug
 	int sample_index;
 	_Bool collect_sample_flag;
 }foc_t;
+
+extern foc_t hfoc; 
+
 
 void foc_pwm_init(foc_t *hfoc, volatile uint32_t *pwm_a, volatile uint32_t *pwm_b, volatile uint32_t *pwm_c, uint32_t pwm_res);
 
@@ -151,6 +162,14 @@ void foc_sensor_init(foc_t *hfoc, float m_rad_offset, dir_mode_t sensor_dir);
 void foc_gear_reducer_init(foc_t *hfoc, float ratio);
 
 void foc_set_limit_current(foc_t *hfoc, float i_limit);
+
+void foc_MTPA(foc_t *hfoc, float Is, float *Id_ref, float *Iq_ref);
+
+void foc_fw_set_vs_ref(foc_t *hfoc, float vs_ref);
+
+float foc_fw_update(foc_t *hfoc);
+
+void foc_current_limit(float *id_ref, float *iq_ref, float max_current);
 
 void foc_current_control_update(foc_t *hfoc);
 
@@ -164,9 +183,13 @@ float foc_calc_mech_pos_encoder(foc_t *hfoc, float encd_deg);
 
 void foc_sensored_calc_electric_angle(foc_t *hfoc);
 
-void foc_start_calibration(void);
+void foc_start_calibration(foc_t *hfoc);
 
 void foc_auto_calibration_update(foc_t *hfoc);
+
+void foc_auto_calibration(foc_t *hfoc);
+
+void foc_auto_cal_encoder_update(foc_t *hfoc);
 
 void foc_cal_encoder_misalignment(foc_t *hfoc);
 
