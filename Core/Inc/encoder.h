@@ -90,7 +90,7 @@ extern Encoder_t encoder;
 int ENCODER_Setup();
 int ENCODER_AutoDetect();
 float ENCODER_GetDegree(Encoder_t *encd);
-float ENCODER_GetRPM(Encoder_t *encd, uint32_t dt_us);
+float ENCODER_GetRPM(Encoder_t *encd, float dt_us);
 float ENCODER_GetActualDegree(Encoder_t *encd);
 void Encoder_Init_AutoDetect(Encoder_t *enc, EncoderLocation_t loc, Encoder_Port_t *port);
 

@@ -1,4 +1,5 @@
 #include "flash.h"
+#include "foc_utils.h"
 #include <string.h>
 
 HAL_StatusTypeDef flash_save_config(motor_config_t *data) {
@@ -57,7 +58,7 @@ void flash_default_config(motor_config_t *data) {
 
     data->iq_kp = 0.01f;
     data->iq_ki = 4.09f;
-    data->iq_out_max = 3.0f;
+    data->iq_out_max = 2.5f;
     data->iq_e_deadband = 0.0001f;
 
     data->I_ctrl_bandwidth = 50.0f;
@@ -81,11 +82,32 @@ void flash_default_config(motor_config_t *data) {
 
     data->freq = 25000;
     data->dir = NORMAL_DIR;
+    data->pole_pairs = 7;
     data->gear_ratio = 1.0f;
+    data->kt = 0.1f;
+    data->i_cal = 0.6f;
 
     data->Rs = 0.26f;
     data->Ld = 0.000160f;
     data->Lq = 0.000160f;
+
+    data->can_id = 1;
+    data->can_master = 0;
+    data->can_timeout = 1000;
+
+    data->pos_min = -100.0f;
+    data->pos_max = 100.0f;
+    data->vel_min = -1000.0f;
+    data->vel_max = 1000.0f;
+    data->tor_min = -10.0f;
+    data->tor_max = 10.0f;
+    data->kp_min = 0.0f;
+    data->kp_max = 100.0f;
+    data->kd_min = 0.0f;
+    data->kd_max = 5.0f;
+
+
+    
 }
 void copy_to_local(motor_config_t *data, foc_t *hfoc) {
     hfoc->id_ctrl.kp = data->id_kp;
@@ -102,8 +124,6 @@ void copy_to_local(motor_config_t *data, foc_t *hfoc) {
     hfoc->iq_ctrl.out_min = -data->iq_out_max;
     hfoc->iq_ctrl.e_deadband = data->iq_e_deadband;
 
-    hfoc->I_ctrl_bandwidth = data->I_ctrl_bandwidth;
-    
     hfoc->speed_ctrl.kp = data->speed_kp;
     hfoc->speed_ctrl.ki = data->speed_ki;
     hfoc->speed_ctrl.out_max = data->speed_out_max;
@@ -118,13 +138,13 @@ void copy_to_local(motor_config_t *data, foc_t *hfoc) {
     hfoc->pos_ctrl.e_deadband = data->pos_e_deadband;
 
 
-    hfoc->sensor_dir = data->dir;
-    hfoc->gear_ratio = data->gear_ratio;
-    hfoc->m_angle_offset = data->encd_offset;
 
-    hfoc->Rs = data->Rs;
-    hfoc->Ld = data->Ld;
-    hfoc->Lq = data->Lq;
+    // hfoc->pole_pairs = data->pole_pairs;
+    // hfoc->m_angle_offset = data->encd_offset;
+
+    // hfoc->Rs = data->Rs;
+    // hfoc->Ld = data->Ld;
+    // hfoc->Lq = data->Lq;
 }
 
 void copy_from_local(motor_config_t *data, foc_t *hfoc) {
@@ -138,7 +158,7 @@ void copy_from_local(motor_config_t *data, foc_t *hfoc) {
     data->iq_out_max = hfoc->iq_ctrl.out_max;
     data->iq_e_deadband = hfoc->iq_ctrl.e_deadband;
 
-    data->I_ctrl_bandwidth = hfoc->I_ctrl_bandwidth;
+
 
     data->speed_kp = hfoc->speed_ctrl.kp;
     data->speed_ki = hfoc->speed_ctrl.ki;
@@ -151,13 +171,7 @@ void copy_from_local(motor_config_t *data, foc_t *hfoc) {
     data->pos_out_max = hfoc->pos_ctrl.out_max;
     data->pos_e_deadband = hfoc->pos_ctrl.e_deadband;
 
-    data->dir = hfoc->sensor_dir;
-    data->gear_ratio = hfoc->gear_ratio;
-    data->encd_offset = hfoc->m_angle_offset;
 
-    data->Rs = hfoc->Rs;
-    data->Ld = hfoc->Ld;
-    data->Lq = hfoc->Lq;
 }
 
 

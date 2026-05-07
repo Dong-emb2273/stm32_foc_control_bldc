@@ -16,7 +16,7 @@
 #include "user_config.h"
 #include "foc_utils.h"
 #include "encoder.h"
-
+#include "flash.h"
 
 
 
@@ -43,8 +43,8 @@ void run_fsm(FSMStruct * fsmstate){
 			break;
 
 		case CALIBRATION_MODE:
-			if(!hfoc.done_orderphase){foc_auto_calibration_update(&hfoc);}
-			else if(!hfoc.done_cal_encoder){foc_auto_cal_encoder_update(&hfoc);}
+			// if(!hfoc.done_orderphase){foc_auto_calibration_update(&hfoc);}
+			// else if(!hfoc.done_cal_encoder){foc_auto_cal_encoder_update(&hfoc);}
             
         
             if(hfoc.done_cal_encoder == 1 && hfoc.done_orderphase == 1){
@@ -86,24 +86,24 @@ void run_fsm(FSMStruct * fsmstate){
 
 			switch (hfoc.control_mode) {
 				case TORQUE_CONTROL_MODE: {
-					float deg_encd = ENCODER_GetActualDegree(&encoder);
-					foc_calc_mech_pos_encoder(&hfoc, deg_encd);
+					
+					hfoc.actual_angle = ENCODER_GetActualDegree(&encoder);
 					// sPoint_Tor = k*(sPoint_Pos - hfoc.actual_angle) + p*hfoc.actual_rpm ;
 					hfoc.id_ref = 0.0f;
 					hfoc.iq_ref = sPoint_Tor;
-					torque_control_update();
+					foc_torque_control_update(&hfoc);
 					break;
 				}
 				case POSITION_CONTROL_MODE: {
-					if (torque_control_update() == 1) {
-						float deg_encd = ENCODER_GetActualDegree(&encoder);
-						foc_calc_mech_pos_encoder(&hfoc, deg_encd);
+					if (foc_torque_control_update(&hfoc) == 1) {
+						hfoc.actual_angle = ENCODER_GetActualDegree(&encoder);
+						
 						foc_position_control_update(&hfoc, sPoint_Pos);
 					}
 					break;
 				}	
 				case SPEED_CONTROL_MODE: {
-					if (torque_control_update() == 1) {
+					if (foc_torque_control_update(&hfoc) == 1) {
 						foc_speed_control_update(&hfoc, sPoint_Vel);
 
 					}
@@ -171,6 +171,9 @@ void fsm_exit_state(FSMStruct * fsmstate){
 			break;
 		case SETUP_MODE:
 			printf("Leaving Setup Menu\r\n");
+			printf("Saving Setup Menu\r\n");
+			flash_save_config(&m_config);
+			printf("Setup Menu Saved\r\n");
 			fsmstate->ready = 1;
 			break;
 		case ENCODER_MODE:
@@ -281,10 +284,11 @@ void enter_setup_state(void){
 	printf("\r\n Configuration Options \n\r");
 	printf(" %-4s %-31s %-5s %-6s %-2s\r\n", "prefix", "parameter", "min", "max", "current value");
 	printf("\r\n Motor:\r\n");
-	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "g", "Gear Ratio", "0", "-", hfoc.gear_ratio);
-	printf(" %-4s %-31s %-5s %-6s %.5f\n\r", "k", "Torque Constant (N-m/A)", "0", "-", KT);
+	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "g", "Gear Ratio", "0", "-", GR);
+	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "k", "Torque Constant (N-m/A)", "0", "-", KT);
 	printf("\r\n Control:\r\n");
-	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "b", "Current Bandwidth (Hz)", "50", "2000", hfoc.I_ctrl_bandwidth);
+	printf(" %-4s %-31s %-5s %-6s %d\n\r", "o", "Control Mode(0:Tor,1:Spd,2:Pos)", "0", "2", hfoc.control_mode);
+	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "b", "Current Bandwidth (Hz)", "50", "2000", I_BW);
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "l", "Current Limit (A)", "0.0", "75.0", I_MAX);
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "p", "Max Position Setpoint (rad)", "-", "-", P_MAX);
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "v", "Max Velocity Setpoint (rad)/s", "-", "-", V_MAX);
@@ -295,9 +299,9 @@ void enter_setup_state(void){
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "c", "Continuous Current (A)", "0.0", "40.0", I_MAX_CONT);
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "a", "Calibration Current (A)", "0.0", "2.0", I_CAL);
 	printf("\r\n CAN:\r\n");
-//	    printf(" %-4s %-31s %-5s %-6s %-5i\n\r", "i", "CAN ID", "0", "127", CAN_ID);
-//	    printf(" %-4s %-31s %-5s %-6s %-5i\n\r", "m", "CAN TX ID", "0", "127", CAN_MASTER);
-//	    printf(" %-4s %-31s %-5s %-6s %d\n\r", "t", "CAN Timeout (cycles)(0 = none)", "0", "100000", CAN_TIMEOUT);
+	printf(" %-4s %-31s %-5s %-6s %-5li\n\r", "i", "CAN ID", "0", "127", CAN_ID);
+	printf(" %-4s %-31s %-5s %-6s %-5li\n\r", "m", "CAN TX ID", "0", "127", CAN_MASTER);
+	printf(" %-4s %-31s %-5s %-6s %-5li\n\r", "t", "CAN Timeout (cycles)(0 = none)", "0", "100000", CAN_TIMEOUT);
 	printf(" \n\r To change a value, type 'prefix''value''ENTER'\n\r e.g. 'b1000''ENTER'\r\n ");
 	printf("VALUES NOT ACTIVE UNTIL POWER CYCLE! \n\r\n\r");
 }
@@ -306,38 +310,59 @@ void process_user_input(FSMStruct * fsmstate){
 	/* Collects user input from serial (maybe eventually CAN) and updates settings */
 
 	switch (fsmstate->cmd_id){
+		case 'o': {
+            int mode_val = atoi(fsmstate->cmd_buff);
+            if (mode_val == 0) {
+                hfoc.control_mode = TORQUE_CONTROL_MODE;
+                printf("Control Mode set to TORQUE (0)\r\n");
+            } 
+            else if (mode_val == 1) {
+                hfoc.control_mode = SPEED_CONTROL_MODE;
+                printf("Control Mode set to SPEED (1)\r\n");
+            } 
+            else if (mode_val == 2) {
+                hfoc.control_mode = POSITION_CONTROL_MODE;
+                printf("Control Mode set to POSITION (2)\r\n");
+            } 
+            else {
+                printf("Invalid Mode! Please enter 0, 1, or 2.\r\n");
+            }
+            break;
+        }
 		case 'b':
 			I_BW = fmaxf(fminf(atof(fsmstate->cmd_buff), 2000.0f), 100.0f);
 			printf("I_BW set to %f\r\n", I_BW);
 			break;
 		case 'i':
-//			 CAN_ID = atoi(fsmstate->cmd_buff);
-//			 printf("CAN_ID set to %d\r\n", CAN_ID);
+			 CAN_ID = atoi(fsmstate->cmd_buff);
+			 printf("CAN_ID set to %ld\r\n", CAN_ID);
 			break;
 		case 'm':
-//			 CAN_MASTER = atoi(fsmstate->cmd_buff);
-//			 printf("CAN_TX_ID set to %d\r\n", CAN_MASTER);
-			break;
-		case 'l':
-			I_MAX = fmaxf(fminf(atof(fsmstate->cmd_buff), 75.0f), 0.0f);
-			printf("I_MAX set to %f\r\n", I_MAX);
-			break;
-		case 'f':
-			I_FW_MAX = fmaxf(fminf(atof(fsmstate->cmd_buff), 33.0f), 0.0f);
-			printf("I_FW_MAX set to %f\r\n", I_FW_MAX);
+			 CAN_MASTER = atoi(fsmstate->cmd_buff);
+			 printf("CAN_TX_ID set to %ld\r\n", CAN_MASTER);
 			break;
 		case 't':
-//			 CAN_TIMEOUT = atoi(fsmstate->cmd_buff);
-//			 printf("CAN_TIMEOUT set to %d\r\n", CAN_TIMEOUT);
+			 CAN_TIMEOUT = atoi(fsmstate->cmd_buff);
+			 printf("CAN_TIMEOUT set to %ld\r\n", CAN_TIMEOUT);
 			break;
-		case 'h':
-			TEMP_MAX = fmaxf(fminf(atof(fsmstate->cmd_buff), 150.0f), 0.0f);
-			printf("TEMP_MAX set to %f\r\n", TEMP_MAX);
-			break;
-		case 'c':
-			I_MAX_CONT = fmaxf(fminf(atof(fsmstate->cmd_buff), 40.0f), 0.0f);
-			printf("I_MAX_CONT set to %f\r\n", I_MAX_CONT);
-			break;
+
+			// case 'l':
+		// 	I_MAX = fmaxf(fminf(atof(fsmstate->cmd_buff), 75.0f), 0.0f);
+		// 	printf("I_MAX set to %f\r\n", I_MAX);
+		// 	break;
+		// case 'f':
+		// 	I_FW_MAX = fmaxf(fminf(atof(fsmstate->cmd_buff), 33.0f), 0.0f);
+		// 	printf("I_FW_MAX set to %f\r\n", I_FW_MAX);
+		// 	break;
+
+		// case 'h':
+		// 	TEMP_MAX = fmaxf(fminf(atof(fsmstate->cmd_buff), 150.0f), 0.0f);
+		// 	printf("TEMP_MAX set to %f\r\n", TEMP_MAX);
+		// 	break;
+		// case 'c':
+		// 	I_MAX_CONT = fmaxf(fminf(atof(fsmstate->cmd_buff), 40.0f), 0.0f);
+		// 	printf("I_MAX_CONT set to %f\r\n", I_MAX_CONT);
+		// 	break;
 		case 'a':
 			I_CAL = fmaxf(fminf(atof(fsmstate->cmd_buff), 20.0f), 0.0f);
 			printf("I_CAL set to %f\r\n", I_CAL);
@@ -374,12 +399,6 @@ void process_user_input(FSMStruct * fsmstate){
 
 		}
 
-	/* Write new settings to flash */
-
-//	 if (!preference_writer_ready(prefs)){ preference_writer_open(&prefs);}
-//	 preference_writer_flush(&prefs);
-//	 preference_writer_close(&prefs);
-//	 preference_writer_load(prefs);
 
 	enter_setup_state();
 

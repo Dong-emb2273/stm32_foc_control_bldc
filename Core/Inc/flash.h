@@ -24,11 +24,13 @@ typedef struct {
     float id_ki;
     float id_out_max;
     float id_e_deadband;
+
     float iq_kp;
     float iq_ki;
     float iq_out_max;
     float iq_e_deadband;
-	float I_ctrl_bandwidth;
+	
+    float I_ctrl_bandwidth;
     
     float speed_kp;
     float speed_ki;
@@ -48,12 +50,32 @@ typedef struct {
     float encd_error_comp[ERROR_LUT_SIZE];
 
     uint32_t freq;
+    float i_cal;
+    uint8_t pole_pairs;
     dir_mode_t dir;
+    float kt;
 	float gear_ratio;
 
     float Rs;
     float Ld;
     float Lq;
+
+    int32_t can_id;
+    int32_t can_master;
+    int32_t can_timeout;
+
+    float pos_min;
+    float pos_max;
+    float vel_min;
+    float vel_max;
+    float tor_min;
+    float tor_max;
+    float kp_min;
+    float kp_max;
+    float kd_min;
+    float kd_max;
+
+
 
     uint8_t valid_EOF;
 }motor_config_t;

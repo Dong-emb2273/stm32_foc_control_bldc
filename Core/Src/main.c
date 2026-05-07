@@ -107,28 +107,7 @@ uint32_t get_dt_us(void) {
 }
 uint32_t dt_us;
 
-int torque_control_update(void) {
-  int ret = 0;
-  static uint8_t event_speed_loop_count = 0;
-	static float rpm_temp = 0.0f;
-	
-  
-	foc_current_control_update(&hfoc);
-//	foc_get_mech_degree(&hfoc);
 
-  if (event_speed_loop_count > SPEED_CONTROL_CYCLE) {
-    event_speed_loop_count = 0;
-    dt_us = get_dt_us();
-    float rpm_encd = ENCODER_GetRPM(&encoder, dt_us);
-    foc_calc_mech_rpm_encoder(&hfoc, rpm_encd);
-    foc_set_flag();
-    ret = 1;
-  }
-
-  event_speed_loop_count++;
-
-  return ret;
-}
 
 void control_init(void) {
 	hfoc.angle_filtered = &encoder.angle_filtered;
@@ -171,21 +150,18 @@ void control_init(void) {
 
 	
 	foc_pwm_init(&hfoc, &(TIM1->CCR1), &(TIM1->CCR2), &(TIM1->CCR3), hfoc.drv8323s.pwm_resolution);
-  foc_motor_init(&hfoc, POLE_PAIR, 750);
-  foc_sensor_init(&hfoc, m_config.encd_offset, REVERSE_DIR);
-  foc_gear_reducer_init(&hfoc, 1.0);
+
   foc_set_limit_current(&hfoc, 10.0);
  
 }
 uint8_t Serial2RxBuffer[1];
 
-float __float_reg[64];
-int __int_reg[256];
 
-float sPoint_Vel = 50.0f;
+
+float sPoint_Vel = 5.0f;
 float sPoint_Pos = 0;
 float sPoint_Tor = 0;
-volatile uint8_t is_calibrating = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -247,31 +223,6 @@ int main(void)
   TIM_COUNT_US_CONFIG();
 
 
-  /* Sanitize configs in case flash is empty*/
-  if(E_ZERO==-1){E_ZERO = 0;}
-  if(M_ZERO==-1){M_ZERO = 0;}
-  if(isnan(I_BW) || I_BW==-1){I_BW = 1000;}
-  if(isnan(I_MAX) || I_MAX ==-1){I_MAX=40;}
-  if(isnan(I_FW_MAX) || I_FW_MAX ==-1){I_FW_MAX=0;}
-  if(CAN_ID==-1){CAN_ID = 1;}
-  if(CAN_MASTER==-1){CAN_MASTER = 0;}
-  if(CAN_TIMEOUT==-1){CAN_TIMEOUT = 1000;}
-  if(isnan(R_NOMINAL) || R_NOMINAL==-1){R_NOMINAL = 0.0f;}
-  if(isnan(TEMP_MAX) || TEMP_MAX==-1){TEMP_MAX = 125.0f;}
-  if(isnan(I_MAX_CONT) || I_MAX_CONT==-1){I_MAX_CONT = 14.0f;}
-  if(isnan(I_CAL)||I_CAL==-1){I_CAL = 5.0f;}
-  if(isnan(PPAIRS) || PPAIRS==-1){PPAIRS = 21.0f;}
-  if(isnan(GR) || GR==-1){GR = 1.0f;}
-  if(isnan(KT) || KT==-1){KT = 1.0f;}
-  if(isnan(KP_MAX) || KP_MAX==-1){KP_MAX = 500.0f;}
-  if(isnan(KP_MIN) || KP_MIN==-1){KP_MIN = 0.0f;}
-  if(isnan(KD_MAX) || KD_MAX==-1){KD_MAX = 5.0f;}
-  if(isnan(KD_MIN) || KD_MIN==-1){KD_MIN = 0.0f;}
-  if(isnan(P_MAX)){P_MAX = 12.5f;}
-  if(isnan(P_MIN)){P_MIN = -12.5f;}
-  if(isnan(V_MAX)){V_MAX = 65.0f;}
-  if(isnan(V_MIN)){V_MIN = -65.0f;}
-
   
   // Load Config 
   flash_read_config(&m_config);
@@ -308,7 +259,7 @@ int main(void)
 	// is_calibrating = 1;
   // foc_cal_encoder(&hfoc);
 	// is_calibrating = 0;
-	hfoc.control_mode = POSITION_CONTROL_MODE;
+	hfoc.control_mode = SPEED_CONTROL_MODE;
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -462,12 +413,12 @@ static void MX_DMA_Init(void)
 
 void TIM3_IRQHandler(void){
 	TIM3->SR &= ~TIM_SR_UIF;
-//	DRV8323_Get_Current(&bldc, &hfoc.ia, &hfoc.ib,&hfoc.ic);
-//	USART_Get_Angle(&usart_tx, hfoc.actual_angle);
-//	USART_Get_Vel(&usart_tx, hfoc.actual_rpm);
-//	USART_Get_Pos(&usart_tx, hfoc.actual_angle);
-//	USART_Get_Current(&usart_tx, hfoc.ia, hfoc.ib, hfoc.ic);	
-//	USART_TRANSMIT(&usart_tx);
+  //	DRV8323_Get_Current(&bldc, &hfoc.ia, &hfoc.ib,&hfoc.ic);
+  //	USART_Get_Angle(&usart_tx, hfoc.actual_angle);
+  //	USART_Get_Vel(&usart_tx, hfoc.actual_rpm);
+  //	USART_Get_Pos(&usart_tx, hfoc.actual_angle);
+  //	USART_Get_Current(&usart_tx, hfoc.ia, hfoc.ib, hfoc.ic);	
+  //	USART_TRANSMIT(&usart_tx);
 	
 	
 }
@@ -512,11 +463,13 @@ void ADC_IRQHandler(void) {
 void StartCalibrationTask(void *argument)
 {
   /* USER CODE BEGIN 5 */
+  hfoc.done_orderphase = 1;
+  hfoc.done_cal_encoder = 1;
   /* Infinite loop */
   for(;;)
   {
-    // if(!hfoc.done_orderphase){foc_auto_calibration(&hfoc);}
-		// if(!hfoc.done_cal_encoder){foc_cal_encoder(&hfoc);}
+    if(!hfoc.done_orderphase){foc_auto_calibration(&hfoc);}
+		if(!hfoc.done_cal_encoder){foc_cal_encoder(&hfoc);}
             
     osDelay(10);
   }

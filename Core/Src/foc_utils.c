@@ -12,6 +12,7 @@
 #include <stdio.h>
 
 #include "foc_utils.h"
+#include "user_config.h"
 #include "flash.h"
 #include "encoder.h"
 
@@ -54,8 +55,8 @@ void foc_motor_init(foc_t *hfoc, uint8_t pole_pairs, float kv) {
 		return;
 	}
 
-	hfoc->pole_pairs = pole_pairs;
-	hfoc->kv = kv;
+	// hfoc->pole_pairs = pole_pairs;
+	// hfoc->kv = kv;
 }
 
 //
@@ -63,17 +64,12 @@ void foc_motor_init(foc_t *hfoc, uint8_t pole_pairs, float kv) {
 void foc_sensor_init(foc_t *hfoc, float m_rad_offset, dir_mode_t sensor_dir) {
 	if (hfoc == NULL) return;
 
-	hfoc->m_angle_offset = m_rad_offset;
-	hfoc->sensor_dir = sensor_dir;
+	// hfoc->m_angle_offset = m_rad_offset;
+	
 }
 
 //
 
-void foc_gear_reducer_init(foc_t *hfoc, float ratio) {
-	if (hfoc == NULL) return;
-
-	hfoc->gear_ratio = ratio;
-}
 
 //
 
@@ -86,7 +82,7 @@ void foc_set_limit_current(foc_t *hfoc, float i_limit) {
 //
 
 void foc_MTPA(foc_t *hfoc, float Is, float *Id_ref, float *Iq_ref) {
-    float L_diff = hfoc->Lq - hfoc->Ld;
+    float L_diff = L_Q - L_D;
     if (L_diff < 0) {
         *Id_ref = 0.0f;
         *Iq_ref = Is;
@@ -130,6 +126,28 @@ void foc_current_limit(float *id_ref, float *iq_ref, float max_current) {
 }
 
 //
+int foc_torque_control_update(foc_t *hfoc ) {
+    int ret = 0;
+    static uint8_t event_speed_loop_count = 0;
+    static float rpm_temp = 0.0f;
+        
+    foc_current_control_update(hfoc);
+    
+
+    if (event_speed_loop_count >= SPEED_CONTROL_CYCLE) {
+        event_speed_loop_count = 0;
+        
+        hfoc->actual_rpm = ENCODER_GetRPM(&encoder, FOC_TS * SPEED_CONTROL_CYCLE);
+        
+        foc_set_flag();
+        ret = 1;
+    }
+
+    event_speed_loop_count++;
+
+    return ret;
+}
+
 
 void foc_current_control_update(foc_t *hfoc) {
 	if (hfoc == NULL ) {
@@ -152,7 +170,7 @@ void foc_current_control_update(foc_t *hfoc) {
 
     // 2. LẬT PHA ĐIỆN TỪ Ở ĐÂY (Điều hướng hệ quy chiếu)
     // Nếu bị đấu ngược dây pha, ta lật ngược lệnh dòng điện Iq
-    if (hfoc->sensor_dir == REVERSE_DIR) {
+    if (DIR_PHASE == REVERSE_DIR) {
         target_iq = -target_iq; 
         
     }
@@ -174,8 +192,6 @@ void foc_current_control_update(foc_t *hfoc) {
     hfoc->vd = pi_control(&hfoc->id_ctrl, target_id - hfoc->id_filtered);
     hfoc->vq = pi_control(&hfoc->iq_ctrl, target_iq - hfoc->iq_filtered);
 
-	// hfoc->vd = pi_control(&hfoc->id_ctrl, hfoc->id_ref - hfoc->id_filtered);
-	// hfoc->vq = pi_control(&hfoc->iq_ctrl, hfoc->iq_ref - hfoc->iq_filtered);
 
 	float valpha, vbeta;
 	uint32_t da, db, dc;
@@ -225,21 +241,21 @@ extern _Bool sensor_is_calibrated;
 
 void foc_sensored_calc_electric_angle(foc_t *hfoc) {
 	// Check for NULL pointer and invalid parameters
-	if (hfoc == NULL || hfoc->pole_pairs <= 0) {
+	if (hfoc == NULL || PPAIRS <= 0) {
 			return;
 	}
 
 	float angle_deg = ENCODER_GetDegree(&encoder);
 
 	// Normalize mechanical angle
-	hfoc->m_angle_rad = DEG_TO_RAD(angle_deg) - hfoc->m_angle_offset;
+	hfoc->m_angle_rad = DEG_TO_RAD(angle_deg) - ENCDER_OFFSET;
 	norm_angle_rad(&hfoc->m_angle_rad);
 
 	// Calculate raw electric angle
-	float e_rad = hfoc->m_angle_rad * hfoc->pole_pairs;
+	float e_rad = hfoc->m_angle_rad * PPAIRS;
 	
 	// Handle sensor direction
-	if (hfoc->sensor_dir == REVERSE_DIR) {
+	if (DIR_PHASE == REVERSE_DIR) {
 			e_rad = TWO_PI - e_rad;
 	}
 
@@ -271,7 +287,7 @@ void foc_sensored_calc_electric_angle(foc_t *hfoc) {
 //
 
 float foc_calc_mech_rpm_encoder(foc_t *hfoc, float encd_rpm) {
-	// if (hfoc->sensor_dir == REVERSE_DIR) {
+	// if (DIR_PHASE == REVERSE_DIR) {
 	// 		hfoc->actual_rpm = -encd_rpm;
 	// }
 	// else {
@@ -283,7 +299,7 @@ float foc_calc_mech_rpm_encoder(foc_t *hfoc, float encd_rpm) {
 //
 
 float foc_calc_mech_pos_encoder(foc_t *hfoc, float encd_deg) {
-	// if (hfoc->sensor_dir == REVERSE_DIR) {
+	// if (DIR_PHASE == REVERSE_DIR) {
 	// 	hfoc->actual_angle = -encd_deg;
 	// }
 	// else {
@@ -295,67 +311,69 @@ float foc_calc_mech_pos_encoder(foc_t *hfoc, float encd_deg) {
 //
 
 void foc_cal_encoder_misalignment(foc_t *hfoc) {
-  open_loop_voltage_control(hfoc, VD_CAL, VQ_CAL, 0.0f);
-  HAL_Delay(500);
-  float rad_offset = 0.0f;
-  for (int i = 0; i < CAL_ITERATION; i++) {
-    rad_offset += DEG_TO_RAD(*hfoc->angle_filtered);
-    HAL_Delay(1);
-  }
-  open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
-  rad_offset = rad_offset / (float)CAL_ITERATION;
-  hfoc->m_angle_offset = rad_offset;
-  m_config.encd_offset = rad_offset;
+    open_loop_voltage_control(hfoc, VD_CAL, VQ_CAL, 0.0f);
+    osDelay(500);
+    float rad_offset = 0.0f;
+    for (int i = 0; i < CAL_ITERATION; i++) {
+        rad_offset += DEG_TO_RAD(*hfoc->angle_filtered);
+        osDelay(1);
+    }
+    open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
+    rad_offset = rad_offset / (float)CAL_ITERATION;
+    //hfoc->m_angle_offset = rad_offset;
+    ENCDER_OFFSET = rad_offset;
+    printf("Encoder Mechanical Offset (rad): %f\r\n", ENCDER_OFFSET);
 
 }
 //
 
 void foc_cal_encoder(foc_t *hfoc) {
-  memset(error_temp, 0, sizeof(error_temp));
+    memset(error_temp, 0, sizeof(error_temp));
 
-  foc_cal_encoder_misalignment(hfoc);
+    printf("Starting Encoder Calibration Task...\r\n");
+    foc_cal_encoder_misalignment(hfoc);
 
-  for (int i = 0; i < ERROR_LUT_SIZE; i++) {
-    float mech_deg = (float)i * (360.0f / (float)ERROR_LUT_SIZE);
-    float elec_rad = DEG_TO_RAD(mech_deg * hfoc->pole_pairs);
-    open_loop_voltage_control(hfoc, VD_CAL, VQ_CAL, elec_rad);
-    HAL_Delay(5);
+    for (int i = 0; i < ERROR_LUT_SIZE; i++) {
+        float mech_deg = (float)i * (360.0f / (float)ERROR_LUT_SIZE);
+        float elec_rad = DEG_TO_RAD(mech_deg * PPAIRS);
+        open_loop_voltage_control(hfoc, VD_CAL, VQ_CAL, elec_rad);
+        osDelay(5);
 
-    float mech_rad = hfoc->m_angle_rad;
-    float raw_delta = elec_rad - hfoc->e_angle_rad;
-    float delta = elec_rad - hfoc->e_angle_rad_comp;
+        float mech_rad = hfoc->m_angle_rad;
+        float raw_delta = elec_rad - hfoc->e_angle_rad;
+        float delta = elec_rad - hfoc->e_angle_rad_comp;
+        
+        raw_delta -= TWO_PI * floorf((raw_delta + PI) / TWO_PI);
+        delta -= TWO_PI * floorf((delta + PI) / TWO_PI);
+        
+        float lut_pos = (mech_rad / TWO_PI) * ERROR_LUT_SIZE;
+        int index = (int)(lut_pos);
+
+        while (index < 0) {
+        index += ERROR_LUT_SIZE;
+        }
+        index %= ERROR_LUT_SIZE;
+
+        error_temp[index] = raw_delta;
     
-    raw_delta -= TWO_PI * floorf((raw_delta + PI) / TWO_PI);
-    delta -= TWO_PI * floorf((delta + PI) / TWO_PI);
+
+    }
     
-    float lut_pos = (mech_rad / TWO_PI) * ERROR_LUT_SIZE;
-    int index = (int)(lut_pos);
-
-    while (index < 0) {
-      index += ERROR_LUT_SIZE;
+    for (int i = 0; i < ERROR_LUT_SIZE; i++) {
+        if (error_temp[i] == 0) {
+        int last_i = i - 1;
+        int next_i = i + 1;
+        if (last_i < 0) last_i += ERROR_LUT_SIZE;
+        if (next_i > ERROR_LUT_SIZE) next_i -= ERROR_LUT_SIZE;
+        error_temp[i] = (error_temp[last_i] + error_temp[next_i]) / 2.0f;
+        }
     }
-    index %= ERROR_LUT_SIZE;
 
-    error_temp[index] = raw_delta;
-  
+    memcpy(m_config.encd_error_comp, error_temp, sizeof(error_temp));
 
-  }
-  
-  for (int i = 0; i < ERROR_LUT_SIZE; i++) {
-    if (error_temp[i] == 0) {
-      int last_i = i - 1;
-      int next_i = i + 1;
-      if (last_i < 0) last_i += ERROR_LUT_SIZE;
-      if (next_i > ERROR_LUT_SIZE) next_i -= ERROR_LUT_SIZE;
-      error_temp[i] = (error_temp[last_i] + error_temp[next_i]) / 2.0f;
-    }
-  }
+    open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
 
-  memcpy(m_config.encd_error_comp, error_temp, sizeof(error_temp));
-
-  open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
-
-  hfoc->done_cal_encoder = 1;
+    hfoc->done_cal_encoder = 1;
 }
 //
 
@@ -367,61 +385,11 @@ void foc_start_calibration(foc_t *hfoc) {
 }
 
 
-void foc_auto_calibration_update(foc_t *hfoc) {
-    static uint32_t cal_start_time = 0;
-    static float actual_theta_start = 0.0f;
-    static uint8_t cal_started = 0; 
-
-    if (cal_started == 0) {
-        cal_start_time = HAL_GetTick();
-        cal_started = 1;
-    }
-
-    uint32_t current_time = HAL_GetTick();
-    float elapsed_sec = (current_time - cal_start_time) / 1000.0f;
-
-    const float SWEEP_CYCLES = 20.0f; 
-    const float T1 = 1.0f; 
-    const float W_CAL = TWO_PI / 0.2f; 
-    const float SWEEP_TIME = (SWEEP_CYCLES * TWO_PI) / W_CAL;
-
-    if (elapsed_sec < T1) {
-        open_loop_voltage_control(hfoc, VD_CAL, 0.0f, 0.0f);
-        actual_theta_start = ENCODER_GetActualDegree(&encoder);
-    } 
-    else if (elapsed_sec < T1 + SWEEP_TIME) {
-        float elec_angle = W_CAL * (elapsed_sec - T1);
-        open_loop_voltage_control(hfoc, VD_CAL, 0.0f, elec_angle);
-        ENCODER_GetActualDegree(&encoder);
-    } 
-    else {
-        float actual_theta_end = ENCODER_GetActualDegree(&encoder);
-        open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
-    
-        float delta_mech = actual_theta_end - actual_theta_start;
-        
-        if (fabs(delta_mech) > 0.1f) {
-            hfoc->pole_pairs = round((SWEEP_CYCLES * 360.0f)/ fabs(delta_mech));
-            printf("Pole Pairs: %d\r\n", hfoc->pole_pairs);
-        }
-        if (delta_mech > 0) {
-            hfoc->sensor_dir = NORMAL_DIR;
-            printf("Phase order & Sensor match (NORMAL)\r\n");
-        } else {
-            hfoc->sensor_dir = REVERSE_DIR;
-            printf("Phase order & Sensor mismatched! Swapping (REVERSE)\r\n");
-        }
-        hfoc->done_orderphase = 1; // Done calibration
-        cal_started = 0;
-        cal_start_time = 0;
-        actual_theta_start = 0.0f;
-    }
-}
 
 
 
 void foc_auto_calibration(foc_t *hfoc) {
-    printf("Starting RTOS Calibration Task...\r\n");
+    printf("Starting Order Phase Calibration Task...\r\n");
 
     const float SWEEP_CYCLES = 20.0f; 
     const float W_CAL = TWO_PI / 0.2f; 
@@ -429,169 +397,58 @@ void foc_auto_calibration(foc_t *hfoc) {
     const uint32_t step_delay_ms = 5; 
     const uint32_t total_steps = (uint32_t)(SWEEP_TIME_SEC * 1000.0f / step_delay_ms);
 
+    // ==========================================
+   for(int i = 0; i < 50; i++) {
+        ENCODER_GetActualDegree(&encoder);
+        osDelay(1); 
+    }
+
     open_loop_voltage_control(hfoc, VD_CAL, 0.0f, 0.0f);
+
     osDelay(1000); 
+    
+    // ==========================================
+    encoder.output_angle_ovf = 0;
+    encoder.output_prev_angle = encoder.angle_filtered; // Góc thô sau khi lọc nội bộ
+    encoder.output_angle_filtered = encoder.angle_filtered; // Ép biến actual nhảy thẳng đến đây
+
+
     float actual_theta_start = ENCODER_GetActualDegree(&encoder);
+    
+    
     for (uint32_t i = 0; i < total_steps; i++) {
         float elapsed_sec = (float)i * step_delay_ms / 1000.0f; 
         float elec_angle = W_CAL * elapsed_sec;
         open_loop_voltage_control(hfoc, VD_CAL, 0.0f, elec_angle);
-        ENCODER_GetActualDegree(&encoder);
+        ENCODER_GetActualDegree(&encoder); // Gọi liên tục để bù tràn
         osDelay(step_delay_ms); 
     }
 
+  
     float actual_theta_end = ENCODER_GetActualDegree(&encoder);
-    open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
+    open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f); // Tắt áp
+    
+
     float delta_mech = actual_theta_end - actual_theta_start;
+    
     if (fabs(delta_mech) > 0.1f) {
-        hfoc->pole_pairs = round((SWEEP_CYCLES * 360.0f) / fabs(delta_mech));
-        printf("Pole Pairs: %d\r\n", hfoc->pole_pairs);
+        PPAIRS = round((SWEEP_CYCLES * 360.0f) / fabs(delta_mech));
+        printf("Pole Pairs: %d\r\n", PPAIRS);
     }
+    
+   
     if (delta_mech > 0) {
-        hfoc->sensor_dir = NORMAL_DIR;
+        DIR_PHASE = NORMAL_DIR;
         printf("Phase order & Sensor match (NORMAL)\r\n");
     } else {
-        hfoc->sensor_dir = REVERSE_DIR;
+        DIR_PHASE = REVERSE_DIR;
         printf("Phase order & Sensor mismatched! Swapping (REVERSE)\r\n");
     }
 
-
     hfoc->done_orderphase = 1; 
     printf("Calibration Complete!\r\n");
-    
-    // Lưu ý: Nếu bạn gọi hàm này trong 1 Task riêng biệt, 
-    // bạn có thể dùng vTaskDelete(NULL) ở đây để hủy Task sau khi chạy xong (nếu muốn).
 }
 
-void foc_auto_cal_encoder_update(foc_t *hfoc) {
-    // 1. Khai báo các biến static để lưu trạng thái giữa các vòng lặp ngắt
-    static uint32_t state_timer = 0;
-    static uint8_t cal_started = 0;
-    static uint8_t state = 0;          // Trạng thái của State Machine
-    static int sample_count = 0;       // Đếm số lần lấy mẫu bù góc
-    static float offset_sum = 0.0f;    // Cộng dồn góc bù
-    static int lut_index = 0;          // Vị trí quét LUT hiện tại
-
-    // Nếu đã hiệu chuẩn xong thì không làm gì cả
-    if (hfoc->done_cal_encoder == 1) {
-        return;
-    }
-
-    uint32_t current_time = HAL_GetTick();
-
-    // 2. Chốt thời điểm bắt đầu (Chạy 1 lần duy nhất)
-    if (cal_started == 0) {
-        state_timer = current_time;
-        cal_started = 1;
-        state = 0; // Bắt đầu ở trạng thái 0
-        sample_count = 0;
-        offset_sum = 0.0f;
-        lut_index = 0;
-        
-        memset(error_temp, 0, sizeof(error_temp));
-        
-        // Bắt đầu khóa Rotor ở góc điện 0 độ
-        open_loop_voltage_control(hfoc, VD_CAL, VQ_CAL, 0.0f);
-        printf("Starting Encoder Calibration (Misalignment & LUT)...\r\n");
-    }
-
-    // 3. Máy trạng thái (State Machine) dựa trên thời gian
-    switch (state) {
-        
-        // --- GIAI ĐOẠN 1: TÌM GÓC LỆCH (MISALIGNMENT) ---
-        case 0: // Đợi 500ms cho Rotor thực sự ổn định tại góc 0 (Thay cho HAL_Delay(500))
-            if (current_time - state_timer >= 500) {
-                state = 1; // Chuyển sang lấy mẫu
-                state_timer = current_time;
-            }
-            break;
-
-        case 1: // Lấy mẫu góc liên tục CAL_ITERATION lần, mỗi lần cách nhau 1ms
-            if (current_time - state_timer >= 1) {
-                offset_sum += DEG_TO_RAD(*hfoc->angle_filtered);
-                sample_count++;
-                state_timer = current_time; // Reset timer cho mẫu tiếp theo
-
-                // Đủ số mẫu -> Tính trung bình
-                if (sample_count >= CAL_ITERATION) {
-                    float rad_offset = offset_sum / (float)CAL_ITERATION;
-                    hfoc->m_angle_offset = rad_offset;
-                    m_config.encd_offset = rad_offset;
-                    
-                    printf("Misalignment Offset: %.4f rad\r\n", rad_offset);
-
-                    // Chuyển sang giai đoạn quét LUT
-                    state = 2;
-                    state_timer = current_time;
-                    
-                    // Kích điện áp cho điểm quét đầu tiên
-                    float elec_rad = DEG_TO_RAD(0.0f * hfoc->pole_pairs);
-                    open_loop_voltage_control(hfoc, VD_CAL, VQ_CAL, elec_rad);
-                }
-            }
-            break;
-
-        // --- GIAI ĐOẠN 2: QUÉT BẢNG LỖI LUT ---
-        case 2: // Dừng 5ms ở từng góc (Thay cho HAL_Delay(5) trong vòng lặp for)
-            if (current_time - state_timer >= 5) {
-                // Tính toán dữ liệu cho điểm quét hiện tại
-                float mech_deg = (float)lut_index * (360.0f / (float)ERROR_LUT_SIZE);
-                float elec_rad = DEG_TO_RAD(mech_deg * hfoc->pole_pairs);
-
-                float mech_rad = hfoc->m_angle_rad;
-                float raw_delta = elec_rad - hfoc->e_angle_rad;
-                
-                // Xử lý tràn vòng Pi
-                raw_delta -= TWO_PI * floorf((raw_delta + PI) / TWO_PI);
-                
-                float lut_pos = (mech_rad / TWO_PI) * ERROR_LUT_SIZE;
-                int index = (int)(lut_pos);
-                while (index < 0) index += ERROR_LUT_SIZE;
-                index %= ERROR_LUT_SIZE;
-
-                error_temp[index] = raw_delta; // Lưu lỗi vào mảng
-
-                // Tăng vị trí quét lên
-                lut_index++;
-                
-                if (lut_index < ERROR_LUT_SIZE) {
-                    // Kích góc tiếp theo và reset timer
-                    mech_deg = (float)lut_index * (360.0f / (float)ERROR_LUT_SIZE);
-                    elec_rad = DEG_TO_RAD(mech_deg * hfoc->pole_pairs);
-                    open_loop_voltage_control(hfoc, VD_CAL, VQ_CAL, elec_rad);
-                    state_timer = current_time;
-                } 
-                else {
-                    // --- GIAI ĐOẠN 3: NỘI SUY VÀ HOÀN THÀNH ---
-                    // Xong mảng -> Bắt đầu nội suy các điểm 0
-                    for (int i = 0; i < ERROR_LUT_SIZE; i++) {
-                        if (error_temp[i] == 0) {
-                            int last_i = i - 1;
-                            int next_i = i + 1;
-                            if (last_i < 0) last_i += ERROR_LUT_SIZE;
-                            if (next_i >= ERROR_LUT_SIZE) next_i -= ERROR_LUT_SIZE; // Fix bug nhỏ ở bản gốc
-                            error_temp[i] = (error_temp[last_i] + error_temp[next_i]) / 2.0f;
-                        }
-                    }
-
-                    // Lưu mảng chính thức
-                    memcpy(m_config.encd_error_comp, error_temp, sizeof(error_temp));
-                    
-                    // Tắt motor
-                    open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
-                    printf("Encoder LUT Calibration Successful!\r\n");
-
-                    // Xóa bộ nhớ tĩnh (reset mọi biến)
-                    cal_started = 0;
-                    state = 0;
-                    
-                    // Bật cờ hoàn thành để hệ thống biết
-                    hfoc->done_cal_encoder = 1; 
-                }
-            }
-            break;
-    }
-}
 
 //
 

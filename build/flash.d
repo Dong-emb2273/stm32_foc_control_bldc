@@ -30,7 +30,8 @@ build/flash.o: Core/Src/flash.c Core/Inc/flash.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  Core/Inc/foc_utils.h Core/Inc/drv8323s.h Core/Inc/main.h Core/Inc/spi.h \
- Core/Inc/foc_math.h Core/Inc/pid_utils.h Core/Inc/as5048a.h
+ Core/Inc/as5048a.h Core/Inc/foc_math.h Core/Inc/pid_utils.h \
+ Core/Inc/foc_utils.h
 Core/Inc/flash.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 Core/Inc/stm32f4xx_hal_conf.h:
@@ -68,6 +69,7 @@ Core/Inc/foc_utils.h:
 Core/Inc/drv8323s.h:
 Core/Inc/main.h:
 Core/Inc/spi.h:
+Core/Inc/as5048a.h:
 Core/Inc/foc_math.h:
 Core/Inc/pid_utils.h:
-Core/Inc/as5048a.h:
+Core/Inc/foc_utils.h:

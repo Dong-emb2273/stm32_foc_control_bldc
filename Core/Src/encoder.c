@@ -83,7 +83,7 @@ float ENCODER_GetDegree(Encoder_t *encd){
 };
 //
 
-float ENCODER_GetRPM(Encoder_t *encd, uint32_t dt_us) {
+float ENCODER_GetRPM(Encoder_t *encd, float dt_us) {
 	// Handle angle wrap-around (optimized)
 	float angle_diff = encd->angle_filtered - encd->prev_angle;
 	angle_diff -= 360.0f * floorf((angle_diff + 180.0f) * (1.0f/360.0f));
@@ -92,28 +92,9 @@ float ENCODER_GetRPM(Encoder_t *encd, uint32_t dt_us) {
         
         return encd->filtered_rpm; 
     }
-
-#if 0
-	// Accumulate angle and time for low-RPM precision
-	encd->angle_accumulator += angle_diff;
-	encd->time_accumulator += dt_us;
-
-	// Only calculate RPM when sufficient data is collected
-	if (encd->time_accumulator < MIN_DT_US && encd->filtered_rpm > 1.0f) {
-			return encd->filtered_rpm;
-	}
-
 	// Calculate RPM (optimized floating point)
-	float rpm_instant = (encd->angle_accumulator * MICROS_TO_MINUTES) /
-											(encd->time_accumulator * DEGREES_PER_REV);
+	float rpm_instant = (angle_diff * 60.0f) / (dt_us * DEGREES_PER_REV);
 
-	// Reset accumulators
-	encd->angle_accumulator = 0.0f;
-	encd->time_accumulator = 0;
-#else
-	// Calculate RPM (optimized floating point)
-	float rpm_instant = (angle_diff * MICROS_TO_MINUTES) / (dt_us * DEGREES_PER_REV);
-#endif
 	// Two-stage spike rejection
 	float rpm_delta = rpm_instant - encd->prev_rpm;
 	float abs_delta = fabsf(rpm_delta);

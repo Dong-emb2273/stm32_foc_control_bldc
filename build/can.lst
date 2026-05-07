@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccZzePMw.s 			page 1
+ARM GAS  /tmp/ccbr6hAC.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
   28:Core/Src/can.c **** 
   29:Core/Src/can.c **** 
   30:Core/Src/can.c **** 
-ARM GAS  /tmp/ccZzePMw.s 			page 2
+ARM GAS  /tmp/ccbr6hAC.s 			page 2
 
 
   31:Core/Src/can.c **** /* USER CODE END 0 */
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
   62 0020 4261     		str	r2, [r0, #20]
   52:Core/Src/can.c ****   hcan2.Init.TimeTriggeredMode = DISABLE;
   63              		.loc 1 52 3 is_stmt 1 view .LVU13
-ARM GAS  /tmp/ccZzePMw.s 			page 3
+ARM GAS  /tmp/ccbr6hAC.s 			page 3
 
 
   64              		.loc 1 52 32 is_stmt 0 view .LVU14
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  104              		.section	.text.HAL_CAN_MspInit,"ax",%progbits
  105              		.align	1
  106              		.global	HAL_CAN_MspInit
-ARM GAS  /tmp/ccZzePMw.s 			page 4
+ARM GAS  /tmp/ccbr6hAC.s 			page 4
 
 
  107              		.syntax unified
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
   83:Core/Src/can.c **** 	PA11     ------> CAN1_RX
   84:Core/Src/can.c **** 	PA12     ------> CAN1_TX
   85:Core/Src/can.c **** 	*/
-ARM GAS  /tmp/ccZzePMw.s 			page 5
+ARM GAS  /tmp/ccbr6hAC.s 			page 5
 
 
   86:Core/Src/can.c **** 	GPIO_InitStruct.Pin = GPIO_PIN_11 | GPIO_PIN_12;
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
   79:Core/Src/can.c **** 
  177              		.loc 1 79 3 view .LVU46
  178 0036 0194     		str	r4, [sp, #4]
-ARM GAS  /tmp/ccZzePMw.s 			page 6
+ARM GAS  /tmp/ccbr6hAC.s 			page 6
 
 
   79:Core/Src/can.c **** 
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
   89:Core/Src/can.c **** 	GPIO_InitStruct.Alternate = GPIO_AF9_CAN1;
  217              		.loc 1 89 24 is_stmt 0 view .LVU63
  218 0068 0323     		movs	r3, #3
-ARM GAS  /tmp/ccZzePMw.s 			page 7
+ARM GAS  /tmp/ccbr6hAC.s 			page 7
 
 
  219 006a 0693     		str	r3, [sp, #24]
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  105:Core/Src/can.c ****   if(canHandle->Instance==CAN1)
  266              		.loc 1 105 3 view .LVU72
  267              		.loc 1 105 15 is_stmt 0 view .LVU73
-ARM GAS  /tmp/ccZzePMw.s 			page 8
+ARM GAS  /tmp/ccbr6hAC.s 			page 8
 
 
  268 0000 0268     		ldr	r2, [r0]
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  305 0038 FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
  306              	.LVL13:
  122:Core/Src/can.c ****   /* USER CODE BEGIN CAN1_MspDeInit 1 */
-ARM GAS  /tmp/ccZzePMw.s 			page 9
+ARM GAS  /tmp/ccbr6hAC.s 			page 9
 
 
  123:Core/Src/can.c **** 
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  351 000c 4362     		str	r3, [r0, #36]
  135:Core/Src/can.c **** 	msg->filter.FilterIdLow=0x000;
  352              		.loc 1 135 2 is_stmt 1 view .LVU93
-ARM GAS  /tmp/ccZzePMw.s 			page 10
+ARM GAS  /tmp/ccbr6hAC.s 			page 10
 
 
  353              		.loc 1 135 25 is_stmt 0 view .LVU94
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  399              		.cfi_startproc
  400              		@ args = 0, pretend = 0, frame = 0
  401              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccZzePMw.s 			page 11
+ARM GAS  /tmp/ccbr6hAC.s 			page 11
 
 
  402              		@ link register save eliminated.
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  434              		.loc 1 169 54 is_stmt 0 view .LVU117
  435 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
  436              	.LCFI7:
-ARM GAS  /tmp/ccZzePMw.s 			page 12
+ARM GAS  /tmp/ccbr6hAC.s 			page 12
 
 
  437              		.cfi_def_cfa_offset 32
@@ -679,8 +679,8 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  451 000a 1020     		movs	r0, #16
  452              	.LVL19:
  453              		.loc 1 170 15 view .LVU120
- 454 000c 95ED141A 		vldr.32	s2, [r5, #80]
- 455 0010 D5ED130A 		vldr.32	s1, [r5, #76]
+ 454 000c 95ED221A 		vldr.32	s2, [r5, #136]
+ 455 0010 D5ED210A 		vldr.32	s1, [r5, #132]
  456 0014 91ED000A 		vldr.32	s0, [r1]
  457 0018 FFF7FEFF 		bl	float_to_uint
  458              	.LVL20:
@@ -693,8 +693,8 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  464 001e 0C20     		movs	r0, #12
  465              	.LVL22:
  466              		.loc 1 171 16 view .LVU124
- 467 0020 95ED161A 		vldr.32	s2, [r5, #88]
- 468 0024 D5ED150A 		vldr.32	s1, [r5, #84]
+ 467 0020 95ED241A 		vldr.32	s2, [r5, #144]
+ 468 0024 D5ED230A 		vldr.32	s1, [r5, #140]
  469 0028 96ED010A 		vldr.32	s0, [r6, #4]
  470 002c FFF7FEFF 		bl	float_to_uint
  471              	.LVL23:
@@ -706,8 +706,8 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  476 0032 0C20     		movs	r0, #12
  477              	.LVL25:
  478              		.loc 1 172 15 view .LVU127
- 479 0034 95ED191A 		vldr.32	s2, [r5, #100]
- 480 0038 D5ED1B0A 		vldr.32	s1, [r5, #108]
+ 479 0034 95ED281A 		vldr.32	s2, [r5, #160]
+ 480 0038 D5ED270A 		vldr.32	s1, [r5, #156]
  481 003c 96ED020A 		vldr.32	s0, [r6, #8]
  482 0040 FFF7FEFF 		bl	float_to_uint
  483              	.LVL26:
@@ -718,12 +718,12 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  487              		.loc 1 173 15 is_stmt 0 view .LVU129
  488 0046 0C20     		movs	r0, #12
  489              	.LVL28:
-ARM GAS  /tmp/ccZzePMw.s 			page 13
+ARM GAS  /tmp/ccbr6hAC.s 			page 13
 
 
  490              		.loc 1 173 15 view .LVU130
- 491 0048 95ED1A1A 		vldr.32	s2, [r5, #104]
- 492 004c D5ED1C0A 		vldr.32	s1, [r5, #112]
+ 491 0048 95ED2A1A 		vldr.32	s2, [r5, #168]
+ 492 004c D5ED290A 		vldr.32	s1, [r5, #164]
  493 0050 96ED030A 		vldr.32	s0, [r6, #12]
  494 0054 FFF7FEFF 		bl	float_to_uint
  495              	.LVL29:
@@ -735,8 +735,8 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  500 005a 0C20     		movs	r0, #12
  501              	.LVL31:
  502              		.loc 1 174 15 view .LVU133
- 503 005c 95ED181A 		vldr.32	s2, [r5, #96]
- 504 0060 D5ED170A 		vldr.32	s1, [r5, #92]
+ 503 005c 95ED261A 		vldr.32	s2, [r5, #152]
+ 504 0060 D5ED250A 		vldr.32	s1, [r5, #148]
  505 0064 96ED040A 		vldr.32	s0, [r6, #16]
  506 0068 FFF7FEFF 		bl	float_to_uint
  507              	.LVL32:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  536 008a 84F80390 		strb	r9, [r4, #3]
  182:Core/Src/can.c **** 	msg->data[4] = kp_int & 0xFF;
  537              		.loc 1 182 2 is_stmt 1 view .LVU149
-ARM GAS  /tmp/ccZzePMw.s 			page 14
+ARM GAS  /tmp/ccbr6hAC.s 			page 14
 
 
  538              		.loc 1 182 15 is_stmt 0 view .LVU150
@@ -810,7 +810,7 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  560              		.loc 1 186 1 view .LVU161
  561              		.align	2
  562              	.L29:
- 563 00a4 00000000 		.word	__float_reg
+ 563 00a4 00100000 		.word	m_config+4096
  564              		.cfi_endproc
  565              	.LFE139:
  567              		.section	.text.unpack_state,"ax",%progbits
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  578              		.loc 1 198 58 is_stmt 1 view -0
  579              		.cfi_startproc
  580              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccZzePMw.s 			page 15
+ARM GAS  /tmp/ccbr6hAC.s 			page 15
 
 
  581              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -852,7 +852,7 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  589              		.cfi_offset 7, -12
  590              		.cfi_offset 8, -8
  591              		.cfi_offset 14, -4
- 592 0004 0E46     		mov	r6, r1
+ 592 0004 0D46     		mov	r5, r1
  199:Core/Src/can.c **** 	int p_int = (msg->data[1] << 8) | msg->data[2];	
  593              		.loc 1 199 2 is_stmt 1 view .LVU164
  594              		.loc 1 199 24 is_stmt 0 view .LVU165
@@ -875,12 +875,12 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  201:Core/Src/can.c **** 	int t_int = ((msg->data[4] & 0xF) << 8) | msg->data[5];
  610              		.loc 1 201 2 is_stmt 1 view .LVU172
  611              		.loc 1 201 36 is_stmt 0 view .LVU173
- 612 0016 1D02     		lsls	r5, r3, #8
- 613 0018 05F47065 		and	r5, r5, #3840
+ 612 0016 1C02     		lsls	r4, r3, #8
+ 613 0018 04F47064 		and	r4, r4, #3840
  614              		.loc 1 201 53 view .LVU174
  615 001c 4379     		ldrb	r3, [r0, #5]	@ zero_extendqisi2
  616              		.loc 1 201 6 view .LVU175
- 617 001e 1D43     		orrs	r5, r5, r3
+ 617 001e 1C43     		orrs	r4, r4, r3
  618              	.LVL42:
  202:Core/Src/can.c **** 	int vb_int = msg->data[6];
  619              		.loc 1 202 2 is_stmt 1 view .LVU176
@@ -891,53 +891,53 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  204:Core/Src/can.c **** 	state->p_act  = uint_to_float(p_int, P_MIN, P_MAX, 16);
  623              		.loc 1 204 2 is_stmt 1 view .LVU178
  624              		.loc 1 204 18 is_stmt 0 view .LVU179
- 625 0024 154C     		ldr	r4, .L33
+ 625 0024 154E     		ldr	r6, .L33
  626 0026 1021     		movs	r1, #16
- 627 0028 D4ED140A 		vldr.32	s1, [r4, #80]
- 628 002c 94ED130A 		vldr.32	s0, [r4, #76]
+ 627 0028 D6ED220A 		vldr.32	s1, [r6, #136]
+ 628 002c 96ED210A 		vldr.32	s0, [r6, #132]
  629 0030 42EA0C20 		orr	r0, r2, ip, lsl #8
  630              	.LVL44:
  631              		.loc 1 204 18 view .LVU180
-ARM GAS  /tmp/ccZzePMw.s 			page 16
+ARM GAS  /tmp/ccbr6hAC.s 			page 16
 
 
  632 0034 FFF7FEFF 		bl	uint_to_float
  633              	.LVL45:
  634              		.loc 1 204 16 view .LVU181
- 635 0038 86ED000A 		vstr.32	s0, [r6]
+ 635 0038 85ED000A 		vstr.32	s0, [r5]
  205:Core/Src/can.c **** 	state->v_act  = uint_to_float(v_int, V_MIN, V_MAX, 12);
  636              		.loc 1 205 2 is_stmt 1 view .LVU182
  637              		.loc 1 205 18 is_stmt 0 view .LVU183
  638 003c 0C21     		movs	r1, #12
- 639 003e D4ED160A 		vldr.32	s1, [r4, #88]
- 640 0042 94ED150A 		vldr.32	s0, [r4, #84]
+ 639 003e D6ED240A 		vldr.32	s1, [r6, #144]
+ 640 0042 96ED230A 		vldr.32	s0, [r6, #140]
  641 0046 3846     		mov	r0, r7
  642 0048 FFF7FEFF 		bl	uint_to_float
  643              	.LVL46:
  644              		.loc 1 205 16 view .LVU184
- 645 004c 86ED010A 		vstr.32	s0, [r6, #4]
+ 645 004c 85ED010A 		vstr.32	s0, [r5, #4]
  206:Core/Src/can.c **** 	state->t_act  = uint_to_float(t_int, T_MIN, T_MAX, 12);
  646              		.loc 1 206 2 is_stmt 1 view .LVU185
  647              		.loc 1 206 18 is_stmt 0 view .LVU186
  648 0050 0C21     		movs	r1, #12
- 649 0052 D4ED180A 		vldr.32	s1, [r4, #96]
- 650 0056 94ED170A 		vldr.32	s0, [r4, #92]
- 651 005a 2846     		mov	r0, r5
+ 649 0052 D6ED260A 		vldr.32	s1, [r6, #152]
+ 650 0056 96ED250A 		vldr.32	s0, [r6, #148]
+ 651 005a 2046     		mov	r0, r4
  652 005c FFF7FEFF 		bl	uint_to_float
  653              	.LVL47:
  654              		.loc 1 206 16 view .LVU187
- 655 0060 86ED020A 		vstr.32	s0, [r6, #8]
+ 655 0060 85ED020A 		vstr.32	s0, [r5, #8]
  207:Core/Src/can.c **** 	state->v_batt = uint_to_float(vb_int, VB_MIN, VB_MAX, 8);
  656              		.loc 1 207 2 is_stmt 1 view .LVU188
  657              		.loc 1 207 18 is_stmt 0 view .LVU189
  658 0064 0821     		movs	r1, #8
- 659 0066 D4ED1E0A 		vldr.32	s1, [r4, #120]
- 660 006a 94ED1D0A 		vldr.32	s0, [r4, #116]
+ 659 0066 F7EE000A 		vmov.f32	s1, #1.0e+0
+ 660 006a B0EE600A 		vmov.f32	s0, s1
  661 006e 4046     		mov	r0, r8
  662 0070 FFF7FEFF 		bl	uint_to_float
  663              	.LVL48:
  664              		.loc 1 207 16 view .LVU190
- 665 0074 86ED030A 		vstr.32	s0, [r6, #12]
+ 665 0074 85ED030A 		vstr.32	s0, [r5, #12]
  208:Core/Src/can.c **** 
  209:Core/Src/can.c **** }
  666              		.loc 1 209 1 view .LVU191
@@ -947,7 +947,7 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  670              		.loc 1 209 1 view .LVU192
  671              		.align	2
  672              	.L33:
- 673 007c 00000000 		.word	__float_reg
+ 673 007c 00100000 		.word	m_config+4096
  674              		.cfi_endproc
  675              	.LFE140:
  677              		.global	hcan2
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  684 0000 00000000 		.space	40
  684      00000000 
  684      00000000 
-ARM GAS  /tmp/ccZzePMw.s 			page 17
+ARM GAS  /tmp/ccbr6hAC.s 			page 17
 
 
  684      00000000 
@@ -972,38 +972,40 @@ ARM GAS  /tmp/ccZzePMw.s 			page 1
  691              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
  692              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h"
  693              		.file 8 "Core/Inc/joint_acc.h"
- 694              		.file 9 "Core/Inc/fsm.h"
- 695              		.file 10 "Core/Inc/can.h"
- 696              		.file 11 "Core/Inc/math_ops.h"
- 697              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
- 698              		.file 13 "Core/Inc/main.h"
-ARM GAS  /tmp/ccZzePMw.s 			page 18
+ 694              		.file 9 "Core/Inc/can.h"
+ 695              		.file 10 "Core/Inc/foc_utils.h"
+ 696              		.file 11 "Core/Inc/flash.h"
+ 697              		.file 12 "Core/Inc/user_config.h"
+ 698              		.file 13 "Core/Inc/math_ops.h"
+ 699              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
+ 700              		.file 15 "Core/Inc/main.h"
+ARM GAS  /tmp/ccbr6hAC.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 can.c
-     /tmp/ccZzePMw.s:18     .text.MX_CAN2_Init:0000000000000000 $t
-     /tmp/ccZzePMw.s:26     .text.MX_CAN2_Init:0000000000000000 MX_CAN2_Init
-     /tmp/ccZzePMw.s:99     .text.MX_CAN2_Init:000000000000003c $d
-     /tmp/ccZzePMw.s:105    .text.HAL_CAN_MspInit:0000000000000000 $t
-     /tmp/ccZzePMw.s:112    .text.HAL_CAN_MspInit:0000000000000000 HAL_CAN_MspInit
-     /tmp/ccZzePMw.s:246    .text.HAL_CAN_MspInit:000000000000008c $d
-     /tmp/ccZzePMw.s:252    .text.HAL_CAN_MspDeInit:0000000000000000 $t
-     /tmp/ccZzePMw.s:259    .text.HAL_CAN_MspDeInit:0000000000000000 HAL_CAN_MspDeInit
-     /tmp/ccZzePMw.s:312    .text.HAL_CAN_MspDeInit:0000000000000040 $d
-     /tmp/ccZzePMw.s:318    .text.can_rx_init:0000000000000000 $t
-     /tmp/ccZzePMw.s:325    .text.can_rx_init:0000000000000000 can_rx_init
-     /tmp/ccZzePMw.s:383    .text.can_rx_init:0000000000000028 $d
-     /tmp/ccZzePMw.s:388    .text.can_tx_init:0000000000000000 $t
-     /tmp/ccZzePMw.s:395    .text.can_tx_init:0000000000000000 can_tx_init
-     /tmp/ccZzePMw.s:420    .text.pack_cmd:0000000000000000 $t
-     /tmp/ccZzePMw.s:427    .text.pack_cmd:0000000000000000 pack_cmd
-     /tmp/ccZzePMw.s:563    .text.pack_cmd:00000000000000a4 $d
-     /tmp/ccZzePMw.s:568    .text.unpack_state:0000000000000000 $t
-     /tmp/ccZzePMw.s:575    .text.unpack_state:0000000000000000 unpack_state
-     /tmp/ccZzePMw.s:673    .text.unpack_state:000000000000007c $d
-     /tmp/ccZzePMw.s:683    .bss.hcan2:0000000000000000 hcan2
-     /tmp/ccZzePMw.s:679    .bss.hcan2:0000000000000000 $d
+     /tmp/ccbr6hAC.s:18     .text.MX_CAN2_Init:0000000000000000 $t
+     /tmp/ccbr6hAC.s:26     .text.MX_CAN2_Init:0000000000000000 MX_CAN2_Init
+     /tmp/ccbr6hAC.s:99     .text.MX_CAN2_Init:000000000000003c $d
+     /tmp/ccbr6hAC.s:105    .text.HAL_CAN_MspInit:0000000000000000 $t
+     /tmp/ccbr6hAC.s:112    .text.HAL_CAN_MspInit:0000000000000000 HAL_CAN_MspInit
+     /tmp/ccbr6hAC.s:246    .text.HAL_CAN_MspInit:000000000000008c $d
+     /tmp/ccbr6hAC.s:252    .text.HAL_CAN_MspDeInit:0000000000000000 $t
+     /tmp/ccbr6hAC.s:259    .text.HAL_CAN_MspDeInit:0000000000000000 HAL_CAN_MspDeInit
+     /tmp/ccbr6hAC.s:312    .text.HAL_CAN_MspDeInit:0000000000000040 $d
+     /tmp/ccbr6hAC.s:318    .text.can_rx_init:0000000000000000 $t
+     /tmp/ccbr6hAC.s:325    .text.can_rx_init:0000000000000000 can_rx_init
+     /tmp/ccbr6hAC.s:383    .text.can_rx_init:0000000000000028 $d
+     /tmp/ccbr6hAC.s:388    .text.can_tx_init:0000000000000000 $t
+     /tmp/ccbr6hAC.s:395    .text.can_tx_init:0000000000000000 can_tx_init
+     /tmp/ccbr6hAC.s:420    .text.pack_cmd:0000000000000000 $t
+     /tmp/ccbr6hAC.s:427    .text.pack_cmd:0000000000000000 pack_cmd
+     /tmp/ccbr6hAC.s:563    .text.pack_cmd:00000000000000a4 $d
+     /tmp/ccbr6hAC.s:568    .text.unpack_state:0000000000000000 $t
+     /tmp/ccbr6hAC.s:575    .text.unpack_state:0000000000000000 unpack_state
+     /tmp/ccbr6hAC.s:673    .text.unpack_state:000000000000007c $d
+     /tmp/ccbr6hAC.s:683    .bss.hcan2:0000000000000000 hcan2
+     /tmp/ccbr6hAC.s:679    .bss.hcan2:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_CAN_Init
@@ -1015,5 +1017,5 @@ HAL_GPIO_DeInit
 HAL_NVIC_DisableIRQ
 HAL_CAN_ConfigFilter
 float_to_uint
-__float_reg
+m_config
 uint_to_float

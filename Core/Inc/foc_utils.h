@@ -11,16 +11,17 @@
 #include <stdint.h>
 #include <string.h>
 #include "drv8323s.h"
+#include "as5048a.h"
 #include "foc_math.h"
 #include "pid_utils.h"
-#include "as5048a.h"
+
 
 
 #define ERROR_LUT_SIZE (1024)
 
 #define CAL_ITERATION 1000
 
-#define VD_CAL 0.5f
+#define VD_CAL I_CAL
 #define VQ_CAL 0.0f
 
 #define is_foc_ready() (foc_ready)
@@ -82,18 +83,14 @@ typedef struct {
 //	AS5048A_t AS5048A;
 	DRV8323_t drv8323s;
 
-	uint8_t pole_pairs;
-	float kv;
-	float Rs;
-	float Ld;
-	float Lq;
+	
 	float max_current;
 	float flux_linkage;
 
 	float m_angle_rad; 
 	float e_angle_rad; 
 	float e_angle_rad_comp; 
-	float m_angle_offset;
+
 	float e_rad;
 	float last_e_rad;
 
@@ -113,11 +110,11 @@ typedef struct {
 	float actual_angle;
 	int32_t m_angle_overflow_count;
 
-	float I_ctrl_bandwidth;
+
 	float id_ref, iq_ref;
 	float rpm_ref;
 
-    // uint8_t loop_count;
+  
 
 	volatile uint32_t *pwm_a;
 	volatile uint32_t *pwm_b;
@@ -137,8 +134,7 @@ typedef struct {
 
 	motor_mode_t control_mode;
 
-	float gear_ratio;
-	dir_mode_t sensor_dir;
+
 	float *angle_filtered;
 
 	uint8_t done_orderphase;
@@ -146,8 +142,8 @@ typedef struct {
 
 
 	//debug
-	int sample_index;
-	_Bool collect_sample_flag;
+	// int sample_index;
+	// _Bool collect_sample_flag;
 }foc_t;
 
 extern foc_t hfoc; 
@@ -172,6 +168,8 @@ float foc_fw_update(foc_t *hfoc);
 void foc_current_limit(float *id_ref, float *iq_ref, float max_current);
 
 void foc_current_control_update(foc_t *hfoc);
+
+int foc_torque_control_update(foc_t *hfoc);
 
 void foc_speed_control_update(foc_t *hfoc, float rpm_reference);
 
