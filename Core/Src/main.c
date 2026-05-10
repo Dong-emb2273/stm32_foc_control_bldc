@@ -149,7 +149,7 @@ void control_init(void) {
 
 
 	
-	foc_pwm_init(&hfoc, &(TIM1->CCR1), &(TIM1->CCR2), &(TIM1->CCR3), hfoc.drv8323s.pwm_resolution);
+	foc_pwm_init(&hfoc, &(TIM1->CCR3), &(TIM1->CCR2), &(TIM1->CCR1), hfoc.drv8323s.pwm_resolution);
 
   foc_set_limit_current(&hfoc, 10.0);
  
@@ -158,9 +158,7 @@ uint8_t Serial2RxBuffer[1];
 
 
 
-float sPoint_Vel = 5.0f;
-float sPoint_Pos = 0;
-float sPoint_Tor = 0;
+
 
 /* USER CODE END PV */
 
@@ -237,11 +235,17 @@ int main(void)
 
 	ENCODER_Setup();
 	ENCODER_AutoDetect();
+
+  hfoc.sPoint_Vel = 10.0f;
+  hfoc.sPoint_Pos = 0.0f;
+  hfoc.sPoint_Tor = 0.0f;
 	
   /* Start the FSM */
   state.state = MENU_MODE;
-  state.next_state = MENU_MODE;
+  state.next_state = STATE;
   state.ready = 1;
+
+  hfoc.control_mode = CONTROL_MODE;
 
   HAL_UART_Receive_IT(&huart, (uint8_t *)Serial2RxBuffer, 1);
 
@@ -254,12 +258,7 @@ int main(void)
   // Output PWM
   DRV8323_Start_PWM(&hfoc.drv8323s); //  MOE và CCxE
 
-  // // Calibration
-  // hfoc.control_mode = CALIBRATION_MODE;
-	// is_calibrating = 1;
-  // foc_cal_encoder(&hfoc);
-	// is_calibrating = 0;
-	hfoc.control_mode = SPEED_CONTROL_MODE;
+  
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -446,6 +445,8 @@ void ADC_IRQHandler(void) {
       ENCODER_Reset_Flag();
       encoder.start_read(encoder.hw_encoder);
 		}
+    foc_get_power_voltage(&hfoc);
+
     run_fsm(&state);
 
 		
@@ -468,10 +469,59 @@ void StartCalibrationTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    if(!hfoc.done_orderphase){foc_auto_calibration(&hfoc);}
-		if(!hfoc.done_cal_encoder){foc_cal_encoder(&hfoc);}
-            
-    osDelay(10);
+    // if(state.state == CALIBRATION_MODE) {
+    //   if(!hfoc.done_orderphase){foc_auto_calibration(&hfoc);}
+    //   if(!hfoc.done_cal_encoder){foc_cal_encoder(&hfoc);}
+       
+    //   // calibration_seq();
+    //   if(hfoc.done_cal_encoder == 1 && hfoc.done_orderphase == 1){
+    //     printf("Calibration Successful!\r\n");
+    //     update_fsm(&state, 27);
+    //   }
+    // }
+    // if(state.state == TEST_MODE) {
+      
+    switch (state.state) {
+      case CALIBRATION_MODE: {
+        
+        if(!hfoc.done_orderphase){foc_auto_calibration(&hfoc);}
+        if(!hfoc.done_cal_encoder){foc_cal_encoder(&hfoc);}
+        DRV8323_Calibrate_Current_Offset();
+        // calibration_seq();
+        if(hfoc.done_cal_encoder == 1 && hfoc.done_orderphase == 1){
+        printf("Calibration Successful!\r\n");
+        update_fsm(&state, 27);
+        }
+        break;
+      }
+      
+      case TEST_MODE: {
+        // printf("Id: %.3f\n\r", hfoc.id_filtered);
+        // printf("Iq: %.3f\n\r", hfoc.iq_filtered);
+
+        // printf("%.2f,%.2f\n", hfoc.ia, hfoc.ib);
+        // printf("%.2f,%.2f\n", hfoc.vd, hfoc.vq);
+        // printf("%.2f,%.2f\n", hfoc.id_filtered, hfoc.iq_filtered);
+        // printf("%.2f,%.2f\n", hfoc.id_filtered, hfoc.iq_filtered);
+        printf("%.2f,%.2f,%.2f,%.2f\n", hfoc.ia, hfoc.ib, hfoc.ic, hfoc.actual_rpm);
+        break;
+      }
+      case MENU_MODE: {
+        // printf("Id: %.3f\n\r", hfoc.id_filtered);  
+        // printf("Iq: %.3f\n\r", hfoc.iq_filtered);
+        // DRV8323_Get_Current(&hfoc.drv8323s, &hfoc.ia, &hfoc.ib, &hfoc.ic);
+        // printf("%.2f,%.2f\n", hfoc.ia, hfoc.ib);
+        // printf("%.2f,%.2f\n", hfoc.id_filtered, hfoc.iq_filtered);
+        // printf("%.2f,%.2f,%.2f,%.2f\n", hfoc.id_filtered, hfoc.iq_filtered, hfoc.ia, hfoc.ib);
+        break;
+      }
+      default:
+                  
+        break;
+              
+    }
+    // printf("%.5f,%.5f\n", hfoc.ia, hfoc.ib);
+    osDelay(1);
   }
   /* USER CODE END 5 */
 }

@@ -21,11 +21,14 @@ extern motor_config_t m_config;
 #define L_D			        (m_config.Ld)					// D-axis inductance
 #define L_Q			        (m_config.Lq)					// Q-axis inductance
 #define R_S			        (m_config.Rs)					// Single phase resistance
-
+#define CONTROL_MODE        (m_config.control_mode)         // Control mode (0: torque, 1: speed, 2: position)
 
 #define CAN_ID              (m_config.can_id)               // CAN bus ID
 #define CAN_MASTER          (m_config.can_master)           // CAN bus "master" ID
 #define CAN_TIMEOUT         (m_config.can_timeout)          // CAN bus timeout period
+
+#define STATE               (m_config.state)                // Current state of the motor (0: idle, 1: running, 2: error)
+#define NEXT_STATE          (m_config.next_state)           // Next state of the motor after current operation completes
 
 #define P_MIN		        (m_config.pos_min)              // Position setpoint lower limit (rad)
 #define P_MAX		        (m_config.pos_max)              // Position setupoint upper bound (rad)

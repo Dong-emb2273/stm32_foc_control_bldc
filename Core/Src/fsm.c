@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "main.h"
 #include "fsm.h"
 #include "hw_config.h"
 #include "user_config.h"
@@ -24,6 +25,7 @@
 extern float sPoint_Vel ;
 extern float sPoint_Pos ;
 extern float sPoint_Tor;
+
 
 
 void run_fsm(FSMStruct * fsmstate){
@@ -43,19 +45,14 @@ void run_fsm(FSMStruct * fsmstate){
 			break;
 
 		case CALIBRATION_MODE:
-			// if(!hfoc.done_orderphase){foc_auto_calibration_update(&hfoc);}
-			// else if(!hfoc.done_cal_encoder){foc_auto_cal_encoder_update(&hfoc);}
-            
-        
-            if(hfoc.done_cal_encoder == 1 && hfoc.done_orderphase == 1){
-                
-                printf("Calibration Successful!\r\n");
-                
-                
-                update_fsm(fsmstate, 27);
-				
-            }
-			 
+            // if(hfoc.done_cal_encoder == 1 && hfoc.done_orderphase == 1){
+            //     printf("Calibration Successful!\r\n");
+            //     update_fsm(fsmstate, 27);
+            // }
+			
+			meas_inj_dq_process(&hfoc, FOC_TS);
+
+
 //				 /* Exit calibration mode when done */
 //				 //for(int i = 0; i<128*PPAIRS; i++){printf("%d\r\n", error_array[i]);}
 //				 E_ZERO = comm_encoder_cal.ezero;
@@ -74,51 +71,15 @@ void run_fsm(FSMStruct * fsmstate){
 
 		case MOTOR_MODE:
 			/* If CAN has timed out, reset all commands */
-		
-			// if (ENCODER_GetFlag()) {
-			// 	ENCODER_Reset_Flag();
-			// 	encoder.start_read(encoder.hw_encoder);
-			// }
-				
-					
-			hfoc.v_bus = 19.420f; 
-			//hfoc.v_bus = 12.4f; 
-
-			switch (hfoc.control_mode) {
-				case TORQUE_CONTROL_MODE: {
-					
-					hfoc.actual_angle = ENCODER_GetActualDegree(&encoder);
-					// sPoint_Tor = k*(sPoint_Pos - hfoc.actual_angle) + p*hfoc.actual_rpm ;
-					hfoc.id_ref = 0.0f;
-					hfoc.iq_ref = sPoint_Tor;
-					foc_torque_control_update(&hfoc);
-					break;
-				}
-				case POSITION_CONTROL_MODE: {
-					if (foc_torque_control_update(&hfoc) == 1) {
-						hfoc.actual_angle = ENCODER_GetActualDegree(&encoder);
-						
-						foc_position_control_update(&hfoc, sPoint_Pos);
-					}
-					break;
-				}	
-				case SPEED_CONTROL_MODE: {
-					if (foc_torque_control_update(&hfoc) == 1) {
-						foc_speed_control_update(&hfoc, sPoint_Vel);
-
-					}
-					break;
-				}
-				default:
-							
-					break;
-						
-			}
-
-
+			foc_control_loop(&hfoc);
+			
 
 			break;
 
+		case TEST_MODE:
+			/* If CAN has timed out, reset all commands */
+			foc_control_loop(&hfoc);
+			break;
 		case SETUP_MODE:
 			break;
 
@@ -135,7 +96,8 @@ void run_fsm(FSMStruct * fsmstate){
 void fsm_enter_state(FSMStruct * fsmstate){
 	/* Called when entering a new state
 	* Do necessary setup   */
-
+	STATE = fsmstate->state;
+	NEXT_STATE = fsmstate->next_state;
 	switch(fsmstate->state){
 			case MENU_MODE:
 			//printf("Entering Main Menu\r\n");
@@ -145,15 +107,23 @@ void fsm_enter_state(FSMStruct * fsmstate){
 			printf("Entering Setup\r\n");
 			enter_setup_state();
 			break;
+		case TEST_MODE:
+			printf("Entering Test Mode\r\n");
+			// enter_test_state();
+			printf(" Type 't' + value to set Position Setpoint (e.g. t10.5)\r\n");
+			printf(" Press ESC to exit\r\n\r\n");
+			DRV8323RS_Enable;
+			break;
 		case ENCODER_MODE:
 			//printf("Entering Encoder Mode\r\n");
 			break;
 		case MOTOR_MODE:
 			printf("Entering Motor Mode\r\n");
-	
+			DRV8323RS_Enable;
 			break;
 		case CALIBRATION_MODE:
-			printf("Entering Calibration Mode\r\n");
+			printf("Starting Calibration Mode\r\n");
+			DRV8323RS_Enable;
             foc_start_calibration(&hfoc);  
 			break;
 
@@ -167,6 +137,7 @@ void fsm_exit_state(FSMStruct * fsmstate){
 	switch(fsmstate->state){
 		case MENU_MODE:
 			//printf("Leaving Main Menu\r\n");
+			// DRV8323_Set_PWM(&hfoc.drv8323s, 0, 0, 0);
 			fsmstate->ready = 1;
 			break;
 		case SETUP_MODE:
@@ -174,6 +145,14 @@ void fsm_exit_state(FSMStruct * fsmstate){
 			printf("Saving Setup Menu\r\n");
 			flash_save_config(&m_config);
 			printf("Setup Menu Saved\r\n");
+			fsmstate->ready = 1;
+			break;
+		case TEST_MODE:
+			printf("Leaving Test Mode\r\n");
+			DRV8323_Set_PWM(&hfoc.drv8323s, 0, 0, 0);
+			DRV8323RS_Disnable;
+			pid_reset(&hfoc.id_ctrl);
+			pid_reset(&hfoc.iq_ctrl);
 			fsmstate->ready = 1;
 			break;
 		case ENCODER_MODE:
@@ -184,6 +163,7 @@ void fsm_exit_state(FSMStruct * fsmstate){
 			/* Don't stop commutating if there are high currents or FW happening */
 			//if( (fabs(controller.i_q_filt)<1.0f) && (fabs(controller.i_d_filt)<1.0f) ){
 			DRV8323_Set_PWM(&hfoc.drv8323s, 0, 0, 0);
+			DRV8323RS_Disnable;
 			pid_reset(&hfoc.id_ctrl);
 			pid_reset(&hfoc.iq_ctrl);
 
@@ -231,6 +211,10 @@ void update_fsm(FSMStruct * fsmstate, char fsm_input){
 					fsmstate->next_state = SETUP_MODE;
 					fsmstate->ready = 0;
 					break;
+				case TEST_CMD:
+					fsmstate->next_state = TEST_MODE;
+					fsmstate->ready = 0;
+					break;
 				case ZERO_CMD:
 					
 					printf("\n\r  Saved new zero position: ");
@@ -254,12 +238,39 @@ void update_fsm(FSMStruct * fsmstate, char fsm_input){
 			/* If enter is typed, process user input */
 
 			break;
+		case TEST_MODE:
+			if(fsm_input == 10 || fsm_input == ' '){ 
+        		break; // Bỏ qua ký tự Line Feed (\n) và phím Space để không bị nhiễu
+    		}	
+			if(fsm_input == ENTER_CMD){
+				switch (fsmstate->cmd_id){
+					case 't': {
+						float mode_val = atof(fsmstate->cmd_buff);
+						hfoc.sPoint_Vel = mode_val;
+						printf("\n\r  Updated velocity Setpoint: %.3f\r\n", hfoc.sPoint_Vel);
+						break;
+					}
+				}
+				fsmstate->bytecount = 0;
+				fsmstate->cmd_id = 0;
+				memset(&fsmstate->cmd_buff, 0, sizeof(fsmstate->cmd_buff));
+				return;
+			}
+			if(fsmstate->bytecount == 0){fsmstate->cmd_id = fsm_input;}
+			else{
+				fsmstate->cmd_buff[fsmstate->bytecount-1] = fsm_input;
+				//fsmstate->bytecount = fsmstate->bytecount%(sizeof(fsmstate->cmd_buff)/sizeof(fsmstate->cmd_buff[0])); // reset when buffer is full
+			}
+			fsmstate->bytecount++;
+			/* If enter is typed, process user input */
+
+			break;	
 
 		case ENCODER_MODE:
 			break;
 		case MOTOR_MODE:
 			break;
-}
+	}
 //printf("FSM State: %d  %d\r\n", fsmstate.state, fsmstate.state_change);
 }
 
@@ -271,6 +282,7 @@ void enter_menu_state(void){
 	printf("\n\r\n\r");
 	printf(" Commands:\n\r");
 	printf(" m - Motor Mode\n\r");
+	printf(" t - Test Mode\n\r");
 	printf(" c - Calibrate Encoder\n\r");
 	printf(" s - Setup\n\r");
 	printf(" e - Display Encoder\n\r");
@@ -327,6 +339,7 @@ void process_user_input(FSMStruct * fsmstate){
             else {
                 printf("Invalid Mode! Please enter 0, 1, or 2.\r\n");
             }
+			CONTROL_MODE = hfoc.control_mode;
             break;
         }
 		case 'b':

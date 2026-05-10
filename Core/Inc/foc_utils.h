@@ -87,6 +87,15 @@ typedef struct {
 	float max_current;
 	float flux_linkage;
 
+	float meas_inj_freq;
+	float meas_inj_amp;
+	float meas_inj_omega;
+	inject_taregt_t meas_inj_target;
+	int meas_inj_n;
+	_Bool meas_inj_start_flag;
+
+
+
 	float m_angle_rad; 
 	float e_angle_rad; 
 	float e_angle_rad_comp; 
@@ -130,7 +139,7 @@ typedef struct {
 	float fw_vs_ref;
 	_Bool fw_enable;
 	
-	float sp_pos, sp_vel, sp_iq, kp, kd;
+	float sPoint_Pos, sPoint_Vel, sPoint_Tor, kp, kd;
 
 	motor_mode_t control_mode;
 
@@ -167,6 +176,10 @@ float foc_fw_update(foc_t *hfoc);
 
 void foc_current_limit(float *id_ref, float *iq_ref, float max_current);
 
+void foc_get_power_voltage(foc_t *hfoc);
+
+void foc_get_v_phase(foc_t *hfoc);
+
 void foc_current_control_update(foc_t *hfoc);
 
 int foc_torque_control_update(foc_t *hfoc);
@@ -174,6 +187,8 @@ int foc_torque_control_update(foc_t *hfoc);
 void foc_speed_control_update(foc_t *hfoc, float rpm_reference);
 
 void foc_position_control_update(foc_t *hfoc, float deg_reference);
+
+void foc_control_loop(foc_t *hfoc);
 
 float foc_calc_mech_rpm_encoder(foc_t *hfoc, float encd_rpm);
 
@@ -183,11 +198,17 @@ void foc_sensored_calc_electric_angle(foc_t *hfoc);
 
 void foc_start_calibration(foc_t *hfoc);
 
-void foc_auto_calibration_update(foc_t *hfoc);
-
 void foc_auto_calibration(foc_t *hfoc);
 
-void foc_auto_cal_encoder_update(foc_t *hfoc);
+
+void meas_inj_dq_process(foc_t *hfoc, float ts);
+void estimate_resistance(foc_t *hfoc);
+void estimate_inductance(foc_t *hfoc, float ts);
+void start_measure(inject_taregt_t target);
+int measure_R(float vdc);
+int measure_L(float f, float amp);
+void calibration_seq(void);
+
 
 void foc_cal_encoder_misalignment(foc_t *hfoc);
 

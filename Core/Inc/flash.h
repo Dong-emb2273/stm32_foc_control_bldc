@@ -42,7 +42,11 @@ typedef struct {
     float pos_kd;
     float pos_out_max;
     float pos_e_deadband;
-    
+
+    motor_mode_t control_mode;
+    uint8_t state;
+    uint8_t next_state;
+
     float voffset_a;
     float voffset_b;
 

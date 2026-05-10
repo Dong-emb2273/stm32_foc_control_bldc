@@ -26,7 +26,8 @@ extern "C" {
 #define MENU_MODE           0
 #define CALIBRATION_MODE    1
 #define MOTOR_MODE          2
-#define SETUP_MODE          4
+#define SETUP_MODE          3
+#define TEST_MODE           4
 #define ENCODER_MODE        5
 #define INIT_TEMP_MODE      6
 
@@ -35,6 +36,7 @@ extern "C" {
 #define CAL_CMD				'c'
 #define ENCODER_CMD			'e'
 #define SETUP_CMD			's'
+#define TEST_CMD			't'
 #define ZERO_CMD			'z'
 #define ENTER_CMD			13
 
@@ -57,6 +59,7 @@ void fsm_exit_state(FSMStruct * fsmstate);
 void enter_menu_state(void);
 void enter_setup_state(void);
 void enter_motor_mode(void);
+void enter_test_state(void);
 void process_user_input(FSMStruct * fsmstate);
 
 

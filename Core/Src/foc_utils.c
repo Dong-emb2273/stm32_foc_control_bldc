@@ -19,7 +19,10 @@
 extern motor_config_t m_config;
 
 _Bool foc_ready = 0;
-
+float Vd_buff[MAX_I_SAMPLE];
+float Vq_buff[MAX_I_SAMPLE];
+float Id_buff[MAX_I_SAMPLE];
+float Iq_buff[MAX_I_SAMPLE];
 
 float error_temp[ERROR_LUT_SIZE] = {0};
 
@@ -69,7 +72,25 @@ void foc_sensor_init(foc_t *hfoc, float m_rad_offset, dir_mode_t sensor_dir) {
 }
 
 //
+void foc_get_power_voltage(foc_t *hfoc) {
+    const float filter_alpha = 0.1f; 
 
+    float pv = (float)ADC3->JDR2 * ADC_2_VOLT * 9.2f; 
+
+    hfoc->v_bus = (1.0f - filter_alpha) * hfoc->v_bus + filter_alpha * pv;
+}
+
+void foc_get_v_phase(foc_t *hfoc) {
+    const float filter_alpha = 0.1f; 
+
+    float va = (float)ADC1->JDR2 * ADC_2_VOLT * 9.2f;
+    float vb = (float)ADC2->JDR2 * ADC_2_VOLT * 9.2f;
+    float vc = (float)ADC1->JDR3 * ADC_2_VOLT * 9.2f;
+
+    hfoc->va = (1.0f - filter_alpha) * hfoc->va + filter_alpha * va;
+    hfoc->vb = (1.0f - filter_alpha) * hfoc->vb + filter_alpha * vb;
+    hfoc->vc = (1.0f - filter_alpha) * hfoc->vc + filter_alpha * vc;
+}
 
 //
 
@@ -138,7 +159,6 @@ int foc_torque_control_update(foc_t *hfoc ) {
         event_speed_loop_count = 0;
         
         hfoc->actual_rpm = ENCODER_GetRPM(&encoder, FOC_TS * SPEED_CONTROL_CYCLE);
-        
         foc_set_flag();
         ret = 1;
     }
@@ -172,7 +192,7 @@ void foc_current_control_update(foc_t *hfoc) {
     // Nếu bị đấu ngược dây pha, ta lật ngược lệnh dòng điện Iq
     if (DIR_PHASE == REVERSE_DIR) {
         target_iq = -target_iq; 
-        
+        target_id = -target_id; 
     }
 
 
@@ -223,21 +243,55 @@ void foc_position_control_update(foc_t *hfoc, float deg_reference) {
 		hfoc->pos_ctrl.last_error = 0.0f;
 		return;
 	}
-#if 1
 
-//    const float min_speed = 3000.0f;
-//    const float deadband_rpm = 0.5f;
 	float error = deg_reference - hfoc->actual_angle;
     hfoc->rpm_ref = pid_control(&hfoc->pos_ctrl, error);
 
     foc_speed_control_update(hfoc, hfoc->rpm_ref);
-#else
- 
-#endif
+
 }
 //
+void foc_control_loop(foc_t *hfoc) {
+    if (hfoc == NULL) return;
 
-extern _Bool sensor_is_calibrated;
+    // if (ENCODER_GetFlag()) {
+    // 	ENCODER_Reset_Flag();
+    // 	encoder.start_read(encoder.hw_encoder);
+    // }
+        
+    // foc_get_power_voltage(hfoc);
+    hfoc->v_bus = 19.4f;
+
+
+    switch (hfoc->control_mode) {
+        case TORQUE_CONTROL_MODE: {
+            
+            hfoc->actual_angle = ENCODER_GetActualDegree(&encoder);
+            // sPoint_Tor = k*(sPoint_Pos - hfoc->actual_angle) + p*hfoc->actual_rpm ;
+            hfoc->id_ref = 0.0f;
+            hfoc->iq_ref = hfoc->sPoint_Tor;
+            foc_torque_control_update(hfoc);
+            break;
+        }
+        case POSITION_CONTROL_MODE: {
+            if (foc_torque_control_update(hfoc) == 1) {
+                hfoc->actual_angle = ENCODER_GetActualDegree(&encoder);
+                foc_position_control_update(hfoc, hfoc->sPoint_Pos);
+            }
+            break;
+        }	
+        case SPEED_CONTROL_MODE: {
+            if (foc_torque_control_update(hfoc) == 1) {
+                foc_speed_control_update(hfoc, hfoc->sPoint_Vel);
+            }
+            break;
+        }
+        default:
+                    
+            break;
+                
+    }
+}
 
 void foc_sensored_calc_electric_angle(foc_t *hfoc) {
 	// Check for NULL pointer and invalid parameters
@@ -256,7 +310,7 @@ void foc_sensored_calc_electric_angle(foc_t *hfoc) {
 	
 	// Handle sensor direction
 	if (DIR_PHASE == REVERSE_DIR) {
-			e_rad = TWO_PI - e_rad;
+		e_rad = TWO_PI - e_rad;
 	}
 
 	hfoc->e_angle_rad = e_rad;
@@ -265,7 +319,7 @@ void foc_sensored_calc_electric_angle(foc_t *hfoc) {
 	float lut_idx_f = (hfoc->m_angle_rad / TWO_PI) * ERROR_LUT_SIZE;
 	lut_idx_f = fmodf(lut_idx_f, ERROR_LUT_SIZE);
 	if (lut_idx_f < 0) {
-			lut_idx_f += ERROR_LUT_SIZE;
+		lut_idx_f += ERROR_LUT_SIZE;
 	}
 
 	// Get neighboring indices with wrap-around
@@ -287,25 +341,25 @@ void foc_sensored_calc_electric_angle(foc_t *hfoc) {
 //
 
 float foc_calc_mech_rpm_encoder(foc_t *hfoc, float encd_rpm) {
-	// if (DIR_PHASE == REVERSE_DIR) {
-	// 		hfoc->actual_rpm = -encd_rpm;
-	// }
-	// else {
-	// 		hfoc->actual_rpm = encd_rpm;
-	// }
-    hfoc->actual_rpm = encd_rpm;
+	if (DIR_PHASE == REVERSE_DIR) {
+			hfoc->actual_rpm = -encd_rpm;
+	}
+	else {
+			hfoc->actual_rpm = encd_rpm;
+	}
+    // hfoc->actual_rpm = encd_rpm;
 	return hfoc->actual_rpm;
 }
 //
 
 float foc_calc_mech_pos_encoder(foc_t *hfoc, float encd_deg) {
-	// if (DIR_PHASE == REVERSE_DIR) {
-	// 	hfoc->actual_angle = -encd_deg;
-	// }
-	// else {
-	// 	hfoc->actual_angle = encd_deg;
-	// }
-    hfoc->actual_angle = encd_deg;
+	if (DIR_PHASE == REVERSE_DIR) {
+		hfoc->actual_angle = -encd_deg;
+	}
+	else {
+		hfoc->actual_angle = encd_deg;
+	}
+    // hfoc->actual_angle = encd_deg;
 	return hfoc->actual_angle;
 }
 //
@@ -320,7 +374,6 @@ void foc_cal_encoder_misalignment(foc_t *hfoc) {
     }
     open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f);
     rad_offset = rad_offset / (float)CAL_ITERATION;
-    //hfoc->m_angle_offset = rad_offset;
     ENCDER_OFFSET = rad_offset;
     printf("Encoder Mechanical Offset (rad): %f\r\n", ENCDER_OFFSET);
 
@@ -377,19 +430,15 @@ void foc_cal_encoder(foc_t *hfoc) {
 }
 //
 
-
 void foc_start_calibration(foc_t *hfoc) {
     hfoc->done_orderphase = 0;
     hfoc->done_cal_encoder = 0;
  
 }
-
-
-
-
+//
 
 void foc_auto_calibration(foc_t *hfoc) {
-    printf("Starting Order Phase Calibration Task...\r\n");
+    printf("Starting Pole Pairs And Order Phase...\r\n");
 
     const float SWEEP_CYCLES = 20.0f; 
     const float W_CAL = TWO_PI / 0.2f; 
@@ -448,9 +497,228 @@ void foc_auto_calibration(foc_t *hfoc) {
     hfoc->done_orderphase = 1; 
     printf("Calibration Complete!\r\n");
 }
-
-
 //
+
+void meas_inj_dq_process(foc_t *hfoc, float ts) {
+    const uint32_t wt = 256; // waiting time
+
+    if (hfoc->meas_inj_start_flag) {
+        float vd = 0.0f, vq = 0.0f;
+        if (hfoc->meas_inj_target == RS) {
+            vd = hfoc->meas_inj_amp;
+            vq = 0.0f;
+        }
+        else {
+            float angle = hfoc->meas_inj_omega * hfoc->meas_inj_n * ts;
+            float v_inj = hfoc->meas_inj_amp * fast_sin(angle);
+            if (hfoc->meas_inj_target == LD) {
+                vd = v_inj;
+                vq = 0.0f;
+            }
+            else if (hfoc->meas_inj_target == LQ) {
+                vd = 0.0f;
+                vq = v_inj;
+            }
+        }
+
+        // float theta_e = hfoc->e_angle_rad_comp;
+        float theta_e = 0.0f;
+
+        open_loop_voltage_control(hfoc, vd, vq, theta_e);
+
+        DRV8323_Get_Current(&hfoc->drv8323s, &hfoc->ia, &hfoc->ib, &hfoc->ic);
+
+        float sin_theta, cos_theta;
+        float id, iq;
+        pre_calc_sin_cos(theta_e, &sin_theta, &cos_theta);
+        clarke_park_transform(hfoc->ia, hfoc->ib, sin_theta, cos_theta, &id, &iq);
+
+        if (hfoc->meas_inj_n >= wt) {
+            if (hfoc->meas_inj_target == RS || hfoc->meas_inj_target == LD) {
+                Vd_buff[hfoc->meas_inj_n - wt] = vd;
+                Id_buff[hfoc->meas_inj_n - wt] = id;
+            }
+            else if (hfoc->meas_inj_target == LQ) {
+                Vq_buff[hfoc->meas_inj_n - wt] = vq;
+                Iq_buff[hfoc->meas_inj_n - wt] = iq;
+            }
+        }
+
+        hfoc->meas_inj_n++;
+        if (hfoc->meas_inj_n >= (MAX_I_SAMPLE + wt)) {
+            hfoc->meas_inj_n = 0;
+            hfoc->meas_inj_start_flag = 0;
+            open_loop_voltage_control(hfoc, 0, 0, 0);
+        }
+    }
+}
+
+void estimate_resistance(foc_t *hfoc) {
+    float mean_vd = 0, mean_id = 0;
+
+    for (int i = 0; i < MAX_I_SAMPLE; i++) {
+        mean_vd += Vd_buff[i];
+        mean_id += Id_buff[i];
+    }
+    mean_vd /= MAX_I_SAMPLE;
+    mean_id /= MAX_I_SAMPLE;
+
+    R_S = fabs(mean_vd / mean_id);
+}
+
+void estimate_inductance(foc_t *hfoc, float ts) {
+    float Vc_d = 0, Vs_d = 0, Ic_d = 0, Is_d = 0;
+    float Vc_q = 0, Vs_q = 0, Ic_q = 0, Is_q = 0;
+    float mean_vd = 0, mean_vq = 0, mean_id = 0, mean_iq = 0;
+
+    // Remove DC offset
+    for (int i = 0; i < MAX_I_SAMPLE; i++) {
+        mean_vd += Vd_buff[i];
+        mean_vq += Vq_buff[i];
+        mean_id += Id_buff[i];
+        mean_iq += Iq_buff[i];
+    }
+    mean_vd /= MAX_I_SAMPLE;
+    mean_vq /= MAX_I_SAMPLE;
+    mean_id /= MAX_I_SAMPLE;
+    mean_iq /= MAX_I_SAMPLE;
+
+    // Single-frequency DFT
+    for (int i = 0; i < MAX_I_SAMPLE; i++) {
+        float angle = hfoc->meas_inj_omega * i * ts;
+
+        float vd = Vd_buff[i] - mean_vd;
+        float vq = Vq_buff[i] - mean_vq;
+        float id = Id_buff[i] - mean_id;
+        float iq = Iq_buff[i] - mean_iq;
+
+        Vc_d += vd * fast_cos(angle);
+        Vs_d += vd * fast_sin(angle);
+        Ic_d += id * fast_cos(angle);
+        Is_d += id * fast_sin(angle);
+
+        Vc_q += vq * fast_cos(angle);
+        Vs_q += vq * fast_sin(angle);
+        Ic_q += iq * fast_cos(angle);
+        Is_q += iq * fast_sin(angle);
+    }
+
+    float norm = 2.0f / MAX_I_SAMPLE;
+    Vc_d *= norm; Vs_d *= norm;
+    Ic_d *= norm; Is_d *= norm;
+    Vc_q *= norm; Vs_q *= norm;
+    Ic_q *= norm; Is_q *= norm;
+
+    // V & I amplitude
+    float Vd_mag = sqrtf(Vc_d * Vc_d + Vs_d * Vs_d);
+    float Id_mag = sqrtf(Ic_d * Ic_d + Is_d * Is_d);
+    float Vq_mag = sqrtf(Vc_q * Vc_q + Vs_q * Vs_q);
+    float Iq_mag = sqrtf(Ic_q * Ic_q + Is_q * Is_q);
+
+    // (phi = arctan(Vs/Vc) - arctan(Is/Ic))
+    float phi_d = atan2f(Vs_d, Vc_d) - atan2f(Is_d, Ic_d);
+    float phi_q = atan2f(Vs_q, Vc_q) - atan2f(Is_q, Ic_q);
+
+    // Impedansi & parameters
+    float Zd_mag = Vd_mag / Id_mag;
+    float Zq_mag = Vq_mag / Iq_mag;
+
+    // float Rs_d = Zd_mag * cosf(phi_d);
+    // float Rs_q = Zq_mag * cosf(phi_q);
+    float Ld_est = (Zd_mag * sinf(phi_d)) / hfoc->meas_inj_omega;
+    float Lq_est = (Zq_mag * sinf(phi_q)) / hfoc->meas_inj_omega;
+
+    // hfoc->Rs = (Rs_d + Rs_q) * 0.5;
+    L_D = fabs(Ld_est);
+    L_Q = fabs(Lq_est);
+}
+
+
+void start_measure(inject_taregt_t target) {
+    hfoc.meas_inj_target = target;
+    osDelay(100);
+    hfoc.meas_inj_start_flag = 1;
+    // waiting process
+    while(hfoc.meas_inj_start_flag) {
+        osDelay(1);
+    }
+}
+
+int measure_R(float vdc) {
+    if (hfoc.v_bus  < 10.0f) {
+        return -1;
+    }
+
+    hfoc.meas_inj_amp = vdc;
+
+    memset(Vd_buff, 0, sizeof(Vd_buff));
+    memset(Id_buff, 0, sizeof(Id_buff));
+
+    start_measure(RS);
+    estimate_resistance(&hfoc);
+    //   m_config.Rs = hfoc.Rs;
+
+    printf("Estimate Resistance @(V=%.2f)\r\n"
+                "Rs: %f\r\n\r\n",
+                hfoc.meas_inj_amp, R_S);
+    
+    return 0;
+}
+
+int measure_L(float f, float amp) {
+    if (hfoc.v_bus  < 10.0f) {
+        return -1;
+    }
+
+    hfoc.meas_inj_freq = f;
+    hfoc.meas_inj_amp = amp;
+    hfoc.meas_inj_omega = TWO_PI * hfoc.meas_inj_freq;
+
+    memset(Vd_buff, 0, sizeof(Vd_buff));
+    memset(Id_buff, 0, sizeof(Id_buff));
+    memset(Vq_buff, 0, sizeof(Vq_buff));
+    memset(Iq_buff, 0, sizeof(Iq_buff));
+
+    start_measure(LD);
+    start_measure(LQ);
+    estimate_inductance(&hfoc, FOC_TS);
+    //   m_config.Ld = hfoc.Ld;
+    //   m_config.Lq = hfoc.Lq;
+
+    for (int i = 0; i < MAX_I_SAMPLE; i++) {
+        float buffer_val[4] = {
+        Vd_buff[i], Vq_buff[i],
+        Id_buff[i], Iq_buff[i]
+        };
+        // send_data_float(buffer_val, 4);
+        osDelay(1);
+    }
+    
+    printf("Estimate Inductance @(f=%.2fHz)\r\n"
+                "Ld: %f\r\n"
+                "Lq: %f\r\n\r\n", 
+                hfoc.meas_inj_freq, L_D, L_Q);
+
+    return 0;
+}
+
+void calibration_seq(void) {
+    //   if (hfoc.foc_mode == FOC_MODE_SENSORED || hfoc.foc_mode == FOC_MODE_HYBRID) {
+    //     foc_cal_encoder(&hfoc);
+    //   }
+
+    measure_R(1.0f);
+    measure_L(1000.0f, 1.0f);
+
+    
+    
+    flash_auto_tuning_torque_control(&m_config);
+    hfoc.id_ctrl.kp = m_config.id_kp;
+    hfoc.id_ctrl.ki = m_config.id_ki;
+    hfoc.iq_ctrl.kp = m_config.iq_kp;
+    hfoc.iq_ctrl.ki = m_config.iq_ki;
+}
+
 
 void open_loop_voltage_control(foc_t *hfoc, float vd_ref, float vq_ref, float angle_rad) {
     float valpha, vbeta;

@@ -133,12 +133,45 @@ int DRV8323_Current_Sens_Config(DRV8323_t *cfg, float gain, float R_shunt){
 	cfg->gain = gain;
 	cfg->R_shunt = R_shunt;
 
-	cfg->v_to_currenta = 1.0f / (cfg->gain * (cfg->R_shunt + ra)); 
-	cfg->v_to_currentb = 1.0f / (cfg->gain * (cfg->R_shunt + rb)); 
-	cfg->v_to_currentc = 1.0f / (cfg->gain * (cfg->R_shunt + rc)); 
+	cfg->v_to_currenta = 1.0f / (cfg->gain * (cfg->R_shunt)); 
+	cfg->v_to_currentb = 1.0f / (cfg->gain * (cfg->R_shunt)); 
+	cfg->v_to_currentc = 1.0f / (cfg->gain * (cfg->R_shunt)); 
 
 	return 1;
 }
+float offset_a = 0.0f;
+float offset_b = 0.0f;
+float offset_c = 0.0f;
+
+void DRV8323_Calibrate_Current_Offset(void) {
+    uint32_t sum_a = 0;
+    uint32_t sum_b = 0;
+    uint32_t sum_c = 0;
+    const int num_samples = 2000;
+	
+    printf("Starting Current Sensor Calibration...\r\n");
+
+    // LƯU Ý QUAN TRỌNG: Lúc này phải đảm bảo PWM đang tắt (tất cả duty = 0)
+    // Nếu ADC JDR của bạn được trigger bằng Timer PWM, hãy để Timer chạy nhưng set Duty = 0
+    HAL_Delay(100); // Đợi hệ thống điện áp ổn định
+
+    for (int i = 0; i < num_samples; i++) {
+        // Nếu đo ngoài ngắt, đảm bảo ADC đang liên tục lấy mẫu
+        sum_a += ADC1->JDR1;
+        sum_b += ADC2->JDR1;
+        sum_c += ADC3->JDR1;
+        
+        HAL_Delay(1); // Hoặc dùng delay vi giây nếu không dùng RTOS
+    }
+
+    // Tính trung bình
+    offset_a = (float)sum_a / (float)num_samples;
+    offset_b = (float)sum_b / (float)num_samples;
+    offset_c = (float)sum_c / (float)num_samples;
+
+    printf("Calibrated Offsets - A: %.2f, B: %.2f, C: %.2f\r\n", offset_a, offset_b, offset_c);
+}
+
 #define MAX_CURRENT_JUMP 		30
 //
 uint16_t spike_filter(uint16_t new_val, uint16_t prev_val) {
@@ -154,35 +187,35 @@ uint16_t spike_filter(uint16_t new_val, uint16_t prev_val) {
 
 //
 
-
+uint16_t checka = 0x0807, checkb = 0x0814, checkc = 0x0818;
 void DRV8323_Get_Current(DRV8323_t *cfg, float *ia, float *ib, float *ic){
 	// Static filter state (retain between calls)
 	static float ia_filtered = 0.0f;
-	static float ib_filtered = 0.0f;
-	static float ic_filtered = 0.0f;
+    static float ib_filtered = 0.0f;
+    static float ic_filtered = 0.0f;
 
-	float ka = cfg->v_to_currenta; 
-	float kb = cfg->v_to_currentb; 
-	float kc = cfg->v_to_currentc; 
-	
-	cfg->adc_raw[0] = ADC1->JDR1;   // Pha A 
-	cfg->adc_raw[1] = ADC2->JDR1;   // Pha B
-	cfg->adc_raw[2] = ADC3->JDR1;   // Pha C
-	cfg->adc_raw[3] = ADC3->JDR2; 
-	
-	float ia_raw = (float)(cfg->adc_raw[0] - 2048) * ADC_2_VOLT * ka;
-	float ib_raw = (float)(cfg->adc_raw[1] - 2048) * ADC_2_VOLT * kb;
-	float ic_raw = (float)(cfg->adc_raw[2] - 2048) * ADC_2_VOLT * kc;
-	
-	// IIR Low Pass Filter
-	ia_filtered = (1.0f - CURRENT_FILTER_ALPHA) * ia_filtered + CURRENT_FILTER_ALPHA * ia_raw;
-	ib_filtered = (1.0f - CURRENT_FILTER_ALPHA) * ib_filtered + CURRENT_FILTER_ALPHA * ib_raw;
-	ic_filtered = (1.0f - CURRENT_FILTER_ALPHA) * ic_filtered + CURRENT_FILTER_ALPHA * ic_raw;
+    float ka = cfg->v_to_currenta; 
+    float kb = cfg->v_to_currentb; 
+    float kc = cfg->v_to_currentc; 
+    
+    cfg->adc_raw[0] = ADC1->JDR1; 
+    cfg->adc_raw[1] = ADC2->JDR1; 
+    cfg->adc_raw[2] = ADC3->JDR1; 
 
-	// Output
-	*ia = ia_filtered;
-	*ib = ib_filtered;
-	*ic = ic_filtered;
+    // Dùng offset đã calib động thay vì số cứng
+    float ia_raw = ((float)cfg->adc_raw[0] - offset_a) * ADC_2_VOLT * ka;
+    float ib_raw = ((float)cfg->adc_raw[1] - offset_b) * ADC_2_VOLT * kb;
+    float ic_raw = ((float)cfg->adc_raw[2] - offset_c) * ADC_2_VOLT * kc;
+    
+    // IIR Low Pass Filter
+    ia_filtered = (1.0f - CURRENT_FILTER_ALPHA) * ia_filtered + CURRENT_FILTER_ALPHA * ia_raw;
+    ib_filtered = (1.0f - CURRENT_FILTER_ALPHA) * ib_filtered + CURRENT_FILTER_ALPHA * ib_raw;
+    ic_filtered = (1.0f - CURRENT_FILTER_ALPHA) * ic_filtered + CURRENT_FILTER_ALPHA * ic_raw;
+
+    // Output
+    *ia = ia_filtered;
+    *ib = ib_filtered;
+    *ic = ic_filtered;
 }
 //
 
@@ -238,6 +271,8 @@ void bldc_config(DRV8323_t *hbldc){
 	DRV8323_WriteRegister(0x02, 0x0001);
 	HAL_Delay(20);
 	DRV8323_WriteRegister(0x02, 0x0001);
+	DRV8323_WriteRegister(0x03, 0x03AA);
+	DRV8323_WriteRegister(0x04, 0x07AA);
 	DRV8323_WriteRegister(0x05, 0x0159);
 	
   DRV8302_TIMER_config(hbldc, BLDC_TIMX, BLDC_PWM_FREQ);

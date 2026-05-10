@@ -1,5 +1,6 @@
 #include "flash.h"
 #include "foc_utils.h"
+#include "fsm.h"
 #include <string.h>
 
 HAL_StatusTypeDef flash_save_config(motor_config_t *data) {
@@ -51,28 +52,38 @@ void flash_read_config(motor_config_t *data) {
 }
 
 void flash_default_config(motor_config_t *data) {
-    data->id_kp = 0.01f;
+    // data->id_kp = 0.01f;
+    data->id_kp = 0.03f;
     data->id_ki = 4.09f;
-    data->id_out_max = 0.0000001f;
+    data->id_out_max = 10.7f;
     data->id_e_deadband = 0.0001f;
 
+    // data->iq_kp = 0.01f;
     data->iq_kp = 0.01f;
     data->iq_ki = 4.09f;
-    data->iq_out_max = 2.5f;
+    data->iq_out_max = 10.7f;
     data->iq_e_deadband = 0.0001f;
 
-    data->I_ctrl_bandwidth = 50.0f;
+    data->I_ctrl_bandwidth = 100.0f;
+
+    // data->speed_kp = 5.935f;
+    // data->speed_ki = 0.989f;
 
     data->speed_kp = 0.31f;
     data->speed_ki = 10.5f;
     data->speed_out_max = 10.0f;
-    data->speed_e_deadband = 0.01f;
+    data->speed_e_deadband = 0.005f;
 
     data->pos_kp = 4.1f;
     data->pos_ki = 0.0f;
     data->pos_kd = 0.01f;
     data->pos_out_max = 1200.0f;
-    data->pos_e_deadband = 0.05f;
+    data->pos_e_deadband = 0.01f;
+
+    data->control_mode = SPEED_CONTROL_MODE;
+    data->state = MENU_MODE;
+    data->next_state = MENU_MODE;
+   
 
     data->voffset_a = 1.65f;
     data->voffset_b = 1.65f;
