@@ -72,16 +72,44 @@ void foc_sensor_init(foc_t *hfoc, float m_rad_offset, dir_mode_t sensor_dir) {
 }
 
 //
-void foc_get_power_voltage(foc_t *hfoc) {
-    const float filter_alpha = 0.1f; 
+int foc_get_power_voltage(foc_t *hfoc) {
+    
+    static uint16_t startup_delay_counter = 0; 
+    const float filter_alpha = 0.5f; 
 
-    float pv = (float)ADC3->JDR2 * ADC_2_VOLT * 9.2f; 
+    float pv = (float)ADC3->JDR2 * ADC_2_VOLT * 9.3f; 
 
+    
     hfoc->v_bus = (1.0f - filter_alpha) * hfoc->v_bus + filter_alpha * pv;
+
+    if (startup_delay_counter < 1000) {
+        startup_delay_counter++;
+
+        if (startup_delay_counter == 1) {
+             hfoc->v_bus = pv; 
+        }
+        
+        return 0; 
+    }
+
+    if (hfoc->v_bus >= 10.0f) {
+        POWER_FLAG = 0;
+        return 0; 
+    }
+    else if (hfoc->v_bus < 8.0f && hfoc->v_bus > 1.0f) {
+        if (POWER_FLAG == 0) {
+            flash_save_emergency(&m_config);
+            printf("Saving current configuration to flash...\r\n");
+            POWER_FLAG = 1;
+        }
+        return 1; 
+    }
+    
+    return 0;
 }
 
 void foc_get_v_phase(foc_t *hfoc) {
-    const float filter_alpha = 0.1f; 
+    const float filter_alpha = 0.5f; 
 
     float va = (float)ADC1->JDR2 * ADC_2_VOLT * 9.2f;
     float vb = (float)ADC2->JDR2 * ADC_2_VOLT * 9.2f;
@@ -150,7 +178,7 @@ void foc_current_limit(float *id_ref, float *iq_ref, float max_current) {
 int foc_torque_control_update(foc_t *hfoc ) {
     int ret = 0;
     static uint8_t event_speed_loop_count = 0;
-    static float rpm_temp = 0.0f;
+    // static float rpm_temp = 0.0f;
         
     foc_current_control_update(hfoc);
     
@@ -159,6 +187,7 @@ int foc_torque_control_update(foc_t *hfoc ) {
         event_speed_loop_count = 0;
         
         hfoc->actual_rpm = ENCODER_GetRPM(&encoder, FOC_TS * SPEED_CONTROL_CYCLE);
+        foc_calc_mech_rpm_encoder(hfoc, hfoc->actual_rpm);
         foc_set_flag();
         ret = 1;
     }
@@ -184,24 +213,16 @@ void foc_current_control_update(foc_t *hfoc) {
 	// hfoc->id_ref = CONSTRAIN(hfoc->id_ref, -hfoc->max_current, hfoc->max_current);
 	// hfoc->iq_ref = CONSTRAIN(hfoc->iq_ref, -hfoc->max_current, hfoc->max_current);
 
-// 1. Giới hạn lực kéo (I_ref)
     float target_id = CONSTRAIN(hfoc->id_ref, -hfoc->max_current, hfoc->max_current);
     float target_iq = CONSTRAIN(hfoc->iq_ref, -hfoc->max_current, hfoc->max_current);
 
-    // 2. LẬT PHA ĐIỆN TỪ Ở ĐÂY (Điều hướng hệ quy chiếu)
-    // Nếu bị đấu ngược dây pha, ta lật ngược lệnh dòng điện Iq
     if (DIR_PHASE == REVERSE_DIR) {
-        target_iq = -target_iq; 
-        target_id = -target_id; 
+        target_iq = -target_iq;  
     }
-
-
-
-	// pre calculate sin & cos
+    
 	float sin_theta, cos_theta;
 	pre_calc_sin_cos(hfoc->e_angle_rad_comp, &sin_theta, &cos_theta);
 
-	// Get measured currents
 	clarke_park_transform(hfoc->ia, hfoc->ib, sin_theta, cos_theta, &hfoc->id, &hfoc->iq);
 
 	const float alpha_i_filt = 0.1f;
@@ -260,7 +281,15 @@ void foc_control_loop(foc_t *hfoc) {
     // }
         
     // foc_get_power_voltage(hfoc);
-    hfoc->v_bus = 19.4f;
+    if (POWER_FLAG == 1) {
+        // printf("Power voltage is too low: %.2f V\r\n", hfoc->v_bus);
+        return;
+    }
+    if (encoder.is_connected == 0) {
+        DRV8323_Set_PWM(&hfoc->drv8323s, 0, 0, 0); // Stop PWM output
+        return;
+    }
+    // hfoc->v_bus = 19.4f;
 
 
     switch (hfoc->control_mode) {
@@ -269,20 +298,21 @@ void foc_control_loop(foc_t *hfoc) {
             hfoc->actual_angle = ENCODER_GetActualDegree(&encoder);
             // sPoint_Tor = k*(sPoint_Pos - hfoc->actual_angle) + p*hfoc->actual_rpm ;
             hfoc->id_ref = 0.0f;
-            hfoc->iq_ref = hfoc->sPoint_Tor;
+            hfoc->iq_ref = SPOINT_TOR;
             foc_torque_control_update(hfoc);
             break;
         }
         case POSITION_CONTROL_MODE: {
             if (foc_torque_control_update(hfoc) == 1) {
                 hfoc->actual_angle = ENCODER_GetActualDegree(&encoder);
-                foc_position_control_update(hfoc, hfoc->sPoint_Pos);
+                foc_calc_mech_pos_encoder(hfoc, hfoc->actual_angle);
+                foc_position_control_update(hfoc, SPOINT_POS);
             }
             break;
         }	
         case SPEED_CONTROL_MODE: {
             if (foc_torque_control_update(hfoc) == 1) {
-                foc_speed_control_update(hfoc, hfoc->sPoint_Vel);
+                foc_speed_control_update(hfoc, SPOINT_VEL);
             }
             break;
         }
@@ -341,25 +371,27 @@ void foc_sensored_calc_electric_angle(foc_t *hfoc) {
 //
 
 float foc_calc_mech_rpm_encoder(foc_t *hfoc, float encd_rpm) {
-	if (DIR_PHASE == REVERSE_DIR) {
-			hfoc->actual_rpm = -encd_rpm;
-	}
-	else {
-			hfoc->actual_rpm = encd_rpm;
-	}
-    // hfoc->actual_rpm = encd_rpm;
+    
+	// if (DIR_PHASE == REVERSE_DIR) {
+	// 		hfoc->actual_rpm = -encd_rpm;
+	// }
+	// else {
+	// 		hfoc->actual_rpm = encd_rpm;
+	// }
+    hfoc->actual_rpm = encd_rpm;
 	return hfoc->actual_rpm;
 }
 //
 
 float foc_calc_mech_pos_encoder(foc_t *hfoc, float encd_deg) {
-	if (DIR_PHASE == REVERSE_DIR) {
-		hfoc->actual_angle = -encd_deg;
-	}
-	else {
-		hfoc->actual_angle = encd_deg;
-	}
-    // hfoc->actual_angle = encd_deg;
+    float relative_deg = encd_deg - M_ZERO;
+	// if (DIR_PHASE == REVERSE_DIR) {
+	// 	hfoc->actual_angle = -relative_deg;
+	// }
+	// else {
+	// 	hfoc->actual_angle = relative_deg;
+	// }
+    hfoc->actual_angle = relative_deg;
 	return hfoc->actual_angle;
 }
 //
@@ -464,18 +496,23 @@ void foc_auto_calibration(foc_t *hfoc) {
 
     float actual_theta_start = ENCODER_GetActualDegree(&encoder);
     
-    
+    // printf("Starting angle: %f degrees\r\n", actual_theta_start);
+    // printf("Starting angle: %f degrees\r\n", M_ZERO);
+
     for (uint32_t i = 0; i < total_steps; i++) {
         float elapsed_sec = (float)i * step_delay_ms / 1000.0f; 
         float elec_angle = W_CAL * elapsed_sec;
         open_loop_voltage_control(hfoc, VD_CAL, 0.0f, elec_angle);
-        ENCODER_GetActualDegree(&encoder); // Gọi liên tục để bù tràn
+        ENCODER_GetActualDegree(&encoder); 
         osDelay(step_delay_ms); 
     }
 
   
     float actual_theta_end = ENCODER_GetActualDegree(&encoder);
-    open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f); // Tắt áp
+    
+    // printf("Ending angle: %f degrees\r\n", actual_theta_end);
+
+    open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f); 
     
 
     float delta_mech = actual_theta_end - actual_theta_start;
@@ -495,7 +532,7 @@ void foc_auto_calibration(foc_t *hfoc) {
     }
 
     hfoc->done_orderphase = 1; 
-    printf("Calibration Complete!\r\n");
+    
 }
 //
 
@@ -685,14 +722,14 @@ int measure_L(float f, float amp) {
     //   m_config.Ld = hfoc.Ld;
     //   m_config.Lq = hfoc.Lq;
 
-    for (int i = 0; i < MAX_I_SAMPLE; i++) {
-        float buffer_val[4] = {
-        Vd_buff[i], Vq_buff[i],
-        Id_buff[i], Iq_buff[i]
-        };
-        // send_data_float(buffer_val, 4);
-        osDelay(1);
-    }
+    // for (int i = 0; i < MAX_I_SAMPLE; i++) {
+    //     float buffer_val[4] = {
+    //     Vd_buff[i], Vq_buff[i],
+    //     Id_buff[i], Iq_buff[i]
+    //     };
+    //     // send_data_float(buffer_val, 4);
+    //     osDelay(1);
+    // }
     
     printf("Estimate Inductance @(f=%.2fHz)\r\n"
                 "Ld: %f\r\n"
@@ -708,15 +745,15 @@ void calibration_seq(void) {
     //   }
 
     measure_R(1.0f);
-    measure_L(1000.0f, 1.0f);
+    measure_L(1000.0f, 1.2f);
 
     
     
-    flash_auto_tuning_torque_control(&m_config);
-    hfoc.id_ctrl.kp = m_config.id_kp;
-    hfoc.id_ctrl.ki = m_config.id_ki;
-    hfoc.iq_ctrl.kp = m_config.iq_kp;
-    hfoc.iq_ctrl.ki = m_config.iq_ki;
+    // flash_auto_tuning_torque_control(&m_config);
+    // hfoc.id_ctrl.kp = m_config.id_kp;
+    // hfoc.id_ctrl.ki = m_config.id_ki;
+    // hfoc.iq_ctrl.kp = m_config.iq_kp;
+    // hfoc.iq_ctrl.ki = m_config.iq_ki;
 }
 
 

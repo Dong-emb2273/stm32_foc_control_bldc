@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccHQhbLX.s 			page 1
+ARM GAS  /tmp/cc5hXKrJ.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccHQhbLX.s 			page 1
   28:Core/Src/can.c **** 
   29:Core/Src/can.c **** 
   30:Core/Src/can.c **** 
-ARM GAS  /tmp/ccHQhbLX.s 			page 2
+ARM GAS  /tmp/cc5hXKrJ.s 			page 2
 
 
   31:Core/Src/can.c **** /* USER CODE END 0 */
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccHQhbLX.s 			page 1
   62 0020 4261     		str	r2, [r0, #20]
   52:Core/Src/can.c ****   hcan2.Init.TimeTriggeredMode = DISABLE;
   63              		.loc 1 52 3 is_stmt 1 view .LVU13
-ARM GAS  /tmp/ccHQhbLX.s 			page 3
+ARM GAS  /tmp/cc5hXKrJ.s 			page 3
 
 
   64              		.loc 1 52 32 is_stmt 0 view .LVU14
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccHQhbLX.s 			page 1
  104              		.section	.text.HAL_CAN_MspInit,"ax",%progbits
  105              		.align	1
  106              		.global	HAL_CAN_MspInit
-ARM GAS  /tmp/ccHQhbLX.s 			page 4
+ARM GAS  /tmp/cc5hXKrJ.s 			page 4
 
 
  107              		.syntax unified
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccHQhbLX.s 			page 1
   83:Core/Src/can.c **** 	PA11     ------> CAN1_RX
   84:Core/Src/can.c **** 	PA12     ------> CAN1_TX
   85:Core/Src/can.c **** 	*/
-ARM GAS  /tmp/ccHQhbLX.s 			page 5
+ARM GAS  /tmp/cc5hXKrJ.s 			page 5
 
 
   86:Core/Src/can.c **** 	GPIO_InitStruct.Pin = GPIO_PIN_11 | GPIO_PIN_12;
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccHQhbLX.s 			page 1
   79:Core/Src/can.c **** 
  177              		.loc 1 79 3 view .LVU46
  178 0036 0194     		str	r4, [sp, #4]
-ARM GAS  /tmp/ccHQhbLX.s 			page 6
+ARM GAS  /tmp/cc5hXKrJ.s 			page 6
 
 
   79:Core/Src/can.c **** 
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccHQhbLX.s 			page 1
   89:Core/Src/can.c **** 	GPIO_InitStruct.Alternate = GPIO_AF9_CAN1;
  217              		.loc 1 89 24 is_stmt 0 view .LVU63
  218 0068 0323     		movs	r3, #3
-ARM GAS  /tmp/ccHQhbLX.s 			page 7
+ARM GAS  /tmp/cc5hXKrJ.s 			page 7
 
 
  219 006a 0693     		str	r3, [sp, #24]
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccHQhbLX.s 			page 1
  105:Core/Src/can.c ****   if(canHandle->Instance==CAN1)
  266              		.loc 1 105 3 view .LVU72
  267              		.loc 1 105 15 is_stmt 0 view .LVU73
-ARM GAS  /tmp/ccHQhbLX.s 			page 8
+ARM GAS  /tmp/cc5hXKrJ.s 			page 8
 
 
  268 0000 0268     		ldr	r2, [r0]
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccHQhbLX.s 			page 1
  305 0038 FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
  306              	.LVL13:
  122:Core/Src/can.c ****   /* USER CODE BEGIN CAN1_MspDeInit 1 */
-ARM GAS  /tmp/ccHQhbLX.s 			page 9
+ARM GAS  /tmp/cc5hXKrJ.s 			page 9
 
 
  123:Core/Src/can.c **** 
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccHQhbLX.s 			page 1
  351 000c 4362     		str	r3, [r0, #36]
  135:Core/Src/can.c **** 	msg->filter.FilterIdLow=0x000;
  352              		.loc 1 135 2 is_stmt 1 view .LVU93
-ARM GAS  /tmp/ccHQhbLX.s 			page 10
+ARM GAS  /tmp/cc5hXKrJ.s 			page 10
 
 
  353              		.loc 1 135 25 is_stmt 0 view .LVU94
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccHQhbLX.s 			page 1
  399              		.cfi_startproc
  400              		@ args = 0, pretend = 0, frame = 0
  401              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccHQhbLX.s 			page 11
+ARM GAS  /tmp/cc5hXKrJ.s 			page 11
 
 
  402              		@ link register save eliminated.
@@ -621,14 +621,14 @@ ARM GAS  /tmp/ccHQhbLX.s 			page 1
  415 000a 7047     		bx	lr
  416              		.cfi_endproc
  417              	.LFE138:
- 419              		.section	.text.pack_cmd,"ax",%progbits
+ 419              		.section	.text.Master_Pack_Cmd,"ax",%progbits
  420              		.align	1
- 421              		.global	pack_cmd
+ 421              		.global	Master_Pack_Cmd
  422              		.syntax unified
  423              		.thumb
  424              		.thumb_func
  425              		.fpu fpv4-sp-d16
- 427              	pack_cmd:
+ 427              	Master_Pack_Cmd:
  428              	.LVL18:
  429              	.LFB139:
  150:Core/Src/can.c **** //
@@ -636,7 +636,7 @@ ARM GAS  /tmp/ccHQhbLX.s 			page 1
  152:Core/Src/can.c **** 
  153:Core/Src/can.c **** /// CAN Command Packet Structure ///
  154:Core/Src/can.c **** /// 16 bit position command, between -4*pi and 4*pi
- 155:Core/Src/can.c **** /// 12 bit velocity command, between -30 and + 30 rad/s
+ 155:Core/Src/can.c **** /// 12 bit velocity command, between -30 and 30 rad/s
  156:Core/Src/can.c **** /// 12 bit kp, between 0 and 500 N-m/rad
  157:Core/Src/can.c **** /// 12 bit kd, between 0 and 100 N-m*s/rad
  158:Core/Src/can.c **** /// 12 bit feed forward torque, between -18 and 18 N-m
@@ -650,17 +650,22 @@ ARM GAS  /tmp/ccHQhbLX.s 			page 1
  166:Core/Src/can.c **** /// 5: [kd[11-4]]
  167:Core/Src/can.c **** /// 6: [kd[3-0], torque[11-8]]
  168:Core/Src/can.c **** /// 7: [torque[7-0]]
- 169:Core/Src/can.c **** void pack_cmd(CANTxMessage *msg, JointCommand_t *cmd){
- 430              		.loc 1 169 54 is_stmt 1 view -0
+ 169:Core/Src/can.c **** /* =========================================================================
+ 170:Core/Src/can.c ****  * CÁC HÀM DÀNH CHO MASTER
+ 171:Core/Src/can.c ****  * ========================================================================= */
+ 172:Core/Src/can.c **** 
+ 173:Core/Src/can.c **** // MASTER GỬI LỆNH: Đóng gói dữ liệu điều khiển để gửi xuống Slave
+ 174:Core/Src/can.c **** void Master_Pack_Cmd(CANTxMessage *msg, JointCommand_t *cmd) {
+ 430              		.loc 1 174 62 is_stmt 1 view -0
  431              		.cfi_startproc
+ARM GAS  /tmp/cc5hXKrJ.s 			page 12
+
+
  432              		@ args = 0, pretend = 0, frame = 0
  433              		@ frame_needed = 0, uses_anonymous_args = 0
- 434              		.loc 1 169 54 is_stmt 0 view .LVU117
+ 434              		.loc 1 174 62 is_stmt 0 view .LVU117
  435 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
  436              	.LCFI7:
-ARM GAS  /tmp/ccHQhbLX.s 			page 12
-
-
  437              		.cfi_def_cfa_offset 32
  438              		.cfi_offset 4, -32
  439              		.cfi_offset 5, -28
@@ -672,180 +677,170 @@ ARM GAS  /tmp/ccHQhbLX.s 			page 1
  445              		.cfi_offset 14, -4
  446 0004 0446     		mov	r4, r0
  447 0006 0E46     		mov	r6, r1
- 170:Core/Src/can.c **** 	int p_int  = float_to_uint(cmd->p_des, P_MIN, P_MAX, 16);
- 448              		.loc 1 170 2 is_stmt 1 view .LVU118
- 449              		.loc 1 170 15 is_stmt 0 view .LVU119
+ 175:Core/Src/can.c ****     int p_int  = float_to_uint(cmd->p_des, P_MIN, P_MAX, 16);
+ 448              		.loc 1 175 5 is_stmt 1 view .LVU118
+ 449              		.loc 1 175 18 is_stmt 0 view .LVU119
  450 0008 264D     		ldr	r5, .L29
  451 000a 1020     		movs	r0, #16
  452              	.LVL19:
- 453              		.loc 1 170 15 view .LVU120
- 454 000c 95ED231A 		vldr.32	s2, [r5, #140]
- 455 0010 D5ED220A 		vldr.32	s1, [r5, #136]
+ 453              		.loc 1 175 18 view .LVU120
+ 454 000c 95ED2A1A 		vldr.32	s2, [r5, #168]
+ 455 0010 D5ED290A 		vldr.32	s1, [r5, #164]
  456 0014 91ED000A 		vldr.32	s0, [r1]
  457 0018 FFF7FEFF 		bl	float_to_uint
  458              	.LVL20:
- 459              		.loc 1 170 15 view .LVU121
+ 459              		.loc 1 175 18 view .LVU121
  460 001c 8246     		mov	r10, r0
  461              	.LVL21:
- 171:Core/Src/can.c ****   int v_int  = float_to_uint(cmd->v_des, V_MIN, V_MAX, 12);
- 462              		.loc 1 171 3 is_stmt 1 view .LVU122
- 463              		.loc 1 171 16 is_stmt 0 view .LVU123
+ 176:Core/Src/can.c ****     int v_int  = float_to_uint(cmd->v_des, V_MIN, V_MAX, 12);
+ 462              		.loc 1 176 5 is_stmt 1 view .LVU122
+ 463              		.loc 1 176 18 is_stmt 0 view .LVU123
  464 001e 0C20     		movs	r0, #12
  465              	.LVL22:
- 466              		.loc 1 171 16 view .LVU124
- 467 0020 95ED251A 		vldr.32	s2, [r5, #148]
- 468 0024 D5ED240A 		vldr.32	s1, [r5, #144]
+ 466              		.loc 1 176 18 view .LVU124
+ 467 0020 95ED2C1A 		vldr.32	s2, [r5, #176]
+ 468 0024 D5ED2B0A 		vldr.32	s1, [r5, #172]
  469 0028 96ED010A 		vldr.32	s0, [r6, #4]
  470 002c FFF7FEFF 		bl	float_to_uint
  471              	.LVL23:
  472 0030 8146     		mov	r9, r0
  473              	.LVL24:
- 172:Core/Src/can.c **** 	int kp_int = float_to_uint(cmd->kp, KP_MIN, KP_MAX, 12);
- 474              		.loc 1 172 2 is_stmt 1 view .LVU125
- 475              		.loc 1 172 15 is_stmt 0 view .LVU126
+ 177:Core/Src/can.c ****     int kp_int = float_to_uint(cmd->kp, KP_MIN, KP_MAX, 12);
+ 474              		.loc 1 177 5 is_stmt 1 view .LVU125
+ 475              		.loc 1 177 18 is_stmt 0 view .LVU126
  476 0032 0C20     		movs	r0, #12
  477              	.LVL25:
- 478              		.loc 1 172 15 view .LVU127
- 479 0034 95ED291A 		vldr.32	s2, [r5, #164]
- 480 0038 D5ED280A 		vldr.32	s1, [r5, #160]
+ 478              		.loc 1 177 18 view .LVU127
+ 479 0034 95ED301A 		vldr.32	s2, [r5, #192]
+ 480 0038 D5ED2F0A 		vldr.32	s1, [r5, #188]
  481 003c 96ED020A 		vldr.32	s0, [r6, #8]
  482 0040 FFF7FEFF 		bl	float_to_uint
  483              	.LVL26:
  484 0044 8046     		mov	r8, r0
  485              	.LVL27:
- 173:Core/Src/can.c **** 	int kd_int = float_to_uint(cmd->kd, KD_MIN, KD_MAX, 12);
- 486              		.loc 1 173 2 is_stmt 1 view .LVU128
- 487              		.loc 1 173 15 is_stmt 0 view .LVU129
+ARM GAS  /tmp/cc5hXKrJ.s 			page 13
+
+
+ 178:Core/Src/can.c ****     int kd_int = float_to_uint(cmd->kd, KD_MIN, KD_MAX, 12);
+ 486              		.loc 1 178 5 is_stmt 1 view .LVU128
+ 487              		.loc 1 178 18 is_stmt 0 view .LVU129
  488 0046 0C20     		movs	r0, #12
  489              	.LVL28:
-ARM GAS  /tmp/ccHQhbLX.s 			page 13
-
-
- 490              		.loc 1 173 15 view .LVU130
- 491 0048 95ED2B1A 		vldr.32	s2, [r5, #172]
- 492 004c D5ED2A0A 		vldr.32	s1, [r5, #168]
+ 490              		.loc 1 178 18 view .LVU130
+ 491 0048 95ED321A 		vldr.32	s2, [r5, #200]
+ 492 004c D5ED310A 		vldr.32	s1, [r5, #196]
  493 0050 96ED030A 		vldr.32	s0, [r6, #12]
  494 0054 FFF7FEFF 		bl	float_to_uint
  495              	.LVL29:
  496 0058 0746     		mov	r7, r0
  497              	.LVL30:
- 174:Core/Src/can.c **** 	int t_int  = float_to_uint(cmd->t_ff, T_MIN, T_MAX, 12);
- 498              		.loc 1 174 2 is_stmt 1 view .LVU131
- 499              		.loc 1 174 15 is_stmt 0 view .LVU132
+ 179:Core/Src/can.c ****     int t_int  = float_to_uint(cmd->t_ff, T_MIN, T_MAX, 12);
+ 498              		.loc 1 179 5 is_stmt 1 view .LVU131
+ 499              		.loc 1 179 18 is_stmt 0 view .LVU132
  500 005a 0C20     		movs	r0, #12
  501              	.LVL31:
- 502              		.loc 1 174 15 view .LVU133
- 503 005c 95ED271A 		vldr.32	s2, [r5, #156]
- 504 0060 D5ED260A 		vldr.32	s1, [r5, #152]
+ 502              		.loc 1 179 18 view .LVU133
+ 503 005c 95ED2E1A 		vldr.32	s2, [r5, #184]
+ 504 0060 D5ED2D0A 		vldr.32	s1, [r5, #180]
  505 0064 96ED040A 		vldr.32	s0, [r6, #16]
  506 0068 FFF7FEFF 		bl	float_to_uint
  507              	.LVL32:
  508 006c 0346     		mov	r3, r0
  509              	.LVL33:
- 175:Core/Src/can.c **** 	
- 176:Core/Src/can.c **** 	msg->tx_header.StdId = cmd->can_id;
- 510              		.loc 1 176 2 is_stmt 1 view .LVU134
- 511              		.loc 1 176 28 is_stmt 0 view .LVU135
+ 180:Core/Src/can.c ****     
+ 181:Core/Src/can.c ****     msg->tx_header.StdId = cmd->can_id; // ID Slave
+ 510              		.loc 1 181 5 is_stmt 1 view .LVU134
+ 511              		.loc 1 181 31 is_stmt 0 view .LVU135
  512 006e 7269     		ldr	r2, [r6, #20]
- 513              		.loc 1 176 23 view .LVU136
+ 513              		.loc 1 181 26 view .LVU136
  514 0070 A260     		str	r2, [r4, #8]
- 177:Core/Src/can.c **** 	
- 178:Core/Src/can.c **** 	msg->data[0] = p_int >> 8;
- 515              		.loc 1 178 2 is_stmt 1 view .LVU137
- 516              		.loc 1 178 23 is_stmt 0 view .LVU138
+ 182:Core/Src/can.c **** 
+ 183:Core/Src/can.c ****     msg->data[0] = p_int >> 8;
+ 515              		.loc 1 183 5 is_stmt 1 view .LVU137
+ 516              		.loc 1 183 26 is_stmt 0 view .LVU138
  517 0072 4FEA2A22 		asr	r2, r10, #8
- 518              		.loc 1 178 15 view .LVU139
+ 518              		.loc 1 183 18 view .LVU139
  519 0076 2270     		strb	r2, [r4]
- 179:Core/Src/can.c **** 	msg->data[1] = p_int & 0xFF;
- 520              		.loc 1 179 2 is_stmt 1 view .LVU140
- 521              		.loc 1 179 15 is_stmt 0 view .LVU141
+ 184:Core/Src/can.c ****     msg->data[1] = p_int & 0xFF;
+ 520              		.loc 1 184 5 is_stmt 1 view .LVU140
+ 521              		.loc 1 184 18 is_stmt 0 view .LVU141
  522 0078 84F801A0 		strb	r10, [r4, #1]
- 180:Core/Src/can.c **** 	msg->data[2] = v_int >> 4;
- 523              		.loc 1 180 2 is_stmt 1 view .LVU142
- 524              		.loc 1 180 23 is_stmt 0 view .LVU143
+ 185:Core/Src/can.c ****     msg->data[2] = v_int >> 4;
+ 523              		.loc 1 185 5 is_stmt 1 view .LVU142
+ 524              		.loc 1 185 26 is_stmt 0 view .LVU143
  525 007c 4FEA2912 		asr	r2, r9, #4
- 526              		.loc 1 180 15 view .LVU144
+ 526              		.loc 1 185 18 view .LVU144
  527 0080 A270     		strb	r2, [r4, #2]
- 181:Core/Src/can.c **** 	msg->data[3] = ((v_int & 0xF) << 4) | (kp_int >> 8);
- 528              		.loc 1 181 2 is_stmt 1 view .LVU145
- 529              		.loc 1 181 48 is_stmt 0 view .LVU146
+ 186:Core/Src/can.c ****     msg->data[3] = ((v_int & 0xF) << 4) | (kp_int >> 8);
+ 528              		.loc 1 186 5 is_stmt 1 view .LVU145
+ 529              		.loc 1 186 51 is_stmt 0 view .LVU146
  530 0082 4FEA2820 		asr	r0, r8, #8
  531              	.LVL34:
- 532              		.loc 1 181 38 view .LVU147
+ 532              		.loc 1 186 41 view .LVU147
  533 0086 40EA0919 		orr	r9, r0, r9, lsl #4
+ARM GAS  /tmp/cc5hXKrJ.s 			page 14
+
+
  534              	.LVL35:
- 535              		.loc 1 181 15 view .LVU148
+ 535              		.loc 1 186 18 view .LVU148
  536 008a 84F80390 		strb	r9, [r4, #3]
- 182:Core/Src/can.c **** 	msg->data[4] = kp_int & 0xFF;
- 537              		.loc 1 182 2 is_stmt 1 view .LVU149
-ARM GAS  /tmp/ccHQhbLX.s 			page 14
-
-
- 538              		.loc 1 182 15 is_stmt 0 view .LVU150
+ 187:Core/Src/can.c ****     msg->data[4] = kp_int & 0xFF;
+ 537              		.loc 1 187 5 is_stmt 1 view .LVU149
+ 538              		.loc 1 187 18 is_stmt 0 view .LVU150
  539 008e 84F80480 		strb	r8, [r4, #4]
- 183:Core/Src/can.c **** 	msg->data[5] = kd_int >> 4;
- 540              		.loc 1 183 2 is_stmt 1 view .LVU151
- 541              		.loc 1 183 24 is_stmt 0 view .LVU152
+ 188:Core/Src/can.c ****     msg->data[5] = kd_int >> 4;
+ 540              		.loc 1 188 5 is_stmt 1 view .LVU151
+ 541              		.loc 1 188 27 is_stmt 0 view .LVU152
  542 0092 3A11     		asrs	r2, r7, #4
- 543              		.loc 1 183 15 view .LVU153
+ 543              		.loc 1 188 18 view .LVU153
  544 0094 6271     		strb	r2, [r4, #5]
- 184:Core/Src/can.c **** 	msg->data[6] = ((kd_int & 0xF) << 4) | (t_int >> 8);
- 545              		.loc 1 184 2 is_stmt 1 view .LVU154
- 546              		.loc 1 184 48 is_stmt 0 view .LVU155
+ 189:Core/Src/can.c ****     msg->data[6] = ((kd_int & 0xF) << 4) | (t_int >> 8);
+ 545              		.loc 1 189 5 is_stmt 1 view .LVU154
+ 546              		.loc 1 189 51 is_stmt 0 view .LVU155
  547 0096 1812     		asrs	r0, r3, #8
- 548              		.loc 1 184 39 view .LVU156
+ 548              		.loc 1 189 42 view .LVU156
  549 0098 40EA0717 		orr	r7, r0, r7, lsl #4
  550              	.LVL36:
- 551              		.loc 1 184 15 view .LVU157
+ 551              		.loc 1 189 18 view .LVU157
  552 009c A771     		strb	r7, [r4, #6]
- 185:Core/Src/can.c **** 	msg->data[7] = t_int & 0xFF;
- 553              		.loc 1 185 2 is_stmt 1 view .LVU158
- 554              		.loc 1 185 15 is_stmt 0 view .LVU159
+ 190:Core/Src/can.c ****     msg->data[7] = t_int & 0xFF;
+ 553              		.loc 1 190 5 is_stmt 1 view .LVU158
+ 554              		.loc 1 190 18 is_stmt 0 view .LVU159
  555 009e E371     		strb	r3, [r4, #7]
- 186:Core/Src/can.c **** }
- 556              		.loc 1 186 1 view .LVU160
+ 191:Core/Src/can.c **** }
+ 556              		.loc 1 191 1 view .LVU160
  557 00a0 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
  558              	.LVL37:
  559              	.L30:
- 560              		.loc 1 186 1 view .LVU161
+ 560              		.loc 1 191 1 view .LVU161
  561              		.align	2
  562              	.L29:
  563 00a4 00100000 		.word	m_config+4096
  564              		.cfi_endproc
  565              	.LFE139:
- 567              		.section	.text.unpack_state,"ax",%progbits
+ 567              		.section	.text.Master_Unpack_State,"ax",%progbits
  568              		.align	1
- 569              		.global	unpack_state
+ 569              		.global	Master_Unpack_State
  570              		.syntax unified
  571              		.thumb
  572              		.thumb_func
  573              		.fpu fpv4-sp-d16
- 575              	unpack_state:
+ 575              	Master_Unpack_State:
  576              	.LVL38:
  577              	.LFB140:
- 187:Core/Src/can.c **** /// unpack_cmd Reply Packet Structure ///
- 188:Core/Src/can.c **** /// 16 bit position, between -4*pi and 4*pi
- 189:Core/Src/can.c **** /// 12 bit velocity, between -30 and + 30 rad/s
- 190:Core/Src/can.c **** /// 12 bit current, between -40 and 40;
- 191:Core/Src/can.c **** /// CAN Packet is 5 8-bit words
- 192:Core/Src/can.c **** /// Formatted as follows.  For each quantity, bit 0 is LSB
- 193:Core/Src/can.c **** /// 0: [position[15-8]]
- 194:Core/Src/can.c **** /// 1: [position[7-0]]
- 195:Core/Src/can.c **** /// 2: [velocity[11-4]]
- 196:Core/Src/can.c **** /// 3: [velocity[3-0], current[11-8]]
- 197:Core/Src/can.c **** /// 4: [current[7-0]]
- 198:Core/Src/can.c **** void unpack_state(CANRxMessage *msg, JointState_t *state){// ControllerStruct * controller){
- 578              		.loc 1 198 58 is_stmt 1 view -0
+ 192:Core/Src/can.c **** 
+ 193:Core/Src/can.c **** void Master_Unpack_State(CANRxMessage *msg, JointState_t *state) {
+ 578              		.loc 1 193 66 is_stmt 1 view -0
  579              		.cfi_startproc
  580              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccHQhbLX.s 			page 15
-
-
  581              		@ frame_needed = 0, uses_anonymous_args = 0
- 582              		.loc 1 198 58 is_stmt 0 view .LVU163
+ 582              		.loc 1 193 66 is_stmt 0 view .LVU163
  583 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
  584              	.LCFI8:
  585              		.cfi_def_cfa_offset 24
+ARM GAS  /tmp/cc5hXKrJ.s 			page 15
+
+
  586              		.cfi_offset 4, -24
  587              		.cfi_offset 5, -20
  588              		.cfi_offset 6, -16
@@ -853,159 +848,495 @@ ARM GAS  /tmp/ccHQhbLX.s 			page 1
  590              		.cfi_offset 8, -8
  591              		.cfi_offset 14, -4
  592 0004 0D46     		mov	r5, r1
- 199:Core/Src/can.c **** 	int p_int = (msg->data[1] << 8) | msg->data[2];	
- 593              		.loc 1 199 2 is_stmt 1 view .LVU164
- 594              		.loc 1 199 24 is_stmt 0 view .LVU165
+ 194:Core/Src/can.c ****     // Byte [0] thường chứa Slave ID, ta bắt đầu giải mã từ Byte [1]
+ 195:Core/Src/can.c ****     int p_int  = (msg->data[1] << 8) | msg->data[2];    
+ 593              		.loc 1 195 5 is_stmt 1 view .LVU164
+ 594              		.loc 1 195 28 is_stmt 0 view .LVU165
  595 0006 90F801C0 		ldrb	ip, [r0, #1]	@ zero_extendqisi2
- 596              		.loc 1 199 45 view .LVU166
+ 596              		.loc 1 195 49 view .LVU166
  597 000a 8278     		ldrb	r2, [r0, #2]	@ zero_extendqisi2
  598              	.LVL39:
- 200:Core/Src/can.c **** 	int v_int = (msg->data[3] << 4) | (msg->data[4] >> 4);
- 599              		.loc 1 200 2 is_stmt 1 view .LVU167
- 600              		.loc 1 200 24 is_stmt 0 view .LVU168
+ 196:Core/Src/can.c ****     int v_int  = (msg->data[3] << 4) | (msg->data[4] >> 4);
+ 599              		.loc 1 196 5 is_stmt 1 view .LVU167
+ 600              		.loc 1 196 28 is_stmt 0 view .LVU168
  601 000c C178     		ldrb	r1, [r0, #3]	@ zero_extendqisi2
  602              	.LVL40:
- 603              		.loc 1 200 46 view .LVU169
+ 603              		.loc 1 196 50 view .LVU169
  604 000e 0379     		ldrb	r3, [r0, #4]	@ zero_extendqisi2
- 605              		.loc 1 200 50 view .LVU170
+ 605              		.loc 1 196 54 view .LVU170
  606 0010 1F09     		lsrs	r7, r3, #4
- 607              		.loc 1 200 6 view .LVU171
+ 607              		.loc 1 196 9 view .LVU171
  608 0012 47EA0117 		orr	r7, r7, r1, lsl #4
  609              	.LVL41:
- 201:Core/Src/can.c **** 	int t_int = ((msg->data[4] & 0xF) << 8) | msg->data[5];
- 610              		.loc 1 201 2 is_stmt 1 view .LVU172
- 611              		.loc 1 201 36 is_stmt 0 view .LVU173
+ 197:Core/Src/can.c ****     int t_int  = ((msg->data[4] & 0xF) << 8) | msg->data[5];
+ 610              		.loc 1 197 5 is_stmt 1 view .LVU172
+ 611              		.loc 1 197 40 is_stmt 0 view .LVU173
  612 0016 1C02     		lsls	r4, r3, #8
  613 0018 04F47064 		and	r4, r4, #3840
- 614              		.loc 1 201 53 view .LVU174
+ 614              		.loc 1 197 57 view .LVU174
  615 001c 4379     		ldrb	r3, [r0, #5]	@ zero_extendqisi2
- 616              		.loc 1 201 6 view .LVU175
+ 616              		.loc 1 197 9 view .LVU175
  617 001e 1C43     		orrs	r4, r4, r3
  618              	.LVL42:
- 202:Core/Src/can.c **** 	int vb_int = msg->data[6];
- 619              		.loc 1 202 2 is_stmt 1 view .LVU176
- 620              		.loc 1 202 24 is_stmt 0 view .LVU177
+ 198:Core/Src/can.c ****     int vb_int = msg->data[6];
+ 619              		.loc 1 198 5 is_stmt 1 view .LVU176
+ 620              		.loc 1 198 27 is_stmt 0 view .LVU177
  621 0020 90F80680 		ldrb	r8, [r0, #6]	@ zero_extendqisi2
  622              	.LVL43:
- 203:Core/Src/can.c **** 
- 204:Core/Src/can.c **** 	state->p_act  = uint_to_float(p_int, P_MIN, P_MAX, 16);
- 623              		.loc 1 204 2 is_stmt 1 view .LVU178
- 624              		.loc 1 204 18 is_stmt 0 view .LVU179
+ 199:Core/Src/can.c **** 
+ 200:Core/Src/can.c ****     // Chuyển đổi số nguyên ngược lại thành số thực
+ 201:Core/Src/can.c ****     state->p_act  = uint_to_float(p_int, P_MIN, P_MAX, 16);
+ 623              		.loc 1 201 5 is_stmt 1 view .LVU178
+ 624              		.loc 1 201 21 is_stmt 0 view .LVU179
  625 0024 154E     		ldr	r6, .L33
  626 0026 1021     		movs	r1, #16
- 627 0028 D6ED230A 		vldr.32	s1, [r6, #140]
- 628 002c 96ED220A 		vldr.32	s0, [r6, #136]
+ 627 0028 D6ED2A0A 		vldr.32	s1, [r6, #168]
+ 628 002c 96ED290A 		vldr.32	s0, [r6, #164]
  629 0030 42EA0C20 		orr	r0, r2, ip, lsl #8
  630              	.LVL44:
- 631              		.loc 1 204 18 view .LVU180
-ARM GAS  /tmp/ccHQhbLX.s 			page 16
-
-
+ 631              		.loc 1 201 21 view .LVU180
  632 0034 FFF7FEFF 		bl	uint_to_float
  633              	.LVL45:
- 634              		.loc 1 204 16 view .LVU181
+ 634              		.loc 1 201 19 view .LVU181
+ARM GAS  /tmp/cc5hXKrJ.s 			page 16
+
+
  635 0038 85ED000A 		vstr.32	s0, [r5]
- 205:Core/Src/can.c **** 	state->v_act  = uint_to_float(v_int, V_MIN, V_MAX, 12);
- 636              		.loc 1 205 2 is_stmt 1 view .LVU182
- 637              		.loc 1 205 18 is_stmt 0 view .LVU183
+ 202:Core/Src/can.c ****     state->v_act  = uint_to_float(v_int, V_MIN, V_MAX, 12);
+ 636              		.loc 1 202 5 is_stmt 1 view .LVU182
+ 637              		.loc 1 202 21 is_stmt 0 view .LVU183
  638 003c 0C21     		movs	r1, #12
- 639 003e D6ED250A 		vldr.32	s1, [r6, #148]
- 640 0042 96ED240A 		vldr.32	s0, [r6, #144]
+ 639 003e D6ED2C0A 		vldr.32	s1, [r6, #176]
+ 640 0042 96ED2B0A 		vldr.32	s0, [r6, #172]
  641 0046 3846     		mov	r0, r7
  642 0048 FFF7FEFF 		bl	uint_to_float
  643              	.LVL46:
- 644              		.loc 1 205 16 view .LVU184
+ 644              		.loc 1 202 19 view .LVU184
  645 004c 85ED010A 		vstr.32	s0, [r5, #4]
- 206:Core/Src/can.c **** 	state->t_act  = uint_to_float(t_int, T_MIN, T_MAX, 12);
- 646              		.loc 1 206 2 is_stmt 1 view .LVU185
- 647              		.loc 1 206 18 is_stmt 0 view .LVU186
+ 203:Core/Src/can.c ****     state->t_act  = uint_to_float(t_int, T_MIN, T_MAX, 12);
+ 646              		.loc 1 203 5 is_stmt 1 view .LVU185
+ 647              		.loc 1 203 21 is_stmt 0 view .LVU186
  648 0050 0C21     		movs	r1, #12
- 649 0052 D6ED270A 		vldr.32	s1, [r6, #156]
- 650 0056 96ED260A 		vldr.32	s0, [r6, #152]
+ 649 0052 D6ED2E0A 		vldr.32	s1, [r6, #184]
+ 650 0056 96ED2D0A 		vldr.32	s0, [r6, #180]
  651 005a 2046     		mov	r0, r4
  652 005c FFF7FEFF 		bl	uint_to_float
  653              	.LVL47:
- 654              		.loc 1 206 16 view .LVU187
+ 654              		.loc 1 203 19 view .LVU187
  655 0060 85ED020A 		vstr.32	s0, [r5, #8]
- 207:Core/Src/can.c **** 	state->v_batt = uint_to_float(vb_int, VB_MIN, VB_MAX, 8);
- 656              		.loc 1 207 2 is_stmt 1 view .LVU188
- 657              		.loc 1 207 18 is_stmt 0 view .LVU189
+ 204:Core/Src/can.c ****     state->v_batt = uint_to_float(vb_int, VB_MIN, VB_MAX, 8);
+ 656              		.loc 1 204 5 is_stmt 1 view .LVU188
+ 657              		.loc 1 204 21 is_stmt 0 view .LVU189
  658 0064 0821     		movs	r1, #8
  659 0066 F7EE000A 		vmov.f32	s1, #1.0e+0
  660 006a B0EE600A 		vmov.f32	s0, s1
  661 006e 4046     		mov	r0, r8
  662 0070 FFF7FEFF 		bl	uint_to_float
  663              	.LVL48:
- 664              		.loc 1 207 16 view .LVU190
+ 664              		.loc 1 204 19 view .LVU190
  665 0074 85ED030A 		vstr.32	s0, [r5, #12]
- 208:Core/Src/can.c **** 
- 209:Core/Src/can.c **** }
- 666              		.loc 1 209 1 view .LVU191
+ 205:Core/Src/can.c **** }
+ 666              		.loc 1 205 1 view .LVU191
  667 0078 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
  668              	.LVL49:
  669              	.L34:
- 670              		.loc 1 209 1 view .LVU192
+ 670              		.loc 1 205 1 view .LVU192
  671              		.align	2
  672              	.L33:
  673 007c 00100000 		.word	m_config+4096
  674              		.cfi_endproc
  675              	.LFE140:
- 677              		.global	hcan2
- 678              		.section	.bss.hcan2,"aw",%nobits
- 679              		.align	2
- 680              		.set	.LANCHOR0,. + 0
- 683              	hcan2:
- 684 0000 00000000 		.space	40
- 684      00000000 
- 684      00000000 
-ARM GAS  /tmp/ccHQhbLX.s 			page 17
+ 677              		.section	.text.Slave_Unpack_Cmd,"ax",%progbits
+ 678              		.align	1
+ 679              		.global	Slave_Unpack_Cmd
+ 680              		.syntax unified
+ 681              		.thumb
+ 682              		.thumb_func
+ 683              		.fpu fpv4-sp-d16
+ 685              	Slave_Unpack_Cmd:
+ 686              	.LVL50:
+ 687              	.LFB141:
+ 206:Core/Src/can.c **** /// unpack_cmd Reply Packet Structure ///
+ 207:Core/Src/can.c **** /// 16 bit position, between -4*pi and 4*pi
+ARM GAS  /tmp/cc5hXKrJ.s 			page 17
 
 
- 684      00000000 
- 684      00000000 
- 685              		.text
- 686              	.Letext0:
- 687              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
- 688              		.file 3 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
- 689              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
- 690              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 691              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
- 692              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h"
- 693              		.file 8 "Core/Inc/joint_acc.h"
- 694              		.file 9 "Core/Inc/can.h"
- 695              		.file 10 "Core/Inc/foc_utils.h"
- 696              		.file 11 "Core/Inc/flash.h"
- 697              		.file 12 "Core/Inc/user_config.h"
- 698              		.file 13 "Core/Inc/math_ops.h"
- 699              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
- 700              		.file 15 "Core/Inc/main.h"
-ARM GAS  /tmp/ccHQhbLX.s 			page 18
+ 208:Core/Src/can.c **** /// 12 bit velocity, between -30 and + 30 rad/s
+ 209:Core/Src/can.c **** /// 12 bit current, between -40 and 40;
+ 210:Core/Src/can.c **** /// CAN Packet is 5 8-bit words
+ 211:Core/Src/can.c **** /// Formatted as follows.  For each quantity, bit 0 is LSB
+ 212:Core/Src/can.c **** /// 0: [position[15-8]]
+ 213:Core/Src/can.c **** /// 1: [position[7-0]]
+ 214:Core/Src/can.c **** /// 2: [velocity[11-4]]
+ 215:Core/Src/can.c **** /// 3: [velocity[3-0], current[11-8]]
+ 216:Core/Src/can.c **** /// 4: [current[7-0]]
+ 217:Core/Src/can.c **** /* =========================================================================
+ 218:Core/Src/can.c ****  * CÁC HÀM DÀNH CHO SLAVE (MOTOR CONTROLLER)
+ 219:Core/Src/can.c ****  * ========================================================================= */
+ 220:Core/Src/can.c **** 
+ 221:Core/Src/can.c **** // SLAVE NHẬN LỆNH: Giải mã gói tin điều khiển từ Master
+ 222:Core/Src/can.c **** void Slave_Unpack_Cmd(CANRxMessage *msg, JointCommand_t *cmd) {
+ 688              		.loc 1 222 63 is_stmt 1 view -0
+ 689              		.cfi_startproc
+ 690              		@ args = 0, pretend = 0, frame = 0
+ 691              		@ frame_needed = 0, uses_anonymous_args = 0
+ 692              		.loc 1 222 63 is_stmt 0 view .LVU194
+ 693 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 694              	.LCFI9:
+ 695              		.cfi_def_cfa_offset 32
+ 696              		.cfi_offset 3, -32
+ 697              		.cfi_offset 4, -28
+ 698              		.cfi_offset 5, -24
+ 699              		.cfi_offset 6, -20
+ 700              		.cfi_offset 7, -16
+ 701              		.cfi_offset 8, -12
+ 702              		.cfi_offset 9, -8
+ 703              		.cfi_offset 14, -4
+ 704 0004 0F46     		mov	r7, r1
+ 223:Core/Src/can.c ****   // Trích xuất các bit nguyên từ 8 bytes CAN
+ 224:Core/Src/can.c ****   int p_int  = (msg->data[0] << 8) | msg->data[1];
+ 705              		.loc 1 224 3 is_stmt 1 view .LVU195
+ 706              		.loc 1 224 26 is_stmt 0 view .LVU196
+ 707 0006 90F800C0 		ldrb	ip, [r0]	@ zero_extendqisi2
+ 708              		.loc 1 224 47 view .LVU197
+ 709 000a 4278     		ldrb	r2, [r0, #1]	@ zero_extendqisi2
+ 710              	.LVL51:
+ 225:Core/Src/can.c ****   int v_int  = (msg->data[2] << 4) | (msg->data[3] >> 4);
+ 711              		.loc 1 225 3 is_stmt 1 view .LVU198
+ 712              		.loc 1 225 26 is_stmt 0 view .LVU199
+ 713 000c 8378     		ldrb	r3, [r0, #2]	@ zero_extendqisi2
+ 714              		.loc 1 225 48 view .LVU200
+ 715 000e C678     		ldrb	r6, [r0, #3]	@ zero_extendqisi2
+ 716              		.loc 1 225 52 view .LVU201
+ 717 0010 4FEA1619 		lsr	r9, r6, #4
+ 718              		.loc 1 225 7 view .LVU202
+ 719 0014 49EA0319 		orr	r9, r9, r3, lsl #4
+ 720              	.LVL52:
+ 226:Core/Src/can.c ****   int kp_int = ((msg->data[3] & 0xF) << 8) | msg->data[4];
+ 721              		.loc 1 226 3 is_stmt 1 view .LVU203
+ 722              		.loc 1 226 38 is_stmt 0 view .LVU204
+ 723 0018 3602     		lsls	r6, r6, #8
+ 724 001a 06F47066 		and	r6, r6, #3840
+ 725              		.loc 1 226 55 view .LVU205
+ARM GAS  /tmp/cc5hXKrJ.s 			page 18
+
+
+ 726 001e 0379     		ldrb	r3, [r0, #4]	@ zero_extendqisi2
+ 727              		.loc 1 226 7 view .LVU206
+ 728 0020 1E43     		orrs	r6, r6, r3
+ 729              	.LVL53:
+ 227:Core/Src/can.c ****   int kd_int = (msg->data[5] << 4) | (msg->data[6] >> 4);
+ 730              		.loc 1 227 3 is_stmt 1 view .LVU207
+ 731              		.loc 1 227 26 is_stmt 0 view .LVU208
+ 732 0022 4179     		ldrb	r1, [r0, #5]	@ zero_extendqisi2
+ 733              	.LVL54:
+ 734              		.loc 1 227 48 view .LVU209
+ 735 0024 8379     		ldrb	r3, [r0, #6]	@ zero_extendqisi2
+ 736              		.loc 1 227 52 view .LVU210
+ 737 0026 4FEA1318 		lsr	r8, r3, #4
+ 738              		.loc 1 227 7 view .LVU211
+ 739 002a 48EA0118 		orr	r8, r8, r1, lsl #4
+ 740              	.LVL55:
+ 228:Core/Src/can.c ****   int t_int  = ((msg->data[6] & 0xF) << 8) | msg->data[7];
+ 741              		.loc 1 228 3 is_stmt 1 view .LVU212
+ 742              		.loc 1 228 38 is_stmt 0 view .LVU213
+ 743 002e 1D02     		lsls	r5, r3, #8
+ 744 0030 05F47065 		and	r5, r5, #3840
+ 745              		.loc 1 228 55 view .LVU214
+ 746 0034 C379     		ldrb	r3, [r0, #7]	@ zero_extendqisi2
+ 747              		.loc 1 228 7 view .LVU215
+ 748 0036 1D43     		orrs	r5, r5, r3
+ 749              	.LVL56:
+ 229:Core/Src/can.c **** 
+ 230:Core/Src/can.c ****   // Chuyển đổi thành số thực để sử dụng cho thuật toán FOC
+ 231:Core/Src/can.c ****   cmd->p_des = uint_to_float(p_int, P_MIN, P_MAX, 16);
+ 750              		.loc 1 231 3 is_stmt 1 view .LVU216
+ 751              		.loc 1 231 16 is_stmt 0 view .LVU217
+ 752 0038 1A4C     		ldr	r4, .L37
+ 753 003a 1021     		movs	r1, #16
+ 754 003c D4ED2A0A 		vldr.32	s1, [r4, #168]
+ 755 0040 94ED290A 		vldr.32	s0, [r4, #164]
+ 756 0044 42EA0C20 		orr	r0, r2, ip, lsl #8
+ 757              	.LVL57:
+ 758              		.loc 1 231 16 view .LVU218
+ 759 0048 FFF7FEFF 		bl	uint_to_float
+ 760              	.LVL58:
+ 761              		.loc 1 231 14 view .LVU219
+ 762 004c 87ED000A 		vstr.32	s0, [r7]
+ 232:Core/Src/can.c ****   cmd->v_des = uint_to_float(v_int, V_MIN, V_MAX, 12);
+ 763              		.loc 1 232 3 is_stmt 1 view .LVU220
+ 764              		.loc 1 232 16 is_stmt 0 view .LVU221
+ 765 0050 0C21     		movs	r1, #12
+ 766 0052 D4ED2C0A 		vldr.32	s1, [r4, #176]
+ 767 0056 94ED2B0A 		vldr.32	s0, [r4, #172]
+ 768 005a 4846     		mov	r0, r9
+ 769 005c FFF7FEFF 		bl	uint_to_float
+ 770              	.LVL59:
+ 771              		.loc 1 232 14 view .LVU222
+ 772 0060 87ED010A 		vstr.32	s0, [r7, #4]
+ 233:Core/Src/can.c ****   cmd->kp    = uint_to_float(kp_int, KP_MIN, KP_MAX, 12);
+ 773              		.loc 1 233 3 is_stmt 1 view .LVU223
+ 774              		.loc 1 233 16 is_stmt 0 view .LVU224
+ 775 0064 0C21     		movs	r1, #12
+ARM GAS  /tmp/cc5hXKrJ.s 			page 19
+
+
+ 776 0066 D4ED300A 		vldr.32	s1, [r4, #192]
+ 777 006a 94ED2F0A 		vldr.32	s0, [r4, #188]
+ 778 006e 3046     		mov	r0, r6
+ 779 0070 FFF7FEFF 		bl	uint_to_float
+ 780              	.LVL60:
+ 781              		.loc 1 233 14 view .LVU225
+ 782 0074 87ED020A 		vstr.32	s0, [r7, #8]
+ 234:Core/Src/can.c ****   cmd->kd    = uint_to_float(kd_int, KD_MIN, KD_MAX, 12);
+ 783              		.loc 1 234 3 is_stmt 1 view .LVU226
+ 784              		.loc 1 234 16 is_stmt 0 view .LVU227
+ 785 0078 0C21     		movs	r1, #12
+ 786 007a D4ED320A 		vldr.32	s1, [r4, #200]
+ 787 007e 94ED310A 		vldr.32	s0, [r4, #196]
+ 788 0082 4046     		mov	r0, r8
+ 789 0084 FFF7FEFF 		bl	uint_to_float
+ 790              	.LVL61:
+ 791              		.loc 1 234 14 view .LVU228
+ 792 0088 87ED030A 		vstr.32	s0, [r7, #12]
+ 235:Core/Src/can.c ****   cmd->t_ff  = uint_to_float(t_int, T_MIN, T_MAX, 12);
+ 793              		.loc 1 235 3 is_stmt 1 view .LVU229
+ 794              		.loc 1 235 16 is_stmt 0 view .LVU230
+ 795 008c 0C21     		movs	r1, #12
+ 796 008e D4ED2E0A 		vldr.32	s1, [r4, #184]
+ 797 0092 94ED2D0A 		vldr.32	s0, [r4, #180]
+ 798 0096 2846     		mov	r0, r5
+ 799 0098 FFF7FEFF 		bl	uint_to_float
+ 800              	.LVL62:
+ 801              		.loc 1 235 14 view .LVU231
+ 802 009c 87ED040A 		vstr.32	s0, [r7, #16]
+ 236:Core/Src/can.c **** }
+ 803              		.loc 1 236 1 view .LVU232
+ 804 00a0 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 805              	.LVL63:
+ 806              	.L38:
+ 807              		.loc 1 236 1 view .LVU233
+ 808              		.align	2
+ 809              	.L37:
+ 810 00a4 00100000 		.word	m_config+4096
+ 811              		.cfi_endproc
+ 812              	.LFE141:
+ 814              		.section	.text.Slave_Pack_State,"ax",%progbits
+ 815              		.align	1
+ 816              		.global	Slave_Pack_State
+ 817              		.syntax unified
+ 818              		.thumb
+ 819              		.thumb_func
+ 820              		.fpu fpv4-sp-d16
+ 822              	Slave_Pack_State:
+ 823              	.LVL64:
+ 824              	.LFB142:
+ 237:Core/Src/can.c **** 
+ 238:Core/Src/can.c **** // SLAVE GỬI TRẠNG THÁI: Đóng gói thông số hiện tại để báo cáo lên Master
+ 239:Core/Src/can.c **** void Slave_Pack_State(CANTxMessage *msg, JointState_t *state, uint8_t slave_id) {
+ 825              		.loc 1 239 81 is_stmt 1 view -0
+ 826              		.cfi_startproc
+ 827              		@ args = 0, pretend = 0, frame = 0
+ 828              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/cc5hXKrJ.s 			page 20
+
+
+ 829              		.loc 1 239 81 is_stmt 0 view .LVU235
+ 830 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 831              	.LCFI10:
+ 832              		.cfi_def_cfa_offset 32
+ 833              		.cfi_offset 4, -32
+ 834              		.cfi_offset 5, -28
+ 835              		.cfi_offset 6, -24
+ 836              		.cfi_offset 7, -20
+ 837              		.cfi_offset 8, -16
+ 838              		.cfi_offset 9, -12
+ 839              		.cfi_offset 10, -8
+ 840              		.cfi_offset 14, -4
+ 841 0004 0446     		mov	r4, r0
+ 842 0006 0E46     		mov	r6, r1
+ 843 0008 9246     		mov	r10, r2
+ 240:Core/Src/can.c ****   // Chuyển đổi số thực sang số nguyên theo độ phân giải bit
+ 241:Core/Src/can.c ****   int p_int  = float_to_uint(state->p_act, P_MIN, P_MAX, 16);
+ 844              		.loc 1 241 3 is_stmt 1 view .LVU236
+ 845              		.loc 1 241 16 is_stmt 0 view .LVU237
+ 846 000a 204D     		ldr	r5, .L41
+ 847 000c 1020     		movs	r0, #16
+ 848              	.LVL65:
+ 849              		.loc 1 241 16 view .LVU238
+ 850 000e 95ED2A1A 		vldr.32	s2, [r5, #168]
+ 851 0012 D5ED290A 		vldr.32	s1, [r5, #164]
+ 852 0016 91ED000A 		vldr.32	s0, [r1]
+ 853 001a FFF7FEFF 		bl	float_to_uint
+ 854              	.LVL66:
+ 855              		.loc 1 241 16 view .LVU239
+ 856 001e 8146     		mov	r9, r0
+ 857              	.LVL67:
+ 242:Core/Src/can.c ****   int v_int  = float_to_uint(state->v_act, V_MIN, V_MAX, 12);
+ 858              		.loc 1 242 3 is_stmt 1 view .LVU240
+ 859              		.loc 1 242 16 is_stmt 0 view .LVU241
+ 860 0020 0C20     		movs	r0, #12
+ 861              	.LVL68:
+ 862              		.loc 1 242 16 view .LVU242
+ 863 0022 95ED2C1A 		vldr.32	s2, [r5, #176]
+ 864 0026 D5ED2B0A 		vldr.32	s1, [r5, #172]
+ 865 002a 96ED010A 		vldr.32	s0, [r6, #4]
+ 866 002e FFF7FEFF 		bl	float_to_uint
+ 867              	.LVL69:
+ 868 0032 8046     		mov	r8, r0
+ 869              	.LVL70:
+ 243:Core/Src/can.c ****   int t_int  = float_to_uint(state->t_act, T_MIN, T_MAX, 12);
+ 870              		.loc 1 243 3 is_stmt 1 view .LVU243
+ 871              		.loc 1 243 16 is_stmt 0 view .LVU244
+ 872 0034 0C20     		movs	r0, #12
+ 873              	.LVL71:
+ 874              		.loc 1 243 16 view .LVU245
+ 875 0036 95ED2E1A 		vldr.32	s2, [r5, #184]
+ 876 003a D5ED2D0A 		vldr.32	s1, [r5, #180]
+ 877 003e 96ED020A 		vldr.32	s0, [r6, #8]
+ 878 0042 FFF7FEFF 		bl	float_to_uint
+ 879              	.LVL72:
+ 880 0046 0746     		mov	r7, r0
+ 881              	.LVL73:
+ARM GAS  /tmp/cc5hXKrJ.s 			page 21
+
+
+ 244:Core/Src/can.c ****   int vb_int = float_to_uint(state->v_batt, VB_MIN, VB_MAX, 8);
+ 882              		.loc 1 244 3 is_stmt 1 view .LVU246
+ 883              		.loc 1 244 16 is_stmt 0 view .LVU247
+ 884 0048 0820     		movs	r0, #8
+ 885              	.LVL74:
+ 886              		.loc 1 244 16 view .LVU248
+ 887 004a B7EE001A 		vmov.f32	s2, #1.0e+0
+ 888 004e F0EE410A 		vmov.f32	s1, s2
+ 889 0052 96ED030A 		vldr.32	s0, [r6, #12]
+ 890 0056 FFF7FEFF 		bl	float_to_uint
+ 891              	.LVL75:
+ 245:Core/Src/can.c ****   
+ 246:Core/Src/can.c ****   msg->tx_header.StdId = CAN_MASTER; // Gửi tới Master (Thường Master có ID = 0)
+ 892              		.loc 1 246 3 is_stmt 1 view .LVU249
+ 893              		.loc 1 246 26 is_stmt 0 view .LVU250
+ 894 005a D5F89C30 		ldr	r3, [r5, #156]
+ 895              		.loc 1 246 24 view .LVU251
+ 896 005e A360     		str	r3, [r4, #8]
+ 247:Core/Src/can.c ****   
+ 248:Core/Src/can.c ****   // Đóng gói theo chuẩn MIT Cheetah (5 bytes dữ liệu + 1 byte ID)
+ 249:Core/Src/can.c ****   msg->data[0] = slave_id;                 // Byte 0 chứa ID của động cơ
+ 897              		.loc 1 249 3 is_stmt 1 view .LVU252
+ 898              		.loc 1 249 16 is_stmt 0 view .LVU253
+ 899 0060 84F800A0 		strb	r10, [r4]
+ 250:Core/Src/can.c ****   msg->data[1] = p_int >> 8;
+ 900              		.loc 1 250 3 is_stmt 1 view .LVU254
+ 901              		.loc 1 250 24 is_stmt 0 view .LVU255
+ 902 0064 4FEA2923 		asr	r3, r9, #8
+ 903              		.loc 1 250 16 view .LVU256
+ 904 0068 6370     		strb	r3, [r4, #1]
+ 251:Core/Src/can.c ****   msg->data[2] = p_int & 0xFF;
+ 905              		.loc 1 251 3 is_stmt 1 view .LVU257
+ 906              		.loc 1 251 16 is_stmt 0 view .LVU258
+ 907 006a 84F80290 		strb	r9, [r4, #2]
+ 252:Core/Src/can.c ****   msg->data[3] = v_int >> 4;
+ 908              		.loc 1 252 3 is_stmt 1 view .LVU259
+ 909              		.loc 1 252 24 is_stmt 0 view .LVU260
+ 910 006e 4FEA2813 		asr	r3, r8, #4
+ 911              		.loc 1 252 16 view .LVU261
+ 912 0072 E370     		strb	r3, [r4, #3]
+ 253:Core/Src/can.c ****   msg->data[4] = ((v_int & 0xF) << 4) | (t_int >> 8);
+ 913              		.loc 1 253 3 is_stmt 1 view .LVU262
+ 914              		.loc 1 253 48 is_stmt 0 view .LVU263
+ 915 0074 3B12     		asrs	r3, r7, #8
+ 916              		.loc 1 253 39 view .LVU264
+ 917 0076 43EA0818 		orr	r8, r3, r8, lsl #4
+ 918              	.LVL76:
+ 919              		.loc 1 253 16 view .LVU265
+ 920 007a 84F80480 		strb	r8, [r4, #4]
+ 254:Core/Src/can.c ****   msg->data[5] = t_int & 0xFF;
+ 921              		.loc 1 254 3 is_stmt 1 view .LVU266
+ 922              		.loc 1 254 16 is_stmt 0 view .LVU267
+ 923 007e 6771     		strb	r7, [r4, #5]
+ 255:Core/Src/can.c ****   msg->data[6] = vb_int;
+ 924              		.loc 1 255 3 is_stmt 1 view .LVU268
+ 925              		.loc 1 255 16 is_stmt 0 view .LVU269
+ 926 0080 A071     		strb	r0, [r4, #6]
+ARM GAS  /tmp/cc5hXKrJ.s 			page 22
+
+
+ 256:Core/Src/can.c ****   msg->data[7] = 0x00;                     // Byte 7 không sử dụng
+ 927              		.loc 1 256 3 is_stmt 1 view .LVU270
+ 928              		.loc 1 256 16 is_stmt 0 view .LVU271
+ 929 0082 0023     		movs	r3, #0
+ 930 0084 E371     		strb	r3, [r4, #7]
+ 257:Core/Src/can.c **** }
+ 931              		.loc 1 257 1 view .LVU272
+ 932 0086 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 933              	.LVL77:
+ 934              	.L42:
+ 935              		.loc 1 257 1 view .LVU273
+ 936 008a 00BF     		.align	2
+ 937              	.L41:
+ 938 008c 00100000 		.word	m_config+4096
+ 939              		.cfi_endproc
+ 940              	.LFE142:
+ 942              		.global	hcan2
+ 943              		.section	.bss.hcan2,"aw",%nobits
+ 944              		.align	2
+ 945              		.set	.LANCHOR0,. + 0
+ 948              	hcan2:
+ 949 0000 00000000 		.space	40
+ 949      00000000 
+ 949      00000000 
+ 949      00000000 
+ 949      00000000 
+ 950              		.text
+ 951              	.Letext0:
+ 952              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
+ 953              		.file 3 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
+ 954              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
+ 955              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 956              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 957              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h"
+ 958              		.file 8 "Core/Inc/joint_acc.h"
+ 959              		.file 9 "Core/Inc/can.h"
+ 960              		.file 10 "Core/Inc/encoder.h"
+ 961              		.file 11 "Core/Inc/foc_utils.h"
+ 962              		.file 12 "Core/Inc/flash.h"
+ 963              		.file 13 "Core/Inc/user_config.h"
+ 964              		.file 14 "Core/Inc/math_ops.h"
+ 965              		.file 15 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
+ 966              		.file 16 "Core/Inc/main.h"
+ARM GAS  /tmp/cc5hXKrJ.s 			page 23
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 can.c
-     /tmp/ccHQhbLX.s:18     .text.MX_CAN2_Init:0000000000000000 $t
-     /tmp/ccHQhbLX.s:26     .text.MX_CAN2_Init:0000000000000000 MX_CAN2_Init
-     /tmp/ccHQhbLX.s:99     .text.MX_CAN2_Init:000000000000003c $d
-     /tmp/ccHQhbLX.s:105    .text.HAL_CAN_MspInit:0000000000000000 $t
-     /tmp/ccHQhbLX.s:112    .text.HAL_CAN_MspInit:0000000000000000 HAL_CAN_MspInit
-     /tmp/ccHQhbLX.s:246    .text.HAL_CAN_MspInit:000000000000008c $d
-     /tmp/ccHQhbLX.s:252    .text.HAL_CAN_MspDeInit:0000000000000000 $t
-     /tmp/ccHQhbLX.s:259    .text.HAL_CAN_MspDeInit:0000000000000000 HAL_CAN_MspDeInit
-     /tmp/ccHQhbLX.s:312    .text.HAL_CAN_MspDeInit:0000000000000040 $d
-     /tmp/ccHQhbLX.s:318    .text.can_rx_init:0000000000000000 $t
-     /tmp/ccHQhbLX.s:325    .text.can_rx_init:0000000000000000 can_rx_init
-     /tmp/ccHQhbLX.s:383    .text.can_rx_init:0000000000000028 $d
-     /tmp/ccHQhbLX.s:388    .text.can_tx_init:0000000000000000 $t
-     /tmp/ccHQhbLX.s:395    .text.can_tx_init:0000000000000000 can_tx_init
-     /tmp/ccHQhbLX.s:420    .text.pack_cmd:0000000000000000 $t
-     /tmp/ccHQhbLX.s:427    .text.pack_cmd:0000000000000000 pack_cmd
-     /tmp/ccHQhbLX.s:563    .text.pack_cmd:00000000000000a4 $d
-     /tmp/ccHQhbLX.s:568    .text.unpack_state:0000000000000000 $t
-     /tmp/ccHQhbLX.s:575    .text.unpack_state:0000000000000000 unpack_state
-     /tmp/ccHQhbLX.s:673    .text.unpack_state:000000000000007c $d
-     /tmp/ccHQhbLX.s:683    .bss.hcan2:0000000000000000 hcan2
-     /tmp/ccHQhbLX.s:679    .bss.hcan2:0000000000000000 $d
+     /tmp/cc5hXKrJ.s:18     .text.MX_CAN2_Init:0000000000000000 $t
+     /tmp/cc5hXKrJ.s:26     .text.MX_CAN2_Init:0000000000000000 MX_CAN2_Init
+     /tmp/cc5hXKrJ.s:99     .text.MX_CAN2_Init:000000000000003c $d
+     /tmp/cc5hXKrJ.s:105    .text.HAL_CAN_MspInit:0000000000000000 $t
+     /tmp/cc5hXKrJ.s:112    .text.HAL_CAN_MspInit:0000000000000000 HAL_CAN_MspInit
+     /tmp/cc5hXKrJ.s:246    .text.HAL_CAN_MspInit:000000000000008c $d
+     /tmp/cc5hXKrJ.s:252    .text.HAL_CAN_MspDeInit:0000000000000000 $t
+     /tmp/cc5hXKrJ.s:259    .text.HAL_CAN_MspDeInit:0000000000000000 HAL_CAN_MspDeInit
+     /tmp/cc5hXKrJ.s:312    .text.HAL_CAN_MspDeInit:0000000000000040 $d
+     /tmp/cc5hXKrJ.s:318    .text.can_rx_init:0000000000000000 $t
+     /tmp/cc5hXKrJ.s:325    .text.can_rx_init:0000000000000000 can_rx_init
+     /tmp/cc5hXKrJ.s:383    .text.can_rx_init:0000000000000028 $d
+     /tmp/cc5hXKrJ.s:388    .text.can_tx_init:0000000000000000 $t
+     /tmp/cc5hXKrJ.s:395    .text.can_tx_init:0000000000000000 can_tx_init
+     /tmp/cc5hXKrJ.s:420    .text.Master_Pack_Cmd:0000000000000000 $t
+     /tmp/cc5hXKrJ.s:427    .text.Master_Pack_Cmd:0000000000000000 Master_Pack_Cmd
+     /tmp/cc5hXKrJ.s:563    .text.Master_Pack_Cmd:00000000000000a4 $d
+     /tmp/cc5hXKrJ.s:568    .text.Master_Unpack_State:0000000000000000 $t
+     /tmp/cc5hXKrJ.s:575    .text.Master_Unpack_State:0000000000000000 Master_Unpack_State
+     /tmp/cc5hXKrJ.s:673    .text.Master_Unpack_State:000000000000007c $d
+     /tmp/cc5hXKrJ.s:678    .text.Slave_Unpack_Cmd:0000000000000000 $t
+     /tmp/cc5hXKrJ.s:685    .text.Slave_Unpack_Cmd:0000000000000000 Slave_Unpack_Cmd
+     /tmp/cc5hXKrJ.s:810    .text.Slave_Unpack_Cmd:00000000000000a4 $d
+     /tmp/cc5hXKrJ.s:815    .text.Slave_Pack_State:0000000000000000 $t
+     /tmp/cc5hXKrJ.s:822    .text.Slave_Pack_State:0000000000000000 Slave_Pack_State
+     /tmp/cc5hXKrJ.s:938    .text.Slave_Pack_State:000000000000008c $d
+     /tmp/cc5hXKrJ.s:948    .bss.hcan2:0000000000000000 hcan2
+     /tmp/cc5hXKrJ.s:944    .bss.hcan2:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_CAN_Init

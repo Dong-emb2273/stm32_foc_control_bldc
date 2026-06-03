@@ -26,7 +26,7 @@ extern _Bool encd_get_val_flag;
 #define ENCODER_Set_Flag() (encd_get_val_flag = 1)
 #define ENCODER_Reset_Flag() (encd_get_val_flag = 0)
 
-/* Enum ph�n lo?i */
+
 typedef enum {
 	ENCODER_LOC_INTERNAL = 0,
 	ENCODER_LOC_EXTERNAL = 1
@@ -51,11 +51,17 @@ typedef struct {
 
 /* Struct T?ng (L?p giao di?n) */
 
-typedef struct {
+typedef struct Encoder_t {
 	EncoderLocation_t location;
 	EncoderType_t type;
 	Encoder_Port_t enc_internal;
 	Encoder_Port_t enc_external;
+
+	Encoder_Port_t *active_port;  
+	uint8_t spi_rx_buffer[2];     
+
+	uint16_t error_count;   
+	uint8_t is_connected;  
 
 	float raw_angle;  
 
@@ -75,7 +81,7 @@ typedef struct {
   	float output_angle_filtered;
 	
 	
-	void *hw_encoder;  
+	 
 
 
 	int   (*start_read)(void *handle);
@@ -88,7 +94,9 @@ extern Encoder_t encoder;
 
 /*  */
 int ENCODER_Setup();
+void ENCODER_Init_From_Config(void);
 int ENCODER_AutoDetect();
+void ENCODER_CHECK();
 float ENCODER_GetDegree(Encoder_t *encd);
 float ENCODER_GetRPM(Encoder_t *encd, float dt_us);
 float ENCODER_GetActualDegree(Encoder_t *encd);

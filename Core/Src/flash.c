@@ -41,6 +41,48 @@ HAL_StatusTypeDef flash_save_config(motor_config_t *data) {
     return HAL_OK;
 }
 
+HAL_StatusTypeDef flash_erase_ready(void) {
+    HAL_StatusTypeDef status;
+    FLASH_EraseInitTypeDef EraseInitStruct;
+    uint32_t SectorError = 0;
+
+    HAL_FLASH_Unlock();
+    EraseInitStruct.TypeErase    = FLASH_TYPEERASE_SECTORS;
+    EraseInitStruct.VoltageRange = FLASH_VOLTAGE_RANGE_3;
+    EraseInitStruct.Sector       = FLASH_SECTOR_NUM;
+    EraseInitStruct.NbSectors    = 1;
+
+    status = HAL_FLASHEx_Erase(&EraseInitStruct, &SectorError);
+    HAL_FLASH_Lock();
+    return status;
+}
+
+HAL_StatusTypeDef flash_save_emergency(motor_config_t *data) {
+    HAL_StatusTypeDef status;
+    
+    data->valid_SOF = SOF_FLAG;
+    data->valid_EOF = EOF_FLAG;
+
+    HAL_FLASH_Unlock();
+    
+    uint32_t address = FLASH_SECTOR_ADDR;
+    uint8_t *src = (uint8_t *)data;
+
+    for (uint32_t i = 0; i < sizeof(motor_config_t); i += 4) {
+        uint32_t word = *(uint32_t*)(src + i);
+        status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, address, word);
+        if (status != HAL_OK) {
+            HAL_FLASH_Lock();
+            return status;
+        }
+        address += 4;
+    }
+
+    HAL_FLASH_Lock();
+    return HAL_OK;
+}
+
+
 void flash_read_config(motor_config_t *data) {
     memcpy(data, (void*)FLASH_SECTOR_ADDR, sizeof(motor_config_t));
 
@@ -53,15 +95,15 @@ void flash_read_config(motor_config_t *data) {
 
 void flash_default_config(motor_config_t *data) {
     // data->id_kp = 0.01f;
-    data->id_kp = 0.03f;
-    data->id_ki = 4.09f;
-    data->id_out_max = 10.7f;
+    data->id_kp = 0.01f;
+    data->id_ki = 4.0422f;
+    data->id_out_max = 0.7f;
     data->id_e_deadband = 0.0001f;
 
     // data->iq_kp = 0.01f;
     data->iq_kp = 0.01f;
-    data->iq_ki = 4.09f;
-    data->iq_out_max = 10.7f;
+    data->iq_ki = 4.0422f;
+    data->iq_out_max = 0.7f;
     data->iq_e_deadband = 0.0001f;
 
     data->I_ctrl_bandwidth = 100.0f;
@@ -81,13 +123,21 @@ void flash_default_config(motor_config_t *data) {
     data->pos_e_deadband = 0.01f;
 
     data->control_mode = SPEED_CONTROL_MODE;
+    data->spoint_pos = 0.0f;
+    data->spoint_vel = 0.0f;
+    data->spoint_tor = 0.0f;
+
     data->state = MENU_MODE;
     data->next_state = MENU_MODE;
    
 
-    data->voffset_a = 1.65f;
-    data->voffset_b = 1.65f;
+    data->voffset_a = 1995.0f;
+    data->voffset_b = 1995.0f;
+    data->voffset_c = 1995.0f;
+    data->zero_angle = 0.0f;
 
+    data->encd_type = ENCODER_TYPE_AS5048A; 
+    data->encd_location = ENCODER_LOC_INTERNAL; 
     data->encd_offset = 0.0f;
     memset(data->encd_error_comp, 0, sizeof(data->encd_error_comp));
 
@@ -106,20 +156,21 @@ void flash_default_config(motor_config_t *data) {
     data->can_master = 0;
     data->can_timeout = 1000;
 
-    data->pos_min = -100.0f;
-    data->pos_max = 100.0f;
-    data->vel_min = -1000.0f;
-    data->vel_max = 1000.0f;
-    data->tor_min = -10.0f;
-    data->tor_max = 10.0f;
+    data->pos_min = -12.5f;
+    data->pos_max = 12.5f;
+    data->vel_min = -65.0f;
+    data->vel_max = 65.0f;
+    data->tor_min = -18.0f;
+    data->tor_max = 18.0f;
     data->kp_min = 0.0f;
-    data->kp_max = 100.0f;
+    data->kp_max = 500.0f;
     data->kd_min = 0.0f;
     data->kd_max = 5.0f;
 
 
     
 }
+
 void copy_to_local(motor_config_t *data, foc_t *hfoc) {
     hfoc->id_ctrl.kp = data->id_kp;
     hfoc->id_ctrl.ki = data->id_ki;

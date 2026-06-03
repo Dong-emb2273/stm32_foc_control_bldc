@@ -45,35 +45,12 @@ void run_fsm(FSMStruct * fsmstate){
 			break;
 
 		case CALIBRATION_MODE:
-            // if(hfoc.done_cal_encoder == 1 && hfoc.done_orderphase == 1){
-            //     printf("Calibration Successful!\r\n");
-            //     update_fsm(fsmstate, 27);
-            // }
-			
 			meas_inj_dq_process(&hfoc, FOC_TS);
-
-
-//				 /* Exit calibration mode when done */
-//				 //for(int i = 0; i<128*PPAIRS; i++){printf("%d\r\n", error_array[i]);}
-//				 E_ZERO = comm_encoder_cal.ezero;
-//				 printf("E_ZERO: %d  %f\r\n", E_ZERO, TWO_PI_F*fmodf((comm_encoder.ppairs*(float)(-E_ZERO))/((float)ENC_CPR), 1.0f));
-//				 memcpy(&comm_encoder.offset_lut, comm_encoder_cal.lut_arr, sizeof(comm_encoder.offset_lut));
-//				 memcpy(&ENCODER_LUT, comm_encoder_cal.lut_arr, sizeof(comm_encoder_cal.lut_arr));
-//				 //for(int i = 0; i<128; i++){printf("%d\r\n", ENCODER_LUT[i]);}
-//				 if (!preference_writer_ready(prefs)){ preference_writer_open(&prefs);}
-//				 preference_writer_flush(&prefs);
-//				 preference_writer_close(&prefs);
-//				 preference_writer_load(prefs);
-//				 update_fsm(fsmstate, 27);
-		
-
 			break;
 
 		case MOTOR_MODE:
 			/* If CAN has timed out, reset all commands */
 			foc_control_loop(&hfoc);
-			
-
 			break;
 
 		case TEST_MODE:
@@ -87,7 +64,7 @@ void run_fsm(FSMStruct * fsmstate){
 			
 			break;
 
-		case INIT_TEMP_MODE:
+		case SET_PID_MODE:
 			break;
 	}
 
@@ -101,18 +78,17 @@ void fsm_enter_state(FSMStruct * fsmstate){
 	switch(fsmstate->state){
 			case MENU_MODE:
 			//printf("Entering Main Menu\r\n");
+			DRV8323RS_Disnable;
 			enter_menu_state();
 			break;
 		case SETUP_MODE:
+			DRV8323RS_Disnable;
 			printf("Entering Setup\r\n");
 			enter_setup_state();
 			break;
 		case TEST_MODE:
-			printf("Entering Test Mode\r\n");
-			// enter_test_state();
-			printf(" Type 't' + value to set Position Setpoint (e.g. t10.5)\r\n");
-			printf(" Press ESC to exit\r\n\r\n");
 			DRV8323RS_Enable;
+			enter_test_mode();
 			break;
 		case ENCODER_MODE:
 			//printf("Entering Encoder Mode\r\n");
@@ -142,15 +118,11 @@ void fsm_exit_state(FSMStruct * fsmstate){
 			break;
 		case SETUP_MODE:
 			printf("Leaving Setup Menu\r\n");
-			printf("Saving Setup Menu\r\n");
-			flash_save_config(&m_config);
-			printf("Setup Menu Saved\r\n");
 			fsmstate->ready = 1;
 			break;
 		case TEST_MODE:
 			printf("Leaving Test Mode\r\n");
-			DRV8323_Set_PWM(&hfoc.drv8323s, 0, 0, 0);
-			DRV8323RS_Disnable;
+			// DRV8323_Set_PWM(&hfoc.drv8323s, 0, 0, 0);
 			pid_reset(&hfoc.id_ctrl);
 			pid_reset(&hfoc.iq_ctrl);
 			fsmstate->ready = 1;
@@ -161,22 +133,13 @@ void fsm_exit_state(FSMStruct * fsmstate){
 			break;
 		case MOTOR_MODE:
 			/* Don't stop commutating if there are high currents or FW happening */
-			//if( (fabs(controller.i_q_filt)<1.0f) && (fabs(controller.i_d_filt)<1.0f) ){
-			DRV8323_Set_PWM(&hfoc.drv8323s, 0, 0, 0);
-			DRV8323RS_Disnable;
+			// DRV8323_Set_PWM(&hfoc.drv8323s, 0, 0, 0);
 			pid_reset(&hfoc.id_ctrl);
 			pid_reset(&hfoc.iq_ctrl);
-
 			fsmstate->ready = 1;
-			
-			
-				
 			break;
 		case CALIBRATION_MODE:
 			printf("Exiting Calibration Mode\r\n");
-		
-			
-
 			fsmstate->ready = 1;
 			break;
 	}
@@ -216,14 +179,18 @@ void update_fsm(FSMStruct * fsmstate, char fsm_input){
 					fsmstate->ready = 0;
 					break;
 				case ZERO_CMD:
+					M_ZERO = ENCODER_GetActualDegree(&encoder); 
 					
-					printf("\n\r  Saved new zero position: ");
+					SPOINT_POS = 0.0f;
+					// hfoc.sPoint_Pos = 0.0f;
+					printf("\n\r new zero position: %.3f deg\r\n", M_ZERO);
+					
 					break;
 				}
 			break;
 		case SETUP_MODE:
 			if(fsm_input == 10 || fsm_input == ' '){ 
-        		break; // Bỏ qua ký tự Line Feed (\n) và phím Space để không bị nhiễu
+        		break; 
     		}	
 			if(fsm_input == ENTER_CMD){
 				process_user_input(fsmstate);
@@ -240,21 +207,11 @@ void update_fsm(FSMStruct * fsmstate, char fsm_input){
 			break;
 		case TEST_MODE:
 			if(fsm_input == 10 || fsm_input == ' '){ 
-        		break; // Bỏ qua ký tự Line Feed (\n) và phím Space để không bị nhiễu
+        		break; 
     		}	
 			if(fsm_input == ENTER_CMD){
-				switch (fsmstate->cmd_id){
-					case 't': {
-						float mode_val = atof(fsmstate->cmd_buff);
-						hfoc.sPoint_Vel = mode_val;
-						printf("\n\r  Updated velocity Setpoint: %.3f\r\n", hfoc.sPoint_Vel);
-						break;
-					}
-				}
-				fsmstate->bytecount = 0;
-				fsmstate->cmd_id = 0;
-				memset(&fsmstate->cmd_buff, 0, sizeof(fsmstate->cmd_buff));
-				return;
+				set_pid_mode(fsmstate);
+				break;
 			}
 			if(fsmstate->bytecount == 0){fsmstate->cmd_id = fsm_input;}
 			else{
@@ -264,26 +221,165 @@ void update_fsm(FSMStruct * fsmstate, char fsm_input){
 			fsmstate->bytecount++;
 			/* If enter is typed, process user input */
 
-			break;	
+			break;
+		
 
 		case ENCODER_MODE:
 			break;
 		case MOTOR_MODE:
-			break;
+			switch (fsm_input){
+				case ZERO_CMD:
+					M_ZERO = ENCODER_GetActualDegree(&encoder); 
+					
+					SPOINT_POS = 0.0f;
+					printf("\n\r new zero position: %.3f deg\r\n", M_ZERO);
+					break;
+			}
+		break;
 	}
 //printf("FSM State: %d  %d\r\n", fsmstate.state, fsmstate.state_change);
 }
 
+void enter_test_mode(void){
+
+    printf("\r\n Test & PID Tuning Options \n\r");
+    printf(" %-4s %-31s %-5s %-6s %-2s\r\n", "prefix", "parameter", "min", "max", "current value");
+
+    printf("\r\n Active Setpoint:\r\n");
+    // Tự động hiển thị giá trị Setpoint dựa trên chế độ đang chạy
+    float current_setpoint = (hfoc.control_mode == TORQUE_CONTROL_MODE) ? SPOINT_TOR : 
+                             (hfoc.control_mode == SPEED_CONTROL_MODE) ? SPOINT_VEL : SPOINT_POS;
+    printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "t", "Target (Tor/Spd/Pos)", "-", "-", current_setpoint);
+	printf(" %-4s %-31s %-5s %-6s %d\n\r", "o", "Control Mode(0:Tor,1:Spd,2:Pos)", "0", "2", CONTROL_MODE);
+    printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "l", "Current Limit (A)", "0.0", "75.0", I_MAX);
+	
+	printf("\r\n Current Loop (Id/Iq):\r\n");
+    printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "a", "Current Kp", "0", "-", ID_KP);
+    printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "b", "Current Ki", "0", "-", ID_KI);
+
+    printf("\r\n Speed Loop:\r\n");
+    printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "c", "Speed Kp", "0", "-", SPEED_KP);
+    printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "d", "Speed Ki", "0", "-", SPEED_KI);
+
+    printf("\r\n Position Loop:\r\n");
+    printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "x", "Position Kp", "0", "-", POS_KP);
+    printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "y", "Position Ki", "0", "-", POS_KI);
+    printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "z", "Position Kd", "0", "-", POS_KD);
+
+    printf(" \n\r To change a value, type 'prefix''value''ENTER'\n\r e.g. 'c0.15''ENTER'\r\n ");
+    printf("VALUES UPDATE IMMEDIATELY IN TEST MODE! \n\r\n\r");
+
+	
+}
+
+
+
+void set_pid_mode(FSMStruct * fsmstate){
+
+	switch (fsmstate->cmd_id){
+		case 't':{
+			switch (hfoc.control_mode){
+				case TORQUE_CONTROL_MODE:
+					SPOINT_TOR = atof(fsmstate->cmd_buff);
+					printf("\n\r  Updated torque Setpoint: %.3f\r\n", SPOINT_TOR);
+					break;
+				case SPEED_CONTROL_MODE:
+					SPOINT_VEL = atof(fsmstate->cmd_buff);
+					printf("\n\r  Updated velocity Setpoint: %.3f\r\n", SPOINT_VEL);
+					break;
+				case POSITION_CONTROL_MODE:
+					SPOINT_POS = atof(fsmstate->cmd_buff);
+					printf("\n\r  Updated position Setpoint: %.3f\r\n", SPOINT_POS);
+					break;
+			}
+			break;
+		}
+		case 'o': {
+            int mode_val = atoi(fsmstate->cmd_buff);
+            if (mode_val == 0) {
+                hfoc.control_mode = TORQUE_CONTROL_MODE;
+                printf("Control Mode set to TORQUE (0)\r\n");
+            } 
+            else if (mode_val == 1) {
+                hfoc.control_mode = SPEED_CONTROL_MODE;
+                printf("Control Mode set to SPEED (1)\r\n");
+            } 
+            else if (mode_val == 2) {
+                hfoc.control_mode = POSITION_CONTROL_MODE;
+                printf("Control Mode set to POSITION (2)\r\n");
+            } 
+            else {
+                printf("Invalid Mode! Please enter 0, 1, or 2.\r\n");
+            }
+			CONTROL_MODE = hfoc.control_mode;
+            break;
+        }
+		case 'l':
+			I_MAX = fmaxf(fminf(atof(fsmstate->cmd_buff), 75.0f), 0.0f);
+			pid_set_out_constraint(&hfoc.id_ctrl, I_MAX, -I_MAX);
+			pid_set_out_constraint(&hfoc.iq_ctrl, I_MAX, -I_MAX);
+			printf("I_MAX set to %f\r\n", I_MAX);
+			break;
+		case 'a':
+			ID_KP = atof(fsmstate->cmd_buff);
+			IQ_KP = ID_KP;
+			hfoc.id_ctrl.kp = ID_KP;
+			hfoc.iq_ctrl.kp = IQ_KP;
+			printf("\n\r  Updated i kp: %.3f\r\n", ID_KP);
+			break;
+		case 'b':
+			ID_KI = atof(fsmstate->cmd_buff);
+			IQ_KI = ID_KI;
+			hfoc.id_ctrl.ki = ID_KI;
+			hfoc.iq_ctrl.ki = IQ_KI;
+			printf("\n\r  Updated i ki: %.3f\r\n", ID_KI);
+			break;
+		case 'c':
+			SPEED_KP = atof(fsmstate->cmd_buff);
+			hfoc.speed_ctrl.kp = SPEED_KP;
+			printf("\n\r  Updated speed kp: %.3f\r\n", SPEED_KP);
+			break;
+		case 'd':
+			SPEED_KI = atof(fsmstate->cmd_buff);
+			hfoc.speed_ctrl.ki = SPEED_KI;
+			printf("\n\r  Updated speed ki: %.3f\r\n", SPEED_KI);
+			break;
+		case 'x':
+			POS_KP = atof(fsmstate->cmd_buff);
+			hfoc.pos_ctrl.kp = POS_KP;
+			printf("\n\r  Updated position kp: %.3f\r\n", POS_KP);
+			break;
+		case 'y':
+			POS_KI = atof(fsmstate->cmd_buff);
+			hfoc.pos_ctrl.ki = POS_KI;
+			printf("\n\r  Updated position ki: %.3f\r\n", POS_KI);
+			break;
+		case 'z':
+			POS_KD = atof(fsmstate->cmd_buff);
+			hfoc.pos_ctrl.kd = POS_KD;
+			printf("\n\r  Updated position kd: %.3f\r\n", POS_KD);
+			break;
+		default:
+			printf("\n\r '%c' Not a valid command prefix\n\r\n\r", fsmstate->cmd_id);
+			break;
+
+		}
+	enter_test_mode();
+	fsmstate->bytecount = 0;
+	fsmstate->cmd_id = 0;
+	memset(&fsmstate->cmd_buff, 0, sizeof(fsmstate->cmd_buff));
+}
 
 void enter_menu_state(void){
 	//drv.disable_gd();
 	//reset_foc(&controller);
 	//gpio.enable->write(0);
+	DRV8323RS_Disnable;
 	printf("\n\r\n\r");
 	printf(" Commands:\n\r");
 	printf(" m - Motor Mode\n\r");
 	printf(" t - Test Mode\n\r");
-	printf(" c - Calibrate Encoder\n\r");
+	printf(" c - Calibrate\n\r");
 	printf(" s - Setup\n\r");
 	printf(" e - Display Encoder\n\r");
 	printf(" z - Set Zero Position\n\r");
@@ -298,8 +394,9 @@ void enter_setup_state(void){
 	printf("\r\n Motor:\r\n");
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "g", "Gear Ratio", "0", "-", GR);
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "k", "Torque Constant (N-m/A)", "0", "-", KT);
+	
 	printf("\r\n Control:\r\n");
-	printf(" %-4s %-31s %-5s %-6s %d\n\r", "o", "Control Mode(0:Tor,1:Spd,2:Pos)", "0", "2", hfoc.control_mode);
+	printf(" %-4s %-31s %-5s %-6s %d\n\r", "o", "Control Mode(0:Tor,1:Spd,2:Pos)", "0", "2", CONTROL_MODE);
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "b", "Current Bandwidth (Hz)", "50", "2000", I_BW);
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "l", "Current Limit (A)", "0.0", "75.0", I_MAX);
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "p", "Max Position Setpoint (rad)", "-", "-", P_MAX);
@@ -319,7 +416,7 @@ void enter_setup_state(void){
 }
 
 void process_user_input(FSMStruct * fsmstate){
-	/* Collects user input from serial (maybe eventually CAN) and updates settings */
+	/* Collects user input from serial (maybe eventually CAN) and updates settings */	
 
 	switch (fsmstate->cmd_id){
 		case 'o': {
@@ -343,26 +440,28 @@ void process_user_input(FSMStruct * fsmstate){
             break;
         }
 		case 'b':
-			I_BW = fmaxf(fminf(atof(fsmstate->cmd_buff), 2000.0f), 100.0f);
+			I_BW = fmaxf(fminf(atof(fsmstate->cmd_buff), 2000.0f), 50.0f);
 			printf("I_BW set to %f\r\n", I_BW);
 			break;
 		case 'i':
-			 CAN_ID = atoi(fsmstate->cmd_buff);
-			 printf("CAN_ID set to %ld\r\n", CAN_ID);
+			CAN_ID = atoi(fsmstate->cmd_buff);
+			printf("CAN_ID set to %ld\r\n", CAN_ID);
 			break;
 		case 'm':
-			 CAN_MASTER = atoi(fsmstate->cmd_buff);
-			 printf("CAN_TX_ID set to %ld\r\n", CAN_MASTER);
+			CAN_MASTER = atoi(fsmstate->cmd_buff);
+			printf("CAN_TX_ID set to %ld\r\n", CAN_MASTER);
 			break;
 		case 't':
-			 CAN_TIMEOUT = atoi(fsmstate->cmd_buff);
-			 printf("CAN_TIMEOUT set to %ld\r\n", CAN_TIMEOUT);
+			CAN_TIMEOUT = atoi(fsmstate->cmd_buff);
+			printf("CAN_TIMEOUT set to %ld\r\n", CAN_TIMEOUT);
 			break;
 
-			// case 'l':
-		// 	I_MAX = fmaxf(fminf(atof(fsmstate->cmd_buff), 75.0f), 0.0f);
-		// 	printf("I_MAX set to %f\r\n", I_MAX);
-		// 	break;
+		case 'l':
+			I_MAX = fmaxf(fminf(atof(fsmstate->cmd_buff), 75.0f), 0.0f);
+			pid_set_out_constraint(&hfoc.id_ctrl, I_MAX, -I_MAX);
+			pid_set_out_constraint(&hfoc.iq_ctrl, I_MAX, -I_MAX);
+			printf("I_MAX set to %f\r\n", I_MAX);
+			break;
 		// case 'f':
 		// 	I_FW_MAX = fmaxf(fminf(atof(fsmstate->cmd_buff), 33.0f), 0.0f);
 		// 	printf("I_FW_MAX set to %f\r\n", I_FW_MAX);
@@ -412,8 +511,8 @@ void process_user_input(FSMStruct * fsmstate){
 
 		}
 
-
 	enter_setup_state();
+	
 
 	fsmstate->bytecount = 0;
 	fsmstate->cmd_id = 0;

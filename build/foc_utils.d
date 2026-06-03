@@ -41,9 +41,9 @@ build/foc_utils.o: Core/Src/foc_utils.c \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h Core/Inc/spi.h \
- Core/Inc/as5048a.h Core/Inc/foc_math.h Core/Inc/pid_utils.h \
- Core/Inc/user_config.h Core/Inc/flash.h Core/Inc/foc_utils.h \
- Core/Inc/flash.h Core/Inc/encoder.h
+ Core/Inc/as5048a.h Core/Inc/encoder.h Core/Inc/foc_math.h \
+ Core/Inc/pid_utils.h Core/Inc/user_config.h Core/Inc/flash.h \
+ Core/Inc/foc_utils.h Core/Inc/flash.h Core/Inc/encoder.h
 Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 Core/Inc/FreeRTOSConfig.h:
@@ -92,6 +92,7 @@ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 Core/Inc/spi.h:
 Core/Inc/as5048a.h:
+Core/Inc/encoder.h:
 Core/Inc/foc_math.h:
 Core/Inc/pid_utils.h:
 Core/Inc/user_config.h:

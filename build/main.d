@@ -42,7 +42,7 @@ build/main.o: Core/Src/main.c Core/Inc/main.h \
  Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
  Core/Inc/uart.h Core/Inc/main.h Core/Inc/hw_config.h \
  Core/Inc/user_config.h Core/Inc/flash.h Core/Inc/foc_utils.h \
- Core/Inc/drv8323s.h Core/Inc/spi.h Core/Inc/as5048a.h \
+ Core/Inc/drv8323s.h Core/Inc/spi.h Core/Inc/as5048a.h Core/Inc/encoder.h \
  Core/Inc/foc_math.h Core/Inc/pid_utils.h Core/Inc/spi.h \
  Core/Inc/as5048a.h Core/Inc/drv8323s.h Core/Inc/flash.h \
  Core/Inc/foc_utils.h Core/Inc/can.h Core/Inc/joint_acc.h Core/Inc/fsm.h \
@@ -100,6 +100,7 @@ Core/Inc/foc_utils.h:
 Core/Inc/drv8323s.h:
 Core/Inc/spi.h:
 Core/Inc/as5048a.h:
+Core/Inc/encoder.h:
 Core/Inc/foc_math.h:
 Core/Inc/pid_utils.h:
 Core/Inc/spi.h:

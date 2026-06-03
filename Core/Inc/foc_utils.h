@@ -176,7 +176,7 @@ float foc_fw_update(foc_t *hfoc);
 
 void foc_current_limit(float *id_ref, float *iq_ref, float max_current);
 
-void foc_get_power_voltage(foc_t *hfoc);
+int foc_get_power_voltage(foc_t *hfoc);
 
 void foc_get_v_phase(foc_t *hfoc);
 

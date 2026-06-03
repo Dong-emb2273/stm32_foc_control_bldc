@@ -152,7 +152,7 @@ void can_tx_init(CANTxMessage *msg){
 
 /// CAN Command Packet Structure ///
 /// 16 bit position command, between -4*pi and 4*pi
-/// 12 bit velocity command, between -30 and + 30 rad/s
+/// 12 bit velocity command, between -30 and 30 rad/s
 /// 12 bit kp, between 0 and 500 N-m/rad
 /// 12 bit kd, between 0 and 100 N-m*s/rad
 /// 12 bit feed forward torque, between -18 and 18 N-m
@@ -166,27 +166,46 @@ void can_tx_init(CANTxMessage *msg){
 /// 5: [kd[11-4]]
 /// 6: [kd[3-0], torque[11-8]]
 /// 7: [torque[7-0]]
-void pack_cmd(CANTxMessage *msg, JointCommand_t *cmd){
-	int p_int  = float_to_uint(cmd->p_des, P_MIN, P_MAX, 16);
-  int v_int  = float_to_uint(cmd->v_des, V_MIN, V_MAX, 12);
-	int kp_int = float_to_uint(cmd->kp, KP_MIN, KP_MAX, 12);
-	int kd_int = float_to_uint(cmd->kd, KD_MIN, KD_MAX, 12);
-	int t_int  = float_to_uint(cmd->t_ff, T_MIN, T_MAX, 12);
-	
-	msg->tx_header.StdId = cmd->can_id;
-	
-	msg->data[0] = p_int >> 8;
-	msg->data[1] = p_int & 0xFF;
-	msg->data[2] = v_int >> 4;
-	msg->data[3] = ((v_int & 0xF) << 4) | (kp_int >> 8);
-	msg->data[4] = kp_int & 0xFF;
-	msg->data[5] = kd_int >> 4;
-	msg->data[6] = ((kd_int & 0xF) << 4) | (t_int >> 8);
-	msg->data[7] = t_int & 0xFF;
+/* =========================================================================
+ * CÁC HÀM DÀNH CHO MASTER
+ * ========================================================================= */
+
+// MASTER GỬI LỆNH: Đóng gói dữ liệu điều khiển để gửi xuống Slave
+void Master_Pack_Cmd(CANTxMessage *msg, JointCommand_t *cmd) {
+    int p_int  = float_to_uint(cmd->p_des, P_MIN, P_MAX, 16);
+    int v_int  = float_to_uint(cmd->v_des, V_MIN, V_MAX, 12);
+    int kp_int = float_to_uint(cmd->kp, KP_MIN, KP_MAX, 12);
+    int kd_int = float_to_uint(cmd->kd, KD_MIN, KD_MAX, 12);
+    int t_int  = float_to_uint(cmd->t_ff, T_MIN, T_MAX, 12);
+    
+    msg->tx_header.StdId = cmd->can_id; // ID Slave
+
+    msg->data[0] = p_int >> 8;
+    msg->data[1] = p_int & 0xFF;
+    msg->data[2] = v_int >> 4;
+    msg->data[3] = ((v_int & 0xF) << 4) | (kp_int >> 8);
+    msg->data[4] = kp_int & 0xFF;
+    msg->data[5] = kd_int >> 4;
+    msg->data[6] = ((kd_int & 0xF) << 4) | (t_int >> 8);
+    msg->data[7] = t_int & 0xFF;
+}
+
+void Master_Unpack_State(CANRxMessage *msg, JointState_t *state) {
+    // Byte [0] thường chứa Slave ID, ta bắt đầu giải mã từ Byte [1]
+    int p_int  = (msg->data[1] << 8) | msg->data[2];    
+    int v_int  = (msg->data[3] << 4) | (msg->data[4] >> 4);
+    int t_int  = ((msg->data[4] & 0xF) << 8) | msg->data[5];
+    int vb_int = msg->data[6];
+
+    // Chuyển đổi số nguyên ngược lại thành số thực
+    state->p_act  = uint_to_float(p_int, P_MIN, P_MAX, 16);
+    state->v_act  = uint_to_float(v_int, V_MIN, V_MAX, 12);
+    state->t_act  = uint_to_float(t_int, T_MIN, T_MAX, 12);
+    state->v_batt = uint_to_float(vb_int, VB_MIN, VB_MAX, 8);
 }
 /// unpack_cmd Reply Packet Structure ///
 /// 16 bit position, between -4*pi and 4*pi
-/// 12 bit velocity, between -30 and + 30 rad/s
+/// 12 bit velocity, between -30 and 30 rad/s
 /// 12 bit current, between -40 and 40;
 /// CAN Packet is 5 8-bit words
 /// Formatted as follows.  For each quantity, bit 0 is LSB
@@ -195,17 +214,46 @@ void pack_cmd(CANTxMessage *msg, JointCommand_t *cmd){
 /// 2: [velocity[11-4]]
 /// 3: [velocity[3-0], current[11-8]]
 /// 4: [current[7-0]]
-void unpack_state(CANRxMessage *msg, JointState_t *state){// ControllerStruct * controller){
-	int p_int = (msg->data[1] << 8) | msg->data[2];	
-	int v_int = (msg->data[3] << 4) | (msg->data[4] >> 4);
-	int t_int = ((msg->data[4] & 0xF) << 8) | msg->data[5];
-	int vb_int = msg->data[6];
+/* =========================================================================
+ * CÁC HÀM DÀNH CHO SLAVE (MOTOR CONTROLLER)
+ * ========================================================================= */
 
-	state->p_act  = uint_to_float(p_int, P_MIN, P_MAX, 16);
-	state->v_act  = uint_to_float(v_int, V_MIN, V_MAX, 12);
-	state->t_act  = uint_to_float(t_int, T_MIN, T_MAX, 12);
-	state->v_batt = uint_to_float(vb_int, VB_MIN, VB_MAX, 8);
+// SLAVE NHẬN LỆNH: Giải mã gói tin điều khiển từ Master
+void Slave_Unpack_Cmd(CANRxMessage *msg, JointCommand_t *cmd) {
+  // Trích xuất các bit nguyên từ 8 bytes CAN
+  int p_int  = (msg->data[0] << 8) | msg->data[1];
+  int v_int  = (msg->data[2] << 4) | (msg->data[3] >> 4);
+  int kp_int = ((msg->data[3] & 0xF) << 8) | msg->data[4];
+  int kd_int = (msg->data[5] << 4) | (msg->data[6] >> 4);
+  int t_int  = ((msg->data[6] & 0xF) << 8) | msg->data[7];
 
+  // Chuyển đổi thành số thực để sử dụng cho thuật toán FOC
+  cmd->p_des = uint_to_float(p_int, P_MIN, P_MAX, 16);
+  cmd->v_des = uint_to_float(v_int, V_MIN, V_MAX, 12);
+  cmd->kp    = uint_to_float(kp_int, KP_MIN, KP_MAX, 12);
+  cmd->kd    = uint_to_float(kd_int, KD_MIN, KD_MAX, 12);
+  cmd->t_ff  = uint_to_float(t_int, T_MIN, T_MAX, 12);
+}
+
+// SLAVE GỬI TRẠNG THÁI: Đóng gói thông số hiện tại để báo cáo lên Master
+void Slave_Pack_State(CANTxMessage *msg, JointState_t *state, uint8_t slave_id) {
+  // Chuyển đổi số thực sang số nguyên theo độ phân giải bit
+  int p_int  = float_to_uint(state->p_act, P_MIN, P_MAX, 16);
+  int v_int  = float_to_uint(state->v_act, V_MIN, V_MAX, 12);
+  int t_int  = float_to_uint(state->t_act, T_MIN, T_MAX, 12);
+  int vb_int = float_to_uint(state->v_batt, VB_MIN, VB_MAX, 8);
+  
+  msg->tx_header.StdId = CAN_MASTER; // Gửi tới Master (Thường Master có ID = 0)
+  
+  // Đóng gói theo chuẩn MIT Cheetah (5 bytes dữ liệu + 1 byte ID)
+  msg->data[0] = slave_id;                 // Byte 0 chứa ID của động cơ
+  msg->data[1] = p_int >> 8;
+  msg->data[2] = p_int & 0xFF;
+  msg->data[3] = v_int >> 4;
+  msg->data[4] = ((v_int & 0xF) << 4) | (t_int >> 8);
+  msg->data[5] = t_int & 0xFF;
+  msg->data[6] = vb_int;
+  msg->data[7] = 0x00;                     // Byte 7 không sử dụng
 }
 
 /* USER CODE END 1 */

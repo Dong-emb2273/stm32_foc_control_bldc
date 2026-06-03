@@ -34,6 +34,7 @@ typedef struct {
     
     float speed_kp;
     float speed_ki;
+    float speed_kd;
     float speed_out_max;
     float speed_e_deadband;
     
@@ -43,13 +44,23 @@ typedef struct {
     float pos_out_max;
     float pos_e_deadband;
 
+    float spoint_pos;
+    float spoint_vel;
+    float spoint_tor;
+
+    float zero_angle;
+
     motor_mode_t control_mode;
     uint8_t state;
     uint8_t next_state;
+    uint8_t power_flag;
 
     float voffset_a;
     float voffset_b;
+    float voffset_c;
 
+    EncoderLocation_t encd_location;
+    EncoderType_t encd_type;
     float encd_offset;
     float encd_error_comp[ERROR_LUT_SIZE];
 
@@ -85,6 +96,9 @@ typedef struct {
 }motor_config_t;
 
 HAL_StatusTypeDef flash_save_config(motor_config_t *data);
+HAL_StatusTypeDef flash_erase_ready(void);
+HAL_StatusTypeDef flash_save_emergency(motor_config_t *data);
+
 void flash_read_config(motor_config_t *data);
 void flash_default_config(motor_config_t *data);
 void flash_auto_tuning_torque_control(motor_config_t *data);

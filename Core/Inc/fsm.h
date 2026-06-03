@@ -29,7 +29,7 @@ extern "C" {
 #define SETUP_MODE          3
 #define TEST_MODE           4
 #define ENCODER_MODE        5
-#define INIT_TEMP_MODE      6
+#define SET_PID_MODE        6
 
 #define MENU_CMD			27
 #define MOTOR_CMD			'm'
@@ -60,6 +60,7 @@ void enter_menu_state(void);
 void enter_setup_state(void);
 void enter_motor_mode(void);
 void enter_test_state(void);
+void set_pid_mode(FSMStruct * fsmstate);
 void process_user_input(FSMStruct * fsmstate);
 
 

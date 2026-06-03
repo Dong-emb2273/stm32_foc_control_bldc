@@ -14,8 +14,8 @@
 #define DRV8323RS_FAUL_PORT				GPIOA
 
 
-#define DRV8323_WRITE_CMD(addr, data) 	((0x0000) | ((addr & 0x0F) << 11) | (data & 0x7FF))
-#define DRV8323_READ_CMD(addr)        (	(0x8000) | ((addr & 0x0F) << 11))
+#define DRV8323_WRITE_CMD(addr, data)	((0x0000) | ((addr & 0x0F) << 11) | (data & 0x7FF))
+#define DRV8323_READ_CMD(addr)			((0x8000) | ((addr & 0x0F) << 11))
 
 #define DRV8323RS_cs_set				(GPIOC->BSRR = GPIO_PIN_12)
 #define DRV8323RS_cs_reset				(GPIOC->BSRR = GPIO_PIN_12 << 16)
@@ -98,7 +98,7 @@ int DRV8323_Current_Sens_Config(DRV8323_t *cfg, float gain, float R_shunt);
 
 uint16_t spike_filter(uint16_t new_val, uint16_t prev_val);
 
-void DRV8323_Calibrate_Current_Offset(void);
+void DRV8323_Calibrate_Current_Offset(DRV8323_t *cfg);
 
 void DRV8323_Get_Current(DRV8323_t *cfg, float *ia, float *ib, float *ic);
 

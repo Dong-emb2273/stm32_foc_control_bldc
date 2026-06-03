@@ -1,11 +1,12 @@
 #include "encoder.h"
-
+#include "flash.h"
+#include "user_config.h"
 #include <string.h> // cho NULL
 
 
 Encoder_t encoder;
+extern motor_config_t m_config;
 
-AS5048A_t as5048a;
 _Bool encd_get_val_flag;
 
 
@@ -24,36 +25,120 @@ int ENCODER_Setup(){
 }
 
 int ENCODER_AutoDetect(){
+	// 1. Thử dò tìm ở cổng Internal
 	encoder.location = ENCODER_LOC_INTERNAL;
+	encoder.active_port = &encoder.enc_internal; // Gắn active_port vào internal
 	encoder.type = ENCODER_TYPE_AS5048A;
-	AS5048A_Config(&as5048a,encoder. enc_internal.hspi, encoder.enc_internal.cs_port, encoder.enc_internal.cs_pin);
-	if(AS5048A_DetectExit(&as5048a)){
-
-		encoder.hw_encoder = (void*)&as5048a;
+	
+	AS5048A_Config_CS(&encoder); 
+	
+	if(AS5048A_DetectExit(&encoder)){
 		encoder.start_read = AS5048A_StartRead;
 		encoder.parse_data = AS5048A_ParseData;
+		ENCD_LOCATION = ENCODER_LOC_INTERNAL; 
+		ENCD_TYPE = ENCODER_TYPE_AS5048A; 
 		ENCODER_Set_Flag();
+		encoder.is_connected = 1;
 		return 0;
 	}
 		
+	// 2. Thử dò tìm ở cổng External nếu Internal không có
 	encoder.location = ENCODER_LOC_EXTERNAL;
+	encoder.active_port = &encoder.enc_external; 
 	encoder.type = ENCODER_TYPE_AS5048A;
-	AS5048A_Config(&as5048a,encoder. enc_external.hspi, encoder.enc_external.cs_port, encoder.enc_external.cs_pin);
-	if(AS5048A_DetectExit(&as5048a)){
-		encoder.hw_encoder = (void*)&as5048a;
+	
+	AS5048A_Config_CS(&encoder);
+	
+	if(AS5048A_DetectExit(&encoder)){
 		encoder.start_read = AS5048A_StartRead;
 		encoder.parse_data = AS5048A_ParseData;
+		ENCD_LOCATION = ENCODER_LOC_EXTERNAL; 
+		ENCD_TYPE = ENCODER_TYPE_AS5048A; 
 		ENCODER_Set_Flag();
+		encoder.is_connected = 1;
 		return 0;
 	}
 	
 	encoder.type = ENCODER_TYPE_NONE;
+	encoder.is_connected = 0; 
 	return 1;
 }
 
+void ENCODER_CHECK(){
+	if(encoder.type == ENCODER_TYPE_NONE){
+		printf("No Encoder Detected\r\n");
+	}
+	if(encoder.type == ENCODER_TYPE_AS5048A){
+		printf("AS5048A Detected\r\n");
+	}
+	if(encoder.location == ENCODER_LOC_INTERNAL){
+		printf("Encoder Location: INTERNAL\r\n");
+	}
+	else if(encoder.location == ENCODER_LOC_EXTERNAL){
+		printf("Encoder Location: EXTERNAL\r\n");
+	}
+}
+
+void ENCODER_Init_From_Config(void) {
+    // 1. Phục hồi Vị trí cắm (Location) và gán cổng SPI tương ứng
+    if (ENCD_LOCATION == ENCODER_LOC_INTERNAL) {
+        encoder.location = ENCODER_LOC_INTERNAL;
+        encoder.active_port = &encoder.enc_internal; 
+    } else {
+        encoder.location = ENCODER_LOC_EXTERNAL;
+        encoder.active_port = &encoder.enc_external;
+    }
+
+    // 2. PHỤC HỒI CÁC CON TRỎ HÀM (BINDING)
+    encoder.type = ENCD_TYPE;
+    
+    switch (encoder.type) {
+        case ENCODER_TYPE_AS5048A:
+            // Khởi tạo chân CS
+            AS5048A_Config_CS(&encoder);
+            
+            
+            encoder.start_read = AS5048A_StartRead;
+            encoder.parse_data = AS5048A_ParseData;
+            
+            ENCODER_Set_Flag(); // 
+            break;
+            
+        case ENCODER_TYPE_MT6835:
+            // (Ví dụ sau này bạn thêm cảm biến khác)
+            // MT6835_Config_CS(&encoder);
+            // encoder.start_read = MT6835_StartRead;
+            // encoder.parse_data = MT6835_ParseData;
+            break;
+            
+        case ENCODER_TYPE_NONE:
+        default:
+            // Không có cảm biến, gán hàm rỗng (Dummy function) để chống lỗi chia cho 0 hoặc Null Pointer
+            encoder.start_read = NULL; 
+            encoder.parse_data = NULL;
+            ENCODER_Reset_Flag();
+            break;
+    }
+}
+
 float ENCODER_GetDegree(Encoder_t *encd){
-	encd->raw_angle = encd->parse_data(encd->hw_encoder);
-	
+	if (encd->parse_data == NULL) {
+		return 0.0f; 
+	}
+	encd->raw_angle = encd->parse_data(encd);
+
+	if (encd->raw_angle < 0.0f) {
+		encd->error_count++;
+        if (encd->error_count > 30) {
+            encd->is_connected = 0; 
+        }
+		return encd->angle_filtered; 
+	}
+
+	encd->error_count = 0;
+    encd->is_connected = 1;
+
+	// Spike rejection (optimized)
 	float angle_diff = encd->raw_angle - encd->prev_raw_angle;
 	angle_diff -= 360.0f * floorf((angle_diff + 180.0f) / 360.0f);
 
@@ -132,7 +217,7 @@ float ENCODER_GetActualDegree(Encoder_t *encd) {
 		encd->output_angle_ovf--;
 	}
 	float out_deg = (m_current_angle + encd->output_angle_ovf * 360.0);
-  encd->output_angle_filtered = (1.0f - ACTUAL_ANGLE_FILTER_ALPHA) * encd->output_angle_filtered + ACTUAL_ANGLE_FILTER_ALPHA * out_deg;
+  	encd->output_angle_filtered = (1.0f - ACTUAL_ANGLE_FILTER_ALPHA) * encd->output_angle_filtered + ACTUAL_ANGLE_FILTER_ALPHA * out_deg;
 	encd->output_prev_angle = m_current_angle;
 
 	// return out_deg;

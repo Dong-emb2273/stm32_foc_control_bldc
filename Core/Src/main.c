@@ -85,8 +85,6 @@ CANRxMessage can_rx;
 JointRobot_t robot_joints;
 
 
-// test 
-AS5048A_t my_as5048a_hw;
 
 
 
@@ -117,14 +115,14 @@ void control_init(void) {
   pid_set_ts(&hfoc.id_ctrl, FOC_TS);
   pid_set_kp(&hfoc.id_ctrl, m_config.id_kp);
   pid_set_ki(&hfoc.id_ctrl, m_config.id_ki);
-  pid_set_out_constraint(&hfoc.id_ctrl, m_config.id_out_max, -m_config.id_out_max);
+  pid_set_out_constraint(&hfoc.id_ctrl, I_MAX, -I_MAX);
   pid_set_deadband(&hfoc.id_ctrl, m_config.id_e_deadband);
   // Id PI parameter
   pid_reset(&hfoc.iq_ctrl);
   pid_set_ts(&hfoc.iq_ctrl, FOC_TS);
   pid_set_kp(&hfoc.iq_ctrl, m_config.iq_kp);
   pid_set_ki(&hfoc.iq_ctrl, m_config.iq_ki);
-  pid_set_out_constraint(&hfoc.iq_ctrl, m_config.iq_out_max, -m_config.iq_out_max);
+  pid_set_out_constraint(&hfoc.iq_ctrl, I_MAX, -I_MAX);
   pid_set_deadband(&hfoc.iq_ctrl, m_config.iq_e_deadband);
   // Speed PID parameter
   pid_reset(&hfoc.speed_ctrl);
@@ -224,21 +222,17 @@ int main(void)
   
   // Load Config 
   flash_read_config(&m_config);
+  flash_erase_ready();
 
   init_trig_lut();
 
 	bldc_config(&hfoc.drv8323s); 
 	control_init();
 	
-	/*AS5048A setup   */
-//	Encoder_Init_Manual_Test();
-
+	/*ENCODER setup   */
 	ENCODER_Setup();
-	ENCODER_AutoDetect();
+  ENCODER_Init_From_Config();
 
-  hfoc.sPoint_Vel = 10.0f;
-  hfoc.sPoint_Pos = 0.0f;
-  hfoc.sPoint_Tor = 0.0f;
 	
   /* Start the FSM */
   state.state = MENU_MODE;
@@ -440,16 +434,19 @@ void ADC_IRQHandler(void) {
 	if (ADC1->SR & ADC_SR_JEOC) {
 		ADC1->SR &= ~ADC_SR_JEOC;
 	
-
 		if (ENCODER_GetFlag()) {
       ENCODER_Reset_Flag();
-      encoder.start_read(encoder.hw_encoder);
+      encoder.start_read(&encoder);
 		}
+
+    // if (encoder.is_connected == 0) {
+    //   DRV8323_Set_PWM(&hfoc.drv8323s, 0, 0, 0); // Stop PWM output
+    //   return;                  
+    // }
+
     foc_get_power_voltage(&hfoc);
 
     run_fsm(&state);
-
-		
 	}
 }
 /* USER CODE END 4 */
@@ -468,29 +465,17 @@ void StartCalibrationTask(void *argument)
   hfoc.done_cal_encoder = 1;
   /* Infinite loop */
   for(;;)
-  {
-    // if(state.state == CALIBRATION_MODE) {
-    //   if(!hfoc.done_orderphase){foc_auto_calibration(&hfoc);}
-    //   if(!hfoc.done_cal_encoder){foc_cal_encoder(&hfoc);}
-       
-    //   // calibration_seq();
-    //   if(hfoc.done_cal_encoder == 1 && hfoc.done_orderphase == 1){
-    //     printf("Calibration Successful!\r\n");
-    //     update_fsm(&state, 27);
-    //   }
-    // }
-    // if(state.state == TEST_MODE) {
-      
+  {   
     switch (state.state) {
       case CALIBRATION_MODE: {
+        DRV8323_Calibrate_Current_Offset(&hfoc.drv8323s);
+        foc_auto_calibration(&hfoc);
+        foc_cal_encoder(&hfoc);
         
-        if(!hfoc.done_orderphase){foc_auto_calibration(&hfoc);}
-        if(!hfoc.done_cal_encoder){foc_cal_encoder(&hfoc);}
-        DRV8323_Calibrate_Current_Offset();
-        // calibration_seq();
+        calibration_seq();
         if(hfoc.done_cal_encoder == 1 && hfoc.done_orderphase == 1){
-        printf("Calibration Successful!\r\n");
-        update_fsm(&state, 27);
+          printf("Calibration Successful!\r\n");
+          update_fsm(&state, 27);
         }
         break;
       }
@@ -503,16 +488,18 @@ void StartCalibrationTask(void *argument)
         // printf("%.2f,%.2f\n", hfoc.vd, hfoc.vq);
         // printf("%.2f,%.2f\n", hfoc.id_filtered, hfoc.iq_filtered);
         // printf("%.2f,%.2f\n", hfoc.id_filtered, hfoc.iq_filtered);
-        printf("%.2f,%.2f,%.2f,%.2f\n", hfoc.ia, hfoc.ib, hfoc.ic, hfoc.actual_rpm);
+        // printf("%.2f,%.2f,%.2f,%.2f\n", 0.0, 0.0, hfoc.id_filtered, hfoc.iq_filtered);
         break;
       }
       case MENU_MODE: {
-        // printf("Id: %.3f\n\r", hfoc.id_filtered);  
-        // printf("Iq: %.3f\n\r", hfoc.iq_filtered);
-        // DRV8323_Get_Current(&hfoc.drv8323s, &hfoc.ia, &hfoc.ib, &hfoc.ic);
-        // printf("%.2f,%.2f\n", hfoc.ia, hfoc.ib);
-        // printf("%.2f,%.2f\n", hfoc.id_filtered, hfoc.iq_filtered);
-        // printf("%.2f,%.2f,%.2f,%.2f\n", hfoc.id_filtered, hfoc.iq_filtered, hfoc.ia, hfoc.ib);
+      
+        break;
+      }
+      case ENCODER_MODE: {
+        // printf("Encoder Angle: %.2f\n\r", hfoc.actual_angle);
+        ENCODER_AutoDetect();
+        ENCODER_CHECK();
+        update_fsm(&state, 27);
         break;
       }
       default:
@@ -520,7 +507,15 @@ void StartCalibrationTask(void *argument)
         break;
               
     }
-    // printf("%.5f,%.5f\n", hfoc.ia, hfoc.ib);
+    if(encoder.is_connected == 0){
+      // printf("Encoder not detected. Attempting to detect...\r\n");
+      // ENCODER_AutoDetect();
+      // ENCODER_CHECK();
+      printf("Encoder not detected. Please check the connection.\r\n");
+      osDelay(1000); // Wait for 500ms before trying to detect the encoder again
+    
+    }
+    
     osDelay(1);
   }
   /* USER CODE END 5 */

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc3CYB1W.s 			page 1
+ARM GAS  /tmp/ccww7YGI.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc3CYB1W.s 			page 1
   28:Core/Src/stm32f4xx_it.c **** #include "spi.h"
   29:Core/Src/stm32f4xx_it.c **** #include "uart.h"
   30:Core/Src/stm32f4xx_it.c **** #include "fsm.h"
-ARM GAS  /tmp/cc3CYB1W.s 			page 2
+ARM GAS  /tmp/ccww7YGI.s 			page 2
 
 
   31:Core/Src/stm32f4xx_it.c **** /* USER CODE END Includes */
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc3CYB1W.s 			page 1
   78:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
   79:Core/Src/stm32f4xx_it.c **** 
   80:Core/Src/stm32f4xx_it.c ****   /* USER CODE END NonMaskableInt_IRQn 0 */
-ARM GAS  /tmp/cc3CYB1W.s 			page 3
+ARM GAS  /tmp/ccww7YGI.s 			page 3
 
 
   81:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc3CYB1W.s 			page 1
   71              		.thumb
   72              		.thumb_func
   73              		.fpu fpv4-sp-d16
-ARM GAS  /tmp/cc3CYB1W.s 			page 4
+ARM GAS  /tmp/ccww7YGI.s 			page 4
 
 
   75              	MemManage_Handler:
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc3CYB1W.s 			page 1
  123:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN BusFault_IRQn 0 */
  124:Core/Src/stm32f4xx_it.c **** 
  125:Core/Src/stm32f4xx_it.c ****   /* USER CODE END BusFault_IRQn 0 */
-ARM GAS  /tmp/cc3CYB1W.s 			page 5
+ARM GAS  /tmp/ccww7YGI.s 			page 5
 
 
  126:Core/Src/stm32f4xx_it.c ****   while (1)
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc3CYB1W.s 			page 1
  143              		.thumb
  144              		.thumb_func
  145              		.fpu fpv4-sp-d16
-ARM GAS  /tmp/cc3CYB1W.s 			page 6
+ARM GAS  /tmp/ccww7YGI.s 			page 6
 
 
  147              	DebugMon_Handler:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc3CYB1W.s 			page 1
  176              		.cfi_offset 3, -8
  177              		.cfi_offset 14, -4
  173:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN TIM1_TRG_COM_TIM11_IRQn 0 */
-ARM GAS  /tmp/cc3CYB1W.s 			page 7
+ARM GAS  /tmp/ccww7YGI.s 			page 7
 
 
  174:Core/Src/stm32f4xx_it.c **** 
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc3CYB1W.s 			page 1
  194:Core/Src/stm32f4xx_it.c **** }
  214              		.loc 1 194 1 is_stmt 0 view .LVU27
  215 0008 08BD     		pop	{r3, pc}
-ARM GAS  /tmp/cc3CYB1W.s 			page 8
+ARM GAS  /tmp/ccww7YGI.s 			page 8
 
 
  216              	.L19:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc3CYB1W.s 			page 1
  259              		.thumb
  260              		.thumb_func
  261              		.fpu fpv4-sp-d16
-ARM GAS  /tmp/cc3CYB1W.s 			page 9
+ARM GAS  /tmp/ccww7YGI.s 			page 9
 
 
  263              	DMA1_Stream3_IRQHandler:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc3CYB1W.s 			page 1
  231:Core/Src/stm32f4xx_it.c **** void DMA1_Stream4_IRQHandler(void)
  232:Core/Src/stm32f4xx_it.c **** {
  297              		.loc 1 232 1 is_stmt 1 view -0
-ARM GAS  /tmp/cc3CYB1W.s 			page 10
+ARM GAS  /tmp/ccww7YGI.s 			page 10
 
 
  298              		.cfi_startproc
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc3CYB1W.s 			page 1
  339 0002 0248     		ldr	r0, .L34
  340 0004 FFF7FEFF 		bl	HAL_SPI_IRQHandler
  341              	.LVL5:
-ARM GAS  /tmp/cc3CYB1W.s 			page 11
+ARM GAS  /tmp/ccww7YGI.s 			page 11
 
 
  248:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN SPI1_IRQn 1 */
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cc3CYB1W.s 			page 1
  380              		.cfi_endproc
  381              	.LFE146:
  383              		.section	.text.USART6_IRQHandler,"ax",%progbits
-ARM GAS  /tmp/cc3CYB1W.s 			page 12
+ARM GAS  /tmp/ccww7YGI.s 			page 12
 
 
  384              		.align	1
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cc3CYB1W.s 			page 1
  426              		.cfi_startproc
  427              		@ args = 0, pretend = 0, frame = 0
  428              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/cc3CYB1W.s 			page 13
+ARM GAS  /tmp/ccww7YGI.s 			page 13
 
 
  429 0000 08B5     		push	{r3, lr}
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cc3CYB1W.s 			page 1
  296:Core/Src/stm32f4xx_it.c **** 
  297:Core/Src/stm32f4xx_it.c ****   /* USER CODE END DMA2_Stream3_IRQn 1 */
  298:Core/Src/stm32f4xx_it.c **** }
-ARM GAS  /tmp/cc3CYB1W.s 			page 14
+ARM GAS  /tmp/ccww7YGI.s 			page 14
 
 
  470              		.loc 1 298 1 is_stmt 0 view .LVU51
@@ -800,53 +800,53 @@ ARM GAS  /tmp/cc3CYB1W.s 			page 1
  487              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
  488              		.file 9 "Core/Inc/spi.h"
  489              		.file 10 "Core/Inc/uart.h"
-ARM GAS  /tmp/cc3CYB1W.s 			page 15
+ARM GAS  /tmp/ccww7YGI.s 			page 15
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f4xx_it.c
-     /tmp/cc3CYB1W.s:18     .text.NMI_Handler:0000000000000000 $t
-     /tmp/cc3CYB1W.s:26     .text.NMI_Handler:0000000000000000 NMI_Handler
-     /tmp/cc3CYB1W.s:44     .text.HardFault_Handler:0000000000000000 $t
-     /tmp/cc3CYB1W.s:51     .text.HardFault_Handler:0000000000000000 HardFault_Handler
-     /tmp/cc3CYB1W.s:68     .text.MemManage_Handler:0000000000000000 $t
-     /tmp/cc3CYB1W.s:75     .text.MemManage_Handler:0000000000000000 MemManage_Handler
-     /tmp/cc3CYB1W.s:92     .text.BusFault_Handler:0000000000000000 $t
-     /tmp/cc3CYB1W.s:99     .text.BusFault_Handler:0000000000000000 BusFault_Handler
-     /tmp/cc3CYB1W.s:116    .text.UsageFault_Handler:0000000000000000 $t
-     /tmp/cc3CYB1W.s:123    .text.UsageFault_Handler:0000000000000000 UsageFault_Handler
-     /tmp/cc3CYB1W.s:140    .text.DebugMon_Handler:0000000000000000 $t
-     /tmp/cc3CYB1W.s:147    .text.DebugMon_Handler:0000000000000000 DebugMon_Handler
-     /tmp/cc3CYB1W.s:160    .text.TIM1_TRG_COM_TIM11_IRQHandler:0000000000000000 $t
-     /tmp/cc3CYB1W.s:167    .text.TIM1_TRG_COM_TIM11_IRQHandler:0000000000000000 TIM1_TRG_COM_TIM11_IRQHandler
-     /tmp/cc3CYB1W.s:187    .text.TIM1_TRG_COM_TIM11_IRQHandler:000000000000000c $d
-     /tmp/cc3CYB1W.s:192    .text.DMA2_Stream7_IRQHandler:0000000000000000 $t
-     /tmp/cc3CYB1W.s:199    .text.DMA2_Stream7_IRQHandler:0000000000000000 DMA2_Stream7_IRQHandler
-     /tmp/cc3CYB1W.s:219    .text.DMA2_Stream7_IRQHandler:000000000000000c $d
-     /tmp/cc3CYB1W.s:224    .text.DMA2_Stream2_IRQHandler:0000000000000000 $t
-     /tmp/cc3CYB1W.s:231    .text.DMA2_Stream2_IRQHandler:0000000000000000 DMA2_Stream2_IRQHandler
-     /tmp/cc3CYB1W.s:251    .text.DMA2_Stream2_IRQHandler:000000000000000c $d
-     /tmp/cc3CYB1W.s:256    .text.DMA1_Stream3_IRQHandler:0000000000000000 $t
-     /tmp/cc3CYB1W.s:263    .text.DMA1_Stream3_IRQHandler:0000000000000000 DMA1_Stream3_IRQHandler
-     /tmp/cc3CYB1W.s:283    .text.DMA1_Stream3_IRQHandler:000000000000000c $d
-     /tmp/cc3CYB1W.s:288    .text.DMA1_Stream4_IRQHandler:0000000000000000 $t
-     /tmp/cc3CYB1W.s:295    .text.DMA1_Stream4_IRQHandler:0000000000000000 DMA1_Stream4_IRQHandler
-     /tmp/cc3CYB1W.s:315    .text.DMA1_Stream4_IRQHandler:000000000000000c $d
-     /tmp/cc3CYB1W.s:320    .text.SPI1_IRQHandler:0000000000000000 $t
-     /tmp/cc3CYB1W.s:327    .text.SPI1_IRQHandler:0000000000000000 SPI1_IRQHandler
-     /tmp/cc3CYB1W.s:347    .text.SPI1_IRQHandler:000000000000000c $d
-     /tmp/cc3CYB1W.s:352    .text.SPI2_IRQHandler:0000000000000000 $t
-     /tmp/cc3CYB1W.s:359    .text.SPI2_IRQHandler:0000000000000000 SPI2_IRQHandler
-     /tmp/cc3CYB1W.s:379    .text.SPI2_IRQHandler:000000000000000c $d
-     /tmp/cc3CYB1W.s:384    .text.USART6_IRQHandler:0000000000000000 $t
-     /tmp/cc3CYB1W.s:391    .text.USART6_IRQHandler:0000000000000000 USART6_IRQHandler
-     /tmp/cc3CYB1W.s:411    .text.USART6_IRQHandler:000000000000000c $d
-     /tmp/cc3CYB1W.s:416    .text.DMA2_Stream0_IRQHandler:0000000000000000 $t
-     /tmp/cc3CYB1W.s:423    .text.DMA2_Stream0_IRQHandler:0000000000000000 DMA2_Stream0_IRQHandler
-     /tmp/cc3CYB1W.s:443    .text.DMA2_Stream0_IRQHandler:000000000000000c $d
-     /tmp/cc3CYB1W.s:448    .text.DMA2_Stream3_IRQHandler:0000000000000000 $t
-     /tmp/cc3CYB1W.s:455    .text.DMA2_Stream3_IRQHandler:0000000000000000 DMA2_Stream3_IRQHandler
-     /tmp/cc3CYB1W.s:475    .text.DMA2_Stream3_IRQHandler:000000000000000c $d
+     /tmp/ccww7YGI.s:18     .text.NMI_Handler:0000000000000000 $t
+     /tmp/ccww7YGI.s:26     .text.NMI_Handler:0000000000000000 NMI_Handler
+     /tmp/ccww7YGI.s:44     .text.HardFault_Handler:0000000000000000 $t
+     /tmp/ccww7YGI.s:51     .text.HardFault_Handler:0000000000000000 HardFault_Handler
+     /tmp/ccww7YGI.s:68     .text.MemManage_Handler:0000000000000000 $t
+     /tmp/ccww7YGI.s:75     .text.MemManage_Handler:0000000000000000 MemManage_Handler
+     /tmp/ccww7YGI.s:92     .text.BusFault_Handler:0000000000000000 $t
+     /tmp/ccww7YGI.s:99     .text.BusFault_Handler:0000000000000000 BusFault_Handler
+     /tmp/ccww7YGI.s:116    .text.UsageFault_Handler:0000000000000000 $t
+     /tmp/ccww7YGI.s:123    .text.UsageFault_Handler:0000000000000000 UsageFault_Handler
+     /tmp/ccww7YGI.s:140    .text.DebugMon_Handler:0000000000000000 $t
+     /tmp/ccww7YGI.s:147    .text.DebugMon_Handler:0000000000000000 DebugMon_Handler
+     /tmp/ccww7YGI.s:160    .text.TIM1_TRG_COM_TIM11_IRQHandler:0000000000000000 $t
+     /tmp/ccww7YGI.s:167    .text.TIM1_TRG_COM_TIM11_IRQHandler:0000000000000000 TIM1_TRG_COM_TIM11_IRQHandler
+     /tmp/ccww7YGI.s:187    .text.TIM1_TRG_COM_TIM11_IRQHandler:000000000000000c $d
+     /tmp/ccww7YGI.s:192    .text.DMA2_Stream7_IRQHandler:0000000000000000 $t
+     /tmp/ccww7YGI.s:199    .text.DMA2_Stream7_IRQHandler:0000000000000000 DMA2_Stream7_IRQHandler
+     /tmp/ccww7YGI.s:219    .text.DMA2_Stream7_IRQHandler:000000000000000c $d
+     /tmp/ccww7YGI.s:224    .text.DMA2_Stream2_IRQHandler:0000000000000000 $t
+     /tmp/ccww7YGI.s:231    .text.DMA2_Stream2_IRQHandler:0000000000000000 DMA2_Stream2_IRQHandler
+     /tmp/ccww7YGI.s:251    .text.DMA2_Stream2_IRQHandler:000000000000000c $d
+     /tmp/ccww7YGI.s:256    .text.DMA1_Stream3_IRQHandler:0000000000000000 $t
+     /tmp/ccww7YGI.s:263    .text.DMA1_Stream3_IRQHandler:0000000000000000 DMA1_Stream3_IRQHandler
+     /tmp/ccww7YGI.s:283    .text.DMA1_Stream3_IRQHandler:000000000000000c $d
+     /tmp/ccww7YGI.s:288    .text.DMA1_Stream4_IRQHandler:0000000000000000 $t
+     /tmp/ccww7YGI.s:295    .text.DMA1_Stream4_IRQHandler:0000000000000000 DMA1_Stream4_IRQHandler
+     /tmp/ccww7YGI.s:315    .text.DMA1_Stream4_IRQHandler:000000000000000c $d
+     /tmp/ccww7YGI.s:320    .text.SPI1_IRQHandler:0000000000000000 $t
+     /tmp/ccww7YGI.s:327    .text.SPI1_IRQHandler:0000000000000000 SPI1_IRQHandler
+     /tmp/ccww7YGI.s:347    .text.SPI1_IRQHandler:000000000000000c $d
+     /tmp/ccww7YGI.s:352    .text.SPI2_IRQHandler:0000000000000000 $t
+     /tmp/ccww7YGI.s:359    .text.SPI2_IRQHandler:0000000000000000 SPI2_IRQHandler
+     /tmp/ccww7YGI.s:379    .text.SPI2_IRQHandler:000000000000000c $d
+     /tmp/ccww7YGI.s:384    .text.USART6_IRQHandler:0000000000000000 $t
+     /tmp/ccww7YGI.s:391    .text.USART6_IRQHandler:0000000000000000 USART6_IRQHandler
+     /tmp/ccww7YGI.s:411    .text.USART6_IRQHandler:000000000000000c $d
+     /tmp/ccww7YGI.s:416    .text.DMA2_Stream0_IRQHandler:0000000000000000 $t
+     /tmp/ccww7YGI.s:423    .text.DMA2_Stream0_IRQHandler:0000000000000000 DMA2_Stream0_IRQHandler
+     /tmp/ccww7YGI.s:443    .text.DMA2_Stream0_IRQHandler:000000000000000c $d
+     /tmp/ccww7YGI.s:448    .text.DMA2_Stream3_IRQHandler:0000000000000000 $t
+     /tmp/ccww7YGI.s:455    .text.DMA2_Stream3_IRQHandler:0000000000000000 DMA2_Stream3_IRQHandler
+     /tmp/ccww7YGI.s:475    .text.DMA2_Stream3_IRQHandler:000000000000000c $d
 
 UNDEFINED SYMBOLS
 HAL_TIM_IRQHandler
@@ -860,7 +860,7 @@ HAL_SPI_IRQHandler
 hspi1
 hspi2
 HAL_UART_IRQHandler
-ARM GAS  /tmp/cc3CYB1W.s 			page 16
+ARM GAS  /tmp/ccww7YGI.s 			page 16
 
 
 huart

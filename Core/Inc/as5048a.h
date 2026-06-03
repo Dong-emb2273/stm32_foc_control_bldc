@@ -3,14 +3,15 @@
 
 
 #include "main.h"
+#include "spi.h"
+#include "encoder.h"
 #include <string.h>
 #include <math.h>
 
 
 //======================== Config PIN =============================
-#define AS5048A_cs_set(encd) ((encd)->AS5048A_cs_port->BSRR = (encd)->AS5048A_cs_pin)
-#define AS5048A_cs_reset(encd) ((encd)->AS5048A_cs_port->BSRR = (encd)->AS5048A_cs_pin<<16)
-
+#define AS5048A_cs_set(encd)   (((struct Encoder_t*)encd)->active_port->cs_port->BSRR = ((struct Encoder_t*)encd)->active_port->cs_pin)
+#define AS5048A_cs_reset(encd) (((struct Encoder_t*)encd)->active_port->cs_port->BSRR = ((struct Encoder_t*)encd)->active_port->cs_pin << 16)
 //======================== END ====================================
 
 
@@ -19,12 +20,7 @@
 #define AS5048A_WRITE_CMD  0x4000
 
 
-typedef struct {
-	SPI_HandleTypeDef *AS5048A_spi;
-	GPIO_TypeDef			*AS5048A_cs_port;  
-	uint16_t 					AS5048A_cs_pin;        
-	uint8_t 					spi_rx_buffer[2];
-}AS5048A_t;
+
 //
 
 
@@ -32,16 +28,10 @@ typedef struct {
 
 // static uint8_t calc_even_parity(uint16_t value);
 
-int AS5048A_Config(AS5048A_t *encd, SPI_HandleTypeDef *hspi, GPIO_TypeDef *cs_port, uint16_t cs_pin);
-
-int AS5048A_Config_ALL(AS5048A_t *encd);
-
-int AS5048A_CheckExist(AS5048A_t *encd);
-
-int AS5048A_DetectExit(AS5048A_t *encd);
-
+void AS5048A_Config_CS(void *handle);
+int AS5048A_CheckExist(void *handle);
+int AS5048A_DetectExit(void *handle);
 int AS5048A_StartRead(void *handle);
-
 float AS5048A_ParseData(void *handle);
 
 

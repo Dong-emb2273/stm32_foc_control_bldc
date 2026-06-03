@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccGvoAzx.s 			page 1
+ARM GAS  /tmp/ccWZZQMN.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -29,67 +29,68 @@ ARM GAS  /tmp/ccGvoAzx.s 			page 1
   27              	.LFB134:
   28              		.file 1 "Core/Src/encoder.c"
    1:Core/Src/encoder.c **** #include "encoder.h"
-   2:Core/Src/encoder.c **** 
-   3:Core/Src/encoder.c **** #include <string.h> // cho NULL
-   4:Core/Src/encoder.c **** 
+   2:Core/Src/encoder.c **** #include "flash.h"
+   3:Core/Src/encoder.c **** #include "user_config.h"
+   4:Core/Src/encoder.c **** #include <string.h> // cho NULL
    5:Core/Src/encoder.c **** 
-   6:Core/Src/encoder.c **** Encoder_t encoder;
-   7:Core/Src/encoder.c **** 
-   8:Core/Src/encoder.c **** AS5048A_t as5048a;
-   9:Core/Src/encoder.c **** _Bool encd_get_val_flag;
-  10:Core/Src/encoder.c **** 
+   6:Core/Src/encoder.c **** 
+   7:Core/Src/encoder.c **** Encoder_t encoder;
+   8:Core/Src/encoder.c **** extern motor_config_t m_config;
+   9:Core/Src/encoder.c **** 
+  10:Core/Src/encoder.c **** _Bool encd_get_val_flag;
   11:Core/Src/encoder.c **** 
-  12:Core/Src/encoder.c **** int ENCODER_Setup(){
-  29              		.loc 1 12 20 view -0
+  12:Core/Src/encoder.c **** 
+  13:Core/Src/encoder.c **** int ENCODER_Setup(){
+  29              		.loc 1 13 20 view -0
   30              		.cfi_startproc
   31              		@ args = 0, pretend = 0, frame = 0
   32              		@ frame_needed = 0, uses_anonymous_args = 0
   33              		@ link register save eliminated.
-  13:Core/Src/encoder.c **** 	encoder.enc_internal.hspi = &hspi1;
-  34              		.loc 1 13 2 view .LVU1
-  35              		.loc 1 13 28 is_stmt 0 view .LVU2
+  14:Core/Src/encoder.c **** 	encoder.enc_internal.hspi = &hspi1;
+  34              		.loc 1 14 2 view .LVU1
+  35              		.loc 1 14 28 is_stmt 0 view .LVU2
   36 0000 084B     		ldr	r3, .L2
   37 0002 094A     		ldr	r2, .L2+4
   38 0004 5A60     		str	r2, [r3, #4]
-  14:Core/Src/encoder.c **** 	encoder.enc_internal.cs_port = GPIOB;
-  39              		.loc 1 14 2 is_stmt 1 view .LVU3
-  40              		.loc 1 14 31 is_stmt 0 view .LVU4
+  15:Core/Src/encoder.c **** 	encoder.enc_internal.cs_port = GPIOB;
+  39              		.loc 1 15 2 is_stmt 1 view .LVU3
+  40              		.loc 1 15 31 is_stmt 0 view .LVU4
   41 0006 094A     		ldr	r2, .L2+8
   42 0008 9A60     		str	r2, [r3, #8]
-  15:Core/Src/encoder.c **** 	encoder.enc_internal.cs_pin = GPIO_PIN_9;
-  43              		.loc 1 15 2 is_stmt 1 view .LVU5
-ARM GAS  /tmp/ccGvoAzx.s 			page 2
+  16:Core/Src/encoder.c **** 	encoder.enc_internal.cs_pin = GPIO_PIN_9;
+ARM GAS  /tmp/ccWZZQMN.s 			page 2
 
 
-  44              		.loc 1 15 30 is_stmt 0 view .LVU6
+  43              		.loc 1 16 2 is_stmt 1 view .LVU5
+  44              		.loc 1 16 30 is_stmt 0 view .LVU6
   45 000a 4FF40071 		mov	r1, #512
   46 000e 9981     		strh	r1, [r3, #12]	@ movhi
-  16:Core/Src/encoder.c **** 											
-  17:Core/Src/encoder.c **** 	encoder.enc_external.hspi = &hspi2;
-  47              		.loc 1 17 2 is_stmt 1 view .LVU7
-  48              		.loc 1 17 28 is_stmt 0 view .LVU8
+  17:Core/Src/encoder.c **** 											
+  18:Core/Src/encoder.c **** 	encoder.enc_external.hspi = &hspi2;
+  47              		.loc 1 18 2 is_stmt 1 view .LVU7
+  48              		.loc 1 18 28 is_stmt 0 view .LVU8
   49 0010 0749     		ldr	r1, .L2+12
   50 0012 5961     		str	r1, [r3, #20]
-  18:Core/Src/encoder.c **** 	encoder.enc_external.cs_port = GPIOB;
-  51              		.loc 1 18 2 is_stmt 1 view .LVU9
-  52              		.loc 1 18 31 is_stmt 0 view .LVU10
+  19:Core/Src/encoder.c **** 	encoder.enc_external.cs_port = GPIOB;
+  51              		.loc 1 19 2 is_stmt 1 view .LVU9
+  52              		.loc 1 19 31 is_stmt 0 view .LVU10
   53 0014 9A61     		str	r2, [r3, #24]
-  19:Core/Src/encoder.c **** 	encoder.enc_external.cs_pin = GPIO_PIN_11;
-  54              		.loc 1 19 2 is_stmt 1 view .LVU11
-  55              		.loc 1 19 30 is_stmt 0 view .LVU12
+  20:Core/Src/encoder.c **** 	encoder.enc_external.cs_pin = GPIO_PIN_11;
+  54              		.loc 1 20 2 is_stmt 1 view .LVU11
+  55              		.loc 1 20 30 is_stmt 0 view .LVU12
   56 0016 4FF40062 		mov	r2, #2048
   57 001a 9A83     		strh	r2, [r3, #28]	@ movhi
-  20:Core/Src/encoder.c **** 
-  21:Core/Src/encoder.c **** 	
-  22:Core/Src/encoder.c **** 	ENCODER_Reset_Flag();
-  58              		.loc 1 22 2 is_stmt 1 view .LVU13
+  21:Core/Src/encoder.c **** 
+  22:Core/Src/encoder.c **** 	
+  23:Core/Src/encoder.c **** 	ENCODER_Reset_Flag();
+  58              		.loc 1 23 2 is_stmt 1 view .LVU13
   59 001c 0020     		movs	r0, #0
   60 001e 054B     		ldr	r3, .L2+16
   61 0020 1870     		strb	r0, [r3]
-  23:Core/Src/encoder.c **** 	return 0;
-  62              		.loc 1 23 2 view .LVU14
-  24:Core/Src/encoder.c **** }
-  63              		.loc 1 24 1 is_stmt 0 view .LVU15
+  24:Core/Src/encoder.c **** 	return 0;
+  62              		.loc 1 24 2 view .LVU14
+  25:Core/Src/encoder.c **** }
+  63              		.loc 1 25 1 is_stmt 0 view .LVU15
   64 0022 7047     		bx	lr
   65              	.L3:
   66              		.align	2
@@ -110,883 +111,1323 @@ ARM GAS  /tmp/ccGvoAzx.s 			page 1
   82              		.fpu fpv4-sp-d16
   84              	ENCODER_AutoDetect:
   85              	.LFB135:
-  25:Core/Src/encoder.c **** 
-  26:Core/Src/encoder.c **** int ENCODER_AutoDetect(){
-  86              		.loc 1 26 25 is_stmt 1 view -0
+  26:Core/Src/encoder.c **** 
+  27:Core/Src/encoder.c **** int ENCODER_AutoDetect(){
+  86              		.loc 1 27 25 is_stmt 1 view -0
   87              		.cfi_startproc
   88              		@ args = 0, pretend = 0, frame = 0
   89              		@ frame_needed = 0, uses_anonymous_args = 0
   90 0000 38B5     		push	{r3, r4, r5, lr}
+ARM GAS  /tmp/ccWZZQMN.s 			page 3
+
+
   91              	.LCFI0:
-ARM GAS  /tmp/ccGvoAzx.s 			page 3
-
-
   92              		.cfi_def_cfa_offset 16
   93              		.cfi_offset 3, -16
   94              		.cfi_offset 4, -12
   95              		.cfi_offset 5, -8
   96              		.cfi_offset 14, -4
-  27:Core/Src/encoder.c **** 	encoder.location = ENCODER_LOC_INTERNAL;
-  97              		.loc 1 27 2 view .LVU17
-  98              		.loc 1 27 19 is_stmt 0 view .LVU18
-  99 0002 1E49     		ldr	r1, .L10
- 100 0004 0023     		movs	r3, #0
- 101 0006 0B70     		strb	r3, [r1]
-  28:Core/Src/encoder.c **** 	encoder.type = ENCODER_TYPE_AS5048A;
- 102              		.loc 1 28 2 is_stmt 1 view .LVU19
- 103              		.loc 1 28 15 is_stmt 0 view .LVU20
- 104 0008 0223     		movs	r3, #2
- 105 000a 4B70     		strb	r3, [r1, #1]
-  29:Core/Src/encoder.c **** 	AS5048A_Config(&as5048a,encoder. enc_internal.hspi, encoder.enc_internal.cs_port, encoder.enc_inte
- 106              		.loc 1 29 2 is_stmt 1 view .LVU21
- 107 000c 1C4C     		ldr	r4, .L10+4
- 108 000e 8B89     		ldrh	r3, [r1, #12]
- 109 0010 8A68     		ldr	r2, [r1, #8]
- 110 0012 4968     		ldr	r1, [r1, #4]
- 111 0014 2046     		mov	r0, r4
- 112 0016 FFF7FEFF 		bl	AS5048A_Config
+  28:Core/Src/encoder.c **** 	// 1. Thử dò tìm ở cổng Internal
+  29:Core/Src/encoder.c **** 	encoder.location = ENCODER_LOC_INTERNAL;
+  97              		.loc 1 29 2 view .LVU17
+  98              		.loc 1 29 19 is_stmt 0 view .LVU18
+  99 0002 244C     		ldr	r4, .L10
+ 100 0004 2346     		mov	r3, r4
+ 101 0006 0022     		movs	r2, #0
+ 102 0008 03F8042B 		strb	r2, [r3], #4
+  30:Core/Src/encoder.c **** 	encoder.active_port = &encoder.enc_internal; // Gắn active_port vào internal
+ 103              		.loc 1 30 2 is_stmt 1 view .LVU19
+ 104              		.loc 1 30 22 is_stmt 0 view .LVU20
+ 105 000c 6362     		str	r3, [r4, #36]
+  31:Core/Src/encoder.c **** 	encoder.type = ENCODER_TYPE_AS5048A;
+ 106              		.loc 1 31 2 is_stmt 1 view .LVU21
+ 107              		.loc 1 31 15 is_stmt 0 view .LVU22
+ 108 000e 0223     		movs	r3, #2
+ 109 0010 6370     		strb	r3, [r4, #1]
+  32:Core/Src/encoder.c **** 	
+  33:Core/Src/encoder.c **** 	AS5048A_Config_CS(&encoder); 
+ 110              		.loc 1 33 2 is_stmt 1 view .LVU23
+ 111 0012 2046     		mov	r0, r4
+ 112 0014 FFF7FEFF 		bl	AS5048A_Config_CS
  113              	.LVL0:
-  30:Core/Src/encoder.c **** 	if(AS5048A_DetectExit(&as5048a)){
- 114              		.loc 1 30 2 view .LVU22
- 115              		.loc 1 30 5 is_stmt 0 view .LVU23
- 116 001a 2046     		mov	r0, r4
- 117 001c FFF7FEFF 		bl	AS5048A_DetectExit
+  34:Core/Src/encoder.c **** 	
+  35:Core/Src/encoder.c **** 	if(AS5048A_DetectExit(&encoder)){
+ 114              		.loc 1 35 2 view .LVU24
+ 115              		.loc 1 35 5 is_stmt 0 view .LVU25
+ 116 0018 2046     		mov	r0, r4
+ 117 001a FFF7FEFF 		bl	AS5048A_DetectExit
  118              	.LVL1:
- 119              		.loc 1 30 4 view .LVU24
- 120 0020 60B1     		cbz	r0, .L5
-  31:Core/Src/encoder.c **** 
-  32:Core/Src/encoder.c **** 		encoder.hw_encoder = (void*)&as5048a;
- 121              		.loc 1 32 3 is_stmt 1 view .LVU25
- 122              		.loc 1 32 22 is_stmt 0 view .LVU26
- 123 0022 164B     		ldr	r3, .L10
- 124 0024 164A     		ldr	r2, .L10+4
- 125 0026 9A65     		str	r2, [r3, #88]
-  33:Core/Src/encoder.c **** 		encoder.start_read = AS5048A_StartRead;
- 126              		.loc 1 33 3 is_stmt 1 view .LVU27
- 127              		.loc 1 33 22 is_stmt 0 view .LVU28
- 128 0028 164A     		ldr	r2, .L10+8
- 129 002a DA65     		str	r2, [r3, #92]
-  34:Core/Src/encoder.c **** 		encoder.parse_data = AS5048A_ParseData;
- 130              		.loc 1 34 3 is_stmt 1 view .LVU29
- 131              		.loc 1 34 22 is_stmt 0 view .LVU30
- 132 002c 164A     		ldr	r2, .L10+12
- 133 002e 1A66     		str	r2, [r3, #96]
-  35:Core/Src/encoder.c **** 		ENCODER_Set_Flag();
- 134              		.loc 1 35 3 is_stmt 1 view .LVU31
- 135 0030 164B     		ldr	r3, .L10+16
- 136 0032 0122     		movs	r2, #1
- 137 0034 1A70     		strb	r2, [r3]
-  36:Core/Src/encoder.c **** 		return 0;
- 138              		.loc 1 36 3 view .LVU32
-ARM GAS  /tmp/ccGvoAzx.s 			page 4
+ 119              		.loc 1 35 4 view .LVU26
+ 120 001e 90B1     		cbz	r0, .L5
+  36:Core/Src/encoder.c **** 		encoder.start_read = AS5048A_StartRead;
+ 121              		.loc 1 36 3 is_stmt 1 view .LVU27
+ 122              		.loc 1 36 22 is_stmt 0 view .LVU28
+ 123 0020 1C4B     		ldr	r3, .L10
+ 124 0022 1D4A     		ldr	r2, .L10+4
+ 125 0024 5A66     		str	r2, [r3, #100]
+  37:Core/Src/encoder.c **** 		encoder.parse_data = AS5048A_ParseData;
+ 126              		.loc 1 37 3 is_stmt 1 view .LVU29
+ 127              		.loc 1 37 22 is_stmt 0 view .LVU30
+ 128 0026 1D4A     		ldr	r2, .L10+8
+ 129 0028 9A66     		str	r2, [r3, #104]
+  38:Core/Src/encoder.c **** 		ENCD_LOCATION = ENCODER_LOC_INTERNAL; 
+ 130              		.loc 1 38 3 is_stmt 1 view .LVU31
+ 131              		.loc 1 38 17 is_stmt 0 view .LVU32
+ 132 002a 1D4A     		ldr	r2, .L10+12
+ 133 002c 0024     		movs	r4, #0
+ 134 002e 82F87040 		strb	r4, [r2, #112]
+  39:Core/Src/encoder.c **** 		ENCD_TYPE = ENCODER_TYPE_AS5048A; 
+ 135              		.loc 1 39 3 is_stmt 1 view .LVU33
+ARM GAS  /tmp/ccWZZQMN.s 			page 4
 
 
- 139              		.loc 1 36 10 is_stmt 0 view .LVU33
- 140 0036 0024     		movs	r4, #0
- 141              	.L4:
-  37:Core/Src/encoder.c **** 	}
-  38:Core/Src/encoder.c **** 		
-  39:Core/Src/encoder.c **** 	encoder.location = ENCODER_LOC_EXTERNAL;
-  40:Core/Src/encoder.c **** 	encoder.type = ENCODER_TYPE_AS5048A;
-  41:Core/Src/encoder.c **** 	AS5048A_Config(&as5048a,encoder. enc_external.hspi, encoder.enc_external.cs_port, encoder.enc_exte
-  42:Core/Src/encoder.c **** 	if(AS5048A_DetectExit(&as5048a)){
-  43:Core/Src/encoder.c **** 		encoder.hw_encoder = (void*)&as5048a;
-  44:Core/Src/encoder.c **** 		encoder.start_read = AS5048A_StartRead;
-  45:Core/Src/encoder.c **** 		encoder.parse_data = AS5048A_ParseData;
-  46:Core/Src/encoder.c **** 		ENCODER_Set_Flag();
-  47:Core/Src/encoder.c **** 		return 0;
-  48:Core/Src/encoder.c **** 	}
+ 136              		.loc 1 39 13 is_stmt 0 view .LVU34
+ 137 0032 0221     		movs	r1, #2
+ 138 0034 82F87110 		strb	r1, [r2, #113]
+  40:Core/Src/encoder.c **** 		ENCODER_Set_Flag();
+ 139              		.loc 1 40 3 is_stmt 1 view .LVU35
+ 140 0038 0122     		movs	r2, #1
+ 141 003a 1A49     		ldr	r1, .L10+16
+ 142 003c 0A70     		strb	r2, [r1]
+  41:Core/Src/encoder.c **** 		encoder.is_connected = 1;
+ 143              		.loc 1 41 3 view .LVU36
+ 144              		.loc 1 41 24 is_stmt 0 view .LVU37
+ 145 003e 83F82C20 		strb	r2, [r3, #44]
+  42:Core/Src/encoder.c **** 		return 0;
+ 146              		.loc 1 42 3 is_stmt 1 view .LVU38
+ 147              	.L4:
+  43:Core/Src/encoder.c **** 	}
+  44:Core/Src/encoder.c **** 		
+  45:Core/Src/encoder.c **** 	// 2. Thử dò tìm ở cổng External nếu Internal không có
+  46:Core/Src/encoder.c **** 	encoder.location = ENCODER_LOC_EXTERNAL;
+  47:Core/Src/encoder.c **** 	encoder.active_port = &encoder.enc_external; 
+  48:Core/Src/encoder.c **** 	encoder.type = ENCODER_TYPE_AS5048A;
   49:Core/Src/encoder.c **** 	
-  50:Core/Src/encoder.c **** 	encoder.type = ENCODER_TYPE_NONE;
-  51:Core/Src/encoder.c **** 	return 1;
-  52:Core/Src/encoder.c **** }
- 142              		.loc 1 52 1 view .LVU34
- 143 0038 2046     		mov	r0, r4
- 144 003a 38BD     		pop	{r3, r4, r5, pc}
- 145              	.L5:
- 146 003c 0446     		mov	r4, r0
-  39:Core/Src/encoder.c **** 	encoder.type = ENCODER_TYPE_AS5048A;
- 147              		.loc 1 39 2 is_stmt 1 view .LVU35
-  39:Core/Src/encoder.c **** 	encoder.type = ENCODER_TYPE_AS5048A;
- 148              		.loc 1 39 19 is_stmt 0 view .LVU36
- 149 003e 0F49     		ldr	r1, .L10
- 150 0040 0123     		movs	r3, #1
- 151 0042 0B70     		strb	r3, [r1]
-  40:Core/Src/encoder.c **** 	AS5048A_Config(&as5048a,encoder. enc_external.hspi, encoder.enc_external.cs_port, encoder.enc_exte
- 152              		.loc 1 40 2 is_stmt 1 view .LVU37
-  40:Core/Src/encoder.c **** 	AS5048A_Config(&as5048a,encoder. enc_external.hspi, encoder.enc_external.cs_port, encoder.enc_exte
- 153              		.loc 1 40 15 is_stmt 0 view .LVU38
- 154 0044 0223     		movs	r3, #2
- 155 0046 4B70     		strb	r3, [r1, #1]
-  41:Core/Src/encoder.c **** 	if(AS5048A_DetectExit(&as5048a)){
- 156              		.loc 1 41 2 is_stmt 1 view .LVU39
- 157 0048 0D4D     		ldr	r5, .L10+4
- 158 004a 8B8B     		ldrh	r3, [r1, #28]
- 159 004c 8A69     		ldr	r2, [r1, #24]
- 160 004e 4969     		ldr	r1, [r1, #20]
- 161 0050 2846     		mov	r0, r5
- 162 0052 FFF7FEFF 		bl	AS5048A_Config
- 163              	.LVL2:
-  42:Core/Src/encoder.c **** 		encoder.hw_encoder = (void*)&as5048a;
- 164              		.loc 1 42 2 view .LVU40
-  42:Core/Src/encoder.c **** 		encoder.hw_encoder = (void*)&as5048a;
- 165              		.loc 1 42 5 is_stmt 0 view .LVU41
- 166 0056 2846     		mov	r0, r5
- 167 0058 FFF7FEFF 		bl	AS5048A_DetectExit
- 168              	.LVL3:
-  42:Core/Src/encoder.c **** 		encoder.hw_encoder = (void*)&as5048a;
- 169              		.loc 1 42 4 view .LVU42
- 170 005c 20B9     		cbnz	r0, .L9
-  50:Core/Src/encoder.c **** 	return 1;
-ARM GAS  /tmp/ccGvoAzx.s 			page 5
+  50:Core/Src/encoder.c **** 	AS5048A_Config_CS(&encoder);
+  51:Core/Src/encoder.c **** 	
+  52:Core/Src/encoder.c **** 	if(AS5048A_DetectExit(&encoder)){
+  53:Core/Src/encoder.c **** 		encoder.start_read = AS5048A_StartRead;
+  54:Core/Src/encoder.c **** 		encoder.parse_data = AS5048A_ParseData;
+  55:Core/Src/encoder.c **** 		ENCD_LOCATION = ENCODER_LOC_EXTERNAL; 
+  56:Core/Src/encoder.c **** 		ENCD_TYPE = ENCODER_TYPE_AS5048A; 
+  57:Core/Src/encoder.c **** 		ENCODER_Set_Flag();
+  58:Core/Src/encoder.c **** 		encoder.is_connected = 1;
+  59:Core/Src/encoder.c **** 		return 0;
+  60:Core/Src/encoder.c **** 	}
+  61:Core/Src/encoder.c **** 	
+  62:Core/Src/encoder.c **** 	encoder.type = ENCODER_TYPE_NONE;
+  63:Core/Src/encoder.c **** 	encoder.is_connected = 0; 
+  64:Core/Src/encoder.c **** 	return 1;
+  65:Core/Src/encoder.c **** }
+ 148              		.loc 1 65 1 is_stmt 0 view .LVU39
+ 149 0042 2046     		mov	r0, r4
+ 150 0044 38BD     		pop	{r3, r4, r5, pc}
+ 151              	.L5:
+ 152 0046 0446     		mov	r4, r0
+  46:Core/Src/encoder.c **** 	encoder.active_port = &encoder.enc_external; 
+ 153              		.loc 1 46 2 is_stmt 1 view .LVU40
+  46:Core/Src/encoder.c **** 	encoder.active_port = &encoder.enc_external; 
+ 154              		.loc 1 46 19 is_stmt 0 view .LVU41
+ 155 0048 124D     		ldr	r5, .L10
+ 156 004a 2B46     		mov	r3, r5
+ 157 004c 0122     		movs	r2, #1
+ 158 004e 03F8142B 		strb	r2, [r3], #20
+  47:Core/Src/encoder.c **** 	encoder.type = ENCODER_TYPE_AS5048A;
+ 159              		.loc 1 47 2 is_stmt 1 view .LVU42
+  47:Core/Src/encoder.c **** 	encoder.type = ENCODER_TYPE_AS5048A;
+ 160              		.loc 1 47 22 is_stmt 0 view .LVU43
+ 161 0052 6B62     		str	r3, [r5, #36]
+  48:Core/Src/encoder.c **** 	
+ARM GAS  /tmp/ccWZZQMN.s 			page 5
 
 
- 171              		.loc 1 50 2 is_stmt 1 view .LVU43
-  50:Core/Src/encoder.c **** 	return 1;
- 172              		.loc 1 50 15 is_stmt 0 view .LVU44
- 173 005e 074B     		ldr	r3, .L10
- 174 0060 0022     		movs	r2, #0
- 175 0062 5A70     		strb	r2, [r3, #1]
-  51:Core/Src/encoder.c **** }
- 176              		.loc 1 51 2 is_stmt 1 view .LVU45
-  51:Core/Src/encoder.c **** }
- 177              		.loc 1 51 9 is_stmt 0 view .LVU46
- 178 0064 0124     		movs	r4, #1
- 179 0066 E7E7     		b	.L4
- 180              	.L9:
-  43:Core/Src/encoder.c **** 		encoder.start_read = AS5048A_StartRead;
- 181              		.loc 1 43 3 is_stmt 1 view .LVU47
-  43:Core/Src/encoder.c **** 		encoder.start_read = AS5048A_StartRead;
- 182              		.loc 1 43 22 is_stmt 0 view .LVU48
- 183 0068 044B     		ldr	r3, .L10
- 184 006a 9D65     		str	r5, [r3, #88]
-  44:Core/Src/encoder.c **** 		encoder.parse_data = AS5048A_ParseData;
- 185              		.loc 1 44 3 is_stmt 1 view .LVU49
-  44:Core/Src/encoder.c **** 		encoder.parse_data = AS5048A_ParseData;
- 186              		.loc 1 44 22 is_stmt 0 view .LVU50
- 187 006c 054A     		ldr	r2, .L10+8
- 188 006e DA65     		str	r2, [r3, #92]
-  45:Core/Src/encoder.c **** 		ENCODER_Set_Flag();
- 189              		.loc 1 45 3 is_stmt 1 view .LVU51
-  45:Core/Src/encoder.c **** 		ENCODER_Set_Flag();
- 190              		.loc 1 45 22 is_stmt 0 view .LVU52
- 191 0070 054A     		ldr	r2, .L10+12
- 192 0072 1A66     		str	r2, [r3, #96]
-  46:Core/Src/encoder.c **** 		return 0;
- 193              		.loc 1 46 3 is_stmt 1 view .LVU53
- 194 0074 054B     		ldr	r3, .L10+16
- 195 0076 0122     		movs	r2, #1
- 196 0078 1A70     		strb	r2, [r3]
-  47:Core/Src/encoder.c **** 	}
- 197              		.loc 1 47 3 view .LVU54
-  47:Core/Src/encoder.c **** 	}
- 198              		.loc 1 47 10 is_stmt 0 view .LVU55
- 199 007a DDE7     		b	.L4
- 200              	.L11:
- 201              		.align	2
- 202              	.L10:
- 203 007c 00000000 		.word	.LANCHOR0
- 204 0080 00000000 		.word	.LANCHOR2
- 205 0084 00000000 		.word	AS5048A_StartRead
- 206 0088 00000000 		.word	AS5048A_ParseData
- 207 008c 00000000 		.word	.LANCHOR1
- 208              		.cfi_endproc
- 209              	.LFE135:
- 211              		.section	.text.ENCODER_GetDegree,"ax",%progbits
- 212              		.align	1
- 213              		.global	ENCODER_GetDegree
- 214              		.syntax unified
- 215              		.thumb
- 216              		.thumb_func
-ARM GAS  /tmp/ccGvoAzx.s 			page 6
+ 162              		.loc 1 48 2 is_stmt 1 view .LVU44
+  48:Core/Src/encoder.c **** 	
+ 163              		.loc 1 48 15 is_stmt 0 view .LVU45
+ 164 0054 0223     		movs	r3, #2
+ 165 0056 6B70     		strb	r3, [r5, #1]
+  50:Core/Src/encoder.c **** 	
+ 166              		.loc 1 50 2 is_stmt 1 view .LVU46
+ 167 0058 2846     		mov	r0, r5
+ 168 005a FFF7FEFF 		bl	AS5048A_Config_CS
+ 169              	.LVL2:
+  52:Core/Src/encoder.c **** 		encoder.start_read = AS5048A_StartRead;
+ 170              		.loc 1 52 2 view .LVU47
+  52:Core/Src/encoder.c **** 		encoder.start_read = AS5048A_StartRead;
+ 171              		.loc 1 52 5 is_stmt 0 view .LVU48
+ 172 005e 2846     		mov	r0, r5
+ 173 0060 FFF7FEFF 		bl	AS5048A_DetectExit
+ 174              	.LVL3:
+  52:Core/Src/encoder.c **** 		encoder.start_read = AS5048A_StartRead;
+ 175              		.loc 1 52 4 view .LVU49
+ 176 0064 30B9     		cbnz	r0, .L9
+  62:Core/Src/encoder.c **** 	encoder.is_connected = 0; 
+ 177              		.loc 1 62 2 is_stmt 1 view .LVU50
+  62:Core/Src/encoder.c **** 	encoder.is_connected = 0; 
+ 178              		.loc 1 62 15 is_stmt 0 view .LVU51
+ 179 0066 0B4B     		ldr	r3, .L10
+ 180 0068 0022     		movs	r2, #0
+ 181 006a 5A70     		strb	r2, [r3, #1]
+  63:Core/Src/encoder.c **** 	return 1;
+ 182              		.loc 1 63 2 is_stmt 1 view .LVU52
+  63:Core/Src/encoder.c **** 	return 1;
+ 183              		.loc 1 63 23 is_stmt 0 view .LVU53
+ 184 006c 83F82C20 		strb	r2, [r3, #44]
+  64:Core/Src/encoder.c **** }
+ 185              		.loc 1 64 2 is_stmt 1 view .LVU54
+  64:Core/Src/encoder.c **** }
+ 186              		.loc 1 64 9 is_stmt 0 view .LVU55
+ 187 0070 0124     		movs	r4, #1
+ 188 0072 E6E7     		b	.L4
+ 189              	.L9:
+  53:Core/Src/encoder.c **** 		encoder.parse_data = AS5048A_ParseData;
+ 190              		.loc 1 53 3 is_stmt 1 view .LVU56
+  53:Core/Src/encoder.c **** 		encoder.parse_data = AS5048A_ParseData;
+ 191              		.loc 1 53 22 is_stmt 0 view .LVU57
+ 192 0074 084A     		ldr	r2, .L10+4
+ 193 0076 6A66     		str	r2, [r5, #100]
+  54:Core/Src/encoder.c **** 		ENCD_LOCATION = ENCODER_LOC_EXTERNAL; 
+ 194              		.loc 1 54 3 is_stmt 1 view .LVU58
+  54:Core/Src/encoder.c **** 		ENCD_LOCATION = ENCODER_LOC_EXTERNAL; 
+ 195              		.loc 1 54 22 is_stmt 0 view .LVU59
+ 196 0078 084A     		ldr	r2, .L10+8
+ 197 007a AA66     		str	r2, [r5, #104]
+  55:Core/Src/encoder.c **** 		ENCD_TYPE = ENCODER_TYPE_AS5048A; 
+ 198              		.loc 1 55 3 is_stmt 1 view .LVU60
+  55:Core/Src/encoder.c **** 		ENCD_TYPE = ENCODER_TYPE_AS5048A; 
+ 199              		.loc 1 55 17 is_stmt 0 view .LVU61
+ 200 007c 0849     		ldr	r1, .L10+12
+ 201 007e 0122     		movs	r2, #1
+ARM GAS  /tmp/ccWZZQMN.s 			page 6
 
 
- 217              		.fpu fpv4-sp-d16
- 219              	ENCODER_GetDegree:
- 220              	.LVL4:
- 221              	.LFB136:
-  53:Core/Src/encoder.c **** 
-  54:Core/Src/encoder.c **** float ENCODER_GetDegree(Encoder_t *encd){
- 222              		.loc 1 54 41 is_stmt 1 view -0
- 223              		.cfi_startproc
- 224              		@ args = 0, pretend = 0, frame = 0
- 225              		@ frame_needed = 0, uses_anonymous_args = 0
- 226              		.loc 1 54 41 is_stmt 0 view .LVU57
- 227 0000 10B5     		push	{r4, lr}
- 228              	.LCFI1:
- 229              		.cfi_def_cfa_offset 8
- 230              		.cfi_offset 4, -8
- 231              		.cfi_offset 14, -4
- 232 0002 2DED048B 		vpush.64	{d8, d9}
- 233              	.LCFI2:
- 234              		.cfi_def_cfa_offset 24
- 235              		.cfi_offset 80, -24
- 236              		.cfi_offset 81, -20
- 237              		.cfi_offset 82, -16
- 238              		.cfi_offset 83, -12
- 239 0006 0446     		mov	r4, r0
-  55:Core/Src/encoder.c **** 	encd->raw_angle = encd->parse_data(encd->hw_encoder);
- 240              		.loc 1 55 2 is_stmt 1 view .LVU58
- 241              		.loc 1 55 24 is_stmt 0 view .LVU59
- 242 0008 036E     		ldr	r3, [r0, #96]
- 243              		.loc 1 55 20 view .LVU60
- 244 000a 806D     		ldr	r0, [r0, #88]
- 245              	.LVL5:
- 246              		.loc 1 55 20 view .LVU61
- 247 000c 9847     		blx	r3
- 248              	.LVL6:
- 249 000e B0EE408A 		vmov.f32	s16, s0
- 250              		.loc 1 55 18 view .LVU62
- 251 0012 84ED090A 		vstr.32	s0, [r4, #36]
-  56:Core/Src/encoder.c **** 	
-  57:Core/Src/encoder.c **** 	float angle_diff = encd->raw_angle - encd->prev_raw_angle;
- 252              		.loc 1 57 2 is_stmt 1 view .LVU63
- 253              		.loc 1 57 43 is_stmt 0 view .LVU64
- 254 0016 D4ED0C8A 		vldr.32	s17, [r4, #48]
- 255              		.loc 1 57 8 view .LVU65
- 256 001a 70EE688A 		vsub.f32	s17, s0, s17
- 257              	.LVL7:
-  58:Core/Src/encoder.c **** 	angle_diff -= 360.0f * floorf((angle_diff + 180.0f) / 360.0f);
- 258              		.loc 1 58 2 is_stmt 1 view .LVU66
- 259              		.loc 1 58 44 is_stmt 0 view .LVU67
- 260 001e 9FED2F0A 		vldr.32	s0, .L29
- 261 0022 38EE800A 		vadd.f32	s0, s17, s0
- 262              		.loc 1 58 25 view .LVU68
- 263 0026 9FED2E9A 		vldr.32	s18, .L29+4
- 264 002a 80EE090A 		vdiv.f32	s0, s0, s18
- 265 002e FFF7FEFF 		bl	floorf
- 266              	.LVL8:
- 267              		.loc 1 58 23 view .LVU69
- 268 0032 20EE090A 		vmul.f32	s0, s0, s18
-ARM GAS  /tmp/ccGvoAzx.s 			page 7
+ 202 0080 81F87020 		strb	r2, [r1, #112]
+  56:Core/Src/encoder.c **** 		ENCODER_Set_Flag();
+ 203              		.loc 1 56 3 is_stmt 1 view .LVU62
+  56:Core/Src/encoder.c **** 		ENCODER_Set_Flag();
+ 204              		.loc 1 56 13 is_stmt 0 view .LVU63
+ 205 0084 0220     		movs	r0, #2
+ 206 0086 81F87100 		strb	r0, [r1, #113]
+  57:Core/Src/encoder.c **** 		encoder.is_connected = 1;
+ 207              		.loc 1 57 3 is_stmt 1 view .LVU64
+ 208 008a 0649     		ldr	r1, .L10+16
+ 209 008c 0A70     		strb	r2, [r1]
+  58:Core/Src/encoder.c **** 		return 0;
+ 210              		.loc 1 58 3 view .LVU65
+  58:Core/Src/encoder.c **** 		return 0;
+ 211              		.loc 1 58 24 is_stmt 0 view .LVU66
+ 212 008e 85F82C20 		strb	r2, [r5, #44]
+  59:Core/Src/encoder.c **** 	}
+ 213              		.loc 1 59 3 is_stmt 1 view .LVU67
+  59:Core/Src/encoder.c **** 	}
+ 214              		.loc 1 59 10 is_stmt 0 view .LVU68
+ 215 0092 D6E7     		b	.L4
+ 216              	.L11:
+ 217              		.align	2
+ 218              	.L10:
+ 219 0094 00000000 		.word	.LANCHOR0
+ 220 0098 00000000 		.word	AS5048A_StartRead
+ 221 009c 00000000 		.word	AS5048A_ParseData
+ 222 00a0 00000000 		.word	m_config
+ 223 00a4 00000000 		.word	.LANCHOR1
+ 224              		.cfi_endproc
+ 225              	.LFE135:
+ 227              		.section	.rodata.ENCODER_CHECK.str1.4,"aMS",%progbits,1
+ 228              		.align	2
+ 229              	.LC0:
+ 230 0000 4E6F2045 		.ascii	"No Encoder Detected\015\000"
+ 230      6E636F64 
+ 230      65722044 
+ 230      65746563 
+ 230      7465640D 
+ 231 0015 000000   		.align	2
+ 232              	.LC1:
+ 233 0018 41533530 		.ascii	"AS5048A Detected\015\000"
+ 233      34384120 
+ 233      44657465 
+ 233      63746564 
+ 233      0D00
+ 234 002a 0000     		.align	2
+ 235              	.LC2:
+ 236 002c 456E636F 		.ascii	"Encoder Location: INTERNAL\015\000"
+ 236      64657220 
+ 236      4C6F6361 
+ 236      74696F6E 
+ 236      3A20494E 
+ 237              		.align	2
+ 238              	.LC3:
+ 239 0048 456E636F 		.ascii	"Encoder Location: EXTERNAL\015\000"
+ 239      64657220 
+ARM GAS  /tmp/ccWZZQMN.s 			page 7
 
 
- 269              		.loc 1 58 13 view .LVU70
- 270 0036 78EEC08A 		vsub.f32	s17, s17, s0
- 271              	.LVL9:
-  59:Core/Src/encoder.c **** 
-  60:Core/Src/encoder.c **** 	if (fabsf(angle_diff) > MAX_ANGLE_JUMP_DEG) {
- 272              		.loc 1 60 2 is_stmt 1 view .LVU71
- 273              		.loc 1 60 6 is_stmt 0 view .LVU72
- 274 003a F0EEE88A 		vabs.f32	s17, s17
- 275              	.LVL10:
- 276              		.loc 1 60 5 view .LVU73
- 277 003e DFED297A 		vldr.32	s15, .L29+8
- 278 0042 F4EEE78A 		vcmpe.f32	s17, s15
- 279 0046 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 280 004a 0EDD     		ble	.L25
-  61:Core/Src/encoder.c **** 		if (++encd->spike_counter < SPIKE_REJECT_COUNT) {
- 281              		.loc 1 61 3 is_stmt 1 view .LVU74
- 282              		.loc 1 61 13 is_stmt 0 view .LVU75
- 283 004c 94F83430 		ldrb	r3, [r4, #52]	@ zero_extendqisi2
- 284              		.loc 1 61 7 view .LVU76
- 285 0050 0133     		adds	r3, r3, #1
- 286 0052 DBB2     		uxtb	r3, r3
- 287              		.loc 1 61 6 view .LVU77
- 288 0054 84F83430 		strb	r3, [r4, #52]
- 289 0058 092B     		cmp	r3, #9
- 290 005a 03D9     		bls	.L28
-  62:Core/Src/encoder.c **** 			return encd->angle_filtered;
-  63:Core/Src/encoder.c **** 		}
-  64:Core/Src/encoder.c **** 		encd->spike_counter = 0;
- 291              		.loc 1 64 3 is_stmt 1 view .LVU78
- 292              		.loc 1 64 23 is_stmt 0 view .LVU79
- 293 005c 0023     		movs	r3, #0
- 294 005e 84F83430 		strb	r3, [r4, #52]
- 295 0062 05E0     		b	.L17
- 296              	.L28:
-  62:Core/Src/encoder.c **** 			return encd->angle_filtered;
- 297              		.loc 1 62 4 is_stmt 1 view .LVU80
-  62:Core/Src/encoder.c **** 			return encd->angle_filtered;
- 298              		.loc 1 62 15 is_stmt 0 view .LVU81
- 299 0064 94ED0A0A 		vldr.32	s0, [r4, #40]
- 300 0068 29E0     		b	.L12
- 301              	.L25:
-  65:Core/Src/encoder.c **** 	} else {
-  66:Core/Src/encoder.c **** 		encd->spike_counter = 0;
- 302              		.loc 1 66 3 is_stmt 1 view .LVU82
- 303              		.loc 1 66 23 is_stmt 0 view .LVU83
- 304 006a 0023     		movs	r3, #0
- 305 006c 84F83430 		strb	r3, [r4, #52]
- 306              	.L17:
-  67:Core/Src/encoder.c **** 	}
-  68:Core/Src/encoder.c **** 
-  69:Core/Src/encoder.c **** 	encd->prev_raw_angle = encd->raw_angle;
- 307              		.loc 1 69 2 is_stmt 1 view .LVU84
- 308              		.loc 1 69 23 is_stmt 0 view .LVU85
- 309 0070 84ED0C8A 		vstr.32	s16, [r4, #48]
-  70:Core/Src/encoder.c **** 
-  71:Core/Src/encoder.c **** 	// Filter IIR dengan wrap-around
-  72:Core/Src/encoder.c **** 	float filtered_diff = encd->raw_angle - encd->angle_filtered;
-ARM GAS  /tmp/ccGvoAzx.s 			page 8
+ 239      4C6F6361 
+ 239      74696F6E 
+ 239      3A204558 
+ 240              		.section	.text.ENCODER_CHECK,"ax",%progbits
+ 241              		.align	1
+ 242              		.global	ENCODER_CHECK
+ 243              		.syntax unified
+ 244              		.thumb
+ 245              		.thumb_func
+ 246              		.fpu fpv4-sp-d16
+ 248              	ENCODER_CHECK:
+ 249              	.LFB136:
+  66:Core/Src/encoder.c **** 
+  67:Core/Src/encoder.c **** void ENCODER_CHECK(){
+ 250              		.loc 1 67 21 is_stmt 1 view -0
+ 251              		.cfi_startproc
+ 252              		@ args = 0, pretend = 0, frame = 0
+ 253              		@ frame_needed = 0, uses_anonymous_args = 0
+ 254 0000 08B5     		push	{r3, lr}
+ 255              	.LCFI1:
+ 256              		.cfi_def_cfa_offset 8
+ 257              		.cfi_offset 3, -8
+ 258              		.cfi_offset 14, -4
+  68:Core/Src/encoder.c **** 	if(encoder.type == ENCODER_TYPE_NONE){
+ 259              		.loc 1 68 2 view .LVU70
+ 260              		.loc 1 68 12 is_stmt 0 view .LVU71
+ 261 0002 0E4B     		ldr	r3, .L22
+ 262 0004 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 263              		.loc 1 68 4 view .LVU72
+ 264 0006 4BB1     		cbz	r3, .L18
+ 265              	.L13:
+  69:Core/Src/encoder.c **** 		printf("No Encoder Detected\r\n");
+  70:Core/Src/encoder.c **** 	}
+  71:Core/Src/encoder.c **** 	if(encoder.type == ENCODER_TYPE_AS5048A){
+ 266              		.loc 1 71 2 is_stmt 1 view .LVU73
+ 267              		.loc 1 71 12 is_stmt 0 view .LVU74
+ 268 0008 0C4B     		ldr	r3, .L22
+ 269 000a 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 270              		.loc 1 71 4 view .LVU75
+ 271 000c 022B     		cmp	r3, #2
+ 272 000e 09D0     		beq	.L19
+ 273              	.L14:
+  72:Core/Src/encoder.c **** 		printf("AS5048A Detected\r\n");
+  73:Core/Src/encoder.c **** 	}
+  74:Core/Src/encoder.c **** 	if(encoder.location == ENCODER_LOC_INTERNAL){
+ 274              		.loc 1 74 2 is_stmt 1 view .LVU76
+ 275              		.loc 1 74 12 is_stmt 0 view .LVU77
+ 276 0010 0A4B     		ldr	r3, .L22
+ 277 0012 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 278              		.loc 1 74 4 view .LVU78
+ 279 0014 53B1     		cbz	r3, .L20
+  75:Core/Src/encoder.c **** 		printf("Encoder Location: INTERNAL\r\n");
+  76:Core/Src/encoder.c **** 	}
+  77:Core/Src/encoder.c **** 	else if(encoder.location == ENCODER_LOC_EXTERNAL){
+ 280              		.loc 1 77 7 is_stmt 1 view .LVU79
+ 281              		.loc 1 77 9 is_stmt 0 view .LVU80
+ 282 0016 012B     		cmp	r3, #1
+ARM GAS  /tmp/ccWZZQMN.s 			page 8
 
 
- 310              		.loc 1 72 2 is_stmt 1 view .LVU86
- 311              		.loc 1 72 46 is_stmt 0 view .LVU87
- 312 0074 D4ED0A8A 		vldr.32	s17, [r4, #40]
- 313              		.loc 1 72 8 view .LVU88
- 314 0078 38EE688A 		vsub.f32	s16, s16, s17
- 315              	.LVL11:
-  73:Core/Src/encoder.c **** 	filtered_diff -= 360.0f * floorf((filtered_diff + 180.0f) / 360.0f);
- 316              		.loc 1 73 2 is_stmt 1 view .LVU89
- 317              		.loc 1 73 50 is_stmt 0 view .LVU90
- 318 007c 9FED170A 		vldr.32	s0, .L29
- 319 0080 38EE000A 		vadd.f32	s0, s16, s0
- 320              		.loc 1 73 28 view .LVU91
- 321 0084 9FED169A 		vldr.32	s18, .L29+4
- 322 0088 80EE090A 		vdiv.f32	s0, s0, s18
- 323 008c FFF7FEFF 		bl	floorf
- 324              	.LVL12:
- 325              		.loc 1 73 26 view .LVU92
- 326 0090 20EE090A 		vmul.f32	s0, s0, s18
- 327              		.loc 1 73 16 view .LVU93
- 328 0094 38EE408A 		vsub.f32	s16, s16, s0
- 329              	.LVL13:
-  74:Core/Src/encoder.c **** 	encd->angle_filtered += ANGLE_FILTER_ALPHA * filtered_diff;
- 330              		.loc 1 74 2 is_stmt 1 view .LVU94
- 331              		.loc 1 74 45 is_stmt 0 view .LVU95
- 332 0098 9FED130A 		vldr.32	s0, .L29+12
- 333 009c 28EE008A 		vmul.f32	s16, s16, s0
- 334              	.LVL14:
- 335              		.loc 1 74 23 view .LVU96
- 336 00a0 38EE888A 		vadd.f32	s16, s17, s16
- 337 00a4 84ED0A8A 		vstr.32	s16, [r4, #40]
-  75:Core/Src/encoder.c **** 
-  76:Core/Src/encoder.c **** 	if (encd->angle_filtered >= 360.0f)
- 338              		.loc 1 76 2 is_stmt 1 view .LVU97
- 339              		.loc 1 76 5 is_stmt 0 view .LVU98
- 340 00a8 B4EEC98A 		vcmpe.f32	s16, s18
- 341 00ac F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 342 00b0 08DB     		blt	.L26
-  77:Core/Src/encoder.c **** 		encd->angle_filtered -= 360.0f;
- 343              		.loc 1 77 3 is_stmt 1 view .LVU99
- 344              		.loc 1 77 24 is_stmt 0 view .LVU100
- 345 00b2 38EE498A 		vsub.f32	s16, s16, s18
- 346 00b6 84ED0A8A 		vstr.32	s16, [r4, #40]
- 347              	.L20:
-  78:Core/Src/encoder.c **** 	else if (encd->angle_filtered < 0.0f)
-  79:Core/Src/encoder.c **** 		encd->angle_filtered += 360.0f;
-  80:Core/Src/encoder.c **** 
-  81:Core/Src/encoder.c **** 	return encd->angle_filtered;
- 348              		.loc 1 81 2 is_stmt 1 view .LVU101
- 349              		.loc 1 81 13 is_stmt 0 view .LVU102
- 350 00ba 94ED0A0A 		vldr.32	s0, [r4, #40]
- 351              	.L12:
-  82:Core/Src/encoder.c **** 	
-  83:Core/Src/encoder.c **** };
- 352              		.loc 1 83 1 view .LVU103
- 353 00be BDEC048B 		vldm	sp!, {d8-d9}
- 354              	.LCFI3:
- 355              		.cfi_remember_state
-ARM GAS  /tmp/ccGvoAzx.s 			page 9
+ 283 0018 0CD0     		beq	.L21
+ 284              	.L12:
+  78:Core/Src/encoder.c **** 		printf("Encoder Location: EXTERNAL\r\n");
+  79:Core/Src/encoder.c **** 	}
+  80:Core/Src/encoder.c **** }
+ 285              		.loc 1 80 1 view .LVU81
+ 286 001a 08BD     		pop	{r3, pc}
+ 287              	.L18:
+ 288              	.LBB2:
+  69:Core/Src/encoder.c **** 	}
+ 289              		.loc 1 69 3 is_stmt 1 view .LVU82
+ 290 001c 0848     		ldr	r0, .L22+4
+ 291 001e FFF7FEFF 		bl	puts
+ 292              	.LVL4:
+ 293 0022 F1E7     		b	.L13
+ 294              	.L19:
+ 295              	.LBE2:
+ 296              	.LBB3:
+  72:Core/Src/encoder.c **** 	}
+ 297              		.loc 1 72 3 view .LVU83
+ 298 0024 0748     		ldr	r0, .L22+8
+ 299 0026 FFF7FEFF 		bl	puts
+ 300              	.LVL5:
+ 301 002a F1E7     		b	.L14
+ 302              	.L20:
+ 303              	.LBE3:
+ 304              	.LBB4:
+  75:Core/Src/encoder.c **** 	}
+ 305              		.loc 1 75 3 view .LVU84
+ 306 002c 0648     		ldr	r0, .L22+12
+ 307 002e FFF7FEFF 		bl	puts
+ 308              	.LVL6:
+ 309              	.LBE4:
+ 310 0032 F2E7     		b	.L12
+ 311              	.L21:
+ 312              	.LBB5:
+  78:Core/Src/encoder.c **** 	}
+ 313              		.loc 1 78 3 view .LVU85
+ 314 0034 0548     		ldr	r0, .L22+16
+ 315 0036 FFF7FEFF 		bl	puts
+ 316              	.LVL7:
+ 317              	.LBE5:
+ 318              		.loc 1 80 1 is_stmt 0 view .LVU86
+ 319 003a EEE7     		b	.L12
+ 320              	.L23:
+ 321              		.align	2
+ 322              	.L22:
+ 323 003c 00000000 		.word	.LANCHOR0
+ 324 0040 00000000 		.word	.LC0
+ 325 0044 18000000 		.word	.LC1
+ 326 0048 2C000000 		.word	.LC2
+ 327 004c 48000000 		.word	.LC3
+ 328              		.cfi_endproc
+ 329              	.LFE136:
+ 331              		.section	.text.ENCODER_Init_From_Config,"ax",%progbits
+ 332              		.align	1
+ 333              		.global	ENCODER_Init_From_Config
+ARM GAS  /tmp/ccWZZQMN.s 			page 9
 
 
- 356              		.cfi_restore 82
- 357              		.cfi_restore 83
- 358              		.cfi_restore 80
- 359              		.cfi_restore 81
- 360              		.cfi_def_cfa_offset 8
- 361 00c2 10BD     		pop	{r4, pc}
- 362              	.LVL15:
- 363              	.L26:
- 364              	.LCFI4:
- 365              		.cfi_restore_state
-  78:Core/Src/encoder.c **** 	else if (encd->angle_filtered < 0.0f)
- 366              		.loc 1 78 7 is_stmt 1 view .LVU104
-  78:Core/Src/encoder.c **** 	else if (encd->angle_filtered < 0.0f)
- 367              		.loc 1 78 10 is_stmt 0 view .LVU105
- 368 00c4 B5EEC08A 		vcmpe.f32	s16, #0
- 369 00c8 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 370 00cc F5D5     		bpl	.L20
-  79:Core/Src/encoder.c **** 
- 371              		.loc 1 79 3 is_stmt 1 view .LVU106
-  79:Core/Src/encoder.c **** 
- 372              		.loc 1 79 24 is_stmt 0 view .LVU107
- 373 00ce DFED047A 		vldr.32	s15, .L29+4
- 374 00d2 38EE278A 		vadd.f32	s16, s16, s15
- 375 00d6 84ED0A8A 		vstr.32	s16, [r4, #40]
- 376 00da EEE7     		b	.L20
- 377              	.L30:
- 378              		.align	2
- 379              	.L29:
- 380 00dc 00003443 		.word	1127481344
- 381 00e0 0000B443 		.word	1135869952
- 382 00e4 00004842 		.word	1112014848
- 383 00e8 9851EC3D 		.word	1038897560
- 384              		.cfi_endproc
- 385              	.LFE136:
- 387              		.section	.text.ENCODER_GetRPM,"ax",%progbits
- 388              		.align	1
- 389              		.global	ENCODER_GetRPM
- 390              		.syntax unified
- 391              		.thumb
- 392              		.thumb_func
- 393              		.fpu fpv4-sp-d16
- 395              	ENCODER_GetRPM:
- 396              	.LVL16:
- 397              	.LFB137:
-  84:Core/Src/encoder.c **** //
-  85:Core/Src/encoder.c **** 
-  86:Core/Src/encoder.c **** float ENCODER_GetRPM(Encoder_t *encd, float dt_us) {
- 398              		.loc 1 86 52 is_stmt 1 view -0
- 399              		.cfi_startproc
- 400              		@ args = 0, pretend = 0, frame = 0
- 401              		@ frame_needed = 0, uses_anonymous_args = 0
- 402              		.loc 1 86 52 is_stmt 0 view .LVU109
- 403 0000 10B5     		push	{r4, lr}
- 404              	.LCFI5:
- 405              		.cfi_def_cfa_offset 8
- 406              		.cfi_offset 4, -8
- 407              		.cfi_offset 14, -4
-ARM GAS  /tmp/ccGvoAzx.s 			page 10
+ 334              		.syntax unified
+ 335              		.thumb
+ 336              		.thumb_func
+ 337              		.fpu fpv4-sp-d16
+ 339              	ENCODER_Init_From_Config:
+ 340              	.LFB137:
+  81:Core/Src/encoder.c **** 
+  82:Core/Src/encoder.c **** void ENCODER_Init_From_Config(void) {
+ 341              		.loc 1 82 37 is_stmt 1 view -0
+ 342              		.cfi_startproc
+ 343              		@ args = 0, pretend = 0, frame = 0
+ 344              		@ frame_needed = 0, uses_anonymous_args = 0
+  83:Core/Src/encoder.c ****     // 1. Phục hồi Vị trí cắm (Location) và gán cổng SPI tương ứng
+  84:Core/Src/encoder.c ****     if (ENCD_LOCATION == ENCODER_LOC_INTERNAL) {
+ 345              		.loc 1 84 5 view .LVU88
+ 346              		.loc 1 84 9 is_stmt 0 view .LVU89
+ 347 0000 174B     		ldr	r3, .L34
+ 348 0002 93F87030 		ldrb	r3, [r3, #112]	@ zero_extendqisi2
+ 349              		.loc 1 84 8 view .LVU90
+ 350 0006 ABB9     		cbnz	r3, .L25
+  85:Core/Src/encoder.c ****         encoder.location = ENCODER_LOC_INTERNAL;
+ 351              		.loc 1 85 9 is_stmt 1 view .LVU91
+ 352              		.loc 1 85 26 is_stmt 0 view .LVU92
+ 353 0008 164A     		ldr	r2, .L34+4
+ 354 000a 1346     		mov	r3, r2
+ 355 000c 0021     		movs	r1, #0
+ 356 000e 03F8041B 		strb	r1, [r3], #4
+  86:Core/Src/encoder.c ****         encoder.active_port = &encoder.enc_internal; 
+ 357              		.loc 1 86 9 is_stmt 1 view .LVU93
+ 358              		.loc 1 86 29 is_stmt 0 view .LVU94
+ 359 0012 5362     		str	r3, [r2, #36]
+ 360              	.L26:
+  87:Core/Src/encoder.c ****     } else {
+  88:Core/Src/encoder.c ****         encoder.location = ENCODER_LOC_EXTERNAL;
+  89:Core/Src/encoder.c ****         encoder.active_port = &encoder.enc_external;
+  90:Core/Src/encoder.c ****     }
+  91:Core/Src/encoder.c **** 
+  92:Core/Src/encoder.c ****     // 2. PHỤC HỒI CÁC CON TRỎ HÀM (BINDING)
+  93:Core/Src/encoder.c ****     encoder.type = ENCD_TYPE;
+ 361              		.loc 1 93 5 is_stmt 1 view .LVU95
+ 362              		.loc 1 93 20 is_stmt 0 view .LVU96
+ 363 0014 124B     		ldr	r3, .L34
+ 364 0016 93F87130 		ldrb	r3, [r3, #113]	@ zero_extendqisi2
+ 365              		.loc 1 93 18 view .LVU97
+ 366 001a 124A     		ldr	r2, .L34+4
+ 367 001c 5370     		strb	r3, [r2, #1]
+  94:Core/Src/encoder.c ****     
+  95:Core/Src/encoder.c ****     switch (encoder.type) {
+ 368              		.loc 1 95 5 is_stmt 1 view .LVU98
+ 369 001e 022B     		cmp	r3, #2
+ 370 0020 0FD0     		beq	.L27
+ 371 0022 032B     		cmp	r3, #3
+ 372 0024 1AD0     		beq	.L32
+  96:Core/Src/encoder.c ****         case ENCODER_TYPE_AS5048A:
+  97:Core/Src/encoder.c ****             // Khởi tạo chân CS
+  98:Core/Src/encoder.c ****             AS5048A_Config_CS(&encoder);
+  99:Core/Src/encoder.c ****             
+ARM GAS  /tmp/ccWZZQMN.s 			page 10
 
 
- 408 0002 2DED048B 		vpush.64	{d8, d9}
- 409              	.LCFI6:
- 410              		.cfi_def_cfa_offset 24
- 411              		.cfi_offset 80, -24
- 412              		.cfi_offset 81, -20
- 413              		.cfi_offset 82, -16
- 414              		.cfi_offset 83, -12
- 415 0006 0446     		mov	r4, r0
- 416 0008 F0EE408A 		vmov.f32	s17, s0
-  87:Core/Src/encoder.c **** 	// Handle angle wrap-around (optimized)
-  88:Core/Src/encoder.c **** 	float angle_diff = encd->angle_filtered - encd->prev_angle;
- 417              		.loc 1 88 2 is_stmt 1 view .LVU110
- 418              		.loc 1 88 25 is_stmt 0 view .LVU111
- 419 000c 90ED0A9A 		vldr.32	s18, [r0, #40]
- 420              		.loc 1 88 48 view .LVU112
- 421 0010 90ED0E8A 		vldr.32	s16, [r0, #56]
- 422              		.loc 1 88 8 view .LVU113
- 423 0014 39EE488A 		vsub.f32	s16, s18, s16
- 424              	.LVL17:
-  89:Core/Src/encoder.c **** 	angle_diff -= 360.0f * floorf((angle_diff + 180.0f) * (1.0f/360.0f));
- 425              		.loc 1 89 2 is_stmt 1 view .LVU114
- 426              		.loc 1 89 44 is_stmt 0 view .LVU115
- 427 0018 DFED307A 		vldr.32	s15, .L42
- 428 001c 78EE277A 		vadd.f32	s15, s16, s15
- 429              		.loc 1 89 25 view .LVU116
- 430 0020 9FED2F0A 		vldr.32	s0, .L42+4
- 431              	.LVL18:
- 432              		.loc 1 89 25 view .LVU117
- 433 0024 27EE800A 		vmul.f32	s0, s15, s0
- 434 0028 FFF7FEFF 		bl	floorf
- 435              	.LVL19:
- 436              		.loc 1 89 23 view .LVU118
- 437 002c DFED2D7A 		vldr.32	s15, .L42+8
- 438 0030 20EE270A 		vmul.f32	s0, s0, s15
- 439              		.loc 1 89 13 view .LVU119
- 440 0034 38EE408A 		vsub.f32	s16, s16, s0
- 441              	.LVL20:
-  90:Core/Src/encoder.c **** 	encd->prev_angle = encd->angle_filtered;
- 442              		.loc 1 90 2 is_stmt 1 view .LVU120
- 443              		.loc 1 90 19 is_stmt 0 view .LVU121
- 444 0038 84ED0E9A 		vstr.32	s18, [r4, #56]
-  91:Core/Src/encoder.c **** 	if (dt_us == 0) {
- 445              		.loc 1 91 2 is_stmt 1 view .LVU122
- 446              		.loc 1 91 5 is_stmt 0 view .LVU123
- 447 003c F5EE408A 		vcmp.f32	s17, #0
- 448 0040 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 449 0044 46D0     		beq	.L41
-  92:Core/Src/encoder.c ****         
-  93:Core/Src/encoder.c ****         return encd->filtered_rpm; 
-  94:Core/Src/encoder.c ****     }
-  95:Core/Src/encoder.c **** 	// Calculate RPM (optimized floating point)
-  96:Core/Src/encoder.c **** 	float rpm_instant = (angle_diff * 60.0f) / (dt_us * DEGREES_PER_REV);
- 450              		.loc 1 96 2 is_stmt 1 view .LVU124
- 451              		.loc 1 96 34 is_stmt 0 view .LVU125
- 452 0046 9FED280A 		vldr.32	s0, .L42+12
- 453 004a 28EE008A 		vmul.f32	s16, s16, s0
- 454              	.LVL21:
-ARM GAS  /tmp/ccGvoAzx.s 			page 11
+ 100:Core/Src/encoder.c ****             
+ 101:Core/Src/encoder.c ****             encoder.start_read = AS5048A_StartRead;
+ 102:Core/Src/encoder.c ****             encoder.parse_data = AS5048A_ParseData;
+ 103:Core/Src/encoder.c ****             
+ 104:Core/Src/encoder.c ****             ENCODER_Set_Flag(); // 
+ 105:Core/Src/encoder.c ****             break;
+ 106:Core/Src/encoder.c ****             
+ 107:Core/Src/encoder.c ****         case ENCODER_TYPE_MT6835:
+ 108:Core/Src/encoder.c ****             // (Ví dụ sau này bạn thêm cảm biến khác)
+ 109:Core/Src/encoder.c ****             // MT6835_Config_CS(&encoder);
+ 110:Core/Src/encoder.c ****             // encoder.start_read = MT6835_StartRead;
+ 111:Core/Src/encoder.c ****             // encoder.parse_data = MT6835_ParseData;
+ 112:Core/Src/encoder.c ****             break;
+ 113:Core/Src/encoder.c ****             
+ 114:Core/Src/encoder.c ****         case ENCODER_TYPE_NONE:
+ 115:Core/Src/encoder.c ****         default:
+ 116:Core/Src/encoder.c ****             // Không có cảm biến, gán hàm rỗng (Dummy function) để chống lỗi chia 
+ 117:Core/Src/encoder.c ****             encoder.start_read = NULL; 
+ 373              		.loc 1 117 13 view .LVU99
+ 374              		.loc 1 117 32 is_stmt 0 view .LVU100
+ 375 0026 0F4A     		ldr	r2, .L34+4
+ 376 0028 0023     		movs	r3, #0
+ 377 002a 5366     		str	r3, [r2, #100]
+ 118:Core/Src/encoder.c ****             encoder.parse_data = NULL;
+ 378              		.loc 1 118 13 is_stmt 1 view .LVU101
+ 379              		.loc 1 118 32 is_stmt 0 view .LVU102
+ 380 002c 9366     		str	r3, [r2, #104]
+ 119:Core/Src/encoder.c ****             ENCODER_Reset_Flag();
+ 381              		.loc 1 119 13 is_stmt 1 view .LVU103
+ 382 002e 0E4A     		ldr	r2, .L34+8
+ 383 0030 1370     		strb	r3, [r2]
+ 120:Core/Src/encoder.c ****             break;
+ 384              		.loc 1 120 13 view .LVU104
+ 121:Core/Src/encoder.c ****     }
+ 122:Core/Src/encoder.c **** }
+ 385              		.loc 1 122 1 is_stmt 0 view .LVU105
+ 386 0032 7047     		bx	lr
+ 387              	.L25:
+  88:Core/Src/encoder.c ****         encoder.active_port = &encoder.enc_external;
+ 388              		.loc 1 88 9 is_stmt 1 view .LVU106
+  88:Core/Src/encoder.c ****         encoder.active_port = &encoder.enc_external;
+ 389              		.loc 1 88 26 is_stmt 0 view .LVU107
+ 390 0034 0B4A     		ldr	r2, .L34+4
+ 391 0036 1346     		mov	r3, r2
+ 392 0038 0121     		movs	r1, #1
+ 393 003a 03F8141B 		strb	r1, [r3], #20
+  89:Core/Src/encoder.c ****     }
+ 394              		.loc 1 89 9 is_stmt 1 view .LVU108
+  89:Core/Src/encoder.c ****     }
+ 395              		.loc 1 89 29 is_stmt 0 view .LVU109
+ 396 003e 5362     		str	r3, [r2, #36]
+ 397 0040 E8E7     		b	.L26
+ 398              	.L27:
+  82:Core/Src/encoder.c ****     // 1. Phục hồi Vị trí cắm (Location) và gán cổng SPI tương ứng
+ 399              		.loc 1 82 37 view .LVU110
+ 400 0042 10B5     		push	{r4, lr}
+ 401              	.LCFI2:
+ARM GAS  /tmp/ccWZZQMN.s 			page 11
 
 
- 455              		.loc 1 96 52 view .LVU126
- 456 004e 9FED250A 		vldr.32	s0, .L42+8
- 457 0052 68EE808A 		vmul.f32	s17, s17, s0
- 458              	.LVL22:
- 459              		.loc 1 96 8 view .LVU127
- 460 0056 C8EE287A 		vdiv.f32	s15, s16, s17
- 461              	.LVL23:
-  97:Core/Src/encoder.c **** 
-  98:Core/Src/encoder.c **** 	// Two-stage spike rejection
-  99:Core/Src/encoder.c **** 	float rpm_delta = rpm_instant - encd->prev_rpm;
- 462              		.loc 1 99 2 is_stmt 1 view .LVU128
- 463              		.loc 1 99 38 is_stmt 0 view .LVU129
- 464 005a 94ED108A 		vldr.32	s16, [r4, #64]
- 465              		.loc 1 99 8 view .LVU130
- 466 005e 77EEC88A 		vsub.f32	s17, s15, s16
- 467              	.LVL24:
- 100:Core/Src/encoder.c **** 	float abs_delta = fabsf(rpm_delta);
- 468              		.loc 1 100 2 is_stmt 1 view .LVU131
- 469              		.loc 1 100 8 is_stmt 0 view .LVU132
- 470 0062 B0EEE87A 		vabs.f32	s14, s17
- 471              	.LVL25:
- 101:Core/Src/encoder.c **** 
- 102:Core/Src/encoder.c **** 	if (abs_delta > MAX_RPM_JUMP) {
- 472              		.loc 1 102 2 is_stmt 1 view .LVU133
- 473              		.loc 1 102 5 is_stmt 0 view .LVU134
- 474 0066 F3EE046A 		vmov.f32	s13, #2.0e+1
- 475 006a B4EEE67A 		vcmpe.f32	s14, s13
- 476 006e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 477 0072 11DD     		ble	.L34
- 478              	.LBB2:
- 103:Core/Src/encoder.c **** 			// Gradual rejection with 50% of the delta, capped at MAX_RPM_JUMP
- 104:Core/Src/encoder.c **** 			float limited_delta = copysignf(fminf(abs_delta * 0.5f, MAX_RPM_JUMP), rpm_delta);
- 479              		.loc 1 104 4 is_stmt 1 view .LVU135
- 480              		.loc 1 104 26 is_stmt 0 view .LVU136
- 481 0074 F0EE660A 		vmov.f32	s1, s13
- 482 0078 B6EE000A 		vmov.f32	s0, #5.0e-1
- 483 007c 27EE000A 		vmul.f32	s0, s14, s0
- 484 0080 FFF7FEFF 		bl	fminf
- 485              	.LVL26:
- 486              		.loc 1 104 26 view .LVU137
- 487 0084 F0EEC07A 		vabs.f32	s15, s0
- 488 0088 18EE903A 		vmov	r3, s17	@ int
- 489 008c 002B     		cmp	r3, #0
- 490 008e 01DA     		bge	.L36
- 491 0090 F1EE677A 		vneg.f32	s15, s15
- 492              	.L36:
- 493              	.LVL27:
- 105:Core/Src/encoder.c **** 			rpm_instant = encd->prev_rpm + limited_delta;
- 494              		.loc 1 105 4 is_stmt 1 view .LVU138
- 495              		.loc 1 105 16 is_stmt 0 view .LVU139
- 496 0094 78EE277A 		vadd.f32	s15, s16, s15
- 497              	.LVL28:
- 498              	.L34:
- 499              		.loc 1 105 16 view .LVU140
- 500              	.LBE2:
- 106:Core/Src/encoder.c **** 	}
- 107:Core/Src/encoder.c **** 
-ARM GAS  /tmp/ccGvoAzx.s 			page 12
-
-
- 108:Core/Src/encoder.c **** 	// IIR Filter with dynamic weighting
- 109:Core/Src/encoder.c **** 	float filtered = encd->filtered_rpm * (1.0f - RPM_FILTER_ALPHA) + rpm_instant * RPM_FILTER_ALPHA;
- 501              		.loc 1 109 2 is_stmt 1 view .LVU141
- 502              		.loc 1 109 23 is_stmt 0 view .LVU142
- 503 0098 94ED0F0A 		vldr.32	s0, [r4, #60]
- 504              		.loc 1 109 38 view .LVU143
- 505 009c 9FED137A 		vldr.32	s14, .L42+16
- 506 00a0 20EE070A 		vmul.f32	s0, s0, s14
- 507              		.loc 1 109 80 view .LVU144
- 508 00a4 9FED127A 		vldr.32	s14, .L42+20
- 509 00a8 27EE877A 		vmul.f32	s14, s15, s14
- 510              		.loc 1 109 8 view .LVU145
- 511 00ac 30EE070A 		vadd.f32	s0, s0, s14
- 512              	.LVL29:
- 110:Core/Src/encoder.c **** 
- 111:Core/Src/encoder.c **** 	// Very low RPM clamping (0.1 RPM resolution)
- 112:Core/Src/encoder.c **** 	if (fabsf(filtered) < 0.1f) {
- 513              		.loc 1 112 2 is_stmt 1 view .LVU146
- 514              		.loc 1 112 6 is_stmt 0 view .LVU147
- 515 00b0 F0EEC06A 		vabs.f32	s13, s0
- 516              		.loc 1 112 5 view .LVU148
- 517 00b4 9FED0F7A 		vldr.32	s14, .L42+24
- 518 00b8 F4EEC76A 		vcmpe.f32	s13, s14
- 519 00bc F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 520 00c0 01D5     		bpl	.L37
- 113:Core/Src/encoder.c **** 			filtered = 0.0f;
- 521              		.loc 1 113 13 view .LVU149
- 522 00c2 9FED0D0A 		vldr.32	s0, .L42+28
- 523              	.LVL30:
- 524              	.L37:
- 114:Core/Src/encoder.c **** 	}
- 115:Core/Src/encoder.c **** 
- 116:Core/Src/encoder.c **** 	// Update state
- 117:Core/Src/encoder.c **** 	encd->prev_rpm = rpm_instant;
- 525              		.loc 1 117 2 is_stmt 1 view .LVU150
- 526              		.loc 1 117 17 is_stmt 0 view .LVU151
- 527 00c6 C4ED107A 		vstr.32	s15, [r4, #64]
- 118:Core/Src/encoder.c **** 	encd->filtered_rpm = filtered;
- 528              		.loc 1 118 2 is_stmt 1 view .LVU152
- 529              		.loc 1 118 21 is_stmt 0 view .LVU153
- 530 00ca 84ED0F0A 		vstr.32	s0, [r4, #60]
- 119:Core/Src/encoder.c **** 
- 120:Core/Src/encoder.c **** 	return encd->filtered_rpm;
- 531              		.loc 1 120 2 is_stmt 1 view .LVU154
- 532              	.LVL31:
- 533              	.L31:
- 121:Core/Src/encoder.c **** }
- 534              		.loc 1 121 1 is_stmt 0 view .LVU155
- 535 00ce BDEC048B 		vldm	sp!, {d8-d9}
- 536              	.LCFI7:
- 537              		.cfi_remember_state
- 538              		.cfi_restore 82
- 539              		.cfi_restore 83
- 540              		.cfi_restore 80
- 541              		.cfi_restore 81
- 542              		.cfi_def_cfa_offset 8
- 543              		.loc 1 121 1 view .LVU156
-ARM GAS  /tmp/ccGvoAzx.s 			page 13
-
-
- 544 00d2 10BD     		pop	{r4, pc}
- 545              	.LVL32:
- 546              	.L41:
- 547              	.LCFI8:
- 548              		.cfi_restore_state
-  93:Core/Src/encoder.c ****     }
- 549              		.loc 1 93 9 is_stmt 1 view .LVU157
-  93:Core/Src/encoder.c ****     }
- 550              		.loc 1 93 20 is_stmt 0 view .LVU158
- 551 00d4 94ED0F0A 		vldr.32	s0, [r4, #60]
- 552 00d8 F9E7     		b	.L31
- 553              	.L43:
- 554 00da 00BF     		.align	2
- 555              	.L42:
- 556 00dc 00003443 		.word	1127481344
- 557 00e0 610B363B 		.word	993397601
- 558 00e4 0000B443 		.word	1135869952
- 559 00e8 00007042 		.word	1114636288
- 560 00ec 66B8913E 		.word	1049737318
- 561 00f0 CD23373F 		.word	1060578253
- 562 00f4 CDCCCC3D 		.word	1036831949
- 563 00f8 00000000 		.word	0
- 564              		.cfi_endproc
- 565              	.LFE137:
- 567              		.global	__aeabi_f2d
- 568              		.global	__aeabi_dmul
- 569              		.global	__aeabi_dadd
- 570              		.global	__aeabi_d2f
- 571              		.section	.text.ENCODER_GetActualDegree,"ax",%progbits
- 572              		.align	1
- 573              		.global	ENCODER_GetActualDegree
- 574              		.syntax unified
- 575              		.thumb
- 576              		.thumb_func
- 577              		.fpu fpv4-sp-d16
- 579              	ENCODER_GetActualDegree:
- 580              	.LVL33:
- 581              	.LFB138:
- 122:Core/Src/encoder.c **** //
+ 402              		.cfi_def_cfa_offset 8
+ 403              		.cfi_offset 4, -8
+ 404              		.cfi_offset 14, -4
+  98:Core/Src/encoder.c ****             
+ 405              		.loc 1 98 13 is_stmt 1 view .LVU111
+ 406 0044 074C     		ldr	r4, .L34+4
+ 407 0046 2046     		mov	r0, r4
+ 408 0048 FFF7FEFF 		bl	AS5048A_Config_CS
+ 409              	.LVL8:
+ 101:Core/Src/encoder.c ****             encoder.parse_data = AS5048A_ParseData;
+ 410              		.loc 1 101 13 view .LVU112
+ 101:Core/Src/encoder.c ****             encoder.parse_data = AS5048A_ParseData;
+ 411              		.loc 1 101 32 is_stmt 0 view .LVU113
+ 412 004c 074B     		ldr	r3, .L34+12
+ 413 004e 6366     		str	r3, [r4, #100]
+ 102:Core/Src/encoder.c ****             
+ 414              		.loc 1 102 13 is_stmt 1 view .LVU114
+ 102:Core/Src/encoder.c ****             
+ 415              		.loc 1 102 32 is_stmt 0 view .LVU115
+ 416 0050 074B     		ldr	r3, .L34+16
+ 417 0052 A366     		str	r3, [r4, #104]
+ 104:Core/Src/encoder.c ****             break;
+ 418              		.loc 1 104 13 is_stmt 1 view .LVU116
+ 419 0054 044B     		ldr	r3, .L34+8
+ 420 0056 0122     		movs	r2, #1
+ 421 0058 1A70     		strb	r2, [r3]
+ 105:Core/Src/encoder.c ****             
+ 422              		.loc 1 105 13 view .LVU117
+ 423              		.loc 1 122 1 is_stmt 0 view .LVU118
+ 424 005a 10BD     		pop	{r4, pc}
+ 425              	.L32:
+ 426              	.LCFI3:
+ 427              		.cfi_def_cfa_offset 0
+ 428              		.cfi_restore 4
+ 429              		.cfi_restore 14
+ 430 005c 7047     		bx	lr
+ 431              	.L35:
+ 432 005e 00BF     		.align	2
+ 433              	.L34:
+ 434 0060 00000000 		.word	m_config
+ 435 0064 00000000 		.word	.LANCHOR0
+ 436 0068 00000000 		.word	.LANCHOR1
+ 437 006c 00000000 		.word	AS5048A_StartRead
+ 438 0070 00000000 		.word	AS5048A_ParseData
+ 439              		.cfi_endproc
+ 440              	.LFE137:
+ 442              		.section	.text.ENCODER_GetDegree,"ax",%progbits
+ 443              		.align	1
+ 444              		.global	ENCODER_GetDegree
+ 445              		.syntax unified
+ 446              		.thumb
+ 447              		.thumb_func
+ 448              		.fpu fpv4-sp-d16
+ 450              	ENCODER_GetDegree:
+ 451              	.LVL9:
+ 452              	.LFB138:
  123:Core/Src/encoder.c **** 
- 124:Core/Src/encoder.c **** float ENCODER_GetActualDegree(Encoder_t *encd) {
- 582              		.loc 1 124 48 is_stmt 1 view -0
- 583              		.cfi_startproc
- 584              		@ args = 0, pretend = 0, frame = 0
- 585              		@ frame_needed = 0, uses_anonymous_args = 0
- 586              		.loc 1 124 48 is_stmt 0 view .LVU160
- 587 0000 D0B5     		push	{r4, r6, r7, lr}
- 588              	.LCFI9:
- 589              		.cfi_def_cfa_offset 16
- 590              		.cfi_offset 4, -16
- 591              		.cfi_offset 6, -12
- 592              		.cfi_offset 7, -8
- 593              		.cfi_offset 14, -4
- 594 0002 2DED028B 		vpush.64	{d8}
- 595              	.LCFI10:
- 596              		.cfi_def_cfa_offset 24
- 597              		.cfi_offset 80, -24
-ARM GAS  /tmp/ccGvoAzx.s 			page 14
+ARM GAS  /tmp/ccWZZQMN.s 			page 12
 
 
- 598              		.cfi_offset 81, -20
- 599 0006 0446     		mov	r4, r0
- 125:Core/Src/encoder.c ****     const float m_current_angle = encd->angle_filtered;
- 600              		.loc 1 125 5 is_stmt 1 view .LVU161
- 601              		.loc 1 125 17 is_stmt 0 view .LVU162
- 602 0008 90ED0A8A 		vldr.32	s16, [r0, #40]
- 603              	.LVL34:
- 126:Core/Src/encoder.c **** 	float angle_dif = (m_current_angle - encd->output_prev_angle);
- 604              		.loc 1 126 2 is_stmt 1 view .LVU163
- 605              		.loc 1 126 43 is_stmt 0 view .LVU164
- 606 000c D0ED137A 		vldr.32	s15, [r0, #76]
- 607              		.loc 1 126 8 view .LVU165
- 608 0010 78EE677A 		vsub.f32	s15, s16, s15
- 609              	.LVL35:
- 127:Core/Src/encoder.c **** 
- 128:Core/Src/encoder.c **** 	if (angle_dif< -180) {
- 610              		.loc 1 128 2 is_stmt 1 view .LVU166
- 611              		.loc 1 128 5 is_stmt 0 view .LVU167
- 612 0014 9FED237A 		vldr.32	s14, .L53
- 613 0018 F4EEC77A 		vcmpe.f32	s15, s14
- 614 001c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 615 0020 2FD5     		bpl	.L51
- 129:Core/Src/encoder.c **** 		encd->output_angle_ovf++;
- 616              		.loc 1 129 3 is_stmt 1 view .LVU168
- 617              		.loc 1 129 7 is_stmt 0 view .LVU169
- 618 0022 D0ED147A 		vldr.32	s15, [r0, #80]
- 619              	.LVL36:
- 620              		.loc 1 129 25 view .LVU170
- 621 0026 B7EE007A 		vmov.f32	s14, #1.0e+0
- 622 002a 77EE877A 		vadd.f32	s15, s15, s14
- 623 002e C0ED147A 		vstr.32	s15, [r0, #80]
- 624              	.L47:
- 130:Core/Src/encoder.c **** 	}
- 131:Core/Src/encoder.c **** 	else if (angle_dif> 180) {
- 132:Core/Src/encoder.c **** 		encd->output_angle_ovf--;
- 133:Core/Src/encoder.c **** 	}
- 134:Core/Src/encoder.c **** 	float out_deg = (m_current_angle + encd->output_angle_ovf * 360.0);
- 625              		.loc 1 134 2 is_stmt 1 view .LVU171
- 626              		.loc 1 134 41 is_stmt 0 view .LVU172
- 627 0032 206D     		ldr	r0, [r4, #80]	@ float
- 628              	.LVL37:
- 629              		.loc 1 134 41 view .LVU173
- 630 0034 FFF7FEFF 		bl	__aeabi_f2d
- 631              	.LVL38:
- 632              		.loc 1 134 60 view .LVU174
- 633 0038 0022     		movs	r2, #0
- 634 003a 1B4B     		ldr	r3, .L53+4
- 635 003c FFF7FEFF 		bl	__aeabi_dmul
- 636              	.LVL39:
- 637 0040 0646     		mov	r6, r0
- 638 0042 0F46     		mov	r7, r1
- 639              		.loc 1 134 35 view .LVU175
- 640 0044 18EE100A 		vmov	r0, s16
- 641 0048 FFF7FEFF 		bl	__aeabi_f2d
- 642              	.LVL40:
- 643 004c 3246     		mov	r2, r6
- 644 004e 3B46     		mov	r3, r7
-ARM GAS  /tmp/ccGvoAzx.s 			page 15
-
-
- 645 0050 FFF7FEFF 		bl	__aeabi_dadd
- 646              	.LVL41:
- 647              		.loc 1 134 8 view .LVU176
- 648 0054 FFF7FEFF 		bl	__aeabi_d2f
- 649              	.LVL42:
- 650 0058 07EE900A 		vmov	s15, r0
- 651              	.LVL43:
- 135:Core/Src/encoder.c ****   encd->output_angle_filtered = (1.0f - ACTUAL_ANGLE_FILTER_ALPHA) * encd->output_angle_filtered + 
- 652              		.loc 1 135 3 is_stmt 1 view .LVU177
- 653              		.loc 1 135 74 is_stmt 0 view .LVU178
- 654 005c 94ED150A 		vldr.32	s0, [r4, #84]
- 655              		.loc 1 135 68 view .LVU179
- 656 0060 9FED127A 		vldr.32	s14, .L53+8
- 657 0064 20EE070A 		vmul.f32	s0, s0, s14
- 658              		.loc 1 135 126 view .LVU180
- 659 0068 9FED117A 		vldr.32	s14, .L53+12
- 660 006c 67EE877A 		vmul.f32	s15, s15, s14
- 661              		.loc 1 135 98 view .LVU181
- 662 0070 30EE270A 		vadd.f32	s0, s0, s15
- 663              		.loc 1 135 31 view .LVU182
- 664 0074 84ED150A 		vstr.32	s0, [r4, #84]
- 136:Core/Src/encoder.c **** 	encd->output_prev_angle = m_current_angle;
- 665              		.loc 1 136 2 is_stmt 1 view .LVU183
- 666              		.loc 1 136 26 is_stmt 0 view .LVU184
- 667 0078 84ED138A 		vstr.32	s16, [r4, #76]
+ 124:Core/Src/encoder.c **** float ENCODER_GetDegree(Encoder_t *encd){
+ 453              		.loc 1 124 41 is_stmt 1 view -0
+ 454              		.cfi_startproc
+ 455              		@ args = 0, pretend = 0, frame = 0
+ 456              		@ frame_needed = 0, uses_anonymous_args = 0
+ 125:Core/Src/encoder.c **** 	if (encd->parse_data == NULL) {
+ 457              		.loc 1 125 2 view .LVU120
+ 458              		.loc 1 125 10 is_stmt 0 view .LVU121
+ 459 0000 836E     		ldr	r3, [r0, #104]
+ 460              		.loc 1 125 5 view .LVU122
+ 461 0002 002B     		cmp	r3, #0
+ 462 0004 00F08280 		beq	.L49
+ 124:Core/Src/encoder.c **** 	if (encd->parse_data == NULL) {
+ 463              		.loc 1 124 41 view .LVU123
+ 464 0008 10B5     		push	{r4, lr}
+ 465              	.LCFI4:
+ 466              		.cfi_def_cfa_offset 8
+ 467              		.cfi_offset 4, -8
+ 468              		.cfi_offset 14, -4
+ 469 000a 2DED048B 		vpush.64	{d8, d9}
+ 470              	.LCFI5:
+ 471              		.cfi_def_cfa_offset 24
+ 472              		.cfi_offset 80, -24
+ 473              		.cfi_offset 81, -20
+ 474              		.cfi_offset 82, -16
+ 475              		.cfi_offset 83, -12
+ 476 000e 0446     		mov	r4, r0
+ 126:Core/Src/encoder.c **** 		return 0.0f; 
+ 127:Core/Src/encoder.c **** 	}
+ 128:Core/Src/encoder.c **** 	encd->raw_angle = encd->parse_data(encd);
+ 477              		.loc 1 128 2 is_stmt 1 view .LVU124
+ 478              		.loc 1 128 20 is_stmt 0 view .LVU125
+ 479 0010 9847     		blx	r3
+ 480              	.LVL10:
+ 481              		.loc 1 128 20 view .LVU126
+ 482 0012 B0EE408A 		vmov.f32	s16, s0
+ 483              		.loc 1 128 18 view .LVU127
+ 484 0016 84ED0C0A 		vstr.32	s0, [r4, #48]
+ 129:Core/Src/encoder.c **** 
+ 130:Core/Src/encoder.c **** 	if (encd->raw_angle < 0.0f) {
+ 485              		.loc 1 130 2 is_stmt 1 view .LVU128
+ 486              		.loc 1 130 5 is_stmt 0 view .LVU129
+ 487 001a B5EEC00A 		vcmpe.f32	s0, #0
+ 488 001e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 489 0022 2BD4     		bmi	.L61
+ 131:Core/Src/encoder.c **** 		encd->error_count++;
+ 132:Core/Src/encoder.c ****         if (encd->error_count > 30) {
+ 133:Core/Src/encoder.c ****             encd->is_connected = 0; 
+ 134:Core/Src/encoder.c ****         }
+ 135:Core/Src/encoder.c **** 		return encd->angle_filtered; 
+ 136:Core/Src/encoder.c **** 	}
  137:Core/Src/encoder.c **** 
- 138:Core/Src/encoder.c **** 	// return out_deg;
- 139:Core/Src/encoder.c ****     return encd->output_angle_filtered;
- 668              		.loc 1 139 5 is_stmt 1 view .LVU185
- 140:Core/Src/encoder.c **** }
- 669              		.loc 1 140 1 is_stmt 0 view .LVU186
- 670 007c BDEC028B 		vldm	sp!, {d8}
- 671              	.LCFI11:
- 672              		.cfi_remember_state
- 673              		.cfi_restore 80
- 674              		.cfi_restore 81
- 675              		.cfi_def_cfa_offset 16
- 676              	.LVL44:
- 677              		.loc 1 140 1 view .LVU187
- 678 0080 D0BD     		pop	{r4, r6, r7, pc}
- 679              	.LVL45:
- 680              	.L51:
- 681              	.LCFI12:
- 682              		.cfi_restore_state
- 131:Core/Src/encoder.c **** 		encd->output_angle_ovf--;
- 683              		.loc 1 131 7 is_stmt 1 view .LVU188
- 131:Core/Src/encoder.c **** 		encd->output_angle_ovf--;
- 684              		.loc 1 131 10 is_stmt 0 view .LVU189
- 685 0082 9FED0C7A 		vldr.32	s14, .L53+16
- 686 0086 F4EEC77A 		vcmpe.f32	s15, s14
- 687 008a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 688 008e D0DD     		ble	.L47
- 132:Core/Src/encoder.c **** 	}
- 689              		.loc 1 132 3 is_stmt 1 view .LVU190
- 132:Core/Src/encoder.c **** 	}
- 690              		.loc 1 132 7 is_stmt 0 view .LVU191
- 691 0090 D0ED147A 		vldr.32	s15, [r0, #80]
-ARM GAS  /tmp/ccGvoAzx.s 			page 16
+ 138:Core/Src/encoder.c **** 	encd->error_count = 0;
+ 490              		.loc 1 138 2 is_stmt 1 view .LVU130
+ 491              		.loc 1 138 20 is_stmt 0 view .LVU131
+ 492 0024 0023     		movs	r3, #0
+ 493 0026 6385     		strh	r3, [r4, #42]	@ movhi
+ARM GAS  /tmp/ccWZZQMN.s 			page 13
 
 
- 692              	.LVL46:
- 132:Core/Src/encoder.c **** 	}
- 693              		.loc 1 132 25 view .LVU192
- 694 0094 B7EE007A 		vmov.f32	s14, #1.0e+0
- 695 0098 77EEC77A 		vsub.f32	s15, s15, s14
- 696 009c C0ED147A 		vstr.32	s15, [r0, #80]
- 697 00a0 C7E7     		b	.L47
- 698              	.L54:
- 699 00a2 00BF     		.align	2
- 700              	.L53:
- 701 00a4 000034C3 		.word	-1020002304
- 702 00a8 00807640 		.word	1081507840
- 703 00ac 6666663F 		.word	1063675494
- 704 00b0 CDCCCC3D 		.word	1036831949
- 705 00b4 00003443 		.word	1127481344
- 706              		.cfi_endproc
- 707              	.LFE138:
- 709              		.global	encd_get_val_flag
- 710              		.global	as5048a
- 711              		.global	encoder
- 712              		.section	.bss.as5048a,"aw",%nobits
- 713              		.align	2
- 714              		.set	.LANCHOR2,. + 0
- 717              	as5048a:
- 718 0000 00000000 		.space	12
- 718      00000000 
- 718      00000000 
- 719              		.section	.bss.encd_get_val_flag,"aw",%nobits
- 720              		.set	.LANCHOR1,. + 0
- 723              	encd_get_val_flag:
- 724 0000 00       		.space	1
- 725              		.section	.bss.encoder,"aw",%nobits
- 726              		.align	2
- 727              		.set	.LANCHOR0,. + 0
- 730              	encoder:
- 731 0000 00000000 		.space	100
- 731      00000000 
- 731      00000000 
- 731      00000000 
- 731      00000000 
- 732              		.text
- 733              	.Letext0:
- 734              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
- 735              		.file 3 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
- 736              		.file 4 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 737              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 738              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h"
- 739              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
- 740              		.file 8 "Core/Inc/spi.h"
- 741              		.file 9 "Core/Inc/as5048a.h"
- 742              		.file 10 "Core/Inc/encoder.h"
- 743              		.file 11 "/usr/include/newlib/math.h"
-ARM GAS  /tmp/ccGvoAzx.s 			page 17
+ 139:Core/Src/encoder.c ****     encd->is_connected = 1;
+ 494              		.loc 1 139 5 is_stmt 1 view .LVU132
+ 495              		.loc 1 139 24 is_stmt 0 view .LVU133
+ 496 0028 0123     		movs	r3, #1
+ 497 002a 84F82C30 		strb	r3, [r4, #44]
+ 140:Core/Src/encoder.c **** 
+ 141:Core/Src/encoder.c **** 	// Spike rejection (optimized)
+ 142:Core/Src/encoder.c **** 	float angle_diff = encd->raw_angle - encd->prev_raw_angle;
+ 498              		.loc 1 142 2 is_stmt 1 view .LVU134
+ 499              		.loc 1 142 43 is_stmt 0 view .LVU135
+ 500 002e D4ED0F8A 		vldr.32	s17, [r4, #60]
+ 501              		.loc 1 142 8 view .LVU136
+ 502 0032 70EE688A 		vsub.f32	s17, s0, s17
+ 503              	.LVL11:
+ 143:Core/Src/encoder.c **** 	angle_diff -= 360.0f * floorf((angle_diff + 180.0f) / 360.0f);
+ 504              		.loc 1 143 2 is_stmt 1 view .LVU137
+ 505              		.loc 1 143 44 is_stmt 0 view .LVU138
+ 506 0036 9FED370A 		vldr.32	s0, .L63
+ 507 003a 38EE800A 		vadd.f32	s0, s17, s0
+ 508              		.loc 1 143 25 view .LVU139
+ 509 003e 9FED369A 		vldr.32	s18, .L63+4
+ 510 0042 80EE090A 		vdiv.f32	s0, s0, s18
+ 511 0046 FFF7FEFF 		bl	floorf
+ 512              	.LVL12:
+ 513              		.loc 1 143 23 view .LVU140
+ 514 004a 20EE090A 		vmul.f32	s0, s0, s18
+ 515              		.loc 1 143 13 view .LVU141
+ 516 004e 78EEC08A 		vsub.f32	s17, s17, s0
+ 517              	.LVL13:
+ 144:Core/Src/encoder.c **** 
+ 145:Core/Src/encoder.c **** 	if (fabsf(angle_diff) > MAX_ANGLE_JUMP_DEG) {
+ 518              		.loc 1 145 2 is_stmt 1 view .LVU142
+ 519              		.loc 1 145 6 is_stmt 0 view .LVU143
+ 520 0052 F0EEE88A 		vabs.f32	s17, s17
+ 521              	.LVL14:
+ 522              		.loc 1 145 5 view .LVU144
+ 523 0056 DFED317A 		vldr.32	s15, .L63+8
+ 524 005a F4EEE78A 		vcmpe.f32	s17, s15
+ 525 005e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 526 0062 1ADD     		ble	.L55
+ 146:Core/Src/encoder.c **** 		if (++encd->spike_counter < SPIKE_REJECT_COUNT) {
+ 527              		.loc 1 146 3 is_stmt 1 view .LVU145
+ 528              		.loc 1 146 13 is_stmt 0 view .LVU146
+ 529 0064 94F84030 		ldrb	r3, [r4, #64]	@ zero_extendqisi2
+ 530              		.loc 1 146 7 view .LVU147
+ 531 0068 0133     		adds	r3, r3, #1
+ 532 006a DBB2     		uxtb	r3, r3
+ 533              		.loc 1 146 6 view .LVU148
+ 534 006c 84F84030 		strb	r3, [r4, #64]
+ 535 0070 092B     		cmp	r3, #9
+ 536 0072 0FD9     		bls	.L62
+ 147:Core/Src/encoder.c **** 			return encd->angle_filtered;
+ 148:Core/Src/encoder.c **** 		}
+ 149:Core/Src/encoder.c **** 		encd->spike_counter = 0;
+ 537              		.loc 1 149 3 is_stmt 1 view .LVU149
+ 538              		.loc 1 149 23 is_stmt 0 view .LVU150
+ 539 0074 0023     		movs	r3, #0
+ARM GAS  /tmp/ccWZZQMN.s 			page 14
+
+
+ 540 0076 84F84030 		strb	r3, [r4, #64]
+ 541 007a 11E0     		b	.L44
+ 542              	.L61:
+ 131:Core/Src/encoder.c ****         if (encd->error_count > 30) {
+ 543              		.loc 1 131 3 is_stmt 1 view .LVU151
+ 131:Core/Src/encoder.c ****         if (encd->error_count > 30) {
+ 544              		.loc 1 131 7 is_stmt 0 view .LVU152
+ 545 007c 638D     		ldrh	r3, [r4, #42]
+ 131:Core/Src/encoder.c ****         if (encd->error_count > 30) {
+ 546              		.loc 1 131 20 view .LVU153
+ 547 007e 0133     		adds	r3, r3, #1
+ 548 0080 9BB2     		uxth	r3, r3
+ 549 0082 6385     		strh	r3, [r4, #42]	@ movhi
+ 132:Core/Src/encoder.c ****             encd->is_connected = 0; 
+ 550              		.loc 1 132 9 is_stmt 1 view .LVU154
+ 132:Core/Src/encoder.c ****             encd->is_connected = 0; 
+ 551              		.loc 1 132 12 is_stmt 0 view .LVU155
+ 552 0084 1E2B     		cmp	r3, #30
+ 553 0086 02D9     		bls	.L40
+ 133:Core/Src/encoder.c ****         }
+ 554              		.loc 1 133 13 is_stmt 1 view .LVU156
+ 133:Core/Src/encoder.c ****         }
+ 555              		.loc 1 133 32 is_stmt 0 view .LVU157
+ 556 0088 0023     		movs	r3, #0
+ 557 008a 84F82C30 		strb	r3, [r4, #44]
+ 558              	.L40:
+ 135:Core/Src/encoder.c **** 	}
+ 559              		.loc 1 135 3 is_stmt 1 view .LVU158
+ 135:Core/Src/encoder.c **** 	}
+ 560              		.loc 1 135 14 is_stmt 0 view .LVU159
+ 561 008e 94ED0D0A 		vldr.32	s0, [r4, #52]
+ 562 0092 2CE0     		b	.L36
+ 563              	.L62:
+ 147:Core/Src/encoder.c **** 		}
+ 564              		.loc 1 147 4 is_stmt 1 view .LVU160
+ 147:Core/Src/encoder.c **** 		}
+ 565              		.loc 1 147 15 is_stmt 0 view .LVU161
+ 566 0094 94ED0D0A 		vldr.32	s0, [r4, #52]
+ 567 0098 29E0     		b	.L36
+ 568              	.L55:
+ 150:Core/Src/encoder.c **** 	} else {
+ 151:Core/Src/encoder.c **** 		encd->spike_counter = 0;
+ 569              		.loc 1 151 3 is_stmt 1 view .LVU162
+ 570              		.loc 1 151 23 is_stmt 0 view .LVU163
+ 571 009a 0023     		movs	r3, #0
+ 572 009c 84F84030 		strb	r3, [r4, #64]
+ 573              	.L44:
+ 152:Core/Src/encoder.c **** 	}
+ 153:Core/Src/encoder.c **** 
+ 154:Core/Src/encoder.c **** 	encd->prev_raw_angle = encd->raw_angle;
+ 574              		.loc 1 154 2 is_stmt 1 view .LVU164
+ 575              		.loc 1 154 23 is_stmt 0 view .LVU165
+ 576 00a0 84ED0F8A 		vstr.32	s16, [r4, #60]
+ 155:Core/Src/encoder.c **** 
+ 156:Core/Src/encoder.c **** 	// Filter IIR dengan wrap-around
+ 157:Core/Src/encoder.c **** 	float filtered_diff = encd->raw_angle - encd->angle_filtered;
+ 577              		.loc 1 157 2 is_stmt 1 view .LVU166
+ARM GAS  /tmp/ccWZZQMN.s 			page 15
+
+
+ 578              		.loc 1 157 46 is_stmt 0 view .LVU167
+ 579 00a4 D4ED0D8A 		vldr.32	s17, [r4, #52]
+ 580              		.loc 1 157 8 view .LVU168
+ 581 00a8 38EE688A 		vsub.f32	s16, s16, s17
+ 582              	.LVL15:
+ 158:Core/Src/encoder.c **** 	filtered_diff -= 360.0f * floorf((filtered_diff + 180.0f) / 360.0f);
+ 583              		.loc 1 158 2 is_stmt 1 view .LVU169
+ 584              		.loc 1 158 50 is_stmt 0 view .LVU170
+ 585 00ac 9FED190A 		vldr.32	s0, .L63
+ 586 00b0 38EE000A 		vadd.f32	s0, s16, s0
+ 587              		.loc 1 158 28 view .LVU171
+ 588 00b4 9FED189A 		vldr.32	s18, .L63+4
+ 589 00b8 80EE090A 		vdiv.f32	s0, s0, s18
+ 590 00bc FFF7FEFF 		bl	floorf
+ 591              	.LVL16:
+ 592              		.loc 1 158 26 view .LVU172
+ 593 00c0 20EE090A 		vmul.f32	s0, s0, s18
+ 594              		.loc 1 158 16 view .LVU173
+ 595 00c4 38EE408A 		vsub.f32	s16, s16, s0
+ 596              	.LVL17:
+ 159:Core/Src/encoder.c **** 	encd->angle_filtered += ANGLE_FILTER_ALPHA * filtered_diff;
+ 597              		.loc 1 159 2 is_stmt 1 view .LVU174
+ 598              		.loc 1 159 45 is_stmt 0 view .LVU175
+ 599 00c8 9FED150A 		vldr.32	s0, .L63+12
+ 600 00cc 28EE008A 		vmul.f32	s16, s16, s0
+ 601              	.LVL18:
+ 602              		.loc 1 159 23 view .LVU176
+ 603 00d0 38EE888A 		vadd.f32	s16, s17, s16
+ 604 00d4 84ED0D8A 		vstr.32	s16, [r4, #52]
+ 160:Core/Src/encoder.c **** 
+ 161:Core/Src/encoder.c **** 	if (encd->angle_filtered >= 360.0f)
+ 605              		.loc 1 161 2 is_stmt 1 view .LVU177
+ 606              		.loc 1 161 5 is_stmt 0 view .LVU178
+ 607 00d8 B4EEC98A 		vcmpe.f32	s16, s18
+ 608 00dc F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 609 00e0 08DB     		blt	.L56
+ 162:Core/Src/encoder.c **** 		encd->angle_filtered -= 360.0f;
+ 610              		.loc 1 162 3 is_stmt 1 view .LVU179
+ 611              		.loc 1 162 24 is_stmt 0 view .LVU180
+ 612 00e2 38EE498A 		vsub.f32	s16, s16, s18
+ 613 00e6 84ED0D8A 		vstr.32	s16, [r4, #52]
+ 614              	.L47:
+ 163:Core/Src/encoder.c **** 	else if (encd->angle_filtered < 0.0f)
+ 164:Core/Src/encoder.c **** 		encd->angle_filtered += 360.0f;
+ 165:Core/Src/encoder.c **** 
+ 166:Core/Src/encoder.c **** 	return encd->angle_filtered;
+ 615              		.loc 1 166 2 is_stmt 1 view .LVU181
+ 616              		.loc 1 166 13 is_stmt 0 view .LVU182
+ 617 00ea 94ED0D0A 		vldr.32	s0, [r4, #52]
+ 618              	.L36:
+ 167:Core/Src/encoder.c **** 	
+ 168:Core/Src/encoder.c **** };
+ 619              		.loc 1 168 1 view .LVU183
+ 620 00ee BDEC048B 		vldm	sp!, {d8-d9}
+ 621              	.LCFI6:
+ 622              		.cfi_remember_state
+ 623              		.cfi_restore 82
+ARM GAS  /tmp/ccWZZQMN.s 			page 16
+
+
+ 624              		.cfi_restore 83
+ 625              		.cfi_restore 80
+ 626              		.cfi_restore 81
+ 627              		.cfi_def_cfa_offset 8
+ 628 00f2 10BD     		pop	{r4, pc}
+ 629              	.LVL19:
+ 630              	.L56:
+ 631              	.LCFI7:
+ 632              		.cfi_restore_state
+ 163:Core/Src/encoder.c **** 	else if (encd->angle_filtered < 0.0f)
+ 633              		.loc 1 163 7 is_stmt 1 view .LVU184
+ 163:Core/Src/encoder.c **** 	else if (encd->angle_filtered < 0.0f)
+ 634              		.loc 1 163 10 is_stmt 0 view .LVU185
+ 635 00f4 B5EEC08A 		vcmpe.f32	s16, #0
+ 636 00f8 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 637 00fc F5D5     		bpl	.L47
+ 164:Core/Src/encoder.c **** 
+ 638              		.loc 1 164 3 is_stmt 1 view .LVU186
+ 164:Core/Src/encoder.c **** 
+ 639              		.loc 1 164 24 is_stmt 0 view .LVU187
+ 640 00fe DFED067A 		vldr.32	s15, .L63+4
+ 641 0102 38EE278A 		vadd.f32	s16, s16, s15
+ 642 0106 84ED0D8A 		vstr.32	s16, [r4, #52]
+ 643 010a EEE7     		b	.L47
+ 644              	.LVL20:
+ 645              	.L49:
+ 646              	.LCFI8:
+ 647              		.cfi_def_cfa_offset 0
+ 648              		.cfi_restore 4
+ 649              		.cfi_restore 14
+ 650              		.cfi_restore 80
+ 651              		.cfi_restore 81
+ 652              		.cfi_restore 82
+ 653              		.cfi_restore 83
+ 126:Core/Src/encoder.c **** 	}
+ 654              		.loc 1 126 10 view .LVU188
+ 655 010c 9FED050A 		vldr.32	s0, .L63+16
+ 656              		.loc 1 168 1 view .LVU189
+ 657 0110 7047     		bx	lr
+ 658              	.L64:
+ 659 0112 00BF     		.align	2
+ 660              	.L63:
+ 661 0114 00003443 		.word	1127481344
+ 662 0118 0000B443 		.word	1135869952
+ 663 011c 00004842 		.word	1112014848
+ 664 0120 9851EC3D 		.word	1038897560
+ 665 0124 00000000 		.word	0
+ 666              		.cfi_endproc
+ 667              	.LFE138:
+ 669              		.section	.text.ENCODER_GetRPM,"ax",%progbits
+ 670              		.align	1
+ 671              		.global	ENCODER_GetRPM
+ 672              		.syntax unified
+ 673              		.thumb
+ 674              		.thumb_func
+ 675              		.fpu fpv4-sp-d16
+ 677              	ENCODER_GetRPM:
+ARM GAS  /tmp/ccWZZQMN.s 			page 17
+
+
+ 678              	.LVL21:
+ 679              	.LFB139:
+ 169:Core/Src/encoder.c **** //
+ 170:Core/Src/encoder.c **** 
+ 171:Core/Src/encoder.c **** float ENCODER_GetRPM(Encoder_t *encd, float dt_us) {
+ 680              		.loc 1 171 52 is_stmt 1 view -0
+ 681              		.cfi_startproc
+ 682              		@ args = 0, pretend = 0, frame = 0
+ 683              		@ frame_needed = 0, uses_anonymous_args = 0
+ 684              		.loc 1 171 52 is_stmt 0 view .LVU191
+ 685 0000 10B5     		push	{r4, lr}
+ 686              	.LCFI9:
+ 687              		.cfi_def_cfa_offset 8
+ 688              		.cfi_offset 4, -8
+ 689              		.cfi_offset 14, -4
+ 690 0002 2DED048B 		vpush.64	{d8, d9}
+ 691              	.LCFI10:
+ 692              		.cfi_def_cfa_offset 24
+ 693              		.cfi_offset 80, -24
+ 694              		.cfi_offset 81, -20
+ 695              		.cfi_offset 82, -16
+ 696              		.cfi_offset 83, -12
+ 697 0006 0446     		mov	r4, r0
+ 698 0008 F0EE408A 		vmov.f32	s17, s0
+ 172:Core/Src/encoder.c **** 	// Handle angle wrap-around (optimized)
+ 173:Core/Src/encoder.c **** 	float angle_diff = encd->angle_filtered - encd->prev_angle;
+ 699              		.loc 1 173 2 is_stmt 1 view .LVU192
+ 700              		.loc 1 173 25 is_stmt 0 view .LVU193
+ 701 000c 90ED0D9A 		vldr.32	s18, [r0, #52]
+ 702              		.loc 1 173 48 view .LVU194
+ 703 0010 90ED118A 		vldr.32	s16, [r0, #68]
+ 704              		.loc 1 173 8 view .LVU195
+ 705 0014 39EE488A 		vsub.f32	s16, s18, s16
+ 706              	.LVL22:
+ 174:Core/Src/encoder.c **** 	angle_diff -= 360.0f * floorf((angle_diff + 180.0f) * (1.0f/360.0f));
+ 707              		.loc 1 174 2 is_stmt 1 view .LVU196
+ 708              		.loc 1 174 44 is_stmt 0 view .LVU197
+ 709 0018 DFED307A 		vldr.32	s15, .L76
+ 710 001c 78EE277A 		vadd.f32	s15, s16, s15
+ 711              		.loc 1 174 25 view .LVU198
+ 712 0020 9FED2F0A 		vldr.32	s0, .L76+4
+ 713              	.LVL23:
+ 714              		.loc 1 174 25 view .LVU199
+ 715 0024 27EE800A 		vmul.f32	s0, s15, s0
+ 716 0028 FFF7FEFF 		bl	floorf
+ 717              	.LVL24:
+ 718              		.loc 1 174 23 view .LVU200
+ 719 002c DFED2D7A 		vldr.32	s15, .L76+8
+ 720 0030 20EE270A 		vmul.f32	s0, s0, s15
+ 721              		.loc 1 174 13 view .LVU201
+ 722 0034 38EE408A 		vsub.f32	s16, s16, s0
+ 723              	.LVL25:
+ 175:Core/Src/encoder.c **** 	encd->prev_angle = encd->angle_filtered;
+ 724              		.loc 1 175 2 is_stmt 1 view .LVU202
+ 725              		.loc 1 175 19 is_stmt 0 view .LVU203
+ 726 0038 84ED119A 		vstr.32	s18, [r4, #68]
+ 176:Core/Src/encoder.c **** 	if (dt_us == 0) {
+ARM GAS  /tmp/ccWZZQMN.s 			page 18
+
+
+ 727              		.loc 1 176 2 is_stmt 1 view .LVU204
+ 728              		.loc 1 176 5 is_stmt 0 view .LVU205
+ 729 003c F5EE408A 		vcmp.f32	s17, #0
+ 730 0040 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 731 0044 46D0     		beq	.L75
+ 177:Core/Src/encoder.c ****         
+ 178:Core/Src/encoder.c ****         return encd->filtered_rpm; 
+ 179:Core/Src/encoder.c ****     }
+ 180:Core/Src/encoder.c **** 	// Calculate RPM (optimized floating point)
+ 181:Core/Src/encoder.c **** 	float rpm_instant = (angle_diff * 60.0f) / (dt_us * DEGREES_PER_REV);
+ 732              		.loc 1 181 2 is_stmt 1 view .LVU206
+ 733              		.loc 1 181 34 is_stmt 0 view .LVU207
+ 734 0046 9FED280A 		vldr.32	s0, .L76+12
+ 735 004a 28EE008A 		vmul.f32	s16, s16, s0
+ 736              	.LVL26:
+ 737              		.loc 1 181 52 view .LVU208
+ 738 004e 9FED250A 		vldr.32	s0, .L76+8
+ 739 0052 68EE808A 		vmul.f32	s17, s17, s0
+ 740              	.LVL27:
+ 741              		.loc 1 181 8 view .LVU209
+ 742 0056 C8EE287A 		vdiv.f32	s15, s16, s17
+ 743              	.LVL28:
+ 182:Core/Src/encoder.c **** 
+ 183:Core/Src/encoder.c **** 	// Two-stage spike rejection
+ 184:Core/Src/encoder.c **** 	float rpm_delta = rpm_instant - encd->prev_rpm;
+ 744              		.loc 1 184 2 is_stmt 1 view .LVU210
+ 745              		.loc 1 184 38 is_stmt 0 view .LVU211
+ 746 005a 94ED138A 		vldr.32	s16, [r4, #76]
+ 747              		.loc 1 184 8 view .LVU212
+ 748 005e 77EEC88A 		vsub.f32	s17, s15, s16
+ 749              	.LVL29:
+ 185:Core/Src/encoder.c **** 	float abs_delta = fabsf(rpm_delta);
+ 750              		.loc 1 185 2 is_stmt 1 view .LVU213
+ 751              		.loc 1 185 8 is_stmt 0 view .LVU214
+ 752 0062 B0EEE87A 		vabs.f32	s14, s17
+ 753              	.LVL30:
+ 186:Core/Src/encoder.c **** 
+ 187:Core/Src/encoder.c **** 	if (abs_delta > MAX_RPM_JUMP) {
+ 754              		.loc 1 187 2 is_stmt 1 view .LVU215
+ 755              		.loc 1 187 5 is_stmt 0 view .LVU216
+ 756 0066 F3EE046A 		vmov.f32	s13, #2.0e+1
+ 757 006a B4EEE67A 		vcmpe.f32	s14, s13
+ 758 006e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 759 0072 11DD     		ble	.L68
+ 760              	.LBB6:
+ 188:Core/Src/encoder.c **** 			// Gradual rejection with 50% of the delta, capped at MAX_RPM_JUMP
+ 189:Core/Src/encoder.c **** 			float limited_delta = copysignf(fminf(abs_delta * 0.5f, MAX_RPM_JUMP), rpm_delta);
+ 761              		.loc 1 189 4 is_stmt 1 view .LVU217
+ 762              		.loc 1 189 26 is_stmt 0 view .LVU218
+ 763 0074 F0EE660A 		vmov.f32	s1, s13
+ 764 0078 B6EE000A 		vmov.f32	s0, #5.0e-1
+ 765 007c 27EE000A 		vmul.f32	s0, s14, s0
+ 766 0080 FFF7FEFF 		bl	fminf
+ 767              	.LVL31:
+ 768              		.loc 1 189 26 view .LVU219
+ 769 0084 F0EEC07A 		vabs.f32	s15, s0
+ 770 0088 18EE903A 		vmov	r3, s17	@ int
+ARM GAS  /tmp/ccWZZQMN.s 			page 19
+
+
+ 771 008c 002B     		cmp	r3, #0
+ 772 008e 01DA     		bge	.L70
+ 773 0090 F1EE677A 		vneg.f32	s15, s15
+ 774              	.L70:
+ 775              	.LVL32:
+ 190:Core/Src/encoder.c **** 			rpm_instant = encd->prev_rpm + limited_delta;
+ 776              		.loc 1 190 4 is_stmt 1 view .LVU220
+ 777              		.loc 1 190 16 is_stmt 0 view .LVU221
+ 778 0094 78EE277A 		vadd.f32	s15, s16, s15
+ 779              	.LVL33:
+ 780              	.L68:
+ 781              		.loc 1 190 16 view .LVU222
+ 782              	.LBE6:
+ 191:Core/Src/encoder.c **** 	}
+ 192:Core/Src/encoder.c **** 
+ 193:Core/Src/encoder.c **** 	// IIR Filter with dynamic weighting
+ 194:Core/Src/encoder.c **** 	float filtered = encd->filtered_rpm * (1.0f - RPM_FILTER_ALPHA) + rpm_instant * RPM_FILTER_ALPHA;
+ 783              		.loc 1 194 2 is_stmt 1 view .LVU223
+ 784              		.loc 1 194 23 is_stmt 0 view .LVU224
+ 785 0098 94ED120A 		vldr.32	s0, [r4, #72]
+ 786              		.loc 1 194 38 view .LVU225
+ 787 009c 9FED137A 		vldr.32	s14, .L76+16
+ 788 00a0 20EE070A 		vmul.f32	s0, s0, s14
+ 789              		.loc 1 194 80 view .LVU226
+ 790 00a4 9FED127A 		vldr.32	s14, .L76+20
+ 791 00a8 27EE877A 		vmul.f32	s14, s15, s14
+ 792              		.loc 1 194 8 view .LVU227
+ 793 00ac 30EE070A 		vadd.f32	s0, s0, s14
+ 794              	.LVL34:
+ 195:Core/Src/encoder.c **** 
+ 196:Core/Src/encoder.c **** 	// Very low RPM clamping (0.1 RPM resolution)
+ 197:Core/Src/encoder.c **** 	if (fabsf(filtered) < 0.1f) {
+ 795              		.loc 1 197 2 is_stmt 1 view .LVU228
+ 796              		.loc 1 197 6 is_stmt 0 view .LVU229
+ 797 00b0 F0EEC06A 		vabs.f32	s13, s0
+ 798              		.loc 1 197 5 view .LVU230
+ 799 00b4 9FED0F7A 		vldr.32	s14, .L76+24
+ 800 00b8 F4EEC76A 		vcmpe.f32	s13, s14
+ 801 00bc F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 802 00c0 01D5     		bpl	.L71
+ 198:Core/Src/encoder.c **** 			filtered = 0.0f;
+ 803              		.loc 1 198 13 view .LVU231
+ 804 00c2 9FED0D0A 		vldr.32	s0, .L76+28
+ 805              	.LVL35:
+ 806              	.L71:
+ 199:Core/Src/encoder.c **** 	}
+ 200:Core/Src/encoder.c **** 
+ 201:Core/Src/encoder.c **** 	// Update state
+ 202:Core/Src/encoder.c **** 	encd->prev_rpm = rpm_instant;
+ 807              		.loc 1 202 2 is_stmt 1 view .LVU232
+ 808              		.loc 1 202 17 is_stmt 0 view .LVU233
+ 809 00c6 C4ED137A 		vstr.32	s15, [r4, #76]
+ 203:Core/Src/encoder.c **** 	encd->filtered_rpm = filtered;
+ 810              		.loc 1 203 2 is_stmt 1 view .LVU234
+ 811              		.loc 1 203 21 is_stmt 0 view .LVU235
+ 812 00ca 84ED120A 		vstr.32	s0, [r4, #72]
+ 204:Core/Src/encoder.c **** 
+ARM GAS  /tmp/ccWZZQMN.s 			page 20
+
+
+ 205:Core/Src/encoder.c **** 	return encd->filtered_rpm;
+ 813              		.loc 1 205 2 is_stmt 1 view .LVU236
+ 814              	.LVL36:
+ 815              	.L65:
+ 206:Core/Src/encoder.c **** }
+ 816              		.loc 1 206 1 is_stmt 0 view .LVU237
+ 817 00ce BDEC048B 		vldm	sp!, {d8-d9}
+ 818              	.LCFI11:
+ 819              		.cfi_remember_state
+ 820              		.cfi_restore 82
+ 821              		.cfi_restore 83
+ 822              		.cfi_restore 80
+ 823              		.cfi_restore 81
+ 824              		.cfi_def_cfa_offset 8
+ 825              		.loc 1 206 1 view .LVU238
+ 826 00d2 10BD     		pop	{r4, pc}
+ 827              	.LVL37:
+ 828              	.L75:
+ 829              	.LCFI12:
+ 830              		.cfi_restore_state
+ 178:Core/Src/encoder.c ****     }
+ 831              		.loc 1 178 9 is_stmt 1 view .LVU239
+ 178:Core/Src/encoder.c ****     }
+ 832              		.loc 1 178 20 is_stmt 0 view .LVU240
+ 833 00d4 94ED120A 		vldr.32	s0, [r4, #72]
+ 834 00d8 F9E7     		b	.L65
+ 835              	.L77:
+ 836 00da 00BF     		.align	2
+ 837              	.L76:
+ 838 00dc 00003443 		.word	1127481344
+ 839 00e0 610B363B 		.word	993397601
+ 840 00e4 0000B443 		.word	1135869952
+ 841 00e8 00007042 		.word	1114636288
+ 842 00ec 66B8913E 		.word	1049737318
+ 843 00f0 CD23373F 		.word	1060578253
+ 844 00f4 CDCCCC3D 		.word	1036831949
+ 845 00f8 00000000 		.word	0
+ 846              		.cfi_endproc
+ 847              	.LFE139:
+ 849              		.global	__aeabi_f2d
+ 850              		.global	__aeabi_dmul
+ 851              		.global	__aeabi_dadd
+ 852              		.global	__aeabi_d2f
+ 853              		.section	.text.ENCODER_GetActualDegree,"ax",%progbits
+ 854              		.align	1
+ 855              		.global	ENCODER_GetActualDegree
+ 856              		.syntax unified
+ 857              		.thumb
+ 858              		.thumb_func
+ 859              		.fpu fpv4-sp-d16
+ 861              	ENCODER_GetActualDegree:
+ 862              	.LVL38:
+ 863              	.LFB140:
+ 207:Core/Src/encoder.c **** //
+ 208:Core/Src/encoder.c **** 
+ 209:Core/Src/encoder.c **** float ENCODER_GetActualDegree(Encoder_t *encd) {
+ 864              		.loc 1 209 48 is_stmt 1 view -0
+ARM GAS  /tmp/ccWZZQMN.s 			page 21
+
+
+ 865              		.cfi_startproc
+ 866              		@ args = 0, pretend = 0, frame = 0
+ 867              		@ frame_needed = 0, uses_anonymous_args = 0
+ 868              		.loc 1 209 48 is_stmt 0 view .LVU242
+ 869 0000 D0B5     		push	{r4, r6, r7, lr}
+ 870              	.LCFI13:
+ 871              		.cfi_def_cfa_offset 16
+ 872              		.cfi_offset 4, -16
+ 873              		.cfi_offset 6, -12
+ 874              		.cfi_offset 7, -8
+ 875              		.cfi_offset 14, -4
+ 876 0002 2DED028B 		vpush.64	{d8}
+ 877              	.LCFI14:
+ 878              		.cfi_def_cfa_offset 24
+ 879              		.cfi_offset 80, -24
+ 880              		.cfi_offset 81, -20
+ 881 0006 0446     		mov	r4, r0
+ 210:Core/Src/encoder.c ****     const float m_current_angle = encd->angle_filtered;
+ 882              		.loc 1 210 5 is_stmt 1 view .LVU243
+ 883              		.loc 1 210 17 is_stmt 0 view .LVU244
+ 884 0008 90ED0D8A 		vldr.32	s16, [r0, #52]
+ 885              	.LVL39:
+ 211:Core/Src/encoder.c **** 	float angle_dif = (m_current_angle - encd->output_prev_angle);
+ 886              		.loc 1 211 2 is_stmt 1 view .LVU245
+ 887              		.loc 1 211 43 is_stmt 0 view .LVU246
+ 888 000c D0ED167A 		vldr.32	s15, [r0, #88]
+ 889              		.loc 1 211 8 view .LVU247
+ 890 0010 78EE677A 		vsub.f32	s15, s16, s15
+ 891              	.LVL40:
+ 212:Core/Src/encoder.c **** 
+ 213:Core/Src/encoder.c **** 	if (angle_dif< -180) {
+ 892              		.loc 1 213 2 is_stmt 1 view .LVU248
+ 893              		.loc 1 213 5 is_stmt 0 view .LVU249
+ 894 0014 9FED237A 		vldr.32	s14, .L87
+ 895 0018 F4EEC77A 		vcmpe.f32	s15, s14
+ 896 001c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 897 0020 2FD5     		bpl	.L85
+ 214:Core/Src/encoder.c **** 		encd->output_angle_ovf++;
+ 898              		.loc 1 214 3 is_stmt 1 view .LVU250
+ 899              		.loc 1 214 7 is_stmt 0 view .LVU251
+ 900 0022 D0ED177A 		vldr.32	s15, [r0, #92]
+ 901              	.LVL41:
+ 902              		.loc 1 214 25 view .LVU252
+ 903 0026 B7EE007A 		vmov.f32	s14, #1.0e+0
+ 904 002a 77EE877A 		vadd.f32	s15, s15, s14
+ 905 002e C0ED177A 		vstr.32	s15, [r0, #92]
+ 906              	.L81:
+ 215:Core/Src/encoder.c **** 	}
+ 216:Core/Src/encoder.c **** 	else if (angle_dif> 180) {
+ 217:Core/Src/encoder.c **** 		encd->output_angle_ovf--;
+ 218:Core/Src/encoder.c **** 	}
+ 219:Core/Src/encoder.c **** 	float out_deg = (m_current_angle + encd->output_angle_ovf * 360.0);
+ 907              		.loc 1 219 2 is_stmt 1 view .LVU253
+ 908              		.loc 1 219 41 is_stmt 0 view .LVU254
+ 909 0032 E06D     		ldr	r0, [r4, #92]	@ float
+ 910              	.LVL42:
+ 911              		.loc 1 219 41 view .LVU255
+ARM GAS  /tmp/ccWZZQMN.s 			page 22
+
+
+ 912 0034 FFF7FEFF 		bl	__aeabi_f2d
+ 913              	.LVL43:
+ 914              		.loc 1 219 60 view .LVU256
+ 915 0038 0022     		movs	r2, #0
+ 916 003a 1B4B     		ldr	r3, .L87+4
+ 917 003c FFF7FEFF 		bl	__aeabi_dmul
+ 918              	.LVL44:
+ 919 0040 0646     		mov	r6, r0
+ 920 0042 0F46     		mov	r7, r1
+ 921              		.loc 1 219 35 view .LVU257
+ 922 0044 18EE100A 		vmov	r0, s16
+ 923 0048 FFF7FEFF 		bl	__aeabi_f2d
+ 924              	.LVL45:
+ 925 004c 3246     		mov	r2, r6
+ 926 004e 3B46     		mov	r3, r7
+ 927 0050 FFF7FEFF 		bl	__aeabi_dadd
+ 928              	.LVL46:
+ 929              		.loc 1 219 8 view .LVU258
+ 930 0054 FFF7FEFF 		bl	__aeabi_d2f
+ 931              	.LVL47:
+ 932 0058 07EE900A 		vmov	s15, r0
+ 933              	.LVL48:
+ 220:Core/Src/encoder.c ****   	encd->output_angle_filtered = (1.0f - ACTUAL_ANGLE_FILTER_ALPHA) * encd->output_angle_filtered +
+ 934              		.loc 1 220 4 is_stmt 1 view .LVU259
+ 935              		.loc 1 220 75 is_stmt 0 view .LVU260
+ 936 005c 94ED180A 		vldr.32	s0, [r4, #96]
+ 937              		.loc 1 220 69 view .LVU261
+ 938 0060 9FED127A 		vldr.32	s14, .L87+8
+ 939 0064 20EE070A 		vmul.f32	s0, s0, s14
+ 940              		.loc 1 220 127 view .LVU262
+ 941 0068 9FED117A 		vldr.32	s14, .L87+12
+ 942 006c 67EE877A 		vmul.f32	s15, s15, s14
+ 943              		.loc 1 220 99 view .LVU263
+ 944 0070 30EE270A 		vadd.f32	s0, s0, s15
+ 945              		.loc 1 220 32 view .LVU264
+ 946 0074 84ED180A 		vstr.32	s0, [r4, #96]
+ 221:Core/Src/encoder.c **** 	encd->output_prev_angle = m_current_angle;
+ 947              		.loc 1 221 2 is_stmt 1 view .LVU265
+ 948              		.loc 1 221 26 is_stmt 0 view .LVU266
+ 949 0078 84ED168A 		vstr.32	s16, [r4, #88]
+ 222:Core/Src/encoder.c **** 
+ 223:Core/Src/encoder.c **** 	// return out_deg;
+ 224:Core/Src/encoder.c ****     return encd->output_angle_filtered;
+ 950              		.loc 1 224 5 is_stmt 1 view .LVU267
+ 225:Core/Src/encoder.c **** }
+ 951              		.loc 1 225 1 is_stmt 0 view .LVU268
+ 952 007c BDEC028B 		vldm	sp!, {d8}
+ 953              	.LCFI15:
+ 954              		.cfi_remember_state
+ 955              		.cfi_restore 80
+ 956              		.cfi_restore 81
+ 957              		.cfi_def_cfa_offset 16
+ 958              	.LVL49:
+ 959              		.loc 1 225 1 view .LVU269
+ 960 0080 D0BD     		pop	{r4, r6, r7, pc}
+ 961              	.LVL50:
+ 962              	.L85:
+ARM GAS  /tmp/ccWZZQMN.s 			page 23
+
+
+ 963              	.LCFI16:
+ 964              		.cfi_restore_state
+ 216:Core/Src/encoder.c **** 		encd->output_angle_ovf--;
+ 965              		.loc 1 216 7 is_stmt 1 view .LVU270
+ 216:Core/Src/encoder.c **** 		encd->output_angle_ovf--;
+ 966              		.loc 1 216 10 is_stmt 0 view .LVU271
+ 967 0082 9FED0C7A 		vldr.32	s14, .L87+16
+ 968 0086 F4EEC77A 		vcmpe.f32	s15, s14
+ 969 008a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 970 008e D0DD     		ble	.L81
+ 217:Core/Src/encoder.c **** 	}
+ 971              		.loc 1 217 3 is_stmt 1 view .LVU272
+ 217:Core/Src/encoder.c **** 	}
+ 972              		.loc 1 217 7 is_stmt 0 view .LVU273
+ 973 0090 D0ED177A 		vldr.32	s15, [r0, #92]
+ 974              	.LVL51:
+ 217:Core/Src/encoder.c **** 	}
+ 975              		.loc 1 217 25 view .LVU274
+ 976 0094 B7EE007A 		vmov.f32	s14, #1.0e+0
+ 977 0098 77EEC77A 		vsub.f32	s15, s15, s14
+ 978 009c C0ED177A 		vstr.32	s15, [r0, #92]
+ 979 00a0 C7E7     		b	.L81
+ 980              	.L88:
+ 981 00a2 00BF     		.align	2
+ 982              	.L87:
+ 983 00a4 000034C3 		.word	-1020002304
+ 984 00a8 00807640 		.word	1081507840
+ 985 00ac 6666663F 		.word	1063675494
+ 986 00b0 CDCCCC3D 		.word	1036831949
+ 987 00b4 00003443 		.word	1127481344
+ 988              		.cfi_endproc
+ 989              	.LFE140:
+ 991              		.global	encd_get_val_flag
+ 992              		.global	encoder
+ 993              		.section	.bss.encd_get_val_flag,"aw",%nobits
+ 994              		.set	.LANCHOR1,. + 0
+ 997              	encd_get_val_flag:
+ 998 0000 00       		.space	1
+ 999              		.section	.bss.encoder,"aw",%nobits
+ 1000              		.align	2
+ 1001              		.set	.LANCHOR0,. + 0
+ 1004              	encoder:
+ 1005 0000 00000000 		.space	108
+ 1005      00000000 
+ 1005      00000000 
+ 1005      00000000 
+ 1005      00000000 
+ 1006              		.text
+ 1007              	.Letext0:
+ 1008              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
+ 1009              		.file 3 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
+ 1010              		.file 4 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 1011              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 1012              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h"
+ 1013              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
+ 1014              		.file 8 "Core/Inc/spi.h"
+ 1015              		.file 9 "Core/Inc/encoder.h"
+ARM GAS  /tmp/ccWZZQMN.s 			page 24
+
+
+ 1016              		.file 10 "Core/Inc/foc_utils.h"
+ 1017              		.file 11 "Core/Inc/flash.h"
+ 1018              		.file 12 "Core/Inc/user_config.h"
+ 1019              		.file 13 "<built-in>"
+ 1020              		.file 14 "/usr/include/newlib/math.h"
+ 1021              		.file 15 "Core/Inc/as5048a.h"
+ARM GAS  /tmp/ccWZZQMN.s 			page 25
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 encoder.c
-     /tmp/ccGvoAzx.s:18     .text.ENCODER_Setup:0000000000000000 $t
-     /tmp/ccGvoAzx.s:26     .text.ENCODER_Setup:0000000000000000 ENCODER_Setup
-     /tmp/ccGvoAzx.s:68     .text.ENCODER_Setup:0000000000000024 $d
-     /tmp/ccGvoAzx.s:77     .text.ENCODER_AutoDetect:0000000000000000 $t
-     /tmp/ccGvoAzx.s:84     .text.ENCODER_AutoDetect:0000000000000000 ENCODER_AutoDetect
-     /tmp/ccGvoAzx.s:203    .text.ENCODER_AutoDetect:000000000000007c $d
-     /tmp/ccGvoAzx.s:212    .text.ENCODER_GetDegree:0000000000000000 $t
-     /tmp/ccGvoAzx.s:219    .text.ENCODER_GetDegree:0000000000000000 ENCODER_GetDegree
-     /tmp/ccGvoAzx.s:380    .text.ENCODER_GetDegree:00000000000000dc $d
-     /tmp/ccGvoAzx.s:388    .text.ENCODER_GetRPM:0000000000000000 $t
-     /tmp/ccGvoAzx.s:395    .text.ENCODER_GetRPM:0000000000000000 ENCODER_GetRPM
-     /tmp/ccGvoAzx.s:556    .text.ENCODER_GetRPM:00000000000000dc $d
-     /tmp/ccGvoAzx.s:572    .text.ENCODER_GetActualDegree:0000000000000000 $t
-     /tmp/ccGvoAzx.s:579    .text.ENCODER_GetActualDegree:0000000000000000 ENCODER_GetActualDegree
-     /tmp/ccGvoAzx.s:701    .text.ENCODER_GetActualDegree:00000000000000a4 $d
-     /tmp/ccGvoAzx.s:723    .bss.encd_get_val_flag:0000000000000000 encd_get_val_flag
-     /tmp/ccGvoAzx.s:717    .bss.as5048a:0000000000000000 as5048a
-     /tmp/ccGvoAzx.s:730    .bss.encoder:0000000000000000 encoder
-     /tmp/ccGvoAzx.s:713    .bss.as5048a:0000000000000000 $d
-     /tmp/ccGvoAzx.s:724    .bss.encd_get_val_flag:0000000000000000 $d
-     /tmp/ccGvoAzx.s:726    .bss.encoder:0000000000000000 $d
+     /tmp/ccWZZQMN.s:18     .text.ENCODER_Setup:0000000000000000 $t
+     /tmp/ccWZZQMN.s:26     .text.ENCODER_Setup:0000000000000000 ENCODER_Setup
+     /tmp/ccWZZQMN.s:68     .text.ENCODER_Setup:0000000000000024 $d
+     /tmp/ccWZZQMN.s:77     .text.ENCODER_AutoDetect:0000000000000000 $t
+     /tmp/ccWZZQMN.s:84     .text.ENCODER_AutoDetect:0000000000000000 ENCODER_AutoDetect
+     /tmp/ccWZZQMN.s:219    .text.ENCODER_AutoDetect:0000000000000094 $d
+     /tmp/ccWZZQMN.s:228    .rodata.ENCODER_CHECK.str1.4:0000000000000000 $d
+     /tmp/ccWZZQMN.s:241    .text.ENCODER_CHECK:0000000000000000 $t
+     /tmp/ccWZZQMN.s:248    .text.ENCODER_CHECK:0000000000000000 ENCODER_CHECK
+     /tmp/ccWZZQMN.s:323    .text.ENCODER_CHECK:000000000000003c $d
+     /tmp/ccWZZQMN.s:332    .text.ENCODER_Init_From_Config:0000000000000000 $t
+     /tmp/ccWZZQMN.s:339    .text.ENCODER_Init_From_Config:0000000000000000 ENCODER_Init_From_Config
+     /tmp/ccWZZQMN.s:434    .text.ENCODER_Init_From_Config:0000000000000060 $d
+     /tmp/ccWZZQMN.s:443    .text.ENCODER_GetDegree:0000000000000000 $t
+     /tmp/ccWZZQMN.s:450    .text.ENCODER_GetDegree:0000000000000000 ENCODER_GetDegree
+     /tmp/ccWZZQMN.s:661    .text.ENCODER_GetDegree:0000000000000114 $d
+     /tmp/ccWZZQMN.s:670    .text.ENCODER_GetRPM:0000000000000000 $t
+     /tmp/ccWZZQMN.s:677    .text.ENCODER_GetRPM:0000000000000000 ENCODER_GetRPM
+     /tmp/ccWZZQMN.s:838    .text.ENCODER_GetRPM:00000000000000dc $d
+     /tmp/ccWZZQMN.s:854    .text.ENCODER_GetActualDegree:0000000000000000 $t
+     /tmp/ccWZZQMN.s:861    .text.ENCODER_GetActualDegree:0000000000000000 ENCODER_GetActualDegree
+     /tmp/ccWZZQMN.s:983    .text.ENCODER_GetActualDegree:00000000000000a4 $d
+     /tmp/ccWZZQMN.s:997    .bss.encd_get_val_flag:0000000000000000 encd_get_val_flag
+     /tmp/ccWZZQMN.s:1004   .bss.encoder:0000000000000000 encoder
+     /tmp/ccWZZQMN.s:998    .bss.encd_get_val_flag:0000000000000000 $d
+     /tmp/ccWZZQMN.s:1000   .bss.encoder:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 hspi1
 hspi2
-AS5048A_Config
+AS5048A_Config_CS
 AS5048A_DetectExit
 AS5048A_StartRead
 AS5048A_ParseData
+m_config
+puts
 floorf
 fminf
 __aeabi_f2d
