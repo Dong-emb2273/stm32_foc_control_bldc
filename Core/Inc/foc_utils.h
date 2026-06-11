@@ -148,6 +148,7 @@ typedef struct {
 
 	uint8_t done_orderphase;
 	uint8_t done_cal_encoder;
+	uint16_t counter;
 
 
 	//debug
@@ -217,6 +218,8 @@ void foc_cal_encoder(foc_t *hfoc);
 void foc_set_torque_control_bandwidth(foc_t *hfoc, float bandwidth);
 
 float foc_get_mech_degree(foc_t *hfoc);
+
+void motor_turn_off(foc_t *hfoc);
 
 void open_loop_voltage_control(foc_t *hfoc, float vd_ref, float vq_ref, float angle_rad);
 

@@ -146,6 +146,8 @@ float pid_control(PID_Controller_t *pid, float error) {
 void pid_reset(PID_Controller_t *p) {
 	p->integral = 0;
     p->last_error = 0.0f;
+    p->d_filtered = 0.0f; 
+    p->mv = 0.0f;
 }
 
 void pid_set_kp(PID_Controller_t *pid, float kp) {

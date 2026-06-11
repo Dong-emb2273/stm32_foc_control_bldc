@@ -31,6 +31,8 @@ typedef struct {
     float iq_e_deadband;
 	
     float I_ctrl_bandwidth;
+    float i_max_current;
+    float v_max_voltage;
     
     float speed_kp;
     float speed_ki;
@@ -53,7 +55,14 @@ typedef struct {
     motor_mode_t control_mode;
     uint8_t state;
     uint8_t next_state;
-    uint8_t power_flag;
+
+    // flag bit 
+    uint8_t power_flag :1;
+    uint8_t motor_running :2;
+    uint8_t cur_view :1;
+    uint8_t vel_view :1;
+    uint8_t pos_view :1;
+    uint8_t reserved :2;
 
     float voffset_a;
     float voffset_b;

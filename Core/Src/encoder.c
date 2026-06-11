@@ -67,6 +67,7 @@ int ENCODER_AutoDetect(){
 void ENCODER_CHECK(){
 	if(encoder.type == ENCODER_TYPE_NONE){
 		printf("No Encoder Detected\r\n");
+		return;
 	}
 	if(encoder.type == ENCODER_TYPE_AS5048A){
 		printf("AS5048A Detected\r\n");
@@ -77,6 +78,16 @@ void ENCODER_CHECK(){
 	else if(encoder.location == ENCODER_LOC_EXTERNAL){
 		printf("Encoder Location: EXTERNAL\r\n");
 	}
+	static uint16_t first_check = 1;
+	for (int i = 0; i < 1000; i++) {
+		if(encoder.parse_data(&encoder) < 0.0f){
+			first_check ++;
+		}
+		osDelay(1);
+	}
+	
+	printf("Encoder Check: %d / 1000 failed reads\r\n", first_check);
+	first_check = 0;
 }
 
 void ENCODER_Init_From_Config(void) {

@@ -18,10 +18,10 @@
 #include "foc_utils.h"
 #include "encoder.h"
 #include "flash.h"
+#include "uart.h"
 
 
-
-
+extern UART_HandleTypeDef huart;
 extern float sPoint_Vel ;
 extern float sPoint_Pos ;
 extern float sPoint_Tor;
@@ -42,6 +42,7 @@ void run_fsm(FSMStruct * fsmstate){
 
 	switch(fsmstate->state){
 		case MENU_MODE:
+			
 			break;
 
 		case CALIBRATION_MODE:
@@ -55,6 +56,7 @@ void run_fsm(FSMStruct * fsmstate){
 
 		case TEST_MODE:
 			/* If CAN has timed out, reset all commands */
+			
 			foc_control_loop(&hfoc);
 			break;
 		case SETUP_MODE:
@@ -78,17 +80,15 @@ void fsm_enter_state(FSMStruct * fsmstate){
 	switch(fsmstate->state){
 			case MENU_MODE:
 			//printf("Entering Main Menu\r\n");
-			DRV8323RS_Disnable;
 			enter_menu_state();
 			break;
 		case SETUP_MODE:
-			DRV8323RS_Disnable;
 			printf("Entering Setup\r\n");
 			enter_setup_state();
 			break;
 		case TEST_MODE:
 			DRV8323RS_Enable;
-			enter_test_mode();
+			enter_test_state();
 			break;
 		case ENCODER_MODE:
 			//printf("Entering Encoder Mode\r\n");
@@ -121,10 +121,12 @@ void fsm_exit_state(FSMStruct * fsmstate){
 			fsmstate->ready = 1;
 			break;
 		case TEST_MODE:
+			HAL_UART_AbortTransmit(&huart);
 			printf("Leaving Test Mode\r\n");
 			// DRV8323_Set_PWM(&hfoc.drv8323s, 0, 0, 0);
 			pid_reset(&hfoc.id_ctrl);
 			pid_reset(&hfoc.iq_ctrl);
+			
 			fsmstate->ready = 1;
 			break;
 		case ENCODER_MODE:
@@ -201,6 +203,7 @@ void update_fsm(FSMStruct * fsmstate, char fsm_input){
 				fsmstate->cmd_buff[fsmstate->bytecount-1] = fsm_input;
 				//fsmstate->bytecount = fsmstate->bytecount%(sizeof(fsmstate->cmd_buff)/sizeof(fsmstate->cmd_buff[0])); // reset when buffer is full
 			}
+			HAL_UART_Transmit(&huart, (uint8_t *)&fsm_input, 1, 2);
 			fsmstate->bytecount++;
 			/* If enter is typed, process user input */
 
@@ -216,8 +219,9 @@ void update_fsm(FSMStruct * fsmstate, char fsm_input){
 			if(fsmstate->bytecount == 0){fsmstate->cmd_id = fsm_input;}
 			else{
 				fsmstate->cmd_buff[fsmstate->bytecount-1] = fsm_input;
-				//fsmstate->bytecount = fsmstate->bytecount%(sizeof(fsmstate->cmd_buff)/sizeof(fsmstate->cmd_buff[0])); // reset when buffer is full
+				// fsmstate->bytecount = fsmstate->bytecount%(sizeof(fsmstate->cmd_buff)/sizeof(fsmstate->cmd_buff[0])); // reset when buffer is full
 			}
+			HAL_UART_Transmit(&huart, (uint8_t *)&fsm_input, 1, 2);
 			fsmstate->bytecount++;
 			/* If enter is typed, process user input */
 
@@ -240,18 +244,48 @@ void update_fsm(FSMStruct * fsmstate, char fsm_input){
 //printf("FSM State: %d  %d\r\n", fsmstate.state, fsmstate.state_change);
 }
 
-void enter_test_mode(void){
+void TestModeView(void) {
+    if (CUR_VIEW == 0 && VEL_VIEW == 0 && POS_VIEW == 0) {
+        return; 
+    }
+
+    static uint8_t tx_buf[18];
+
+    tx_buf[0] = 0xAA; 
+    tx_buf[1] = 0xBB;
+
+    float id = (CUR_VIEW == 1) ? hfoc.id_filtered : 0.0f;
+	float iq = (CUR_VIEW == 1) ? hfoc.iq_filtered : 0.0f;
+    float vel = (VEL_VIEW == 1) ? hfoc.actual_rpm : 0.0f;
+    float pos = (POS_VIEW == 1) ? hfoc.actual_angle : 0.0f;
+	
+
+    memcpy(&tx_buf[2],  &id, 4);
+    memcpy(&tx_buf[6],  &iq, 4);
+    memcpy(&tx_buf[10], &vel, 4);
+    memcpy(&tx_buf[14], &pos, 4);
+
+    HAL_UART_Transmit_DMA(&huart, tx_buf, 18);
+}
+
+void enter_test_state(void){
 
     printf("\r\n Test & PID Tuning Options \n\r");
     printf(" %-4s %-31s %-5s %-6s %-2s\r\n", "prefix", "parameter", "min", "max", "current value");
 
     printf("\r\n Active Setpoint:\r\n");
-    // Tự động hiển thị giá trị Setpoint dựa trên chế độ đang chạy
     float current_setpoint = (hfoc.control_mode == TORQUE_CONTROL_MODE) ? SPOINT_TOR : 
                              (hfoc.control_mode == SPEED_CONTROL_MODE) ? SPOINT_VEL : SPOINT_POS;
     printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "t", "Target (Tor/Spd/Pos)", "-", "-", current_setpoint);
 	printf(" %-4s %-31s %-5s %-6s %d\n\r", "o", "Control Mode(0:Tor,1:Spd,2:Pos)", "0", "2", CONTROL_MODE);
     printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "l", "Current Limit (A)", "0.0", "75.0", I_MAX);
+	printf(" %-4s %-31s %-5s %-6s %.2f\n\r", "p", "Voltage Limit (V)", "0.0", "40.0", V_MAX_VOLTAGE);
+	printf(" %-4s %-31s %-5s %-6s %d\n\r", "m", "Motor On/Off", "0", "1", MOTOR_RUNNING);
+
+	printf("\r\n Data View (0:Off, 1:On):\r\n");
+	printf(" %-4s %-31s %-5s %-6s %d\n\r", "v0", "Current View", "0", "1", CUR_VIEW);
+	printf(" %-4s %-31s %-5s %-6s %d\n\r", "v1", "Velocity View", "0", "1", VEL_VIEW);
+	printf(" %-4s %-31s %-5s %-6s %d\n\r", "v2", "Position View", "0", "1", POS_VIEW);
 	
 	printf("\r\n Current Loop (Id/Iq):\r\n");
     printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "a", "Current Kp", "0", "-", ID_KP);
@@ -271,8 +305,6 @@ void enter_test_mode(void){
 
 	
 }
-
-
 
 void set_pid_mode(FSMStruct * fsmstate){
 
@@ -314,10 +346,75 @@ void set_pid_mode(FSMStruct * fsmstate){
 			CONTROL_MODE = hfoc.control_mode;
             break;
         }
+		case 'm':{
+			if(MOTOR_RUNNING != 1){
+				MOTOR_RUNNING = 1;
+				pid_reset(&hfoc.id_ctrl);
+				pid_reset(&hfoc.iq_ctrl);	
+				pid_reset(&hfoc.speed_ctrl);
+				pid_reset(&hfoc.pos_ctrl);
+				DRV8323RS_Enable;
+				printf("Start motor.\r\n");
+				break;
+			}
+			else{
+				MOTOR_RUNNING = 0;
+				pid_reset(&hfoc.id_ctrl);
+				pid_reset(&hfoc.iq_ctrl);	
+				pid_reset(&hfoc.speed_ctrl);
+				pid_reset(&hfoc.pos_ctrl);
+				DRV8323RS_Disnable;
+				printf("Stop motor.\r\n");				
+				break;
+			}
+			break;
+		}
+		case 'p':
+			V_MAX_VOLTAGE = fmaxf(fminf(atof(fsmstate->cmd_buff), 40.0f), 0.0f);
+			pid_reset(&hfoc.id_ctrl);
+			pid_reset(&hfoc.iq_ctrl);
+			pid_set_out_constraint(&hfoc.id_ctrl, V_MAX_VOLTAGE, -V_MAX_VOLTAGE);
+			pid_set_out_constraint(&hfoc.iq_ctrl, V_MAX_VOLTAGE, -V_MAX_VOLTAGE);
+			printf("\n\r  Updated max voltage setpoint: %.2f\r\n", V_MAX_VOLTAGE);
+			break;
+
+		case 'v':{
+			int mode_view = atoi(fsmstate->cmd_buff);
+			if (mode_view == 0){
+				if(CUR_VIEW != 1){
+					CUR_VIEW = 1;
+					break;
+				}
+				else{
+					CUR_VIEW = 0;
+					break;
+				}
+			}
+			if (mode_view == 1){
+				if(VEL_VIEW != 1){
+					VEL_VIEW = 1;
+					break;
+				}
+				else{
+					VEL_VIEW = 0;
+					break;
+				}
+			}
+			if (mode_view == 2){
+				if(POS_VIEW != 1){
+					POS_VIEW = 1;
+					break;
+				}
+				else{
+					POS_VIEW = 0;
+					break;
+				}
+			}
+			break;
+		}
 		case 'l':
 			I_MAX = fmaxf(fminf(atof(fsmstate->cmd_buff), 75.0f), 0.0f);
-			pid_set_out_constraint(&hfoc.id_ctrl, I_MAX, -I_MAX);
-			pid_set_out_constraint(&hfoc.iq_ctrl, I_MAX, -I_MAX);
+			foc_set_limit_current(&hfoc, I_MAX);
 			printf("I_MAX set to %f\r\n", I_MAX);
 			break;
 		case 'a':
@@ -364,7 +461,7 @@ void set_pid_mode(FSMStruct * fsmstate){
 			break;
 
 		}
-	enter_test_mode();
+	enter_test_state();
 	fsmstate->bytecount = 0;
 	fsmstate->cmd_id = 0;
 	memset(&fsmstate->cmd_buff, 0, sizeof(fsmstate->cmd_buff));

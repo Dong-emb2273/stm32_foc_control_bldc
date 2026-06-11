@@ -58,8 +58,9 @@ void fsm_enter_state(FSMStruct * fsmstate);
 void fsm_exit_state(FSMStruct * fsmstate);
 void enter_menu_state(void);
 void enter_setup_state(void);
-void enter_motor_mode(void);
+void enter_motor_state(void);
 void enter_test_state(void);
+void TestModeView(void);
 void set_pid_mode(FSMStruct * fsmstate);
 void process_user_input(FSMStruct * fsmstate);
 

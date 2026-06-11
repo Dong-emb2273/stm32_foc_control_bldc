@@ -73,24 +73,11 @@ void foc_sensor_init(foc_t *hfoc, float m_rad_offset, dir_mode_t sensor_dir) {
 
 //
 int foc_get_power_voltage(foc_t *hfoc) {
-    
-    static uint16_t startup_delay_counter = 0; 
     const float filter_alpha = 0.5f; 
 
     float pv = (float)ADC3->JDR2 * ADC_2_VOLT * 9.3f; 
 
-    
     hfoc->v_bus = (1.0f - filter_alpha) * hfoc->v_bus + filter_alpha * pv;
-
-    if (startup_delay_counter < 1000) {
-        startup_delay_counter++;
-
-        if (startup_delay_counter == 1) {
-             hfoc->v_bus = pv; 
-        }
-        
-        return 0; 
-    }
 
     if (hfoc->v_bus >= 10.0f) {
         POWER_FLAG = 0;
@@ -99,7 +86,7 @@ int foc_get_power_voltage(foc_t *hfoc) {
     else if (hfoc->v_bus < 8.0f && hfoc->v_bus > 1.0f) {
         if (POWER_FLAG == 0) {
             flash_save_emergency(&m_config);
-            printf("Saving current configuration to flash...\r\n");
+            // printf("Saving current configuration to flash...\r\n");
             POWER_FLAG = 1;
         }
         return 1; 
@@ -225,7 +212,7 @@ void foc_current_control_update(foc_t *hfoc) {
 
 	clarke_park_transform(hfoc->ia, hfoc->ib, sin_theta, cos_theta, &hfoc->id, &hfoc->iq);
 
-	const float alpha_i_filt = 0.1f;
+	const float alpha_i_filt = 0.3f;
 	hfoc->id_filtered = (1.0f - alpha_i_filt) * hfoc->id_filtered + alpha_i_filt * hfoc->id;
 	hfoc->iq_filtered = (1.0f - alpha_i_filt) * hfoc->iq_filtered + alpha_i_filt * hfoc->iq;
 
@@ -238,6 +225,7 @@ void foc_current_control_update(foc_t *hfoc) {
 	uint32_t da, db, dc;
 	inverse_park_transform(hfoc->vd, hfoc->vq, sin_theta, cos_theta, &valpha, &vbeta);
 	svpwm(valpha, vbeta, hfoc->v_bus, hfoc->pwm_res, &da, &db, &dc);
+    
 
 	// pwm limit
 	*(hfoc->pwm_a) = CONSTRAIN(da, 0, hfoc->pwm_res);
@@ -280,7 +268,6 @@ void foc_control_loop(foc_t *hfoc) {
     // 	encoder.start_read(encoder.hw_encoder);
     // }
         
-    // foc_get_power_voltage(hfoc);
     if (POWER_FLAG == 1) {
         // printf("Power voltage is too low: %.2f V\r\n", hfoc->v_bus);
         return;
@@ -740,22 +727,39 @@ int measure_L(float f, float amp) {
 }
 
 void calibration_seq(void) {
-    //   if (hfoc.foc_mode == FOC_MODE_SENSORED || hfoc.foc_mode == FOC_MODE_HYBRID) {
-    //     foc_cal_encoder(&hfoc);
-    //   }
 
     measure_R(1.0f);
     measure_L(1000.0f, 1.2f);
 
     
     
-    // flash_auto_tuning_torque_control(&m_config);
-    // hfoc.id_ctrl.kp = m_config.id_kp;
-    // hfoc.id_ctrl.ki = m_config.id_ki;
-    // hfoc.iq_ctrl.kp = m_config.iq_kp;
-    // hfoc.iq_ctrl.ki = m_config.iq_ki;
+    flash_auto_tuning_torque_control(&m_config);
+    hfoc.id_ctrl.kp = m_config.id_kp;
+    hfoc.id_ctrl.ki = m_config.id_ki;
+    hfoc.iq_ctrl.kp = m_config.iq_kp;
+    hfoc.iq_ctrl.ki = m_config.iq_ki;
 }
-
+void motor_turn_off(foc_t *hfoc){
+    if(MOTOR_RUNNING != 0){
+        hfoc->counter++;
+        
+        if (hfoc->counter <= 7000){
+            if (foc_torque_control_update(hfoc) == 1) {
+                foc_speed_control_update(hfoc, 0.0f);
+            }
+        }
+        else if (hfoc->counter < 7500){
+            hfoc->id_ref = 0.0f;
+            hfoc->iq_ref = 0.0f;
+            foc_current_control_update(hfoc);
+        }
+        else{
+            DRV8323_Set_PWM(&hfoc->drv8323s, 0, 0, 0); // Stop PWM output
+            hfoc->counter = 0;
+            MOTOR_RUNNING = 0;
+        }
+    }
+}
 
 void open_loop_voltage_control(foc_t *hfoc, float vd_ref, float vq_ref, float angle_rad) {
     float valpha, vbeta;

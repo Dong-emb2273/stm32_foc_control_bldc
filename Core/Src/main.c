@@ -61,10 +61,18 @@
 osThreadId_t CalibrationTaskHandle;
 const osThreadAttr_t CalibrationTask_attributes = {
   .name = "CalibrationTask",
-  .stack_size = 128 * 4,
+  .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* USER CODE BEGIN PV */
+
+osThreadId_t ErrorTaskHandle;
+const osThreadAttr_t ErrorTask_attributes = {
+  .name = "ErrorTask",
+  .stack_size = 512 * 4, // Cấp phát 512 bytes RAM cho ngăn xếp (Stack)
+  .priority = (osPriority_t) osPriorityNormal, // Mức ưu tiên
+};
+
 FSMStruct state;
 
 /* foc control setup*/
@@ -115,14 +123,14 @@ void control_init(void) {
   pid_set_ts(&hfoc.id_ctrl, FOC_TS);
   pid_set_kp(&hfoc.id_ctrl, m_config.id_kp);
   pid_set_ki(&hfoc.id_ctrl, m_config.id_ki);
-  pid_set_out_constraint(&hfoc.id_ctrl, I_MAX, -I_MAX);
+  pid_set_out_constraint(&hfoc.id_ctrl, V_MAX_VOLTAGE, -V_MAX_VOLTAGE);
   pid_set_deadband(&hfoc.id_ctrl, m_config.id_e_deadband);
   // Id PI parameter
   pid_reset(&hfoc.iq_ctrl);
   pid_set_ts(&hfoc.iq_ctrl, FOC_TS);
   pid_set_kp(&hfoc.iq_ctrl, m_config.iq_kp);
   pid_set_ki(&hfoc.iq_ctrl, m_config.iq_ki);
-  pid_set_out_constraint(&hfoc.iq_ctrl, I_MAX, -I_MAX);
+  pid_set_out_constraint(&hfoc.iq_ctrl, V_MAX_VOLTAGE, -V_MAX_VOLTAGE);
   pid_set_deadband(&hfoc.iq_ctrl, m_config.iq_e_deadband);
   // Speed PID parameter
   pid_reset(&hfoc.speed_ctrl);
@@ -149,7 +157,7 @@ void control_init(void) {
 	
 	foc_pwm_init(&hfoc, &(TIM1->CCR3), &(TIM1->CCR2), &(TIM1->CCR1), hfoc.drv8323s.pwm_resolution);
 
-  foc_set_limit_current(&hfoc, 10.0);
+  foc_set_limit_current(&hfoc, 15.0);
  
 }
 uint8_t Serial2RxBuffer[1];
@@ -172,6 +180,7 @@ void StartCalibrationTask(void *argument);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void ErrorTask(void *argument);
 
 /* USER CODE END 0 */
 
@@ -211,6 +220,8 @@ int main(void)
 	MX_SPI1_Init();
 	MX_SPI2_Init();
   MX_USART6_UART_Init();
+  // MX_CAN2_Init();
+
 
   ADC1_DMA_CONFIG3();
 
@@ -279,6 +290,7 @@ int main(void)
   CalibrationTaskHandle = osThreadNew(StartCalibrationTask, NULL, &CalibrationTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
+  ErrorTaskHandle = osThreadNew(ErrorTask, NULL, &ErrorTask_attributes);  
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
@@ -422,11 +434,18 @@ void TIM3_IRQHandler(void){
 
 void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
 {
-	if (hspi->Instance == SPI2)
+	if (hspi->Instance == SPI2 || hspi->Instance == SPI1)
 	{
 		foc_sensored_calc_electric_angle(&hfoc);
 
 	}
+}
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
+{
+  if (hcan->Instance == CAN1)
+  {
+
+  }
 }
 /*===========================================================*/
 void ADC_IRQHandler(void) {
@@ -439,35 +458,41 @@ void ADC_IRQHandler(void) {
       encoder.start_read(&encoder);
 		}
 
-    // if (encoder.is_connected == 0) {
-    //   DRV8323_Set_PWM(&hfoc.drv8323s, 0, 0, 0); // Stop PWM output
-    //   return;                  
-    // }
-
     foc_get_power_voltage(&hfoc);
 
     run_fsm(&state);
 	}
 }
-/* USER CODE END 4 */
 
-/* USER CODE BEGIN Header_StartCalibrationTask */
-/**
-  * @brief  Function implementing the CalibrationTask thread.
-  * @param  argument: Not used
-  * @retval None
-  */
-/* USER CODE END Header_StartCalibrationTask */
+void ErrorTask(void *argument)
+{
+
+  osDelay(3000);
+
+  for(;;)
+  {
+    if(encoder.is_connected == 0) printf("Encoder not detected. Please check the connection.\r\n");
+    if (POWER_FLAG == 1) printf("Power voltage is too low: %.2f V\r\n", hfoc.v_bus);
+    
+
+    osDelay(1000); 
+  }
+}
+
 void StartCalibrationTask(void *argument)
 {
   /* USER CODE BEGIN 5 */
   hfoc.done_orderphase = 1;
   hfoc.done_cal_encoder = 1;
+  float tx[3] = {0};
+  osDelay(3000);
   /* Infinite loop */
   for(;;)
   {   
     switch (state.state) {
       case CALIBRATION_MODE: {
+        ENCODER_AutoDetect();
+        ENCODER_CHECK();
         DRV8323_Calibrate_Current_Offset(&hfoc.drv8323s);
         foc_auto_calibration(&hfoc);
         foc_cal_encoder(&hfoc);
@@ -481,14 +506,8 @@ void StartCalibrationTask(void *argument)
       }
       
       case TEST_MODE: {
-        // printf("Id: %.3f\n\r", hfoc.id_filtered);
-        // printf("Iq: %.3f\n\r", hfoc.iq_filtered);
-
-        // printf("%.2f,%.2f\n", hfoc.ia, hfoc.ib);
-        // printf("%.2f,%.2f\n", hfoc.vd, hfoc.vq);
-        // printf("%.2f,%.2f\n", hfoc.id_filtered, hfoc.iq_filtered);
-        // printf("%.2f,%.2f\n", hfoc.id_filtered, hfoc.iq_filtered);
-        // printf("%.2f,%.2f,%.2f,%.2f\n", 0.0, 0.0, hfoc.id_filtered, hfoc.iq_filtered);
+        TestModeView();
+        osDelay(9);
         break;
       }
       case MENU_MODE: {
@@ -497,7 +516,7 @@ void StartCalibrationTask(void *argument)
       }
       case ENCODER_MODE: {
         // printf("Encoder Angle: %.2f\n\r", hfoc.actual_angle);
-        ENCODER_AutoDetect();
+        // ENCODER_AutoDetect();
         ENCODER_CHECK();
         update_fsm(&state, 27);
         break;
@@ -507,19 +526,22 @@ void StartCalibrationTask(void *argument)
         break;
               
     }
-    if(encoder.is_connected == 0){
-      // printf("Encoder not detected. Attempting to detect...\r\n");
-      // ENCODER_AutoDetect();
-      // ENCODER_CHECK();
-      printf("Encoder not detected. Please check the connection.\r\n");
-      osDelay(1000); // Wait for 500ms before trying to detect the encoder again
     
-    }
     
     osDelay(1);
   }
   /* USER CODE END 5 */
 }
+/* USER CODE END 4 */
+
+/* USER CODE BEGIN Header_StartCalibrationTask */
+/**
+  * @brief  Function implementing the CalibrationTask thread.
+  * @param  argument: Not used
+  * @retval None
+  */
+/* USER CODE END Header_StartCalibrationTask */
+
 
 /**
   * @brief  Period elapsed callback in non blocking mode

@@ -30,10 +30,10 @@
 
 /* USER CODE END 0 */
 
-CAN_HandleTypeDef hcan2;
+CAN_HandleTypeDef hcan1;
 
 /* CAN1 init function */
-void MX_CAN2_Init(void)
+void MX_CAN1_Init(void)
 {
 
   /* USER CODE BEGIN CAN1_Init 0 */
@@ -43,19 +43,19 @@ void MX_CAN2_Init(void)
   /* USER CODE BEGIN CAN1_Init 1 */
 
   /* USER CODE END CAN1_Init 1 */
-  hcan2.Instance = CAN1;
-  hcan2.Init.Prescaler = 6;
-  hcan2.Init.Mode = CAN_MODE_NORMAL;
-  hcan2.Init.SyncJumpWidth = CAN_SJW_2TQ;
-  hcan2.Init.TimeSeg1 = CAN_BS1_4TQ;
-  hcan2.Init.TimeSeg2 = CAN_BS2_2TQ;
-  hcan2.Init.TimeTriggeredMode = DISABLE;
-  hcan2.Init.AutoBusOff = DISABLE;
-  hcan2.Init.AutoWakeUp = DISABLE;
-  hcan2.Init.AutoRetransmission = DISABLE;
-  hcan2.Init.ReceiveFifoLocked = DISABLE;
-  hcan2.Init.TransmitFifoPriority = DISABLE;
-  if (HAL_CAN_Init(&hcan2) != HAL_OK)
+  hcan1.Instance = CAN1;
+  hcan1.Init.Prescaler = 6;
+  hcan1.Init.Mode = CAN_MODE_NORMAL;
+  hcan1.Init.SyncJumpWidth = CAN_SJW_2TQ;
+  hcan1.Init.TimeSeg1 = CAN_BS1_4TQ;
+  hcan1.Init.TimeSeg2 = CAN_BS2_2TQ;
+  hcan1.Init.TimeTriggeredMode = DISABLE;
+  hcan1.Init.AutoBusOff = DISABLE;
+  hcan1.Init.AutoWakeUp = DISABLE;
+  hcan1.Init.AutoRetransmission = DISABLE;
+  hcan1.Init.ReceiveFifoLocked = DISABLE;
+  hcan1.Init.TransmitFifoPriority = DISABLE;
+  if (HAL_CAN_Init(&hcan1) != HAL_OK)
   {
     Error_Handler();
   }
@@ -71,9 +71,9 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef* canHandle)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   if(canHandle->Instance==CAN1)
   {
-  /* USER CODE BEGIN CAN2_MspInit 0 */
+  /* USER CODE BEGIN CAN1_MspInit 0 */
 
-	/* USER CODE END CAN2_MspInit 0 */
+	/* USER CODE END CAN1_MspInit 0 */
 	/* CAN1 clock enable */
 	__HAL_RCC_CAN2_CLK_ENABLE();
   __HAL_RCC_CAN1_CLK_ENABLE();
@@ -138,7 +138,7 @@ void can_rx_init(CANRxMessage *msg){
 	msg->filter.FilterMode = CAN_FILTERMODE_IDMASK;
 	msg->filter.FilterScale=CAN_FILTERSCALE_32BIT;
 	msg->filter.FilterActivation=ENABLE;
-	HAL_CAN_ConfigFilter(&hcan2, &msg->filter);
+	HAL_CAN_ConfigFilter(&hcan1, &msg->filter);
 }
 //
 

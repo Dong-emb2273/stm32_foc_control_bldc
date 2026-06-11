@@ -56,6 +56,12 @@ extern motor_config_t m_config;
 #define POS_OUT_MAX         (m_config.pos_out_max)         // Position controller output limit
 #define POS_E_DEADBAND      (m_config.pos_e_deadband)      // Position controller error deadband
 
+#define MOTOR_RUNNING       (m_config.motor_running)       // Flag indicating whether motor is currently running (1) or stopped (0)
+#define CUR_VIEW            (m_config.cur_view)            // Flag indicating whether to display current in telemetry
+#define VEL_VIEW            (m_config.vel_view)            // Flag indicating whether to display velocity in telemetry
+#define POS_VIEW            (m_config.pos_view)            // Flag indicating whether to display
+
+
 #define CAN_ID              (m_config.can_id)               // CAN bus ID
 #define CAN_MASTER          (m_config.can_master)           // CAN bus "master" ID
 #define CAN_TIMEOUT         (m_config.can_timeout)          // CAN bus timeout period
@@ -80,8 +86,8 @@ extern motor_config_t m_config;
 #define KD_MIN		        (m_config.kd_min)               // Min velocity gain (N-m/rad/s)
 
 
-#define I_MAX               (m_config.iq_out_max)           // Current limit
-
+#define I_MAX               (m_config.i_max_current)        // Current limit
+#define V_MAX_VOLTAGE       (m_config.iq_out_max)        // Voltage limit
 
 #define THETA_MIN               1.0f                // Minimum position setpoint
 #define THETA_MAX               1.0f                // Maximum position setpoint
