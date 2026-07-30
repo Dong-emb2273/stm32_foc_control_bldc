@@ -11,38 +11,7 @@
 #ifndef TWO_PI
 #define TWO_PI 6.2831853f
 #endif
-//float pi_control(PID_Controller_t *pi, float error) {
-//    if (error >= -pi->e_deadband && error <= pi->e_deadband) {
-//        error = 0.0f;
-//    }
 
-//    float p_term = pi->kp * error;
-
-//    float new_integral = pi->integral + error * pi->ki * pi->ts;
-
-//    float output = p_term + new_integral;
-
-//    // Anti-windup with clamping
-//    if (output > pi->out_max) { 
-//        output = pi->out_max;
-//        if (error * (output - p_term) <= 0) { 
-//            pi->integral = new_integral;
-//        }
-//    }
-//    else if (output < -pi->out_max) {
-//        output = -pi->out_max;
-//        if (error * (output - p_term) <= 0) {
-//            pi->integral = new_integral;
-//        }
-//    }
-//    else {
-//        pi->integral = new_integral;
-//    }
-
-//    pi->mv = output;
-
-//    return output;
-//}
 //
 float pi_control(PID_Controller_t *pi, float error) {
 	if (error >= -pi->e_deadband && error <= pi->e_deadband) {

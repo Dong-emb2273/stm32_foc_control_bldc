@@ -18,6 +18,7 @@ typedef struct {
 } JointCommand_t;
 
 typedef struct {
+	uint32_t	can_id;   // ID của động cơ trên bus CAN
 	float 		p_act;    // (rad)
 	float 		v_act;    // (rad/s)
 	float 		t_act;    // (N.m)

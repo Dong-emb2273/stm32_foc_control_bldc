@@ -31,7 +31,8 @@ build/encoder.o: Core/Src/encoder.c Core/Inc/encoder.h Core/Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h Core/Inc/spi.h \
  Core/Inc/as5048a.h Core/Inc/encoder.h Core/Inc/flash.h \
  Core/Inc/foc_utils.h Core/Inc/drv8323s.h Core/Inc/foc_math.h \
- Core/Inc/pid_utils.h Core/Inc/user_config.h Core/Inc/flash.h
+ Core/Inc/pid_utils.h Core/Inc/joint_acc.h Core/Inc/user_config.h \
+ Core/Inc/flash.h
 Core/Inc/encoder.h:
 Core/Inc/main.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -74,5 +75,6 @@ Core/Inc/foc_utils.h:
 Core/Inc/drv8323s.h:
 Core/Inc/foc_math.h:
 Core/Inc/pid_utils.h:
+Core/Inc/joint_acc.h:
 Core/Inc/user_config.h:
 Core/Inc/flash.h:

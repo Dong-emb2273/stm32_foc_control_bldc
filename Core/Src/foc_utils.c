@@ -17,6 +17,7 @@
 #include "encoder.h"
 
 extern motor_config_t m_config;
+extern JointCommand_t joint_cmd;
 
 _Bool foc_ready = 0;
 float Vd_buff[MAX_I_SAMPLE];
@@ -85,7 +86,7 @@ int foc_get_power_voltage(foc_t *hfoc) {
     }
     else if (hfoc->v_bus < 8.0f && hfoc->v_bus > 1.0f) {
         if (POWER_FLAG == 0) {
-            flash_save_emergency(&m_config);
+            
             // printf("Saving current configuration to flash...\r\n");
             POWER_FLAG = 1;
         }
@@ -165,11 +166,9 @@ void foc_current_limit(float *id_ref, float *iq_ref, float max_current) {
 int foc_torque_control_update(foc_t *hfoc ) {
     int ret = 0;
     static uint8_t event_speed_loop_count = 0;
-    // static float rpm_temp = 0.0f;
         
     foc_current_control_update(hfoc);
     
-
     if (event_speed_loop_count >= SPEED_CONTROL_CYCLE) {
         event_speed_loop_count = 0;
         
@@ -178,9 +177,7 @@ int foc_torque_control_update(foc_t *hfoc ) {
         foc_set_flag();
         ret = 1;
     }
-
     event_speed_loop_count++;
-
     return ret;
 }
 
@@ -212,7 +209,7 @@ void foc_current_control_update(foc_t *hfoc) {
 
 	clarke_park_transform(hfoc->ia, hfoc->ib, sin_theta, cos_theta, &hfoc->id, &hfoc->iq);
 
-	const float alpha_i_filt = 0.3f;
+	const float alpha_i_filt = 0.7f;
 	hfoc->id_filtered = (1.0f - alpha_i_filt) * hfoc->id_filtered + alpha_i_filt * hfoc->id;
 	hfoc->iq_filtered = (1.0f - alpha_i_filt) * hfoc->iq_filtered + alpha_i_filt * hfoc->iq;
 
@@ -259,14 +256,19 @@ void foc_position_control_update(foc_t *hfoc, float deg_reference) {
     foc_speed_control_update(hfoc, hfoc->rpm_ref);
 
 }
+
+void foc_impedance_control(JointCommand_t *cmd, foc_t *hfoc) {
+    float pos = RAD_TO_DEG(cmd->p_des)*GR;
+    float vel = RADS_TO_RPM(cmd->v_des)*GR;
+    float iq_ff = cmd->t_ff*KT*GR;
+
+    hfoc->id_ref = 0.0f;
+    hfoc->iq_ref = iq_ff + cmd->kp * (pos - hfoc->actual_angle) + cmd->kd * (vel - hfoc->actual_rpm);
+    foc_torque_control_update(hfoc);
+}
 //
 void foc_control_loop(foc_t *hfoc) {
     if (hfoc == NULL) return;
-
-    // if (ENCODER_GetFlag()) {
-    // 	ENCODER_Reset_Flag();
-    // 	encoder.start_read(encoder.hw_encoder);
-    // }
         
     if (POWER_FLAG == 1) {
         // printf("Power voltage is too low: %.2f V\r\n", hfoc->v_bus);
@@ -276,14 +278,9 @@ void foc_control_loop(foc_t *hfoc) {
         DRV8323_Set_PWM(&hfoc->drv8323s, 0, 0, 0); // Stop PWM output
         return;
     }
-    // hfoc->v_bus = 19.4f;
-
 
     switch (hfoc->control_mode) {
         case TORQUE_CONTROL_MODE: {
-            
-            hfoc->actual_angle = ENCODER_GetActualDegree(&encoder);
-            // sPoint_Tor = k*(sPoint_Pos - hfoc->actual_angle) + p*hfoc->actual_rpm ;
             hfoc->id_ref = 0.0f;
             hfoc->iq_ref = SPOINT_TOR;
             foc_torque_control_update(hfoc);
@@ -301,6 +298,12 @@ void foc_control_loop(foc_t *hfoc) {
             if (foc_torque_control_update(hfoc) == 1) {
                 foc_speed_control_update(hfoc, SPOINT_VEL);
             }
+            break;
+        }
+        case IMPEDANCE_CONTROL_MODE: {
+            hfoc->actual_angle = ENCODER_GetActualDegree(&encoder);
+            foc_calc_mech_pos_encoder(hfoc, hfoc->actual_angle);
+            foc_impedance_control(&joint_cmd, hfoc);
             break;
         }
         default:

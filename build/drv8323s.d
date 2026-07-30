@@ -32,6 +32,7 @@ build/drv8323s.o: Core/Src/drv8323s.c Core/Inc/drv8323s.h Core/Inc/main.h \
  Core/Inc/config.h Core/Inc/user_config.h Core/Inc/flash.h \
  Core/Inc/foc_utils.h Core/Inc/drv8323s.h Core/Inc/as5048a.h \
  Core/Inc/encoder.h Core/Inc/foc_math.h Core/Inc/pid_utils.h \
+ Core/Inc/joint_acc.h \
  Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  Core/Inc/FreeRTOSConfig.h \
@@ -87,6 +88,7 @@ Core/Inc/as5048a.h:
 Core/Inc/encoder.h:
 Core/Inc/foc_math.h:
 Core/Inc/pid_utils.h:
+Core/Inc/joint_acc.h:
 Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 Core/Inc/FreeRTOSConfig.h:

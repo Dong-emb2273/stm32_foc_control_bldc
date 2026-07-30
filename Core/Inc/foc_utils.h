@@ -14,6 +14,7 @@
 #include "as5048a.h"
 #include "foc_math.h"
 #include "pid_utils.h"
+#include "joint_acc.h"
 
 
 
@@ -47,6 +48,7 @@ typedef enum {
 	TORQUE_CONTROL_MODE,
 	SPEED_CONTROL_MODE,
 	POSITION_CONTROL_MODE,
+	IMPEDANCE_CONTROL_MODE,
 	// CALIBRATION_MODE1,
 	// AUDIO_MODE,
 	// TEST_MODE,
@@ -157,7 +159,7 @@ typedef struct {
 }foc_t;
 
 extern foc_t hfoc; 
-
+// extern JointRobot_t robot_joints;
 
 void foc_pwm_init(foc_t *hfoc, volatile uint32_t *pwm_a, volatile uint32_t *pwm_b, volatile uint32_t *pwm_c, uint32_t pwm_res);
 
@@ -188,6 +190,8 @@ int foc_torque_control_update(foc_t *hfoc);
 void foc_speed_control_update(foc_t *hfoc, float rpm_reference);
 
 void foc_position_control_update(foc_t *hfoc, float deg_reference);
+
+void foc_impedance_control(JointCommand_t *cmd, foc_t *hfoc);
 
 void foc_control_loop(foc_t *hfoc);
 

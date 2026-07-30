@@ -33,7 +33,7 @@
 #include "flash.h"
 #include "foc_utils.h"
 #include "can.h"
-
+#include "joint_acc.h"
 #include "encoder.h"
 #include "fsm.h"
 
@@ -90,9 +90,9 @@ CANTxMessage can_tx;
 CANRxMessage can_rx;
 
 /* joint setup*/
-JointRobot_t robot_joints;
-
-
+// JointRobot_t robot_joints;
+JointCommand_t joint_cmd;
+JointState_t joint_state;
 
 
 
@@ -156,8 +156,7 @@ void control_init(void) {
 
 	
 	foc_pwm_init(&hfoc, &(TIM1->CCR3), &(TIM1->CCR2), &(TIM1->CCR1), hfoc.drv8323s.pwm_resolution);
-
-  foc_set_limit_current(&hfoc, 15.0);
+  foc_set_limit_current(&hfoc, I_MAX);
  
 }
 uint8_t Serial2RxBuffer[1];
@@ -220,7 +219,8 @@ int main(void)
 	MX_SPI1_Init();
 	MX_SPI2_Init();
   MX_USART6_UART_Init();
-  // MX_CAN2_Init();
+  MX_CAN1_Init();
+
 
 
   ADC1_DMA_CONFIG3();
@@ -233,7 +233,7 @@ int main(void)
   
   // Load Config 
   flash_read_config(&m_config);
-  flash_erase_ready();
+  // flash_erase_ready();
 
   init_trig_lut();
 
@@ -244,13 +244,14 @@ int main(void)
 	ENCODER_Setup();
   ENCODER_Init_From_Config();
 
-	
-  /* Start the FSM */
-  state.state = MENU_MODE;
-  state.next_state = STATE;
-  state.ready = 1;
+  /*CAN setup   */
+  can_rx_init(&can_rx);
+  can_tx_init(&can_tx);
+	HAL_CAN_Start(&hcan1);
+  HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
 
-  hfoc.control_mode = CONTROL_MODE;
+
+  
 
   HAL_UART_Receive_IT(&huart, (uint8_t *)Serial2RxBuffer, 1);
 
@@ -259,6 +260,15 @@ int main(void)
 	TIM_COUNTER_ENABLE(TIM3);
   TIM_COUNTER_ENABLE(TIM1); 
 
+
+  /* Start the FSM */
+  hfoc.control_mode = CONTROL_MODE;
+  state.state = MENU_MODE;
+  state.next_state = STATE;
+  state.ready = 1;
+  MOTOR_RUNNING = 0;
+  POWER_FLAG = 0;
+  SAVE_FLAG = 0;
 
   // Output PWM
   DRV8323_Start_PWM(&hfoc.drv8323s); //  MOE và CCxE
@@ -444,6 +454,17 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
   if (hcan->Instance == CAN1)
   {
+    
+    if(HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &can_rx.rx_header, can_rx.data) != HAL_OK) {
+      printf("CAN RX Error: %d\r\n", HAL_CAN_GetError(hcan));
+    }
+    uint32_t TxMailbox;
+    Slave_Pack_State(&can_tx, &joint_state, &hfoc);
+    
+    if(HAL_CAN_AddTxMessage(hcan, &can_tx.tx_header, can_tx.data, &TxMailbox) != HAL_OK) {
+      printf("CAN TX Error: %d\r\n", HAL_CAN_GetError(hcan));
+    }
+    Slave_Unpack_Cmd(&can_rx, &joint_cmd);
 
   }
 }
@@ -473,7 +494,7 @@ void ErrorTask(void *argument)
   {
     if(encoder.is_connected == 0) printf("Encoder not detected. Please check the connection.\r\n");
     if (POWER_FLAG == 1) printf("Power voltage is too low: %.2f V\r\n", hfoc.v_bus);
-    
+    if(SAVE_FLAG == 1) {flash_save_config(&m_config); SAVE_FLAG=0; printf("Configuration saved to flash.\r\n");}
 
     osDelay(1000); 
   }

@@ -22,6 +22,8 @@
 
 
 extern UART_HandleTypeDef huart;
+extern JointCommand_t joint_cmd;
+// extern JointRobot_t robot_joints;
 extern float sPoint_Vel ;
 extern float sPoint_Pos ;
 extern float sPoint_Tor;
@@ -80,6 +82,8 @@ void fsm_enter_state(FSMStruct * fsmstate){
 	switch(fsmstate->state){
 			case MENU_MODE:
 			//printf("Entering Main Menu\r\n");
+			MOTOR_RUNNING = 0;
+			DRV8323RS_Disnable;
 			enter_menu_state();
 			break;
 		case SETUP_MODE:
@@ -87,7 +91,8 @@ void fsm_enter_state(FSMStruct * fsmstate){
 			enter_setup_state();
 			break;
 		case TEST_MODE:
-			DRV8323RS_Enable;
+			DRV8323RS_Disnable;
+			MOTOR_RUNNING = 0;
 			enter_test_state();
 			break;
 		case ENCODER_MODE:
@@ -96,6 +101,7 @@ void fsm_enter_state(FSMStruct * fsmstate){
 		case MOTOR_MODE:
 			printf("Entering Motor Mode\r\n");
 			DRV8323RS_Enable;
+			MOTOR_RUNNING = 1;
 			break;
 		case CALIBRATION_MODE:
 			printf("Starting Calibration Mode\r\n");
@@ -118,6 +124,7 @@ void fsm_exit_state(FSMStruct * fsmstate){
 			break;
 		case SETUP_MODE:
 			printf("Leaving Setup Menu\r\n");
+			SAVE_FLAG = 1;
 			fsmstate->ready = 1;
 			break;
 		case TEST_MODE:
@@ -126,6 +133,8 @@ void fsm_exit_state(FSMStruct * fsmstate){
 			// DRV8323_Set_PWM(&hfoc.drv8323s, 0, 0, 0);
 			pid_reset(&hfoc.id_ctrl);
 			pid_reset(&hfoc.iq_ctrl);
+			SAVE_FLAG = 1;
+			MOTOR_RUNNING = 0;
 			
 			fsmstate->ready = 1;
 			break;
@@ -201,7 +210,7 @@ void update_fsm(FSMStruct * fsmstate, char fsm_input){
 			if(fsmstate->bytecount == 0){fsmstate->cmd_id = fsm_input;}
 			else{
 				fsmstate->cmd_buff[fsmstate->bytecount-1] = fsm_input;
-				//fsmstate->bytecount = fsmstate->bytecount%(sizeof(fsmstate->cmd_buff)/sizeof(fsmstate->cmd_buff[0])); // reset when buffer is full
+				fsmstate->bytecount = fsmstate->bytecount%(sizeof(fsmstate->cmd_buff)/sizeof(fsmstate->cmd_buff[0])); // reset when buffer is full
 			}
 			HAL_UART_Transmit(&huart, (uint8_t *)&fsm_input, 1, 2);
 			fsmstate->bytecount++;
@@ -219,7 +228,7 @@ void update_fsm(FSMStruct * fsmstate, char fsm_input){
 			if(fsmstate->bytecount == 0){fsmstate->cmd_id = fsm_input;}
 			else{
 				fsmstate->cmd_buff[fsmstate->bytecount-1] = fsm_input;
-				// fsmstate->bytecount = fsmstate->bytecount%(sizeof(fsmstate->cmd_buff)/sizeof(fsmstate->cmd_buff[0])); // reset when buffer is full
+				fsmstate->bytecount = fsmstate->bytecount%(sizeof(fsmstate->cmd_buff)/sizeof(fsmstate->cmd_buff[0])); // reset when buffer is full
 			}
 			HAL_UART_Transmit(&huart, (uint8_t *)&fsm_input, 1, 2);
 			fsmstate->bytecount++;
@@ -277,7 +286,7 @@ void enter_test_state(void){
     float current_setpoint = (hfoc.control_mode == TORQUE_CONTROL_MODE) ? SPOINT_TOR : 
                              (hfoc.control_mode == SPEED_CONTROL_MODE) ? SPOINT_VEL : SPOINT_POS;
     printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "t", "Target (Tor/Spd/Pos)", "-", "-", current_setpoint);
-	printf(" %-4s %-31s %-5s %-6s %d\n\r", "o", "Control Mode(0:Tor,1:Spd,2:Pos)", "0", "2", CONTROL_MODE);
+	printf(" %-4s %-31s %-5s %-6s %d\n\r", "o", "Control Mode(0:Tor,1:Spd,2:Pos,3:Imp)", "0", "3", CONTROL_MODE);
     printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "l", "Current Limit (A)", "0.0", "75.0", I_MAX);
 	printf(" %-4s %-31s %-5s %-6s %.2f\n\r", "p", "Voltage Limit (V)", "0.0", "40.0", V_MAX_VOLTAGE);
 	printf(" %-4s %-31s %-5s %-6s %d\n\r", "m", "Motor On/Off", "0", "1", MOTOR_RUNNING);
@@ -291,15 +300,26 @@ void enter_test_state(void){
     printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "a", "Current Kp", "0", "-", ID_KP);
     printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "b", "Current Ki", "0", "-", ID_KI);
 
-    printf("\r\n Speed Loop:\r\n");
-    printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "c", "Speed Kp", "0", "-", SPEED_KP);
-    printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "d", "Speed Ki", "0", "-", SPEED_KI);
+	if (hfoc.control_mode != IMPEDANCE_CONTROL_MODE) {
+		printf("\r\n Speed Loop:\r\n");
+		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "c", "Speed Kp", "0", "-", SPEED_KP);
+		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "d", "Speed Ki", "0", "-", SPEED_KI);
 
-    printf("\r\n Position Loop:\r\n");
-    printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "x", "Position Kp", "0", "-", POS_KP);
-    printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "y", "Position Ki", "0", "-", POS_KI);
-    printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "z", "Position Kd", "0", "-", POS_KD);
+		printf("\r\n Position Loop:\r\n");
+		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "x", "Position Kp", "0", "-", POS_KP);
+		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "y", "Position Ki", "0", "-", POS_KI);
+		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "z", "Position Kd", "0", "-", POS_KD);
 
+	}
+	else {
+		printf("\r\n Impedance Control:\r\n");
+		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "k", "Torque Constant (N-m/A)", "0", "-", KT);
+		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "c", "Position Gain (N-m/rad)", "0", "-", joint_cmd.kp);
+		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "d", "Velocity Gain (N-m-s/rad)", "0", "-", joint_cmd.kd);
+		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "x", "Position (Rad)", "0", "-", joint_cmd.p_des);
+		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "y", "Velocity (Rad/s)", "0", "-", joint_cmd.v_des);
+
+	}
     printf(" \n\r To change a value, type 'prefix''value''ENTER'\n\r e.g. 'c0.15''ENTER'\r\n ");
     printf("VALUES UPDATE IMMEDIATELY IN TEST MODE! \n\r\n\r");
 
@@ -340,8 +360,12 @@ void set_pid_mode(FSMStruct * fsmstate){
                 hfoc.control_mode = POSITION_CONTROL_MODE;
                 printf("Control Mode set to POSITION (2)\r\n");
             } 
+            else if (mode_val == 3) {
+                hfoc.control_mode = IMPEDANCE_CONTROL_MODE;
+                printf("Control Mode set to IMPEDANCE (3)\r\n");
+            }
             else {
-                printf("Invalid Mode! Please enter 0, 1, or 2.\r\n");
+                printf("Invalid Mode! Please enter 0, 1, 2, or 3.\r\n");
             }
 			CONTROL_MODE = hfoc.control_mode;
             break;
@@ -417,6 +441,11 @@ void set_pid_mode(FSMStruct * fsmstate){
 			foc_set_limit_current(&hfoc, I_MAX);
 			printf("I_MAX set to %f\r\n", I_MAX);
 			break;
+		case 'k':
+			KT = fmaxf(atof(fsmstate->cmd_buff), 0.0001f);	// Limit prevents divide by zero.  Seems like a reasonable LB?
+			printf("KT set to %f\r\n", KT);
+			break;
+
 		case 'a':
 			ID_KP = atof(fsmstate->cmd_buff);
 			IQ_KP = ID_KP;
@@ -431,22 +460,44 @@ void set_pid_mode(FSMStruct * fsmstate){
 			hfoc.iq_ctrl.ki = IQ_KI;
 			printf("\n\r  Updated i ki: %.3f\r\n", ID_KI);
 			break;
-		case 'c':
+		case 'c':{
+			if (hfoc.control_mode == IMPEDANCE_CONTROL_MODE){
+				joint_cmd.kp = atof(fsmstate->cmd_buff);
+				printf("\n\r  Updated position kp: %.3f\r\n", joint_cmd.kp);
+				break;
+			}
 			SPEED_KP = atof(fsmstate->cmd_buff);
 			hfoc.speed_ctrl.kp = SPEED_KP;
 			printf("\n\r  Updated speed kp: %.3f\r\n", SPEED_KP);
 			break;
-		case 'd':
+		}
+		case 'd':{
+			if (hfoc.control_mode == IMPEDANCE_CONTROL_MODE){
+				joint_cmd.kd = atof(fsmstate->cmd_buff);
+				printf("\n\r  Updated position kd: %.3f\r\n", joint_cmd.kd);
+				break;
+			}
 			SPEED_KI = atof(fsmstate->cmd_buff);
 			hfoc.speed_ctrl.ki = SPEED_KI;
 			printf("\n\r  Updated speed ki: %.3f\r\n", SPEED_KI);
 			break;
+		}
 		case 'x':
+			if (hfoc.control_mode == IMPEDANCE_CONTROL_MODE){
+				joint_cmd.p_des = atof(fsmstate->cmd_buff);
+				printf("\n\r  Updated position setpoint: %.3f\r\n", joint_cmd.p_des);
+				break;
+			}
 			POS_KP = atof(fsmstate->cmd_buff);
 			hfoc.pos_ctrl.kp = POS_KP;
 			printf("\n\r  Updated position kp: %.3f\r\n", POS_KP);
 			break;
 		case 'y':
+			if (hfoc.control_mode == IMPEDANCE_CONTROL_MODE){
+				joint_cmd.v_des = atof(fsmstate->cmd_buff);
+				printf("\n\r  Updated velocity setpoint: %.3f\r\n", joint_cmd.v_des);
+				break;
+			}
 			POS_KI = atof(fsmstate->cmd_buff);
 			hfoc.pos_ctrl.ki = POS_KI;
 			printf("\n\r  Updated position ki: %.3f\r\n", POS_KI);
@@ -493,7 +544,7 @@ void enter_setup_state(void){
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "k", "Torque Constant (N-m/A)", "0", "-", KT);
 	
 	printf("\r\n Control:\r\n");
-	printf(" %-4s %-31s %-5s %-6s %d\n\r", "o", "Control Mode(0:Tor,1:Spd,2:Pos)", "0", "2", CONTROL_MODE);
+	printf(" %-4s %-31s %-5s %-6s %d\n\r", "o", "Control Mode(0:Tor,1:Spd,2:Pos,3:Imp)", "0", "3", CONTROL_MODE);
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "b", "Current Bandwidth (Hz)", "50", "2000", I_BW);
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "l", "Current Limit (A)", "0.0", "75.0", I_MAX);
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "p", "Max Position Setpoint (rad)", "-", "-", P_MAX);
@@ -505,8 +556,8 @@ void enter_setup_state(void){
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "c", "Continuous Current (A)", "0.0", "40.0", I_MAX_CONT);
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "a", "Calibration Current (A)", "0.0", "2.0", I_CAL);
 	printf("\r\n CAN:\r\n");
-	printf(" %-4s %-31s %-5s %-6s %-5li\n\r", "i", "CAN ID", "0", "127", CAN_ID);
-	printf(" %-4s %-31s %-5s %-6s %-5li\n\r", "m", "CAN TX ID", "0", "127", CAN_MASTER);
+	printf(" %-4s %-31s %-5s %-6s %-5li\n\r", "i", "CAN ID", "0", "127", CAN_SID);
+	printf(" %-4s %-31s %-5s %-6s %-5li\n\r", "m", "CAN TX ID", "0", "127", CAN_MID);
 	printf(" %-4s %-31s %-5s %-6s %-5li\n\r", "t", "CAN Timeout (cycles)(0 = none)", "0", "100000", CAN_TIMEOUT);
 	printf(" \n\r To change a value, type 'prefix''value''ENTER'\n\r e.g. 'b1000''ENTER'\r\n ");
 	printf("VALUES NOT ACTIVE UNTIL POWER CYCLE! \n\r\n\r");
@@ -530,8 +581,12 @@ void process_user_input(FSMStruct * fsmstate){
                 hfoc.control_mode = POSITION_CONTROL_MODE;
                 printf("Control Mode set to POSITION (2)\r\n");
             } 
+            else if (mode_val == 3) {
+                hfoc.control_mode = IMPEDANCE_CONTROL_MODE;
+                printf("Control Mode set to IMPEDANCE (3)\r\n");
+            }
             else {
-                printf("Invalid Mode! Please enter 0, 1, or 2.\r\n");
+                printf("Invalid Mode! Please enter 0, 1, 2, or 3.\r\n");
             }
 			CONTROL_MODE = hfoc.control_mode;
             break;
@@ -541,12 +596,12 @@ void process_user_input(FSMStruct * fsmstate){
 			printf("I_BW set to %f\r\n", I_BW);
 			break;
 		case 'i':
-			CAN_ID = atoi(fsmstate->cmd_buff);
-			printf("CAN_ID set to %ld\r\n", CAN_ID);
+			CAN_SID = atoi(fsmstate->cmd_buff);
+			printf("CAN_SID set to %ld\r\n", CAN_SID);
 			break;
 		case 'm':
-			CAN_MASTER = atoi(fsmstate->cmd_buff);
-			printf("CAN_TX_ID set to %ld\r\n", CAN_MASTER);
+			CAN_MID = atoi(fsmstate->cmd_buff);
+			printf("CAN_MID set to %ld\r\n", CAN_MID);
 			break;
 		case 't':
 			CAN_TIMEOUT = atoi(fsmstate->cmd_buff);

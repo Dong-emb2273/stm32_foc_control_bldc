@@ -62,14 +62,14 @@ extern motor_config_t m_config;
 #define POS_VIEW            (m_config.pos_view)            // Flag indicating whether to display
 
 
-#define CAN_ID              (m_config.can_id)               // CAN bus ID
-#define CAN_MASTER          (m_config.can_master)           // CAN bus "master" ID
+#define CAN_SID             (m_config.can_id)               // CAN bus ID
+#define CAN_MID             (m_config.can_master)           // CAN bus "master" ID
 #define CAN_TIMEOUT         (m_config.can_timeout)          // CAN bus timeout period
 
 #define STATE               (m_config.state)                // Current state of the motor (0: idle, 1: running, 2: error)
 #define NEXT_STATE          (m_config.next_state)           // Next state of the motor after current operation completes
 #define POWER_FLAG          (m_config.power_flag)           // Flag indicating whether motor is powered on (1) or off (0)
-
+#define SAVE_FLAG           (m_config.save_flag)            // Flag indicating whether to save configuration
 #define P_MIN		        (m_config.pos_min)              // Position setpoint lower limit (rad)
 #define P_MAX		        (m_config.pos_max)              // Position setupoint upper bound (rad)
 

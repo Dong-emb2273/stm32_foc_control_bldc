@@ -30,11 +30,12 @@ extern "C" {
 #include "stm32f4xx_hal_can.h"
 #include "joint_acc.h"
 #include "fsm.h"
+#include "foc_utils.h"
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
 
-extern CAN_HandleTypeDef hcan2;
+
 
 /* USER CODE BEGIN Private defines */
 // #define P_MIN -12.5f
@@ -71,10 +72,18 @@ typedef struct{
 	CAN_TxHeaderTypeDef tx_header;
 }CANTxMessage ;
 
+
+
+extern CAN_HandleTypeDef hcan1;
+extern CANTxMessage can_tx;
+extern CANRxMessage can_rx;
+
 void can_rx_init(CANRxMessage *msg);
 void can_tx_init(CANTxMessage *msg);
-void pack_cmd(CANTxMessage *msg, JointCommand_t *cmd);
-void unpack_state(CANRxMessage *msg, JointState_t *state);
+void Master_Pack_Cmd(CANTxMessage *msg, JointCommand_t *cmd);
+void Master_Unpack_State(CANRxMessage *msg, JointState_t *state);
+void Slave_Pack_State(CANTxMessage *msg, JointState_t *state, foc_t *hfoc);
+void Slave_Unpack_Cmd(CANRxMessage *msg, JointCommand_t *cmd);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus
