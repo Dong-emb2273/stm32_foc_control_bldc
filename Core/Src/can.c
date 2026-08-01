@@ -133,7 +133,7 @@ void can_rx_init(CANRxMessage *msg){
 	msg->filter.SlaveStartFilterBank = 14;
 	msg->filter.FilterIdHigh=CAN_SID<<5; 				// CAN ID
 	msg->filter.FilterIdLow=0x000;
-	msg->filter.FilterMaskIdHigh=0x000<<5;
+	msg->filter.FilterMaskIdHigh=0x7FF<<5;
 	msg->filter.FilterMaskIdLow=0x000;
 	msg->filter.FilterMode = CAN_FILTERMODE_IDMASK;
 	msg->filter.FilterScale=CAN_FILTERSCALE_32BIT;
@@ -240,6 +240,7 @@ void Slave_Unpack_Cmd(CANRxMessage *msg, JointCommand_t *cmd) {
 
 }
 
+
 void Slave_Pack_State(CANTxMessage *msg, JointState_t *state, foc_t *hfoc) {
   state->p_act  = DEG_TO_RAD(hfoc->actual_angle)/GR; // rad
   state->v_act  = RPM_TO_RADS(hfoc->actual_rpm)/GR; // rad/s
@@ -250,7 +251,7 @@ void Slave_Pack_State(CANTxMessage *msg, JointState_t *state, foc_t *hfoc) {
   int t_int  = float_to_uint(state->t_act, T_MIN, T_MAX, 12);
   int vb_int = float_to_uint(state->v_batt, VB_MIN, VB_MAX, 8);
   
-  msg->tx_header.StdId = CAN_MID; // ID Master
+  msg->tx_header.StdId = CAN_SID; // ID Master
   
   // Đóng gói theo chuẩn MIT Cheetah (5 bytes dữ liệu + 1 byte ID)
   msg->data[0] = CAN_SID;                 // Byte 0 chứa ID của động cơ
@@ -261,6 +262,30 @@ void Slave_Pack_State(CANTxMessage *msg, JointState_t *state, foc_t *hfoc) {
   msg->data[5] = t_int & 0xFF;
   msg->data[6] = vb_int;
   msg->data[7] = 0x00;                     // Byte 7 không sử dụng
+}
+
+
+void Slave_Unpack_Cmd_2(CANRxMessage *msg, JointCommand_t *cmd) {
+  memcpy(&cmd->p_des, &msg->data[0], sizeof(float));
+  memcpy(&cmd->v_des, &msg->data[4], sizeof(float));
+
+  cmd->can_id = msg->rx_header.StdId; // Lấy ID từ gói tin nhận được
+
+  SPOINT_POS = RAD_TO_DEG(cmd->p_des)*GR;
+  SPOINT_VEL = RADS_TO_RPM(cmd->v_des)*GR; 
+
+}
+
+
+void Slave_Pack_State_2(CANTxMessage *msg, JointState_t *state, foc_t *hfoc) {
+  state->p_act  = DEG_TO_RAD(hfoc->actual_angle)/GR; // rad
+  state->v_act  = RPM_TO_RADS(hfoc->actual_rpm)/GR; // rad/s
+
+  memcpy(&msg->data[0], &state->p_act, sizeof(float));
+  memcpy(&msg->data[4], &state->v_act, sizeof(float));
+
+  msg->tx_header.StdId = CAN_SID; // ID Slate
+  
 }
 
 /* USER CODE END 1 */

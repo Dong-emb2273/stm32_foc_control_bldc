@@ -84,6 +84,10 @@ void Master_Pack_Cmd(CANTxMessage *msg, JointCommand_t *cmd);
 void Master_Unpack_State(CANRxMessage *msg, JointState_t *state);
 void Slave_Pack_State(CANTxMessage *msg, JointState_t *state, foc_t *hfoc);
 void Slave_Unpack_Cmd(CANRxMessage *msg, JointCommand_t *cmd);
+
+void Slave_Pack_State_2(CANTxMessage *msg, JointState_t *state, foc_t *hfoc);
+void Slave_Unpack_Cmd_2(CANRxMessage *msg, JointCommand_t *cmd);
+
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

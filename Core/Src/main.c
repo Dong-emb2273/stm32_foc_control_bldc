@@ -450,21 +450,21 @@ void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
 
 	}
 }
+
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
   if (hcan->Instance == CAN1)
   {
-    
-    if(HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &can_rx.rx_header, can_rx.data) != HAL_OK) {
-      printf("CAN RX Error: %d\r\n", HAL_CAN_GetError(hcan));
+    if(HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &can_rx.rx_header, can_rx.data) != HAL_OK){
+  
     }
+    
+    Slave_Pack_State_2(&can_tx, &joint_state, &hfoc);
     uint32_t TxMailbox;
-    Slave_Pack_State(&can_tx, &joint_state, &hfoc);
-    
-    if(HAL_CAN_AddTxMessage(hcan, &can_tx.tx_header, can_tx.data, &TxMailbox) != HAL_OK) {
-      printf("CAN TX Error: %d\r\n", HAL_CAN_GetError(hcan));
+    if(HAL_CAN_AddTxMessage(hcan, &can_tx.tx_header, can_tx.data, &TxMailbox) != HAL_OK){
+      HAL_CAN_AbortTxRequest(hcan, CAN_TX_MAILBOX0 | CAN_TX_MAILBOX1 | CAN_TX_MAILBOX2);
     }
-    Slave_Unpack_Cmd(&can_rx, &joint_cmd);
+    Slave_Unpack_Cmd_2(&can_rx, &joint_cmd);
 
   }
 }

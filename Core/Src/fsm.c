@@ -19,6 +19,7 @@
 #include "encoder.h"
 #include "flash.h"
 #include "uart.h"
+#include "can.h"
 
 
 extern UART_HandleTypeDef huart;
@@ -438,6 +439,8 @@ void set_pid_mode(FSMStruct * fsmstate){
 		}
 		case 'l':
 			I_MAX = fmaxf(fminf(atof(fsmstate->cmd_buff), 75.0f), 0.0f);
+			// pid_set_out_constraint(&hfoc.id_ctrl, I_MAX, -I_MAX);
+			// pid_set_out_constraint(&hfoc.iq_ctrl, I_MAX, -I_MAX);
 			foc_set_limit_current(&hfoc, I_MAX);
 			printf("I_MAX set to %f\r\n", I_MAX);
 			break;
@@ -596,15 +599,16 @@ void process_user_input(FSMStruct * fsmstate){
 			printf("I_BW set to %f\r\n", I_BW);
 			break;
 		case 'i':
-			CAN_SID = atoi(fsmstate->cmd_buff);
+			CAN_SID = CONSTRAIN(atoi(fsmstate->cmd_buff), 0, 127);
+			can_rx_init(&can_rx);
 			printf("CAN_SID set to %ld\r\n", CAN_SID);
 			break;
 		case 'm':
-			CAN_MID = atoi(fsmstate->cmd_buff);
+			CAN_MID = CONSTRAIN(atoi(fsmstate->cmd_buff), 0, 127);
 			printf("CAN_MID set to %ld\r\n", CAN_MID);
 			break;
 		case 't':
-			CAN_TIMEOUT = atoi(fsmstate->cmd_buff);
+			CAN_TIMEOUT = CONSTRAIN(atoi(fsmstate->cmd_buff), 0, 100000);
 			printf("CAN_TIMEOUT set to %ld\r\n", CAN_TIMEOUT);
 			break;
 
@@ -612,6 +616,7 @@ void process_user_input(FSMStruct * fsmstate){
 			I_MAX = fmaxf(fminf(atof(fsmstate->cmd_buff), 75.0f), 0.0f);
 			pid_set_out_constraint(&hfoc.id_ctrl, I_MAX, -I_MAX);
 			pid_set_out_constraint(&hfoc.iq_ctrl, I_MAX, -I_MAX);
+			foc_set_limit_current(&hfoc, I_MAX);
 			printf("I_MAX set to %f\r\n", I_MAX);
 			break;
 		// case 'f':

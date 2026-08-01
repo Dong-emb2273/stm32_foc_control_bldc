@@ -14,7 +14,7 @@ typedef struct {
 	float 		kp;     // (N.m/rad)
 	float 		kd;     // (N.m.s/rad)
 	float 		t_ff;   // (N.m)
-	uint32_t	can_id;
+	uint32_t	can_id; // ID 
 } JointCommand_t;
 
 typedef struct {
