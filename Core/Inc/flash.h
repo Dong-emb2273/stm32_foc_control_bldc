@@ -65,6 +65,8 @@ typedef struct {
     uint8_t pos_view :1;
     uint8_t reserved :1;
 
+    uint32_t  status_flags;
+
     float voffset_a;
     float voffset_b;
     float voffset_c;

@@ -514,6 +514,11 @@ void StartCalibrationTask(void *argument)
       case CALIBRATION_MODE: {
         ENCODER_AutoDetect();
         ENCODER_CHECK();
+        if(encoder.is_connected == 0) {
+          printf("Encoder not detected. Please check the connection.\r\n");
+          update_fsm(&state, 27);
+          break;
+        }
         DRV8323_Calibrate_Current_Offset(&hfoc.drv8323s);
         foc_auto_calibration(&hfoc);
         foc_cal_encoder(&hfoc);

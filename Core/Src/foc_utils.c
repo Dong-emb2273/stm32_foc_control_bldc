@@ -202,6 +202,7 @@ void foc_current_control_update(foc_t *hfoc) {
 
     if (DIR_PHASE == REVERSE_DIR) {
         target_iq = -target_iq;  
+        target_id = target_id;
     }
     
 	float sin_theta, cos_theta;
@@ -314,10 +315,6 @@ void foc_control_loop(foc_t *hfoc) {
 }
 
 void foc_sensored_calc_electric_angle(foc_t *hfoc) {
-	// Check for NULL pointer and invalid parameters
-	if (hfoc == NULL || PPAIRS <= 0) {
-			return;
-	}
 
 	float angle_deg = ENCODER_GetDegree(&encoder);
 

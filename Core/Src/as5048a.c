@@ -25,15 +25,7 @@ static uint8_t calc_even_parity(uint16_t value){
 
 //
 
-// int AS5048A_Config_ALL(AS5048A_t *encd){
-// 	if (encd == NULL) {
-// 		return 0;
-// 	}
-// 	AS5048A_Config_CS(encd);
-// 	AS5048A_cs_set(encd);
-	
-// 	return 1;
-// }
+
 
 int AS5048A_CheckExist(void *handle) {
 	Encoder_t *encd = (Encoder_t *)handle;

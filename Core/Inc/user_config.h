@@ -106,8 +106,60 @@ extern motor_config_t m_config;
 #define E_ZERO					1
 #define ENCODER_LUT             1                // Encoder offset LUT - 128 elements long
 
+#define STATUS_FLAGS            (m_config.status_flags)        // Status flags for motor operation
+#define TOGGLE_BIT(REG, BIT)    ((REG) ^= (BIT))
+
+#define BF_POWER                (1UL << 0)   // Bit flag for power status
+#define BF_SAVE                 (1UL << 1)   // Bit flag for save status
+#define BF_RUNNING              (1UL << 2)   // Bit flag for motor running status
+#define BF_VIEW                 (1UL << 4)   // Bit flag for current view
+#define BF_FOC_RUNNING          (1UL << 5)   // Bit flag for FOC running status
+#define BF_FOC_READY            (1UL << 6)   // Bit flag for FOC ready status
 
 
+
+
+#define BF_ENC_READY            (1UL << 7)   // Bit flag for encoder ready status
+#define BF_CAN_READY            (1UL << 8)  // Bit flag for CAN ready status
+#define BF_DRV_READY            (1UL << 9)  // Bit flag for driver ready status
+
+
+
+#define SET_POWER_FLAG          SET_BIT(STATUS_FLAGS, BF_POWER)   // Set power flag
+#define CLEAR_POWER_FLAG        CLEAR_BIT(STATUS_FLAGS, BF_POWER) // Clear power flag
+#define READ_POWER_FLAG         READ_BIT(STATUS_FLAGS, BF_POWER)  // Read power flag
+
+#define SET_SAVE_FLAG           SET_BIT(STATUS_FLAGS, BF_SAVE)    // Set save flag
+#define CLEAR_SAVE_FLAG         CLEAR_BIT(STATUS_FLAGS, BF_SAVE)  // Clear save flag
+#define READ_SAVE_FLAG          READ_BIT(STATUS_FLAGS, BF_SAVE)   // Read save flag
+
+#define SET_RUNNING_FLAG        SET_BIT(STATUS_FLAGS, BF_RUNNING) // Set running flag
+#define CLEAR_RUNNING_FLAG      CLEAR_BIT(STATUS_FLAGS, BF_RUNNING) // Clear running flag
+#define READ_RUNNING_FLAG       READ_BIT(STATUS_FLAGS, BF_RUNNING)  // Read running flag
+
+#define SET_VIEW_FLAG           SET_BIT(STATUS_FLAGS, BF_VIEW)    // Set view flag
+#define CLEAR_VIEW_FLAG         CLEAR_BIT(STATUS_FLAGS, BF_VIEW)  // Clear view flag
+#define READ_VIEW_FLAG          READ_BIT(STATUS_FLAGS, BF_VIEW)   // Read view flag
+
+#define SET_FOC_RUNNING_FLAG    SET_BIT(STATUS_FLAGS, BF_FOC_RUNNING) // Set FOC running flag
+#define CLEAR_FOC_RUNNING_FLAG  CLEAR_BIT(STATUS_FLAGS, BF_FOC_RUNNING) // Clear FOC running flag
+#define READ_FOC_RUNNING_FLAG   READ_BIT(STATUS_FLAGS, BF_FOC_RUNNING)  // Read FOC running flag
+
+#define SET_FOC_READY_FLAG      SET_BIT(STATUS_FLAGS, BF_FOC_READY) // Set FOC ready flag
+#define CLEAR_FOC_READY_FLAG    CLEAR_BIT(STATUS_FLAGS, BF_FOC_READY) // Clear FOC ready flag
+#define READ_FOC_READY_FLAG     READ_BIT(STATUS_FLAGS, BF_FOC_READY)  // Read FOC ready flag
+
+#define SET_ENC_READY_FLAG      SET_BIT(STATUS_FLAGS, BF_ENC_READY) // Set encoder ready flag
+#define CLEAR_ENC_READY_FLAG    CLEAR_BIT(STATUS_FLAGS, BF_ENC_READY) // Clear encoder ready flag
+#define READ_ENC_READY_FLAG     READ_BIT(STATUS_FLAGS, BF_ENC_READY)  // Read encoder ready flag
+
+#define SET_CAN_READY_FLAG      SET_BIT(STATUS_FLAGS, BF_CAN_READY) // Set CAN ready flag
+#define CLEAR_CAN_READY_FLAG    CLEAR_BIT(STATUS_FLAGS, BF_CAN_READY) // Clear CAN ready flag
+#define READ_CAN_READY_FLAG     READ_BIT(STATUS_FLAGS, BF_CAN_READY)  // Read CAN ready flag
+
+#define SET_DRV_READY_FLAG      SET_BIT(STATUS_FLAGS, BF_DRV_READY) // Set driver ready flag
+#define CLEAR_DRV_READY_FLAG    CLEAR_BIT(STATUS_FLAGS, BF_DRV_READY) // Clear driver ready flag
+#define READ_DRV_READY_FLAG     READ_BIT(STATUS_FLAGS, BF_DRV_READY)  // Read driver ready flag
 
 
 

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccZ8g5pn.s 			page 1
+ARM GAS  /tmp/ccyN2EjE.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccZ8g5pn.s 			page 1
   37              	.LVL1:
   20:Core/Src/as5048a.c **** 	value ^= value >> 4;
   38              		.loc 1 20 2 is_stmt 1 view .LVU3
-ARM GAS  /tmp/ccZ8g5pn.s 			page 2
+ARM GAS  /tmp/ccyN2EjE.s 			page 2
 
 
   39              		.loc 1 20 8 is_stmt 0 view .LVU4
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccZ8g5pn.s 			page 1
   86 0004 0023     		movs	r3, #0
   87 0006 0193     		str	r3, [sp, #4]
   88 0008 0293     		str	r3, [sp, #8]
-ARM GAS  /tmp/ccZ8g5pn.s 			page 3
+ARM GAS  /tmp/ccyN2EjE.s 			page 3
 
 
   89 000a 0393     		str	r3, [sp, #12]
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccZ8g5pn.s 			page 1
  133              	.LVL10:
  134              	.LFB136:
   25:Core/Src/as5048a.c **** 
-ARM GAS  /tmp/ccZ8g5pn.s 			page 4
+ARM GAS  /tmp/ccyN2EjE.s 			page 4
 
 
   26:Core/Src/as5048a.c **** //
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccZ8g5pn.s 			page 1
  171 0022 1B04     		lsls	r3, r3, #16
  172 0024 9361     		str	r3, [r2, #24]
   44:Core/Src/as5048a.c **** 	HAL_SPI_TransmitReceive(encd->active_port->hspi, (uint8_t*)&cmd, encd->spi_rx_buffer, 2, 100);
-ARM GAS  /tmp/ccZ8g5pn.s 			page 5
+ARM GAS  /tmp/ccyN2EjE.s 			page 5
 
 
  173              		.loc 1 44 2 view .LVU39
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccZ8g5pn.s 			page 1
  220 0070 94F82830 		ldrb	r3, [r4, #40]	@ zero_extendqisi2
  221              		.loc 1 51 89 view .LVU52
  222 0074 94F82940 		ldrb	r4, [r4, #41]	@ zero_extendqisi2
-ARM GAS  /tmp/ccZ8g5pn.s 			page 6
+ARM GAS  /tmp/ccyN2EjE.s 			page 6
 
 
  223              	.LVL17:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccZ8g5pn.s 			page 1
   55:Core/Src/as5048a.c **** 	
  264              		.loc 1 55 71 view .LVU64
  265 00a2 0020     		movs	r0, #0
-ARM GAS  /tmp/ccZ8g5pn.s 			page 7
+ARM GAS  /tmp/ccyN2EjE.s 			page 7
 
 
  266 00a4 FBE7     		b	.L4
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccZ8g5pn.s 			page 1
  315 0010 0544     		add	r5, r5, r0
  316              	.LVL27:
  317              		.loc 1 69 9 discriminator 3 view .LVU76
-ARM GAS  /tmp/ccZ8g5pn.s 			page 8
+ARM GAS  /tmp/ccyN2EjE.s 			page 8
 
 
  318 0012 6DB2     		sxtb	r5, r5
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccZ8g5pn.s 			page 1
  363              	.LVL33:
  364              	.LFB138:
   75:Core/Src/as5048a.c **** //
-ARM GAS  /tmp/ccZ8g5pn.s 			page 9
+ARM GAS  /tmp/ccyN2EjE.s 			page 9
 
 
   76:Core/Src/as5048a.c **** 
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccZ8g5pn.s 			page 1
  411              	.LVL37:
  412              		.loc 1 83 5 view .LVU101
  413 0038 10B9     		cbnz	r0, .L17
-ARM GAS  /tmp/ccZ8g5pn.s 			page 10
+ARM GAS  /tmp/ccyN2EjE.s 			page 10
 
 
   84:Core/Src/as5048a.c **** 		return 0;
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccZ8g5pn.s 			page 1
  461 0008 9361     		str	r3, [r2, #24]
   92:Core/Src/as5048a.c **** 	
   93:Core/Src/as5048a.c **** 	const uint16_t raw_data = ((uint16_t)self->spi_rx_buffer[0] << 8) | self->spi_rx_buffer[1];
-ARM GAS  /tmp/ccZ8g5pn.s 			page 11
+ARM GAS  /tmp/ccyN2EjE.s 			page 11
 
 
  462              		.loc 1 93 2 view .LVU109
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccZ8g5pn.s 			page 1
  104:Core/Src/as5048a.c **** }
  505              		.loc 1 104 1 view .LVU126
  506 004a 10BD     		pop	{r4, pc}
-ARM GAS  /tmp/ccZ8g5pn.s 			page 12
+ARM GAS  /tmp/ccyN2EjE.s 			page 12
 
 
  507              	.LVL46:
@@ -684,24 +684,24 @@ ARM GAS  /tmp/ccZ8g5pn.s 			page 1
  527              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
  528              		.file 9 "Core/Inc/encoder.h"
  529              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
-ARM GAS  /tmp/ccZ8g5pn.s 			page 13
+ARM GAS  /tmp/ccyN2EjE.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 as5048a.c
-     /tmp/ccZ8g5pn.s:18     .text.calc_even_parity:0000000000000000 $t
-     /tmp/ccZ8g5pn.s:25     .text.calc_even_parity:0000000000000000 calc_even_parity
-     /tmp/ccZ8g5pn.s:60     .text.AS5048A_Config_CS:0000000000000000 $t
-     /tmp/ccZ8g5pn.s:67     .text.AS5048A_Config_CS:0000000000000000 AS5048A_Config_CS
-     /tmp/ccZ8g5pn.s:125    .text.AS5048A_CheckExist:0000000000000000 $t
-     /tmp/ccZ8g5pn.s:132    .text.AS5048A_CheckExist:0000000000000000 AS5048A_CheckExist
-     /tmp/ccZ8g5pn.s:271    .text.AS5048A_DetectExit:0000000000000000 $t
-     /tmp/ccZ8g5pn.s:278    .text.AS5048A_DetectExit:0000000000000000 AS5048A_DetectExit
-     /tmp/ccZ8g5pn.s:355    .text.AS5048A_StartRead:0000000000000000 $t
-     /tmp/ccZ8g5pn.s:362    .text.AS5048A_StartRead:0000000000000000 AS5048A_StartRead
-     /tmp/ccZ8g5pn.s:435    .text.AS5048A_ParseData:0000000000000000 $t
-     /tmp/ccZ8g5pn.s:442    .text.AS5048A_ParseData:0000000000000000 AS5048A_ParseData
-     /tmp/ccZ8g5pn.s:515    .text.AS5048A_ParseData:0000000000000054 $d
+     /tmp/ccyN2EjE.s:18     .text.calc_even_parity:0000000000000000 $t
+     /tmp/ccyN2EjE.s:25     .text.calc_even_parity:0000000000000000 calc_even_parity
+     /tmp/ccyN2EjE.s:60     .text.AS5048A_Config_CS:0000000000000000 $t
+     /tmp/ccyN2EjE.s:67     .text.AS5048A_Config_CS:0000000000000000 AS5048A_Config_CS
+     /tmp/ccyN2EjE.s:125    .text.AS5048A_CheckExist:0000000000000000 $t
+     /tmp/ccyN2EjE.s:132    .text.AS5048A_CheckExist:0000000000000000 AS5048A_CheckExist
+     /tmp/ccyN2EjE.s:271    .text.AS5048A_DetectExit:0000000000000000 $t
+     /tmp/ccyN2EjE.s:278    .text.AS5048A_DetectExit:0000000000000000 AS5048A_DetectExit
+     /tmp/ccyN2EjE.s:355    .text.AS5048A_StartRead:0000000000000000 $t
+     /tmp/ccyN2EjE.s:362    .text.AS5048A_StartRead:0000000000000000 AS5048A_StartRead
+     /tmp/ccyN2EjE.s:435    .text.AS5048A_ParseData:0000000000000000 $t
+     /tmp/ccyN2EjE.s:442    .text.AS5048A_ParseData:0000000000000000 AS5048A_ParseData
+     /tmp/ccyN2EjE.s:515    .text.AS5048A_ParseData:0000000000000054 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_Init
