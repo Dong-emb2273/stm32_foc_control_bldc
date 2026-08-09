@@ -125,7 +125,7 @@ void fsm_exit_state(FSMStruct * fsmstate){
 			break;
 		case SETUP_MODE:
 			printf("Leaving Setup Menu\r\n");
-			SAVE_FLAG = 1;
+			SF_SAVE;
 			fsmstate->ready = 1;
 			break;
 		case TEST_MODE:
@@ -134,7 +134,7 @@ void fsm_exit_state(FSMStruct * fsmstate){
 			// DRV8323_Set_PWM(&hfoc.drv8323s, 0, 0, 0);
 			pid_reset(&hfoc.id_ctrl);
 			pid_reset(&hfoc.iq_ctrl);
-			SAVE_FLAG = 1;
+			SF_SAVE;
 			MOTOR_RUNNING = 0;
 			
 			fsmstate->ready = 1;

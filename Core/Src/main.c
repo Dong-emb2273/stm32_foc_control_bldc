@@ -268,8 +268,7 @@ int main(void)
   state.ready = 1;
   MOTOR_RUNNING = 0;
   CF_POWER;
-  CLEAR_BIT(SAVE_FLAG, BF_POWER);
-  SAVE_FLAG = 0;
+  CF_SAVE;
 
   // Output PWM
   DRV8323_Start_PWM(&hfoc.drv8323s); //  MOE và CCxE
@@ -495,7 +494,7 @@ void ErrorTask(void *argument)
   {
     if(encoder.is_connected == 0) printf("Encoder not detected. Please check the connection.\r\n");
     if (RF_POWER) printf("Power voltage is too low: %.2f V\r\n", hfoc.v_bus);
-    if(SAVE_FLAG == 1) {flash_save_config(&m_config); SAVE_FLAG=0; printf("Configuration saved to flash.\r\n");}
+    if(RF_SAVE) {flash_save_config(&m_config); CF_SAVE; printf("Configuration saved to flash.\r\n");}
 
     osDelay(1000); 
   }

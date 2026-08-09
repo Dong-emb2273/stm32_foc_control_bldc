@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cciWajRX.s 			page 1
+ARM GAS  /tmp/ccShWfQg.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
   41 0006 094A     		ldr	r2, .L2+8
   42 0008 9A60     		str	r2, [r3, #8]
   16:Core/Src/encoder.c **** 	encoder.enc_internal.cs_pin = GPIO_PIN_9;
-ARM GAS  /tmp/cciWajRX.s 			page 2
+ARM GAS  /tmp/ccShWfQg.s 			page 2
 
 
   43              		.loc 1 16 2 is_stmt 1 view .LVU5
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
   88              		@ args = 0, pretend = 0, frame = 0
   89              		@ frame_needed = 0, uses_anonymous_args = 0
   90 0000 38B5     		push	{r3, r4, r5, lr}
-ARM GAS  /tmp/cciWajRX.s 			page 3
+ARM GAS  /tmp/ccShWfQg.s 			page 3
 
 
   91              	.LCFI0:
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  134 002e 82F87C40 		strb	r4, [r2, #124]
   39:Core/Src/encoder.c **** 		ENCD_TYPE = ENCODER_TYPE_AS5048A; 
  135              		.loc 1 39 3 is_stmt 1 view .LVU33
-ARM GAS  /tmp/cciWajRX.s 			page 4
+ARM GAS  /tmp/ccShWfQg.s 			page 4
 
 
  136              		.loc 1 39 13 is_stmt 0 view .LVU34
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  160              		.loc 1 47 22 is_stmt 0 view .LVU43
  161 0052 6B62     		str	r3, [r5, #36]
   48:Core/Src/encoder.c **** 	
-ARM GAS  /tmp/cciWajRX.s 			page 5
+ARM GAS  /tmp/ccShWfQg.s 			page 5
 
 
  162              		.loc 1 48 2 is_stmt 1 view .LVU44
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  199              		.loc 1 55 17 is_stmt 0 view .LVU61
  200 007c 0849     		ldr	r1, .L10+12
  201 007e 0122     		movs	r2, #1
-ARM GAS  /tmp/cciWajRX.s 			page 6
+ARM GAS  /tmp/ccShWfQg.s 			page 6
 
 
  202 0080 81F87C20 		strb	r2, [r1, #124]
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  238              	.LC3:
  239 0048 456E636F 		.ascii	"Encoder Location: EXTERNAL\015\000"
  239      64657220 
-ARM GAS  /tmp/cciWajRX.s 			page 7
+ARM GAS  /tmp/ccShWfQg.s 			page 7
 
 
  239      4C6F6361 
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  278 0010 5BB1     		cbz	r3, .L26
   76:Core/Src/encoder.c **** 		printf("Encoder Location: INTERNAL\r\n");
   77:Core/Src/encoder.c **** 	}
-ARM GAS  /tmp/cciWajRX.s 			page 8
+ARM GAS  /tmp/ccShWfQg.s 			page 8
 
 
   78:Core/Src/encoder.c **** 	else if(encoder.location == ENCODER_LOC_EXTERNAL){
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
   81:Core/Src/encoder.c **** 	static uint16_t first_check = 1;
   82:Core/Src/encoder.c **** 	for (int i = 0; i < 1000; i++) {
   83:Core/Src/encoder.c **** 		if(encoder.parse_data(&encoder) < 0.0f){
-ARM GAS  /tmp/cciWajRX.s 			page 9
+ARM GAS  /tmp/ccShWfQg.s 			page 9
 
 
   84:Core/Src/encoder.c **** 			first_check ++;
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  363              	.LVL12:
  364              		.loc 1 89 2 is_stmt 0 view .LVU99
  365 0064 2188     		ldrh	r1, [r4]
-ARM GAS  /tmp/cciWajRX.s 			page 10
+ARM GAS  /tmp/ccShWfQg.s 			page 10
 
 
  366 0066 0948     		ldr	r0, .L29+24
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
   97:Core/Src/encoder.c ****         encoder.active_port = &encoder.enc_internal; 
  415              		.loc 1 97 9 is_stmt 1 view .LVU109
  416              		.loc 1 97 29 is_stmt 0 view .LVU110
-ARM GAS  /tmp/cciWajRX.s 			page 11
+ARM GAS  /tmp/ccShWfQg.s 			page 11
 
 
  417 0012 5362     		str	r3, [r2, #36]
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  130:Core/Src/encoder.c ****             ENCODER_Reset_Flag();
  439              		.loc 1 130 13 is_stmt 1 view .LVU119
  440 002e 0E4A     		ldr	r2, .L41+8
-ARM GAS  /tmp/cciWajRX.s 			page 12
+ARM GAS  /tmp/ccShWfQg.s 			page 12
 
 
  441 0030 1370     		strb	r3, [r2]
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  480              		.loc 1 116 13 view .LVU133
  481              		.loc 1 133 1 is_stmt 0 view .LVU134
  482 005a 10BD     		pop	{r4, pc}
-ARM GAS  /tmp/cciWajRX.s 			page 13
+ARM GAS  /tmp/ccShWfQg.s 			page 13
 
 
  483              	.L39:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  137:Core/Src/encoder.c **** 		return 0.0f; 
  138:Core/Src/encoder.c **** 	}
  139:Core/Src/encoder.c **** 	encd->raw_angle = encd->parse_data(encd);
-ARM GAS  /tmp/cciWajRX.s 			page 14
+ARM GAS  /tmp/ccShWfQg.s 			page 14
 
 
  535              		.loc 1 139 2 is_stmt 1 view .LVU140
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  574 004e 78EEC08A 		vsub.f32	s17, s17, s0
  575              	.LVL19:
  155:Core/Src/encoder.c **** 
-ARM GAS  /tmp/cciWajRX.s 			page 15
+ARM GAS  /tmp/ccShWfQg.s 			page 15
 
 
  156:Core/Src/encoder.c **** 	if (fabsf(angle_diff) > MAX_ANGLE_JUMP_DEG) {
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  617              		.loc 1 146 3 is_stmt 1 view .LVU174
  146:Core/Src/encoder.c **** 	}
  618              		.loc 1 146 14 is_stmt 0 view .LVU175
-ARM GAS  /tmp/cciWajRX.s 			page 16
+ARM GAS  /tmp/ccShWfQg.s 			page 16
 
 
  619 008e 94ED0D0A 		vldr.32	s0, [r4, #52]
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  661 00d0 38EE888A 		vadd.f32	s16, s17, s16
  662 00d4 84ED0D8A 		vstr.32	s16, [r4, #52]
  171:Core/Src/encoder.c **** 
-ARM GAS  /tmp/cciWajRX.s 			page 17
+ARM GAS  /tmp/ccShWfQg.s 			page 17
 
 
  172:Core/Src/encoder.c **** 	if (encd->angle_filtered >= 360.0f)
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  705              		.cfi_def_cfa_offset 0
  706              		.cfi_restore 4
  707              		.cfi_restore 14
-ARM GAS  /tmp/cciWajRX.s 			page 18
+ARM GAS  /tmp/ccShWfQg.s 			page 18
 
 
  708              		.cfi_restore 80
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  758              		.loc 1 184 25 is_stmt 0 view .LVU209
  759 000c 90ED0D9A 		vldr.32	s18, [r0, #52]
  760              		.loc 1 184 48 view .LVU210
-ARM GAS  /tmp/cciWajRX.s 			page 19
+ARM GAS  /tmp/ccShWfQg.s 			page 19
 
 
  761 0010 90ED118A 		vldr.32	s16, [r0, #68]
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  804 005a 94ED138A 		vldr.32	s16, [r4, #76]
  805              		.loc 1 195 8 view .LVU228
  806 005e 77EEC88A 		vsub.f32	s17, s15, s16
-ARM GAS  /tmp/cciWajRX.s 			page 20
+ARM GAS  /tmp/ccShWfQg.s 			page 20
 
 
  807              	.LVL35:
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  851 00ac 30EE070A 		vadd.f32	s0, s0, s14
  852              	.LVL40:
  206:Core/Src/encoder.c **** 
-ARM GAS  /tmp/cciWajRX.s 			page 21
+ARM GAS  /tmp/ccShWfQg.s 			page 21
 
 
  207:Core/Src/encoder.c **** 	// Very low RPM clamping (0.1 RPM resolution)
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  894 00da 00BF     		.align	2
  895              	.L83:
  896 00dc 00003443 		.word	1127481344
-ARM GAS  /tmp/cciWajRX.s 			page 22
+ARM GAS  /tmp/ccShWfQg.s 			page 22
 
 
  897 00e0 610B363B 		.word	993397601
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  948 0010 78EE677A 		vsub.f32	s15, s16, s15
  949              	.LVL46:
  223:Core/Src/encoder.c **** 
-ARM GAS  /tmp/cciWajRX.s 			page 23
+ARM GAS  /tmp/ccShWfQg.s 			page 23
 
 
  224:Core/Src/encoder.c **** 	if (angle_dif< -180) {
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  996 0060 9FED127A 		vldr.32	s14, .L94+8
  997 0064 20EE070A 		vmul.f32	s0, s0, s14
  998              		.loc 1 231 127 view .LVU278
-ARM GAS  /tmp/cciWajRX.s 			page 24
+ARM GAS  /tmp/ccShWfQg.s 			page 24
 
 
  999 0068 9FED117A 		vldr.32	s14, .L94+12
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  1043 00ac 6666663F 		.word	1063675494
  1044 00b0 CDCCCC3D 		.word	1036831949
  1045 00b4 00003443 		.word	1127481344
-ARM GAS  /tmp/cciWajRX.s 			page 25
+ARM GAS  /tmp/ccShWfQg.s 			page 25
 
 
  1046              		.cfi_endproc
@@ -1479,39 +1479,39 @@ ARM GAS  /tmp/cciWajRX.s 			page 1
  1084              		.file 13 "<built-in>"
  1085              		.file 14 "/usr/include/newlib/math.h"
  1086              		.file 15 "Core/Inc/as5048a.h"
-ARM GAS  /tmp/cciWajRX.s 			page 26
+ARM GAS  /tmp/ccShWfQg.s 			page 26
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 encoder.c
-     /tmp/cciWajRX.s:18     .text.ENCODER_Setup:0000000000000000 $t
-     /tmp/cciWajRX.s:26     .text.ENCODER_Setup:0000000000000000 ENCODER_Setup
-     /tmp/cciWajRX.s:68     .text.ENCODER_Setup:0000000000000024 $d
-     /tmp/cciWajRX.s:77     .text.ENCODER_AutoDetect:0000000000000000 $t
-     /tmp/cciWajRX.s:84     .text.ENCODER_AutoDetect:0000000000000000 ENCODER_AutoDetect
-     /tmp/cciWajRX.s:219    .text.ENCODER_AutoDetect:0000000000000094 $d
-     /tmp/cciWajRX.s:228    .rodata.ENCODER_CHECK.str1.4:0000000000000000 $d
-     /tmp/cciWajRX.s:244    .text.ENCODER_CHECK:0000000000000000 $t
-     /tmp/cciWajRX.s:251    .text.ENCODER_CHECK:0000000000000000 ENCODER_CHECK
-     /tmp/cciWajRX.s:379    .text.ENCODER_CHECK:0000000000000074 $d
-     /tmp/cciWajRX.s:390    .text.ENCODER_Init_From_Config:0000000000000000 $t
-     /tmp/cciWajRX.s:397    .text.ENCODER_Init_From_Config:0000000000000000 ENCODER_Init_From_Config
-     /tmp/cciWajRX.s:492    .text.ENCODER_Init_From_Config:0000000000000060 $d
-     /tmp/cciWajRX.s:501    .text.ENCODER_GetDegree:0000000000000000 $t
-     /tmp/cciWajRX.s:508    .text.ENCODER_GetDegree:0000000000000000 ENCODER_GetDegree
-     /tmp/cciWajRX.s:719    .text.ENCODER_GetDegree:0000000000000114 $d
-     /tmp/cciWajRX.s:728    .text.ENCODER_GetRPM:0000000000000000 $t
-     /tmp/cciWajRX.s:735    .text.ENCODER_GetRPM:0000000000000000 ENCODER_GetRPM
-     /tmp/cciWajRX.s:896    .text.ENCODER_GetRPM:00000000000000dc $d
-     /tmp/cciWajRX.s:912    .text.ENCODER_GetActualDegree:0000000000000000 $t
-     /tmp/cciWajRX.s:919    .text.ENCODER_GetActualDegree:0000000000000000 ENCODER_GetActualDegree
-     /tmp/cciWajRX.s:1041   .text.ENCODER_GetActualDegree:00000000000000a4 $d
-     /tmp/cciWajRX.s:1055   .bss.encd_get_val_flag:0000000000000000 encd_get_val_flag
-     /tmp/cciWajRX.s:1062   .bss.encoder:0000000000000000 encoder
-     /tmp/cciWajRX.s:1056   .bss.encd_get_val_flag:0000000000000000 $d
-     /tmp/cciWajRX.s:1058   .bss.encoder:0000000000000000 $d
-     /tmp/cciWajRX.s:1065   .data.first_check.0:0000000000000000 $d
-     /tmp/cciWajRX.s:1069   .data.first_check.0:0000000000000000 first_check.0
+     /tmp/ccShWfQg.s:18     .text.ENCODER_Setup:0000000000000000 $t
+     /tmp/ccShWfQg.s:26     .text.ENCODER_Setup:0000000000000000 ENCODER_Setup
+     /tmp/ccShWfQg.s:68     .text.ENCODER_Setup:0000000000000024 $d
+     /tmp/ccShWfQg.s:77     .text.ENCODER_AutoDetect:0000000000000000 $t
+     /tmp/ccShWfQg.s:84     .text.ENCODER_AutoDetect:0000000000000000 ENCODER_AutoDetect
+     /tmp/ccShWfQg.s:219    .text.ENCODER_AutoDetect:0000000000000094 $d
+     /tmp/ccShWfQg.s:228    .rodata.ENCODER_CHECK.str1.4:0000000000000000 $d
+     /tmp/ccShWfQg.s:244    .text.ENCODER_CHECK:0000000000000000 $t
+     /tmp/ccShWfQg.s:251    .text.ENCODER_CHECK:0000000000000000 ENCODER_CHECK
+     /tmp/ccShWfQg.s:379    .text.ENCODER_CHECK:0000000000000074 $d
+     /tmp/ccShWfQg.s:390    .text.ENCODER_Init_From_Config:0000000000000000 $t
+     /tmp/ccShWfQg.s:397    .text.ENCODER_Init_From_Config:0000000000000000 ENCODER_Init_From_Config
+     /tmp/ccShWfQg.s:492    .text.ENCODER_Init_From_Config:0000000000000060 $d
+     /tmp/ccShWfQg.s:501    .text.ENCODER_GetDegree:0000000000000000 $t
+     /tmp/ccShWfQg.s:508    .text.ENCODER_GetDegree:0000000000000000 ENCODER_GetDegree
+     /tmp/ccShWfQg.s:719    .text.ENCODER_GetDegree:0000000000000114 $d
+     /tmp/ccShWfQg.s:728    .text.ENCODER_GetRPM:0000000000000000 $t
+     /tmp/ccShWfQg.s:735    .text.ENCODER_GetRPM:0000000000000000 ENCODER_GetRPM
+     /tmp/ccShWfQg.s:896    .text.ENCODER_GetRPM:00000000000000dc $d
+     /tmp/ccShWfQg.s:912    .text.ENCODER_GetActualDegree:0000000000000000 $t
+     /tmp/ccShWfQg.s:919    .text.ENCODER_GetActualDegree:0000000000000000 ENCODER_GetActualDegree
+     /tmp/ccShWfQg.s:1041   .text.ENCODER_GetActualDegree:00000000000000a4 $d
+     /tmp/ccShWfQg.s:1055   .bss.encd_get_val_flag:0000000000000000 encd_get_val_flag
+     /tmp/ccShWfQg.s:1062   .bss.encoder:0000000000000000 encoder
+     /tmp/ccShWfQg.s:1056   .bss.encd_get_val_flag:0000000000000000 $d
+     /tmp/ccShWfQg.s:1058   .bss.encoder:0000000000000000 $d
+     /tmp/ccShWfQg.s:1065   .data.first_check.0:0000000000000000 $d
+     /tmp/ccShWfQg.s:1069   .data.first_check.0:0000000000000000 first_check.0
 
 UNDEFINED SYMBOLS
 hspi1
