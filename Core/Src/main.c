@@ -267,7 +267,8 @@ int main(void)
   state.next_state = STATE;
   state.ready = 1;
   MOTOR_RUNNING = 0;
-  POWER_FLAG = 0;
+  CF_POWER;
+  CLEAR_BIT(SAVE_FLAG, BF_POWER);
   SAVE_FLAG = 0;
 
   // Output PWM
@@ -493,7 +494,7 @@ void ErrorTask(void *argument)
   for(;;)
   {
     if(encoder.is_connected == 0) printf("Encoder not detected. Please check the connection.\r\n");
-    if (POWER_FLAG == 1) printf("Power voltage is too low: %.2f V\r\n", hfoc.v_bus);
+    if (RF_POWER) printf("Power voltage is too low: %.2f V\r\n", hfoc.v_bus);
     if(SAVE_FLAG == 1) {flash_save_config(&m_config); SAVE_FLAG=0; printf("Configuration saved to flash.\r\n");}
 
     osDelay(1000); 

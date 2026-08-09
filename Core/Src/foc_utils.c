@@ -81,14 +81,14 @@ int foc_get_power_voltage(foc_t *hfoc) {
     hfoc->v_bus = (1.0f - filter_alpha) * hfoc->v_bus + filter_alpha * pv;
 
     if (hfoc->v_bus >= 10.0f) {
-        POWER_FLAG = 0;
+        CF_POWER;
         return 0; 
     }
     else if (hfoc->v_bus < 8.0f && hfoc->v_bus > 1.0f) {
-        if (POWER_FLAG == 0) {
+        if (!RF_POWER) {
             
             // printf("Saving current configuration to flash...\r\n");
-            POWER_FLAG = 1;
+            SF_POWER;
         }
         return 1; 
     }
@@ -271,7 +271,7 @@ void foc_impedance_control(JointCommand_t *cmd, foc_t *hfoc) {
 void foc_control_loop(foc_t *hfoc) {
     if (hfoc == NULL) return;
         
-    if (POWER_FLAG == 1) {
+    if (RF_POWER) {
         // printf("Power voltage is too low: %.2f V\r\n", hfoc->v_bus);
         return;
     }
