@@ -266,9 +266,8 @@ int main(void)
   state.state = MENU_MODE;
   state.next_state = STATE;
   state.ready = 1;
-  MOTOR_RUNNING = 0;
-  CF_POWER;
-  CF_SAVE;
+
+  CLEAR_BIT(STATUS_FLAGS, BF_RUNNING | BF_POWER | BF_SAVE | BF_VIEW );
 
   // Output PWM
   DRV8323_Start_PWM(&hfoc.drv8323s); //  MOE và CCxE

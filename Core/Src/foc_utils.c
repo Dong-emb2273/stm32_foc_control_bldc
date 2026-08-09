@@ -739,27 +739,7 @@ void calibration_seq(void) {
     hfoc.iq_ctrl.kp = m_config.iq_kp;
     hfoc.iq_ctrl.ki = m_config.iq_ki;
 }
-void motor_turn_off(foc_t *hfoc){
-    if(MOTOR_RUNNING != 0){
-        hfoc->counter++;
-        
-        if (hfoc->counter <= 7000){
-            if (foc_torque_control_update(hfoc) == 1) {
-                foc_speed_control_update(hfoc, 0.0f);
-            }
-        }
-        else if (hfoc->counter < 7500){
-            hfoc->id_ref = 0.0f;
-            hfoc->iq_ref = 0.0f;
-            foc_current_control_update(hfoc);
-        }
-        else{
-            DRV8323_Set_PWM(&hfoc->drv8323s, 0, 0, 0); // Stop PWM output
-            hfoc->counter = 0;
-            MOTOR_RUNNING = 0;
-        }
-    }
-}
+
 
 void open_loop_voltage_control(foc_t *hfoc, float vd_ref, float vq_ref, float angle_rad) {
     float valpha, vbeta;

@@ -56,11 +56,6 @@ extern motor_config_t m_config;
 #define POS_OUT_MAX         (m_config.pos_out_max)         // Position controller output limit
 #define POS_E_DEADBAND      (m_config.pos_e_deadband)      // Position controller error deadband
 
-#define MOTOR_RUNNING       (m_config.motor_running)       // Flag indicating whether motor is currently running (1) or stopped (0)
-#define CUR_VIEW            (m_config.cur_view)            // Flag indicating whether to display current in telemetry
-#define VEL_VIEW            (m_config.vel_view)            // Flag indicating whether to display velocity in telemetry
-#define POS_VIEW            (m_config.pos_view)            // Flag indicating whether to display
-
 
 #define CAN_SID             (m_config.can_id)               // CAN bus ID
 #define CAN_MID             (m_config.can_master)           // CAN bus "master" ID
@@ -68,8 +63,6 @@ extern motor_config_t m_config;
 
 #define STATE               (m_config.state)                // Current state of the motor (0: idle, 1: running, 2: error)
 #define NEXT_STATE          (m_config.next_state)           // Next state of the motor after current operation completes
-#define POWER_FLAG          (m_config.power_flag)           // Flag indicating whether motor is powered on (1) or off (0)
-#define SAVE_FLAG           (m_config.save_flag)            // Flag indicating whether to save configuration
 
 #define P_MIN		        (m_config.pos_min)              // Position setpoint lower limit (rad)
 #define P_MAX		        (m_config.pos_max)              // Position setupoint upper bound (rad)
@@ -141,6 +134,7 @@ extern motor_config_t m_config;
 #define SF_VIEW                 SET_BIT(STATUS_FLAGS, BF_VIEW)    // Set view flag
 #define CF_VIEW                 CLEAR_BIT(STATUS_FLAGS, BF_VIEW)  // Clear view flag
 #define RF_VIEW                 READ_BIT(STATUS_FLAGS, BF_VIEW)   // Read view flag
+#define TF_VIEW                 TOGGLE_BIT(STATUS_FLAGS, BF_VIEW) // Toggle view flag
 
 #define SF_FOC_RUNNING          SET_BIT(STATUS_FLAGS, BF_FOC_RUNNING) // Set FOC running flag
 #define CF_FOC_RUNNING          CLEAR_BIT(STATUS_FLAGS, BF_FOC_RUNNING) // Clear FOC running flag

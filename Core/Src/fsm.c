@@ -83,7 +83,7 @@ void fsm_enter_state(FSMStruct * fsmstate){
 	switch(fsmstate->state){
 			case MENU_MODE:
 			//printf("Entering Main Menu\r\n");
-			MOTOR_RUNNING = 0;
+			CF_RUNNING;
 			DRV8323RS_Disnable;
 			enter_menu_state();
 			break;
@@ -93,7 +93,7 @@ void fsm_enter_state(FSMStruct * fsmstate){
 			break;
 		case TEST_MODE:
 			DRV8323RS_Disnable;
-			MOTOR_RUNNING = 0;
+			CF_RUNNING;
 			enter_test_state();
 			break;
 		case ENCODER_MODE:
@@ -102,7 +102,7 @@ void fsm_enter_state(FSMStruct * fsmstate){
 		case MOTOR_MODE:
 			printf("Entering Motor Mode\r\n");
 			DRV8323RS_Enable;
-			MOTOR_RUNNING = 1;
+			SF_RUNNING;
 			break;
 		case CALIBRATION_MODE:
 			printf("Starting Calibration Mode\r\n");
@@ -135,8 +135,7 @@ void fsm_exit_state(FSMStruct * fsmstate){
 			pid_reset(&hfoc.id_ctrl);
 			pid_reset(&hfoc.iq_ctrl);
 			SF_SAVE;
-			MOTOR_RUNNING = 0;
-			
+			CF_RUNNING;
 			fsmstate->ready = 1;
 			break;
 		case ENCODER_MODE:
@@ -255,7 +254,7 @@ void update_fsm(FSMStruct * fsmstate, char fsm_input){
 }
 
 void TestModeView(void) {
-    if (CUR_VIEW == 0 && VEL_VIEW == 0 && POS_VIEW == 0) {
+    if (!RF_VIEW) {
         return; 
     }
 
@@ -264,10 +263,6 @@ void TestModeView(void) {
     tx_buf[0] = 0xAA; 
     tx_buf[1] = 0xBB;
 
-    // float id = (CUR_VIEW == 1) ? hfoc.id_filtered : 0.0f;
-	// float iq = (CUR_VIEW == 1) ? hfoc.iq_filtered : 0.0f;
-    // float vel = (VEL_VIEW == 1) ? hfoc.actual_rpm : 0.0f;
-    // float pos = (POS_VIEW == 1) ? hfoc.actual_angle : 0.0f;
 	float iq_sp = SPOINT_TOR;
 	float vel_sp = SPOINT_VEL;
 	float pos_sp = SPOINT_POS;
@@ -301,13 +296,11 @@ void enter_test_state(void){
 	printf(" %-4s %-31s %-5s %-6s %d\n\r", "o", "Control Mode(0:Tor,1:Spd,2:Pos,3:Imp)", "0", "3", CONTROL_MODE);
     printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "l", "Current Limit (A)", "0.0", "75.0", I_MAX);
 	printf(" %-4s %-31s %-5s %-6s %.2f\n\r", "p", "Voltage Limit (V)", "0.0", "40.0", V_MAX_VOLTAGE);
-	printf(" %-4s %-31s %-5s %-6s %d\n\r", "m", "Motor On/Off", "0", "1", MOTOR_RUNNING);
+	printf(" %-4s %-31s %-5s %-6s %d\n\r", "m", "Motor On/Off", "0", "1", !!RF_RUNNING);
 
 	printf("\r\n Data View (0:Off, 1:On):\r\n");
-	printf(" %-4s %-31s %-5s %-6s %d\n\r", "v0", "Current View", "0", "1", CUR_VIEW);
-	printf(" %-4s %-31s %-5s %-6s %d\n\r", "v1", "Velocity View", "0", "1", VEL_VIEW);
-	printf(" %-4s %-31s %-5s %-6s %d\n\r", "v2", "Position View", "0", "1", POS_VIEW);
-	
+	printf(" %-4s %-31s %-5s %-6s %d\n\r", "v0", "Current View", "0", "1", !!RF_VIEW);
+
 	printf("\r\n Current Loop (Id/Iq):\r\n");
     printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "a", "Current Kp", "0", "-", ID_KP);
     printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "b", "Current Ki", "0", "-", ID_KI);
@@ -383,8 +376,8 @@ void set_pid_mode(FSMStruct * fsmstate){
             break;
         }
 		case 'm':{
-			if(MOTOR_RUNNING != 1){
-				MOTOR_RUNNING = 1;
+			if(!RF_RUNNING){
+				SF_RUNNING;
 				pid_reset(&hfoc.id_ctrl);
 				pid_reset(&hfoc.iq_ctrl);	
 				pid_reset(&hfoc.speed_ctrl);
@@ -394,7 +387,7 @@ void set_pid_mode(FSMStruct * fsmstate){
 				break;
 			}
 			else{
-				MOTOR_RUNNING = 0;
+				CF_RUNNING;
 				pid_reset(&hfoc.id_ctrl);
 				pid_reset(&hfoc.iq_ctrl);	
 				pid_reset(&hfoc.speed_ctrl);
@@ -415,37 +408,9 @@ void set_pid_mode(FSMStruct * fsmstate){
 			break;
 
 		case 'v':{
-			int mode_view = atoi(fsmstate->cmd_buff);
-			if (mode_view == 0){
-				if(CUR_VIEW != 1){
-					CUR_VIEW = 1;
-					break;
-				}
-				else{
-					CUR_VIEW = 0;
-					break;
-				}
-			}
-			if (mode_view == 1){
-				if(VEL_VIEW != 1){
-					VEL_VIEW = 1;
-					break;
-				}
-				else{
-					VEL_VIEW = 0;
-					break;
-				}
-			}
-			if (mode_view == 2){
-				if(POS_VIEW != 1){
-					POS_VIEW = 1;
-					break;
-				}
-				else{
-					POS_VIEW = 0;
-					break;
-				}
-			}
+			TF_VIEW;
+			printf("\n\r  Updated view: %d\r\n", RF_VIEW);
+
 			break;
 		}
 		case 'l':

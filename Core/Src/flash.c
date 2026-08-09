@@ -157,9 +157,6 @@ void flash_default_config(motor_config_t *data) {
     data->can_master = 0x01;
     data->can_timeout = 1000;
 
-    data->cur_view = 0;
-    data->vel_view = 0;
-    data->pos_view = 0;
 
     data->pos_min = -12.5f;
     data->pos_max = 12.5f;
