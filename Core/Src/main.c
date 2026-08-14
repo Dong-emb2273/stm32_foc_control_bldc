@@ -404,26 +404,26 @@ static void MX_DMA_Init(void)
 
   /* DMA interrupt init spi2*/
   /* DMA1_Stream3_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA1_Stream3_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(DMA1_Stream3_IRQn, 7, 4);
   HAL_NVIC_EnableIRQ(DMA1_Stream3_IRQn);
   /* DMA1_Stream4_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA1_Stream4_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(DMA1_Stream4_IRQn, 7, 5);
   HAL_NVIC_EnableIRQ(DMA1_Stream4_IRQn);
 	
 	/* DMA interrupt init spi1 */
   /* DMA1_Stream3_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 7, 6);
   HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn);
   /* DMA1_Stream4_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream3_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(DMA2_Stream3_IRQn, 7, 7);
   HAL_NVIC_EnableIRQ(DMA2_Stream3_IRQn);
 	
 	/* DMA interrupt init uart*/
   /* DMA1_Stream3_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 7, 8);
   HAL_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
   /* DMA1_Stream4_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream7_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(DMA2_Stream7_IRQn, 7, 9);
   HAL_NVIC_EnableIRQ(DMA2_Stream7_IRQn);
 
 }
@@ -496,7 +496,7 @@ void ErrorTask(void *argument)
   {
     if(encoder.is_connected == 0) printf("Encoder not detected. Please check the connection.\r\n");
     if (RF_POWER) printf("Power voltage is too low: %.2f V\r\n", hfoc.v_bus);
-    if(RF_SAVE) {flash_save_config(&m_config); CF_SAVE; printf("Configuration saved to flash.\r\n");}
+    if(RF_SAVE){flash_save_config(&m_config); CF_SAVE; printf("Configuration saved to flash.\r\n");}
 
     osDelay(1000); 
   }

@@ -1,7 +1,7 @@
 #include "config.h"
 
 
-//GPIO_InitTypeDef test = {0};
+
 
 GPIO_InitTypeDef GPIO_Init = {0};
 
@@ -418,7 +418,7 @@ void ADC1_DMA_CONFIG3(void) {
 	              (3 << ADC_SMPR2_SMP3_Pos);
 
 	// ---- BẬT VÀ KÍCH HOAT ----
-	NVIC_SetPriority(ADC_IRQn, 0);
+	NVIC_SetPriority(ADC_IRQn, 6);
 	NVIC_EnableIRQ(ADC_IRQn);
 
 	ADC1->CR2 |= ADC_CR2_ADON;

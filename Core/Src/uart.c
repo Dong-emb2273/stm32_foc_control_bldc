@@ -112,7 +112,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     /* USART6 interrupt Init */
 
 		
-    HAL_NVIC_SetPriority(USART6_IRQn, 7, 0);
+    HAL_NVIC_SetPriority(USART6_IRQn, 14, 0);
     HAL_NVIC_EnableIRQ(USART6_IRQn);
 		
 

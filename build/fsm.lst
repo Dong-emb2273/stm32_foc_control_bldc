@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccT7MPFG.s 			page 1
+ARM GAS  /tmp/ccwzytnE.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
    5:Core/Src/fsm.c ****  *      Author: Ben
    6:Core/Src/fsm.c ****  */
    7:Core/Src/fsm.c **** #include "main.h"
-ARM GAS  /tmp/ccT7MPFG.s 			page 2
+ARM GAS  /tmp/ccwzytnE.s 			page 2
 
 
    8:Core/Src/fsm.c **** #include <stdio.h>
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
   62:Core/Src/fsm.c **** 			
   63:Core/Src/fsm.c **** 			foc_control_loop(&hfoc);
   64:Core/Src/fsm.c **** 			break;
-ARM GAS  /tmp/ccT7MPFG.s 			page 3
+ARM GAS  /tmp/ccwzytnE.s 			page 3
 
 
   65:Core/Src/fsm.c **** 		case SETUP_MODE:
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
   42              		@ args = 0, pretend = 0, frame = 0
   43              		@ frame_needed = 0, uses_anonymous_args = 0
   44              		.loc 1 116 42 is_stmt 0 view .LVU1
-ARM GAS  /tmp/ccT7MPFG.s 			page 4
+ARM GAS  /tmp/ccwzytnE.s 			page 4
 
 
   45 0000 38B5     		push	{r3, r4, r5, lr}
@@ -202,11 +202,11 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
   59 000a DFE803F0 		tbb	[pc, r3]
   60              	.L4:
   61 000e 03       		.byte	(.L9-.L4)/2
-  62 000f 38       		.byte	(.L8-.L4)/2
-  63 0010 2D       		.byte	(.L7-.L4)/2
+  62 000f 36       		.byte	(.L8-.L4)/2
+  63 0010 2B       		.byte	(.L7-.L4)/2
   64 0011 06       		.byte	(.L6-.L4)/2
-  65 0012 11       		.byte	(.L5-.L4)/2
-  66 0013 2A       		.byte	(.L3-.L4)/2
+  65 0012 0F       		.byte	(.L5-.L4)/2
+  66 0013 28       		.byte	(.L3-.L4)/2
   67              		.p2align 1
   68              	.L9:
  121:Core/Src/fsm.c **** 		case MENU_MODE:
@@ -223,7 +223,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
   75              	.L1:
  126:Core/Src/fsm.c **** 		case SETUP_MODE:
  127:Core/Src/fsm.c **** 			printf("Leaving Setup Menu\r\n");
- 128:Core/Src/fsm.c **** 			SF_SAVE;
+ 128:Core/Src/fsm.c **** 			flash_save_config(&m_config); 
  129:Core/Src/fsm.c **** 			fsmstate->ready = 1;
  130:Core/Src/fsm.c **** 			break;
  131:Core/Src/fsm.c **** 		case TEST_MODE:
@@ -232,13 +232,13 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  134:Core/Src/fsm.c **** 			// DRV8323_Set_PWM(&hfoc.drv8323s, 0, 0, 0);
  135:Core/Src/fsm.c **** 			pid_reset(&hfoc.id_ctrl);
  136:Core/Src/fsm.c **** 			pid_reset(&hfoc.iq_ctrl);
- 137:Core/Src/fsm.c **** 			SF_SAVE;
+ 137:Core/Src/fsm.c **** 			flash_save_config(&m_config); 
  138:Core/Src/fsm.c **** 			CF_RUNNING;
  139:Core/Src/fsm.c **** 			fsmstate->ready = 1;
  140:Core/Src/fsm.c **** 			break;
  141:Core/Src/fsm.c **** 		case ENCODER_MODE:
  142:Core/Src/fsm.c **** 			//printf("Leaving Encoder Mode\r\n");
-ARM GAS  /tmp/ccT7MPFG.s 			page 5
+ARM GAS  /tmp/ccwzytnE.s 			page 5
 
 
  143:Core/Src/fsm.c **** 			fsmstate->ready = 1;
@@ -261,144 +261,144 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
   77 0018 38BD     		pop	{r3, r4, r5, pc}
   78              	.LVL2:
   79              	.L6:
- 127:Core/Src/fsm.c **** 			SF_SAVE;
+ 127:Core/Src/fsm.c **** 			flash_save_config(&m_config); 
   80              		.loc 1 127 4 is_stmt 1 view .LVU9
-  81 001a 1C48     		ldr	r0, .L11
+  81 001a 1B48     		ldr	r0, .L11
   82              	.LVL3:
- 127:Core/Src/fsm.c **** 			SF_SAVE;
+ 127:Core/Src/fsm.c **** 			flash_save_config(&m_config); 
   83              		.loc 1 127 4 is_stmt 0 view .LVU10
   84 001c FFF7FEFF 		bl	puts
   85              	.LVL4:
  128:Core/Src/fsm.c **** 			fsmstate->ready = 1;
   86              		.loc 1 128 4 is_stmt 1 view .LVU11
-  87 0020 1B4A     		ldr	r2, .L11+4
-  88 0022 D36E     		ldr	r3, [r2, #108]
-  89 0024 43F00203 		orr	r3, r3, #2
-  90 0028 D366     		str	r3, [r2, #108]
+  87 0020 1A48     		ldr	r0, .L11+4
+  88 0022 FFF7FEFF 		bl	flash_save_config
+  89              	.LVL5:
  129:Core/Src/fsm.c **** 			break;
-  91              		.loc 1 129 4 view .LVU12
+  90              		.loc 1 129 4 view .LVU12
  129:Core/Src/fsm.c **** 			break;
-  92              		.loc 1 129 20 is_stmt 0 view .LVU13
-  93 002a 0123     		movs	r3, #1
-  94 002c E370     		strb	r3, [r4, #3]
+  91              		.loc 1 129 20 is_stmt 0 view .LVU13
+  92 0026 0123     		movs	r3, #1
+  93 0028 E370     		strb	r3, [r4, #3]
  130:Core/Src/fsm.c **** 		case TEST_MODE:
-  95              		.loc 1 130 4 is_stmt 1 view .LVU14
-  96 002e F3E7     		b	.L1
-  97              	.LVL5:
-  98              	.L5:
+  94              		.loc 1 130 4 is_stmt 1 view .LVU14
+  95 002a F5E7     		b	.L1
+  96              	.LVL6:
+  97              	.L5:
  132:Core/Src/fsm.c **** 			printf("Leaving Test Mode\r\n");
-  99              		.loc 1 132 4 view .LVU15
- 100 0030 1848     		ldr	r0, .L11+8
- 101              	.LVL6:
+  98              		.loc 1 132 4 view .LVU15
+  99 002c 1848     		ldr	r0, .L11+8
+ 100              	.LVL7:
  132:Core/Src/fsm.c **** 			printf("Leaving Test Mode\r\n");
- 102              		.loc 1 132 4 is_stmt 0 view .LVU16
- 103 0032 FFF7FEFF 		bl	HAL_UART_AbortTransmit
- 104              	.LVL7:
+ 101              		.loc 1 132 4 is_stmt 0 view .LVU16
+ 102 002e FFF7FEFF 		bl	HAL_UART_AbortTransmit
+ 103              	.LVL8:
  133:Core/Src/fsm.c **** 			// DRV8323_Set_PWM(&hfoc.drv8323s, 0, 0, 0);
- 105              		.loc 1 133 4 is_stmt 1 view .LVU17
- 106 0036 1848     		ldr	r0, .L11+12
- 107 0038 FFF7FEFF 		bl	puts
-ARM GAS  /tmp/ccT7MPFG.s 			page 6
+ 104              		.loc 1 133 4 is_stmt 1 view .LVU17
+ 105 0032 1848     		ldr	r0, .L11+12
+ 106 0034 FFF7FEFF 		bl	puts
+ 107              	.LVL9:
+ARM GAS  /tmp/ccwzytnE.s 			page 6
 
 
- 108              	.LVL8:
  135:Core/Src/fsm.c **** 			pid_reset(&hfoc.iq_ctrl);
- 109              		.loc 1 135 4 view .LVU18
- 110 003c 174D     		ldr	r5, .L11+16
- 111 003e 2846     		mov	r0, r5
- 112 0040 FFF7FEFF 		bl	pid_reset
- 113              	.LVL9:
- 136:Core/Src/fsm.c **** 			SF_SAVE;
- 114              		.loc 1 136 4 view .LVU19
- 115 0044 05F13400 		add	r0, r5, #52
- 116 0048 FFF7FEFF 		bl	pid_reset
- 117              	.LVL10:
+ 108              		.loc 1 135 4 view .LVU18
+ 109 0038 174D     		ldr	r5, .L11+16
+ 110 003a 2846     		mov	r0, r5
+ 111 003c FFF7FEFF 		bl	pid_reset
+ 112              	.LVL10:
+ 136:Core/Src/fsm.c **** 			flash_save_config(&m_config); 
+ 113              		.loc 1 136 4 view .LVU19
+ 114 0040 05F13400 		add	r0, r5, #52
+ 115 0044 FFF7FEFF 		bl	pid_reset
+ 116              	.LVL11:
  137:Core/Src/fsm.c **** 			CF_RUNNING;
- 118              		.loc 1 137 4 view .LVU20
- 119 004c 104A     		ldr	r2, .L11+4
- 120 004e D36E     		ldr	r3, [r2, #108]
- 121 0050 43F00203 		orr	r3, r3, #2
- 122 0054 D366     		str	r3, [r2, #108]
+ 117              		.loc 1 137 4 view .LVU20
+ 118 0048 104D     		ldr	r5, .L11+4
+ 119 004a 2846     		mov	r0, r5
+ 120 004c FFF7FEFF 		bl	flash_save_config
+ 121              	.LVL12:
  138:Core/Src/fsm.c **** 			fsmstate->ready = 1;
- 123              		.loc 1 138 4 view .LVU21
- 124 0056 23F00403 		bic	r3, r3, #4
- 125 005a D366     		str	r3, [r2, #108]
+ 122              		.loc 1 138 4 view .LVU21
+ 123 0050 EB6E     		ldr	r3, [r5, #108]
+ 124 0052 23F00403 		bic	r3, r3, #4
+ 125 0056 EB66     		str	r3, [r5, #108]
  139:Core/Src/fsm.c **** 			break;
  126              		.loc 1 139 4 view .LVU22
  139:Core/Src/fsm.c **** 			break;
  127              		.loc 1 139 20 is_stmt 0 view .LVU23
- 128 005c 0123     		movs	r3, #1
- 129 005e E370     		strb	r3, [r4, #3]
+ 128 0058 0123     		movs	r3, #1
+ 129 005a E370     		strb	r3, [r4, #3]
  140:Core/Src/fsm.c **** 		case ENCODER_MODE:
  130              		.loc 1 140 4 is_stmt 1 view .LVU24
- 131 0060 DAE7     		b	.L1
- 132              	.LVL11:
+ 131 005c DCE7     		b	.L1
+ 132              	.LVL13:
  133              	.L3:
  143:Core/Src/fsm.c **** 			break;
  134              		.loc 1 143 4 view .LVU25
  143:Core/Src/fsm.c **** 			break;
  135              		.loc 1 143 20 is_stmt 0 view .LVU26
- 136 0062 0123     		movs	r3, #1
- 137 0064 C370     		strb	r3, [r0, #3]
+ 136 005e 0123     		movs	r3, #1
+ 137 0060 C370     		strb	r3, [r0, #3]
  144:Core/Src/fsm.c **** 		case MOTOR_MODE:
  138              		.loc 1 144 4 is_stmt 1 view .LVU27
- 139 0066 D7E7     		b	.L1
+ 139 0062 D9E7     		b	.L1
  140              	.L7:
  148:Core/Src/fsm.c **** 			pid_reset(&hfoc.iq_ctrl);
  141              		.loc 1 148 4 view .LVU28
- 142 0068 0C4D     		ldr	r5, .L11+16
- 143 006a 2846     		mov	r0, r5
- 144              	.LVL12:
+ 142 0064 0C4D     		ldr	r5, .L11+16
+ 143 0066 2846     		mov	r0, r5
+ 144              	.LVL14:
  148:Core/Src/fsm.c **** 			pid_reset(&hfoc.iq_ctrl);
  145              		.loc 1 148 4 is_stmt 0 view .LVU29
- 146 006c FFF7FEFF 		bl	pid_reset
- 147              	.LVL13:
+ 146 0068 FFF7FEFF 		bl	pid_reset
+ 147              	.LVL15:
  149:Core/Src/fsm.c **** 			fsmstate->ready = 1;
  148              		.loc 1 149 4 is_stmt 1 view .LVU30
- 149 0070 05F13400 		add	r0, r5, #52
- 150 0074 FFF7FEFF 		bl	pid_reset
- 151              	.LVL14:
-ARM GAS  /tmp/ccT7MPFG.s 			page 7
+ 149 006c 05F13400 		add	r0, r5, #52
+ 150 0070 FFF7FEFF 		bl	pid_reset
+ 151              	.LVL16:
+ARM GAS  /tmp/ccwzytnE.s 			page 7
 
 
  150:Core/Src/fsm.c **** 			break;
  152              		.loc 1 150 4 view .LVU31
  150:Core/Src/fsm.c **** 			break;
  153              		.loc 1 150 20 is_stmt 0 view .LVU32
- 154 0078 0123     		movs	r3, #1
- 155 007a E370     		strb	r3, [r4, #3]
+ 154 0074 0123     		movs	r3, #1
+ 155 0076 E370     		strb	r3, [r4, #3]
  151:Core/Src/fsm.c **** 		case CALIBRATION_MODE:
  156              		.loc 1 151 4 is_stmt 1 view .LVU33
- 157 007c CCE7     		b	.L1
- 158              	.LVL15:
+ 157 0078 CEE7     		b	.L1
+ 158              	.LVL17:
  159              	.L8:
  153:Core/Src/fsm.c **** 			fsmstate->ready = 1;
  160              		.loc 1 153 4 view .LVU34
- 161 007e 0848     		ldr	r0, .L11+20
- 162              	.LVL16:
+ 161 007a 0848     		ldr	r0, .L11+20
+ 162              	.LVL18:
  153:Core/Src/fsm.c **** 			fsmstate->ready = 1;
  163              		.loc 1 153 4 is_stmt 0 view .LVU35
- 164 0080 FFF7FEFF 		bl	puts
- 165              	.LVL17:
+ 164 007c FFF7FEFF 		bl	puts
+ 165              	.LVL19:
  154:Core/Src/fsm.c **** 			break;
  166              		.loc 1 154 4 is_stmt 1 view .LVU36
  154:Core/Src/fsm.c **** 			break;
  167              		.loc 1 154 20 is_stmt 0 view .LVU37
- 168 0084 0123     		movs	r3, #1
- 169 0086 E370     		strb	r3, [r4, #3]
+ 168 0080 0123     		movs	r3, #1
+ 169 0082 E370     		strb	r3, [r4, #3]
  155:Core/Src/fsm.c **** 	}
  170              		.loc 1 155 4 is_stmt 1 view .LVU38
  171              		.loc 1 158 1 is_stmt 0 view .LVU39
- 172 0088 C6E7     		b	.L1
+ 172 0084 C8E7     		b	.L1
  173              	.L12:
- 174 008a 00BF     		.align	2
+ 174 0086 00BF     		.align	2
  175              	.L11:
- 176 008c 00000000 		.word	.LC0
- 177 0090 00000000 		.word	m_config
- 178 0094 00000000 		.word	huart
- 179 0098 14000000 		.word	.LC1
- 180 009c DC000000 		.word	hfoc+220
- 181 00a0 28000000 		.word	.LC2
+ 176 0088 00000000 		.word	.LC0
+ 177 008c 00000000 		.word	m_config
+ 178 0090 00000000 		.word	huart
+ 179 0094 14000000 		.word	.LC1
+ 180 0098 DC000000 		.word	hfoc+220
+ 181 009c 28000000 		.word	.LC2
  182              		.cfi_endproc
  183              	.LFE139:
  185              		.section	.text.TestModeView,"ax",%progbits
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  164:Core/Src/fsm.c **** 	if(fsm_input == MENU_CMD){	// escape to exit to rest mode
  165:Core/Src/fsm.c **** 		fsmstate->next_state = MENU_MODE;
  166:Core/Src/fsm.c **** 		fsmstate->ready = 0;
-ARM GAS  /tmp/ccT7MPFG.s 			page 8
+ARM GAS  /tmp/ccwzytnE.s 			page 8
 
 
  167:Core/Src/fsm.c **** 		return;
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  221:Core/Src/fsm.c **** 			if(fsm_input == 10 || fsm_input == ' '){ 
  222:Core/Src/fsm.c ****         		break; 
  223:Core/Src/fsm.c ****     		}	
-ARM GAS  /tmp/ccT7MPFG.s 			page 9
+ARM GAS  /tmp/ccwzytnE.s 			page 9
 
 
  224:Core/Src/fsm.c **** 			if(fsm_input == ENTER_CMD){
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  214              		.cfi_offset 6, -16
  215              		.cfi_offset 7, -12
  216              		.cfi_offset 8, -8
-ARM GAS  /tmp/ccT7MPFG.s 			page 10
+ARM GAS  /tmp/ccwzytnE.s 			page 10
 
 
  217              		.cfi_offset 14, -4
@@ -565,56 +565,56 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  229              		.loc 1 266 16 is_stmt 0 view .LVU51
  230 001a 164B     		ldr	r3, .L20
  231 001c D3F86080 		ldr	r8, [r3, #96]	@ float
- 232              	.LVL18:
+ 232              	.LVL20:
  267:Core/Src/fsm.c **** 	float vel_sp = SPOINT_VEL;
  233              		.loc 1 267 2 is_stmt 1 view .LVU52
  234              		.loc 1 267 17 is_stmt 0 view .LVU53
  235 0020 DD6D     		ldr	r5, [r3, #92]	@ float
- 236              	.LVL19:
+ 236              	.LVL21:
  268:Core/Src/fsm.c **** 	float pos_sp = SPOINT_POS;
  237              		.loc 1 268 2 is_stmt 1 view .LVU54
  238              		.loc 1 268 17 is_stmt 0 view .LVU55
  239 0022 D3F858E0 		ldr	lr, [r3, #88]	@ float
- 240              	.LVL20:
+ 240              	.LVL22:
  269:Core/Src/fsm.c **** 	float id = hfoc.iq_filtered;
  241              		.loc 1 269 2 is_stmt 1 view .LVU56
  242              		.loc 1 269 17 is_stmt 0 view .LVU57
  243 0026 154B     		ldr	r3, .L20+8
  244 0028 DF6F     		ldr	r7, [r3, #124]	@ float
- 245              	.LVL21:
+ 245              	.LVL23:
  270:Core/Src/fsm.c **** 	float iq = hfoc.iq;
  246              		.loc 1 270 2 is_stmt 1 view .LVU58
  247              		.loc 1 270 17 is_stmt 0 view .LVU59
  248 002a 5E6F     		ldr	r6, [r3, #116]	@ float
- 249              	.LVL22:
+ 249              	.LVL24:
  271:Core/Src/fsm.c **** 	float ia = hfoc.ia;
  250              		.loc 1 271 2 is_stmt 1 view .LVU60
  251              		.loc 1 271 17 is_stmt 0 view .LVU61
  252 002c D3F89CC0 		ldr	ip, [r3, #156]	@ float
- 253              	.LVL23:
+ 253              	.LVL25:
  272:Core/Src/fsm.c **** 	float ib = hfoc.ib;
  254              		.loc 1 272 2 is_stmt 1 view .LVU62
  255              		.loc 1 272 17 is_stmt 0 view .LVU63
  256 0030 D3F8A000 		ldr	r0, [r3, #160]	@ float
- 257              	.LVL24:
+ 257              	.LVL26:
  273:Core/Src/fsm.c **** 	float ic = hfoc.ic;
-ARM GAS  /tmp/ccT7MPFG.s 			page 11
+ARM GAS  /tmp/ccwzytnE.s 			page 11
 
 
  258              		.loc 1 273 2 is_stmt 1 view .LVU64
  259              		.loc 1 273 17 is_stmt 0 view .LVU65
  260 0034 D3F8A420 		ldr	r2, [r3, #164]	@ float
- 261              	.LVL25:
+ 261              	.LVL27:
  274:Core/Src/fsm.c **** 	float vel = hfoc.actual_rpm;
  262              		.loc 1 274 2 is_stmt 1 view .LVU66
  263              		.loc 1 274 18 is_stmt 0 view .LVU67
  264 0038 D3F8B440 		ldr	r4, [r3, #180]	@ float
- 265              	.LVL26:
+ 265              	.LVL28:
  275:Core/Src/fsm.c **** 	float pos = hfoc.actual_angle;
  266              		.loc 1 275 2 is_stmt 1 view .LVU68
  267              		.loc 1 275 18 is_stmt 0 view .LVU69
  268 003c D3F8B830 		ldr	r3, [r3, #184]	@ float
- 269              	.LVL27:
+ 269              	.LVL29:
  276:Core/Src/fsm.c **** 	
  277:Core/Src/fsm.c **** 	
  278:Core/Src/fsm.c **** 	
@@ -653,20 +653,20 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  291:Core/Src/fsm.c ****     HAL_UART_Transmit_DMA(&huart, tx_buf, 42);
  290              		.loc 1 291 5 view .LVU80
  291 0068 2A22     		movs	r2, #42
- 292              	.LVL28:
+ 292              	.LVL30:
  293              		.loc 1 291 5 is_stmt 0 view .LVU81
  294 006a 0548     		ldr	r0, .L20+12
- 295              	.LVL29:
+ 295              	.LVL31:
  296              		.loc 1 291 5 view .LVU82
-ARM GAS  /tmp/ccT7MPFG.s 			page 12
+ARM GAS  /tmp/ccwzytnE.s 			page 12
 
 
  297 006c FFF7FEFF 		bl	HAL_UART_Transmit_DMA
- 298              	.LVL30:
+ 298              	.LVL32:
  292:Core/Src/fsm.c **** }
  299              		.loc 1 292 1 view .LVU83
  300 0070 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
- 301              	.LVL31:
+ 301              	.LVL33:
  302              	.L21:
  303              		.loc 1 292 1 view .LVU84
  304              		.align	2
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  337 006c 0D0A2041 		.ascii	"\015\012 Active Setpoint:\015\000"
  337      63746976 
  337      65205365 
-ARM GAS  /tmp/ccT7MPFG.s 			page 13
+ARM GAS  /tmp/ccwzytnE.s 			page 13
 
 
  337      74706F69 
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  371      74202841 
  371      2900
  372 012a 0000     		.align	2
-ARM GAS  /tmp/ccT7MPFG.s 			page 14
+ARM GAS  /tmp/ccwzytnE.s 			page 14
 
 
  373              	.LC22:
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  407 01c0 763000   		.ascii	"v0\000"
  408 01c3 00       		.align	2
  409              	.LC34:
-ARM GAS  /tmp/ccT7MPFG.s 			page 15
+ARM GAS  /tmp/ccwzytnE.s 			page 15
 
 
  410 01c4 0D0A2043 		.ascii	"\015\012 Current Loop (Id/Iq):\015\000"
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  443      204B7000 
  444              		.align	2
  445              	.LC46:
-ARM GAS  /tmp/ccT7MPFG.s 			page 16
+ARM GAS  /tmp/ccwzytnE.s 			page 16
 
 
  446 0250 7800     		.ascii	"x\000"
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  477 02eb 00       		.align	2
  478              	.LC57:
  479 02ec 56656C6F 		.ascii	"Velocity (Rad/s)\000"
-ARM GAS  /tmp/ccT7MPFG.s 			page 17
+ARM GAS  /tmp/ccwzytnE.s 			page 17
 
 
  479      63697479 
@@ -1018,10 +1018,10 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  515              		.loc 1 296 5 view .LVU86
  516 0006 9448     		ldr	r0, .L30
  517 0008 FFF7FEFF 		bl	printf
-ARM GAS  /tmp/ccT7MPFG.s 			page 18
+ARM GAS  /tmp/ccwzytnE.s 			page 18
 
 
- 518              	.LVL32:
+ 518              	.LVL34:
  297:Core/Src/fsm.c ****     printf(" %-4s %-31s %-5s %-6s %-2s\r\n", "prefix", "parameter", "min", "max", "current value");
  519              		.loc 1 297 5 view .LVU87
  520 000c 934B     		ldr	r3, .L30+4
@@ -1033,13 +1033,13 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  526 0018 9449     		ldr	r1, .L30+20
  527 001a 9548     		ldr	r0, .L30+24
  528 001c FFF7FEFF 		bl	printf
- 529              	.LVL33:
+ 529              	.LVL35:
  298:Core/Src/fsm.c **** 
  299:Core/Src/fsm.c ****     printf("\r\n Active Setpoint:\r\n");
  530              		.loc 1 299 5 view .LVU88
  531 0020 9448     		ldr	r0, .L30+28
  532 0022 FFF7FEFF 		bl	puts
- 533              	.LVL34:
+ 533              	.LVL36:
  300:Core/Src/fsm.c ****     float current_setpoint = (hfoc.control_mode == TORQUE_CONTROL_MODE) ? SPOINT_TOR : 
  534              		.loc 1 300 5 view .LVU89
  535              		.loc 1 300 35 is_stmt 0 view .LVU90
@@ -1052,14 +1052,14 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  542 0032 924B     		ldr	r3, .L30+36
  543 0034 186E     		ldr	r0, [r3, #96]	@ float
  544              	.L24:
- 545              	.LVL35:
+ 545              	.LVL37:
  301:Core/Src/fsm.c ****                              (hfoc.control_mode == SPEED_CONTROL_MODE) ? SPOINT_VEL : SPOINT_POS;
  302:Core/Src/fsm.c ****     printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "t", "Target (Tor/Spd/Pos)", "-", "-", current_setpoin
  546              		.loc 1 302 5 is_stmt 1 discriminator 2 view .LVU93
  547 0036 924F     		ldr	r7, .L30+40
  548 0038 924E     		ldr	r6, .L30+44
  549 003a FFF7FEFF 		bl	__aeabi_f2d
- 550              	.LVL36:
+ 550              	.LVL38:
  551              		.loc 1 302 5 is_stmt 0 discriminator 2 view .LVU94
  552 003e CDE90201 		strd	r0, [sp, #8]
  553 0042 0097     		str	r7, [sp]
@@ -1068,7 +1068,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  556 0048 9049     		ldr	r1, .L30+52
  557 004a 3046     		mov	r0, r6
  558 004c FFF7FEFF 		bl	printf
- 559              	.LVL37:
+ 559              	.LVL39:
  303:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %d\n\r", "o", "Control Mode(0:Tor,1:Spd,2:Pos,3:Imp)", "0", "3", CON
  560              		.loc 1 303 2 is_stmt 1 discriminator 2 view .LVU95
  561              		.loc 1 303 97 is_stmt 0 discriminator 2 view .LVU96
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  565 0056 8E4D     		ldr	r5, .L30+56
  566 0058 DFF8E482 		ldr	r8, .L30+232
  567 005c 0193     		str	r3, [sp, #4]
-ARM GAS  /tmp/ccT7MPFG.s 			page 19
+ARM GAS  /tmp/ccwzytnE.s 			page 19
 
 
  568 005e 8D4B     		ldr	r3, .L30+60
@@ -1088,13 +1088,13 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  572 0066 8D49     		ldr	r1, .L30+68
  573 0068 4046     		mov	r0, r8
  574 006a FFF7FEFF 		bl	printf
- 575              	.LVL38:
+ 575              	.LVL40:
  304:Core/Src/fsm.c ****     printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "l", "Current Limit (A)", "0.0", "75.0", I_MAX);
  576              		.loc 1 304 5 is_stmt 1 discriminator 2 view .LVU98
  577 006e DFF8D492 		ldr	r9, .L30+236
  578 0072 A06A     		ldr	r0, [r4, #40]	@ float
  579 0074 FFF7FEFF 		bl	__aeabi_f2d
- 580              	.LVL39:
+ 580              	.LVL41:
  581 0078 CDE90201 		strd	r0, [sp, #8]
  582 007c 884B     		ldr	r3, .L30+72
  583 007e 0093     		str	r3, [sp]
@@ -1103,12 +1103,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  586 0084 8849     		ldr	r1, .L30+80
  587 0086 3046     		mov	r0, r6
  588 0088 FFF7FEFF 		bl	printf
- 589              	.LVL40:
+ 589              	.LVL42:
  305:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.2f\n\r", "p", "Voltage Limit (V)", "0.0", "40.0", V_MAX_VOLTAGE);
  590              		.loc 1 305 2 discriminator 2 view .LVU99
  591 008c E069     		ldr	r0, [r4, #28]	@ float
  592 008e FFF7FEFF 		bl	__aeabi_f2d
- 593              	.LVL41:
+ 593              	.LVL43:
  594 0092 CDE90201 		strd	r0, [sp, #8]
  595 0096 854B     		ldr	r3, .L30+84
  596 0098 0093     		str	r3, [sp]
@@ -1117,7 +1117,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  599 009e 8549     		ldr	r1, .L30+92
  600 00a0 8548     		ldr	r0, .L30+96
  601 00a2 FFF7FEFF 		bl	printf
- 602              	.LVL42:
+ 602              	.LVL44:
  306:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %d\n\r", "m", "Motor On/Off", "0", "1", !!RF_RUNNING);
  603              		.loc 1 306 2 discriminator 2 view .LVU100
  604              		.loc 1 306 74 is_stmt 0 discriminator 2 view .LVU101
@@ -1132,16 +1132,16 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  613 00ba 8149     		ldr	r1, .L30+104
  614 00bc 4046     		mov	r0, r8
  615 00be FFF7FEFF 		bl	printf
- 616              	.LVL43:
+ 616              	.LVL45:
  307:Core/Src/fsm.c **** 
  308:Core/Src/fsm.c **** 	printf("\r\n Data View (0:Off, 1:On):\r\n");
  617              		.loc 1 308 2 is_stmt 1 discriminator 2 view .LVU103
  618 00c2 8048     		ldr	r0, .L30+108
  619 00c4 FFF7FEFF 		bl	puts
-ARM GAS  /tmp/ccT7MPFG.s 			page 20
+ARM GAS  /tmp/ccwzytnE.s 			page 20
 
 
- 620              	.LVL44:
+ 620              	.LVL46:
  309:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %d\n\r", "v0", "Current View", "0", "1", !!RF_VIEW);
  621              		.loc 1 309 2 discriminator 2 view .LVU104
  622              		.loc 1 309 75 is_stmt 0 discriminator 2 view .LVU105
@@ -1155,18 +1155,18 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  630 00d8 7C49     		ldr	r1, .L30+116
  631 00da 4046     		mov	r0, r8
  632 00dc FFF7FEFF 		bl	printf
- 633              	.LVL45:
+ 633              	.LVL47:
  310:Core/Src/fsm.c **** 
  311:Core/Src/fsm.c **** 	printf("\r\n Current Loop (Id/Iq):\r\n");
  634              		.loc 1 311 2 is_stmt 1 discriminator 2 view .LVU107
  635 00e0 7B48     		ldr	r0, .L30+120
  636 00e2 FFF7FEFF 		bl	puts
- 637              	.LVL46:
+ 637              	.LVL48:
  312:Core/Src/fsm.c ****     printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "a", "Current Kp", "0", "-", ID_KP);
  638              		.loc 1 312 5 discriminator 2 view .LVU108
  639 00e6 6068     		ldr	r0, [r4, #4]	@ float
  640 00e8 FFF7FEFF 		bl	__aeabi_f2d
- 641              	.LVL47:
+ 641              	.LVL49:
  642 00ec CDE90201 		strd	r0, [sp, #8]
  643 00f0 0097     		str	r7, [sp]
  644 00f2 2B46     		mov	r3, r5
@@ -1174,12 +1174,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  646 00f6 7849     		ldr	r1, .L30+128
  647 00f8 3046     		mov	r0, r6
  648 00fa FFF7FEFF 		bl	printf
- 649              	.LVL48:
+ 649              	.LVL50:
  313:Core/Src/fsm.c ****     printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "b", "Current Ki", "0", "-", ID_KI);
  650              		.loc 1 313 5 discriminator 2 view .LVU109
  651 00fe A068     		ldr	r0, [r4, #8]	@ float
  652 0100 FFF7FEFF 		bl	__aeabi_f2d
- 653              	.LVL49:
+ 653              	.LVL51:
  654 0104 CDE90201 		strd	r0, [sp, #8]
  655 0108 0097     		str	r7, [sp]
  656 010a 2B46     		mov	r3, r5
@@ -1187,7 +1187,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  658 010e 7449     		ldr	r1, .L30+136
  659 0110 3046     		mov	r0, r6
  660 0112 FFF7FEFF 		bl	printf
- 661              	.LVL50:
+ 661              	.LVL52:
  314:Core/Src/fsm.c **** 
  315:Core/Src/fsm.c **** 	if (hfoc.control_mode != IMPEDANCE_CONTROL_MODE) {
  662              		.loc 1 315 2 discriminator 2 view .LVU110
@@ -1198,13 +1198,13 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  667 011c 032B     		cmp	r3, #3
  668 011e 55D0     		beq	.L26
  316:Core/Src/fsm.c **** 		printf("\r\n Speed Loop:\r\n");
-ARM GAS  /tmp/ccT7MPFG.s 			page 21
+ARM GAS  /tmp/ccwzytnE.s 			page 21
 
 
  669              		.loc 1 316 3 is_stmt 1 view .LVU113
  670 0120 7048     		ldr	r0, .L30+140
  671 0122 FFF7FEFF 		bl	puts
- 672              	.LVL51:
+ 672              	.LVL53:
  317:Core/Src/fsm.c **** 		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "c", "Speed Kp", "0", "-", SPEED_KP);
  673              		.loc 1 317 3 view .LVU114
  674              		.loc 1 317 71 is_stmt 0 view .LVU115
@@ -1213,7 +1213,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  677 0128 3446     		mov	r4, r6
  678 012a 386B     		ldr	r0, [r7, #48]	@ float
  679 012c FFF7FEFF 		bl	__aeabi_f2d
- 680              	.LVL52:
+ 680              	.LVL54:
  681 0130 CDE90201 		strd	r0, [sp, #8]
  682 0134 524E     		ldr	r6, .L30+40
  683 0136 0096     		str	r6, [sp]
@@ -1222,12 +1222,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  686 013c 6B49     		ldr	r1, .L30+148
  687 013e 2046     		mov	r0, r4
  688 0140 FFF7FEFF 		bl	printf
- 689              	.LVL53:
+ 689              	.LVL55:
  318:Core/Src/fsm.c **** 		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "d", "Speed Ki", "0", "-", SPEED_KI);
  690              		.loc 1 318 3 is_stmt 1 view .LVU117
  691 0144 786B     		ldr	r0, [r7, #52]	@ float
  692 0146 FFF7FEFF 		bl	__aeabi_f2d
- 693              	.LVL54:
+ 693              	.LVL56:
  694 014a CDE90201 		strd	r0, [sp, #8]
  695 014e 0096     		str	r6, [sp]
  696 0150 2B46     		mov	r3, r5
@@ -1235,18 +1235,18 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  698 0154 6749     		ldr	r1, .L30+156
  699 0156 2046     		mov	r0, r4
  700 0158 FFF7FEFF 		bl	printf
- 701              	.LVL55:
+ 701              	.LVL57:
  319:Core/Src/fsm.c **** 
  320:Core/Src/fsm.c **** 		printf("\r\n Position Loop:\r\n");
  702              		.loc 1 320 3 view .LVU118
  703 015c 6648     		ldr	r0, .L30+160
  704 015e FFF7FEFF 		bl	puts
- 705              	.LVL56:
+ 705              	.LVL58:
  321:Core/Src/fsm.c **** 		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "x", "Position Kp", "0", "-", POS_KP);
  706              		.loc 1 321 3 view .LVU119
  707 0162 786C     		ldr	r0, [r7, #68]	@ float
  708 0164 FFF7FEFF 		bl	__aeabi_f2d
- 709              	.LVL57:
+ 709              	.LVL59:
  710 0168 CDE90201 		strd	r0, [sp, #8]
  711 016c 0096     		str	r6, [sp]
  712 016e 2B46     		mov	r3, r5
@@ -1254,15 +1254,15 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  714 0172 6349     		ldr	r1, .L30+168
  715 0174 2046     		mov	r0, r4
  716 0176 FFF7FEFF 		bl	printf
- 717              	.LVL58:
+ 717              	.LVL60:
  322:Core/Src/fsm.c **** 		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "y", "Position Ki", "0", "-", POS_KI);
  718              		.loc 1 322 3 view .LVU120
  719 017a B86C     		ldr	r0, [r7, #72]	@ float
-ARM GAS  /tmp/ccT7MPFG.s 			page 22
+ARM GAS  /tmp/ccwzytnE.s 			page 22
 
 
  720 017c FFF7FEFF 		bl	__aeabi_f2d
- 721              	.LVL59:
+ 721              	.LVL61:
  722 0180 CDE90201 		strd	r0, [sp, #8]
  723 0184 0096     		str	r6, [sp]
  724 0186 2B46     		mov	r3, r5
@@ -1270,12 +1270,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  726 018a 5F49     		ldr	r1, .L30+176
  727 018c 2046     		mov	r0, r4
  728 018e FFF7FEFF 		bl	printf
- 729              	.LVL60:
+ 729              	.LVL62:
  323:Core/Src/fsm.c **** 		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "z", "Position Kd", "0", "-", POS_KD);
  730              		.loc 1 323 3 view .LVU121
  731 0192 F86C     		ldr	r0, [r7, #76]	@ float
  732 0194 FFF7FEFF 		bl	__aeabi_f2d
- 733              	.LVL61:
+ 733              	.LVL63:
  734 0198 CDE90201 		strd	r0, [sp, #8]
  735 019c 0096     		str	r6, [sp]
  736 019e 2B46     		mov	r3, r5
@@ -1283,7 +1283,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  738 01a2 5B49     		ldr	r1, .L30+184
  739 01a4 2046     		mov	r0, r4
  740 01a6 FFF7FEFF 		bl	printf
- 741              	.LVL62:
+ 741              	.LVL64:
  742              	.L27:
  324:Core/Src/fsm.c **** 
  325:Core/Src/fsm.c **** 	}
@@ -1300,12 +1300,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  743              		.loc 1 335 5 view .LVU122
  744 01aa 5A48     		ldr	r0, .L30+188
  745 01ac FFF7FEFF 		bl	printf
- 746              	.LVL63:
+ 746              	.LVL65:
  336:Core/Src/fsm.c ****     printf("VALUES UPDATE IMMEDIATELY IN TEST MODE! \n\r\n\r");
  747              		.loc 1 336 5 view .LVU123
  748 01b0 5948     		ldr	r0, .L30+192
  749 01b2 FFF7FEFF 		bl	printf
- 750              	.LVL64:
+ 750              	.LVL66:
  337:Core/Src/fsm.c **** 
  338:Core/Src/fsm.c **** 	
  339:Core/Src/fsm.c **** }
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  757 01b8 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
  758              	.L23:
  759              	.LCFI5:
-ARM GAS  /tmp/ccT7MPFG.s 			page 23
+ARM GAS  /tmp/ccwzytnE.s 			page 23
 
 
  760              		.cfi_restore_state
@@ -1342,7 +1342,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  774              		.loc 1 327 3 is_stmt 1 view .LVU128
  775 01cc 5348     		ldr	r0, .L30+196
  776 01ce FFF7FEFF 		bl	puts
- 777              	.LVL65:
+ 777              	.LVL67:
  328:Core/Src/fsm.c **** 		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "c", "Position Gain (N-m/rad)", "0", "-", joint_cmd.kp);
  778              		.loc 1 328 3 view .LVU129
  779 01d2 2F4D     		ldr	r5, .L30+56
@@ -1350,7 +1350,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  781 01d6 524B     		ldr	r3, .L30+200
  782 01d8 D3F89000 		ldr	r0, [r3, #144]	@ float
  783 01dc FFF7FEFF 		bl	__aeabi_f2d
- 784              	.LVL66:
+ 784              	.LVL68:
  785 01e0 CDE90201 		strd	r0, [sp, #8]
  786 01e4 264E     		ldr	r6, .L30+40
  787 01e6 0096     		str	r6, [sp]
@@ -1359,7 +1359,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  790 01ec 4E49     		ldr	r1, .L30+208
  791 01ee 2046     		mov	r0, r4
  792 01f0 FFF7FEFF 		bl	printf
- 793              	.LVL67:
+ 793              	.LVL69:
  329:Core/Src/fsm.c **** 		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "d", "Velocity Gain (N-m-s/rad)", "0", "-", joint_cmd.kd
  794              		.loc 1 329 3 view .LVU130
  329:Core/Src/fsm.c **** 		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "d", "Velocity Gain (N-m-s/rad)", "0", "-", joint_cmd.kd
@@ -1369,7 +1369,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  797              		.loc 1 329 3 view .LVU132
  798 01f6 B868     		ldr	r0, [r7, #8]	@ float
  799 01f8 FFF7FEFF 		bl	__aeabi_f2d
- 800              	.LVL68:
+ 800              	.LVL70:
  801 01fc CDE90201 		strd	r0, [sp, #8]
  802 0200 0096     		str	r6, [sp]
  803 0202 2B46     		mov	r3, r5
@@ -1377,15 +1377,15 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  805 0206 3949     		ldr	r1, .L30+148
  806 0208 2046     		mov	r0, r4
  807 020a FFF7FEFF 		bl	printf
- 808              	.LVL69:
-ARM GAS  /tmp/ccT7MPFG.s 			page 24
+ 808              	.LVL71:
+ARM GAS  /tmp/ccwzytnE.s 			page 24
 
 
  330:Core/Src/fsm.c **** 		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "x", "Position (Rad)", "0", "-", joint_cmd.p_des);
  809              		.loc 1 330 3 is_stmt 1 view .LVU133
  810 020e F868     		ldr	r0, [r7, #12]	@ float
  811 0210 FFF7FEFF 		bl	__aeabi_f2d
- 812              	.LVL70:
+ 812              	.LVL72:
  813 0214 CDE90201 		strd	r0, [sp, #8]
  814 0218 0096     		str	r6, [sp]
  815 021a 2B46     		mov	r3, r5
@@ -1393,12 +1393,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  817 021e 3549     		ldr	r1, .L30+156
  818 0220 2046     		mov	r0, r4
  819 0222 FFF7FEFF 		bl	printf
- 820              	.LVL71:
+ 820              	.LVL73:
  331:Core/Src/fsm.c **** 		printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "y", "Velocity (Rad/s)", "0", "-", joint_cmd.v_des);
  821              		.loc 1 331 3 view .LVU134
  822 0226 3868     		ldr	r0, [r7]	@ float
  823 0228 FFF7FEFF 		bl	__aeabi_f2d
- 824              	.LVL72:
+ 824              	.LVL74:
  825 022c CDE90201 		strd	r0, [sp, #8]
  826 0230 0096     		str	r6, [sp]
  827 0232 2B46     		mov	r3, r5
@@ -1406,12 +1406,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  829 0236 3249     		ldr	r1, .L30+168
  830 0238 2046     		mov	r0, r4
  831 023a FFF7FEFF 		bl	printf
- 832              	.LVL73:
+ 832              	.LVL75:
  332:Core/Src/fsm.c **** 
  833              		.loc 1 332 3 view .LVU135
  834 023e 7868     		ldr	r0, [r7, #4]	@ float
  835 0240 FFF7FEFF 		bl	__aeabi_f2d
- 836              	.LVL74:
+ 836              	.LVL76:
  837 0244 CDE90201 		strd	r0, [sp, #8]
  838 0248 0096     		str	r6, [sp]
  839 024a 2B46     		mov	r3, r5
@@ -1419,7 +1419,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  841 024e 2E49     		ldr	r1, .L30+176
  842 0250 2046     		mov	r0, r4
  843 0252 FFF7FEFF 		bl	printf
- 844              	.LVL75:
+ 844              	.LVL77:
  845 0256 A8E7     		b	.L27
  846              	.L31:
  847              		.align	2
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  860 0284 A4000000 		.word	.LC14
  861 0288 88000000 		.word	.LC12
  862 028c A0000000 		.word	.LC13
-ARM GAS  /tmp/ccT7MPFG.s 			page 25
+ARM GAS  /tmp/ccwzytnE.s 			page 25
 
 
  863 0290 C4000000 		.word	.LC15
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  917      55706461 
  917      74656420 
  917      746F7271 
-ARM GAS  /tmp/ccT7MPFG.s 			page 26
+ARM GAS  /tmp/ccwzytnE.s 			page 26
 
 
  917      75652053 
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  941      746F722E 
  941      0D00
  942 0136 0000     		.align	2
-ARM GAS  /tmp/ccT7MPFG.s 			page 27
+ARM GAS  /tmp/ccwzytnE.s 			page 27
 
 
  943              	.LC69:
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  967              		.align	2
  968              	.LC77:
  969 0208 0A0D2020 		.ascii	"\012\015  Updated speed kp: %.3f\015\012\000"
-ARM GAS  /tmp/ccT7MPFG.s 			page 28
+ARM GAS  /tmp/ccwzytnE.s 			page 28
 
 
  969      55706461 
@@ -1676,9 +1676,9 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  994              		.thumb_func
  995              		.fpu fpv4-sp-d16
  997              	set_pid_mode:
- 998              	.LVL76:
+ 998              	.LVL78:
  999              	.LFB143:
-ARM GAS  /tmp/ccT7MPFG.s 			page 29
+ARM GAS  /tmp/ccwzytnE.s 			page 29
 
 
  340:Core/Src/fsm.c **** 
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  1050              		.p2align 1
  1051              	.L39:
  344:Core/Src/fsm.c **** 		case 't':{
-ARM GAS  /tmp/ccT7MPFG.s 			page 30
+ARM GAS  /tmp/ccwzytnE.s 			page 30
 
 
  345:Core/Src/fsm.c **** 			switch (hfoc.control_mode){
@@ -1757,90 +1757,90 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  1062              		.loc 1 347 6 is_stmt 1 view .LVU143
  1063              		.loc 1 347 19 is_stmt 0 view .LVU144
  1064 005a 0430     		adds	r0, r0, #4
- 1065              	.LVL77:
+ 1065              	.LVL79:
  1066              		.loc 1 347 19 view .LVU145
  1067 005c FFF7FEFF 		bl	atof
- 1068              	.LVL78:
+ 1068              	.LVL80:
  1069 0060 51EC100B 		vmov	r0, r1, d0
  1070 0064 FFF7FEFF 		bl	__aeabi_d2f
- 1071              	.LVL79:
+ 1071              	.LVL81:
  1072              		.loc 1 347 17 view .LVU146
  1073 0068 BB4B     		ldr	r3, .L71+4
  1074 006a 1866     		str	r0, [r3, #96]	@ float
  348:Core/Src/fsm.c **** 					printf("\n\r  Updated torque Setpoint: %.3f\r\n", SPOINT_TOR);
  1075              		.loc 1 348 6 is_stmt 1 view .LVU147
  1076 006c FFF7FEFF 		bl	__aeabi_f2d
- 1077              	.LVL80:
+ 1077              	.LVL82:
  1078 0070 0246     		mov	r2, r0
  1079 0072 0B46     		mov	r3, r1
  1080 0074 B948     		ldr	r0, .L71+8
  1081 0076 FFF7FEFF 		bl	printf
- 1082              	.LVL81:
+ 1082              	.LVL83:
  349:Core/Src/fsm.c **** 					break;
  1083              		.loc 1 349 6 view .LVU148
  1084 007a 3CE0     		b	.L51
- 1085              	.LVL82:
+ 1085              	.LVL84:
  1086              	.L49:
  350:Core/Src/fsm.c **** 				case SPEED_CONTROL_MODE:
  351:Core/Src/fsm.c **** 					SPOINT_VEL = atof(fsmstate->cmd_buff);
  1087              		.loc 1 351 6 view .LVU149
  1088              		.loc 1 351 19 is_stmt 0 view .LVU150
  1089 007c 0430     		adds	r0, r0, #4
- 1090              	.LVL83:
+ 1090              	.LVL85:
  1091              		.loc 1 351 19 view .LVU151
  1092 007e FFF7FEFF 		bl	atof
- 1093              	.LVL84:
+ 1093              	.LVL86:
  1094 0082 51EC100B 		vmov	r0, r1, d0
  1095 0086 FFF7FEFF 		bl	__aeabi_d2f
- 1096              	.LVL85:
+ 1096              	.LVL87:
  1097              		.loc 1 351 17 view .LVU152
  1098 008a B34B     		ldr	r3, .L71+4
  1099 008c D865     		str	r0, [r3, #92]	@ float
  352:Core/Src/fsm.c **** 					printf("\n\r  Updated velocity Setpoint: %.3f\r\n", SPOINT_VEL);
  1100              		.loc 1 352 6 is_stmt 1 view .LVU153
-ARM GAS  /tmp/ccT7MPFG.s 			page 31
+ARM GAS  /tmp/ccwzytnE.s 			page 31
 
 
  1101 008e FFF7FEFF 		bl	__aeabi_f2d
- 1102              	.LVL86:
+ 1102              	.LVL88:
  1103 0092 0246     		mov	r2, r0
  1104 0094 0B46     		mov	r3, r1
  1105 0096 B248     		ldr	r0, .L71+12
  1106 0098 FFF7FEFF 		bl	printf
- 1107              	.LVL87:
+ 1107              	.LVL89:
  353:Core/Src/fsm.c **** 					break;
  1108              		.loc 1 353 6 view .LVU154
  1109 009c 2BE0     		b	.L51
- 1110              	.LVL88:
+ 1110              	.LVL90:
  1111              	.L50:
  354:Core/Src/fsm.c **** 				case POSITION_CONTROL_MODE:
  355:Core/Src/fsm.c **** 					SPOINT_POS = atof(fsmstate->cmd_buff);
  1112              		.loc 1 355 6 view .LVU155
  1113              		.loc 1 355 19 is_stmt 0 view .LVU156
  1114 009e 0430     		adds	r0, r0, #4
- 1115              	.LVL89:
+ 1115              	.LVL91:
  1116              		.loc 1 355 19 view .LVU157
  1117 00a0 FFF7FEFF 		bl	atof
- 1118              	.LVL90:
+ 1118              	.LVL92:
  1119 00a4 51EC100B 		vmov	r0, r1, d0
  1120 00a8 FFF7FEFF 		bl	__aeabi_d2f
- 1121              	.LVL91:
+ 1121              	.LVL93:
  1122              		.loc 1 355 17 view .LVU158
  1123 00ac AA4B     		ldr	r3, .L71+4
  1124 00ae 9865     		str	r0, [r3, #88]	@ float
  356:Core/Src/fsm.c **** 					printf("\n\r  Updated position Setpoint: %.3f\r\n", SPOINT_POS);
  1125              		.loc 1 356 6 is_stmt 1 view .LVU159
  1126 00b0 FFF7FEFF 		bl	__aeabi_f2d
- 1127              	.LVL92:
+ 1127              	.LVL94:
  1128 00b4 0246     		mov	r2, r0
  1129 00b6 0B46     		mov	r3, r1
  1130 00b8 AA48     		ldr	r0, .L71+16
  1131 00ba FFF7FEFF 		bl	printf
- 1132              	.LVL93:
+ 1132              	.LVL95:
  357:Core/Src/fsm.c **** 					break;
  1133              		.loc 1 357 6 view .LVU160
  1134 00be 1AE0     		b	.L51
- 1135              	.LVL94:
+ 1135              	.LVL96:
  1136              	.L41:
  1137              	.LBB2:
  358:Core/Src/fsm.c **** 			}
@@ -1851,14 +1851,14 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  1138              		.loc 1 362 13 view .LVU161
  1139              		.loc 1 362 28 is_stmt 0 view .LVU162
  1140 00c0 0430     		adds	r0, r0, #4
- 1141              	.LVL95:
+ 1141              	.LVL97:
  1142              		.loc 1 362 28 view .LVU163
  1143 00c2 FFF7FEFF 		bl	atoi
- 1144              	.LVL96:
+ 1144              	.LVL98:
  363:Core/Src/fsm.c ****             if (mode_val == 0) {
  1145              		.loc 1 363 13 is_stmt 1 view .LVU164
  1146              		.loc 1 363 16 is_stmt 0 view .LVU165
-ARM GAS  /tmp/ccT7MPFG.s 			page 32
+ARM GAS  /tmp/ccwzytnE.s 			page 32
 
 
  1147 00c6 48B1     		cbz	r0, .L63
@@ -1893,12 +1893,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  380:Core/Src/fsm.c ****                 printf("Invalid Mode! Please enter 0, 1, 2, or 3.\r\n");
  1160              		.loc 1 380 17 is_stmt 1 view .LVU172
  1161 00d4 A448     		ldr	r0, .L71+20
- 1162              	.LVL97:
+ 1162              	.LVL99:
  1163              		.loc 1 380 17 is_stmt 0 view .LVU173
  1164 00d6 FFF7FEFF 		bl	puts
- 1165              	.LVL98:
+ 1165              	.LVL100:
  1166 00da 06E0     		b	.L53
- 1167              	.LVL99:
+ 1167              	.LVL101:
  1168              	.L63:
  364:Core/Src/fsm.c ****                 printf("Control Mode set to TORQUE (0)\r\n");
  1169              		.loc 1 364 17 is_stmt 1 view .LVU174
@@ -1910,15 +1910,15 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  365:Core/Src/fsm.c ****             } 
  1174              		.loc 1 365 17 is_stmt 1 view .LVU176
  1175 00e4 A148     		ldr	r0, .L71+24
- 1176              	.LVL100:
+ 1176              	.LVL102:
  365:Core/Src/fsm.c ****             } 
  1177              		.loc 1 365 17 is_stmt 0 view .LVU177
  1178 00e6 FFF7FEFF 		bl	puts
- 1179              	.LVL101:
+ 1179              	.LVL103:
  1180              	.L53:
  381:Core/Src/fsm.c ****             }
  382:Core/Src/fsm.c **** 			CONTROL_MODE = hfoc.control_mode;
-ARM GAS  /tmp/ccT7MPFG.s 			page 33
+ARM GAS  /tmp/ccwzytnE.s 			page 33
 
 
  1181              		.loc 1 382 4 is_stmt 1 view .LVU178
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  426:Core/Src/fsm.c **** 			// pid_set_out_constraint(&hfoc.iq_ctrl, I_MAX, -I_MAX);
  427:Core/Src/fsm.c **** 			foc_set_limit_current(&hfoc, I_MAX);
  428:Core/Src/fsm.c **** 			printf("I_MAX set to %f\r\n", I_MAX);
-ARM GAS  /tmp/ccT7MPFG.s 			page 34
+ARM GAS  /tmp/ccwzytnE.s 			page 34
 
 
  429:Core/Src/fsm.c **** 			break;
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  483:Core/Src/fsm.c **** 				joint_cmd.v_des = atof(fsmstate->cmd_buff);
  484:Core/Src/fsm.c **** 				printf("\n\r  Updated velocity setpoint: %.3f\r\n", joint_cmd.v_des);
  485:Core/Src/fsm.c **** 				break;
-ARM GAS  /tmp/ccT7MPFG.s 			page 35
+ARM GAS  /tmp/ccwzytnE.s 			page 35
 
 
  486:Core/Src/fsm.c **** 			}
@@ -2059,7 +2059,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  501:Core/Src/fsm.c **** 	enter_test_state();
  1192              		.loc 1 501 2 is_stmt 1 view .LVU183
  1193 00f6 FFF7FEFF 		bl	enter_test_state
- 1194              	.LVL102:
+ 1194              	.LVL104:
  502:Core/Src/fsm.c **** 	fsmstate->bytecount = 0;
  1195              		.loc 1 502 2 view .LVU184
  1196              		.loc 1 502 22 is_stmt 0 view .LVU185
@@ -2076,7 +2076,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  505:Core/Src/fsm.c **** }
  1205              		.loc 1 505 1 is_stmt 0 view .LVU189
  1206 0104 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
- 1207              	.LVL103:
+ 1207              	.LVL105:
  1208              	.L64:
  1209              	.LBB3:
  368:Core/Src/fsm.c ****                 printf("Control Mode set to SPEED (1)\r\n");
@@ -2089,16 +2089,16 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  369:Core/Src/fsm.c ****             } 
  1215              		.loc 1 369 17 is_stmt 1 view .LVU192
  1216 010e 9848     		ldr	r0, .L71+28
- 1217              	.LVL104:
+ 1217              	.LVL106:
  369:Core/Src/fsm.c ****             } 
  1218              		.loc 1 369 17 is_stmt 0 view .LVU193
  1219 0110 FFF7FEFF 		bl	puts
- 1220              	.LVL105:
+ 1220              	.LVL107:
  1221 0114 E9E7     		b	.L53
- 1222              	.LVL106:
+ 1222              	.LVL108:
  1223              	.L65:
  372:Core/Src/fsm.c ****                 printf("Control Mode set to POSITION (2)\r\n");
-ARM GAS  /tmp/ccT7MPFG.s 			page 36
+ARM GAS  /tmp/ccwzytnE.s 			page 36
 
 
  1224              		.loc 1 372 17 is_stmt 1 view .LVU194
@@ -2110,13 +2110,13 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  373:Core/Src/fsm.c ****             } 
  1229              		.loc 1 373 17 is_stmt 1 view .LVU196
  1230 011e 9548     		ldr	r0, .L71+32
- 1231              	.LVL107:
+ 1231              	.LVL109:
  373:Core/Src/fsm.c ****             } 
  1232              		.loc 1 373 17 is_stmt 0 view .LVU197
  1233 0120 FFF7FEFF 		bl	puts
- 1234              	.LVL108:
+ 1234              	.LVL110:
  1235 0124 E1E7     		b	.L53
- 1236              	.LVL109:
+ 1236              	.LVL111:
  1237              	.L66:
  376:Core/Src/fsm.c ****                 printf("Control Mode set to IMPEDANCE (3)\r\n");
  1238              		.loc 1 376 17 is_stmt 1 view .LVU198
@@ -2128,13 +2128,13 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  377:Core/Src/fsm.c ****             }
  1243              		.loc 1 377 17 is_stmt 1 view .LVU200
  1244 012e 9248     		ldr	r0, .L71+36
- 1245              	.LVL110:
+ 1245              	.LVL112:
  377:Core/Src/fsm.c ****             }
  1246              		.loc 1 377 17 is_stmt 0 view .LVU201
  1247 0130 FFF7FEFF 		bl	puts
- 1248              	.LVL111:
+ 1248              	.LVL113:
  1249 0134 D9E7     		b	.L53
- 1250              	.LVL112:
+ 1250              	.LVL114:
  1251              	.L42:
  377:Core/Src/fsm.c ****             }
  1252              		.loc 1 377 17 view .LVU202
@@ -2158,29 +2158,29 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  1265              		.loc 1 388 5 view .LVU207
  1266 0148 8C4D     		ldr	r5, .L71+40
  1267 014a 2846     		mov	r0, r5
-ARM GAS  /tmp/ccT7MPFG.s 			page 37
+ARM GAS  /tmp/ccwzytnE.s 			page 37
 
 
- 1268              	.LVL113:
+ 1268              	.LVL115:
  388:Core/Src/fsm.c **** 				pid_reset(&hfoc.iq_ctrl);	
  1269              		.loc 1 388 5 is_stmt 0 view .LVU208
  1270 014c FFF7FEFF 		bl	pid_reset
- 1271              	.LVL114:
+ 1271              	.LVL116:
  389:Core/Src/fsm.c **** 				pid_reset(&hfoc.speed_ctrl);
  1272              		.loc 1 389 5 is_stmt 1 view .LVU209
  1273 0150 05F13400 		add	r0, r5, #52
  1274 0154 FFF7FEFF 		bl	pid_reset
- 1275              	.LVL115:
+ 1275              	.LVL117:
  390:Core/Src/fsm.c **** 				pid_reset(&hfoc.pos_ctrl);
  1276              		.loc 1 390 5 view .LVU210
  1277 0158 05F16800 		add	r0, r5, #104
  1278 015c FFF7FEFF 		bl	pid_reset
- 1279              	.LVL116:
+ 1279              	.LVL118:
  391:Core/Src/fsm.c **** 				DRV8323RS_Enable;
  1280              		.loc 1 391 5 view .LVU211
  1281 0160 05F19C00 		add	r0, r5, #156
  1282 0164 FFF7FEFF 		bl	pid_reset
- 1283              	.LVL117:
+ 1283              	.LVL119:
  392:Core/Src/fsm.c **** 				printf("Start motor.\r\n");
  1284              		.loc 1 392 5 view .LVU212
  1285 0168 854B     		ldr	r3, .L71+44
@@ -2190,11 +2190,11 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  1288              		.loc 1 393 5 view .LVU213
  1289 0170 8448     		ldr	r0, .L71+48
  1290 0172 FFF7FEFF 		bl	puts
- 1291              	.LVL118:
+ 1291              	.LVL120:
  394:Core/Src/fsm.c **** 			}
  1292              		.loc 1 394 5 view .LVU214
  1293 0176 BEE7     		b	.L51
- 1294              	.LVL119:
+ 1294              	.LVL121:
  1295              	.L57:
  397:Core/Src/fsm.c **** 				pid_reset(&hfoc.id_ctrl);
  1296              		.loc 1 397 5 view .LVU215
@@ -2205,29 +2205,29 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  1300              		.loc 1 398 5 view .LVU216
  1301 0180 7E4D     		ldr	r5, .L71+40
  1302 0182 2846     		mov	r0, r5
- 1303              	.LVL120:
+ 1303              	.LVL122:
  398:Core/Src/fsm.c **** 				pid_reset(&hfoc.iq_ctrl);	
  1304              		.loc 1 398 5 is_stmt 0 view .LVU217
  1305 0184 FFF7FEFF 		bl	pid_reset
- 1306              	.LVL121:
+ 1306              	.LVL123:
  399:Core/Src/fsm.c **** 				pid_reset(&hfoc.speed_ctrl);
  1307              		.loc 1 399 5 is_stmt 1 view .LVU218
  1308 0188 05F13400 		add	r0, r5, #52
  1309 018c FFF7FEFF 		bl	pid_reset
- 1310              	.LVL122:
+ 1310              	.LVL124:
  400:Core/Src/fsm.c **** 				pid_reset(&hfoc.pos_ctrl);
  1311              		.loc 1 400 5 view .LVU219
  1312 0190 05F16800 		add	r0, r5, #104
-ARM GAS  /tmp/ccT7MPFG.s 			page 38
+ARM GAS  /tmp/ccwzytnE.s 			page 38
 
 
  1313 0194 FFF7FEFF 		bl	pid_reset
- 1314              	.LVL123:
+ 1314              	.LVL125:
  401:Core/Src/fsm.c **** 				DRV8323RS_Disnable;
  1315              		.loc 1 401 5 view .LVU220
  1316 0198 05F19C00 		add	r0, r5, #156
  1317 019c FFF7FEFF 		bl	pid_reset
- 1318              	.LVL124:
+ 1318              	.LVL126:
  402:Core/Src/fsm.c **** 				printf("Stop motor.\r\n");				
  1319              		.loc 1 402 5 view .LVU221
  1320 01a0 774B     		ldr	r3, .L71+44
@@ -2237,11 +2237,11 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  1323              		.loc 1 403 5 view .LVU222
  1324 01a8 7748     		ldr	r0, .L71+52
  1325 01aa FFF7FEFF 		bl	puts
- 1326              	.LVL125:
+ 1326              	.LVL127:
  404:Core/Src/fsm.c **** 			}
  1327              		.loc 1 404 5 view .LVU223
  1328 01ae A2E7     		b	.L51
- 1329              	.LVL126:
+ 1329              	.LVL128:
  1330              	.L40:
  406:Core/Src/fsm.c **** 		}
  1331              		.loc 1 406 4 view .LVU224
@@ -2250,23 +2250,23 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  409:Core/Src/fsm.c **** 			pid_reset(&hfoc.id_ctrl);
  1333              		.loc 1 409 32 is_stmt 0 view .LVU226
  1334 01b0 0430     		adds	r0, r0, #4
- 1335              	.LVL127:
+ 1335              	.LVL129:
  409:Core/Src/fsm.c **** 			pid_reset(&hfoc.id_ctrl);
  1336              		.loc 1 409 32 view .LVU227
  1337 01b2 FFF7FEFF 		bl	atof
- 1338              	.LVL128:
+ 1338              	.LVL130:
  1339 01b6 51EC100B 		vmov	r0, r1, d0
  409:Core/Src/fsm.c **** 			pid_reset(&hfoc.id_ctrl);
  1340              		.loc 1 409 20 view .LVU228
  1341 01ba FFF7FEFF 		bl	__aeabi_d2f
- 1342              	.LVL129:
+ 1342              	.LVL131:
  1343 01be DFED730A 		vldr.32	s1, .L71+56
  1344 01c2 00EE100A 		vmov	s0, r0
  1345 01c6 FFF7FEFF 		bl	fminf
- 1346              	.LVL130:
+ 1346              	.LVL132:
  1347 01ca DFED710A 		vldr.32	s1, .L71+60
  1348 01ce FFF7FEFF 		bl	fmaxf
- 1349              	.LVL131:
+ 1349              	.LVL133:
  409:Core/Src/fsm.c **** 			pid_reset(&hfoc.id_ctrl);
  1350              		.loc 1 409 18 view .LVU229
  1351 01d2 614D     		ldr	r5, .L71+4
@@ -2276,44 +2276,44 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  1354 01d8 684E     		ldr	r6, .L71+40
  1355 01da 3046     		mov	r0, r6
  1356 01dc FFF7FEFF 		bl	pid_reset
- 1357              	.LVL132:
+ 1357              	.LVL134:
  411:Core/Src/fsm.c **** 			pid_set_out_constraint(&hfoc.id_ctrl, V_MAX_VOLTAGE, -V_MAX_VOLTAGE);
-ARM GAS  /tmp/ccT7MPFG.s 			page 39
+ARM GAS  /tmp/ccwzytnE.s 			page 39
 
 
  1358              		.loc 1 411 4 view .LVU231
  1359 01e0 06F13407 		add	r7, r6, #52
  1360 01e4 3846     		mov	r0, r7
  1361 01e6 FFF7FEFF 		bl	pid_reset
- 1362              	.LVL133:
+ 1362              	.LVL135:
  412:Core/Src/fsm.c **** 			pid_set_out_constraint(&hfoc.iq_ctrl, V_MAX_VOLTAGE, -V_MAX_VOLTAGE);
  1363              		.loc 1 412 4 view .LVU232
  1364 01ea 95ED070A 		vldr.32	s0, [r5, #28]
  1365 01ee F1EE400A 		vneg.f32	s1, s0
  1366 01f2 3046     		mov	r0, r6
  1367 01f4 FFF7FEFF 		bl	pid_set_out_constraint
- 1368              	.LVL134:
+ 1368              	.LVL136:
  413:Core/Src/fsm.c **** 			printf("\n\r  Updated max voltage setpoint: %.2f\r\n", V_MAX_VOLTAGE);
  1369              		.loc 1 413 4 view .LVU233
  1370 01f8 95ED070A 		vldr.32	s0, [r5, #28]
  1371 01fc F1EE400A 		vneg.f32	s1, s0
  1372 0200 3846     		mov	r0, r7
  1373 0202 FFF7FEFF 		bl	pid_set_out_constraint
- 1374              	.LVL135:
+ 1374              	.LVL137:
  414:Core/Src/fsm.c **** 			break;
  1375              		.loc 1 414 4 view .LVU234
  1376 0206 E869     		ldr	r0, [r5, #28]	@ float
  1377 0208 FFF7FEFF 		bl	__aeabi_f2d
- 1378              	.LVL136:
+ 1378              	.LVL138:
  1379 020c 0246     		mov	r2, r0
  1380 020e 0B46     		mov	r3, r1
  1381 0210 6048     		ldr	r0, .L71+64
  1382 0212 FFF7FEFF 		bl	printf
- 1383              	.LVL137:
+ 1383              	.LVL139:
  415:Core/Src/fsm.c **** 
  1384              		.loc 1 415 4 view .LVU235
  1385 0216 6EE7     		b	.L51
- 1386              	.LVL138:
+ 1386              	.LVL140:
  1387              	.L38:
  418:Core/Src/fsm.c **** 			printf("\n\r  Updated view: %d\r\n", RF_VIEW);
  1388              		.loc 1 418 4 view .LVU236
@@ -2325,41 +2325,41 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  1393              		.loc 1 419 4 view .LVU237
  1394 0222 01F01001 		and	r1, r1, #16
  1395 0226 5C48     		ldr	r0, .L71+68
- 1396              	.LVL139:
+ 1396              	.LVL141:
  419:Core/Src/fsm.c **** 
  1397              		.loc 1 419 4 is_stmt 0 view .LVU238
  1398 0228 FFF7FEFF 		bl	printf
- 1399              	.LVL140:
+ 1399              	.LVL142:
  421:Core/Src/fsm.c **** 		}
  1400              		.loc 1 421 4 is_stmt 1 view .LVU239
  1401 022c 63E7     		b	.L51
- 1402              	.LVL141:
+ 1402              	.LVL143:
  1403              	.L43:
  424:Core/Src/fsm.c **** 			// pid_set_out_constraint(&hfoc.id_ctrl, I_MAX, -I_MAX);
  1404              		.loc 1 424 4 view .LVU240
  424:Core/Src/fsm.c **** 			// pid_set_out_constraint(&hfoc.id_ctrl, I_MAX, -I_MAX);
-ARM GAS  /tmp/ccT7MPFG.s 			page 40
+ARM GAS  /tmp/ccwzytnE.s 			page 40
 
 
  1405              		.loc 1 424 24 is_stmt 0 view .LVU241
  1406 022e 0430     		adds	r0, r0, #4
- 1407              	.LVL142:
+ 1407              	.LVL144:
  424:Core/Src/fsm.c **** 			// pid_set_out_constraint(&hfoc.id_ctrl, I_MAX, -I_MAX);
  1408              		.loc 1 424 24 view .LVU242
  1409 0230 FFF7FEFF 		bl	atof
- 1410              	.LVL143:
+ 1410              	.LVL145:
  1411 0234 51EC100B 		vmov	r0, r1, d0
  424:Core/Src/fsm.c **** 			// pid_set_out_constraint(&hfoc.id_ctrl, I_MAX, -I_MAX);
  1412              		.loc 1 424 12 view .LVU243
  1413 0238 FFF7FEFF 		bl	__aeabi_d2f
- 1414              	.LVL144:
+ 1414              	.LVL146:
  1415 023c DFED570A 		vldr.32	s1, .L71+72
  1416 0240 00EE100A 		vmov	s0, r0
  1417 0244 FFF7FEFF 		bl	fminf
- 1418              	.LVL145:
+ 1418              	.LVL147:
  1419 0248 DFED510A 		vldr.32	s1, .L71+60
  1420 024c FFF7FEFF 		bl	fmaxf
- 1421              	.LVL146:
+ 1421              	.LVL148:
  424:Core/Src/fsm.c **** 			// pid_set_out_constraint(&hfoc.id_ctrl, I_MAX, -I_MAX);
  1422              		.loc 1 424 10 view .LVU244
  1423 0250 414D     		ldr	r5, .L71+4
@@ -2368,44 +2368,44 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  1425              		.loc 1 427 4 is_stmt 1 view .LVU245
  1426 0256 3F48     		ldr	r0, .L71
  1427 0258 FFF7FEFF 		bl	foc_set_limit_current
- 1428              	.LVL147:
+ 1428              	.LVL149:
  428:Core/Src/fsm.c **** 			break;
  1429              		.loc 1 428 4 view .LVU246
  1430 025c A86A     		ldr	r0, [r5, #40]	@ float
  1431 025e FFF7FEFF 		bl	__aeabi_f2d
- 1432              	.LVL148:
+ 1432              	.LVL150:
  1433 0262 0246     		mov	r2, r0
  1434 0264 0B46     		mov	r3, r1
  1435 0266 4E48     		ldr	r0, .L71+76
  1436 0268 FFF7FEFF 		bl	printf
- 1437              	.LVL149:
+ 1437              	.LVL151:
  429:Core/Src/fsm.c **** 		case 'k':
  1438              		.loc 1 429 4 view .LVU247
  1439 026c 43E7     		b	.L51
- 1440              	.LVL150:
+ 1440              	.LVL152:
  1441              	.L44:
  431:Core/Src/fsm.c **** 			printf("KT set to %f\r\n", KT);
  1442              		.loc 1 431 4 view .LVU248
  431:Core/Src/fsm.c **** 			printf("KT set to %f\r\n", KT);
  1443              		.loc 1 431 15 is_stmt 0 view .LVU249
  1444 026e 0430     		adds	r0, r0, #4
- 1445              	.LVL151:
+ 1445              	.LVL153:
  431:Core/Src/fsm.c **** 			printf("KT set to %f\r\n", KT);
  1446              		.loc 1 431 15 view .LVU250
  1447 0270 FFF7FEFF 		bl	atof
- 1448              	.LVL152:
+ 1448              	.LVL154:
  1449 0274 51EC100B 		vmov	r0, r1, d0
  431:Core/Src/fsm.c **** 			printf("KT set to %f\r\n", KT);
  1450              		.loc 1 431 9 view .LVU251
  1451 0278 FFF7FEFF 		bl	__aeabi_d2f
-ARM GAS  /tmp/ccT7MPFG.s 			page 41
+ARM GAS  /tmp/ccwzytnE.s 			page 41
 
 
- 1452              	.LVL153:
+ 1452              	.LVL155:
  1453 027c DFED490A 		vldr.32	s1, .L71+80
  1454 0280 00EE100A 		vmov	s0, r0
  1455 0284 FFF7FEFF 		bl	fmaxf
- 1456              	.LVL154:
+ 1456              	.LVL156:
  1457 0288 10EE100A 		vmov	r0, s0
  431:Core/Src/fsm.c **** 			printf("KT set to %f\r\n", KT);
  1458              		.loc 1 431 7 view .LVU252
@@ -2414,30 +2414,30 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  432:Core/Src/fsm.c **** 			break;
  1461              		.loc 1 432 4 is_stmt 1 view .LVU253
  1462 0292 FFF7FEFF 		bl	__aeabi_f2d
- 1463              	.LVL155:
+ 1463              	.LVL157:
  1464 0296 0246     		mov	r2, r0
  1465 0298 0B46     		mov	r3, r1
  1466 029a 4448     		ldr	r0, .L71+88
  1467 029c FFF7FEFF 		bl	printf
- 1468              	.LVL156:
+ 1468              	.LVL158:
  433:Core/Src/fsm.c **** 
  1469              		.loc 1 433 4 view .LVU254
  1470 02a0 29E7     		b	.L51
- 1471              	.LVL157:
+ 1471              	.LVL159:
  1472              	.L48:
  436:Core/Src/fsm.c **** 			IQ_KP = ID_KP;
  1473              		.loc 1 436 4 view .LVU255
  436:Core/Src/fsm.c **** 			IQ_KP = ID_KP;
  1474              		.loc 1 436 12 is_stmt 0 view .LVU256
  1475 02a2 0430     		adds	r0, r0, #4
- 1476              	.LVL158:
+ 1476              	.LVL160:
  436:Core/Src/fsm.c **** 			IQ_KP = ID_KP;
  1477              		.loc 1 436 12 view .LVU257
  1478 02a4 FFF7FEFF 		bl	atof
- 1479              	.LVL159:
+ 1479              	.LVL161:
  1480 02a8 51EC100B 		vmov	r0, r1, d0
  1481 02ac FFF7FEFF 		bl	__aeabi_d2f
- 1482              	.LVL160:
+ 1482              	.LVL162:
  436:Core/Src/fsm.c **** 			IQ_KP = ID_KP;
  1483              		.loc 1 436 10 view .LVU258
  1484 02b0 294A     		ldr	r2, .L71+4
@@ -2458,36 +2458,36 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  439:Core/Src/fsm.c **** 			printf("\n\r  Updated i kp: %.3f\r\n", ID_KP);
  1494              		.loc 1 439 20 is_stmt 0 view .LVU264
  1495 02bc C2F81001 		str	r0, [r2, #272]	@ float
-ARM GAS  /tmp/ccT7MPFG.s 			page 42
+ARM GAS  /tmp/ccwzytnE.s 			page 42
 
 
  440:Core/Src/fsm.c **** 			break;
  1496              		.loc 1 440 4 is_stmt 1 view .LVU265
  1497 02c0 FFF7FEFF 		bl	__aeabi_f2d
- 1498              	.LVL161:
+ 1498              	.LVL163:
  1499 02c4 0246     		mov	r2, r0
  1500 02c6 0B46     		mov	r3, r1
  1501 02c8 3948     		ldr	r0, .L71+92
  1502 02ca FFF7FEFF 		bl	printf
- 1503              	.LVL162:
+ 1503              	.LVL164:
  441:Core/Src/fsm.c **** 		case 'b':
  1504              		.loc 1 441 4 view .LVU266
  1505 02ce 12E7     		b	.L51
- 1506              	.LVL163:
+ 1506              	.LVL165:
  1507              	.L47:
  443:Core/Src/fsm.c **** 			IQ_KI = ID_KI;
  1508              		.loc 1 443 4 view .LVU267
  443:Core/Src/fsm.c **** 			IQ_KI = ID_KI;
  1509              		.loc 1 443 12 is_stmt 0 view .LVU268
  1510 02d0 0430     		adds	r0, r0, #4
- 1511              	.LVL164:
+ 1511              	.LVL166:
  443:Core/Src/fsm.c **** 			IQ_KI = ID_KI;
  1512              		.loc 1 443 12 view .LVU269
  1513 02d2 FFF7FEFF 		bl	atof
- 1514              	.LVL165:
+ 1514              	.LVL167:
  1515 02d6 51EC100B 		vmov	r0, r1, d0
  1516 02da FFF7FEFF 		bl	__aeabi_d2f
- 1517              	.LVL166:
+ 1517              	.LVL168:
  443:Core/Src/fsm.c **** 			IQ_KI = ID_KI;
  1518              		.loc 1 443 10 view .LVU270
  1519 02de 1E4A     		ldr	r2, .L71+4
@@ -2511,19 +2511,19 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  447:Core/Src/fsm.c **** 			break;
  1531              		.loc 1 447 4 is_stmt 1 view .LVU277
  1532 02ee FFF7FEFF 		bl	__aeabi_f2d
- 1533              	.LVL167:
+ 1533              	.LVL169:
  1534 02f2 0246     		mov	r2, r0
  1535 02f4 0B46     		mov	r3, r1
  1536 02f6 2F48     		ldr	r0, .L71+96
  1537 02f8 FFF7FEFF 		bl	printf
- 1538              	.LVL168:
+ 1538              	.LVL170:
  448:Core/Src/fsm.c **** 		case 'c':{
-ARM GAS  /tmp/ccT7MPFG.s 			page 43
+ARM GAS  /tmp/ccwzytnE.s 			page 43
 
 
  1539              		.loc 1 448 4 view .LVU278
  1540 02fc FBE6     		b	.L51
- 1541              	.LVL169:
+ 1541              	.LVL171:
  1542              	.L46:
  450:Core/Src/fsm.c **** 				joint_cmd.kp = atof(fsmstate->cmd_buff);
  1543              		.loc 1 450 4 view .LVU279
@@ -2540,14 +2540,14 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  455:Core/Src/fsm.c **** 			hfoc.speed_ctrl.kp = SPEED_KP;
  1551              		.loc 1 455 15 is_stmt 0 view .LVU283
  1552 0308 0430     		adds	r0, r0, #4
- 1553              	.LVL170:
+ 1553              	.LVL172:
  455:Core/Src/fsm.c **** 			hfoc.speed_ctrl.kp = SPEED_KP;
  1554              		.loc 1 455 15 view .LVU284
  1555 030a FFF7FEFF 		bl	atof
- 1556              	.LVL171:
+ 1556              	.LVL173:
  1557 030e 51EC100B 		vmov	r0, r1, d0
  1558 0312 FFF7FEFF 		bl	__aeabi_d2f
- 1559              	.LVL172:
+ 1559              	.LVL174:
  455:Core/Src/fsm.c **** 			hfoc.speed_ctrl.kp = SPEED_KP;
  1560              		.loc 1 455 13 view .LVU285
  1561 0316 104A     		ldr	r2, .L71+4
@@ -2561,33 +2561,33 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  457:Core/Src/fsm.c **** 			break;
  1567              		.loc 1 457 4 is_stmt 1 view .LVU288
  1568 0320 FFF7FEFF 		bl	__aeabi_f2d
- 1569              	.LVL173:
+ 1569              	.LVL175:
  1570 0324 0246     		mov	r2, r0
  1571 0326 0B46     		mov	r3, r1
  1572 0328 2348     		ldr	r0, .L71+100
  1573 032a FFF7FEFF 		bl	printf
- 1574              	.LVL174:
+ 1574              	.LVL176:
  458:Core/Src/fsm.c **** 		}
  1575              		.loc 1 458 4 view .LVU289
  1576 032e E2E6     		b	.L51
- 1577              	.LVL175:
+ 1577              	.LVL177:
  1578              	.L67:
  451:Core/Src/fsm.c **** 				printf("\n\r  Updated position kp: %.3f\r\n", joint_cmd.kp);
  1579              		.loc 1 451 5 view .LVU290
  451:Core/Src/fsm.c **** 				printf("\n\r  Updated position kp: %.3f\r\n", joint_cmd.kp);
  1580              		.loc 1 451 20 is_stmt 0 view .LVU291
  1581 0330 0430     		adds	r0, r0, #4
- 1582              	.LVL176:
-ARM GAS  /tmp/ccT7MPFG.s 			page 44
+ 1582              	.LVL178:
+ARM GAS  /tmp/ccwzytnE.s 			page 44
 
 
  451:Core/Src/fsm.c **** 				printf("\n\r  Updated position kp: %.3f\r\n", joint_cmd.kp);
  1583              		.loc 1 451 20 view .LVU292
  1584 0332 FFF7FEFF 		bl	atof
- 1585              	.LVL177:
+ 1585              	.LVL179:
  1586 0336 51EC100B 		vmov	r0, r1, d0
  1587 033a FFF7FEFF 		bl	__aeabi_d2f
- 1588              	.LVL178:
+ 1588              	.LVL180:
  451:Core/Src/fsm.c **** 				printf("\n\r  Updated position kp: %.3f\r\n", joint_cmd.kp);
  1589              		.loc 1 451 18 view .LVU293
  1590 033e 1F4B     		ldr	r3, .L71+104
@@ -2595,12 +2595,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  452:Core/Src/fsm.c **** 				break;
  1592              		.loc 1 452 5 is_stmt 1 view .LVU294
  1593 0342 FFF7FEFF 		bl	__aeabi_f2d
- 1594              	.LVL179:
+ 1594              	.LVL181:
  1595 0346 0246     		mov	r2, r0
  1596 0348 0B46     		mov	r3, r1
  1597 034a 1D48     		ldr	r0, .L71+108
  1598 034c FFF7FEFF 		bl	printf
- 1599              	.LVL180:
+ 1599              	.LVL182:
  453:Core/Src/fsm.c **** 			}
  1600              		.loc 1 453 5 view .LVU295
  1601 0350 D1E6     		b	.L51
@@ -2635,10 +2635,10 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  1630 03b8 08020000 		.word	.LC77
  1631 03bc 00000000 		.word	joint_cmd
  1632 03c0 E8010000 		.word	.LC76
- 1633              	.LVL181:
+ 1633              	.LVL183:
  1634              	.L45:
  461:Core/Src/fsm.c **** 				joint_cmd.kd = atof(fsmstate->cmd_buff);
-ARM GAS  /tmp/ccT7MPFG.s 			page 45
+ARM GAS  /tmp/ccwzytnE.s 			page 45
 
 
  1635              		.loc 1 461 4 view .LVU296
@@ -2655,14 +2655,14 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  466:Core/Src/fsm.c **** 			hfoc.speed_ctrl.ki = SPEED_KI;
  1643              		.loc 1 466 15 is_stmt 0 view .LVU300
  1644 03ce 0430     		adds	r0, r0, #4
- 1645              	.LVL182:
+ 1645              	.LVL184:
  466:Core/Src/fsm.c **** 			hfoc.speed_ctrl.ki = SPEED_KI;
  1646              		.loc 1 466 15 view .LVU301
  1647 03d0 FFF7FEFF 		bl	atof
- 1648              	.LVL183:
+ 1648              	.LVL185:
  1649 03d4 51EC100B 		vmov	r0, r1, d0
  1650 03d8 FFF7FEFF 		bl	__aeabi_d2f
- 1651              	.LVL184:
+ 1651              	.LVL186:
  466:Core/Src/fsm.c **** 			hfoc.speed_ctrl.ki = SPEED_KI;
  1652              		.loc 1 466 13 view .LVU302
  1653 03dc 454A     		ldr	r2, .L73+4
@@ -2676,33 +2676,33 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  468:Core/Src/fsm.c **** 			break;
  1659              		.loc 1 468 4 is_stmt 1 view .LVU305
  1660 03e6 FFF7FEFF 		bl	__aeabi_f2d
- 1661              	.LVL185:
+ 1661              	.LVL187:
  1662 03ea 0246     		mov	r2, r0
  1663 03ec 0B46     		mov	r3, r1
  1664 03ee 4248     		ldr	r0, .L73+8
  1665 03f0 FFF7FEFF 		bl	printf
- 1666              	.LVL186:
+ 1666              	.LVL188:
  469:Core/Src/fsm.c **** 		}
  1667              		.loc 1 469 4 view .LVU306
  1668 03f4 7FE6     		b	.L51
- 1669              	.LVL187:
+ 1669              	.LVL189:
  1670              	.L68:
  462:Core/Src/fsm.c **** 				printf("\n\r  Updated position kd: %.3f\r\n", joint_cmd.kd);
  1671              		.loc 1 462 5 view .LVU307
  462:Core/Src/fsm.c **** 				printf("\n\r  Updated position kd: %.3f\r\n", joint_cmd.kd);
  1672              		.loc 1 462 20 is_stmt 0 view .LVU308
  1673 03f6 0430     		adds	r0, r0, #4
- 1674              	.LVL188:
+ 1674              	.LVL190:
  462:Core/Src/fsm.c **** 				printf("\n\r  Updated position kd: %.3f\r\n", joint_cmd.kd);
  1675              		.loc 1 462 20 view .LVU309
  1676 03f8 FFF7FEFF 		bl	atof
- 1677              	.LVL189:
+ 1677              	.LVL191:
  1678 03fc 51EC100B 		vmov	r0, r1, d0
-ARM GAS  /tmp/ccT7MPFG.s 			page 46
+ARM GAS  /tmp/ccwzytnE.s 			page 46
 
 
  1679 0400 FFF7FEFF 		bl	__aeabi_d2f
- 1680              	.LVL190:
+ 1680              	.LVL192:
  462:Core/Src/fsm.c **** 				printf("\n\r  Updated position kd: %.3f\r\n", joint_cmd.kd);
  1681              		.loc 1 462 18 view .LVU310
  1682 0404 3D4B     		ldr	r3, .L73+12
@@ -2710,16 +2710,16 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  463:Core/Src/fsm.c **** 				break;
  1684              		.loc 1 463 5 is_stmt 1 view .LVU311
  1685 0408 FFF7FEFF 		bl	__aeabi_f2d
- 1686              	.LVL191:
+ 1686              	.LVL193:
  1687 040c 0246     		mov	r2, r0
  1688 040e 0B46     		mov	r3, r1
  1689 0410 3B48     		ldr	r0, .L73+16
  1690 0412 FFF7FEFF 		bl	printf
- 1691              	.LVL192:
+ 1691              	.LVL194:
  464:Core/Src/fsm.c **** 			}
  1692              		.loc 1 464 5 view .LVU312
  1693 0416 6EE6     		b	.L51
- 1694              	.LVL193:
+ 1694              	.LVL195:
  1695              	.L37:
  472:Core/Src/fsm.c **** 				joint_cmd.p_des = atof(fsmstate->cmd_buff);
  1696              		.loc 1 472 4 view .LVU313
@@ -2736,14 +2736,14 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  477:Core/Src/fsm.c **** 			hfoc.pos_ctrl.kp = POS_KP;
  1704              		.loc 1 477 13 is_stmt 0 view .LVU317
  1705 0422 0430     		adds	r0, r0, #4
- 1706              	.LVL194:
+ 1706              	.LVL196:
  477:Core/Src/fsm.c **** 			hfoc.pos_ctrl.kp = POS_KP;
  1707              		.loc 1 477 13 view .LVU318
  1708 0424 FFF7FEFF 		bl	atof
- 1709              	.LVL195:
+ 1709              	.LVL197:
  1710 0428 51EC100B 		vmov	r0, r1, d0
  1711 042c FFF7FEFF 		bl	__aeabi_d2f
- 1712              	.LVL196:
+ 1712              	.LVL198:
  477:Core/Src/fsm.c **** 			hfoc.pos_ctrl.kp = POS_KP;
  1713              		.loc 1 477 11 view .LVU319
  1714 0430 304A     		ldr	r2, .L73+4
@@ -2757,33 +2757,33 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  479:Core/Src/fsm.c **** 			break;
  1720              		.loc 1 479 4 is_stmt 1 view .LVU322
  1721 043a FFF7FEFF 		bl	__aeabi_f2d
- 1722              	.LVL197:
-ARM GAS  /tmp/ccT7MPFG.s 			page 47
+ 1722              	.LVL199:
+ARM GAS  /tmp/ccwzytnE.s 			page 47
 
 
  1723 043e 0246     		mov	r2, r0
  1724 0440 0B46     		mov	r3, r1
  1725 0442 3048     		ldr	r0, .L73+20
  1726 0444 FFF7FEFF 		bl	printf
- 1727              	.LVL198:
+ 1727              	.LVL200:
  480:Core/Src/fsm.c **** 		case 'y':
  1728              		.loc 1 480 4 view .LVU323
  1729 0448 55E6     		b	.L51
- 1730              	.LVL199:
+ 1730              	.LVL201:
  1731              	.L69:
  473:Core/Src/fsm.c **** 				printf("\n\r  Updated position setpoint: %.3f\r\n", joint_cmd.p_des);
  1732              		.loc 1 473 5 view .LVU324
  473:Core/Src/fsm.c **** 				printf("\n\r  Updated position setpoint: %.3f\r\n", joint_cmd.p_des);
  1733              		.loc 1 473 23 is_stmt 0 view .LVU325
  1734 044a 0430     		adds	r0, r0, #4
- 1735              	.LVL200:
+ 1735              	.LVL202:
  473:Core/Src/fsm.c **** 				printf("\n\r  Updated position setpoint: %.3f\r\n", joint_cmd.p_des);
  1736              		.loc 1 473 23 view .LVU326
  1737 044c FFF7FEFF 		bl	atof
- 1738              	.LVL201:
+ 1738              	.LVL203:
  1739 0450 51EC100B 		vmov	r0, r1, d0
  1740 0454 FFF7FEFF 		bl	__aeabi_d2f
- 1741              	.LVL202:
+ 1741              	.LVL204:
  473:Core/Src/fsm.c **** 				printf("\n\r  Updated position setpoint: %.3f\r\n", joint_cmd.p_des);
  1742              		.loc 1 473 21 view .LVU327
  1743 0458 284B     		ldr	r3, .L73+12
@@ -2791,16 +2791,16 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  474:Core/Src/fsm.c **** 				break;
  1745              		.loc 1 474 5 is_stmt 1 view .LVU328
  1746 045c FFF7FEFF 		bl	__aeabi_f2d
- 1747              	.LVL203:
+ 1747              	.LVL205:
  1748 0460 0246     		mov	r2, r0
  1749 0462 0B46     		mov	r3, r1
  1750 0464 2848     		ldr	r0, .L73+24
  1751 0466 FFF7FEFF 		bl	printf
- 1752              	.LVL204:
+ 1752              	.LVL206:
  475:Core/Src/fsm.c **** 			}
  1753              		.loc 1 475 5 view .LVU329
  1754 046a 44E6     		b	.L51
- 1755              	.LVL205:
+ 1755              	.LVL207:
  1756              	.L36:
  482:Core/Src/fsm.c **** 				joint_cmd.v_des = atof(fsmstate->cmd_buff);
  1757              		.loc 1 482 4 view .LVU330
@@ -2817,17 +2817,17 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  487:Core/Src/fsm.c **** 			hfoc.pos_ctrl.ki = POS_KI;
  1765              		.loc 1 487 13 is_stmt 0 view .LVU334
  1766 0476 0430     		adds	r0, r0, #4
- 1767              	.LVL206:
-ARM GAS  /tmp/ccT7MPFG.s 			page 48
+ 1767              	.LVL208:
+ARM GAS  /tmp/ccwzytnE.s 			page 48
 
 
  487:Core/Src/fsm.c **** 			hfoc.pos_ctrl.ki = POS_KI;
  1768              		.loc 1 487 13 view .LVU335
  1769 0478 FFF7FEFF 		bl	atof
- 1770              	.LVL207:
+ 1770              	.LVL209:
  1771 047c 51EC100B 		vmov	r0, r1, d0
  1772 0480 FFF7FEFF 		bl	__aeabi_d2f
- 1773              	.LVL208:
+ 1773              	.LVL210:
  487:Core/Src/fsm.c **** 			hfoc.pos_ctrl.ki = POS_KI;
  1774              		.loc 1 487 11 view .LVU336
  1775 0484 1B4A     		ldr	r2, .L73+4
@@ -2841,30 +2841,30 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  489:Core/Src/fsm.c **** 			break;
  1781              		.loc 1 489 4 is_stmt 1 view .LVU339
  1782 048e FFF7FEFF 		bl	__aeabi_f2d
- 1783              	.LVL209:
+ 1783              	.LVL211:
  1784 0492 0246     		mov	r2, r0
  1785 0494 0B46     		mov	r3, r1
  1786 0496 1D48     		ldr	r0, .L73+28
  1787 0498 FFF7FEFF 		bl	printf
- 1788              	.LVL210:
+ 1788              	.LVL212:
  490:Core/Src/fsm.c **** 		case 'z':
  1789              		.loc 1 490 4 view .LVU340
  1790 049c 2BE6     		b	.L51
- 1791              	.LVL211:
+ 1791              	.LVL213:
  1792              	.L70:
  483:Core/Src/fsm.c **** 				printf("\n\r  Updated velocity setpoint: %.3f\r\n", joint_cmd.v_des);
  1793              		.loc 1 483 5 view .LVU341
  483:Core/Src/fsm.c **** 				printf("\n\r  Updated velocity setpoint: %.3f\r\n", joint_cmd.v_des);
  1794              		.loc 1 483 23 is_stmt 0 view .LVU342
  1795 049e 0430     		adds	r0, r0, #4
- 1796              	.LVL212:
+ 1796              	.LVL214:
  483:Core/Src/fsm.c **** 				printf("\n\r  Updated velocity setpoint: %.3f\r\n", joint_cmd.v_des);
  1797              		.loc 1 483 23 view .LVU343
  1798 04a0 FFF7FEFF 		bl	atof
- 1799              	.LVL213:
+ 1799              	.LVL215:
  1800 04a4 51EC100B 		vmov	r0, r1, d0
  1801 04a8 FFF7FEFF 		bl	__aeabi_d2f
- 1802              	.LVL214:
+ 1802              	.LVL216:
  483:Core/Src/fsm.c **** 				printf("\n\r  Updated velocity setpoint: %.3f\r\n", joint_cmd.v_des);
  1803              		.loc 1 483 21 view .LVU344
  1804 04ac 134B     		ldr	r3, .L73+12
@@ -2872,33 +2872,33 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  484:Core/Src/fsm.c **** 				break;
  1806              		.loc 1 484 5 is_stmt 1 view .LVU345
  1807 04b0 FFF7FEFF 		bl	__aeabi_f2d
- 1808              	.LVL215:
+ 1808              	.LVL217:
  1809 04b4 0246     		mov	r2, r0
  1810 04b6 0B46     		mov	r3, r1
  1811 04b8 1548     		ldr	r0, .L73+32
  1812 04ba FFF7FEFF 		bl	printf
- 1813              	.LVL216:
-ARM GAS  /tmp/ccT7MPFG.s 			page 49
+ 1813              	.LVL218:
+ARM GAS  /tmp/ccwzytnE.s 			page 49
 
 
  485:Core/Src/fsm.c **** 			}
  1814              		.loc 1 485 5 view .LVU346
  1815 04be 1AE6     		b	.L51
- 1816              	.LVL217:
+ 1816              	.LVL219:
  1817              	.L34:
  492:Core/Src/fsm.c **** 			hfoc.pos_ctrl.kd = POS_KD;
  1818              		.loc 1 492 4 view .LVU347
  492:Core/Src/fsm.c **** 			hfoc.pos_ctrl.kd = POS_KD;
  1819              		.loc 1 492 13 is_stmt 0 view .LVU348
  1820 04c0 0430     		adds	r0, r0, #4
- 1821              	.LVL218:
+ 1821              	.LVL220:
  492:Core/Src/fsm.c **** 			hfoc.pos_ctrl.kd = POS_KD;
  1822              		.loc 1 492 13 view .LVU349
  1823 04c2 FFF7FEFF 		bl	atof
- 1824              	.LVL219:
+ 1824              	.LVL221:
  1825 04c6 51EC100B 		vmov	r0, r1, d0
  1826 04ca FFF7FEFF 		bl	__aeabi_d2f
- 1827              	.LVL220:
+ 1827              	.LVL222:
  492:Core/Src/fsm.c **** 			hfoc.pos_ctrl.kd = POS_KD;
  1828              		.loc 1 492 11 view .LVU350
  1829 04ce 094A     		ldr	r2, .L73+4
@@ -2912,25 +2912,25 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  494:Core/Src/fsm.c **** 			break;
  1835              		.loc 1 494 4 is_stmt 1 view .LVU353
  1836 04d8 FFF7FEFF 		bl	__aeabi_f2d
- 1837              	.LVL221:
+ 1837              	.LVL223:
  1838 04dc 0246     		mov	r2, r0
  1839 04de 0B46     		mov	r3, r1
  1840 04e0 0748     		ldr	r0, .L73+16
  1841 04e2 FFF7FEFF 		bl	printf
- 1842              	.LVL222:
+ 1842              	.LVL224:
  495:Core/Src/fsm.c **** 		default:
  1843              		.loc 1 495 4 view .LVU354
  1844 04e6 06E6     		b	.L51
- 1845              	.LVL223:
+ 1845              	.LVL225:
  1846              	.L33:
  497:Core/Src/fsm.c **** 			break;
  1847              		.loc 1 497 4 view .LVU355
  1848 04e8 0A48     		ldr	r0, .L73+36
- 1849              	.LVL224:
+ 1849              	.LVL226:
  497:Core/Src/fsm.c **** 			break;
  1850              		.loc 1 497 4 is_stmt 0 view .LVU356
  1851 04ea FFF7FEFF 		bl	printf
- 1852              	.LVL225:
+ 1852              	.LVL227:
  498:Core/Src/fsm.c **** 
  1853              		.loc 1 498 4 is_stmt 1 view .LVU357
  1854 04ee 02E6     		b	.L51
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  1856              		.align	2
  1857              	.L73:
  1858 04f0 00000000 		.word	hfoc
-ARM GAS  /tmp/ccT7MPFG.s 			page 50
+ARM GAS  /tmp/ccwzytnE.s 			page 50
 
 
  1859 04f4 00000000 		.word	m_config
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  1892      20456E63 
  1892      6F646572 
  1893 007b 00       		.align	2
-ARM GAS  /tmp/ccT7MPFG.s 			page 51
+ARM GAS  /tmp/ccwzytnE.s 			page 51
 
 
  1894              	.LC91:
@@ -3046,50 +3046,50 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  1922              		.loc 1 512 2 view .LVU360
  1923 000a 0F48     		ldr	r0, .L77+4
  1924 000c FFF7FEFF 		bl	printf
- 1925              	.LVL226:
+ 1925              	.LVL228:
  513:Core/Src/fsm.c **** 	printf(" Commands:\n\r");
  1926              		.loc 1 513 2 view .LVU361
  1927 0010 0E48     		ldr	r0, .L77+8
  1928 0012 FFF7FEFF 		bl	printf
- 1929              	.LVL227:
+ 1929              	.LVL229:
  514:Core/Src/fsm.c **** 	printf(" m - Motor Mode\n\r");
  1930              		.loc 1 514 2 view .LVU362
  1931 0016 0E48     		ldr	r0, .L77+12
  1932 0018 FFF7FEFF 		bl	printf
- 1933              	.LVL228:
+ 1933              	.LVL230:
  515:Core/Src/fsm.c **** 	printf(" t - Test Mode\n\r");
-ARM GAS  /tmp/ccT7MPFG.s 			page 52
+ARM GAS  /tmp/ccwzytnE.s 			page 52
 
 
  1934              		.loc 1 515 2 view .LVU363
  1935 001c 0D48     		ldr	r0, .L77+16
  1936 001e FFF7FEFF 		bl	printf
- 1937              	.LVL229:
+ 1937              	.LVL231:
  516:Core/Src/fsm.c **** 	printf(" c - Calibrate\n\r");
  1938              		.loc 1 516 2 view .LVU364
  1939 0022 0D48     		ldr	r0, .L77+20
  1940 0024 FFF7FEFF 		bl	printf
- 1941              	.LVL230:
+ 1941              	.LVL232:
  517:Core/Src/fsm.c **** 	printf(" s - Setup\n\r");
  1942              		.loc 1 517 2 view .LVU365
  1943 0028 0C48     		ldr	r0, .L77+24
  1944 002a FFF7FEFF 		bl	printf
- 1945              	.LVL231:
+ 1945              	.LVL233:
  518:Core/Src/fsm.c **** 	printf(" e - Display Encoder\n\r");
  1946              		.loc 1 518 2 view .LVU366
  1947 002e 0C48     		ldr	r0, .L77+28
  1948 0030 FFF7FEFF 		bl	printf
- 1949              	.LVL232:
+ 1949              	.LVL234:
  519:Core/Src/fsm.c **** 	printf(" z - Set Zero Position\n\r");
  1950              		.loc 1 519 2 view .LVU367
  1951 0034 0B48     		ldr	r0, .L77+32
  1952 0036 FFF7FEFF 		bl	printf
- 1953              	.LVL233:
+ 1953              	.LVL235:
  520:Core/Src/fsm.c **** 	printf(" esc - Exit to Menu\n\r");
  1954              		.loc 1 520 2 view .LVU368
  1955 003a 0B48     		ldr	r0, .L77+36
  1956 003c FFF7FEFF 		bl	printf
- 1957              	.LVL234:
+ 1957              	.LVL236:
  521:Core/Src/fsm.c **** 
  522:Core/Src/fsm.c **** 	//gpio.led->write(0);
  523:Core/Src/fsm.c **** }
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  1979      67757261 
  1979      74696F6E 
  1979      204F7074 
-ARM GAS  /tmp/ccT7MPFG.s 			page 53
+ARM GAS  /tmp/ccwzytnE.s 			page 53
 
 
  1980              		.align	2
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2012      74696F6E 
  2012      20476169 
  2012      6E20284E 
-ARM GAS  /tmp/ccT7MPFG.s 			page 54
+ARM GAS  /tmp/ccwzytnE.s 			page 54
 
 
  2013              		.align	2
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2046 015f 00       		.align	2
  2047              	.LC116:
  2048 0160 6900     		.ascii	"i\000"
-ARM GAS  /tmp/ccT7MPFG.s 			page 55
+ARM GAS  /tmp/ccwzytnE.s 			page 55
 
 
  2049 0162 0000     		.align	2
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2081              	.LFB145:
  524:Core/Src/fsm.c ****    
  525:Core/Src/fsm.c **** void enter_setup_state(void){
-ARM GAS  /tmp/ccT7MPFG.s 			page 56
+ARM GAS  /tmp/ccwzytnE.s 			page 56
 
 
  2082              		.loc 1 525 29 is_stmt 1 view -0
@@ -3322,7 +3322,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2099              		.loc 1 526 2 view .LVU371
  2100 0006 7548     		ldr	r0, .L81
  2101 0008 FFF7FEFF 		bl	printf
- 2102              	.LVL235:
+ 2102              	.LVL237:
  527:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %-2s\r\n", "prefix", "parameter", "min", "max", "current value");
  2103              		.loc 1 527 2 view .LVU372
  2104 000c 744B     		ldr	r3, .L81+4
@@ -3334,12 +3334,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2110 0018 7549     		ldr	r1, .L81+20
  2111 001a 7648     		ldr	r0, .L81+24
  2112 001c FFF7FEFF 		bl	printf
- 2113              	.LVL236:
+ 2113              	.LVL238:
  528:Core/Src/fsm.c **** 	printf("\r\n Motor:\r\n");
  2114              		.loc 1 528 2 view .LVU373
  2115 0020 7548     		ldr	r0, .L81+28
  2116 0022 FFF7FEFF 		bl	puts
- 2117              	.LVL237:
+ 2117              	.LVL239:
  529:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "g", "Gear Ratio", "0", "-", GR);
  2118              		.loc 1 529 2 view .LVU374
  2119              		.loc 1 529 72 is_stmt 0 view .LVU375
@@ -3350,7 +3350,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2124 0030 734C     		ldr	r4, .L81+36
  2125 0032 D5F89400 		ldr	r0, [r5, #148]	@ float
  2126 0036 FFF7FEFF 		bl	__aeabi_f2d
- 2127              	.LVL238:
+ 2127              	.LVL240:
  2128 003a CDE90201 		strd	r0, [sp, #8]
  2129 003e DFF88882 		ldr	r8, .L81+236
  2130 0042 CDF80080 		str	r8, [sp]
@@ -3358,16 +3358,16 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2132 0048 6E4A     		ldr	r2, .L81+40
  2133 004a 6F49     		ldr	r1, .L81+44
  2134 004c 2046     		mov	r0, r4
-ARM GAS  /tmp/ccT7MPFG.s 			page 57
+ARM GAS  /tmp/ccwzytnE.s 			page 57
 
 
  2135 004e FFF7FEFF 		bl	printf
- 2136              	.LVL239:
+ 2136              	.LVL241:
  530:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "k", "Torque Constant (N-m/A)", "0", "-", KT);
  2137              		.loc 1 530 2 is_stmt 1 view .LVU377
  2138 0052 D5F89000 		ldr	r0, [r5, #144]	@ float
  2139 0056 FFF7FEFF 		bl	__aeabi_f2d
- 2140              	.LVL240:
+ 2140              	.LVL242:
  2141 005a CDE90201 		strd	r0, [sp, #8]
  2142 005e CDF80080 		str	r8, [sp]
  2143 0062 3346     		mov	r3, r6
@@ -3375,13 +3375,13 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2145 0066 6A49     		ldr	r1, .L81+52
  2146 0068 2046     		mov	r0, r4
  2147 006a FFF7FEFF 		bl	printf
- 2148              	.LVL241:
+ 2148              	.LVL243:
  531:Core/Src/fsm.c **** 	
  532:Core/Src/fsm.c **** 	printf("\r\n Control:\r\n");
  2149              		.loc 1 532 2 view .LVU378
  2150 006e 6948     		ldr	r0, .L81+56
  2151 0070 FFF7FEFF 		bl	puts
- 2152              	.LVL242:
+ 2152              	.LVL244:
  533:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %d\n\r", "o", "Control Mode(0:Tor,1:Spd,2:Pos,3:Imp)", "0", "3", CON
  2153              		.loc 1 533 2 view .LVU379
  2154              		.loc 1 533 97 is_stmt 0 view .LVU380
@@ -3395,12 +3395,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2162 0082 6749     		ldr	r1, .L81+68
  2163 0084 6748     		ldr	r0, .L81+72
  2164 0086 FFF7FEFF 		bl	printf
- 2165              	.LVL243:
+ 2165              	.LVL245:
  534:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "b", "Current Bandwidth (Hz)", "50", "2000", I_BW);
  2166              		.loc 1 534 2 is_stmt 1 view .LVU382
  2167 008a D9F82400 		ldr	r0, [r9, #36]	@ float
  2168 008e FFF7FEFF 		bl	__aeabi_f2d
- 2169              	.LVL244:
+ 2169              	.LVL246:
  2170 0092 CDE90201 		strd	r0, [sp, #8]
  2171 0096 644B     		ldr	r3, .L81+76
  2172 0098 0093     		str	r3, [sp]
@@ -3409,16 +3409,16 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2175 009e 6549     		ldr	r1, .L81+88
  2176 00a0 2046     		mov	r0, r4
  2177 00a2 FFF7FEFF 		bl	printf
- 2178              	.LVL245:
+ 2178              	.LVL247:
  535:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "l", "Current Limit (A)", "0.0", "75.0", I_MAX);
  2179              		.loc 1 535 2 view .LVU383
  2180 00a6 644F     		ldr	r7, .L81+92
  2181 00a8 D9F82800 		ldr	r0, [r9, #40]	@ float
  2182 00ac FFF7FEFF 		bl	__aeabi_f2d
- 2183              	.LVL246:
+ 2183              	.LVL248:
  2184 00b0 CDE90201 		strd	r0, [sp, #8]
  2185 00b4 614B     		ldr	r3, .L81+96
-ARM GAS  /tmp/ccT7MPFG.s 			page 58
+ARM GAS  /tmp/ccwzytnE.s 			page 58
 
 
  2186 00b6 0093     		str	r3, [sp]
@@ -3427,12 +3427,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2189 00bc 6149     		ldr	r1, .L81+104
  2190 00be 2046     		mov	r0, r4
  2191 00c0 FFF7FEFF 		bl	printf
- 2192              	.LVL247:
+ 2192              	.LVL249:
  536:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "p", "Max Position Setpoint (rad)", "-", "-", P_MAX);
  2193              		.loc 1 536 2 view .LVU384
  2194 00c4 D5F8B400 		ldr	r0, [r5, #180]	@ float
  2195 00c8 FFF7FEFF 		bl	__aeabi_f2d
- 2196              	.LVL248:
+ 2196              	.LVL250:
  2197 00cc CDE90201 		strd	r0, [sp, #8]
  2198 00d0 CDF80080 		str	r8, [sp]
  2199 00d4 4346     		mov	r3, r8
@@ -3440,12 +3440,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2201 00d8 5C49     		ldr	r1, .L81+112
  2202 00da 2046     		mov	r0, r4
  2203 00dc FFF7FEFF 		bl	printf
- 2204              	.LVL249:
+ 2204              	.LVL251:
  537:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "v", "Max Velocity Setpoint (rad)/s", "-", "-", V_MAX);
  2205              		.loc 1 537 2 view .LVU385
  2206 00e0 D5F8BC00 		ldr	r0, [r5, #188]	@ float
  2207 00e4 FFF7FEFF 		bl	__aeabi_f2d
- 2208              	.LVL250:
+ 2208              	.LVL252:
  2209 00e8 CDE90201 		strd	r0, [sp, #8]
  2210 00ec CDF80080 		str	r8, [sp]
  2211 00f0 4346     		mov	r3, r8
@@ -3453,12 +3453,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2213 00f4 5749     		ldr	r1, .L81+120
  2214 00f6 2046     		mov	r0, r4
  2215 00f8 FFF7FEFF 		bl	printf
- 2216              	.LVL251:
+ 2216              	.LVL253:
  538:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "x", "Max Position Gain (N-m/rad)", "0.0", "1000.0", KP_M
  2217              		.loc 1 538 2 view .LVU386
  2218 00fc D5F8CC00 		ldr	r0, [r5, #204]	@ float
  2219 0100 FFF7FEFF 		bl	__aeabi_f2d
- 2220              	.LVL252:
+ 2220              	.LVL254:
  2221 0104 CDE90201 		strd	r0, [sp, #8]
  2222 0108 534B     		ldr	r3, .L81+124
  2223 010a 0093     		str	r3, [sp]
@@ -3467,24 +3467,24 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2226 0110 5349     		ldr	r1, .L81+132
  2227 0112 2046     		mov	r0, r4
  2228 0114 FFF7FEFF 		bl	printf
- 2229              	.LVL253:
+ 2229              	.LVL255:
  539:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "d", "Max Velocity Gain (N-m/rad/s)", "0.0", "5.0", KD_MA
  2230              		.loc 1 539 2 view .LVU387
  2231 0118 D5F8D400 		ldr	r0, [r5, #212]	@ float
  2232 011c FFF7FEFF 		bl	__aeabi_f2d
- 2233              	.LVL254:
+ 2233              	.LVL256:
  2234 0120 CDE90201 		strd	r0, [sp, #8]
  2235 0124 4F4B     		ldr	r3, .L81+136
  2236 0126 0093     		str	r3, [sp]
  2237 0128 3B46     		mov	r3, r7
  2238 012a 4F4A     		ldr	r2, .L81+140
-ARM GAS  /tmp/ccT7MPFG.s 			page 59
+ARM GAS  /tmp/ccwzytnE.s 			page 59
 
 
  2239 012c 4F49     		ldr	r1, .L81+144
  2240 012e 2046     		mov	r0, r4
  2241 0130 FFF7FEFF 		bl	printf
- 2242              	.LVL255:
+ 2242              	.LVL257:
  540:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "f", "FW Current Limit (A)", "0.0", "33.0", I_FW_MAX);
  2243              		.loc 1 540 2 view .LVU388
  2244 0134 4FF00008 		mov	r8, #0
@@ -3497,7 +3497,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2251 0148 4B49     		ldr	r1, .L81+156
  2252 014a 2046     		mov	r0, r4
  2253 014c FFF7FEFF 		bl	printf
- 2254              	.LVL256:
+ 2254              	.LVL258:
  541:Core/Src/fsm.c **** 	//printf(" %-4s %-31s %-5s %-6s %.1f\n\r", "h", "Temp Cutoff (C) (0 = none)", "0", "150", TEMP_MAX
  542:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "c", "Continuous Current (A)", "0.0", "40.0", I_MAX_CONT)
  2255              		.loc 1 542 2 view .LVU389
@@ -3509,12 +3509,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2261 015c 4949     		ldr	r1, .L81+168
  2262 015e 2046     		mov	r0, r4
  2263 0160 FFF7FEFF 		bl	printf
- 2264              	.LVL257:
+ 2264              	.LVL259:
  543:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "a", "Calibration Current (A)", "0.0", "2.0", I_CAL);
  2265              		.loc 1 543 2 view .LVU390
  2266 0164 D5F88800 		ldr	r0, [r5, #136]	@ float
  2267 0168 FFF7FEFF 		bl	__aeabi_f2d
- 2268              	.LVL258:
+ 2268              	.LVL260:
  2269 016c CDE90201 		strd	r0, [sp, #8]
  2270 0170 454B     		ldr	r3, .L81+172
  2271 0172 0093     		str	r3, [sp]
@@ -3523,12 +3523,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2274 0178 4549     		ldr	r1, .L81+180
  2275 017a 2046     		mov	r0, r4
  2276 017c FFF7FEFF 		bl	printf
- 2277              	.LVL259:
+ 2277              	.LVL261:
  544:Core/Src/fsm.c **** 	printf("\r\n CAN:\r\n");
  2278              		.loc 1 544 2 view .LVU391
  2279 0180 4448     		ldr	r0, .L81+184
  2280 0182 FFF7FEFF 		bl	puts
- 2281              	.LVL260:
+ 2281              	.LVL262:
  545:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %-5li\n\r", "i", "CAN ID", "0", "127", CAN_SID);
  2282              		.loc 1 545 2 view .LVU392
  2283 0186 444C     		ldr	r4, .L81+188
@@ -3538,13 +3538,13 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2287 0190 0097     		str	r7, [sp]
  2288 0192 3346     		mov	r3, r6
  2289 0194 424A     		ldr	r2, .L81+196
-ARM GAS  /tmp/ccT7MPFG.s 			page 60
+ARM GAS  /tmp/ccwzytnE.s 			page 60
 
 
  2290 0196 4349     		ldr	r1, .L81+200
  2291 0198 2046     		mov	r0, r4
  2292 019a FFF7FEFF 		bl	printf
- 2293              	.LVL261:
+ 2293              	.LVL263:
  546:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %-5li\n\r", "m", "CAN TX ID", "0", "127", CAN_MID);
  2294              		.loc 1 546 2 view .LVU393
  2295 019e D5F8A830 		ldr	r3, [r5, #168]
@@ -3555,7 +3555,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2300 01aa 4049     		ldr	r1, .L81+208
  2301 01ac 2046     		mov	r0, r4
  2302 01ae FFF7FEFF 		bl	printf
- 2303              	.LVL262:
+ 2303              	.LVL264:
  547:Core/Src/fsm.c **** 	printf(" %-4s %-31s %-5s %-6s %-5li\n\r", "t", "CAN Timeout (cycles)(0 = none)", "0", "100000", CA
  2304              		.loc 1 547 2 view .LVU394
  2305 01b2 D5F8AC30 		ldr	r3, [r5, #172]
@@ -3567,17 +3567,17 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2311 01c0 3D49     		ldr	r1, .L81+220
  2312 01c2 2046     		mov	r0, r4
  2313 01c4 FFF7FEFF 		bl	printf
- 2314              	.LVL263:
+ 2314              	.LVL265:
  548:Core/Src/fsm.c **** 	printf(" \n\r To change a value, type 'prefix''value''ENTER'\n\r e.g. 'b1000''ENTER'\r\n ");
  2315              		.loc 1 548 2 view .LVU395
  2316 01c8 3C48     		ldr	r0, .L81+224
  2317 01ca FFF7FEFF 		bl	printf
- 2318              	.LVL264:
+ 2318              	.LVL266:
  549:Core/Src/fsm.c **** 	printf("VALUES NOT ACTIVE UNTIL POWER CYCLE! \n\r\n\r");
  2319              		.loc 1 549 2 view .LVU396
  2320 01ce 3C48     		ldr	r0, .L81+228
  2321 01d0 FFF7FEFF 		bl	printf
- 2322              	.LVL265:
+ 2322              	.LVL267:
  550:Core/Src/fsm.c **** }
  2323              		.loc 1 550 1 is_stmt 0 view .LVU397
  2324 01d4 05B0     		add	sp, sp, #20
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2339 01f8 1C000000 		.word	.LC94
  2340 01fc C4000000 		.word	.LC15
  2341 0200 A4000000 		.word	.LC14
-ARM GAS  /tmp/ccT7MPFG.s 			page 61
+ARM GAS  /tmp/ccwzytnE.s 			page 61
 
 
  2342 0204 28000000 		.word	.LC95
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2397              		.align	2
  2398              	.LC124:
  2399 0000 456E7465 		.ascii	"Entering Setup\015\000"
-ARM GAS  /tmp/ccT7MPFG.s 			page 62
+ARM GAS  /tmp/ccwzytnE.s 			page 62
 
 
  2399      72696E67 
@@ -3686,7 +3686,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2411              		.thumb_func
  2412              		.fpu fpv4-sp-d16
  2414              	fsm_enter_state:
- 2415              	.LVL266:
+ 2415              	.LVL268:
  2416              	.LFB138:
   78:Core/Src/fsm.c **** 	/* Called when entering a new state
  2417              		.loc 1 78 43 is_stmt 1 view -0
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2436              		.loc 1 82 13 view .LVU405
  2437 000c 83F86A20 		strb	r2, [r3, #106]
   83:Core/Src/fsm.c **** 			case MENU_MODE:
-ARM GAS  /tmp/ccT7MPFG.s 			page 63
+ARM GAS  /tmp/ccwzytnE.s 			page 63
 
 
  2438              		.loc 1 83 2 is_stmt 1 view .LVU406
@@ -3752,33 +3752,33 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
   88:Core/Src/fsm.c **** 			break;
  2462              		.loc 1 88 4 view .LVU411
  2463 0032 FFF7FEFF 		bl	enter_menu_state
- 2464              	.LVL267:
+ 2464              	.LVL269:
   89:Core/Src/fsm.c **** 		case SETUP_MODE:
  2465              		.loc 1 89 4 view .LVU412
  2466              	.L83:
  114:Core/Src/fsm.c **** 
  2467              		.loc 1 114 1 is_stmt 0 view .LVU413
  2468 0036 08BD     		pop	{r3, pc}
- 2469              	.LVL268:
+ 2469              	.LVL270:
  2470              	.L87:
   91:Core/Src/fsm.c **** 			enter_setup_state();
  2471              		.loc 1 91 4 is_stmt 1 view .LVU414
  2472 0038 1648     		ldr	r0, .L92+8
- 2473              	.LVL269:
+ 2473              	.LVL271:
   91:Core/Src/fsm.c **** 			enter_setup_state();
  2474              		.loc 1 91 4 is_stmt 0 view .LVU415
  2475 003a FFF7FEFF 		bl	puts
- 2476              	.LVL270:
+ 2476              	.LVL272:
   92:Core/Src/fsm.c **** 			break;
  2477              		.loc 1 92 4 is_stmt 1 view .LVU416
  2478 003e FFF7FEFF 		bl	enter_setup_state
- 2479              	.LVL271:
+ 2479              	.LVL273:
   93:Core/Src/fsm.c **** 		case TEST_MODE:
  2480              		.loc 1 93 4 view .LVU417
  2481 0042 F8E7     		b	.L83
- 2482              	.LVL272:
+ 2482              	.LVL274:
  2483              	.L85:
-ARM GAS  /tmp/ccT7MPFG.s 			page 64
+ARM GAS  /tmp/ccwzytnE.s 			page 64
 
 
   95:Core/Src/fsm.c **** 			CF_RUNNING;
@@ -3795,20 +3795,20 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
   97:Core/Src/fsm.c **** 			break;
  2493              		.loc 1 97 4 view .LVU420
  2494 0056 FFF7FEFF 		bl	enter_test_state
- 2495              	.LVL273:
+ 2495              	.LVL275:
   98:Core/Src/fsm.c **** 		case ENCODER_MODE:
  2496              		.loc 1 98 4 view .LVU421
  2497 005a ECE7     		b	.L83
- 2498              	.LVL274:
+ 2498              	.LVL276:
  2499              	.L88:
  103:Core/Src/fsm.c **** 			DRV8323RS_Enable;
  2500              		.loc 1 103 4 view .LVU422
  2501 005c 0E48     		ldr	r0, .L92+12
- 2502              	.LVL275:
+ 2502              	.LVL277:
  103:Core/Src/fsm.c **** 			DRV8323RS_Enable;
  2503              		.loc 1 103 4 is_stmt 0 view .LVU423
  2504 005e FFF7FEFF 		bl	puts
- 2505              	.LVL276:
+ 2505              	.LVL278:
  104:Core/Src/fsm.c **** 			SF_RUNNING;
  2506              		.loc 1 104 4 is_stmt 1 view .LVU424
  2507 0062 0B4B     		ldr	r3, .L92+4
@@ -3823,29 +3823,29 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  106:Core/Src/fsm.c **** 		case CALIBRATION_MODE:
  2515              		.loc 1 106 4 view .LVU426
  2516 0074 DFE7     		b	.L83
- 2517              	.LVL277:
+ 2517              	.LVL279:
  2518              	.L89:
  108:Core/Src/fsm.c **** 			DRV8323RS_Enable;
  2519              		.loc 1 108 4 view .LVU427
  2520 0076 0948     		ldr	r0, .L92+16
- 2521              	.LVL278:
+ 2521              	.LVL280:
  108:Core/Src/fsm.c **** 			DRV8323RS_Enable;
  2522              		.loc 1 108 4 is_stmt 0 view .LVU428
  2523 0078 FFF7FEFF 		bl	puts
- 2524              	.LVL279:
+ 2524              	.LVL281:
  109:Core/Src/fsm.c ****             foc_start_calibration(&hfoc);  
  2525              		.loc 1 109 4 is_stmt 1 view .LVU429
  2526 007c 044B     		ldr	r3, .L92+4
  2527 007e 4FF40062 		mov	r2, #2048
  2528 0082 9A61     		str	r2, [r3, #24]
-ARM GAS  /tmp/ccT7MPFG.s 			page 65
+ARM GAS  /tmp/ccwzytnE.s 			page 65
 
 
  110:Core/Src/fsm.c **** 			break;
  2529              		.loc 1 110 13 view .LVU430
  2530 0084 0648     		ldr	r0, .L92+20
  2531 0086 FFF7FEFF 		bl	foc_start_calibration
- 2532              	.LVL280:
+ 2532              	.LVL282:
  111:Core/Src/fsm.c **** 
  2533              		.loc 1 111 4 view .LVU431
  114:Core/Src/fsm.c **** 
@@ -3870,7 +3870,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2553              		.thumb_func
  2554              		.fpu fpv4-sp-d16
  2556              	run_fsm:
- 2557              	.LVL281:
+ 2557              	.LVL283:
  2558              	.LFB137:
   34:Core/Src/fsm.c **** 	/* run_fsm is run every commutation interrupt cycle */
  2559              		.loc 1 34 35 is_stmt 1 view -0
@@ -3897,8 +3897,8 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2575              		.loc 1 38 4 view .LVU438
  2576 0008 9A42     		cmp	r2, r3
  2577 000a 07D1     		bne	.L100
- 2578              	.LVL282:
-ARM GAS  /tmp/ccT7MPFG.s 			page 66
+ 2578              	.LVL284:
+ARM GAS  /tmp/ccwzytnE.s 			page 66
 
 
  2579              	.L95:
@@ -3919,12 +3919,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
   76:Core/Src/fsm.c **** 
  2591              		.loc 1 76 1 view .LVU442
  2592 001a 10BD     		pop	{r4, pc}
- 2593              	.LVL283:
+ 2593              	.LVL285:
  2594              	.L100:
   39:Core/Src/fsm.c **** 		if(fsmstate->ready){			// if the previous state is ready, enter the new state
  2595              		.loc 1 39 3 is_stmt 1 view .LVU443
  2596 001c FFF7FEFF 		bl	fsm_exit_state
- 2597              	.LVL284:
+ 2597              	.LVL286:
   40:Core/Src/fsm.c **** 			fsmstate->state = fsmstate->next_state;
  2598              		.loc 1 40 3 view .LVU444
   40:Core/Src/fsm.c **** 			fsmstate->state = fsmstate->next_state;
@@ -3946,7 +3946,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2609              		.loc 1 42 4 is_stmt 1 view .LVU450
  2610 002a 2046     		mov	r0, r4
  2611 002c FFF7FEFF 		bl	fsm_enter_state
- 2612              	.LVL285:
+ 2612              	.LVL287:
  2613 0030 ECE7     		b	.L95
  2614              	.L101:
   52:Core/Src/fsm.c **** 			break;
@@ -3954,11 +3954,11 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2616 0032 9FED070A 		vldr.32	s0, .L102
  2617 0036 0748     		ldr	r0, .L102+4
  2618 0038 FFF7FEFF 		bl	meas_inj_dq_process
- 2619              	.LVL286:
+ 2619              	.LVL288:
   53:Core/Src/fsm.c **** 
  2620              		.loc 1 53 4 view .LVU452
  2621 003c EDE7     		b	.L94
-ARM GAS  /tmp/ccT7MPFG.s 			page 67
+ARM GAS  /tmp/ccwzytnE.s 			page 67
 
 
  2622              	.L96:
@@ -3966,7 +3966,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2623              		.loc 1 57 4 view .LVU453
  2624 003e 0548     		ldr	r0, .L102+4
  2625 0040 FFF7FEFF 		bl	foc_control_loop
- 2626              	.LVL287:
+ 2626              	.LVL289:
   58:Core/Src/fsm.c **** 
  2627              		.loc 1 58 4 view .LVU454
  2628 0044 E9E7     		b	.L94
@@ -3975,7 +3975,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2630              		.loc 1 63 4 view .LVU455
  2631 0046 0348     		ldr	r0, .L102+4
  2632 0048 FFF7FEFF 		bl	foc_control_loop
- 2633              	.LVL288:
+ 2633              	.LVL290:
   64:Core/Src/fsm.c **** 		case SETUP_MODE:
  2634              		.loc 1 64 4 view .LVU456
   76:Core/Src/fsm.c **** 
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2657      73657420 
  2657      746F2025 
  2658 005d 000000   		.align	2
-ARM GAS  /tmp/ccT7MPFG.s 			page 68
+ARM GAS  /tmp/ccwzytnE.s 			page 68
 
 
  2659              	.LC131:
@@ -4069,7 +4069,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2681              		.thumb_func
  2682              		.fpu fpv4-sp-d16
  2684              	process_user_input:
- 2685              	.LVL289:
+ 2685              	.LVL291:
  2686              	.LFB146:
  551:Core/Src/fsm.c **** 
  552:Core/Src/fsm.c **** void process_user_input(FSMStruct * fsmstate){
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2689              		@ args = 0, pretend = 0, frame = 0
  2690              		@ frame_needed = 0, uses_anonymous_args = 0
  2691              		.loc 1 552 46 is_stmt 0 view .LVU459
-ARM GAS  /tmp/ccT7MPFG.s 			page 69
+ARM GAS  /tmp/ccwzytnE.s 			page 69
 
 
  2692 0000 70B5     		push	{r4, r5, r6, lr}
@@ -4133,12 +4133,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2736              		.loc 1 557 13 is_stmt 1 view .LVU463
  2737              		.loc 1 557 28 is_stmt 0 view .LVU464
  2738 0044 0430     		adds	r0, r0, #4
- 2739              	.LVL290:
+ 2739              	.LVL292:
  2740              		.loc 1 557 28 view .LVU465
  2741 0046 FFF7FEFF 		bl	atoi
- 2742              	.LVL291:
+ 2742              	.LVL293:
  558:Core/Src/fsm.c ****             if (mode_val == 0) {
-ARM GAS  /tmp/ccT7MPFG.s 			page 70
+ARM GAS  /tmp/ccwzytnE.s 			page 70
 
 
  2743              		.loc 1 558 13 is_stmt 1 view .LVU466
@@ -4175,12 +4175,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  575:Core/Src/fsm.c ****                 printf("Invalid Mode! Please enter 0, 1, 2, or 3.\r\n");
  2758              		.loc 1 575 17 is_stmt 1 view .LVU474
  2759 0058 CC48     		ldr	r0, .L146
- 2760              	.LVL292:
+ 2760              	.LVL294:
  2761              		.loc 1 575 17 is_stmt 0 view .LVU475
  2762 005a FFF7FEFF 		bl	puts
- 2763              	.LVL293:
+ 2763              	.LVL295:
  2764 005e 06E0     		b	.L121
- 2765              	.LVL294:
+ 2765              	.LVL296:
  2766              	.L136:
  559:Core/Src/fsm.c ****                 printf("Control Mode set to TORQUE (0)\r\n");
  2767              		.loc 1 559 17 is_stmt 1 view .LVU476
@@ -4192,13 +4192,13 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  560:Core/Src/fsm.c ****             } 
  2772              		.loc 1 560 17 is_stmt 1 view .LVU478
  2773 0068 CA48     		ldr	r0, .L146+8
- 2774              	.LVL295:
+ 2774              	.LVL297:
  560:Core/Src/fsm.c ****             } 
  2775              		.loc 1 560 17 is_stmt 0 view .LVU479
  2776 006a FFF7FEFF 		bl	puts
- 2777              	.LVL296:
+ 2777              	.LVL298:
  2778              	.L121:
-ARM GAS  /tmp/ccT7MPFG.s 			page 71
+ARM GAS  /tmp/ccwzytnE.s 			page 71
 
 
  576:Core/Src/fsm.c ****             }
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  619:Core/Src/fsm.c **** 			I_CAL = fmaxf(fminf(atof(fsmstate->cmd_buff), 20.0f), 0.0f);
  620:Core/Src/fsm.c **** 			printf("I_CAL set to %f\r\n", I_CAL);
  621:Core/Src/fsm.c **** 			break;
-ARM GAS  /tmp/ccT7MPFG.s 			page 72
+ARM GAS  /tmp/ccwzytnE.s 			page 72
 
 
  622:Core/Src/fsm.c **** 		case 'g':
@@ -4296,7 +4296,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  654:Core/Src/fsm.c **** 	enter_setup_state();
  2790              		.loc 1 654 2 is_stmt 1 view .LVU485
  2791 007a FFF7FEFF 		bl	enter_setup_state
- 2792              	.LVL297:
+ 2792              	.LVL299:
  655:Core/Src/fsm.c **** 	
  656:Core/Src/fsm.c **** 
  657:Core/Src/fsm.c **** 	fsmstate->bytecount = 0;
@@ -4315,10 +4315,10 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  660:Core/Src/fsm.c **** }
  2803              		.loc 1 660 1 is_stmt 0 view .LVU491
  2804 0088 70BD     		pop	{r4, r5, r6, pc}
- 2805              	.LVL298:
+ 2805              	.LVL300:
  2806              	.L137:
  2807              	.LBB5:
-ARM GAS  /tmp/ccT7MPFG.s 			page 73
+ARM GAS  /tmp/ccwzytnE.s 			page 73
 
 
  563:Core/Src/fsm.c ****                 printf("Control Mode set to SPEED (1)\r\n");
@@ -4331,13 +4331,13 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  564:Core/Src/fsm.c ****             } 
  2813              		.loc 1 564 17 is_stmt 1 view .LVU494
  2814 0092 C248     		ldr	r0, .L146+16
- 2815              	.LVL299:
+ 2815              	.LVL301:
  564:Core/Src/fsm.c ****             } 
  2816              		.loc 1 564 17 is_stmt 0 view .LVU495
  2817 0094 FFF7FEFF 		bl	puts
- 2818              	.LVL300:
+ 2818              	.LVL302:
  2819 0098 E9E7     		b	.L121
- 2820              	.LVL301:
+ 2820              	.LVL303:
  2821              	.L138:
  567:Core/Src/fsm.c ****                 printf("Control Mode set to POSITION (2)\r\n");
  2822              		.loc 1 567 17 is_stmt 1 view .LVU496
@@ -4349,13 +4349,13 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  568:Core/Src/fsm.c ****             } 
  2827              		.loc 1 568 17 is_stmt 1 view .LVU498
  2828 00a2 BF48     		ldr	r0, .L146+20
- 2829              	.LVL302:
+ 2829              	.LVL304:
  568:Core/Src/fsm.c ****             } 
  2830              		.loc 1 568 17 is_stmt 0 view .LVU499
  2831 00a4 FFF7FEFF 		bl	puts
- 2832              	.LVL303:
+ 2832              	.LVL305:
  2833 00a8 E1E7     		b	.L121
- 2834              	.LVL304:
+ 2834              	.LVL306:
  2835              	.L139:
  571:Core/Src/fsm.c ****                 printf("Control Mode set to IMPEDANCE (3)\r\n");
  2836              		.loc 1 571 17 is_stmt 1 view .LVU500
@@ -4367,18 +4367,18 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  572:Core/Src/fsm.c ****             }
  2841              		.loc 1 572 17 is_stmt 1 view .LVU502
  2842 00b2 BC48     		ldr	r0, .L146+24
- 2843              	.LVL305:
+ 2843              	.LVL307:
  572:Core/Src/fsm.c ****             }
  2844              		.loc 1 572 17 is_stmt 0 view .LVU503
  2845 00b4 FFF7FEFF 		bl	puts
- 2846              	.LVL306:
+ 2846              	.LVL308:
  2847 00b8 D9E7     		b	.L121
- 2848              	.LVL307:
+ 2848              	.LVL309:
  2849              	.L118:
  572:Core/Src/fsm.c ****             }
  2850              		.loc 1 572 17 view .LVU504
  2851              	.LBE5:
-ARM GAS  /tmp/ccT7MPFG.s 			page 74
+ARM GAS  /tmp/ccwzytnE.s 			page 74
 
 
  581:Core/Src/fsm.c **** 			printf("I_BW set to %f\r\n", I_BW);
@@ -4386,23 +4386,23 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  581:Core/Src/fsm.c **** 			printf("I_BW set to %f\r\n", I_BW);
  2853              		.loc 1 581 23 is_stmt 0 view .LVU506
  2854 00ba 0430     		adds	r0, r0, #4
- 2855              	.LVL308:
+ 2855              	.LVL310:
  581:Core/Src/fsm.c **** 			printf("I_BW set to %f\r\n", I_BW);
  2856              		.loc 1 581 23 view .LVU507
  2857 00bc FFF7FEFF 		bl	atof
- 2858              	.LVL309:
+ 2858              	.LVL311:
  2859 00c0 51EC100B 		vmov	r0, r1, d0
  581:Core/Src/fsm.c **** 			printf("I_BW set to %f\r\n", I_BW);
  2860              		.loc 1 581 11 view .LVU508
  2861 00c4 FFF7FEFF 		bl	__aeabi_d2f
- 2862              	.LVL310:
+ 2862              	.LVL312:
  2863 00c8 DFEDB70A 		vldr.32	s1, .L146+28
  2864 00cc 00EE100A 		vmov	s0, r0
  2865 00d0 FFF7FEFF 		bl	fminf
- 2866              	.LVL311:
+ 2866              	.LVL313:
  2867 00d4 DFEDB50A 		vldr.32	s1, .L146+32
  2868 00d8 FFF7FEFF 		bl	fmaxf
- 2869              	.LVL312:
+ 2869              	.LVL314:
  2870 00dc 10EE100A 		vmov	r0, s0
  581:Core/Src/fsm.c **** 			printf("I_BW set to %f\r\n", I_BW);
  2871              		.loc 1 581 9 view .LVU509
@@ -4411,16 +4411,16 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  582:Core/Src/fsm.c **** 			break;
  2874              		.loc 1 582 4 is_stmt 1 view .LVU510
  2875 00e6 FFF7FEFF 		bl	__aeabi_f2d
- 2876              	.LVL313:
+ 2876              	.LVL315:
  2877 00ea 0246     		mov	r2, r0
  2878 00ec 0B46     		mov	r3, r1
  2879 00ee B048     		ldr	r0, .L146+36
  2880 00f0 FFF7FEFF 		bl	printf
- 2881              	.LVL314:
+ 2881              	.LVL316:
  583:Core/Src/fsm.c **** 		case 'i':
  2882              		.loc 1 583 4 view .LVU511
  2883 00f4 C1E7     		b	.L125
- 2884              	.LVL315:
+ 2884              	.LVL317:
  2885              	.L115:
  585:Core/Src/fsm.c **** 			can_rx_init(&can_rx);
  2886              		.loc 1 585 4 view .LVU512
@@ -4428,17 +4428,17 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2887              		.loc 1 585 14 is_stmt 0 view .LVU513
  2888 00f6 051D     		adds	r5, r0, #4
  2889 00f8 2846     		mov	r0, r5
- 2890              	.LVL316:
+ 2890              	.LVL318:
  585:Core/Src/fsm.c **** 			can_rx_init(&can_rx);
  2891              		.loc 1 585 14 view .LVU514
  2892 00fa FFF7FEFF 		bl	atoi
- 2893              	.LVL317:
+ 2893              	.LVL319:
  2894 00fe 0028     		cmp	r0, #0
  2895 0100 0CDC     		bgt	.L140
  2896 0102 0020     		movs	r0, #0
  2897              	.L126:
  585:Core/Src/fsm.c **** 			can_rx_init(&can_rx);
-ARM GAS  /tmp/ccT7MPFG.s 			page 75
+ARM GAS  /tmp/ccwzytnE.s 			page 75
 
 
  2898              		.loc 1 585 12 discriminator 8 view .LVU515
@@ -4448,13 +4448,13 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2901              		.loc 1 586 4 is_stmt 1 discriminator 8 view .LVU516
  2902 010a AB48     		ldr	r0, .L146+44
  2903 010c FFF7FEFF 		bl	can_rx_init
- 2904              	.LVL318:
+ 2904              	.LVL320:
  587:Core/Src/fsm.c **** 			break;
  2905              		.loc 1 587 4 discriminator 8 view .LVU517
  2906 0110 D5F8A410 		ldr	r1, [r5, #164]
  2907 0114 A948     		ldr	r0, .L146+48
  2908 0116 FFF7FEFF 		bl	printf
- 2909              	.LVL319:
+ 2909              	.LVL321:
  588:Core/Src/fsm.c **** 		case 'm':
  2910              		.loc 1 588 4 discriminator 8 view .LVU518
  2911 011a AEE7     		b	.L125
@@ -4463,7 +4463,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2913              		.loc 1 585 14 is_stmt 0 discriminator 1 view .LVU519
  2914 011c 2846     		mov	r0, r5
  2915 011e FFF7FEFF 		bl	atoi
- 2916              	.LVL320:
+ 2916              	.LVL322:
  2917 0122 7E28     		cmp	r0, #126
  2918 0124 01DD     		ble	.L141
  585:Core/Src/fsm.c **** 			can_rx_init(&can_rx);
@@ -4475,9 +4475,9 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2923              		.loc 1 585 14 discriminator 3 view .LVU521
  2924 012a 2846     		mov	r0, r5
  2925 012c FFF7FEFF 		bl	atoi
- 2926              	.LVL321:
+ 2926              	.LVL323:
  2927 0130 E8E7     		b	.L126
- 2928              	.LVL322:
+ 2928              	.LVL324:
  2929              	.L112:
  590:Core/Src/fsm.c **** 			printf("CAN_MID set to %ld\r\n", CAN_MID);
  2930              		.loc 1 590 4 is_stmt 1 view .LVU522
@@ -4485,11 +4485,11 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2931              		.loc 1 590 14 is_stmt 0 view .LVU523
  2932 0132 051D     		adds	r5, r0, #4
  2933 0134 2846     		mov	r0, r5
- 2934              	.LVL323:
+ 2934              	.LVL325:
  590:Core/Src/fsm.c **** 			printf("CAN_MID set to %ld\r\n", CAN_MID);
  2935              		.loc 1 590 14 view .LVU524
  2936 0136 FFF7FEFF 		bl	atoi
- 2937              	.LVL324:
+ 2937              	.LVL326:
  2938 013a 0028     		cmp	r0, #0
  2939 013c 07DC     		bgt	.L142
  2940 013e 0021     		movs	r1, #0
@@ -4498,14 +4498,14 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2942              		.loc 1 590 12 discriminator 8 view .LVU525
  2943 0140 9C4B     		ldr	r3, .L146+40
  2944 0142 C3F8A810 		str	r1, [r3, #168]
-ARM GAS  /tmp/ccT7MPFG.s 			page 76
+ARM GAS  /tmp/ccwzytnE.s 			page 76
 
 
  591:Core/Src/fsm.c **** 			break;
  2945              		.loc 1 591 4 is_stmt 1 discriminator 8 view .LVU526
  2946 0146 9E48     		ldr	r0, .L146+52
  2947 0148 FFF7FEFF 		bl	printf
- 2948              	.LVL325:
+ 2948              	.LVL327:
  592:Core/Src/fsm.c **** 		case 't':
  2949              		.loc 1 592 4 discriminator 8 view .LVU527
  2950 014c 95E7     		b	.L125
@@ -4514,7 +4514,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2952              		.loc 1 590 14 is_stmt 0 discriminator 1 view .LVU528
  2953 014e 2846     		mov	r0, r5
  2954 0150 FFF7FEFF 		bl	atoi
- 2955              	.LVL326:
+ 2955              	.LVL328:
  2956 0154 7E28     		cmp	r0, #126
  2957 0156 01DD     		ble	.L143
  590:Core/Src/fsm.c **** 			printf("CAN_MID set to %ld\r\n", CAN_MID);
@@ -4526,10 +4526,10 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2962              		.loc 1 590 14 discriminator 3 view .LVU530
  2963 015c 2846     		mov	r0, r5
  2964 015e FFF7FEFF 		bl	atoi
- 2965              	.LVL327:
+ 2965              	.LVL329:
  2966 0162 0146     		mov	r1, r0
  2967 0164 ECE7     		b	.L127
- 2968              	.LVL328:
+ 2968              	.LVL330:
  2969              	.L109:
  594:Core/Src/fsm.c **** 			printf("CAN_TIMEOUT set to %ld\r\n", CAN_TIMEOUT);
  2970              		.loc 1 594 4 is_stmt 1 view .LVU531
@@ -4537,11 +4537,11 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2971              		.loc 1 594 18 is_stmt 0 view .LVU532
  2972 0166 051D     		adds	r5, r0, #4
  2973 0168 2846     		mov	r0, r5
- 2974              	.LVL329:
+ 2974              	.LVL331:
  594:Core/Src/fsm.c **** 			printf("CAN_TIMEOUT set to %ld\r\n", CAN_TIMEOUT);
  2975              		.loc 1 594 18 view .LVU533
  2976 016a FFF7FEFF 		bl	atoi
- 2977              	.LVL330:
+ 2977              	.LVL332:
  2978 016e 0028     		cmp	r0, #0
  2979 0170 07DC     		bgt	.L144
  2980 0172 0021     		movs	r1, #0
@@ -4554,11 +4554,11 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2985              		.loc 1 595 4 is_stmt 1 discriminator 8 view .LVU535
  2986 017a 9248     		ldr	r0, .L146+56
  2987 017c FFF7FEFF 		bl	printf
- 2988              	.LVL331:
+ 2988              	.LVL333:
  596:Core/Src/fsm.c **** 
  2989              		.loc 1 596 4 discriminator 8 view .LVU536
  2990 0180 7BE7     		b	.L125
-ARM GAS  /tmp/ccT7MPFG.s 			page 77
+ARM GAS  /tmp/ccwzytnE.s 			page 77
 
 
  2991              	.L144:
@@ -4566,7 +4566,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  2992              		.loc 1 594 18 is_stmt 0 discriminator 1 view .LVU537
  2993 0182 2846     		mov	r0, r5
  2994 0184 FFF7FEFF 		bl	atoi
- 2995              	.LVL332:
+ 2995              	.LVL334:
  2996 0188 8F4B     		ldr	r3, .L146+60
  2997 018a 9842     		cmp	r0, r3
  2998 018c 01DD     		ble	.L145
@@ -4579,33 +4579,33 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  3003              		.loc 1 594 18 discriminator 3 view .LVU539
  3004 0192 2846     		mov	r0, r5
  3005 0194 FFF7FEFF 		bl	atoi
- 3006              	.LVL333:
+ 3006              	.LVL335:
  3007 0198 0146     		mov	r1, r0
  3008 019a EBE7     		b	.L128
- 3009              	.LVL334:
+ 3009              	.LVL336:
  3010              	.L113:
  599:Core/Src/fsm.c **** 			pid_set_out_constraint(&hfoc.id_ctrl, I_MAX, -I_MAX);
  3011              		.loc 1 599 4 is_stmt 1 view .LVU540
  599:Core/Src/fsm.c **** 			pid_set_out_constraint(&hfoc.id_ctrl, I_MAX, -I_MAX);
  3012              		.loc 1 599 24 is_stmt 0 view .LVU541
  3013 019c 0430     		adds	r0, r0, #4
- 3014              	.LVL335:
+ 3014              	.LVL337:
  599:Core/Src/fsm.c **** 			pid_set_out_constraint(&hfoc.id_ctrl, I_MAX, -I_MAX);
  3015              		.loc 1 599 24 view .LVU542
  3016 019e FFF7FEFF 		bl	atof
- 3017              	.LVL336:
+ 3017              	.LVL338:
  3018 01a2 51EC100B 		vmov	r0, r1, d0
  599:Core/Src/fsm.c **** 			pid_set_out_constraint(&hfoc.id_ctrl, I_MAX, -I_MAX);
  3019              		.loc 1 599 12 view .LVU543
  3020 01a6 FFF7FEFF 		bl	__aeabi_d2f
- 3021              	.LVL337:
+ 3021              	.LVL339:
  3022 01aa DFED890A 		vldr.32	s1, .L146+68
  3023 01ae 00EE100A 		vmov	s0, r0
  3024 01b2 FFF7FEFF 		bl	fminf
- 3025              	.LVL338:
+ 3025              	.LVL340:
  3026 01b6 DFED870A 		vldr.32	s1, .L146+72
  3027 01ba FFF7FEFF 		bl	fmaxf
- 3028              	.LVL339:
+ 3028              	.LVL341:
  599:Core/Src/fsm.c **** 			pid_set_out_constraint(&hfoc.id_ctrl, I_MAX, -I_MAX);
  3029              		.loc 1 599 10 view .LVU544
  3030 01be 764D     		ldr	r5, .L146+12
@@ -4616,9 +4616,9 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  3034 01c6 F1EE400A 		vneg.f32	s1, s0
  3035 01ca 3046     		mov	r0, r6
  3036 01cc FFF7FEFF 		bl	pid_set_out_constraint
- 3037              	.LVL340:
+ 3037              	.LVL342:
  601:Core/Src/fsm.c **** 			foc_set_limit_current(&hfoc, I_MAX);
-ARM GAS  /tmp/ccT7MPFG.s 			page 78
+ARM GAS  /tmp/ccwzytnE.s 			page 78
 
 
  3038              		.loc 1 601 4 view .LVU546
@@ -4626,50 +4626,50 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  3040 01d4 F1EE400A 		vneg.f32	s1, s0
  3041 01d8 06F13400 		add	r0, r6, #52
  3042 01dc FFF7FEFF 		bl	pid_set_out_constraint
- 3043              	.LVL341:
+ 3043              	.LVL343:
  602:Core/Src/fsm.c **** 			printf("I_MAX set to %f\r\n", I_MAX);
  3044              		.loc 1 602 4 view .LVU547
  3045 01e0 95ED0A0A 		vldr.32	s0, [r5, #40]
  3046 01e4 A6F1DC00 		sub	r0, r6, #220
  3047 01e8 FFF7FEFF 		bl	foc_set_limit_current
- 3048              	.LVL342:
+ 3048              	.LVL344:
  603:Core/Src/fsm.c **** 			break;
  3049              		.loc 1 603 4 view .LVU548
  3050 01ec A86A     		ldr	r0, [r5, #40]	@ float
  3051 01ee FFF7FEFF 		bl	__aeabi_f2d
- 3052              	.LVL343:
+ 3052              	.LVL345:
  3053 01f2 0246     		mov	r2, r0
  3054 01f4 0B46     		mov	r3, r1
  3055 01f6 7948     		ldr	r0, .L146+80
  3056 01f8 FFF7FEFF 		bl	printf
- 3057              	.LVL344:
+ 3057              	.LVL346:
  604:Core/Src/fsm.c **** 		// case 'f':
  3058              		.loc 1 604 4 view .LVU549
  3059 01fc 3DE7     		b	.L125
- 3060              	.LVL345:
+ 3060              	.LVL347:
  3061              	.L119:
  619:Core/Src/fsm.c **** 			printf("I_CAL set to %f\r\n", I_CAL);
  3062              		.loc 1 619 4 view .LVU550
  619:Core/Src/fsm.c **** 			printf("I_CAL set to %f\r\n", I_CAL);
  3063              		.loc 1 619 24 is_stmt 0 view .LVU551
  3064 01fe 0430     		adds	r0, r0, #4
- 3065              	.LVL346:
+ 3065              	.LVL348:
  619:Core/Src/fsm.c **** 			printf("I_CAL set to %f\r\n", I_CAL);
  3066              		.loc 1 619 24 view .LVU552
  3067 0200 FFF7FEFF 		bl	atof
- 3068              	.LVL347:
+ 3068              	.LVL349:
  3069 0204 51EC100B 		vmov	r0, r1, d0
  619:Core/Src/fsm.c **** 			printf("I_CAL set to %f\r\n", I_CAL);
  3070              		.loc 1 619 12 view .LVU553
  3071 0208 FFF7FEFF 		bl	__aeabi_d2f
- 3072              	.LVL348:
+ 3072              	.LVL350:
  3073 020c F3EE040A 		vmov.f32	s1, #2.0e+1
  3074 0210 00EE100A 		vmov	s0, r0
  3075 0214 FFF7FEFF 		bl	fminf
- 3076              	.LVL349:
+ 3076              	.LVL351:
  3077 0218 DFED6E0A 		vldr.32	s1, .L146+72
  3078 021c FFF7FEFF 		bl	fmaxf
- 3079              	.LVL350:
+ 3079              	.LVL352:
  3080 0220 10EE100A 		vmov	r0, s0
  619:Core/Src/fsm.c **** 			printf("I_CAL set to %f\r\n", I_CAL);
  3081              		.loc 1 619 10 view .LVU554
@@ -4678,39 +4678,39 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  620:Core/Src/fsm.c **** 			break;
  3084              		.loc 1 620 4 is_stmt 1 view .LVU555
  3085 022a FFF7FEFF 		bl	__aeabi_f2d
-ARM GAS  /tmp/ccT7MPFG.s 			page 79
+ARM GAS  /tmp/ccwzytnE.s 			page 79
 
 
- 3086              	.LVL351:
+ 3086              	.LVL353:
  3087 022e 0246     		mov	r2, r0
  3088 0230 0B46     		mov	r3, r1
  3089 0232 6B48     		ldr	r0, .L146+84
  3090 0234 FFF7FEFF 		bl	printf
- 3091              	.LVL352:
+ 3091              	.LVL354:
  621:Core/Src/fsm.c **** 		case 'g':
  3092              		.loc 1 621 4 view .LVU556
  3093 0238 1FE7     		b	.L125
- 3094              	.LVL353:
+ 3094              	.LVL355:
  3095              	.L116:
  623:Core/Src/fsm.c **** 			printf("GR set to %f\r\n", GR);
  3096              		.loc 1 623 4 view .LVU557
  623:Core/Src/fsm.c **** 			printf("GR set to %f\r\n", GR);
  3097              		.loc 1 623 15 is_stmt 0 view .LVU558
  3098 023a 0430     		adds	r0, r0, #4
- 3099              	.LVL354:
+ 3099              	.LVL356:
  623:Core/Src/fsm.c **** 			printf("GR set to %f\r\n", GR);
  3100              		.loc 1 623 15 view .LVU559
  3101 023c FFF7FEFF 		bl	atof
- 3102              	.LVL355:
+ 3102              	.LVL357:
  3103 0240 51EC100B 		vmov	r0, r1, d0
  623:Core/Src/fsm.c **** 			printf("GR set to %f\r\n", GR);
  3104              		.loc 1 623 9 view .LVU560
  3105 0244 FFF7FEFF 		bl	__aeabi_d2f
- 3106              	.LVL356:
+ 3106              	.LVL358:
  3107 0248 DFED660A 		vldr.32	s1, .L146+88
  3108 024c 00EE100A 		vmov	s0, r0
  3109 0250 FFF7FEFF 		bl	fmaxf
- 3110              	.LVL357:
+ 3110              	.LVL359:
  3111 0254 10EE100A 		vmov	r0, s0
  623:Core/Src/fsm.c **** 			printf("GR set to %f\r\n", GR);
  3112              		.loc 1 623 7 view .LVU561
@@ -4719,39 +4719,39 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  624:Core/Src/fsm.c **** 			break;
  3115              		.loc 1 624 4 is_stmt 1 view .LVU562
  3116 025e FFF7FEFF 		bl	__aeabi_f2d
- 3117              	.LVL358:
+ 3117              	.LVL360:
  3118 0262 0246     		mov	r2, r0
  3119 0264 0B46     		mov	r3, r1
  3120 0266 6048     		ldr	r0, .L146+92
  3121 0268 FFF7FEFF 		bl	printf
- 3122              	.LVL359:
+ 3122              	.LVL361:
  625:Core/Src/fsm.c **** 		case 'k':
  3123              		.loc 1 625 4 view .LVU563
  3124 026c 05E7     		b	.L125
- 3125              	.LVL360:
+ 3125              	.LVL362:
  3126              	.L114:
  627:Core/Src/fsm.c **** 			printf("KT set to %f\r\n", KT);
  3127              		.loc 1 627 4 view .LVU564
  627:Core/Src/fsm.c **** 			printf("KT set to %f\r\n", KT);
  3128              		.loc 1 627 15 is_stmt 0 view .LVU565
  3129 026e 0430     		adds	r0, r0, #4
- 3130              	.LVL361:
+ 3130              	.LVL363:
  627:Core/Src/fsm.c **** 			printf("KT set to %f\r\n", KT);
  3131              		.loc 1 627 15 view .LVU566
-ARM GAS  /tmp/ccT7MPFG.s 			page 80
+ARM GAS  /tmp/ccwzytnE.s 			page 80
 
 
  3132 0270 FFF7FEFF 		bl	atof
- 3133              	.LVL362:
+ 3133              	.LVL364:
  3134 0274 51EC100B 		vmov	r0, r1, d0
  627:Core/Src/fsm.c **** 			printf("KT set to %f\r\n", KT);
  3135              		.loc 1 627 9 view .LVU567
  3136 0278 FFF7FEFF 		bl	__aeabi_d2f
- 3137              	.LVL363:
+ 3137              	.LVL365:
  3138 027c DFED5B0A 		vldr.32	s1, .L146+96
  3139 0280 00EE100A 		vmov	s0, r0
  3140 0284 FFF7FEFF 		bl	fmaxf
- 3141              	.LVL364:
+ 3141              	.LVL366:
  3142 0288 10EE100A 		vmov	r0, s0
  627:Core/Src/fsm.c **** 			printf("KT set to %f\r\n", KT);
  3143              		.loc 1 627 7 view .LVU568
@@ -4760,36 +4760,36 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  628:Core/Src/fsm.c **** 			break;
  3146              		.loc 1 628 4 is_stmt 1 view .LVU569
  3147 0292 FFF7FEFF 		bl	__aeabi_f2d
- 3148              	.LVL365:
+ 3148              	.LVL367:
  3149 0296 0246     		mov	r2, r0
  3150 0298 0B46     		mov	r3, r1
  3151 029a 5548     		ldr	r0, .L146+100
  3152 029c FFF7FEFF 		bl	printf
- 3153              	.LVL366:
+ 3153              	.LVL368:
  629:Core/Src/fsm.c **** 		case 'x':
  3154              		.loc 1 629 4 view .LVU570
  3155 02a0 EBE6     		b	.L125
- 3156              	.LVL367:
+ 3156              	.LVL369:
  3157              	.L106:
  631:Core/Src/fsm.c **** 			printf("KP_MAX set to %f\r\n", KP_MAX);
  3158              		.loc 1 631 4 view .LVU571
  631:Core/Src/fsm.c **** 			printf("KP_MAX set to %f\r\n", KP_MAX);
  3159              		.loc 1 631 19 is_stmt 0 view .LVU572
  3160 02a2 0430     		adds	r0, r0, #4
- 3161              	.LVL368:
+ 3161              	.LVL370:
  631:Core/Src/fsm.c **** 			printf("KP_MAX set to %f\r\n", KP_MAX);
  3162              		.loc 1 631 19 view .LVU573
  3163 02a4 FFF7FEFF 		bl	atof
- 3164              	.LVL369:
+ 3164              	.LVL371:
  3165 02a8 51EC100B 		vmov	r0, r1, d0
  631:Core/Src/fsm.c **** 			printf("KP_MAX set to %f\r\n", KP_MAX);
  3166              		.loc 1 631 13 view .LVU574
  3167 02ac FFF7FEFF 		bl	__aeabi_d2f
- 3168              	.LVL370:
+ 3168              	.LVL372:
  3169 02b0 DFED480A 		vldr.32	s1, .L146+72
  3170 02b4 00EE100A 		vmov	s0, r0
  3171 02b8 FFF7FEFF 		bl	fmaxf
- 3172              	.LVL371:
+ 3172              	.LVL373:
  3173 02bc 10EE100A 		vmov	r0, s0
  631:Core/Src/fsm.c **** 			printf("KP_MAX set to %f\r\n", KP_MAX);
  3174              		.loc 1 631 11 view .LVU575
@@ -4798,39 +4798,39 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  632:Core/Src/fsm.c **** 			break;
  3177              		.loc 1 632 4 is_stmt 1 view .LVU576
  3178 02c6 FFF7FEFF 		bl	__aeabi_f2d
-ARM GAS  /tmp/ccT7MPFG.s 			page 81
+ARM GAS  /tmp/ccwzytnE.s 			page 81
 
 
- 3179              	.LVL372:
+ 3179              	.LVL374:
  3180 02ca 0246     		mov	r2, r0
  3181 02cc 0B46     		mov	r3, r1
  3182 02ce 4948     		ldr	r0, .L146+104
  3183 02d0 FFF7FEFF 		bl	printf
- 3184              	.LVL373:
+ 3184              	.LVL375:
  633:Core/Src/fsm.c **** 		case 'd':
  3185              		.loc 1 633 4 view .LVU577
  3186 02d4 D1E6     		b	.L125
- 3187              	.LVL374:
+ 3187              	.LVL376:
  3188              	.L117:
  635:Core/Src/fsm.c **** 			printf("KD_MAX set to %f\r\n", KD_MAX);
  3189              		.loc 1 635 4 view .LVU578
  635:Core/Src/fsm.c **** 			printf("KD_MAX set to %f\r\n", KD_MAX);
  3190              		.loc 1 635 19 is_stmt 0 view .LVU579
  3191 02d6 0430     		adds	r0, r0, #4
- 3192              	.LVL375:
+ 3192              	.LVL377:
  635:Core/Src/fsm.c **** 			printf("KD_MAX set to %f\r\n", KD_MAX);
  3193              		.loc 1 635 19 view .LVU580
  3194 02d8 FFF7FEFF 		bl	atof
- 3195              	.LVL376:
+ 3195              	.LVL378:
  3196 02dc 51EC100B 		vmov	r0, r1, d0
  635:Core/Src/fsm.c **** 			printf("KD_MAX set to %f\r\n", KD_MAX);
  3197              		.loc 1 635 13 view .LVU581
  3198 02e0 FFF7FEFF 		bl	__aeabi_d2f
- 3199              	.LVL377:
+ 3199              	.LVL379:
  3200 02e4 DFED3B0A 		vldr.32	s1, .L146+72
  3201 02e8 00EE100A 		vmov	s0, r0
  3202 02ec FFF7FEFF 		bl	fmaxf
- 3203              	.LVL378:
+ 3203              	.LVL380:
  3204 02f0 10EE100A 		vmov	r0, s0
  635:Core/Src/fsm.c **** 			printf("KD_MAX set to %f\r\n", KD_MAX);
  3205              		.loc 1 635 11 view .LVU582
@@ -4839,39 +4839,39 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  636:Core/Src/fsm.c **** 			break;
  3208              		.loc 1 636 4 is_stmt 1 view .LVU583
  3209 02fa FFF7FEFF 		bl	__aeabi_f2d
- 3210              	.LVL379:
+ 3210              	.LVL381:
  3211 02fe 0246     		mov	r2, r0
  3212 0300 0B46     		mov	r3, r1
  3213 0302 3D48     		ldr	r0, .L146+108
  3214 0304 FFF7FEFF 		bl	printf
- 3215              	.LVL380:
+ 3215              	.LVL382:
  637:Core/Src/fsm.c **** 		case 'p':
  3216              		.loc 1 637 4 view .LVU584
  3217 0308 B7E6     		b	.L125
- 3218              	.LVL381:
+ 3218              	.LVL383:
  3219              	.L110:
  639:Core/Src/fsm.c **** 			P_MIN = -P_MAX;
  3220              		.loc 1 639 4 view .LVU585
  639:Core/Src/fsm.c **** 			P_MIN = -P_MAX;
  3221              		.loc 1 639 18 is_stmt 0 view .LVU586
  3222 030a 0430     		adds	r0, r0, #4
- 3223              	.LVL382:
+ 3223              	.LVL384:
  639:Core/Src/fsm.c **** 			P_MIN = -P_MAX;
  3224              		.loc 1 639 18 view .LVU587
-ARM GAS  /tmp/ccT7MPFG.s 			page 82
+ARM GAS  /tmp/ccwzytnE.s 			page 82
 
 
  3225 030c FFF7FEFF 		bl	atof
- 3226              	.LVL383:
+ 3226              	.LVL385:
  3227 0310 51EC100B 		vmov	r0, r1, d0
  639:Core/Src/fsm.c **** 			P_MIN = -P_MAX;
  3228              		.loc 1 639 12 view .LVU588
  3229 0314 FFF7FEFF 		bl	__aeabi_d2f
- 3230              	.LVL384:
+ 3230              	.LVL386:
  3231 0318 DFED2E0A 		vldr.32	s1, .L146+72
  3232 031c 00EE100A 		vmov	s0, r0
  3233 0320 FFF7FEFF 		bl	fmaxf
- 3234              	.LVL385:
+ 3234              	.LVL387:
  3235 0324 10EE100A 		vmov	r0, s0
  639:Core/Src/fsm.c **** 			P_MIN = -P_MAX;
  3236              		.loc 1 639 10 view .LVU589
@@ -4888,37 +4888,37 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  641:Core/Src/fsm.c **** 			break;
  3244              		.loc 1 641 4 is_stmt 1 view .LVU593
  3245 0336 FFF7FEFF 		bl	__aeabi_f2d
- 3246              	.LVL386:
+ 3246              	.LVL388:
  3247 033a 0246     		mov	r2, r0
  3248 033c 0B46     		mov	r3, r1
  3249 033e 2F48     		ldr	r0, .L146+112
  3250 0340 FFF7FEFF 		bl	printf
- 3251              	.LVL387:
+ 3251              	.LVL389:
  642:Core/Src/fsm.c **** 		case 'v':
  3252              		.loc 1 642 4 view .LVU594
  3253 0344 99E6     		b	.L125
- 3254              	.LVL388:
+ 3254              	.LVL390:
  3255              	.L108:
  644:Core/Src/fsm.c **** 			V_MIN = -V_MAX;
  3256              		.loc 1 644 4 view .LVU595
  644:Core/Src/fsm.c **** 			V_MIN = -V_MAX;
  3257              		.loc 1 644 18 is_stmt 0 view .LVU596
  3258 0346 0430     		adds	r0, r0, #4
- 3259              	.LVL389:
+ 3259              	.LVL391:
  644:Core/Src/fsm.c **** 			V_MIN = -V_MAX;
  3260              		.loc 1 644 18 view .LVU597
  3261 0348 FFF7FEFF 		bl	atof
- 3262              	.LVL390:
+ 3262              	.LVL392:
  3263 034c 51EC100B 		vmov	r0, r1, d0
  644:Core/Src/fsm.c **** 			V_MIN = -V_MAX;
  3264              		.loc 1 644 12 view .LVU598
  3265 0350 FFF7FEFF 		bl	__aeabi_d2f
- 3266              	.LVL391:
+ 3266              	.LVL393:
  3267 0354 DFED1F0A 		vldr.32	s1, .L146+72
  3268 0358 00EE100A 		vmov	s0, r0
  3269 035c FFF7FEFF 		bl	fmaxf
- 3270              	.LVL392:
-ARM GAS  /tmp/ccT7MPFG.s 			page 83
+ 3270              	.LVL394:
+ARM GAS  /tmp/ccwzytnE.s 			page 83
 
 
  3271 0360 10EE100A 		vmov	r0, s0
@@ -4937,25 +4937,25 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  646:Core/Src/fsm.c **** 			break;
  3280              		.loc 1 646 4 is_stmt 1 view .LVU603
  3281 0372 FFF7FEFF 		bl	__aeabi_f2d
- 3282              	.LVL393:
+ 3282              	.LVL395:
  3283 0376 0246     		mov	r2, r0
  3284 0378 0B46     		mov	r3, r1
  3285 037a 2148     		ldr	r0, .L146+116
  3286 037c FFF7FEFF 		bl	printf
- 3287              	.LVL394:
+ 3287              	.LVL396:
  647:Core/Src/fsm.c **** 		default:
  3288              		.loc 1 647 4 view .LVU604
  3289 0380 7BE6     		b	.L125
- 3290              	.LVL395:
+ 3290              	.LVL397:
  3291              	.L105:
  649:Core/Src/fsm.c **** 			break;
  3292              		.loc 1 649 5 view .LVU605
  3293 0382 2048     		ldr	r0, .L146+120
- 3294              	.LVL396:
+ 3294              	.LVL398:
  649:Core/Src/fsm.c **** 			break;
  3295              		.loc 1 649 5 is_stmt 0 view .LVU606
  3296 0384 FFF7FEFF 		bl	printf
- 3297              	.LVL397:
+ 3297              	.LVL399:
  650:Core/Src/fsm.c **** 
  3298              		.loc 1 650 4 is_stmt 1 view .LVU607
  3299 0388 77E6     		b	.L125
@@ -4978,7 +4978,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  3316 03c0 2C000000 		.word	.LC129
  3317 03c4 44000000 		.word	.LC130
  3318 03c8 9F860100 		.word	99999
-ARM GAS  /tmp/ccT7MPFG.s 			page 84
+ARM GAS  /tmp/ccwzytnE.s 			page 84
 
 
  3319 03cc A0860100 		.word	100000
@@ -5014,7 +5014,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  3346              		.thumb_func
  3347              		.fpu fpv4-sp-d16
  3349              	update_fsm:
- 3350              	.LVL398:
+ 3350              	.LVL400:
  3351              	.LFB140:
  160:Core/Src/fsm.c **** 	/*update_fsm is only run when new state-change information is received
  3352              		.loc 1 160 54 view -0
@@ -5038,7 +5038,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  164:Core/Src/fsm.c **** 		fsmstate->next_state = MENU_MODE;
  3368              		.loc 1 164 15 is_stmt 0 view .LVU611
  3369 000a CBB2     		uxtb	r3, r1
-ARM GAS  /tmp/ccT7MPFG.s 			page 85
+ARM GAS  /tmp/ccwzytnE.s 			page 85
 
 
  164:Core/Src/fsm.c **** 		fsmstate->next_state = MENU_MODE;
@@ -5055,7 +5055,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  3377 0012 042A     		cmp	r2, #4
  3378 0014 07D8     		bhi	.L148
  3379 0016 DFE802F0 		tbb	[pc, r2]
- 3380              	.LVL399:
+ 3380              	.LVL401:
  3381              	.L152:
  3382 001a 08       		.byte	(.L155-.L152)/2
  3383 001b 06       		.byte	(.L148-.L152)/2
@@ -5077,7 +5077,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  3395 0024 C370     		strb	r3, [r0, #3]
  167:Core/Src/fsm.c **** 	}
  3396              		.loc 1 167 3 is_stmt 1 view .LVU620
- 3397              	.LVL400:
+ 3397              	.LVL402:
  3398              	.L148:
  254:Core/Src/fsm.c **** 
  3399              		.loc 1 254 1 is_stmt 0 view .LVU621
@@ -5087,7 +5087,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  3403              		.cfi_def_cfa_offset 8
  3404              		@ sp needed
  3405 0028 10BD     		pop	{r4, pc}
- 3406              	.LVL401:
+ 3406              	.LVL403:
  3407              	.L155:
  3408              	.LCFI17:
  3409              		.cfi_restore_state
@@ -5098,7 +5098,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  3413 002e FAD8     		bhi	.L148
  3414 0030 01A2     		adr	r2, .L157
  3415 0032 52F823F0 		ldr	pc, [r2, r3, lsl #2]
-ARM GAS  /tmp/ccT7MPFG.s 			page 86
+ARM GAS  /tmp/ccwzytnE.s 			page 86
 
 
  3416 0036 00BF     		.p2align 2
@@ -5158,7 +5158,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  3461 00a6 0023     		movs	r3, #0
  3462 00a8 C370     		strb	r3, [r0, #3]
  179:Core/Src/fsm.c **** 				case ENCODER_CMD:
-ARM GAS  /tmp/ccT7MPFG.s 			page 87
+ARM GAS  /tmp/ccwzytnE.s 			page 87
 
 
  3463              		.loc 1 179 6 is_stmt 1 view .LVU632
@@ -5217,14 +5217,14 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  193:Core/Src/fsm.c **** 					
  3500              		.loc 1 193 15 is_stmt 0 view .LVU649
  3501 00ca 3248     		ldr	r0, .L173
- 3502              	.LVL402:
-ARM GAS  /tmp/ccT7MPFG.s 			page 88
+ 3502              	.LVL404:
+ARM GAS  /tmp/ccwzytnE.s 			page 88
 
 
  193:Core/Src/fsm.c **** 					
  3503              		.loc 1 193 15 view .LVU650
  3504 00cc FFF7FEFF 		bl	ENCODER_GetActualDegree
- 3505              	.LVL403:
+ 3505              	.LVL405:
  193:Core/Src/fsm.c **** 					
  3506              		.loc 1 193 15 view .LVU651
  3507 00d0 10EE100A 		vmov	r0, s0
@@ -5241,16 +5241,16 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  197:Core/Src/fsm.c **** 					
  3515              		.loc 1 197 6 is_stmt 1 view .LVU655
  3516 00de FFF7FEFF 		bl	__aeabi_f2d
- 3517              	.LVL404:
+ 3517              	.LVL406:
  3518 00e2 0246     		mov	r2, r0
  3519 00e4 0B46     		mov	r3, r1
  3520 00e6 2D48     		ldr	r0, .L173+8
  3521 00e8 FFF7FEFF 		bl	printf
- 3522              	.LVL405:
+ 3522              	.LVL407:
  199:Core/Src/fsm.c **** 				}
  3523              		.loc 1 199 6 view .LVU656
  3524 00ec 9BE7     		b	.L148
- 3525              	.LVL406:
+ 3525              	.LVL408:
  3526              	.L153:
  203:Core/Src/fsm.c ****         		break; 
  3527              		.loc 1 203 4 view .LVU657
@@ -5278,7 +5278,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  3542 00fc 72B9     		cbnz	r2, .L164
  210:Core/Src/fsm.c **** 			else{
  3543              		.loc 1 210 33 is_stmt 1 discriminator 1 view .LVU665
-ARM GAS  /tmp/ccT7MPFG.s 			page 89
+ARM GAS  /tmp/ccwzytnE.s 			page 89
 
 
  210:Core/Src/fsm.c **** 			else{
@@ -5290,15 +5290,15 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  3548 0100 0223     		movs	r3, #2
  3549 0102 0122     		movs	r2, #1
  3550 0104 0DF10701 		add	r1, sp, #7
- 3551              	.LVL407:
+ 3551              	.LVL409:
  215:Core/Src/fsm.c **** 			fsmstate->bytecount++;
  3552              		.loc 1 215 4 is_stmt 0 view .LVU668
  3553 0108 2548     		ldr	r0, .L173+12
- 3554              	.LVL408:
+ 3554              	.LVL410:
  215:Core/Src/fsm.c **** 			fsmstate->bytecount++;
  3555              		.loc 1 215 4 view .LVU669
  3556 010a FFF7FEFF 		bl	HAL_UART_Transmit
- 3557              	.LVL409:
+ 3557              	.LVL411:
  216:Core/Src/fsm.c **** 			/* If enter is typed, process user input */
  3558              		.loc 1 216 4 is_stmt 1 view .LVU670
  216:Core/Src/fsm.c **** 			/* If enter is typed, process user input */
@@ -5311,16 +5311,16 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  219:Core/Src/fsm.c **** 		case TEST_MODE:
  3564              		.loc 1 219 4 is_stmt 1 view .LVU673
  3565 0114 87E7     		b	.L148
- 3566              	.LVL410:
+ 3566              	.LVL412:
  3567              	.L171:
  207:Core/Src/fsm.c **** 				break;
  3568              		.loc 1 207 5 view .LVU674
  3569 0116 FFF7FEFF 		bl	process_user_input
- 3570              	.LVL411:
+ 3570              	.LVL413:
  208:Core/Src/fsm.c **** 			}
  3571              		.loc 1 208 5 view .LVU675
  3572 011a 84E7     		b	.L148
- 3573              	.LVL412:
+ 3573              	.LVL414:
  3574              	.L164:
  212:Core/Src/fsm.c **** 				fsmstate->bytecount = fsmstate->bytecount%(sizeof(fsmstate->cmd_buff)/sizeof(fsmstate->cmd_buff
  3575              		.loc 1 212 5 view .LVU676
@@ -5338,7 +5338,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  3583 0122 02F00702 		and	r2, r2, #7
  213:Core/Src/fsm.c **** 			}
  3584              		.loc 1 213 25 view .LVU681
-ARM GAS  /tmp/ccT7MPFG.s 			page 90
+ARM GAS  /tmp/ccwzytnE.s 			page 90
 
 
  3585 0126 0273     		strb	r2, [r0, #12]
@@ -5379,15 +5379,15 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  3609 0140 0223     		movs	r3, #2
  3610 0142 0122     		movs	r2, #1
  3611 0144 0DF10701 		add	r1, sp, #7
- 3612              	.LVL413:
+ 3612              	.LVL415:
  233:Core/Src/fsm.c **** 			fsmstate->bytecount++;
  3613              		.loc 1 233 4 is_stmt 0 view .LVU693
  3614 0148 1548     		ldr	r0, .L173+12
- 3615              	.LVL414:
+ 3615              	.LVL416:
  233:Core/Src/fsm.c **** 			fsmstate->bytecount++;
  3616              		.loc 1 233 4 view .LVU694
  3617 014a FFF7FEFF 		bl	HAL_UART_Transmit
- 3618              	.LVL415:
+ 3618              	.LVL417:
  234:Core/Src/fsm.c **** 			/* If enter is typed, process user input */
  3619              		.loc 1 234 4 is_stmt 1 view .LVU695
  234:Core/Src/fsm.c **** 			/* If enter is typed, process user input */
@@ -5398,21 +5398,21 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  3623 0150 0133     		adds	r3, r3, #1
  3624 0152 2373     		strb	r3, [r4, #12]
  237:Core/Src/fsm.c **** 		
-ARM GAS  /tmp/ccT7MPFG.s 			page 91
+ARM GAS  /tmp/ccwzytnE.s 			page 91
 
 
  3625              		.loc 1 237 4 is_stmt 1 view .LVU698
  3626 0154 67E7     		b	.L148
- 3627              	.LVL416:
+ 3627              	.LVL418:
  3628              	.L172:
  225:Core/Src/fsm.c **** 				break;
  3629              		.loc 1 225 5 view .LVU699
  3630 0156 FFF7FEFF 		bl	set_pid_mode
- 3631              	.LVL417:
+ 3631              	.LVL419:
  226:Core/Src/fsm.c **** 			}
  3632              		.loc 1 226 5 view .LVU700
  3633 015a 64E7     		b	.L148
- 3634              	.LVL418:
+ 3634              	.LVL420:
  3635              	.L167:
  230:Core/Src/fsm.c **** 				fsmstate->bytecount = fsmstate->bytecount%(sizeof(fsmstate->cmd_buff)/sizeof(fsmstate->cmd_buff
  3636              		.loc 1 230 5 view .LVU701
@@ -5442,11 +5442,11 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  245:Core/Src/fsm.c **** 					
  3653              		.loc 1 245 15 is_stmt 0 view .LVU709
  3654 0170 0848     		ldr	r0, .L173
- 3655              	.LVL419:
+ 3655              	.LVL421:
  245:Core/Src/fsm.c **** 					
  3656              		.loc 1 245 15 view .LVU710
  3657 0172 FFF7FEFF 		bl	ENCODER_GetActualDegree
- 3658              	.LVL420:
+ 3658              	.LVL422:
  245:Core/Src/fsm.c **** 					
  3659              		.loc 1 245 15 view .LVU711
  3660 0176 10EE100A 		vmov	r0, s0
@@ -5458,7 +5458,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  3664              		.loc 1 247 6 is_stmt 1 view .LVU713
  247:Core/Src/fsm.c **** 					printf("\n\r new zero position: %.3f deg\r\n", M_ZERO);
  3665              		.loc 1 247 17 is_stmt 0 view .LVU714
-ARM GAS  /tmp/ccT7MPFG.s 			page 92
+ARM GAS  /tmp/ccwzytnE.s 			page 92
 
 
  3666 0180 0022     		movs	r2, #0
@@ -5466,12 +5466,12 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  248:Core/Src/fsm.c **** 					break;
  3668              		.loc 1 248 6 is_stmt 1 view .LVU715
  3669 0184 FFF7FEFF 		bl	__aeabi_f2d
- 3670              	.LVL421:
+ 3670              	.LVL423:
  3671 0188 0246     		mov	r2, r0
  3672 018a 0B46     		mov	r3, r1
  3673 018c 0348     		ldr	r0, .L173+8
  3674 018e FFF7FEFF 		bl	printf
- 3675              	.LVL422:
+ 3675              	.LVL424:
  249:Core/Src/fsm.c **** 			}
  3676              		.loc 1 249 6 view .LVU716
  3677 0192 48E7     		b	.L148
@@ -5518,7 +5518,7 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  3715              		.text
  3716              	.Letext0:
  3717              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
-ARM GAS  /tmp/ccT7MPFG.s 			page 93
+ARM GAS  /tmp/ccwzytnE.s 			page 93
 
 
  3718              		.file 3 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
@@ -5543,75 +5543,76 @@ ARM GAS  /tmp/ccT7MPFG.s 			page 1
  3737              		.file 22 "/usr/include/newlib/math.h"
  3738              		.file 23 "/usr/include/newlib/stdio.h"
  3739              		.file 24 "<built-in>"
-ARM GAS  /tmp/ccT7MPFG.s 			page 94
+ARM GAS  /tmp/ccwzytnE.s 			page 94
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 fsm.c
-     /tmp/ccT7MPFG.s:18     .rodata.fsm_exit_state.str1.4:0000000000000000 $d
-     /tmp/ccT7MPFG.s:28     .text.fsm_exit_state:0000000000000000 $t
-     /tmp/ccT7MPFG.s:36     .text.fsm_exit_state:0000000000000000 fsm_exit_state
-     /tmp/ccT7MPFG.s:61     .text.fsm_exit_state:000000000000000e $d
-     /tmp/ccT7MPFG.s:67     .text.fsm_exit_state:0000000000000014 $t
-     /tmp/ccT7MPFG.s:176    .text.fsm_exit_state:000000000000008c $d
-     /tmp/ccT7MPFG.s:186    .text.TestModeView:0000000000000000 $t
-     /tmp/ccT7MPFG.s:193    .text.TestModeView:0000000000000000 TestModeView
-     /tmp/ccT7MPFG.s:306    .text.TestModeView:0000000000000074 $d
-     /tmp/ccT7MPFG.s:314    .rodata.enter_test_state.str1.4:0000000000000000 $d
-     /tmp/ccT7MPFG.s:489    .text.enter_test_state:0000000000000000 $t
-     /tmp/ccT7MPFG.s:496    .text.enter_test_state:0000000000000000 enter_test_state
-     /tmp/ccT7MPFG.s:849    .text.enter_test_state:0000000000000258 $d
-     /tmp/ccT7MPFG.s:915    .rodata.set_pid_mode.str1.4:0000000000000000 $d
-     /tmp/ccT7MPFG.s:990    .text.set_pid_mode:0000000000000000 $t
-     /tmp/ccT7MPFG.s:997    .text.set_pid_mode:0000000000000000 set_pid_mode
-     /tmp/ccT7MPFG.s:1024   .text.set_pid_mode:0000000000000014 $d
-     /tmp/ccT7MPFG.s:1050   .text.set_pid_mode:0000000000000048 $t
-     /tmp/ccT7MPFG.s:1605   .text.set_pid_mode:0000000000000354 $d
-     /tmp/ccT7MPFG.s:1637   .text.set_pid_mode:00000000000003c4 $t
-     /tmp/ccT7MPFG.s:1858   .text.set_pid_mode:00000000000004f0 $d
-     /tmp/ccT7MPFG.s:1872   .rodata.enter_menu_state.str1.4:0000000000000000 $d
-     /tmp/ccT7MPFG.s:1900   .text.enter_menu_state:0000000000000000 $t
-     /tmp/ccT7MPFG.s:1907   .text.enter_menu_state:0000000000000000 enter_menu_state
-     /tmp/ccT7MPFG.s:1963   .text.enter_menu_state:0000000000000044 $d
-     /tmp/ccT7MPFG.s:1977   .rodata.enter_setup_state.str1.4:0000000000000000 $d
-     /tmp/ccT7MPFG.s:2073   .text.enter_setup_state:0000000000000000 $t
-     /tmp/ccT7MPFG.s:2080   .text.enter_setup_state:0000000000000000 enter_setup_state
-     /tmp/ccT7MPFG.s:2332   .text.enter_setup_state:00000000000001dc $d
-     /tmp/ccT7MPFG.s:2397   .rodata.fsm_enter_state.str1.4:0000000000000000 $d
-     /tmp/ccT7MPFG.s:2407   .text.fsm_enter_state:0000000000000000 $t
-     /tmp/ccT7MPFG.s:2414   .text.fsm_enter_state:0000000000000000 fsm_enter_state
-     /tmp/ccT7MPFG.s:2446   .text.fsm_enter_state:000000000000001a $d
-     /tmp/ccT7MPFG.s:2539   .text.fsm_enter_state:000000000000008c $d
-     /tmp/ccT7MPFG.s:2549   .text.run_fsm:0000000000000000 $t
-     /tmp/ccT7MPFG.s:2556   .text.run_fsm:0000000000000000 run_fsm
-     /tmp/ccT7MPFG.s:2640   .text.run_fsm:0000000000000050 $d
-     /tmp/ccT7MPFG.s:2646   .rodata.process_user_input.str1.4:0000000000000000 $d
-     /tmp/ccT7MPFG.s:2677   .text.process_user_input:0000000000000000 $t
-     /tmp/ccT7MPFG.s:2684   .text.process_user_input:0000000000000000 process_user_input
-     /tmp/ccT7MPFG.s:2709   .text.process_user_input:0000000000000014 $d
-     /tmp/ccT7MPFG.s:2733   .text.process_user_input:0000000000000044 $t
-     /tmp/ccT7MPFG.s:3303   .text.process_user_input:000000000000038c $d
-     /tmp/ccT7MPFG.s:3338   .rodata.update_fsm.str1.4:0000000000000000 $d
-     /tmp/ccT7MPFG.s:3342   .text.update_fsm:0000000000000000 $t
-     /tmp/ccT7MPFG.s:3349   .text.update_fsm:0000000000000000 update_fsm
-     /tmp/ccT7MPFG.s:3382   .text.update_fsm:000000000000001a $d
-     /tmp/ccT7MPFG.s:3418   .text.update_fsm:0000000000000038 $d
-     /tmp/ccT7MPFG.s:3442   .text.update_fsm:0000000000000098 $t
-     /tmp/ccT7MPFG.s:3681   .text.update_fsm:0000000000000194 $d
-     /tmp/ccT7MPFG.s:3689   .text.enter_motor_mode:0000000000000000 $t
-     /tmp/ccT7MPFG.s:3696   .text.enter_motor_mode:0000000000000000 enter_motor_mode
-     /tmp/ccT7MPFG.s:3709   .bss.tx_buf.0:0000000000000000 $d
-     /tmp/ccT7MPFG.s:3713   .bss.tx_buf.0:0000000000000000 tx_buf.0
-     /tmp/ccT7MPFG.s:2451   .text.fsm_enter_state:000000000000001f $d
-ARM GAS  /tmp/ccT7MPFG.s 			page 95
+     /tmp/ccwzytnE.s:18     .rodata.fsm_exit_state.str1.4:0000000000000000 $d
+     /tmp/ccwzytnE.s:28     .text.fsm_exit_state:0000000000000000 $t
+     /tmp/ccwzytnE.s:36     .text.fsm_exit_state:0000000000000000 fsm_exit_state
+     /tmp/ccwzytnE.s:61     .text.fsm_exit_state:000000000000000e $d
+     /tmp/ccwzytnE.s:67     .text.fsm_exit_state:0000000000000014 $t
+     /tmp/ccwzytnE.s:176    .text.fsm_exit_state:0000000000000088 $d
+     /tmp/ccwzytnE.s:186    .text.TestModeView:0000000000000000 $t
+     /tmp/ccwzytnE.s:193    .text.TestModeView:0000000000000000 TestModeView
+     /tmp/ccwzytnE.s:306    .text.TestModeView:0000000000000074 $d
+     /tmp/ccwzytnE.s:314    .rodata.enter_test_state.str1.4:0000000000000000 $d
+     /tmp/ccwzytnE.s:489    .text.enter_test_state:0000000000000000 $t
+     /tmp/ccwzytnE.s:496    .text.enter_test_state:0000000000000000 enter_test_state
+     /tmp/ccwzytnE.s:849    .text.enter_test_state:0000000000000258 $d
+     /tmp/ccwzytnE.s:915    .rodata.set_pid_mode.str1.4:0000000000000000 $d
+     /tmp/ccwzytnE.s:990    .text.set_pid_mode:0000000000000000 $t
+     /tmp/ccwzytnE.s:997    .text.set_pid_mode:0000000000000000 set_pid_mode
+     /tmp/ccwzytnE.s:1024   .text.set_pid_mode:0000000000000014 $d
+     /tmp/ccwzytnE.s:1050   .text.set_pid_mode:0000000000000048 $t
+     /tmp/ccwzytnE.s:1605   .text.set_pid_mode:0000000000000354 $d
+     /tmp/ccwzytnE.s:1637   .text.set_pid_mode:00000000000003c4 $t
+     /tmp/ccwzytnE.s:1858   .text.set_pid_mode:00000000000004f0 $d
+     /tmp/ccwzytnE.s:1872   .rodata.enter_menu_state.str1.4:0000000000000000 $d
+     /tmp/ccwzytnE.s:1900   .text.enter_menu_state:0000000000000000 $t
+     /tmp/ccwzytnE.s:1907   .text.enter_menu_state:0000000000000000 enter_menu_state
+     /tmp/ccwzytnE.s:1963   .text.enter_menu_state:0000000000000044 $d
+     /tmp/ccwzytnE.s:1977   .rodata.enter_setup_state.str1.4:0000000000000000 $d
+     /tmp/ccwzytnE.s:2073   .text.enter_setup_state:0000000000000000 $t
+     /tmp/ccwzytnE.s:2080   .text.enter_setup_state:0000000000000000 enter_setup_state
+     /tmp/ccwzytnE.s:2332   .text.enter_setup_state:00000000000001dc $d
+     /tmp/ccwzytnE.s:2397   .rodata.fsm_enter_state.str1.4:0000000000000000 $d
+     /tmp/ccwzytnE.s:2407   .text.fsm_enter_state:0000000000000000 $t
+     /tmp/ccwzytnE.s:2414   .text.fsm_enter_state:0000000000000000 fsm_enter_state
+     /tmp/ccwzytnE.s:2446   .text.fsm_enter_state:000000000000001a $d
+     /tmp/ccwzytnE.s:2539   .text.fsm_enter_state:000000000000008c $d
+     /tmp/ccwzytnE.s:2549   .text.run_fsm:0000000000000000 $t
+     /tmp/ccwzytnE.s:2556   .text.run_fsm:0000000000000000 run_fsm
+     /tmp/ccwzytnE.s:2640   .text.run_fsm:0000000000000050 $d
+     /tmp/ccwzytnE.s:2646   .rodata.process_user_input.str1.4:0000000000000000 $d
+     /tmp/ccwzytnE.s:2677   .text.process_user_input:0000000000000000 $t
+     /tmp/ccwzytnE.s:2684   .text.process_user_input:0000000000000000 process_user_input
+     /tmp/ccwzytnE.s:2709   .text.process_user_input:0000000000000014 $d
+     /tmp/ccwzytnE.s:2733   .text.process_user_input:0000000000000044 $t
+     /tmp/ccwzytnE.s:3303   .text.process_user_input:000000000000038c $d
+     /tmp/ccwzytnE.s:3338   .rodata.update_fsm.str1.4:0000000000000000 $d
+     /tmp/ccwzytnE.s:3342   .text.update_fsm:0000000000000000 $t
+     /tmp/ccwzytnE.s:3349   .text.update_fsm:0000000000000000 update_fsm
+     /tmp/ccwzytnE.s:3382   .text.update_fsm:000000000000001a $d
+     /tmp/ccwzytnE.s:3418   .text.update_fsm:0000000000000038 $d
+     /tmp/ccwzytnE.s:3442   .text.update_fsm:0000000000000098 $t
+     /tmp/ccwzytnE.s:3681   .text.update_fsm:0000000000000194 $d
+     /tmp/ccwzytnE.s:3689   .text.enter_motor_mode:0000000000000000 $t
+     /tmp/ccwzytnE.s:3696   .text.enter_motor_mode:0000000000000000 enter_motor_mode
+     /tmp/ccwzytnE.s:3709   .bss.tx_buf.0:0000000000000000 $d
+     /tmp/ccwzytnE.s:3713   .bss.tx_buf.0:0000000000000000 tx_buf.0
+     /tmp/ccwzytnE.s:2451   .text.fsm_enter_state:000000000000001f $d
+ARM GAS  /tmp/ccwzytnE.s 			page 95
 
 
-     /tmp/ccT7MPFG.s:2451   .text.fsm_enter_state:0000000000000020 $t
-     /tmp/ccT7MPFG.s:3387   .text.update_fsm:000000000000001f $d
-     /tmp/ccT7MPFG.s:3387   .text.update_fsm:0000000000000020 $t
+     /tmp/ccwzytnE.s:2451   .text.fsm_enter_state:0000000000000020 $t
+     /tmp/ccwzytnE.s:3387   .text.update_fsm:000000000000001f $d
+     /tmp/ccwzytnE.s:3387   .text.update_fsm:0000000000000020 $t
 
 UNDEFINED SYMBOLS
 puts
+flash_save_config
 HAL_UART_AbortTransmit
 pid_reset
 m_config
