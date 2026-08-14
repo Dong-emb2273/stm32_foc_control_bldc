@@ -13,14 +13,19 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "main.h"
-
-
-
-
-
-
-
+#include "hw_config.h"
+#include "user_config.h"
+#include "foc_utils.h"
+#include "encoder.h"
+#include "flash.h"
+#include "uart.h"
+#include "can.h"
 
 
 #define MENU_MODE           0

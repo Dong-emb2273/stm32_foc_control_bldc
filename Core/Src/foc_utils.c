@@ -16,7 +16,7 @@
 #include "flash.h"
 #include "encoder.h"
 
-extern motor_config_t m_config;
+
 extern JointCommand_t joint_cmd;
 
 _Bool foc_ready = 0;

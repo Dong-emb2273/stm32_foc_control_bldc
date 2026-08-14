@@ -4,30 +4,16 @@
  *  Created on: Mar 5, 2020
  *      Author: Ben
  */
-#include "main.h"
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 
-#include "main.h"
+
+
 #include "fsm.h"
-#include "hw_config.h"
-#include "user_config.h"
-#include "foc_utils.h"
-#include "encoder.h"
-#include "flash.h"
-#include "uart.h"
-#include "can.h"
 
 
 extern UART_HandleTypeDef huart;
 extern JointCommand_t joint_cmd;
 // extern JointRobot_t robot_joints;
-extern float sPoint_Vel ;
-extern float sPoint_Pos ;
-extern float sPoint_Tor;
+
 
 
 

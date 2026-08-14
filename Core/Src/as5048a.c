@@ -1,7 +1,6 @@
 
 
 #include "as5048a.h"
-#include "spi.h"
 
 
 void AS5048A_Config_CS(void *handle){

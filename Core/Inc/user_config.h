@@ -8,7 +8,7 @@ extern "C" {
 #endif
 #include "flash.h"
 
-extern motor_config_t m_config;
+
 
 
 #define I_BW                (m_config.I_ctrl_bandwidth)     // Current loop bandwidth

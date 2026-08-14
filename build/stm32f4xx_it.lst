@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc6Jh8l4.s 			page 1
+ARM GAS  /tmp/ccAK6DWl.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -26,7 +26,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
   23              		.thumb_func
   24              		.fpu fpv4-sp-d16
   26              	NMI_Handler:
-  27              	.LFB134:
+  27              	.LFB137:
   28              		.file 1 "Core/Src/stm32f4xx_it.c"
    1:Core/Src/stm32f4xx_it.c **** /* USER CODE BEGIN Header */
    2:Core/Src/stm32f4xx_it.c **** /**
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
   28:Core/Src/stm32f4xx_it.c **** #include "spi.h"
   29:Core/Src/stm32f4xx_it.c **** #include "uart.h"
   30:Core/Src/stm32f4xx_it.c **** #include "fsm.h"
-ARM GAS  /tmp/cc6Jh8l4.s 			page 2
+ARM GAS  /tmp/ccAK6DWl.s 			page 2
 
 
   31:Core/Src/stm32f4xx_it.c **** #include "can.h"
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
   35              	.L2:
   79:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
   80:Core/Src/stm32f4xx_it.c **** 
-ARM GAS  /tmp/cc6Jh8l4.s 			page 3
+ARM GAS  /tmp/ccAK6DWl.s 			page 3
 
 
   81:Core/Src/stm32f4xx_it.c ****   /* USER CODE END NonMaskableInt_IRQn 0 */
@@ -132,7 +132,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
   38              		.loc 1 83 10 discriminator 1 view .LVU3
   39 0000 FEE7     		b	.L2
   40              		.cfi_endproc
-  41              	.LFE134:
+  41              	.LFE137:
   43              		.section	.text.HardFault_Handler,"ax",%progbits
   44              		.align	1
   45              		.global	HardFault_Handler
@@ -141,7 +141,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
   48              		.thumb_func
   49              		.fpu fpv4-sp-d16
   51              	HardFault_Handler:
-  52              	.LFB135:
+  52              	.LFB138:
   86:Core/Src/stm32f4xx_it.c ****   /* USER CODE END NonMaskableInt_IRQn 1 */
   87:Core/Src/stm32f4xx_it.c **** }
   88:Core/Src/stm32f4xx_it.c **** 
@@ -171,19 +171,19 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
   62              		.loc 1 97 9 discriminator 1 view .LVU7
   63 0000 FEE7     		b	.L4
   64              		.cfi_endproc
-  65              	.LFE135:
+  65              	.LFE138:
   67              		.section	.text.MemManage_Handler,"ax",%progbits
   68              		.align	1
   69              		.global	MemManage_Handler
   70              		.syntax unified
   71              		.thumb
   72              		.thumb_func
-ARM GAS  /tmp/cc6Jh8l4.s 			page 4
+ARM GAS  /tmp/ccAK6DWl.s 			page 4
 
 
   73              		.fpu fpv4-sp-d16
   75              	MemManage_Handler:
-  76              	.LFB136:
+  76              	.LFB139:
  102:Core/Src/stm32f4xx_it.c **** }
  103:Core/Src/stm32f4xx_it.c **** 
  104:Core/Src/stm32f4xx_it.c **** /**
@@ -212,7 +212,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
   86              		.loc 1 112 9 discriminator 1 view .LVU11
   87 0000 FEE7     		b	.L6
   88              		.cfi_endproc
-  89              	.LFE136:
+  89              	.LFE139:
   91              		.section	.text.BusFault_Handler,"ax",%progbits
   92              		.align	1
   93              		.global	BusFault_Handler
@@ -221,7 +221,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
   96              		.thumb_func
   97              		.fpu fpv4-sp-d16
   99              	BusFault_Handler:
- 100              	.LFB137:
+ 100              	.LFB140:
  117:Core/Src/stm32f4xx_it.c **** }
  118:Core/Src/stm32f4xx_it.c **** 
  119:Core/Src/stm32f4xx_it.c **** /**
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  107              	.L8:
  124:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN BusFault_IRQn 0 */
  125:Core/Src/stm32f4xx_it.c **** 
-ARM GAS  /tmp/cc6Jh8l4.s 			page 5
+ARM GAS  /tmp/ccAK6DWl.s 			page 5
 
 
  126:Core/Src/stm32f4xx_it.c ****   /* USER CODE END BusFault_IRQn 0 */
@@ -253,7 +253,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  110              		.loc 1 127 9 discriminator 1 view .LVU15
  111 0000 FEE7     		b	.L8
  112              		.cfi_endproc
- 113              	.LFE137:
+ 113              	.LFE140:
  115              		.section	.text.UsageFault_Handler,"ax",%progbits
  116              		.align	1
  117              		.global	UsageFault_Handler
@@ -262,7 +262,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  120              		.thumb_func
  121              		.fpu fpv4-sp-d16
  123              	UsageFault_Handler:
- 124              	.LFB138:
+ 124              	.LFB141:
  132:Core/Src/stm32f4xx_it.c **** }
  133:Core/Src/stm32f4xx_it.c **** 
  134:Core/Src/stm32f4xx_it.c **** /**
@@ -291,19 +291,19 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  134              		.loc 1 142 9 discriminator 1 view .LVU19
  135 0000 FEE7     		b	.L10
  136              		.cfi_endproc
- 137              	.LFE138:
+ 137              	.LFE141:
  139              		.section	.text.DebugMon_Handler,"ax",%progbits
  140              		.align	1
  141              		.global	DebugMon_Handler
  142              		.syntax unified
  143              		.thumb
  144              		.thumb_func
-ARM GAS  /tmp/cc6Jh8l4.s 			page 6
+ARM GAS  /tmp/ccAK6DWl.s 			page 6
 
 
  145              		.fpu fpv4-sp-d16
  147              	DebugMon_Handler:
- 148              	.LFB139:
+ 148              	.LFB142:
  147:Core/Src/stm32f4xx_it.c **** }
  148:Core/Src/stm32f4xx_it.c **** 
  149:Core/Src/stm32f4xx_it.c **** /**
@@ -326,7 +326,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  154              		.loc 1 160 1 view .LVU21
  155 0000 7047     		bx	lr
  156              		.cfi_endproc
- 157              	.LFE139:
+ 157              	.LFE142:
  159              		.section	.text.TIM1_TRG_COM_TIM11_IRQHandler,"ax",%progbits
  160              		.align	1
  161              		.global	TIM1_TRG_COM_TIM11_IRQHandler
@@ -335,7 +335,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  164              		.thumb_func
  165              		.fpu fpv4-sp-d16
  167              	TIM1_TRG_COM_TIM11_IRQHandler:
- 168              	.LFB140:
+ 168              	.LFB143:
  161:Core/Src/stm32f4xx_it.c **** 
  162:Core/Src/stm32f4xx_it.c **** /******************************************************************************/
  163:Core/Src/stm32f4xx_it.c **** /* STM32F4xx Peripheral Interrupt Handlers                                    */
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  175              		.cfi_def_cfa_offset 8
  176              		.cfi_offset 3, -8
  177              		.cfi_offset 14, -4
-ARM GAS  /tmp/cc6Jh8l4.s 			page 7
+ARM GAS  /tmp/ccAK6DWl.s 			page 7
 
 
  174:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN TIM1_TRG_COM_TIM11_IRQn 0 */
@@ -380,7 +380,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  186              	.L14:
  187 000c 00000000 		.word	htim11
  188              		.cfi_endproc
- 189              	.LFE140:
+ 189              	.LFE143:
  191              		.section	.text.DMA2_Stream7_IRQHandler,"ax",%progbits
  192              		.align	1
  193              		.global	DMA2_Stream7_IRQHandler
@@ -389,7 +389,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  196              		.thumb_func
  197              		.fpu fpv4-sp-d16
  199              	DMA2_Stream7_IRQHandler:
- 200              	.LFB141:
+ 200              	.LFB144:
  182:Core/Src/stm32f4xx_it.c **** 
  183:Core/Src/stm32f4xx_it.c **** /* USER CODE BEGIN 1 */
  184:Core/Src/stm32f4xx_it.c **** 
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  194:Core/Src/stm32f4xx_it.c ****   /* USER CODE END DMA1_Stream3_IRQn 1 */
  195:Core/Src/stm32f4xx_it.c **** }
  214              		.loc 1 195 1 is_stmt 0 view .LVU27
-ARM GAS  /tmp/cc6Jh8l4.s 			page 8
+ARM GAS  /tmp/ccAK6DWl.s 			page 8
 
 
  215 0008 08BD     		pop	{r3, pc}
@@ -427,7 +427,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  218              	.L18:
  219 000c 00000000 		.word	hdma_usart_tx
  220              		.cfi_endproc
- 221              	.LFE141:
+ 221              	.LFE144:
  223              		.section	.text.DMA2_Stream2_IRQHandler,"ax",%progbits
  224              		.align	1
  225              		.global	DMA2_Stream2_IRQHandler
@@ -436,7 +436,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  228              		.thumb_func
  229              		.fpu fpv4-sp-d16
  231              	DMA2_Stream2_IRQHandler:
- 232              	.LFB142:
+ 232              	.LFB145:
  196:Core/Src/stm32f4xx_it.c **** 
  197:Core/Src/stm32f4xx_it.c **** /**
  198:Core/Src/stm32f4xx_it.c ****   * @brief This function handles DMA1 stream4 global interrupt.
@@ -471,19 +471,19 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  250              	.L22:
  251 000c 00000000 		.word	hdma_usart_rx
  252              		.cfi_endproc
- 253              	.LFE142:
+ 253              	.LFE145:
  255              		.section	.text.DMA1_Stream3_IRQHandler,"ax",%progbits
  256              		.align	1
  257              		.global	DMA1_Stream3_IRQHandler
  258              		.syntax unified
  259              		.thumb
  260              		.thumb_func
-ARM GAS  /tmp/cc6Jh8l4.s 			page 9
+ARM GAS  /tmp/ccAK6DWl.s 			page 9
 
 
  261              		.fpu fpv4-sp-d16
  263              	DMA1_Stream3_IRQHandler:
- 264              	.LFB143:
+ 264              	.LFB146:
  210:Core/Src/stm32f4xx_it.c **** 
  211:Core/Src/stm32f4xx_it.c **** /**
  212:Core/Src/stm32f4xx_it.c ****   * @brief This function handles SPI2 global interrupt.
@@ -523,7 +523,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  282              	.L26:
  283 000c 00000000 		.word	hdma_spi2_rx
  284              		.cfi_endproc
- 285              	.LFE143:
+ 285              	.LFE146:
  287              		.section	.text.DMA1_Stream4_IRQHandler,"ax",%progbits
  288              		.align	1
  289              		.global	DMA1_Stream4_IRQHandler
@@ -532,13 +532,13 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  292              		.thumb_func
  293              		.fpu fpv4-sp-d16
  295              	DMA1_Stream4_IRQHandler:
- 296              	.LFB144:
+ 296              	.LFB147:
  229:Core/Src/stm32f4xx_it.c **** /**
  230:Core/Src/stm32f4xx_it.c ****   * @brief This function handles DMA1 stream4 global interrupt.
  231:Core/Src/stm32f4xx_it.c ****   */
  232:Core/Src/stm32f4xx_it.c **** void DMA1_Stream4_IRQHandler(void)
  233:Core/Src/stm32f4xx_it.c **** {
-ARM GAS  /tmp/cc6Jh8l4.s 			page 10
+ARM GAS  /tmp/ccAK6DWl.s 			page 10
 
 
  297              		.loc 1 233 1 is_stmt 1 view -0
@@ -569,7 +569,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  314              	.L30:
  315 000c 00000000 		.word	hdma_spi2_tx
  316              		.cfi_endproc
- 317              	.LFE144:
+ 317              	.LFE147:
  319              		.section	.text.SPI1_IRQHandler,"ax",%progbits
  320              		.align	1
  321              		.global	SPI1_IRQHandler
@@ -578,7 +578,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  324              		.thumb_func
  325              		.fpu fpv4-sp-d16
  327              	SPI1_IRQHandler:
- 328              	.LFB145:
+ 328              	.LFB148:
  242:Core/Src/stm32f4xx_it.c **** 
  243:Core/Src/stm32f4xx_it.c **** void SPI1_IRQHandler(void)
  244:Core/Src/stm32f4xx_it.c **** {
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  338              		.loc 1 248 3 view .LVU38
  339 0002 0248     		ldr	r0, .L34
  340 0004 FFF7FEFF 		bl	HAL_SPI_IRQHandler
-ARM GAS  /tmp/cc6Jh8l4.s 			page 11
+ARM GAS  /tmp/ccAK6DWl.s 			page 11
 
 
  341              	.LVL5:
@@ -613,7 +613,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  346              	.L34:
  347 000c 00000000 		.word	hspi1
  348              		.cfi_endproc
- 349              	.LFE145:
+ 349              	.LFE148:
  351              		.section	.text.SPI2_IRQHandler,"ax",%progbits
  352              		.align	1
  353              		.global	SPI2_IRQHandler
@@ -622,7 +622,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  356              		.thumb_func
  357              		.fpu fpv4-sp-d16
  359              	SPI2_IRQHandler:
- 360              	.LFB146:
+ 360              	.LFB149:
  253:Core/Src/stm32f4xx_it.c **** 
  254:Core/Src/stm32f4xx_it.c **** /**
  255:Core/Src/stm32f4xx_it.c ****   * @brief This function handles SPI2 global interrupt.
@@ -657,8 +657,8 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  378              	.L38:
  379 000c 00000000 		.word	hspi2
  380              		.cfi_endproc
- 381              	.LFE146:
-ARM GAS  /tmp/cc6Jh8l4.s 			page 12
+ 381              	.LFE149:
+ARM GAS  /tmp/ccAK6DWl.s 			page 12
 
 
  383              		.section	.text.USART6_IRQHandler,"ax",%progbits
@@ -669,7 +669,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  388              		.thumb_func
  389              		.fpu fpv4-sp-d16
  391              	USART6_IRQHandler:
- 392              	.LFB147:
+ 392              	.LFB150:
  267:Core/Src/stm32f4xx_it.c **** void USART6_IRQHandler(void)
  268:Core/Src/stm32f4xx_it.c **** {
  393              		.loc 1 268 1 is_stmt 1 view -0
@@ -699,7 +699,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  410              	.L42:
  411 000c 00000000 		.word	huart
  412              		.cfi_endproc
- 413              	.LFE147:
+ 413              	.LFE150:
  415              		.section	.text.DMA2_Stream0_IRQHandler,"ax",%progbits
  416              		.align	1
  417              		.global	DMA2_Stream0_IRQHandler
@@ -708,7 +708,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  420              		.thumb_func
  421              		.fpu fpv4-sp-d16
  423              	DMA2_Stream0_IRQHandler:
- 424              	.LFB148:
+ 424              	.LFB151:
  276:Core/Src/stm32f4xx_it.c **** 
  277:Core/Src/stm32f4xx_it.c **** /**
  278:Core/Src/stm32f4xx_it.c ****   * @brief This function handles DMA2 stream0 global interrupt.
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  425              		.loc 1 281 1 is_stmt 1 view -0
  426              		.cfi_startproc
  427              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/cc6Jh8l4.s 			page 13
+ARM GAS  /tmp/ccAK6DWl.s 			page 13
 
 
  428              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -746,7 +746,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  442              	.L46:
  443 000c 00000000 		.word	hdma_spi1_rx
  444              		.cfi_endproc
- 445              	.LFE148:
+ 445              	.LFE151:
  447              		.section	.text.DMA2_Stream3_IRQHandler,"ax",%progbits
  448              		.align	1
  449              		.global	DMA2_Stream3_IRQHandler
@@ -755,7 +755,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  452              		.thumb_func
  453              		.fpu fpv4-sp-d16
  455              	DMA2_Stream3_IRQHandler:
- 456              	.LFB149:
+ 456              	.LFB152:
  290:Core/Src/stm32f4xx_it.c **** void DMA2_Stream3_IRQHandler(void)
  291:Core/Src/stm32f4xx_it.c **** {
  457              		.loc 1 291 1 is_stmt 1 view -0
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  296:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN DMA2_Stream3_IRQn 1 */
  297:Core/Src/stm32f4xx_it.c **** 
  298:Core/Src/stm32f4xx_it.c ****   /* USER CODE END DMA2_Stream3_IRQn 1 */
-ARM GAS  /tmp/cc6Jh8l4.s 			page 14
+ARM GAS  /tmp/ccAK6DWl.s 			page 14
 
 
  299:Core/Src/stm32f4xx_it.c **** }
@@ -789,7 +789,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  474              	.L50:
  475 000c 00000000 		.word	hdma_spi1_tx
  476              		.cfi_endproc
- 477              	.LFE149:
+ 477              	.LFE152:
  479              		.section	.text.CAN1_RX0_IRQHandler,"ax",%progbits
  480              		.align	1
  481              		.global	CAN1_RX0_IRQHandler
@@ -798,7 +798,7 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  484              		.thumb_func
  485              		.fpu fpv4-sp-d16
  487              	CAN1_RX0_IRQHandler:
- 488              	.LFB150:
+ 488              	.LFB153:
  300:Core/Src/stm32f4xx_it.c **** 
  301:Core/Src/stm32f4xx_it.c **** void CAN1_RX0_IRQHandler(void)
  302:Core/Src/stm32f4xx_it.c **** {
@@ -831,14 +831,14 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  506              	.L54:
  507 000c 00000000 		.word	hcan1
  508              		.cfi_endproc
- 509              	.LFE150:
+ 509              	.LFE153:
  511              		.text
  512              	.Letext0:
  513              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
  514              		.file 3 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
  515              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
  516              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
-ARM GAS  /tmp/cc6Jh8l4.s 			page 15
+ARM GAS  /tmp/ccAK6DWl.s 			page 15
 
 
  517              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
@@ -849,56 +849,56 @@ ARM GAS  /tmp/cc6Jh8l4.s 			page 1
  522              		.file 11 "Core/Inc/spi.h"
  523              		.file 12 "Core/Inc/uart.h"
  524              		.file 13 "Core/Inc/can.h"
-ARM GAS  /tmp/cc6Jh8l4.s 			page 16
+ARM GAS  /tmp/ccAK6DWl.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f4xx_it.c
-     /tmp/cc6Jh8l4.s:18     .text.NMI_Handler:0000000000000000 $t
-     /tmp/cc6Jh8l4.s:26     .text.NMI_Handler:0000000000000000 NMI_Handler
-     /tmp/cc6Jh8l4.s:44     .text.HardFault_Handler:0000000000000000 $t
-     /tmp/cc6Jh8l4.s:51     .text.HardFault_Handler:0000000000000000 HardFault_Handler
-     /tmp/cc6Jh8l4.s:68     .text.MemManage_Handler:0000000000000000 $t
-     /tmp/cc6Jh8l4.s:75     .text.MemManage_Handler:0000000000000000 MemManage_Handler
-     /tmp/cc6Jh8l4.s:92     .text.BusFault_Handler:0000000000000000 $t
-     /tmp/cc6Jh8l4.s:99     .text.BusFault_Handler:0000000000000000 BusFault_Handler
-     /tmp/cc6Jh8l4.s:116    .text.UsageFault_Handler:0000000000000000 $t
-     /tmp/cc6Jh8l4.s:123    .text.UsageFault_Handler:0000000000000000 UsageFault_Handler
-     /tmp/cc6Jh8l4.s:140    .text.DebugMon_Handler:0000000000000000 $t
-     /tmp/cc6Jh8l4.s:147    .text.DebugMon_Handler:0000000000000000 DebugMon_Handler
-     /tmp/cc6Jh8l4.s:160    .text.TIM1_TRG_COM_TIM11_IRQHandler:0000000000000000 $t
-     /tmp/cc6Jh8l4.s:167    .text.TIM1_TRG_COM_TIM11_IRQHandler:0000000000000000 TIM1_TRG_COM_TIM11_IRQHandler
-     /tmp/cc6Jh8l4.s:187    .text.TIM1_TRG_COM_TIM11_IRQHandler:000000000000000c $d
-     /tmp/cc6Jh8l4.s:192    .text.DMA2_Stream7_IRQHandler:0000000000000000 $t
-     /tmp/cc6Jh8l4.s:199    .text.DMA2_Stream7_IRQHandler:0000000000000000 DMA2_Stream7_IRQHandler
-     /tmp/cc6Jh8l4.s:219    .text.DMA2_Stream7_IRQHandler:000000000000000c $d
-     /tmp/cc6Jh8l4.s:224    .text.DMA2_Stream2_IRQHandler:0000000000000000 $t
-     /tmp/cc6Jh8l4.s:231    .text.DMA2_Stream2_IRQHandler:0000000000000000 DMA2_Stream2_IRQHandler
-     /tmp/cc6Jh8l4.s:251    .text.DMA2_Stream2_IRQHandler:000000000000000c $d
-     /tmp/cc6Jh8l4.s:256    .text.DMA1_Stream3_IRQHandler:0000000000000000 $t
-     /tmp/cc6Jh8l4.s:263    .text.DMA1_Stream3_IRQHandler:0000000000000000 DMA1_Stream3_IRQHandler
-     /tmp/cc6Jh8l4.s:283    .text.DMA1_Stream3_IRQHandler:000000000000000c $d
-     /tmp/cc6Jh8l4.s:288    .text.DMA1_Stream4_IRQHandler:0000000000000000 $t
-     /tmp/cc6Jh8l4.s:295    .text.DMA1_Stream4_IRQHandler:0000000000000000 DMA1_Stream4_IRQHandler
-     /tmp/cc6Jh8l4.s:315    .text.DMA1_Stream4_IRQHandler:000000000000000c $d
-     /tmp/cc6Jh8l4.s:320    .text.SPI1_IRQHandler:0000000000000000 $t
-     /tmp/cc6Jh8l4.s:327    .text.SPI1_IRQHandler:0000000000000000 SPI1_IRQHandler
-     /tmp/cc6Jh8l4.s:347    .text.SPI1_IRQHandler:000000000000000c $d
-     /tmp/cc6Jh8l4.s:352    .text.SPI2_IRQHandler:0000000000000000 $t
-     /tmp/cc6Jh8l4.s:359    .text.SPI2_IRQHandler:0000000000000000 SPI2_IRQHandler
-     /tmp/cc6Jh8l4.s:379    .text.SPI2_IRQHandler:000000000000000c $d
-     /tmp/cc6Jh8l4.s:384    .text.USART6_IRQHandler:0000000000000000 $t
-     /tmp/cc6Jh8l4.s:391    .text.USART6_IRQHandler:0000000000000000 USART6_IRQHandler
-     /tmp/cc6Jh8l4.s:411    .text.USART6_IRQHandler:000000000000000c $d
-     /tmp/cc6Jh8l4.s:416    .text.DMA2_Stream0_IRQHandler:0000000000000000 $t
-     /tmp/cc6Jh8l4.s:423    .text.DMA2_Stream0_IRQHandler:0000000000000000 DMA2_Stream0_IRQHandler
-     /tmp/cc6Jh8l4.s:443    .text.DMA2_Stream0_IRQHandler:000000000000000c $d
-     /tmp/cc6Jh8l4.s:448    .text.DMA2_Stream3_IRQHandler:0000000000000000 $t
-     /tmp/cc6Jh8l4.s:455    .text.DMA2_Stream3_IRQHandler:0000000000000000 DMA2_Stream3_IRQHandler
-     /tmp/cc6Jh8l4.s:475    .text.DMA2_Stream3_IRQHandler:000000000000000c $d
-     /tmp/cc6Jh8l4.s:480    .text.CAN1_RX0_IRQHandler:0000000000000000 $t
-     /tmp/cc6Jh8l4.s:487    .text.CAN1_RX0_IRQHandler:0000000000000000 CAN1_RX0_IRQHandler
-     /tmp/cc6Jh8l4.s:507    .text.CAN1_RX0_IRQHandler:000000000000000c $d
+     /tmp/ccAK6DWl.s:18     .text.NMI_Handler:0000000000000000 $t
+     /tmp/ccAK6DWl.s:26     .text.NMI_Handler:0000000000000000 NMI_Handler
+     /tmp/ccAK6DWl.s:44     .text.HardFault_Handler:0000000000000000 $t
+     /tmp/ccAK6DWl.s:51     .text.HardFault_Handler:0000000000000000 HardFault_Handler
+     /tmp/ccAK6DWl.s:68     .text.MemManage_Handler:0000000000000000 $t
+     /tmp/ccAK6DWl.s:75     .text.MemManage_Handler:0000000000000000 MemManage_Handler
+     /tmp/ccAK6DWl.s:92     .text.BusFault_Handler:0000000000000000 $t
+     /tmp/ccAK6DWl.s:99     .text.BusFault_Handler:0000000000000000 BusFault_Handler
+     /tmp/ccAK6DWl.s:116    .text.UsageFault_Handler:0000000000000000 $t
+     /tmp/ccAK6DWl.s:123    .text.UsageFault_Handler:0000000000000000 UsageFault_Handler
+     /tmp/ccAK6DWl.s:140    .text.DebugMon_Handler:0000000000000000 $t
+     /tmp/ccAK6DWl.s:147    .text.DebugMon_Handler:0000000000000000 DebugMon_Handler
+     /tmp/ccAK6DWl.s:160    .text.TIM1_TRG_COM_TIM11_IRQHandler:0000000000000000 $t
+     /tmp/ccAK6DWl.s:167    .text.TIM1_TRG_COM_TIM11_IRQHandler:0000000000000000 TIM1_TRG_COM_TIM11_IRQHandler
+     /tmp/ccAK6DWl.s:187    .text.TIM1_TRG_COM_TIM11_IRQHandler:000000000000000c $d
+     /tmp/ccAK6DWl.s:192    .text.DMA2_Stream7_IRQHandler:0000000000000000 $t
+     /tmp/ccAK6DWl.s:199    .text.DMA2_Stream7_IRQHandler:0000000000000000 DMA2_Stream7_IRQHandler
+     /tmp/ccAK6DWl.s:219    .text.DMA2_Stream7_IRQHandler:000000000000000c $d
+     /tmp/ccAK6DWl.s:224    .text.DMA2_Stream2_IRQHandler:0000000000000000 $t
+     /tmp/ccAK6DWl.s:231    .text.DMA2_Stream2_IRQHandler:0000000000000000 DMA2_Stream2_IRQHandler
+     /tmp/ccAK6DWl.s:251    .text.DMA2_Stream2_IRQHandler:000000000000000c $d
+     /tmp/ccAK6DWl.s:256    .text.DMA1_Stream3_IRQHandler:0000000000000000 $t
+     /tmp/ccAK6DWl.s:263    .text.DMA1_Stream3_IRQHandler:0000000000000000 DMA1_Stream3_IRQHandler
+     /tmp/ccAK6DWl.s:283    .text.DMA1_Stream3_IRQHandler:000000000000000c $d
+     /tmp/ccAK6DWl.s:288    .text.DMA1_Stream4_IRQHandler:0000000000000000 $t
+     /tmp/ccAK6DWl.s:295    .text.DMA1_Stream4_IRQHandler:0000000000000000 DMA1_Stream4_IRQHandler
+     /tmp/ccAK6DWl.s:315    .text.DMA1_Stream4_IRQHandler:000000000000000c $d
+     /tmp/ccAK6DWl.s:320    .text.SPI1_IRQHandler:0000000000000000 $t
+     /tmp/ccAK6DWl.s:327    .text.SPI1_IRQHandler:0000000000000000 SPI1_IRQHandler
+     /tmp/ccAK6DWl.s:347    .text.SPI1_IRQHandler:000000000000000c $d
+     /tmp/ccAK6DWl.s:352    .text.SPI2_IRQHandler:0000000000000000 $t
+     /tmp/ccAK6DWl.s:359    .text.SPI2_IRQHandler:0000000000000000 SPI2_IRQHandler
+     /tmp/ccAK6DWl.s:379    .text.SPI2_IRQHandler:000000000000000c $d
+     /tmp/ccAK6DWl.s:384    .text.USART6_IRQHandler:0000000000000000 $t
+     /tmp/ccAK6DWl.s:391    .text.USART6_IRQHandler:0000000000000000 USART6_IRQHandler
+     /tmp/ccAK6DWl.s:411    .text.USART6_IRQHandler:000000000000000c $d
+     /tmp/ccAK6DWl.s:416    .text.DMA2_Stream0_IRQHandler:0000000000000000 $t
+     /tmp/ccAK6DWl.s:423    .text.DMA2_Stream0_IRQHandler:0000000000000000 DMA2_Stream0_IRQHandler
+     /tmp/ccAK6DWl.s:443    .text.DMA2_Stream0_IRQHandler:000000000000000c $d
+     /tmp/ccAK6DWl.s:448    .text.DMA2_Stream3_IRQHandler:0000000000000000 $t
+     /tmp/ccAK6DWl.s:455    .text.DMA2_Stream3_IRQHandler:0000000000000000 DMA2_Stream3_IRQHandler
+     /tmp/ccAK6DWl.s:475    .text.DMA2_Stream3_IRQHandler:000000000000000c $d
+     /tmp/ccAK6DWl.s:480    .text.CAN1_RX0_IRQHandler:0000000000000000 $t
+     /tmp/ccAK6DWl.s:487    .text.CAN1_RX0_IRQHandler:0000000000000000 CAN1_RX0_IRQHandler
+     /tmp/ccAK6DWl.s:507    .text.CAN1_RX0_IRQHandler:000000000000000c $d
 
 UNDEFINED SYMBOLS
 HAL_TIM_IRQHandler
@@ -909,7 +909,7 @@ hdma_usart_rx
 hdma_spi2_rx
 hdma_spi2_tx
 HAL_SPI_IRQHandler
-ARM GAS  /tmp/cc6Jh8l4.s 			page 17
+ARM GAS  /tmp/ccAK6DWl.s 			page 17
 
 
 hspi1

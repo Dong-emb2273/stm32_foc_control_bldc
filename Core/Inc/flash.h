@@ -8,7 +8,7 @@
 #ifndef FLASH_H_
 #define FLASH_H_
 
-#include "stm32f4xx_hal.h"
+#include "main.h"
 #include "foc_utils.h"
 
 #define FLASH_SECTOR_ADDR  ((uint32_t)0x080E0000)
@@ -56,15 +56,6 @@ typedef struct {
     uint8_t state;
     uint8_t next_state;
 
-    // flag bit 
-    // uint8_t power_flag :1;
-    // uint8_t save_flag :1;
-    // uint8_t motor_running :2;
-    // uint8_t cur_view :1;
-    // uint8_t vel_view :1;
-    // uint8_t pos_view :1;
-    // uint8_t reserved :1;
-
     uint32_t  status_flags;
 
     float voffset_a;
@@ -102,10 +93,10 @@ typedef struct {
     float kd_min;
     float kd_max;
 
-
-
     uint8_t valid_EOF;
 }motor_config_t;
+
+extern motor_config_t m_config;
 
 HAL_StatusTypeDef flash_save_config(motor_config_t *data);
 HAL_StatusTypeDef flash_erase_ready(void);

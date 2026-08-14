@@ -80,14 +80,12 @@ foc_t hfoc;
 
 
 
-motor_config_t m_config;
+
 
 /* usart setup*/
 
 
-/* can setup*/
-CANTxMessage can_tx;
-CANRxMessage can_rx;
+
 
 /* joint setup*/
 // JointRobot_t robot_joints;

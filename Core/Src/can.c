@@ -19,18 +19,13 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "can.h"
-#include "hw_config.h"
-#include "user_config.h"
-
-/* USER CODE BEGIN 0 */
-
-#include "math_ops.h"
 
 
-
-/* USER CODE END 0 */
 
 CAN_HandleTypeDef hcan1;
+CANTxMessage can_tx;
+CANRxMessage can_rx;
+
 
 /* CAN1 init function */
 void MX_CAN1_Init(void)

@@ -5,7 +5,7 @@
 
 
 Encoder_t encoder;
-extern motor_config_t m_config;
+
 
 _Bool encd_get_val_flag;
 

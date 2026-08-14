@@ -33,7 +33,9 @@ build/stm32f4xx_it.o: Core/Src/stm32f4xx_it.c Core/Inc/main.h \
  Core/Inc/main.h Core/Inc/spi.h Core/Inc/as5048a.h Core/Inc/encoder.h \
  Core/Inc/foc_math.h Core/Inc/pid_utils.h Core/Inc/joint_acc.h \
  Core/Inc/lpf.h Core/Inc/foc_math.h Core/Inc/spi.h Core/Inc/uart.h \
- Core/Inc/fsm.h Core/Inc/can.h Core/Inc/fsm.h Core/Inc/foc_utils.h
+ Core/Inc/fsm.h Core/Inc/hw_config.h Core/Inc/user_config.h \
+ Core/Inc/flash.h Core/Inc/foc_utils.h Core/Inc/uart.h Core/Inc/can.h \
+ Core/Inc/fsm.h Core/Inc/math_ops.h Core/Inc/can.h
 Core/Inc/main.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 Core/Inc/stm32f4xx_hal_conf.h:
@@ -82,6 +84,12 @@ Core/Inc/foc_math.h:
 Core/Inc/spi.h:
 Core/Inc/uart.h:
 Core/Inc/fsm.h:
+Core/Inc/hw_config.h:
+Core/Inc/user_config.h:
+Core/Inc/flash.h:
+Core/Inc/foc_utils.h:
+Core/Inc/uart.h:
 Core/Inc/can.h:
 Core/Inc/fsm.h:
-Core/Inc/foc_utils.h:
+Core/Inc/math_ops.h:
+Core/Inc/can.h:

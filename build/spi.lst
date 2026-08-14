@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccMZAuGS.s 			page 1
+ARM GAS  /tmp/ccV5bxwe.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
   36              		.cfi_offset 3, -8
   37              		.cfi_offset 14, -4
   21:Core/Src/spi.c **** 
-ARM GAS  /tmp/ccMZAuGS.s 			page 2
+ARM GAS  /tmp/ccV5bxwe.s 			page 2
 
 
   22:Core/Src/spi.c ****   /* USER CODE BEGIN SPI1_Init 0 */
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
   74 0026 4362     		str	r3, [r0, #36]
   40:Core/Src/spi.c ****   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
   75              		.loc 1 40 3 is_stmt 1 view .LVU21
-ARM GAS  /tmp/ccMZAuGS.s 			page 3
+ARM GAS  /tmp/ccV5bxwe.s 			page 3
 
 
   76              		.loc 1 40 29 is_stmt 0 view .LVU22
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
   57:Core/Src/spi.c **** void MX_SPI2_Init(void)
   58:Core/Src/spi.c **** {
  115              		.loc 1 58 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccMZAuGS.s 			page 4
+ARM GAS  /tmp/ccV5bxwe.s 			page 4
 
 
  116              		.cfi_startproc
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  153 0020 1822     		movs	r2, #24
  154 0022 C261     		str	r2, [r0, #28]
   76:Core/Src/spi.c ****   hspi2.Init.FirstBit = SPI_FIRSTBIT_MSB;
-ARM GAS  /tmp/ccMZAuGS.s 			page 5
+ARM GAS  /tmp/ccV5bxwe.s 			page 5
 
 
  155              		.loc 1 76 3 is_stmt 1 view .LVU48
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  197              		.fpu fpv4-sp-d16
  199              	HAL_SPI_MspInit:
  200              	.LVL4:
-ARM GAS  /tmp/ccMZAuGS.s 			page 6
+ARM GAS  /tmp/ccV5bxwe.s 			page 6
 
 
  201              	.LFB136:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  108:Core/Src/spi.c ****     /**SPI1 GPIO Configuration
  109:Core/Src/spi.c ****     PB3     ------> SPI1_SCK
  110:Core/Src/spi.c ****     PB4     ------> SPI1_MISO
-ARM GAS  /tmp/ccMZAuGS.s 			page 7
+ARM GAS  /tmp/ccV5bxwe.s 			page 7
 
 
  111:Core/Src/spi.c ****     PB5     ------> SPI1_MOSI
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  236              		.loc 1 164 8 is_stmt 1 view .LVU69
  237              		.loc 1 164 10 is_stmt 0 view .LVU70
  238 001c 6F4A     		ldr	r2, .L27+4
-ARM GAS  /tmp/ccMZAuGS.s 			page 8
+ARM GAS  /tmp/ccV5bxwe.s 			page 8
 
 
  239 001e 9342     		cmp	r3, r2
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  215:Core/Src/spi.c ****     hdma_spi2_tx.Init.Direction = DMA_MEMORY_TO_PERIPH;
  216:Core/Src/spi.c ****     hdma_spi2_tx.Init.PeriphInc = DMA_PINC_DISABLE;
  217:Core/Src/spi.c ****     hdma_spi2_tx.Init.MemInc = DMA_MINC_ENABLE;
-ARM GAS  /tmp/ccMZAuGS.s 			page 9
+ARM GAS  /tmp/ccV5bxwe.s 			page 9
 
 
  218:Core/Src/spi.c ****     hdma_spi2_tx.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  105:Core/Src/spi.c **** 
  271              		.loc 1 105 5 view .LVU77
  107:Core/Src/spi.c ****     /**SPI1 GPIO Configuration
-ARM GAS  /tmp/ccMZAuGS.s 			page 10
+ARM GAS  /tmp/ccV5bxwe.s 			page 10
 
 
  272              		.loc 1 107 5 view .LVU78
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  310 0068 FFF7FEFF 		bl	HAL_GPIO_Init
  311              	.LVL8:
  122:Core/Src/spi.c ****     hdma_spi1_rx.Init.Channel = DMA_CHANNEL_3;
-ARM GAS  /tmp/ccMZAuGS.s 			page 11
+ARM GAS  /tmp/ccV5bxwe.s 			page 11
 
 
  312              		.loc 1 122 5 is_stmt 1 view .LVU95
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  132:Core/Src/spi.c ****     {
  347              		.loc 1 132 5 is_stmt 1 view .LVU115
  132:Core/Src/spi.c ****     {
-ARM GAS  /tmp/ccMZAuGS.s 			page 12
+ARM GAS  /tmp/ccV5bxwe.s 			page 12
 
 
  348              		.loc 1 132 9 is_stmt 0 view .LVU116
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  146:Core/Src/spi.c ****     hdma_spi1_tx.Init.Mode = DMA_NORMAL;
  385              		.loc 1 146 5 is_stmt 1 view .LVU134
  146:Core/Src/spi.c ****     hdma_spi1_tx.Init.Mode = DMA_NORMAL;
-ARM GAS  /tmp/ccMZAuGS.s 			page 13
+ARM GAS  /tmp/ccV5bxwe.s 			page 13
 
 
  386              		.loc 1 146 40 is_stmt 0 view .LVU135
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  424              		.loc 1 134 7 view .LVU151
  425 00e2 FFF7FEFF 		bl	Error_Handler
  426              	.LVL13:
-ARM GAS  /tmp/ccMZAuGS.s 			page 14
+ARM GAS  /tmp/ccV5bxwe.s 			page 14
 
 
  427 00e6 D6E7     		b	.L15
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  468              		.loc 1 172 5 view .LVU164
  173:Core/Src/spi.c ****     /**SPI2 GPIO Configuration
  469              		.loc 1 173 5 view .LVU165
-ARM GAS  /tmp/ccMZAuGS.s 			page 15
+ARM GAS  /tmp/ccV5bxwe.s 			page 15
 
 
  470              	.LBB6:
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  508              	.LVL17:
  186:Core/Src/spi.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
  509              		.loc 1 186 5 is_stmt 1 view .LVU182
-ARM GAS  /tmp/ccMZAuGS.s 			page 16
+ARM GAS  /tmp/ccV5bxwe.s 			page 16
 
 
  186:Core/Src/spi.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  199:Core/Src/spi.c ****     hdma_spi2_rx.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
  545              		.loc 1 199 30 is_stmt 0 view .LVU202
  546 0174 0661     		str	r6, [r0, #16]
-ARM GAS  /tmp/ccMZAuGS.s 			page 17
+ARM GAS  /tmp/ccV5bxwe.s 			page 17
 
 
  200:Core/Src/spi.c ****     hdma_spi2_rx.Init.MemDataAlignment = DMA_MDATAALIGN_BYTE;
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  581              		.loc 1 214 5 is_stmt 1 view .LVU222
  214:Core/Src/spi.c ****     hdma_spi2_tx.Init.Direction = DMA_MEMORY_TO_PERIPH;
  582              		.loc 1 214 31 is_stmt 0 view .LVU223
-ARM GAS  /tmp/ccMZAuGS.s 			page 18
+ARM GAS  /tmp/ccV5bxwe.s 			page 18
 
 
  583 0192 0023     		movs	r3, #0
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  228:Core/Src/spi.c **** 
  618              		.loc 1 228 5 is_stmt 1 view .LVU243
  228:Core/Src/spi.c **** 
-ARM GAS  /tmp/ccMZAuGS.s 			page 19
+ARM GAS  /tmp/ccV5bxwe.s 			page 19
 
 
  619              		.loc 1 228 5 view .LVU244
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  668              		.global	HAL_SPI_MspDeInit
  669              		.syntax unified
  670              		.thumb
-ARM GAS  /tmp/ccMZAuGS.s 			page 20
+ARM GAS  /tmp/ccV5bxwe.s 			page 20
 
 
  671              		.thumb_func
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  270:Core/Src/spi.c **** 
  271:Core/Src/spi.c ****     /* USER CODE END SPI1_MspDeInit 1 */
  272:Core/Src/spi.c ****   }
-ARM GAS  /tmp/ccMZAuGS.s 			page 21
+ARM GAS  /tmp/ccV5bxwe.s 			page 21
 
 
  273:Core/Src/spi.c ****   else if(hspi->Instance==SPI2)
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  717              	.LVL29:
  264:Core/Src/spi.c ****     HAL_DMA_DeInit(hspi->hdmatx);
  718              		.loc 1 264 5 is_stmt 1 view .LVU263
-ARM GAS  /tmp/ccMZAuGS.s 			page 22
+ARM GAS  /tmp/ccV5bxwe.s 			page 22
 
 
  719 0028 E06C     		ldr	r0, [r4, #76]
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  764              	.L36:
  765 006e 00BF     		.align	2
  766              	.L35:
-ARM GAS  /tmp/ccMZAuGS.s 			page 23
+ARM GAS  /tmp/ccV5bxwe.s 			page 23
 
 
  767 0070 00300140 		.word	1073819648
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  814      00000000 
  814      00000000 
  814      00000000 
-ARM GAS  /tmp/ccMZAuGS.s 			page 24
+ARM GAS  /tmp/ccV5bxwe.s 			page 24
 
 
  815              		.section	.bss.hspi2,"aw",%nobits
@@ -1401,35 +1401,35 @@ ARM GAS  /tmp/ccMZAuGS.s 			page 1
  830              		.file 8 "Core/Inc/spi.h"
  831              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
  832              		.file 10 "Core/Inc/main.h"
-ARM GAS  /tmp/ccMZAuGS.s 			page 25
+ARM GAS  /tmp/ccV5bxwe.s 			page 25
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 spi.c
-     /tmp/ccMZAuGS.s:18     .text.MX_SPI1_Init:0000000000000000 $t
-     /tmp/ccMZAuGS.s:26     .text.MX_SPI1_Init:0000000000000000 MX_SPI1_Init
-     /tmp/ccMZAuGS.s:100    .text.MX_SPI1_Init:000000000000003c $d
-     /tmp/ccMZAuGS.s:106    .text.MX_SPI2_Init:0000000000000000 $t
-     /tmp/ccMZAuGS.s:113    .text.MX_SPI2_Init:0000000000000000 MX_SPI2_Init
-     /tmp/ccMZAuGS.s:186    .text.MX_SPI2_Init:000000000000003c $d
-     /tmp/ccMZAuGS.s:192    .text.HAL_SPI_MspInit:0000000000000000 $t
-     /tmp/ccMZAuGS.s:199    .text.HAL_SPI_MspInit:0000000000000000 HAL_SPI_MspInit
-     /tmp/ccMZAuGS.s:650    .text.HAL_SPI_MspInit:00000000000001d8 $d
-     /tmp/ccMZAuGS.s:667    .text.HAL_SPI_MspDeInit:0000000000000000 $t
-     /tmp/ccMZAuGS.s:674    .text.HAL_SPI_MspDeInit:0000000000000000 HAL_SPI_MspDeInit
-     /tmp/ccMZAuGS.s:767    .text.HAL_SPI_MspDeInit:0000000000000070 $d
-     /tmp/ccMZAuGS.s:806    .bss.hdma_spi2_tx:0000000000000000 hdma_spi2_tx
-     /tmp/ccMZAuGS.s:799    .bss.hdma_spi2_rx:0000000000000000 hdma_spi2_rx
-     /tmp/ccMZAuGS.s:792    .bss.hdma_spi1_tx:0000000000000000 hdma_spi1_tx
-     /tmp/ccMZAuGS.s:785    .bss.hdma_spi1_rx:0000000000000000 hdma_spi1_rx
-     /tmp/ccMZAuGS.s:820    .bss.hspi2:0000000000000000 hspi2
-     /tmp/ccMZAuGS.s:813    .bss.hspi1:0000000000000000 hspi1
-     /tmp/ccMZAuGS.s:781    .bss.hdma_spi1_rx:0000000000000000 $d
-     /tmp/ccMZAuGS.s:788    .bss.hdma_spi1_tx:0000000000000000 $d
-     /tmp/ccMZAuGS.s:795    .bss.hdma_spi2_rx:0000000000000000 $d
-     /tmp/ccMZAuGS.s:802    .bss.hdma_spi2_tx:0000000000000000 $d
-     /tmp/ccMZAuGS.s:809    .bss.hspi1:0000000000000000 $d
-     /tmp/ccMZAuGS.s:816    .bss.hspi2:0000000000000000 $d
+     /tmp/ccV5bxwe.s:18     .text.MX_SPI1_Init:0000000000000000 $t
+     /tmp/ccV5bxwe.s:26     .text.MX_SPI1_Init:0000000000000000 MX_SPI1_Init
+     /tmp/ccV5bxwe.s:100    .text.MX_SPI1_Init:000000000000003c $d
+     /tmp/ccV5bxwe.s:106    .text.MX_SPI2_Init:0000000000000000 $t
+     /tmp/ccV5bxwe.s:113    .text.MX_SPI2_Init:0000000000000000 MX_SPI2_Init
+     /tmp/ccV5bxwe.s:186    .text.MX_SPI2_Init:000000000000003c $d
+     /tmp/ccV5bxwe.s:192    .text.HAL_SPI_MspInit:0000000000000000 $t
+     /tmp/ccV5bxwe.s:199    .text.HAL_SPI_MspInit:0000000000000000 HAL_SPI_MspInit
+     /tmp/ccV5bxwe.s:650    .text.HAL_SPI_MspInit:00000000000001d8 $d
+     /tmp/ccV5bxwe.s:667    .text.HAL_SPI_MspDeInit:0000000000000000 $t
+     /tmp/ccV5bxwe.s:674    .text.HAL_SPI_MspDeInit:0000000000000000 HAL_SPI_MspDeInit
+     /tmp/ccV5bxwe.s:767    .text.HAL_SPI_MspDeInit:0000000000000070 $d
+     /tmp/ccV5bxwe.s:806    .bss.hdma_spi2_tx:0000000000000000 hdma_spi2_tx
+     /tmp/ccV5bxwe.s:799    .bss.hdma_spi2_rx:0000000000000000 hdma_spi2_rx
+     /tmp/ccV5bxwe.s:792    .bss.hdma_spi1_tx:0000000000000000 hdma_spi1_tx
+     /tmp/ccV5bxwe.s:785    .bss.hdma_spi1_rx:0000000000000000 hdma_spi1_rx
+     /tmp/ccV5bxwe.s:820    .bss.hspi2:0000000000000000 hspi2
+     /tmp/ccV5bxwe.s:813    .bss.hspi1:0000000000000000 hspi1
+     /tmp/ccV5bxwe.s:781    .bss.hdma_spi1_rx:0000000000000000 $d
+     /tmp/ccV5bxwe.s:788    .bss.hdma_spi1_tx:0000000000000000 $d
+     /tmp/ccV5bxwe.s:795    .bss.hdma_spi2_rx:0000000000000000 $d
+     /tmp/ccV5bxwe.s:802    .bss.hdma_spi2_tx:0000000000000000 $d
+     /tmp/ccV5bxwe.s:809    .bss.hspi1:0000000000000000 $d
+     /tmp/ccV5bxwe.s:816    .bss.hspi2:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_SPI_Init

@@ -3,6 +3,8 @@
 #include "fsm.h"
 #include <string.h>
 
+motor_config_t m_config;
+
 HAL_StatusTypeDef flash_save_config(motor_config_t *data) {
     HAL_StatusTypeDef status;
     FLASH_EraseInitTypeDef EraseInitStruct;

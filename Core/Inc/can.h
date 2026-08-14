@@ -26,35 +26,16 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
-#include "stm32f4xx_hal_can.h"
 #include "joint_acc.h"
 #include "fsm.h"
 #include "foc_utils.h"
+#include "hw_config.h"
+#include "user_config.h"
+#include "math_ops.h"
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
 
-
-
-/* USER CODE BEGIN Private defines */
-// #define P_MIN -12.5f
-// #define P_MAX 12.5f
-// #define V_MIN -65.0f
-// #define V_MAX 65.0f
-// #define KP_MIN 0.0f
-// #define KP_MAX 500.0f
-// #define KD_MIN 0.0f
-// #define KD_MAX 5.0f
-// #define T_MIN -18.0f
-// #define T_MAX 18.0f
-// #define VB_MIN 0.0f
-// #define VB_MAX 40.0f
-
-// #define I_MAX 30.0f
-// #define KT 1.0f
-// #define GR 1.0f
-// #define SENSE_BUFFER 0.0f
 
 /* USER CODE END Private defines */
 
@@ -80,6 +61,7 @@ extern CANRxMessage can_rx;
 
 void can_rx_init(CANRxMessage *msg);
 void can_tx_init(CANTxMessage *msg);
+
 void Master_Pack_Cmd(CANTxMessage *msg, JointCommand_t *cmd);
 void Master_Unpack_State(CANRxMessage *msg, JointState_t *state);
 void Slave_Pack_State(CANTxMessage *msg, JointState_t *state, foc_t *hfoc);
