@@ -1,0 +1,277 @@
+ARM GAS  /tmp/ccedfWxa.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"lpf.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.second_order_lpf_init,"ax",%progbits
+  18              		.align	1
+  19              		.global	second_order_lpf_init
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	second_order_lpf_init:
+  27              	.LVL0:
+  28              	.LFB0:
+  29              		.file 1 "Core/Src/lpf.c"
+   1:Core/Src/lpf.c **** #include "lpf.h"
+   2:Core/Src/lpf.c **** #include "foc_math.h"
+   3:Core/Src/lpf.c **** #include "math.h"
+   4:Core/Src/lpf.c **** 
+   5:Core/Src/lpf.c **** void second_order_lpf_init(SecondOrderLPF* lpf, float cutoff_freq, float sampling_freq) {
+  30              		.loc 1 5 89 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 5 89 is_stmt 0 view .LVU1
+  35 0000 10B5     		push	{r4, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 4, -8
+  39              		.cfi_offset 14, -4
+  40 0002 2DED028B 		vpush.64	{d8}
+  41              	.LCFI1:
+  42              		.cfi_def_cfa_offset 16
+  43              		.cfi_offset 80, -16
+  44              		.cfi_offset 81, -12
+  45 0006 0446     		mov	r4, r0
+   6:Core/Src/lpf.c ****     float w0 = 2.0f * PI * cutoff_freq / sampling_freq;
+  46              		.loc 1 6 5 is_stmt 1 view .LVU2
+  47              		.loc 1 6 26 is_stmt 0 view .LVU3
+  48 0008 DFED1C7A 		vldr.32	s15, .L3
+  49 000c 20EE270A 		vmul.f32	s0, s0, s15
+  50              	.LVL1:
+  51              		.loc 1 6 11 view .LVU4
+  52 0010 C0EE208A 		vdiv.f32	s17, s0, s1
+ARM GAS  /tmp/ccedfWxa.s 			page 2
+
+
+  53              	.LVL2:
+   7:Core/Src/lpf.c ****     float Q = 0.7071f; // Butterworth Q factor 1/sqrt(2)
+  54              		.loc 1 7 5 is_stmt 1 view .LVU5
+   8:Core/Src/lpf.c ****     float alpha = sinf(w0) / (2.0f * Q);
+  55              		.loc 1 8 5 view .LVU6
+  56              		.loc 1 8 19 is_stmt 0 view .LVU7
+  57 0014 B0EE680A 		vmov.f32	s0, s17
+  58 0018 FFF7FEFF 		bl	sinf
+  59              	.LVL3:
+  60              		.loc 1 8 11 view .LVU8
+  61 001c DFED187A 		vldr.32	s15, .L3+4
+  62 0020 80EE278A 		vdiv.f32	s16, s0, s15
+  63              	.LVL4:
+   9:Core/Src/lpf.c ****     
+  10:Core/Src/lpf.c ****     float cos_w0 = cosf(w0);
+  64              		.loc 1 10 5 is_stmt 1 view .LVU9
+  65              		.loc 1 10 20 is_stmt 0 view .LVU10
+  66 0024 B0EE680A 		vmov.f32	s0, s17
+  67 0028 FFF7FEFF 		bl	cosf
+  68              	.LVL5:
+  11:Core/Src/lpf.c ****     float a0 = 1.0f + alpha;
+  69              		.loc 1 11 5 is_stmt 1 view .LVU11
+  70              		.loc 1 11 11 is_stmt 0 view .LVU12
+  71 002c B7EE007A 		vmov.f32	s14, #1.0e+0
+  72 0030 78EE077A 		vadd.f32	s15, s16, s14
+  73              	.LVL6:
+  12:Core/Src/lpf.c ****     
+  13:Core/Src/lpf.c ****     // Butterworth coefficients
+  14:Core/Src/lpf.c ****     lpf->b0 = (1.0f - cos_w0) / (2.0f * a0);
+  74              		.loc 1 14 5 is_stmt 1 view .LVU13
+  75              		.loc 1 14 21 is_stmt 0 view .LVU14
+  76 0034 37EE406A 		vsub.f32	s12, s14, s0
+  77              		.loc 1 14 39 view .LVU15
+  78 0038 77EEA75A 		vadd.f32	s11, s15, s15
+  79              		.loc 1 14 31 view .LVU16
+  80 003c C6EE256A 		vdiv.f32	s13, s12, s11
+  81              		.loc 1 14 13 view .LVU17
+  82 0040 C4ED006A 		vstr.32	s13, [r4]
+  15:Core/Src/lpf.c ****     lpf->b1 = (1.0f - cos_w0) / a0;
+  83              		.loc 1 15 5 is_stmt 1 view .LVU18
+  84              		.loc 1 15 31 is_stmt 0 view .LVU19
+  85 0044 C6EE275A 		vdiv.f32	s11, s12, s15
+  86              		.loc 1 15 13 view .LVU20
+  87 0048 C4ED015A 		vstr.32	s11, [r4, #4]
+  16:Core/Src/lpf.c ****     lpf->b2 = lpf->b0;
+  88              		.loc 1 16 5 is_stmt 1 view .LVU21
+  89              		.loc 1 16 13 is_stmt 0 view .LVU22
+  90 004c C4ED026A 		vstr.32	s13, [r4, #8]
+  17:Core/Src/lpf.c ****     lpf->a1 = -2.0f * cos_w0 / a0;
+  91              		.loc 1 17 5 is_stmt 1 view .LVU23
+  92              		.loc 1 17 21 is_stmt 0 view .LVU24
+  93 0050 F8EE006A 		vmov.f32	s13, #-2.0e+0
+  94 0054 20EE260A 		vmul.f32	s0, s0, s13
+  95              	.LVL7:
+  96              		.loc 1 17 30 view .LVU25
+  97 0058 C0EE276A 		vdiv.f32	s13, s0, s15
+  98              		.loc 1 17 13 view .LVU26
+ARM GAS  /tmp/ccedfWxa.s 			page 3
+
+
+  99 005c C4ED036A 		vstr.32	s13, [r4, #12]
+  18:Core/Src/lpf.c ****     lpf->a2 = (1.0f - alpha) / a0;
+ 100              		.loc 1 18 5 is_stmt 1 view .LVU27
+ 101              		.loc 1 18 21 is_stmt 0 view .LVU28
+ 102 0060 37EE487A 		vsub.f32	s14, s14, s16
+ 103              		.loc 1 18 30 view .LVU29
+ 104 0064 C7EE276A 		vdiv.f32	s13, s14, s15
+ 105              		.loc 1 18 13 view .LVU30
+ 106 0068 C4ED046A 		vstr.32	s13, [r4, #16]
+  19:Core/Src/lpf.c ****     
+  20:Core/Src/lpf.c ****     // Reset states
+  21:Core/Src/lpf.c ****     lpf->x1 = lpf->x2 = 0.0f;
+ 107              		.loc 1 21 5 is_stmt 1 view .LVU31
+ 108              		.loc 1 21 23 is_stmt 0 view .LVU32
+ 109 006c 0023     		movs	r3, #0
+ 110 006e A361     		str	r3, [r4, #24]	@ float
+ 111              		.loc 1 21 13 view .LVU33
+ 112 0070 6361     		str	r3, [r4, #20]	@ float
+  22:Core/Src/lpf.c ****     lpf->y1 = lpf->y2 = 0.0f;
+ 113              		.loc 1 22 5 is_stmt 1 view .LVU34
+ 114              		.loc 1 22 23 is_stmt 0 view .LVU35
+ 115 0072 2362     		str	r3, [r4, #32]	@ float
+ 116              		.loc 1 22 13 view .LVU36
+ 117 0074 E361     		str	r3, [r4, #28]	@ float
+  23:Core/Src/lpf.c **** }
+ 118              		.loc 1 23 1 view .LVU37
+ 119 0076 BDEC028B 		vldm	sp!, {d8}
+ 120              	.LCFI2:
+ 121              		.cfi_restore 80
+ 122              		.cfi_restore 81
+ 123              		.cfi_def_cfa_offset 8
+ 124              	.LVL8:
+ 125              		.loc 1 23 1 view .LVU38
+ 126 007a 10BD     		pop	{r4, pc}
+ 127              	.LVL9:
+ 128              	.L4:
+ 129              		.loc 1 23 1 view .LVU39
+ 130              		.align	2
+ 131              	.L3:
+ 132 007c DA0FC940 		.word	1086918618
+ 133 0080 8104B53F 		.word	1068827777
+ 134              		.cfi_endproc
+ 135              	.LFE0:
+ 137              		.section	.text.second_order_lpf_update,"ax",%progbits
+ 138              		.align	1
+ 139              		.global	second_order_lpf_update
+ 140              		.syntax unified
+ 141              		.thumb
+ 142              		.thumb_func
+ 143              		.fpu fpv4-sp-d16
+ 145              	second_order_lpf_update:
+ 146              	.LVL10:
+ 147              	.LFB1:
+  24:Core/Src/lpf.c **** 
+  25:Core/Src/lpf.c **** float second_order_lpf_update(SecondOrderLPF* lpf, float input) {
+ 148              		.loc 1 25 65 is_stmt 1 view -0
+ 149              		.cfi_startproc
+ARM GAS  /tmp/ccedfWxa.s 			page 4
+
+
+ 150              		@ args = 0, pretend = 0, frame = 0
+ 151              		@ frame_needed = 0, uses_anonymous_args = 0
+ 152              		@ link register save eliminated.
+ 153              		.loc 1 25 65 is_stmt 0 view .LVU41
+ 154 0000 B0EE407A 		vmov.f32	s14, s0
+  26:Core/Src/lpf.c ****     float output = lpf->b0 * input + lpf->b1 * lpf->x1 + lpf->b2 * lpf->x2
+ 155              		.loc 1 26 5 is_stmt 1 view .LVU42
+ 156              		.loc 1 26 23 is_stmt 0 view .LVU43
+ 157 0004 D0ED007A 		vldr.32	s15, [r0]
+ 158              		.loc 1 26 28 view .LVU44
+ 159 0008 67EE807A 		vmul.f32	s15, s15, s0
+ 160              		.loc 1 26 41 view .LVU45
+ 161 000c 90ED010A 		vldr.32	s0, [r0, #4]
+ 162              	.LVL11:
+ 163              		.loc 1 26 51 view .LVU46
+ 164 0010 90ED056A 		vldr.32	s12, [r0, #20]
+ 165              		.loc 1 26 46 view .LVU47
+ 166 0014 20EE060A 		vmul.f32	s0, s0, s12
+ 167              		.loc 1 26 36 view .LVU48
+ 168 0018 77EE807A 		vadd.f32	s15, s15, s0
+ 169              		.loc 1 26 61 view .LVU49
+ 170 001c 90ED020A 		vldr.32	s0, [r0, #8]
+ 171              		.loc 1 26 71 view .LVU50
+ 172 0020 D0ED066A 		vldr.32	s13, [r0, #24]
+ 173              		.loc 1 26 66 view .LVU51
+ 174 0024 20EE260A 		vmul.f32	s0, s0, s13
+ 175              		.loc 1 26 56 view .LVU52
+ 176 0028 77EE807A 		vadd.f32	s15, s15, s0
+  27:Core/Src/lpf.c ****                    - lpf->a1 * lpf->y1 - lpf->a2 * lpf->y2;
+ 177              		.loc 1 27 25 view .LVU53
+ 178 002c 90ED030A 		vldr.32	s0, [r0, #12]
+ 179              		.loc 1 27 35 view .LVU54
+ 180 0030 D0ED076A 		vldr.32	s13, [r0, #28]
+ 181              		.loc 1 27 30 view .LVU55
+ 182 0034 20EE260A 		vmul.f32	s0, s0, s13
+ 183              		.loc 1 27 20 view .LVU56
+ 184 0038 77EEC07A 		vsub.f32	s15, s15, s0
+ 185              		.loc 1 27 45 view .LVU57
+ 186 003c 90ED040A 		vldr.32	s0, [r0, #16]
+ 187              		.loc 1 27 55 view .LVU58
+ 188 0040 D0ED085A 		vldr.32	s11, [r0, #32]
+ 189              		.loc 1 27 50 view .LVU59
+ 190 0044 20EE250A 		vmul.f32	s0, s0, s11
+  26:Core/Src/lpf.c ****     float output = lpf->b0 * input + lpf->b1 * lpf->x1 + lpf->b2 * lpf->x2
+ 191              		.loc 1 26 11 view .LVU60
+ 192 0048 37EEC00A 		vsub.f32	s0, s15, s0
+ 193              	.LVL12:
+  28:Core/Src/lpf.c ****     
+  29:Core/Src/lpf.c ****     // Update delays
+  30:Core/Src/lpf.c ****     lpf->x2 = lpf->x1;
+ 194              		.loc 1 30 5 is_stmt 1 view .LVU61
+ 195              		.loc 1 30 13 is_stmt 0 view .LVU62
+ 196 004c 80ED066A 		vstr.32	s12, [r0, #24]
+  31:Core/Src/lpf.c ****     lpf->x1 = input;
+ 197              		.loc 1 31 5 is_stmt 1 view .LVU63
+ 198              		.loc 1 31 13 is_stmt 0 view .LVU64
+ 199 0050 80ED057A 		vstr.32	s14, [r0, #20]
+ARM GAS  /tmp/ccedfWxa.s 			page 5
+
+
+  32:Core/Src/lpf.c ****     lpf->y2 = lpf->y1;
+ 200              		.loc 1 32 5 is_stmt 1 view .LVU65
+ 201              		.loc 1 32 13 is_stmt 0 view .LVU66
+ 202 0054 C0ED086A 		vstr.32	s13, [r0, #32]
+  33:Core/Src/lpf.c ****     lpf->y1 = output;
+ 203              		.loc 1 33 5 is_stmt 1 view .LVU67
+ 204              		.loc 1 33 13 is_stmt 0 view .LVU68
+ 205 0058 80ED070A 		vstr.32	s0, [r0, #28]
+  34:Core/Src/lpf.c ****     
+  35:Core/Src/lpf.c ****     return output;
+ 206              		.loc 1 35 5 is_stmt 1 view .LVU69
+  36:Core/Src/lpf.c **** }...
+ 207              		.loc 1 36 1 is_stmt 0 view .LVU70
+ 208 005c 7047     		bx	lr
+ 209              		.cfi_endproc
+ 210              	.LFE1:
+ 212              		.text
+ 213              	.Letext0:
+ 214              		.file 2 "Core/Inc/lpf.h"
+ 215              		.file 3 "/usr/include/newlib/math.h"
+ARM GAS  /tmp/ccedfWxa.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 lpf.c
+     /tmp/ccedfWxa.s:18     .text.second_order_lpf_init:0000000000000000 $t
+     /tmp/ccedfWxa.s:26     .text.second_order_lpf_init:0000000000000000 second_order_lpf_init
+     /tmp/ccedfWxa.s:132    .text.second_order_lpf_init:000000000000007c $d
+     /tmp/ccedfWxa.s:138    .text.second_order_lpf_update:0000000000000000 $t
+     /tmp/ccedfWxa.s:145    .text.second_order_lpf_update:0000000000000000 second_order_lpf_update
+
+UNDEFINED SYMBOLS
+sinf
+cosf

@@ -15,6 +15,7 @@
 #include "foc_math.h"
 #include "pid_utils.h"
 #include "joint_acc.h"
+#include "lpf.h"
 
 
 
@@ -32,6 +33,10 @@
 #define MAX_I_SAMPLE 128
 
 #define MAX_SAMPLE_BUFF 1024
+
+/* LPF Cut-off frequency for Id and Iq */
+#define HFI_ID_LPF_FC 200.0f
+#define HFI_IQ_LPF_FC 200.0f
 
 #define DEBUG_HFI	0
 
@@ -140,6 +145,10 @@ typedef struct {
 	PID_Controller_t fw_ctrl;
 	float fw_vs_ref;
 	_Bool fw_enable;
+
+	SecondOrderLPF id_lpf;
+	SecondOrderLPF iq_lpf;
+
 	
 	float sPoint_Pos, sPoint_Vel, sPoint_Tor, kp, kd;
 

@@ -193,10 +193,6 @@ void foc_current_control_update(foc_t *hfoc) {
 
     DRV8323_Get_Current(&hfoc->drv8323s, &hfoc->ia, &hfoc->ib,&hfoc->ic);
 
-	// // Hard limit references
-	// hfoc->id_ref = CONSTRAIN(hfoc->id_ref, -hfoc->max_current, hfoc->max_current);
-	// hfoc->iq_ref = CONSTRAIN(hfoc->iq_ref, -hfoc->max_current, hfoc->max_current);
-
     float target_id = CONSTRAIN(hfoc->id_ref, -hfoc->max_current, hfoc->max_current);
     float target_iq = CONSTRAIN(hfoc->iq_ref, -hfoc->max_current, hfoc->max_current);
 
@@ -207,12 +203,10 @@ void foc_current_control_update(foc_t *hfoc) {
     
 	float sin_theta, cos_theta;
 	pre_calc_sin_cos(hfoc->e_angle_rad_comp, &sin_theta, &cos_theta);
-
 	clarke_park_transform(hfoc->ia, hfoc->ib, sin_theta, cos_theta, &hfoc->id, &hfoc->iq);
 
-	const float alpha_i_filt = 0.7f;
-	hfoc->id_filtered = (1.0f - alpha_i_filt) * hfoc->id_filtered + alpha_i_filt * hfoc->id;
-	hfoc->iq_filtered = (1.0f - alpha_i_filt) * hfoc->iq_filtered + alpha_i_filt * hfoc->iq;
+    hfoc->id_filtered = second_order_lpf_update(&hfoc->id_lpf, hfoc->id);
+    hfoc->iq_filtered = second_order_lpf_update(&hfoc->iq_lpf, hfoc->iq);
 
 	// Continue normal FOC
     hfoc->vd = pi_control(&hfoc->id_ctrl, target_id - hfoc->id_filtered);

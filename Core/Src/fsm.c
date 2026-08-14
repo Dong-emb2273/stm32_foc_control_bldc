@@ -258,7 +258,7 @@ void TestModeView(void) {
         return; 
     }
 
-    static uint8_t tx_buf[30];
+    static uint8_t tx_buf[42];
 
     tx_buf[0] = 0xAA; 
     tx_buf[1] = 0xBB;
@@ -266,10 +266,14 @@ void TestModeView(void) {
 	float iq_sp = SPOINT_TOR;
 	float vel_sp = SPOINT_VEL;
 	float pos_sp = SPOINT_POS;
-	float id = hfoc.id_filtered;
-	float iq = hfoc.iq_filtered;
+	float id = hfoc.iq_filtered;
+	float iq = hfoc.iq;
+	float ia = hfoc.ia;
+	float ib = hfoc.ib;
+	float ic = hfoc.ic;
 	float vel = hfoc.actual_rpm;
 	float pos = hfoc.actual_angle;
+	
 	
 	
 
@@ -280,8 +284,11 @@ void TestModeView(void) {
 	memcpy(&tx_buf[18], &vel, 4);
 	memcpy(&tx_buf[22], &pos_sp, 4);
 	memcpy(&tx_buf[26], &pos, 4);
+	memcpy(&tx_buf[30], &ia, 4);
+	memcpy(&tx_buf[34], &ib, 4);
+	memcpy(&tx_buf[38], &ic, 4);
 
-    HAL_UART_Transmit_DMA(&huart, tx_buf, 30);
+    HAL_UART_Transmit_DMA(&huart, tx_buf, 42);
 }
 
 void enter_test_state(void){

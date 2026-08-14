@@ -157,6 +157,9 @@ void control_init(void) {
 	
 	foc_pwm_init(&hfoc, &(TIM1->CCR3), &(TIM1->CCR2), &(TIM1->CCR1), hfoc.drv8323s.pwm_resolution);
   foc_set_limit_current(&hfoc, I_MAX);
+  
+  second_order_lpf_init(&hfoc.id_lpf, HFI_ID_LPF_FC, BLDC_PWM_FREQ);
+  second_order_lpf_init(&hfoc.iq_lpf, HFI_IQ_LPF_FC, BLDC_PWM_FREQ);
  
 }
 uint8_t Serial2RxBuffer[1];

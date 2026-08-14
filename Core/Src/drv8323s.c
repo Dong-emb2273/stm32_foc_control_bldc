@@ -170,9 +170,9 @@ uint16_t spike_filter(uint16_t new_val, uint16_t prev_val) {
 
 void DRV8323_Get_Current(DRV8323_t *cfg, float *ia, float *ib, float *ic){
 	// Static filter state (retain between calls)
-	static float ia_filtered = 0.0f;
-    static float ib_filtered = 0.0f;
-    static float ic_filtered = 0.0f;
+	// static float ia_filtered = 0.0f;
+    // static float ib_filtered = 0.0f;
+    // static float ic_filtered = 0.0f;
     
     cfg->adc_raw[0] = ADC1->JDR1; 
     cfg->adc_raw[1] = ADC2->JDR1; 
@@ -183,14 +183,14 @@ void DRV8323_Get_Current(DRV8323_t *cfg, float *ia, float *ib, float *ic){
     float ic_raw = ((float)cfg->adc_raw[2] - V_OFFSET_C) * ADC_2_VOLT * cfg->v_to_currentc;
     
     // IIR Low Pass Filter
-    ia_filtered = (1.0f - CURRENT_FILTER_ALPHA) * ia_filtered + CURRENT_FILTER_ALPHA * ia_raw;
-    ib_filtered = (1.0f - CURRENT_FILTER_ALPHA) * ib_filtered + CURRENT_FILTER_ALPHA * ib_raw;
-    ic_filtered = (1.0f - CURRENT_FILTER_ALPHA) * ic_filtered + CURRENT_FILTER_ALPHA * ic_raw;
+    // ia_filtered = (1.0f - CURRENT_FILTER_ALPHA) * ia_filtered + CURRENT_FILTER_ALPHA * ia_raw;
+    // ib_filtered = (1.0f - CURRENT_FILTER_ALPHA) * ib_filtered + CURRENT_FILTER_ALPHA * ib_raw;
+    // ic_filtered = (1.0f - CURRENT_FILTER_ALPHA) * ic_filtered + CURRENT_FILTER_ALPHA * ic_raw;
 
     // Output
-    *ia = ia_filtered;
-    *ib = ib_filtered;
-    *ic = ic_filtered;
+    *ia = ia_raw;
+    *ib = ib_raw;
+    *ic = ic_raw;
 }
 //
 

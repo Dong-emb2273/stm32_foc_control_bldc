@@ -88,6 +88,7 @@ C_SOURCES += Core/Src/pid_utils.c
 C_SOURCES += Core/Src/spi.c
 C_SOURCES += Core/Src/can.c
 C_SOURCES += Core/Src/uart.c
+C_SOURCES += Core/Src/lpf.c
 # ASM sources
 ASM_SOURCES =  \
 startup_stm32f405xx.s
