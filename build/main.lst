@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccfCREUI.s 			page 1
+ARM GAS  /tmp/ccDAxvWu.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
   29:Core/Src/main.c **** #include "user_config.h"
   30:Core/Src/main.c **** #include "spi.h"
   31:Core/Src/main.c **** #include "as5048a.h"
-ARM GAS  /tmp/ccfCREUI.s 			page 2
+ARM GAS  /tmp/ccDAxvWu.s 			page 2
 
 
   32:Core/Src/main.c **** #include "drv8323s.h"
@@ -101,7 +101,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
   69:Core/Src/main.c **** osThreadId_t ErrorTaskHandle;
   70:Core/Src/main.c **** const osThreadAttr_t ErrorTask_attributes = {
   71:Core/Src/main.c ****   .name = "ErrorTask",
-  72:Core/Src/main.c ****   .stack_size = 512 * 4, // Cấp phát 512 bytes RAM cho ngăn xếp (Stack)
+  72:Core/Src/main.c ****   .stack_size = 128 * 4, 
   73:Core/Src/main.c ****   .priority = (osPriority_t) osPriorityNormal, // Mức ưu tiên
   74:Core/Src/main.c **** };
   75:Core/Src/main.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
   86:Core/Src/main.c **** 
   87:Core/Src/main.c **** 
   88:Core/Src/main.c **** 
-ARM GAS  /tmp/ccfCREUI.s 			page 3
+ARM GAS  /tmp/ccDAxvWu.s 			page 3
 
 
   89:Core/Src/main.c **** 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  143:Core/Src/main.c ****   // Position PID parameter
  144:Core/Src/main.c ****   pid_reset(&hfoc.pos_ctrl);
  145:Core/Src/main.c ****   pid_set_ts(&hfoc.pos_ctrl, FOC_TS * SPEED_CONTROL_CYCLE);
-ARM GAS  /tmp/ccfCREUI.s 			page 4
+ARM GAS  /tmp/ccDAxvWu.s 			page 4
 
 
  146:Core/Src/main.c ****   pid_set_kp(&hfoc.pos_ctrl, m_config.pos_kp);
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  200:Core/Src/main.c ****   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
  201:Core/Src/main.c ****   HAL_Init();
  202:Core/Src/main.c **** 
-ARM GAS  /tmp/ccfCREUI.s 			page 5
+ARM GAS  /tmp/ccDAxvWu.s 			page 5
 
 
  203:Core/Src/main.c ****   /* USER CODE BEGIN Init */
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  257:Core/Src/main.c ****   HAL_UART_Receive_IT(&huart, (uint8_t *)Serial2RxBuffer, 1);
  258:Core/Src/main.c **** 
  259:Core/Src/main.c ****   // Enable Timer
-ARM GAS  /tmp/ccfCREUI.s 			page 6
+ARM GAS  /tmp/ccDAxvWu.s 			page 6
 
 
  260:Core/Src/main.c ****   TIM_COUNTER_ENABLE(TIM10);
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  314:Core/Src/main.c ****   /* We should never get here as control is now taken by the scheduler */
  315:Core/Src/main.c **** 
  316:Core/Src/main.c ****   /* Infinite loop */
-ARM GAS  /tmp/ccfCREUI.s 			page 7
+ARM GAS  /tmp/ccDAxvWu.s 			page 7
 
 
  317:Core/Src/main.c ****   /* USER CODE BEGIN WHILE */
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  371:Core/Src/main.c **** 
  372:Core/Src/main.c **** 
  373:Core/Src/main.c **** /**
-ARM GAS  /tmp/ccfCREUI.s 			page 8
+ARM GAS  /tmp/ccDAxvWu.s 			page 8
 
 
  374:Core/Src/main.c ****   * @brief GPIO Initialization Function
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
   69              		.loc 1 386 3 view .LVU12
  387:Core/Src/main.c ****   __HAL_RCC_GPIOC_CLK_ENABLE();
   70              		.loc 1 387 3 view .LVU13
-ARM GAS  /tmp/ccfCREUI.s 			page 9
+ARM GAS  /tmp/ccDAxvWu.s 			page 9
 
 
   71              	.LBB6:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  120              		.fpu fpv4-sp-d16
  122              	MX_DMA_Init:
  123              	.LFB146:
-ARM GAS  /tmp/ccfCREUI.s 			page 10
+ARM GAS  /tmp/ccDAxvWu.s 			page 10
 
 
  394:Core/Src/main.c **** 
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  403:Core/Src/main.c ****   /* DMA interrupt init spi2*/
  404:Core/Src/main.c ****   /* DMA1_Stream3_IRQn interrupt configuration */
  405:Core/Src/main.c ****   HAL_NVIC_SetPriority(DMA1_Stream3_IRQn, 7, 4);
-ARM GAS  /tmp/ccfCREUI.s 			page 11
+ARM GAS  /tmp/ccDAxvWu.s 			page 11
 
 
  169              		.loc 1 405 3 view .LVU39
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  420:Core/Src/main.c ****   /* DMA1_Stream3_IRQn interrupt configuration */
  421:Core/Src/main.c ****   HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 7, 8);
  209              		.loc 1 421 3 view .LVU47
-ARM GAS  /tmp/ccfCREUI.s 			page 12
+ARM GAS  /tmp/ccDAxvWu.s 			page 12
 
 
  210 0070 0822     		movs	r2, #8
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  251 0057 00       		.align	2
  252              	.LC2:
  253 0058 436F6E66 		.ascii	"Configuration saved to flash.\015\000"
-ARM GAS  /tmp/ccfCREUI.s 			page 13
+ARM GAS  /tmp/ccDAxvWu.s 			page 13
 
 
  253      69677572 
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  468:Core/Src/main.c **** 
  469:Core/Src/main.c ****   }
  470:Core/Src/main.c **** }
-ARM GAS  /tmp/ccfCREUI.s 			page 14
+ARM GAS  /tmp/ccDAxvWu.s 			page 14
 
 
  471:Core/Src/main.c **** /*===========================================================*/
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  293 001a FFF7FEFF 		bl	__aeabi_f2d
  294              	.LVL16:
  295 001e 0246     		mov	r2, r0
-ARM GAS  /tmp/ccfCREUI.s 			page 15
+ARM GAS  /tmp/ccDAxvWu.s 			page 15
 
 
  296 0020 0B46     		mov	r3, r1
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  497:Core/Src/main.c **** 
  339              		.loc 1 497 5 is_stmt 1 view .LVU70
  497:Core/Src/main.c **** 
-ARM GAS  /tmp/ccfCREUI.s 			page 16
+ARM GAS  /tmp/ccDAxvWu.s 			page 16
 
 
  340              		.loc 1 497 8 is_stmt 0 view .LVU71
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  386              		.cfi_def_cfa_offset 24
  505:Core/Src/main.c ****   /* USER CODE BEGIN 5 */
  506:Core/Src/main.c ****   hfoc.done_orderphase = 1;
-ARM GAS  /tmp/ccfCREUI.s 			page 17
+ARM GAS  /tmp/ccDAxvWu.s 			page 17
 
 
  387              		.loc 1 506 3 is_stmt 1 view .LVU75
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  526:Core/Src/main.c ****         calibration_seq();
  422              		.loc 1 526 9 view .LVU86
  423 0036 FFF7FEFF 		bl	calibration_seq
-ARM GAS  /tmp/ccfCREUI.s 			page 18
+ARM GAS  /tmp/ccDAxvWu.s 			page 18
 
 
  424              	.LVL27:
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  553:Core/Src/main.c ****               
  554:Core/Src/main.c ****     }
  555:Core/Src/main.c ****     
-ARM GAS  /tmp/ccfCREUI.s 			page 19
+ARM GAS  /tmp/ccDAxvWu.s 			page 19
 
 
  556:Core/Src/main.c ****     
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  520:Core/Src/main.c ****         }
  492              		.loc 1 520 11 view .LVU108
  493 0096 E3E7     		b	.L23
-ARM GAS  /tmp/ccfCREUI.s 			page 20
+ARM GAS  /tmp/ccDAxvWu.s 			page 20
 
 
  494              	.L22:
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  111:Core/Src/main.c **** uint32_t dt_us;
  541              		.loc 1 111 1 is_stmt 0 view .LVU118
  542 0008 7047     		bx	lr
-ARM GAS  /tmp/ccfCREUI.s 			page 21
+ARM GAS  /tmp/ccDAxvWu.s 			page 21
 
 
  543              	.L31:
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  594              	.LVL41:
  122:Core/Src/main.c ****   pid_set_ki(&hfoc.id_ctrl, m_config.id_ki);
  595              		.loc 1 122 3 view .LVU124
-ARM GAS  /tmp/ccfCREUI.s 			page 22
+ARM GAS  /tmp/ccDAxvWu.s 			page 22
 
 
  596 0028 614C     		ldr	r4, .L34+12
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  642              	.LVL50:
  132:Core/Src/main.c ****   // Speed PID parameter
  643              		.loc 1 132 3 view .LVU133
-ARM GAS  /tmp/ccfCREUI.s 			page 23
+ARM GAS  /tmp/ccDAxvWu.s 			page 23
 
 
  644 008c 94ED080A 		vldr.32	s0, [r4, #32]
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  690              	.LVL59:
  142:Core/Src/main.c ****   // Position PID parameter
  691              		.loc 1 142 3 view .LVU142
-ARM GAS  /tmp/ccfCREUI.s 			page 24
+ARM GAS  /tmp/ccDAxvWu.s 			page 24
 
 
  692 00f2 94ED100A 		vldr.32	s0, [r4, #64]
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  737              		.loc 1 152 3 view .LVU151
  738 0150 94ED150A 		vldr.32	s0, [r4, #84]
  739 0154 3046     		mov	r0, r6
-ARM GAS  /tmp/ccfCREUI.s 			page 25
+ARM GAS  /tmp/ccDAxvWu.s 			page 25
 
 
  740 0156 FFF7FEFF 		bl	pid_set_deadband
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  789 01b8 17B7D138 		.word	953267991
  790 01bc 0000C842 		.word	1120403456
  791 01c0 34000140 		.word	1073807412
-ARM GAS  /tmp/ccfCREUI.s 			page 26
+ARM GAS  /tmp/ccDAxvWu.s 			page 26
 
 
  792 01c4 38000140 		.word	1073807416
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  844              		.loc 1 446 1 is_stmt 0 view .LVU162
  845 0000 08B5     		push	{r3, lr}
  846              	.LCFI13:
-ARM GAS  /tmp/ccfCREUI.s 			page 27
+ARM GAS  /tmp/ccDAxvWu.s 			page 27
 
 
  847              		.cfi_def_cfa_offset 8
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  894              		.loc 1 455 1 is_stmt 1 view -0
  895              		.cfi_startproc
  896              		@ args = 0, pretend = 0, frame = 8
-ARM GAS  /tmp/ccfCREUI.s 			page 28
+ARM GAS  /tmp/ccDAxvWu.s 			page 28
 
 
  897              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  940 0030 2046     		mov	r0, r4
  941 0032 FFF7FEFF 		bl	HAL_CAN_AddTxMessage
  942              	.LVL82:
-ARM GAS  /tmp/ccfCREUI.s 			page 29
+ARM GAS  /tmp/ccDAxvWu.s 			page 29
 
 
  464:Core/Src/main.c ****       HAL_CAN_AbortTxRequest(hcan, CAN_TX_MAILBOX0 | CAN_TX_MAILBOX1 | CAN_TX_MAILBOX2);
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  994              		.cfi_startproc
  995              		@ args = 0, pretend = 0, frame = 0
  996              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccfCREUI.s 			page 30
+ARM GAS  /tmp/ccDAxvWu.s 			page 30
 
 
  997 0000 08B5     		push	{r3, lr}
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  1037              		.loc 1 484 5 view .LVU201
  1038 002e 0648     		ldr	r0, .L60+16
  1039 0030 FFF7FEFF 		bl	run_fsm
-ARM GAS  /tmp/ccfCREUI.s 			page 31
+ARM GAS  /tmp/ccDAxvWu.s 			page 31
 
 
  1040              	.LVL88:
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  1071 0000 08B5     		push	{r3, lr}
  1072              	.LCFI19:
  1073              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/ccfCREUI.s 			page 32
+ARM GAS  /tmp/ccDAxvWu.s 			page 32
 
 
  1074              		.cfi_offset 3, -8
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  1111              		.loc 1 599 1 is_stmt 1 view -0
  1112              		.cfi_startproc
  1113              		@ Volatile: function does not return.
-ARM GAS  /tmp/ccfCREUI.s 			page 33
+ARM GAS  /tmp/ccDAxvWu.s 			page 33
 
 
  1114              		@ args = 0, pretend = 0, frame = 0
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
   45:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   46:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __STATIC_INLINE
   47:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __STATIC_INLINE                        static inline
-ARM GAS  /tmp/ccfCREUI.s 			page 34
+ARM GAS  /tmp/ccDAxvWu.s 			page 34
 
 
   48:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  102:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32_READ
  103:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
  104:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
-ARM GAS  /tmp/ccfCREUI.s 			page 35
+ARM GAS  /tmp/ccDAxvWu.s 			page 35
 
 
  105:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  159:Drivers/CMSIS/Include/cmsis_gcc.h ****       pTable->dest[i] = 0u;
  160:Drivers/CMSIS/Include/cmsis_gcc.h ****     }
  161:Drivers/CMSIS/Include/cmsis_gcc.h ****   }
-ARM GAS  /tmp/ccfCREUI.s 			page 36
+ARM GAS  /tmp/ccDAxvWu.s 			page 36
 
 
  162:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  216:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __CMSIS_GCC_RW_REG(r) "+l" (r)
  217:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __CMSIS_GCC_USE_REG(r) "l" (r)
  218:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
-ARM GAS  /tmp/ccfCREUI.s 			page 37
+ARM GAS  /tmp/ccDAxvWu.s 			page 37
 
 
  219:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __CMSIS_GCC_OUT_REG(r) "=r" (r)
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  273:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  274:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  275:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
-ARM GAS  /tmp/ccfCREUI.s 			page 38
+ARM GAS  /tmp/ccDAxvWu.s 			page 38
 
 
  276:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Data Memory Barrier
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  330:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
  331:Drivers/CMSIS/Include/cmsis_gcc.h ****   int16_t result;
  332:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /tmp/ccfCREUI.s 			page 39
+ARM GAS  /tmp/ccDAxvWu.s 			page 39
 
 
  333:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM ("revsh %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  387:Drivers/CMSIS/Include/cmsis_gcc.h ****     result <<= 1U;
  388:Drivers/CMSIS/Include/cmsis_gcc.h ****     result |= value & 1U;
  389:Drivers/CMSIS/Include/cmsis_gcc.h ****     s--;
-ARM GAS  /tmp/ccfCREUI.s 			page 40
+ARM GAS  /tmp/ccDAxvWu.s 			page 40
 
 
  390:Drivers/CMSIS/Include/cmsis_gcc.h ****   }
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  444:Drivers/CMSIS/Include/cmsis_gcc.h ****    return ((uint8_t) result);    /* Add explicit type cast here */
  445:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  446:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /tmp/ccfCREUI.s 			page 41
+ARM GAS  /tmp/ccDAxvWu.s 			page 41
 
 
  447:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  501:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  502:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  503:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   STR Exclusive (16 bit)
-ARM GAS  /tmp/ccfCREUI.s 			page 42
+ARM GAS  /tmp/ccDAxvWu.s 			page 42
 
 
  504:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a exclusive STR instruction for 16 bit values.
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  558:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]  ARG2  Bit position to saturate to (1..32)
  559:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return             Saturated value
  560:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  /tmp/ccfCREUI.s 			page 43
+ARM GAS  /tmp/ccDAxvWu.s 			page 43
 
 
  561:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __SSAT(ARG1, ARG2) \
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  615:Drivers/CMSIS/Include/cmsis_gcc.h ****     /* Prior to GCC 4.8, "Q" will be expanded to [rx, #0] which is not
  616:Drivers/CMSIS/Include/cmsis_gcc.h ****        accepted by assembler. So has to use following less efficient pattern.
  617:Drivers/CMSIS/Include/cmsis_gcc.h ****     */
-ARM GAS  /tmp/ccfCREUI.s 			page 44
+ARM GAS  /tmp/ccDAxvWu.s 			page 44
 
 
  618:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("ldrbt %0, [%1]" : "=r" (result) : "r" (ptr) : "memory" );
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  672:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  673:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  674:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   STRT Unprivileged (16 bit)
-ARM GAS  /tmp/ccfCREUI.s 			page 45
+ARM GAS  /tmp/ccDAxvWu.s 			page 45
 
 
  675:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a Unprivileged STRT instruction for 16 bit values.
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  729:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    sat  Bit position to saturate to (0..31)
  730:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return             Saturated value
  731:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  /tmp/ccfCREUI.s 			page 46
+ARM GAS  /tmp/ccDAxvWu.s 			page 46
 
 
  732:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __USAT(int32_t val, uint32_t sat)
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  786:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  787:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Load-Acquire (32 bit)
  788:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a LDA instruction for 32 bit values.
-ARM GAS  /tmp/ccfCREUI.s 			page 47
+ARM GAS  /tmp/ccDAxvWu.s 			page 47
 
 
  789:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to data
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  843:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint8_t __LDAEXB(volatile uint8_t *ptr)
  844:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  845:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t result;
-ARM GAS  /tmp/ccfCREUI.s 			page 48
+ARM GAS  /tmp/ccDAxvWu.s 			page 48
 
 
  846:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  900:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Store-Release Exclusive (16 bit)
  901:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a STLH exclusive instruction for 16 bit values.
  902:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]  value  Value to store
-ARM GAS  /tmp/ccfCREUI.s 			page 49
+ARM GAS  /tmp/ccDAxvWu.s 			page 49
 
 
  903:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to location
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  957:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Disables IRQ interrupts by setting special-purpose register PRIMASK.
  958:Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
  959:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  /tmp/ccfCREUI.s 			page 50
+ARM GAS  /tmp/ccDAxvWu.s 			page 50
 
 
  960:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __disable_irq(void)
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  1167              	.LVL93:
  334:Core/Src/main.c **** 
  1168              		.loc 1 334 3 is_stmt 1 view .LVU221
-ARM GAS  /tmp/ccfCREUI.s 			page 51
+ARM GAS  /tmp/ccDAxvWu.s 			page 51
 
 
  334:Core/Src/main.c **** 
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  344:Core/Src/main.c ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
  1210              		.loc 1 344 3 view .LVU235
  344:Core/Src/main.c ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-ARM GAS  /tmp/ccfCREUI.s 			page 52
+ARM GAS  /tmp/ccDAxvWu.s 			page 52
 
 
  1211              		.loc 1 344 36 is_stmt 0 view .LVU236
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  1247              		.loc 1 359 3 is_stmt 1 view .LVU254
  359:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
  1248              		.loc 1 359 31 is_stmt 0 view .LVU255
-ARM GAS  /tmp/ccfCREUI.s 			page 53
+ARM GAS  /tmp/ccDAxvWu.s 			page 53
 
 
  1249 006e 0F23     		movs	r3, #15
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  1289              		.loc 1 368 5 view .LVU269
  1290 009a FFF7FEFF 		bl	Error_Handler
  1291              	.LVL97:
-ARM GAS  /tmp/ccfCREUI.s 			page 54
+ARM GAS  /tmp/ccDAxvWu.s 			page 54
 
 
  1292              	.L77:
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  1340              	.LVL104:
  223:Core/Src/main.c **** 
  1341              		.loc 1 223 3 view .LVU278
-ARM GAS  /tmp/ccfCREUI.s 			page 55
+ARM GAS  /tmp/ccDAxvWu.s 			page 55
 
 
  1342 001e FFF7FEFF 		bl	MX_CAN1_Init
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  1384 005a FFF7FEFF 		bl	can_tx_init
  1385              	.LVL117:
  251:Core/Src/main.c ****   HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
-ARM GAS  /tmp/ccfCREUI.s 			page 56
+ARM GAS  /tmp/ccDAxvWu.s 			page 56
 
 
  1386              		.loc 1 251 2 view .LVU291
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  1427              		.loc 1 268 20 view .LVU304
  1428 009c 5A70     		strb	r2, [r3, #1]
  269:Core/Src/main.c **** 
-ARM GAS  /tmp/ccfCREUI.s 			page 57
+ARM GAS  /tmp/ccDAxvWu.s 			page 57
 
 
  1429              		.loc 1 269 3 is_stmt 1 view .LVU305
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  318:Core/Src/main.c ****   {
  1470              		.loc 1 318 9 discriminator 1 view .LVU319
  1471 00d4 FEE7     		b	.L79
-ARM GAS  /tmp/ccfCREUI.s 			page 58
+ARM GAS  /tmp/ccDAxvWu.s 			page 58
 
 
  1472              	.L82:
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  1526              		.section	.bss.Serial2RxBuffer,"aw",%nobits
  1527              		.align	2
  1528              		.set	.LANCHOR4,. + 0
-ARM GAS  /tmp/ccfCREUI.s 			page 59
+ARM GAS  /tmp/ccDAxvWu.s 			page 59
 
 
  1531              	Serial2RxBuffer:
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  1578              		.section	.rodata.ErrorTask_attributes,"a"
  1579              		.align	2
  1580              		.set	.LANCHOR7,. + 0
-ARM GAS  /tmp/ccfCREUI.s 			page 60
+ARM GAS  /tmp/ccDAxvWu.s 			page 60
 
 
  1583              	ErrorTask_attributes:
@@ -3547,7 +3547,7 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  1585      00000000 
  1585      00000000 
  1585      00000000 
- 1586 0014 00080000 		.word	2048
+ 1586 0014 00020000 		.word	512
  1587 0018 18000000 		.word	24
  1588 001c 00000000 		.space	8
  1588      00000000 
@@ -3582,78 +3582,78 @@ ARM GAS  /tmp/ccfCREUI.s 			page 1
  1617              		.file 29 "<built-in>"
  1618              		.file 30 "Core/Inc/spi.h"
  1619              		.file 31 "Core/Inc/foc_math.h"
-ARM GAS  /tmp/ccfCREUI.s 			page 61
+ARM GAS  /tmp/ccDAxvWu.s 			page 61
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/ccfCREUI.s:18     .text.MX_GPIO_Init:0000000000000000 $t
-     /tmp/ccfCREUI.s:25     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
-     /tmp/ccfCREUI.s:111    .text.MX_GPIO_Init:000000000000005c $d
-     /tmp/ccfCREUI.s:116    .text.MX_DMA_Init:0000000000000000 $t
-     /tmp/ccfCREUI.s:122    .text.MX_DMA_Init:0000000000000000 MX_DMA_Init
-     /tmp/ccfCREUI.s:238    .text.MX_DMA_Init:0000000000000098 $d
-     /tmp/ccfCREUI.s:243    .rodata.ErrorTask.str1.4:0000000000000000 $d
-     /tmp/ccfCREUI.s:255    .text.ErrorTask:0000000000000000 $t
-     /tmp/ccfCREUI.s:262    .text.ErrorTask:0000000000000000 ErrorTask
-     /tmp/ccfCREUI.s:350    .text.ErrorTask:0000000000000068 $d
-     /tmp/ccfCREUI.s:360    .rodata.StartCalibrationTask.str1.4:0000000000000000 $d
-     /tmp/ccfCREUI.s:364    .text.StartCalibrationTask:0000000000000000 $t
-     /tmp/ccfCREUI.s:371    .text.StartCalibrationTask:0000000000000000 StartCalibrationTask
-     /tmp/ccfCREUI.s:508    .text.StartCalibrationTask:00000000000000a8 $d
-     /tmp/ccfCREUI.s:517    .text.get_dt_us:0000000000000000 $t
-     /tmp/ccfCREUI.s:524    .text.get_dt_us:0000000000000000 get_dt_us
-     /tmp/ccfCREUI.s:546    .text.get_dt_us:000000000000000c $d
-     /tmp/ccfCREUI.s:551    .text.control_init:0000000000000000 $t
-     /tmp/ccfCREUI.s:558    .text.control_init:0000000000000000 control_init
-     /tmp/ccfCREUI.s:784    .text.control_init:00000000000001a4 $d
-     /tmp/ccfCREUI.s:800    .text.TIM3_IRQHandler:0000000000000000 $t
-     /tmp/ccfCREUI.s:807    .text.TIM3_IRQHandler:0000000000000000 TIM3_IRQHandler
-     /tmp/ccfCREUI.s:825    .text.TIM3_IRQHandler:000000000000000c $d
-     /tmp/ccfCREUI.s:830    .text.HAL_SPI_TxRxCpltCallback:0000000000000000 $t
-     /tmp/ccfCREUI.s:837    .text.HAL_SPI_TxRxCpltCallback:0000000000000000 HAL_SPI_TxRxCpltCallback
-     /tmp/ccfCREUI.s:878    .text.HAL_SPI_TxRxCpltCallback:000000000000001c $d
-     /tmp/ccfCREUI.s:884    .text.HAL_CAN_RxFifo0MsgPendingCallback:0000000000000000 $t
-     /tmp/ccfCREUI.s:891    .text.HAL_CAN_RxFifo0MsgPendingCallback:0000000000000000 HAL_CAN_RxFifo0MsgPendingCallback
-     /tmp/ccfCREUI.s:973    .text.HAL_CAN_RxFifo0MsgPendingCallback:0000000000000050 $d
-     /tmp/ccfCREUI.s:984    .text.ADC_IRQHandler:0000000000000000 $t
-     /tmp/ccfCREUI.s:991    .text.ADC_IRQHandler:0000000000000000 ADC_IRQHandler
-     /tmp/ccfCREUI.s:1047   .text.ADC_IRQHandler:0000000000000038 $d
-     /tmp/ccfCREUI.s:1056   .text.HAL_TIM_PeriodElapsedCallback:0000000000000000 $t
-     /tmp/ccfCREUI.s:1063   .text.HAL_TIM_PeriodElapsedCallback:0000000000000000 HAL_TIM_PeriodElapsedCallback
-     /tmp/ccfCREUI.s:1097   .text.HAL_TIM_PeriodElapsedCallback:0000000000000014 $d
-     /tmp/ccfCREUI.s:1102   .text.Error_Handler:0000000000000000 $t
-     /tmp/ccfCREUI.s:1109   .text.Error_Handler:0000000000000000 Error_Handler
-     /tmp/ccfCREUI.s:1141   .text.SystemClock_Config:0000000000000000 $t
-     /tmp/ccfCREUI.s:1148   .text.SystemClock_Config:0000000000000000 SystemClock_Config
-     /tmp/ccfCREUI.s:1295   .text.SystemClock_Config:00000000000000a0 $d
-     /tmp/ccfCREUI.s:1301   .text.main:0000000000000000 $t
-     /tmp/ccfCREUI.s:1308   .text.main:0000000000000000 main
-     /tmp/ccfCREUI.s:1475   .text.main:00000000000000d8 $d
-     /tmp/ccfCREUI.s:1531   .bss.Serial2RxBuffer:0000000000000000 Serial2RxBuffer
-     /tmp/ccfCREUI.s:1537   .bss.dt_us:0000000000000000 dt_us
-     /tmp/ccfCREUI.s:1558   .bss.joint_state:0000000000000000 joint_state
-     /tmp/ccfCREUI.s:1551   .bss.joint_cmd:0000000000000000 joint_cmd
-     /tmp/ccfCREUI.s:1544   .bss.hfoc:0000000000000000 hfoc
-     /tmp/ccfCREUI.s:1565   .bss.state:0000000000000000 state
-     /tmp/ccfCREUI.s:1583   .rodata.ErrorTask_attributes:0000000000000000 ErrorTask_attributes
-     /tmp/ccfCREUI.s:1503   .rodata.str1.4:0000000000000000 $d
-     /tmp/ccfCREUI.s:1524   .bss.ErrorTaskHandle:0000000000000000 ErrorTaskHandle
-     /tmp/ccfCREUI.s:1572   .rodata.CalibrationTask_attributes:0000000000000000 CalibrationTask_attributes
-     /tmp/ccfCREUI.s:1517   .bss.CalibrationTaskHandle:0000000000000000 CalibrationTaskHandle
-     /tmp/ccfCREUI.s:1513   .bss.CalibrationTaskHandle:0000000000000000 $d
-ARM GAS  /tmp/ccfCREUI.s 			page 62
+     /tmp/ccDAxvWu.s:18     .text.MX_GPIO_Init:0000000000000000 $t
+     /tmp/ccDAxvWu.s:25     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
+     /tmp/ccDAxvWu.s:111    .text.MX_GPIO_Init:000000000000005c $d
+     /tmp/ccDAxvWu.s:116    .text.MX_DMA_Init:0000000000000000 $t
+     /tmp/ccDAxvWu.s:122    .text.MX_DMA_Init:0000000000000000 MX_DMA_Init
+     /tmp/ccDAxvWu.s:238    .text.MX_DMA_Init:0000000000000098 $d
+     /tmp/ccDAxvWu.s:243    .rodata.ErrorTask.str1.4:0000000000000000 $d
+     /tmp/ccDAxvWu.s:255    .text.ErrorTask:0000000000000000 $t
+     /tmp/ccDAxvWu.s:262    .text.ErrorTask:0000000000000000 ErrorTask
+     /tmp/ccDAxvWu.s:350    .text.ErrorTask:0000000000000068 $d
+     /tmp/ccDAxvWu.s:360    .rodata.StartCalibrationTask.str1.4:0000000000000000 $d
+     /tmp/ccDAxvWu.s:364    .text.StartCalibrationTask:0000000000000000 $t
+     /tmp/ccDAxvWu.s:371    .text.StartCalibrationTask:0000000000000000 StartCalibrationTask
+     /tmp/ccDAxvWu.s:508    .text.StartCalibrationTask:00000000000000a8 $d
+     /tmp/ccDAxvWu.s:517    .text.get_dt_us:0000000000000000 $t
+     /tmp/ccDAxvWu.s:524    .text.get_dt_us:0000000000000000 get_dt_us
+     /tmp/ccDAxvWu.s:546    .text.get_dt_us:000000000000000c $d
+     /tmp/ccDAxvWu.s:551    .text.control_init:0000000000000000 $t
+     /tmp/ccDAxvWu.s:558    .text.control_init:0000000000000000 control_init
+     /tmp/ccDAxvWu.s:784    .text.control_init:00000000000001a4 $d
+     /tmp/ccDAxvWu.s:800    .text.TIM3_IRQHandler:0000000000000000 $t
+     /tmp/ccDAxvWu.s:807    .text.TIM3_IRQHandler:0000000000000000 TIM3_IRQHandler
+     /tmp/ccDAxvWu.s:825    .text.TIM3_IRQHandler:000000000000000c $d
+     /tmp/ccDAxvWu.s:830    .text.HAL_SPI_TxRxCpltCallback:0000000000000000 $t
+     /tmp/ccDAxvWu.s:837    .text.HAL_SPI_TxRxCpltCallback:0000000000000000 HAL_SPI_TxRxCpltCallback
+     /tmp/ccDAxvWu.s:878    .text.HAL_SPI_TxRxCpltCallback:000000000000001c $d
+     /tmp/ccDAxvWu.s:884    .text.HAL_CAN_RxFifo0MsgPendingCallback:0000000000000000 $t
+     /tmp/ccDAxvWu.s:891    .text.HAL_CAN_RxFifo0MsgPendingCallback:0000000000000000 HAL_CAN_RxFifo0MsgPendingCallback
+     /tmp/ccDAxvWu.s:973    .text.HAL_CAN_RxFifo0MsgPendingCallback:0000000000000050 $d
+     /tmp/ccDAxvWu.s:984    .text.ADC_IRQHandler:0000000000000000 $t
+     /tmp/ccDAxvWu.s:991    .text.ADC_IRQHandler:0000000000000000 ADC_IRQHandler
+     /tmp/ccDAxvWu.s:1047   .text.ADC_IRQHandler:0000000000000038 $d
+     /tmp/ccDAxvWu.s:1056   .text.HAL_TIM_PeriodElapsedCallback:0000000000000000 $t
+     /tmp/ccDAxvWu.s:1063   .text.HAL_TIM_PeriodElapsedCallback:0000000000000000 HAL_TIM_PeriodElapsedCallback
+     /tmp/ccDAxvWu.s:1097   .text.HAL_TIM_PeriodElapsedCallback:0000000000000014 $d
+     /tmp/ccDAxvWu.s:1102   .text.Error_Handler:0000000000000000 $t
+     /tmp/ccDAxvWu.s:1109   .text.Error_Handler:0000000000000000 Error_Handler
+     /tmp/ccDAxvWu.s:1141   .text.SystemClock_Config:0000000000000000 $t
+     /tmp/ccDAxvWu.s:1148   .text.SystemClock_Config:0000000000000000 SystemClock_Config
+     /tmp/ccDAxvWu.s:1295   .text.SystemClock_Config:00000000000000a0 $d
+     /tmp/ccDAxvWu.s:1301   .text.main:0000000000000000 $t
+     /tmp/ccDAxvWu.s:1308   .text.main:0000000000000000 main
+     /tmp/ccDAxvWu.s:1475   .text.main:00000000000000d8 $d
+     /tmp/ccDAxvWu.s:1531   .bss.Serial2RxBuffer:0000000000000000 Serial2RxBuffer
+     /tmp/ccDAxvWu.s:1537   .bss.dt_us:0000000000000000 dt_us
+     /tmp/ccDAxvWu.s:1558   .bss.joint_state:0000000000000000 joint_state
+     /tmp/ccDAxvWu.s:1551   .bss.joint_cmd:0000000000000000 joint_cmd
+     /tmp/ccDAxvWu.s:1544   .bss.hfoc:0000000000000000 hfoc
+     /tmp/ccDAxvWu.s:1565   .bss.state:0000000000000000 state
+     /tmp/ccDAxvWu.s:1583   .rodata.ErrorTask_attributes:0000000000000000 ErrorTask_attributes
+     /tmp/ccDAxvWu.s:1503   .rodata.str1.4:0000000000000000 $d
+     /tmp/ccDAxvWu.s:1524   .bss.ErrorTaskHandle:0000000000000000 ErrorTaskHandle
+     /tmp/ccDAxvWu.s:1572   .rodata.CalibrationTask_attributes:0000000000000000 CalibrationTask_attributes
+     /tmp/ccDAxvWu.s:1517   .bss.CalibrationTaskHandle:0000000000000000 CalibrationTaskHandle
+     /tmp/ccDAxvWu.s:1513   .bss.CalibrationTaskHandle:0000000000000000 $d
+ARM GAS  /tmp/ccDAxvWu.s 			page 62
 
 
-     /tmp/ccfCREUI.s:1520   .bss.ErrorTaskHandle:0000000000000000 $d
-     /tmp/ccfCREUI.s:1527   .bss.Serial2RxBuffer:0000000000000000 $d
-     /tmp/ccfCREUI.s:1534   .bss.dt_us:0000000000000000 $d
-     /tmp/ccfCREUI.s:1540   .bss.hfoc:0000000000000000 $d
-     /tmp/ccfCREUI.s:1547   .bss.joint_cmd:0000000000000000 $d
-     /tmp/ccfCREUI.s:1554   .bss.joint_state:0000000000000000 $d
-     /tmp/ccfCREUI.s:1561   .bss.state:0000000000000000 $d
-     /tmp/ccfCREUI.s:1568   .rodata.CalibrationTask_attributes:0000000000000000 $d
-     /tmp/ccfCREUI.s:1579   .rodata.ErrorTask_attributes:0000000000000000 $d
+     /tmp/ccDAxvWu.s:1520   .bss.ErrorTaskHandle:0000000000000000 $d
+     /tmp/ccDAxvWu.s:1527   .bss.Serial2RxBuffer:0000000000000000 $d
+     /tmp/ccDAxvWu.s:1534   .bss.dt_us:0000000000000000 $d
+     /tmp/ccDAxvWu.s:1540   .bss.hfoc:0000000000000000 $d
+     /tmp/ccDAxvWu.s:1547   .bss.joint_cmd:0000000000000000 $d
+     /tmp/ccDAxvWu.s:1554   .bss.joint_state:0000000000000000 $d
+     /tmp/ccDAxvWu.s:1561   .bss.state:0000000000000000 $d
+     /tmp/ccDAxvWu.s:1568   .rodata.CalibrationTask_attributes:0000000000000000 $d
+     /tmp/ccDAxvWu.s:1579   .rodata.ErrorTask_attributes:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_NVIC_SetPriority
@@ -3702,7 +3702,7 @@ HAL_RCC_OscConfig
 HAL_RCC_ClockConfig
 HAL_Init
 MX_SPI1_Init
-ARM GAS  /tmp/ccfCREUI.s 			page 63
+ARM GAS  /tmp/ccDAxvWu.s 			page 63
 
 
 MX_SPI2_Init

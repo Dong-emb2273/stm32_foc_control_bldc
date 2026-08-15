@@ -224,6 +224,21 @@ void update_fsm(FSMStruct * fsmstate, char fsm_input){
 		
 
 		case ENCODER_MODE:
+			if(fsm_input == 10 || fsm_input == ' '){ 
+        		break; 
+    		}	
+			if(fsm_input == ENTER_CMD){
+				set_encoder_mode(fsmstate);
+				break;
+			}
+			if(fsmstate->bytecount == 0){fsmstate->cmd_id = fsm_input;}
+			else{
+				fsmstate->cmd_buff[fsmstate->bytecount-1] = fsm_input;
+				fsmstate->bytecount = fsmstate->bytecount%(sizeof(fsmstate->cmd_buff)/sizeof(fsmstate->cmd_buff[0])); // reset when buffer is full
+			}
+			HAL_UART_Transmit(&huart, (uint8_t *)&fsm_input, 1, 2);
+			fsmstate->bytecount++;
+			/* If enter is typed, process user input */
 			break;
 		case MOTOR_MODE:
 			switch (fsm_input){
@@ -237,6 +252,31 @@ void update_fsm(FSMStruct * fsmstate, char fsm_input){
 		break;
 	}
 //printf("FSM State: %d  %d\r\n", fsmstate.state, fsmstate.state_change);
+}
+void enter_encoder_mode(void) {
+    printf(" %-4s %-31s %-5s %-6s %s\n\r", "prefix", "Parameter", "Min", "Max", "Current value");
+    printf(" %-4s %-31s %-5s %-6s %d\n\r", "l", "Set Location (0:Int, 1:Ext)", "0", "1", encoder.location);
+    printf(" %-4s %-31s %-5s %-6s %d\n\r", "i", "Set IC (0:48A,1:56,2:MT,3:AB)", "0", "3", encoder.type);
+    printf(" %-4s %-31s %-5s %-6s %d\n\r", "c", "Comm Mode (0:SPI, 1:I2C)", "0", "1", 1);
+    printf(" %-4s %-31s %-5s %-6s %s\n\r", "s", "Save & Apply Config", "-", "-", "-");
+    printf(" %-4s %-31s %-5s %-6s %s\n\r", "t", "Test Encoder (Press 'x' quit)", "-", "-", "-");
+	
+    printf(" \n\r To change a value, type 'prefix''value''ENTER'\n\r e.g. 'c0.15''ENTER'\r\n ");
+    printf("VALUES UPDATE IMMEDIATELY IN TEST MODE! \n\r\n\r");
+}
+
+void set_encoder_mode(FSMStruct * fsmstate){
+	switch (fsmstate->cmd_id){
+		case 't':{
+			
+			break;
+		}
+		case 'o': {
+            
+            break;
+        }
+	}
+
 }
 
 void TestModeView(void) {
@@ -260,9 +300,6 @@ void TestModeView(void) {
 	float vel = hfoc.actual_rpm;
 	float pos = hfoc.actual_angle;
 	
-	
-	
-
     memcpy(&tx_buf[2],  &iq_sp, 4);
     memcpy(&tx_buf[6],  &id, 4);
     memcpy(&tx_buf[10], &iq, 4);
@@ -292,7 +329,7 @@ void enter_test_state(void){
 	printf(" %-4s %-31s %-5s %-6s %d\n\r", "m", "Motor On/Off", "0", "1", !!RF_RUNNING);
 
 	printf("\r\n Data View (0:Off, 1:On):\r\n");
-	printf(" %-4s %-31s %-5s %-6s %d\n\r", "v0", "Current View", "0", "1", !!RF_VIEW);
+	printf(" %-4s %-31s %-5s %-6s %d\n\r", "v", "Current View", "0", "1", !!RF_VIEW);
 
 	printf("\r\n Current Loop (Id/Iq):\r\n");
     printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "a", "Current Kp", "0", "-", ID_KP);

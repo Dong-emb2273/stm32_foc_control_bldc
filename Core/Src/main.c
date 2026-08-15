@@ -69,7 +69,7 @@ const osThreadAttr_t CalibrationTask_attributes = {
 osThreadId_t ErrorTaskHandle;
 const osThreadAttr_t ErrorTask_attributes = {
   .name = "ErrorTask",
-  .stack_size = 512 * 4, // Cấp phát 512 bytes RAM cho ngăn xếp (Stack)
+  .stack_size = 128 * 4, 
   .priority = (osPriority_t) osPriorityNormal, // Mức ưu tiên
 };
 
