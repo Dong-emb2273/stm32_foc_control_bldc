@@ -274,9 +274,6 @@ void TestModeView(void) {
 	float vel = hfoc.actual_rpm;
 	float pos = hfoc.actual_angle;
 	
-	
-	
-
     memcpy(&tx_buf[2],  &iq_sp, 4);
     memcpy(&tx_buf[6],  &id, 4);
     memcpy(&tx_buf[10], &iq, 4);
