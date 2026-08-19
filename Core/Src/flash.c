@@ -94,13 +94,12 @@ void flash_read_config(motor_config_t *data) {
 }
 
 void flash_default_config(motor_config_t *data) {
-    // data->id_kp = 0.01f;
+
     data->id_kp = 0.01f;
     data->id_ki = 4.0422f;
     data->id_out_max = 5.0f;
     data->id_e_deadband = 0.0001f;
 
-    // data->iq_kp = 0.01f;
     data->iq_kp = 0.01f;
     data->iq_ki = 4.0422f;
     data->iq_out_max = 5.0f;
@@ -127,9 +126,6 @@ void flash_default_config(motor_config_t *data) {
     data->spoint_pos = 0.0f;
     data->spoint_vel = 0.0f;
     data->spoint_tor = 0.0f;
-
-    data->state = MENU_MODE;
-    data->next_state = MENU_MODE;
    
 
     data->voffset_a = 1995.0f;
@@ -157,12 +153,8 @@ void flash_default_config(motor_config_t *data) {
     data->can_master = 0x01;
     data->can_timeout = 1000;
 
-
-    data->pos_min = -12.5f;
     data->pos_max = 12.5f;
-    data->vel_min = -65.0f;
     data->vel_max = 65.0f;
-    data->tor_min = -18.0f;
     data->tor_max = 18.0f;
     data->kp_min = 0.0f;
     data->kp_max = 500.0f;

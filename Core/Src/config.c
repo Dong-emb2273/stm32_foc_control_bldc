@@ -343,7 +343,7 @@ void TIM_IQR_MS_CONGFIG(){
 	TIM3->PSC = 839;  
 	TIM3->ARR = 999;  
 	TIM3->EGR |= TIM_EGR_UG;
-  TIM3->SR &= ~TIM_SR_UIF;
+	TIM3->SR &= ~TIM_SR_UIF;
 	TIM3->DIER |= TIM_DIER_UIE; 
 	NVIC_SetPriority(TIM3_IRQn, 6);
 	NVIC_EnableIRQ(TIM3_IRQn);     

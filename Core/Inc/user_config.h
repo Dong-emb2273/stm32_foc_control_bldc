@@ -61,16 +61,13 @@ extern motor_config_t m_config;
 #define CAN_MID             (m_config.can_master)           // CAN bus "master" ID
 #define CAN_TIMEOUT         (m_config.can_timeout)          // CAN bus timeout period
 
-#define STATE               (m_config.state)                // Current state of the motor (0: idle, 1: running, 2: error)
-#define NEXT_STATE          (m_config.next_state)           // Next state of the motor after current operation completes
-
-#define P_MIN		        (m_config.pos_min)              // Position setpoint lower limit (rad)
+#define P_MIN		        (-m_config.pos_max)             // Position setpoint lower limit (rad)
 #define P_MAX		        (m_config.pos_max)              // Position setupoint upper bound (rad)
 
-#define V_MIN		        (m_config.vel_min)              // Velocity setpoint lower bound (rad/s)
+#define V_MIN		        (-m_config.vel_max)             // Velocity setpoint lower bound (rad/s)
 #define V_MAX		        (m_config.vel_max)              // Velocity setpoint upper bound (rad/s)
 
-#define T_MIN 		        (m_config.tor_min)	
+#define T_MIN 		        (-m_config.tor_max)	
 #define T_MAX 		        (m_config.tor_max)	
 
 #define KP_MAX		        (m_config.kp_max)               // Max position gain (N-m/rad)

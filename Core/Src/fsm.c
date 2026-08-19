@@ -75,8 +75,6 @@ void run_fsm(FSMStruct * fsmstate){
 void fsm_enter_state(FSMStruct * fsmstate){
 	/* Called when entering a new state
 	* Do necessary setup   */
-	STATE = fsmstate->state;
-	NEXT_STATE = fsmstate->next_state;
 	switch(fsmstate->state){
 			case MENU_MODE:
 			//printf("Entering Main Menu\r\n");

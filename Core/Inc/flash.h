@@ -53,17 +53,6 @@ typedef struct {
     float zero_angle;
 
     motor_mode_t control_mode;
-    uint8_t state;
-    uint8_t next_state;
-
-    // flag bit 
-    // uint8_t power_flag :1;
-    // uint8_t save_flag :1;
-    // uint8_t motor_running :2;
-    // uint8_t cur_view :1;
-    // uint8_t vel_view :1;
-    // uint8_t pos_view :1;
-    // uint8_t reserved :1;
 
     uint32_t  status_flags;
 
@@ -91,11 +80,8 @@ typedef struct {
     int32_t can_master;
     int32_t can_timeout;
 
-    float pos_min;
     float pos_max;
-    float vel_min;
     float vel_max;
-    float tor_min;
     float tor_max;
     float kp_min;
     float kp_max;
