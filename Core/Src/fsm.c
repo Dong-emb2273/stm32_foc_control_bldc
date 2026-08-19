@@ -617,7 +617,7 @@ void process_user_input(FSMStruct * fsmstate){
 		// 	printf("I_MAX_CONT set to %f\r\n", I_MAX_CONT);
 		// 	break;
 		case 'a':
-			I_CAL = fmaxf(fminf(atof(fsmstate->cmd_buff), 20.0f), 0.0f);
+			I_CAL = fmaxf(fminf(atof(fsmstate->cmd_buff), 20.0f), 0.3f);
 			printf("I_CAL set to %f\r\n", I_CAL);
 			break;
 		case 'g':
@@ -638,12 +638,10 @@ void process_user_input(FSMStruct * fsmstate){
 			break;
 		case 'p':
 			P_MAX = fmaxf(atof(fsmstate->cmd_buff), 0.0f);
-			P_MIN = -P_MAX;
 			printf("P_MAX set to %f\r\n", P_MAX);
 			break;
 		case 'v':
 			V_MAX = fmaxf(atof(fsmstate->cmd_buff), 0.0f);
-			V_MIN = -V_MAX;
 			printf("V_MAX set to %f\r\n", V_MAX);
 			break;
 		default:

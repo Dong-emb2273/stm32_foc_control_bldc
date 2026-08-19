@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccO68Utc.s 			page 1
+ARM GAS  /tmp/ccm1m9TT.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
   27:Core/Src/foc_utils.c **** 
   28:Core/Src/foc_utils.c **** float error_temp[ERROR_LUT_SIZE] = {0};
   29:Core/Src/foc_utils.c **** 
-ARM GAS  /tmp/ccO68Utc.s 			page 2
+ARM GAS  /tmp/ccm1m9TT.s 			page 2
 
 
   30:Core/Src/foc_utils.c **** /**
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
   63              	.LVL2:
   51:Core/Src/foc_utils.c ****     *hfoc->pwm_b = 0;
   64              		.loc 1 51 5 is_stmt 1 view .LVU17
-ARM GAS  /tmp/ccO68Utc.s 			page 3
+ARM GAS  /tmp/ccm1m9TT.s 			page 3
 
 
   65              		.loc 1 51 10 is_stmt 0 view .LVU18
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  109              		.fpu fpv4-sp-d16
  111              	foc_sensor_init:
  112              	.LVL5:
-ARM GAS  /tmp/ccO68Utc.s 			page 4
+ARM GAS  /tmp/ccm1m9TT.s 			page 4
 
 
  113              	.LFB143:
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  154              	.LVL7:
   80:Core/Src/foc_utils.c **** 
   81:Core/Src/foc_utils.c ****     hfoc->v_bus = (1.0f - filter_alpha) * hfoc->v_bus + filter_alpha * pv;
-ARM GAS  /tmp/ccO68Utc.s 			page 5
+ARM GAS  /tmp/ccm1m9TT.s 			page 5
 
 
  155              		.loc 1 81 5 is_stmt 1 view .LVU37
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  192              		.loc 1 84 9 is_stmt 1 view .LVU50
  193 0060 0C4A     		ldr	r2, .L22+12
  194 0062 D36E     		ldr	r3, [r2, #108]
-ARM GAS  /tmp/ccO68Utc.s 			page 6
+ARM GAS  /tmp/ccm1m9TT.s 			page 6
 
 
  195 0064 23F00103 		bic	r3, r3, #1
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  237              		.cfi_endproc
  238              	.LFE144:
  240              		.section	.text.foc_get_v_phase,"ax",%progbits
-ARM GAS  /tmp/ccO68Utc.s 			page 7
+ARM GAS  /tmp/ccm1m9TT.s 			page 7
 
 
  241              		.align	1
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  289 0038 67EE867A 		vmul.f32	s15, s15, s12
  290              	.LVL19:
  105:Core/Src/foc_utils.c **** 
-ARM GAS  /tmp/ccO68Utc.s 			page 8
+ARM GAS  /tmp/ccm1m9TT.s 			page 8
 
 
  106:Core/Src/foc_utils.c ****     hfoc->va = (1.0f - filter_alpha) * hfoc->va + filter_alpha * va;
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  342              		.global	foc_set_limit_current
  343              		.syntax unified
  344              		.thumb
-ARM GAS  /tmp/ccO68Utc.s 			page 9
+ARM GAS  /tmp/ccm1m9TT.s 			page 9
 
 
  345              		.thumb_func
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  390              		.cfi_offset 14, -4
  391 0002 2DED048B 		vpush.64	{d8, d9}
  392              	.LCFI1:
-ARM GAS  /tmp/ccO68Utc.s 			page 10
+ARM GAS  /tmp/ccm1m9TT.s 			page 10
 
 
  393              		.cfi_def_cfa_offset 32
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  438              		.loc 1 130 21 is_stmt 0 view .LVU123
  439 004c D4ED0E7A 		vldr.32	s15, [r4, #56]
  440              		.loc 1 130 36 view .LVU124
-ARM GAS  /tmp/ccO68Utc.s 			page 11
+ARM GAS  /tmp/ccm1m9TT.s 			page 11
 
 
  441 0050 77EEC07A 		vsub.f32	s15, s15, s0
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  487 0084 0023     		movs	r3, #0
  488 0086 0B60     		str	r3, [r1]	@ float
  125:Core/Src/foc_utils.c ****         return;
-ARM GAS  /tmp/ccO68Utc.s 			page 12
+ARM GAS  /tmp/ccm1m9TT.s 			page 12
 
 
  489              		.loc 1 125 9 is_stmt 1 view .LVU139
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  537              		.thumb
  538              		.thumb_func
  539              		.fpu fpv4-sp-d16
-ARM GAS  /tmp/ccO68Utc.s 			page 13
+ARM GAS  /tmp/ccm1m9TT.s 			page 13
 
 
  541              	foc_fw_update:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  589              		.global	foc_current_limit
  590              		.syntax unified
  591              		.thumb
-ARM GAS  /tmp/ccO68Utc.s 			page 14
+ARM GAS  /tmp/ccm1m9TT.s 			page 14
 
 
  592              		.thumb_func
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  637 0032 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
  638 0036 0CDD     		ble	.L60
  158:Core/Src/foc_utils.c ****         *iq_ref = max_iq;
-ARM GAS  /tmp/ccO68Utc.s 			page 15
+ARM GAS  /tmp/ccm1m9TT.s 			page 15
 
 
  639              		.loc 1 158 9 is_stmt 1 view .LVU180
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  679              		.global	foc_current_control_update
  680              		.syntax unified
  681              		.thumb
-ARM GAS  /tmp/ccO68Utc.s 			page 16
+ARM GAS  /tmp/ccm1m9TT.s 			page 16
 
 
  682              		.thumb_func
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  191:Core/Src/foc_utils.c **** 		return;
  192:Core/Src/foc_utils.c **** 	}
  193:Core/Src/foc_utils.c **** 
-ARM GAS  /tmp/ccO68Utc.s 			page 17
+ARM GAS  /tmp/ccm1m9TT.s 			page 17
 
 
  194:Core/Src/foc_utils.c ****     DRV8323_Get_Current(&hfoc->drv8323s, &hfoc->ia, &hfoc->ib,&hfoc->ic);
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  752              	.L65:
  753              	.LVL54:
  197:Core/Src/foc_utils.c ****     float target_iq = CONSTRAIN(hfoc->iq_ref, -hfoc->max_current, hfoc->max_current);
-ARM GAS  /tmp/ccO68Utc.s 			page 18
+ARM GAS  /tmp/ccm1m9TT.s 			page 18
 
 
  754              		.loc 1 197 5 is_stmt 1 discriminator 8 view .LVU213
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  797              	.LVL58:
  798              		.loc 1 208 23 view .LVU225
  799 00b4 84ED1E0A 		vstr.32	s0, [r4, #120]
-ARM GAS  /tmp/ccO68Utc.s 			page 19
+ARM GAS  /tmp/ccm1m9TT.s 			page 19
 
 
  209:Core/Src/foc_utils.c ****     hfoc->iq_filtered = second_order_lpf_update(&hfoc->iq_lpf, hfoc->iq);
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  843 010e D4F8D800 		ldr	r0, [r4, #216]
  844 0112 94ED2A1A 		vldr.32	s2, [r4, #168]
  845 0116 DDED040A 		vldr.32	s1, [sp, #16]
-ARM GAS  /tmp/ccO68Utc.s 			page 20
+ARM GAS  /tmp/ccm1m9TT.s 			page 20
 
 
  846 011a 9DED050A 		vldr.32	s0, [sp, #20]
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  893              		.loc 1 226 1 view .LVU256
  894 015e 08B0     		add	sp, sp, #32
  895              	.LCFI9:
-ARM GAS  /tmp/ccO68Utc.s 			page 21
+ARM GAS  /tmp/ccm1m9TT.s 			page 21
 
 
  896              		.cfi_remember_state
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  944 0000 10B5     		push	{r4, lr}
  945              	.LCFI12:
  946              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/ccO68Utc.s 			page 22
+ARM GAS  /tmp/ccm1m9TT.s 			page 22
 
 
  947              		.cfi_offset 4, -8
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  986              		.loc 1 237 20 view .LVU280
  987 002c 00F5A270 		add	r0, r0, #324
  988              	.LVL72:
-ARM GAS  /tmp/ccO68Utc.s 			page 23
+ARM GAS  /tmp/ccm1m9TT.s 			page 23
 
 
  237:Core/Src/foc_utils.c **** }
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  1036              		.loc 1 245 3 is_stmt 1 view .LVU293
  1037              	.LVL75:
  1038              	.L88:
-ARM GAS  /tmp/ccO68Utc.s 			page 24
+ARM GAS  /tmp/ccm1m9TT.s 			page 24
 
 
  246:Core/Src/foc_utils.c **** 	}
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  255:Core/Src/foc_utils.c **** void foc_impedance_control(JointCommand_t *cmd, foc_t *hfoc) {
  256:Core/Src/foc_utils.c ****     float pos = RAD_TO_DEG(cmd->p_des)*GR;
  257:Core/Src/foc_utils.c ****     float vel = RADS_TO_RPM(cmd->v_des)*GR;
-ARM GAS  /tmp/ccO68Utc.s 			page 25
+ARM GAS  /tmp/ccm1m9TT.s 			page 25
 
 
  258:Core/Src/foc_utils.c ****     float iq_ff = cmd->t_ff*KT*GR;
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  1078              		.loc 1 311 52 view -0
  1079              		.cfi_startproc
  1080              		@ args = 0, pretend = 0, frame = 8
-ARM GAS  /tmp/ccO68Utc.s 			page 26
+ARM GAS  /tmp/ccm1m9TT.s 			page 26
 
 
  1081              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  1126 003e 67EE877A 		vmul.f32	s15, s15, s14
  1127              		.loc 1 320 8 view .LVU318
  1128 0042 CDED017A 		vstr.32	s15, [sp, #4]
-ARM GAS  /tmp/ccO68Utc.s 			page 27
+ARM GAS  /tmp/ccm1m9TT.s 			page 27
 
 
  321:Core/Src/foc_utils.c **** 	
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  1166 007a C3F30903 		ubfx	r3, r3, #0, #10
  1167 007e C2F30902 		ubfx	r2, r2, #0, #10
  1168 0082 58BF     		it	pl
-ARM GAS  /tmp/ccO68Utc.s 			page 28
+ARM GAS  /tmp/ccm1m9TT.s 			page 28
 
 
  1169 0084 5342     		rsbpl	r3, r2, #0
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  1217              		.loc 1 343 2 is_stmt 1 view .LVU352
  1218              		.loc 1 343 8 is_stmt 0 view .LVU353
  1219 00cc DDED017A 		vldr.32	s15, [sp, #4]
-ARM GAS  /tmp/ccO68Utc.s 			page 29
+ARM GAS  /tmp/ccm1m9TT.s 			page 29
 
 
  1220 00d0 37EE800A 		vadd.f32	s0, s15, s0
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  333:Core/Src/foc_utils.c **** 	}
  1261              		.loc 1 333 13 view .LVU365
  1262 0102 B5E7     		b	.L95
-ARM GAS  /tmp/ccO68Utc.s 			page 30
+ARM GAS  /tmp/ccm1m9TT.s 			page 30
 
 
  1263              	.L102:
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  1308              	foc_torque_control_update:
  1309              	.LVL105:
  1310              	.LFB151:
-ARM GAS  /tmp/ccO68Utc.s 			page 31
+ARM GAS  /tmp/ccm1m9TT.s 			page 31
 
 
  166:Core/Src/foc_utils.c ****     int ret = 0;
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  173:Core/Src/foc_utils.c ****         
  1351              		.loc 1 173 32 is_stmt 0 view .LVU385
  1352 001c 084B     		ldr	r3, .L109
-ARM GAS  /tmp/ccO68Utc.s 			page 32
+ARM GAS  /tmp/ccm1m9TT.s 			page 32
 
 
  1353 001e 0022     		movs	r2, #0
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  1400              		.loc 1 255 62 is_stmt 0 view .LVU394
  1401 0000 08B5     		push	{r3, lr}
  1402              	.LCFI19:
-ARM GAS  /tmp/ccO68Utc.s 			page 33
+ARM GAS  /tmp/ccm1m9TT.s 			page 33
 
 
  1403              		.cfi_def_cfa_offset 8
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  1442              		.loc 1 261 5 is_stmt 1 view .LVU409
  261:Core/Src/foc_utils.c ****     foc_torque_control_update(hfoc);
  1443              		.loc 1 261 31 is_stmt 0 view .LVU410
-ARM GAS  /tmp/ccO68Utc.s 			page 34
+ARM GAS  /tmp/ccm1m9TT.s 			page 34
 
 
  1444 0042 D3ED027A 		vldr.32	s15, [r3, #8]
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  1487              		.thumb_func
  1488              		.fpu fpv4-sp-d16
  1490              	foc_calc_mech_pos_encoder:
-ARM GAS  /tmp/ccO68Utc.s 			page 35
+ARM GAS  /tmp/ccm1m9TT.s 			page 35
 
 
  1491              	.LVL122:
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  266:Core/Src/foc_utils.c ****         
  1533              		.loc 1 266 5 view .LVU432
  266:Core/Src/foc_utils.c ****         
-ARM GAS  /tmp/ccO68Utc.s 			page 36
+ARM GAS  /tmp/ccm1m9TT.s 			page 36
 
 
  1534              		.loc 1 266 8 is_stmt 0 view .LVU433
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  1576              		.loc 1 274 9 view .LVU445
  1577              	.L118:
  309:Core/Src/foc_utils.c **** 
-ARM GAS  /tmp/ccO68Utc.s 			page 37
+ARM GAS  /tmp/ccm1m9TT.s 			page 37
 
 
  1578              		.loc 1 309 1 is_stmt 0 view .LVU446
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  1617              		.loc 1 288 17 view .LVU461
  1618 0060 0F4B     		ldr	r3, .L131
  1619 0062 93ED160A 		vldr.32	s0, [r3, #88]
-ARM GAS  /tmp/ccO68Utc.s 			page 38
+ARM GAS  /tmp/ccm1m9TT.s 			page 38
 
 
  1620 0066 2046     		mov	r0, r4
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  1663              	.L127:
  1664              	.LCFI21:
  1665              		.cfi_def_cfa_offset 0
-ARM GAS  /tmp/ccO68Utc.s 			page 39
+ARM GAS  /tmp/ccm1m9TT.s 			page 39
 
 
  1666              		.cfi_restore 4
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  409:Core/Src/foc_utils.c ****         float raw_delta = elec_rad - hfoc->e_angle_rad;
  410:Core/Src/foc_utils.c ****         float delta = elec_rad - hfoc->e_angle_rad_comp;
  411:Core/Src/foc_utils.c ****         
-ARM GAS  /tmp/ccO68Utc.s 			page 40
+ARM GAS  /tmp/ccm1m9TT.s 			page 40
 
 
  412:Core/Src/foc_utils.c ****         raw_delta -= TWO_PI * floorf((raw_delta + PI) / TWO_PI);
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  1705              	.LFE162:
  1707              		.section	.text.estimate_resistance,"ax",%progbits
  1708              		.align	1
-ARM GAS  /tmp/ccO68Utc.s 			page 41
+ARM GAS  /tmp/ccm1m9TT.s 			page 41
 
 
  1709              		.global	estimate_resistance
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  497:Core/Src/foc_utils.c ****     
  498:Core/Src/foc_utils.c **** 
  499:Core/Src/foc_utils.c ****     float delta_mech = actual_theta_end - actual_theta_start;
-ARM GAS  /tmp/ccO68Utc.s 			page 42
+ARM GAS  /tmp/ccm1m9TT.s 			page 42
 
 
  500:Core/Src/foc_utils.c ****     
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  554:Core/Src/foc_utils.c ****         if (hfoc->meas_inj_n >= wt) {
  555:Core/Src/foc_utils.c ****             if (hfoc->meas_inj_target == RS || hfoc->meas_inj_target == LD) {
  556:Core/Src/foc_utils.c ****                 Vd_buff[hfoc->meas_inj_n - wt] = vd;
-ARM GAS  /tmp/ccO68Utc.s 			page 43
+ARM GAS  /tmp/ccm1m9TT.s 			page 43
 
 
  557:Core/Src/foc_utils.c ****                 Id_buff[hfoc->meas_inj_n - wt] = id;
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  1747              		.loc 1 579 9 is_stmt 1 discriminator 3 view .LVU491
  1748              		.loc 1 579 27 is_stmt 0 discriminator 3 view .LVU492
  1749 001a 0E4A     		ldr	r2, .L137+8
-ARM GAS  /tmp/ccO68Utc.s 			page 44
+ARM GAS  /tmp/ccm1m9TT.s 			page 44
 
 
  1750 001c 02EB8302 		add	r2, r2, r3, lsl #2
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  1794 005c 00100000 		.word	m_config+4096
  1795              		.cfi_endproc
  1796              	.LFE165:
-ARM GAS  /tmp/ccO68Utc.s 			page 45
+ARM GAS  /tmp/ccm1m9TT.s 			page 45
 
 
  1798              		.section	.text.estimate_inductance,"ax",%progbits
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  591:Core/Src/foc_utils.c **** 
  592:Core/Src/foc_utils.c ****     // Remove DC offset
  593:Core/Src/foc_utils.c ****     for (int i = 0; i < MAX_I_SAMPLE; i++) {
-ARM GAS  /tmp/ccO68Utc.s 			page 46
+ARM GAS  /tmp/ccm1m9TT.s 			page 46
 
 
  1848              		.loc 1 593 5 view .LVU513
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  1894 004e 02EB8302 		add	r2, r2, r3, lsl #2
  1895 0052 92ED007A 		vldr.32	s14, [r2]
  1896              		.loc 1 597 17 discriminator 3 view .LVU532
-ARM GAS  /tmp/ccO68Utc.s 			page 47
+ARM GAS  /tmp/ccm1m9TT.s 			page 47
 
 
  1897 0056 77EE877A 		vadd.f32	s15, s15, s14
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  1937              		.loc 1 589 31 view .LVU550
  1938 007e F0EE4CCA 		vmov.f32	s25, s24
  589:Core/Src/foc_utils.c ****     float mean_vd = 0, mean_vq = 0, mean_id = 0, mean_iq = 0;
-ARM GAS  /tmp/ccO68Utc.s 			page 48
+ARM GAS  /tmp/ccm1m9TT.s 			page 48
 
 
  1939              		.loc 1 589 21 view .LVU551
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  610:Core/Src/foc_utils.c ****         float id = Id_buff[i] - mean_id;
  1984              		.loc 1 610 9 is_stmt 1 discriminator 3 view .LVU568
  1985              		.loc 1 610 27 is_stmt 0 discriminator 3 view .LVU569
-ARM GAS  /tmp/ccO68Utc.s 			page 49
+ARM GAS  /tmp/ccm1m9TT.s 			page 49
 
 
  1986 00d0 6A4B     		ldr	r3, .L145+12
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  2034 0120 B0EE480A 		vmov.f32	s0, s16
  2035 0124 FFF7FEFF 		bl	fast_sin
  2036              	.LVL178:
-ARM GAS  /tmp/ccO68Utc.s 			page 50
+ARM GAS  /tmp/ccm1m9TT.s 			page 50
 
 
  2037              		.loc 1 616 20 discriminator 3 view .LVU588
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  2086              	.LBE7:
  605:Core/Src/foc_utils.c ****         float angle = hfoc->meas_inj_omega * i * ts;
  2087              		.loc 1 605 39 is_stmt 1 discriminator 3 view .LVU607
-ARM GAS  /tmp/ccO68Utc.s 			page 51
+ARM GAS  /tmp/ccm1m9TT.s 			page 51
 
 
  605:Core/Src/foc_utils.c ****         float angle = hfoc->meas_inj_omega * i * ts;
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  629:Core/Src/foc_utils.c **** 
  630:Core/Src/foc_utils.c ****     // V & I amplitude
  631:Core/Src/foc_utils.c ****     float Vd_mag = sqrtf(Vc_d * Vc_d + Vs_d * Vs_d);
-ARM GAS  /tmp/ccO68Utc.s 			page 52
+ARM GAS  /tmp/ccm1m9TT.s 			page 52
 
 
  2132              		.loc 1 631 5 is_stmt 1 view .LVU628
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  2180              		.loc 1 637 19 is_stmt 0 view .LVU645
  2181 01ea F0EE6F0A 		vmov.f32	s1, s31
  2182 01ee B0EE4F0A 		vmov.f32	s0, s30
-ARM GAS  /tmp/ccO68Utc.s 			page 53
+ARM GAS  /tmp/ccm1m9TT.s 			page 53
 
 
  2183              	.LVL212:
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  2228              	.LVL222:
  2229              		.loc 1 646 11 view .LVU661
  2230 0242 C7EE898A 		vdiv.f32	s17, s15, s18
-ARM GAS  /tmp/ccO68Utc.s 			page 54
+ARM GAS  /tmp/ccm1m9TT.s 			page 54
 
 
  2231              	.LVL223:
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  2279              		.cfi_restore 81
  2280              		.cfi_def_cfa_offset 12
  2281              	.LVL229:
-ARM GAS  /tmp/ccO68Utc.s 			page 55
+ARM GAS  /tmp/ccm1m9TT.s 			page 55
 
 
  2282              		.loc 1 652 1 view .LVU674
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  2332              		.loc 1 658 30 is_stmt 0 view .LVU683
  2333 000e 0123     		movs	r3, #1
  2334 0010 84F85030 		strb	r3, [r4, #80]
-ARM GAS  /tmp/ccO68Utc.s 			page 56
+ARM GAS  /tmp/ccm1m9TT.s 			page 56
 
 
  659:Core/Src/foc_utils.c ****     // waiting process
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  2377              		.loc 1 665 26 is_stmt 1 view -0
  2378              		.cfi_startproc
  2379              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccO68Utc.s 			page 57
+ARM GAS  /tmp/ccm1m9TT.s 			page 57
 
 
  2380              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  2422              		.loc 1 676 5 view .LVU701
  2423 003c 2046     		mov	r0, r4
  2424 003e FFF7FEFF 		bl	estimate_resistance
-ARM GAS  /tmp/ccO68Utc.s 			page 58
+ARM GAS  /tmp/ccm1m9TT.s 			page 58
 
 
  2425              	.LVL239:
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  2469 0074 00000000 		.word	hfoc
  2470 0078 00000000 		.word	.LANCHOR2
  2471 007c 00000000 		.word	.LANCHOR3
-ARM GAS  /tmp/ccO68Utc.s 			page 59
+ARM GAS  /tmp/ccm1m9TT.s 			page 59
 
 
  2472 0080 00100000 		.word	m_config+4096
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  688:Core/Src/foc_utils.c ****         return -1;
  689:Core/Src/foc_utils.c ****     }
  690:Core/Src/foc_utils.c **** 
-ARM GAS  /tmp/ccO68Utc.s 			page 60
+ARM GAS  /tmp/ccm1m9TT.s 			page 60
 
 
  691:Core/Src/foc_utils.c ****     hfoc.meas_inj_freq = f;
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  2561              		.loc 1 701 5 view .LVU727
  2562 0060 0220     		movs	r0, #2
  2563 0062 FFF7FEFF 		bl	start_measure
-ARM GAS  /tmp/ccO68Utc.s 			page 61
+ARM GAS  /tmp/ccm1m9TT.s 			page 61
 
 
  2564              	.LVL251:
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  721:Core/Src/foc_utils.c **** }
  2598              		.loc 1 721 1 view .LVU735
  2599 00a4 05B0     		add	sp, sp, #20
-ARM GAS  /tmp/ccO68Utc.s 			page 62
+ARM GAS  /tmp/ccm1m9TT.s 			page 62
 
 
  2600              	.LCFI34:
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  2651              		.loc 1 725 5 view .LVU739
  2652 0002 B7EE000A 		vmov.f32	s0, #1.0e+0
  2653 0006 FFF7FEFF 		bl	measure_R
-ARM GAS  /tmp/ccO68Utc.s 			page 63
+ARM GAS  /tmp/ccm1m9TT.s 			page 63
 
 
  2654              	.LVL258:
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  2699              		.align	1
  2700              		.global	open_loop_voltage_control
  2701              		.syntax unified
-ARM GAS  /tmp/ccO68Utc.s 			page 64
+ARM GAS  /tmp/ccm1m9TT.s 			page 64
 
 
  2702              		.thumb
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  745:Core/Src/foc_utils.c ****     inverse_park_transform(vd_ref, vq_ref, sin_theta, cos_theta, &valpha, &vbeta);
  2748              		.loc 1 745 5 is_stmt 1 view .LVU765
  2749 0022 06A9     		add	r1, sp, #24
-ARM GAS  /tmp/ccO68Utc.s 			page 65
+ARM GAS  /tmp/ccm1m9TT.s 			page 65
 
 
  2750 0024 07A8     		add	r0, sp, #28
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  2799 0078 28BF     		it	cs
  2800 007a 2B46     		movcs	r3, r5
  2801              	.L178:
-ARM GAS  /tmp/ccO68Utc.s 			page 66
+ARM GAS  /tmp/ccm1m9TT.s 			page 66
 
 
  2802              		.loc 1 750 11 discriminator 4 view .LVU780
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  2851              	.LCFI43:
  2852              		.cfi_def_cfa_offset 24
  2853              		.cfi_offset 80, -24
-ARM GAS  /tmp/ccO68Utc.s 			page 67
+ARM GAS  /tmp/ccm1m9TT.s 			page 67
 
 
  2854              		.cfi_offset 81, -20
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  2895              	.L181:
  384:Core/Src/foc_utils.c ****         rad_offset += DEG_TO_RAD(*hfoc->angle_filtered);
  2896              		.loc 1 384 21 is_stmt 1 discriminator 1 view .LVU800
-ARM GAS  /tmp/ccO68Utc.s 			page 68
+ARM GAS  /tmp/ccm1m9TT.s 			page 68
 
 
  384:Core/Src/foc_utils.c ****         rad_offset += DEG_TO_RAD(*hfoc->angle_filtered);
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  2940              	.L184:
  2941 0084 00000000 		.word	0
  2942 0088 00100000 		.word	m_config+4096
-ARM GAS  /tmp/ccO68Utc.s 			page 69
+ARM GAS  /tmp/ccm1m9TT.s 			page 69
 
 
  2943 008c 35FA8E3C 		.word	1016003125
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  2991 0010 FFF7FEFF 		bl	memset
  2992              	.LVL284:
  399:Core/Src/foc_utils.c ****     foc_cal_encoder_misalignment(hfoc);
-ARM GAS  /tmp/ccO68Utc.s 			page 70
+ARM GAS  /tmp/ccm1m9TT.s 			page 70
 
 
  2993              		.loc 1 399 5 is_stmt 1 view .LVU816
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  423:Core/Src/foc_utils.c ****     
  3034              		.loc 1 423 27 discriminator 2 view .LVU830
  3035 0040 83ED008A 		vstr.32	s16, [r3]
-ARM GAS  /tmp/ccO68Utc.s 			page 71
+ARM GAS  /tmp/ccm1m9TT.s 			page 71
 
 
  3036              	.LBE11:
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  3077 008a FFF7FEFF 		bl	osDelay
  3078              	.LVL297:
  408:Core/Src/foc_utils.c ****         float raw_delta = elec_rad - hfoc->e_angle_rad;
-ARM GAS  /tmp/ccO68Utc.s 			page 72
+ARM GAS  /tmp/ccm1m9TT.s 			page 72
 
 
  3079              		.loc 1 408 9 view .LVU844
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  3116              		.loc 1 418 15 is_stmt 0 view .LVU861
  3117 00c6 AFE7     		b	.L188
  3118              	.LVL304:
-ARM GAS  /tmp/ccO68Utc.s 			page 73
+ARM GAS  /tmp/ccm1m9TT.s 			page 73
 
 
  3119              	.L197:
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  428:Core/Src/foc_utils.c ****         if (error_temp[i] == 0) {
  3159              		.loc 1 428 42 is_stmt 0 discriminator 2 view .LVU876
  3160 00f8 0133     		adds	r3, r3, #1
-ARM GAS  /tmp/ccO68Utc.s 			page 74
+ARM GAS  /tmp/ccm1m9TT.s 			page 74
 
 
  3161              	.LVL308:
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  3199              	.LVL313:
  433:Core/Src/foc_utils.c ****         error_temp[i] = (error_temp[last_i] + error_temp[next_i]) / 2.0f;
  3200              		.loc 1 433 45 discriminator 1 view .LVU893
-ARM GAS  /tmp/ccO68Utc.s 			page 75
+ARM GAS  /tmp/ccm1m9TT.s 			page 75
 
 
  3201 0124 D5E7     		b	.L194
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  3248              	.LFE161:
  3250              		.section	.rodata.foc_auto_calibration.str1.4,"aMS",%progbits,1
  3251              		.align	2
-ARM GAS  /tmp/ccO68Utc.s 			page 76
+ARM GAS  /tmp/ccm1m9TT.s 			page 76
 
 
  3252              	.LC4:
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  3289 0002 2DED028B 		vpush.64	{d8}
  3290              	.LCFI49:
  3291              		.cfi_def_cfa_offset 24
-ARM GAS  /tmp/ccO68Utc.s 			page 77
+ARM GAS  /tmp/ccm1m9TT.s 			page 77
 
 
  3292              		.cfi_offset 80, -24
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  3329              		.loc 1 463 4 is_stmt 0 discriminator 1 view .LVU919
  3330 0020 312C     		cmp	r4, #49
  3331 0022 F6DD     		ble	.L204
-ARM GAS  /tmp/ccO68Utc.s 			page 78
+ARM GAS  /tmp/ccm1m9TT.s 			page 78
 
 
  3332              	.LBE16:
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  3371 005a 1EE0     		b	.L205
  3372              	.LVL330:
  3373              	.L206:
-ARM GAS  /tmp/ccO68Utc.s 			page 79
+ARM GAS  /tmp/ccm1m9TT.s 			page 79
 
 
  3374              	.LBB18:
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  3415 009e DDD3     		bcc	.L206
  3416              	.LBE17:
  492:Core/Src/foc_utils.c ****     
-ARM GAS  /tmp/ccO68Utc.s 			page 80
+ARM GAS  /tmp/ccm1m9TT.s 			page 80
 
 
  3417              		.loc 1 492 5 is_stmt 1 view .LVU948
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  3458 00e6 FFF7FEFF 		bl	puts
  3459              	.LVL342:
  3460              	.L211:
-ARM GAS  /tmp/ccO68Utc.s 			page 81
+ARM GAS  /tmp/ccm1m9TT.s 			page 81
 
 
  515:Core/Src/foc_utils.c ****     
@@ -4858,7 +4858,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  3506              	.L214:
  511:Core/Src/foc_utils.c ****         printf("Phase order & Sensor mismatched! Swapping (REVERSE)\r\n");
  3507              		.loc 1 511 9 view .LVU971
-ARM GAS  /tmp/ccO68Utc.s 			page 82
+ARM GAS  /tmp/ccm1m9TT.s 			page 82
 
 
  511:Core/Src/foc_utils.c ****         printf("Phase order & Sensor mismatched! Swapping (REVERSE)\r\n");
@@ -4918,7 +4918,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  520:Core/Src/foc_utils.c ****     const uint32_t wt = 256; // waiting time
  3557              		.loc 1 520 49 view .LVU979
  3558 000a 10B5     		push	{r4, lr}
-ARM GAS  /tmp/ccO68Utc.s 			page 83
+ARM GAS  /tmp/ccm1m9TT.s 			page 83
 
 
  3559              	.LCFI52:
@@ -4978,7 +4978,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  3602 003a 04F1A403 		add	r3, r4, #164
  3603 003e 04F1A002 		add	r2, r4, #160
  3604 0042 04F19C01 		add	r1, r4, #156
-ARM GAS  /tmp/ccO68Utc.s 			page 84
+ARM GAS  /tmp/ccm1m9TT.s 			page 84
 
 
  3605 0046 2046     		mov	r0, r4
@@ -5038,7 +5038,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  3644              		.loc 1 560 48 view .LVU1005
  3645 0086 2D4A     		ldr	r2, .L234+4
  3646 0088 02EB8303 		add	r3, r2, r3, lsl #2
-ARM GAS  /tmp/ccO68Utc.s 			page 85
+ARM GAS  /tmp/ccm1m9TT.s 			page 85
 
 
  3647 008c 83ED009A 		vstr.32	s18, [r3]
@@ -5098,7 +5098,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  3686 00c6 012B     		cmp	r3, #1
  3687 00c8 06D0     		beq	.L226
  536:Core/Src/foc_utils.c ****                 vd = 0.0f;
-ARM GAS  /tmp/ccO68Utc.s 			page 86
+ARM GAS  /tmp/ccm1m9TT.s 			page 86
 
 
  3688              		.loc 1 536 18 is_stmt 1 view .LVU1021
@@ -5158,7 +5158,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  557:Core/Src/foc_utils.c ****             }
  3728              		.loc 1 557 42 view .LVU1036
  3729 00f8 A3F58072 		sub	r2, r3, #256
-ARM GAS  /tmp/ccO68Utc.s 			page 87
+ARM GAS  /tmp/ccm1m9TT.s 			page 87
 
 
  557:Core/Src/foc_utils.c ****             }
@@ -5218,7 +5218,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  3773              		.loc 1 568 13 is_stmt 1 view .LVU1047
  568:Core/Src/foc_utils.c ****             open_loop_voltage_control(hfoc, 0, 0, 0);
  3774              		.loc 1 568 39 is_stmt 0 view .LVU1048
-ARM GAS  /tmp/ccO68Utc.s 			page 88
+ARM GAS  /tmp/ccm1m9TT.s 			page 88
 
 
  3775 011e 84F85030 		strb	r3, [r4, #80]
@@ -5278,7 +5278,7 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  3827              	Iq_buff:
  3828 0000 00000000 		.space	512
  3828      00000000 
-ARM GAS  /tmp/ccO68Utc.s 			page 89
+ARM GAS  /tmp/ccm1m9TT.s 			page 89
 
 
  3828      00000000 
@@ -5338,120 +5338,120 @@ ARM GAS  /tmp/ccO68Utc.s 			page 1
  3878              		.file 17 "/usr/include/newlib/stdio.h"
  3879              		.file 18 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
  3880              		.file 19 "/usr/include/newlib/math.h"
-ARM GAS  /tmp/ccO68Utc.s 			page 90
+ARM GAS  /tmp/ccm1m9TT.s 			page 90
 
 
  3881              		.file 20 "<built-in>"
-ARM GAS  /tmp/ccO68Utc.s 			page 91
+ARM GAS  /tmp/ccm1m9TT.s 			page 91
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 foc_utils.c
-     /tmp/ccO68Utc.s:18     .text.foc_pwm_init:0000000000000000 $t
-     /tmp/ccO68Utc.s:26     .text.foc_pwm_init:0000000000000000 foc_pwm_init
-     /tmp/ccO68Utc.s:82     .text.foc_motor_init:0000000000000000 $t
-     /tmp/ccO68Utc.s:89     .text.foc_motor_init:0000000000000000 foc_motor_init
-     /tmp/ccO68Utc.s:104    .text.foc_sensor_init:0000000000000000 $t
-     /tmp/ccO68Utc.s:111    .text.foc_sensor_init:0000000000000000 foc_sensor_init
-     /tmp/ccO68Utc.s:126    .text.foc_get_power_voltage:0000000000000000 $t
-     /tmp/ccO68Utc.s:133    .text.foc_get_power_voltage:0000000000000000 foc_get_power_voltage
-     /tmp/ccO68Utc.s:233    .text.foc_get_power_voltage:0000000000000088 $d
-     /tmp/ccO68Utc.s:241    .text.foc_get_v_phase:0000000000000000 $t
-     /tmp/ccO68Utc.s:248    .text.foc_get_v_phase:0000000000000000 foc_get_v_phase
-     /tmp/ccO68Utc.s:333    .text.foc_get_v_phase:0000000000000080 $d
-     /tmp/ccO68Utc.s:341    .text.foc_set_limit_current:0000000000000000 $t
-     /tmp/ccO68Utc.s:348    .text.foc_set_limit_current:0000000000000000 foc_set_limit_current
-     /tmp/ccO68Utc.s:369    .text.foc_MTPA:0000000000000000 $t
-     /tmp/ccO68Utc.s:376    .text.foc_MTPA:0000000000000000 foc_MTPA
-     /tmp/ccO68Utc.s:505    .text.foc_MTPA:0000000000000094 $d
-     /tmp/ccO68Utc.s:510    .text.foc_fw_set_vs_ref:0000000000000000 $t
-     /tmp/ccO68Utc.s:517    .text.foc_fw_set_vs_ref:0000000000000000 foc_fw_set_vs_ref
-     /tmp/ccO68Utc.s:534    .text.foc_fw_update:0000000000000000 $t
-     /tmp/ccO68Utc.s:541    .text.foc_fw_update:0000000000000000 foc_fw_update
-     /tmp/ccO68Utc.s:588    .text.foc_current_limit:0000000000000000 $t
-     /tmp/ccO68Utc.s:595    .text.foc_current_limit:0000000000000000 foc_current_limit
-     /tmp/ccO68Utc.s:678    .text.foc_current_control_update:0000000000000000 $t
-     /tmp/ccO68Utc.s:685    .text.foc_current_control_update:0000000000000000 foc_current_control_update
-     /tmp/ccO68Utc.s:924    .text.foc_current_control_update:0000000000000174 $d
-     /tmp/ccO68Utc.s:929    .text.foc_speed_control_update:0000000000000000 $t
-     /tmp/ccO68Utc.s:936    .text.foc_speed_control_update:0000000000000000 foc_speed_control_update
-     /tmp/ccO68Utc.s:999    .text.foc_position_control_update:0000000000000000 $t
-     /tmp/ccO68Utc.s:1006   .text.foc_position_control_update:0000000000000000 foc_position_control_update
-     /tmp/ccO68Utc.s:1068   .text.foc_sensored_calc_electric_angle:0000000000000000 $t
-     /tmp/ccO68Utc.s:1075   .text.foc_sensored_calc_electric_angle:0000000000000000 foc_sensored_calc_electric_angle
-     /tmp/ccO68Utc.s:1266   .text.foc_sensored_calc_electric_angle:0000000000000104 $d
-     /tmp/ccO68Utc.s:1276   .text.foc_calc_mech_rpm_encoder:0000000000000000 $t
-     /tmp/ccO68Utc.s:1283   .text.foc_calc_mech_rpm_encoder:0000000000000000 foc_calc_mech_rpm_encoder
-     /tmp/ccO68Utc.s:1301   .text.foc_torque_control_update:0000000000000000 $t
-     /tmp/ccO68Utc.s:1308   .text.foc_torque_control_update:0000000000000000 foc_torque_control_update
-     /tmp/ccO68Utc.s:1378   .text.foc_torque_control_update:0000000000000040 $d
-     /tmp/ccO68Utc.s:1386   .text.foc_impedance_control:0000000000000000 $t
-     /tmp/ccO68Utc.s:1393   .text.foc_impedance_control:0000000000000000 foc_impedance_control
-     /tmp/ccO68Utc.s:1476   .text.foc_impedance_control:0000000000000074 $d
-     /tmp/ccO68Utc.s:1483   .text.foc_calc_mech_pos_encoder:0000000000000000 $t
-     /tmp/ccO68Utc.s:1490   .text.foc_calc_mech_pos_encoder:0000000000000000 foc_calc_mech_pos_encoder
-     /tmp/ccO68Utc.s:1514   .text.foc_calc_mech_pos_encoder:0000000000000010 $d
-     /tmp/ccO68Utc.s:1519   .text.foc_control_loop:0000000000000000 $t
-     /tmp/ccO68Utc.s:1526   .text.foc_control_loop:0000000000000000 foc_control_loop
-     /tmp/ccO68Utc.s:1565   .text.foc_control_loop:0000000000000026 $d
-     /tmp/ccO68Utc.s:1569   .text.foc_control_loop:000000000000002a $t
-     /tmp/ccO68Utc.s:1673   .text.foc_control_loop:00000000000000a0 $d
-     /tmp/ccO68Utc.s:1680   .text.foc_start_calibration:0000000000000000 $t
-     /tmp/ccO68Utc.s:1687   .text.foc_start_calibration:0000000000000000 foc_start_calibration
-     /tmp/ccO68Utc.s:1708   .text.estimate_resistance:0000000000000000 $t
-     /tmp/ccO68Utc.s:1715   .text.estimate_resistance:0000000000000000 estimate_resistance
-     /tmp/ccO68Utc.s:1790   .text.estimate_resistance:000000000000004c $d
-     /tmp/ccO68Utc.s:1799   .text.estimate_inductance:0000000000000000 $t
-ARM GAS  /tmp/ccO68Utc.s 			page 92
+     /tmp/ccm1m9TT.s:18     .text.foc_pwm_init:0000000000000000 $t
+     /tmp/ccm1m9TT.s:26     .text.foc_pwm_init:0000000000000000 foc_pwm_init
+     /tmp/ccm1m9TT.s:82     .text.foc_motor_init:0000000000000000 $t
+     /tmp/ccm1m9TT.s:89     .text.foc_motor_init:0000000000000000 foc_motor_init
+     /tmp/ccm1m9TT.s:104    .text.foc_sensor_init:0000000000000000 $t
+     /tmp/ccm1m9TT.s:111    .text.foc_sensor_init:0000000000000000 foc_sensor_init
+     /tmp/ccm1m9TT.s:126    .text.foc_get_power_voltage:0000000000000000 $t
+     /tmp/ccm1m9TT.s:133    .text.foc_get_power_voltage:0000000000000000 foc_get_power_voltage
+     /tmp/ccm1m9TT.s:233    .text.foc_get_power_voltage:0000000000000088 $d
+     /tmp/ccm1m9TT.s:241    .text.foc_get_v_phase:0000000000000000 $t
+     /tmp/ccm1m9TT.s:248    .text.foc_get_v_phase:0000000000000000 foc_get_v_phase
+     /tmp/ccm1m9TT.s:333    .text.foc_get_v_phase:0000000000000080 $d
+     /tmp/ccm1m9TT.s:341    .text.foc_set_limit_current:0000000000000000 $t
+     /tmp/ccm1m9TT.s:348    .text.foc_set_limit_current:0000000000000000 foc_set_limit_current
+     /tmp/ccm1m9TT.s:369    .text.foc_MTPA:0000000000000000 $t
+     /tmp/ccm1m9TT.s:376    .text.foc_MTPA:0000000000000000 foc_MTPA
+     /tmp/ccm1m9TT.s:505    .text.foc_MTPA:0000000000000094 $d
+     /tmp/ccm1m9TT.s:510    .text.foc_fw_set_vs_ref:0000000000000000 $t
+     /tmp/ccm1m9TT.s:517    .text.foc_fw_set_vs_ref:0000000000000000 foc_fw_set_vs_ref
+     /tmp/ccm1m9TT.s:534    .text.foc_fw_update:0000000000000000 $t
+     /tmp/ccm1m9TT.s:541    .text.foc_fw_update:0000000000000000 foc_fw_update
+     /tmp/ccm1m9TT.s:588    .text.foc_current_limit:0000000000000000 $t
+     /tmp/ccm1m9TT.s:595    .text.foc_current_limit:0000000000000000 foc_current_limit
+     /tmp/ccm1m9TT.s:678    .text.foc_current_control_update:0000000000000000 $t
+     /tmp/ccm1m9TT.s:685    .text.foc_current_control_update:0000000000000000 foc_current_control_update
+     /tmp/ccm1m9TT.s:924    .text.foc_current_control_update:0000000000000174 $d
+     /tmp/ccm1m9TT.s:929    .text.foc_speed_control_update:0000000000000000 $t
+     /tmp/ccm1m9TT.s:936    .text.foc_speed_control_update:0000000000000000 foc_speed_control_update
+     /tmp/ccm1m9TT.s:999    .text.foc_position_control_update:0000000000000000 $t
+     /tmp/ccm1m9TT.s:1006   .text.foc_position_control_update:0000000000000000 foc_position_control_update
+     /tmp/ccm1m9TT.s:1068   .text.foc_sensored_calc_electric_angle:0000000000000000 $t
+     /tmp/ccm1m9TT.s:1075   .text.foc_sensored_calc_electric_angle:0000000000000000 foc_sensored_calc_electric_angle
+     /tmp/ccm1m9TT.s:1266   .text.foc_sensored_calc_electric_angle:0000000000000104 $d
+     /tmp/ccm1m9TT.s:1276   .text.foc_calc_mech_rpm_encoder:0000000000000000 $t
+     /tmp/ccm1m9TT.s:1283   .text.foc_calc_mech_rpm_encoder:0000000000000000 foc_calc_mech_rpm_encoder
+     /tmp/ccm1m9TT.s:1301   .text.foc_torque_control_update:0000000000000000 $t
+     /tmp/ccm1m9TT.s:1308   .text.foc_torque_control_update:0000000000000000 foc_torque_control_update
+     /tmp/ccm1m9TT.s:1378   .text.foc_torque_control_update:0000000000000040 $d
+     /tmp/ccm1m9TT.s:1386   .text.foc_impedance_control:0000000000000000 $t
+     /tmp/ccm1m9TT.s:1393   .text.foc_impedance_control:0000000000000000 foc_impedance_control
+     /tmp/ccm1m9TT.s:1476   .text.foc_impedance_control:0000000000000074 $d
+     /tmp/ccm1m9TT.s:1483   .text.foc_calc_mech_pos_encoder:0000000000000000 $t
+     /tmp/ccm1m9TT.s:1490   .text.foc_calc_mech_pos_encoder:0000000000000000 foc_calc_mech_pos_encoder
+     /tmp/ccm1m9TT.s:1514   .text.foc_calc_mech_pos_encoder:0000000000000010 $d
+     /tmp/ccm1m9TT.s:1519   .text.foc_control_loop:0000000000000000 $t
+     /tmp/ccm1m9TT.s:1526   .text.foc_control_loop:0000000000000000 foc_control_loop
+     /tmp/ccm1m9TT.s:1565   .text.foc_control_loop:0000000000000026 $d
+     /tmp/ccm1m9TT.s:1569   .text.foc_control_loop:000000000000002a $t
+     /tmp/ccm1m9TT.s:1673   .text.foc_control_loop:00000000000000a0 $d
+     /tmp/ccm1m9TT.s:1680   .text.foc_start_calibration:0000000000000000 $t
+     /tmp/ccm1m9TT.s:1687   .text.foc_start_calibration:0000000000000000 foc_start_calibration
+     /tmp/ccm1m9TT.s:1708   .text.estimate_resistance:0000000000000000 $t
+     /tmp/ccm1m9TT.s:1715   .text.estimate_resistance:0000000000000000 estimate_resistance
+     /tmp/ccm1m9TT.s:1790   .text.estimate_resistance:000000000000004c $d
+     /tmp/ccm1m9TT.s:1799   .text.estimate_inductance:0000000000000000 $t
+ARM GAS  /tmp/ccm1m9TT.s 			page 92
 
 
-     /tmp/ccO68Utc.s:1806   .text.estimate_inductance:0000000000000000 estimate_inductance
-     /tmp/ccO68Utc.s:2289   .text.estimate_inductance:0000000000000270 $d
-     /tmp/ccO68Utc.s:2301   .text.start_measure:0000000000000000 $t
-     /tmp/ccO68Utc.s:2308   .text.start_measure:0000000000000000 start_measure
-     /tmp/ccO68Utc.s:2356   .text.start_measure:0000000000000028 $d
-     /tmp/ccO68Utc.s:2362   .rodata.measure_R.str1.4:0000000000000000 $d
-     /tmp/ccO68Utc.s:2367   .text.measure_R:0000000000000000 $t
-     /tmp/ccO68Utc.s:2374   .text.measure_R:0000000000000000 measure_R
-     /tmp/ccO68Utc.s:2469   .text.measure_R:0000000000000074 $d
-     /tmp/ccO68Utc.s:2478   .rodata.measure_L.str1.4:0000000000000000 $d
-     /tmp/ccO68Utc.s:2483   .text.measure_L:0000000000000000 $t
-     /tmp/ccO68Utc.s:2490   .text.measure_L:0000000000000000 measure_L
-     /tmp/ccO68Utc.s:2620   .text.measure_L:00000000000000b0 $d
-     /tmp/ccO68Utc.s:2633   .text.calibration_seq:0000000000000000 $t
-     /tmp/ccO68Utc.s:2640   .text.calibration_seq:0000000000000000 calibration_seq
-     /tmp/ccO68Utc.s:2691   .text.calibration_seq:000000000000003c $d
-     /tmp/ccO68Utc.s:2699   .text.open_loop_voltage_control:0000000000000000 $t
-     /tmp/ccO68Utc.s:2706   .text.open_loop_voltage_control:0000000000000000 open_loop_voltage_control
-     /tmp/ccO68Utc.s:2824   .rodata.foc_cal_encoder_misalignment.str1.4:0000000000000000 $d
-     /tmp/ccO68Utc.s:2828   .text.foc_cal_encoder_misalignment:0000000000000000 $t
-     /tmp/ccO68Utc.s:2835   .text.foc_cal_encoder_misalignment:0000000000000000 foc_cal_encoder_misalignment
-     /tmp/ccO68Utc.s:2941   .text.foc_cal_encoder_misalignment:0000000000000084 $d
-     /tmp/ccO68Utc.s:2951   .rodata.foc_cal_encoder.str1.4:0000000000000000 $d
-     /tmp/ccO68Utc.s:2955   .text.foc_cal_encoder:0000000000000000 $t
-     /tmp/ccO68Utc.s:2962   .text.foc_cal_encoder:0000000000000000 foc_cal_encoder
-     /tmp/ccO68Utc.s:3238   .text.foc_cal_encoder:0000000000000150 $d
-     /tmp/ccO68Utc.s:3847   .bss.error_temp:0000000000000000 error_temp
-     /tmp/ccO68Utc.s:3251   .rodata.foc_auto_calibration.str1.4:0000000000000000 $d
-     /tmp/ccO68Utc.s:3267   .text.foc_auto_calibration:0000000000000000 $t
-     /tmp/ccO68Utc.s:3274   .text.foc_auto_calibration:0000000000000000 foc_auto_calibration
-     /tmp/ccO68Utc.s:3520   .text.foc_auto_calibration:0000000000000140 $d
-     /tmp/ccO68Utc.s:3536   .text.meas_inj_dq_process:0000000000000000 $t
-     /tmp/ccO68Utc.s:3543   .text.meas_inj_dq_process:0000000000000000 meas_inj_dq_process
-     /tmp/ccO68Utc.s:3801   .text.meas_inj_dq_process:0000000000000138 $d
-     /tmp/ccO68Utc.s:3827   .bss.Iq_buff:0000000000000000 Iq_buff
-     /tmp/ccO68Utc.s:3820   .bss.Id_buff:0000000000000000 Id_buff
-     /tmp/ccO68Utc.s:3841   .bss.Vq_buff:0000000000000000 Vq_buff
-     /tmp/ccO68Utc.s:3834   .bss.Vd_buff:0000000000000000 Vd_buff
-     /tmp/ccO68Utc.s:3859   .bss.foc_ready:0000000000000000 foc_ready
-     /tmp/ccO68Utc.s:3816   .bss.Id_buff:0000000000000000 $d
-     /tmp/ccO68Utc.s:3823   .bss.Iq_buff:0000000000000000 $d
-     /tmp/ccO68Utc.s:3830   .bss.Vd_buff:0000000000000000 $d
-     /tmp/ccO68Utc.s:3837   .bss.Vq_buff:0000000000000000 $d
-     /tmp/ccO68Utc.s:3844   .bss.error_temp:0000000000000000 $d
-     /tmp/ccO68Utc.s:3853   .bss.event_speed_loop_count.0:0000000000000000 event_speed_loop_count.0
-     /tmp/ccO68Utc.s:3854   .bss.event_speed_loop_count.0:0000000000000000 $d
-     /tmp/ccO68Utc.s:3860   .bss.foc_ready:0000000000000000 $d
+     /tmp/ccm1m9TT.s:1806   .text.estimate_inductance:0000000000000000 estimate_inductance
+     /tmp/ccm1m9TT.s:2289   .text.estimate_inductance:0000000000000270 $d
+     /tmp/ccm1m9TT.s:2301   .text.start_measure:0000000000000000 $t
+     /tmp/ccm1m9TT.s:2308   .text.start_measure:0000000000000000 start_measure
+     /tmp/ccm1m9TT.s:2356   .text.start_measure:0000000000000028 $d
+     /tmp/ccm1m9TT.s:2362   .rodata.measure_R.str1.4:0000000000000000 $d
+     /tmp/ccm1m9TT.s:2367   .text.measure_R:0000000000000000 $t
+     /tmp/ccm1m9TT.s:2374   .text.measure_R:0000000000000000 measure_R
+     /tmp/ccm1m9TT.s:2469   .text.measure_R:0000000000000074 $d
+     /tmp/ccm1m9TT.s:2478   .rodata.measure_L.str1.4:0000000000000000 $d
+     /tmp/ccm1m9TT.s:2483   .text.measure_L:0000000000000000 $t
+     /tmp/ccm1m9TT.s:2490   .text.measure_L:0000000000000000 measure_L
+     /tmp/ccm1m9TT.s:2620   .text.measure_L:00000000000000b0 $d
+     /tmp/ccm1m9TT.s:2633   .text.calibration_seq:0000000000000000 $t
+     /tmp/ccm1m9TT.s:2640   .text.calibration_seq:0000000000000000 calibration_seq
+     /tmp/ccm1m9TT.s:2691   .text.calibration_seq:000000000000003c $d
+     /tmp/ccm1m9TT.s:2699   .text.open_loop_voltage_control:0000000000000000 $t
+     /tmp/ccm1m9TT.s:2706   .text.open_loop_voltage_control:0000000000000000 open_loop_voltage_control
+     /tmp/ccm1m9TT.s:2824   .rodata.foc_cal_encoder_misalignment.str1.4:0000000000000000 $d
+     /tmp/ccm1m9TT.s:2828   .text.foc_cal_encoder_misalignment:0000000000000000 $t
+     /tmp/ccm1m9TT.s:2835   .text.foc_cal_encoder_misalignment:0000000000000000 foc_cal_encoder_misalignment
+     /tmp/ccm1m9TT.s:2941   .text.foc_cal_encoder_misalignment:0000000000000084 $d
+     /tmp/ccm1m9TT.s:2951   .rodata.foc_cal_encoder.str1.4:0000000000000000 $d
+     /tmp/ccm1m9TT.s:2955   .text.foc_cal_encoder:0000000000000000 $t
+     /tmp/ccm1m9TT.s:2962   .text.foc_cal_encoder:0000000000000000 foc_cal_encoder
+     /tmp/ccm1m9TT.s:3238   .text.foc_cal_encoder:0000000000000150 $d
+     /tmp/ccm1m9TT.s:3847   .bss.error_temp:0000000000000000 error_temp
+     /tmp/ccm1m9TT.s:3251   .rodata.foc_auto_calibration.str1.4:0000000000000000 $d
+     /tmp/ccm1m9TT.s:3267   .text.foc_auto_calibration:0000000000000000 $t
+     /tmp/ccm1m9TT.s:3274   .text.foc_auto_calibration:0000000000000000 foc_auto_calibration
+     /tmp/ccm1m9TT.s:3520   .text.foc_auto_calibration:0000000000000140 $d
+     /tmp/ccm1m9TT.s:3536   .text.meas_inj_dq_process:0000000000000000 $t
+     /tmp/ccm1m9TT.s:3543   .text.meas_inj_dq_process:0000000000000000 meas_inj_dq_process
+     /tmp/ccm1m9TT.s:3801   .text.meas_inj_dq_process:0000000000000138 $d
+     /tmp/ccm1m9TT.s:3827   .bss.Iq_buff:0000000000000000 Iq_buff
+     /tmp/ccm1m9TT.s:3820   .bss.Id_buff:0000000000000000 Id_buff
+     /tmp/ccm1m9TT.s:3841   .bss.Vq_buff:0000000000000000 Vq_buff
+     /tmp/ccm1m9TT.s:3834   .bss.Vd_buff:0000000000000000 Vd_buff
+     /tmp/ccm1m9TT.s:3859   .bss.foc_ready:0000000000000000 foc_ready
+     /tmp/ccm1m9TT.s:3816   .bss.Id_buff:0000000000000000 $d
+     /tmp/ccm1m9TT.s:3823   .bss.Iq_buff:0000000000000000 $d
+     /tmp/ccm1m9TT.s:3830   .bss.Vd_buff:0000000000000000 $d
+     /tmp/ccm1m9TT.s:3837   .bss.Vq_buff:0000000000000000 $d
+     /tmp/ccm1m9TT.s:3844   .bss.error_temp:0000000000000000 $d
+     /tmp/ccm1m9TT.s:3853   .bss.event_speed_loop_count.0:0000000000000000 event_speed_loop_count.0
+     /tmp/ccm1m9TT.s:3854   .bss.event_speed_loop_count.0:0000000000000000 $d
+     /tmp/ccm1m9TT.s:3860   .bss.foc_ready:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 m_config
@@ -5462,7 +5462,7 @@ pre_calc_sin_cos
 clarke_park_transform
 second_order_lpf_update
 inverse_park_transform
-ARM GAS  /tmp/ccO68Utc.s 			page 93
+ARM GAS  /tmp/ccm1m9TT.s 			page 93
 
 
 svpwm
