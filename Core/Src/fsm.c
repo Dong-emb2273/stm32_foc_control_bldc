@@ -25,9 +25,6 @@
 extern UART_HandleTypeDef huart;
 extern JointCommand_t joint_cmd;
 // extern JointRobot_t robot_joints;
-extern float sPoint_Vel ;
-extern float sPoint_Pos ;
-extern float sPoint_Tor;
 
 
 
@@ -118,6 +115,9 @@ void fsm_exit_state(FSMStruct * fsmstate){
 	* Do necessary cleanup  */
 
 	switch(fsmstate->state){
+		case DEFAUL_MODE:
+			fsmstate->ready = 1;
+			break;
 		case MENU_MODE:
 			//printf("Leaving Main Menu\r\n");
 			// DRV8323_Set_PWM(&hfoc.drv8323s, 0, 0, 0);
@@ -266,7 +266,7 @@ void TestModeView(void) {
 	float iq_sp = SPOINT_TOR;
 	float vel_sp = SPOINT_VEL;
 	float pos_sp = SPOINT_POS;
-	float id = hfoc.iq_filtered;
+	float id = hfoc.id;
 	float iq = hfoc.iq;
 	float ia = hfoc.ia;
 	float ib = hfoc.ib;
@@ -416,14 +416,14 @@ void set_pid_mode(FSMStruct * fsmstate){
 
 		case 'v':{
 			TF_VIEW;
-			printf("\n\r  Updated view: %d\r\n", RF_VIEW);
+			printf("\n\r  Updated view: %d\r\n", !!RF_VIEW);
 
 			break;
 		}
 		case 'l':
 			I_MAX = fmaxf(fminf(atof(fsmstate->cmd_buff), 75.0f), 0.0f);
-			// pid_set_out_constraint(&hfoc.id_ctrl, I_MAX, -I_MAX);
-			// pid_set_out_constraint(&hfoc.iq_ctrl, I_MAX, -I_MAX);
+			pid_set_out_constraint(&hfoc.id_ctrl, I_MAX, -I_MAX);
+			pid_set_out_constraint(&hfoc.iq_ctrl, I_MAX, -I_MAX);
 			foc_set_limit_current(&hfoc, I_MAX);
 			printf("I_MAX set to %f\r\n", I_MAX);
 			break;
@@ -528,6 +528,7 @@ void enter_setup_state(void){
 	printf("\r\n Motor:\r\n");
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "g", "Gear Ratio", "0", "-", GR);
 	printf(" %-4s %-31s %-5s %-6s %.3f\n\r", "k", "Torque Constant (N-m/A)", "0", "-", KT);
+	printf(" %-4s %-31s %-5s %-6s %d\n\r", "r", "Auto Run (0:Off, 1:On)", "0", "1", !!RF_AUTO_RUN);
 	
 	printf("\r\n Control:\r\n");
 	printf(" %-4s %-31s %-5s %-6s %d\n\r", "o", "Control Mode(0:Tor,1:Spd,2:Pos,3:Imp)", "0", "3", CONTROL_MODE);
@@ -602,6 +603,11 @@ void process_user_input(FSMStruct * fsmstate){
 			foc_set_limit_current(&hfoc, I_MAX);
 			printf("I_MAX set to %f\r\n", I_MAX);
 			break;
+		case 'r':
+			TF_AUTO_RUN;
+			if(RF_AUTO_RUN) printf("Enable Auto Run Mode\r\n");
+			else printf("Disnable Auto Run Mode\r\n");
+			break;
 		// case 'f':
 		// 	I_FW_MAX = fmaxf(fminf(atof(fsmstate->cmd_buff), 33.0f), 0.0f);
 		// 	printf("I_FW_MAX set to %f\r\n", I_FW_MAX);
@@ -646,7 +652,7 @@ void process_user_input(FSMStruct * fsmstate){
 			printf("V_MAX set to %f\r\n", V_MAX);
 			break;
 		default:
-			 printf("\n\r '%c' Not a valid command prefix\n\r\n\r", fsmstate->cmd_id);
+			printf("\n\r '%c' Not a valid command prefix\n\r\n\r", fsmstate->cmd_id);
 			break;
 
 		}

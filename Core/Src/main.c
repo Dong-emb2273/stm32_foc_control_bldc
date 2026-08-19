@@ -69,8 +69,8 @@ const osThreadAttr_t CalibrationTask_attributes = {
 osThreadId_t ErrorTaskHandle;
 const osThreadAttr_t ErrorTask_attributes = {
   .name = "ErrorTask",
-  .stack_size = 512 * 4, // Cấp phát 512 bytes RAM cho ngăn xếp (Stack)
-  .priority = (osPriority_t) osPriorityNormal, // Mức ưu tiên
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
 };
 
 FSMStruct state;
@@ -266,10 +266,11 @@ int main(void)
 
   /* Start the FSM */
   hfoc.control_mode = CONTROL_MODE;
-  state.state = MENU_MODE;
-  state.next_state = STATE;
-  state.ready = 1;
+  state.state = DEFAUL_MODE;
+  state.next_state = MENU_MODE;
+  state.ready = 0;
 
+  /* FLASH SETUP */
   CLEAR_BIT(STATUS_FLAGS, BF_RUNNING | BF_POWER | BF_SAVE | BF_VIEW );
 
   // Output PWM
@@ -489,8 +490,9 @@ void ADC_IRQHandler(void) {
 
 void ErrorTask(void *argument)
 {
-
-  osDelay(3000);
+  osDelay(1000);
+  if(RF_AUTO_RUN) state.next_state = MOTOR_MODE;
+  osDelay(2000);
 
   for(;;)
   {

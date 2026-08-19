@@ -30,6 +30,7 @@ extern "C" {
 #define TEST_MODE           4
 #define ENCODER_MODE        5
 #define SET_PID_MODE        6
+#define DEFAUL_MODE			20
 
 #define MENU_CMD			27
 #define MOTOR_CMD			'm'

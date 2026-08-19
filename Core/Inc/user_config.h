@@ -109,7 +109,7 @@ extern motor_config_t m_config;
 #define BF_VIEW                 (1UL << 4)   // Bit flag for current view
 #define BF_FOC_RUNNING          (1UL << 5)   // Bit flag for FOC running status
 #define BF_FOC_READY            (1UL << 6)   // Bit flag for FOC ready status
-
+#define BF_AUTO_RUN             (1UL << 10)
 
 
 
@@ -156,6 +156,10 @@ extern motor_config_t m_config;
 #define CF_DRV_READY            CLEAR_BIT(STATUS_FLAGS, BF_DRV_READY) // Clear driver ready flag
 #define RF_DRV_READY            READ_BIT(STATUS_FLAGS, BF_DRV_READY)  // Read driver ready flag
 
+#define SF_AUTO_RUN             SET_BIT(STATUS_FLAGS, BF_AUTO_RUN) 
+#define CF_AUTO_RUN             CLEAR_BIT(STATUS_FLAGS, BF_AUTO_RUN) 
+#define RF_AUTO_RUN             READ_BIT(STATUS_FLAGS, BF_AUTO_RUN)
+#define TF_AUTO_RUN             TOGGLE_BIT(STATUS_FLAGS, BF_AUTO_RUN)  
 
 
 #ifdef __cplusplus
