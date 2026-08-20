@@ -192,13 +192,18 @@ void foc_current_control_update(foc_t *hfoc) {
 	}
 
     DRV8323_Get_Current(&hfoc->drv8323s, &hfoc->ia, &hfoc->ib,&hfoc->ic);
+    
+    if(CAN_TIMEOUT > 0 && hfoc->counter > CAN_TIMEOUT){
+        hfoc->iq_ref = 0;
+        hfoc->id_ref = 0;
+	}
 
     float target_id = CONSTRAIN(hfoc->id_ref, -hfoc->max_current, hfoc->max_current);
     float target_iq = CONSTRAIN(hfoc->iq_ref, -hfoc->max_current, hfoc->max_current);
 
     if (DIR_PHASE == REVERSE_DIR) {
         target_iq = -target_iq;  
-        target_id = target_id;
+        target_id = -target_id;
     }
     
 	float sin_theta, cos_theta;
@@ -477,8 +482,6 @@ void foc_auto_calibration(foc_t *hfoc) {
 
     float actual_theta_start = ENCODER_GetActualDegree(&encoder);
     
-    // printf("Starting angle: %f degrees\r\n", actual_theta_start);
-    // printf("Starting angle: %f degrees\r\n", M_ZERO);
 
     for (uint32_t i = 0; i < total_steps; i++) {
         float elapsed_sec = (float)i * step_delay_ms / 1000.0f; 
@@ -490,8 +493,6 @@ void foc_auto_calibration(foc_t *hfoc) {
 
   
     float actual_theta_end = ENCODER_GetActualDegree(&encoder);
-    
-    // printf("Ending angle: %f degrees\r\n", actual_theta_end);
 
     open_loop_voltage_control(hfoc, 0.0f, 0.0f, 0.0f); 
     

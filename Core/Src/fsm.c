@@ -51,6 +51,7 @@ void run_fsm(FSMStruct * fsmstate){
 
 		case MOTOR_MODE:
 			/* If CAN has timed out, reset all commands */
+			
 			foc_control_loop(&hfoc);
 			break;
 
@@ -132,6 +133,8 @@ void fsm_exit_state(FSMStruct * fsmstate){
 			// DRV8323_Set_PWM(&hfoc.drv8323s, 0, 0, 0);
 			pid_reset(&hfoc.id_ctrl);
 			pid_reset(&hfoc.iq_ctrl);
+			pid_reset(&hfoc.speed_ctrl);
+			pid_reset(&hfoc.pos_ctrl);
 			flash_save_config(&m_config); 
 			CF_RUNNING;
 			fsmstate->ready = 1;
@@ -210,7 +213,7 @@ void update_fsm(FSMStruct * fsmstate, char fsm_input){
 				fsmstate->cmd_buff[fsmstate->bytecount-1] = fsm_input;
 				fsmstate->bytecount = fsmstate->bytecount%(sizeof(fsmstate->cmd_buff)/sizeof(fsmstate->cmd_buff[0])); // reset when buffer is full
 			}
-			HAL_UART_Transmit(&huart, (uint8_t *)&fsm_input, 1, 2);
+			HAL_UART_Transmit(&huart, (uint8_t *)&fsm_input, 1, 20);
 			fsmstate->bytecount++;
 			/* If enter is typed, process user input */
 
@@ -540,7 +543,7 @@ void enter_setup_state(void){
 	printf("\r\n CAN:\r\n");
 	printf(" %-4s %-31s %-5s %-6s %-5li\n\r", "i", "CAN ID", "0", "127", CAN_SID);
 	printf(" %-4s %-31s %-5s %-6s %-5li\n\r", "m", "CAN TX ID", "0", "127", CAN_MID);
-	printf(" %-4s %-31s %-5s %-6s %-5li\n\r", "t", "CAN Timeout (cycles)(0 = none)", "0", "100000", CAN_TIMEOUT);
+	printf(" %-4s %-31s %-5s %-6s %-5li\n\r", "t", "CAN Timeout (ms)(0 = none)", "0", "20000", CAN_TIMEOUT);
 	printf(" \n\r To change a value, type 'prefix''value''ENTER'\n\r e.g. 'b1000''ENTER'\r\n ");
 	printf("VALUES NOT ACTIVE UNTIL POWER CYCLE! \n\r\n\r");
 }
@@ -587,7 +590,7 @@ void process_user_input(FSMStruct * fsmstate){
 			printf("CAN_MID set to %ld\r\n", CAN_MID);
 			break;
 		case 't':
-			CAN_TIMEOUT = CONSTRAIN(atoi(fsmstate->cmd_buff), 0, 100000);
+			CAN_TIMEOUT = CONSTRAIN(atoi(fsmstate->cmd_buff), 0, 20000);
 			printf("CAN_TIMEOUT set to %ld\r\n", CAN_TIMEOUT);
 			break;
 

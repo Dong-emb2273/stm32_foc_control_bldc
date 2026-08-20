@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccE2OsQN.s 			page 1
+ARM GAS  /tmp/cc4g5kiH.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
    8:Core/Src/flash.c ****     FLASH_EraseInitTypeDef EraseInitStruct;
   49              		.loc 1 8 5 view .LVU3
    9:Core/Src/flash.c ****     uint32_t SectorError = 0;
-ARM GAS  /tmp/ccE2OsQN.s 			page 2
+ARM GAS  /tmp/cc4g5kiH.s 			page 2
 
 
   50              		.loc 1 9 5 view .LVU4
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
   91              	.LBB2:
   23:Core/Src/flash.c ****         HAL_FLASH_Lock();
   24:Core/Src/flash.c ****         return status;
-ARM GAS  /tmp/ccE2OsQN.s 			page 3
+ARM GAS  /tmp/cc4g5kiH.s 			page 3
 
 
   25:Core/Src/flash.c ****     }
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  130 0056 0434     		adds	r4, r4, #4
  131              	.LVL8:
   30:Core/Src/flash.c ****         uint32_t word = *(uint32_t*)(src + i);
-ARM GAS  /tmp/ccE2OsQN.s 			page 4
+ARM GAS  /tmp/cc4g5kiH.s 			page 4
 
 
  132              		.loc 1 30 56 discriminator 2 view .LVU38
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  172              		.loc 1 41 5 view .LVU48
   41:Core/Src/flash.c **** }
  173              		.loc 1 41 12 is_stmt 0 view .LVU49
-ARM GAS  /tmp/ccE2OsQN.s 			page 5
+ARM GAS  /tmp/cc4g5kiH.s 			page 5
 
 
  174 0072 4746     		mov	r7, r8
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
   52:Core/Src/flash.c ****     EraseInitStruct.Sector       = FLASH_SECTOR_NUM;
  221              		.loc 1 52 5 is_stmt 1 view .LVU60
  222              		.loc 1 52 34 is_stmt 0 view .LVU61
-ARM GAS  /tmp/ccE2OsQN.s 			page 6
+ARM GAS  /tmp/cc4g5kiH.s 			page 6
 
 
  223 0012 0B23     		movs	r3, #11
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  271              		.cfi_offset 3, -24
  272              		.cfi_offset 4, -20
  273              		.cfi_offset 5, -16
-ARM GAS  /tmp/ccE2OsQN.s 			page 7
+ARM GAS  /tmp/cc4g5kiH.s 			page 7
 
 
  274              		.cfi_offset 6, -12
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  314 0022 3259     		ldr	r2, [r6, r4]
  315 0024 0023     		movs	r3, #0
  316 0026 2946     		mov	r1, r5
-ARM GAS  /tmp/ccE2OsQN.s 			page 8
+ARM GAS  /tmp/cc4g5kiH.s 			page 8
 
 
  317 0028 0220     		movs	r0, #2
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
   82:Core/Src/flash.c **** }
  354              		.loc 1 82 5 view .LVU102
   82:Core/Src/flash.c **** }
-ARM GAS  /tmp/ccE2OsQN.s 			page 9
+ARM GAS  /tmp/cc4g5kiH.s 			page 9
 
 
  355              		.loc 1 82 12 is_stmt 0 view .LVU103
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  396 0008 4360     		str	r3, [r0, #4]	@ float
   99:Core/Src/flash.c ****     data->id_ki = 4.0422f;
  397              		.loc 1 99 5 is_stmt 1 view .LVU108
-ARM GAS  /tmp/ccE2OsQN.s 			page 10
+ARM GAS  /tmp/cc4g5kiH.s 			page 10
 
 
  398              		.loc 1 99 17 is_stmt 0 view .LVU109
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  436 002c 4163     		str	r1, [r0, #52]	@ float
  116:Core/Src/flash.c ****     data->speed_out_max = 10.0f;
  437              		.loc 1 116 5 is_stmt 1 view .LVU130
-ARM GAS  /tmp/ccE2OsQN.s 			page 11
+ARM GAS  /tmp/cc4g5kiH.s 			page 11
 
 
  438              		.loc 1 116 25 is_stmt 0 view .LVU131
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  477 0052 314B     		ldr	r3, .L27+44
  478 0054 0367     		str	r3, [r0, #112]	@ float
  132:Core/Src/flash.c ****     data->voffset_b = 1995.0f;
-ARM GAS  /tmp/ccE2OsQN.s 			page 12
+ARM GAS  /tmp/cc4g5kiH.s 			page 12
 
 
  479              		.loc 1 132 5 is_stmt 1 view .LVU154
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  521              		.loc 1 144 5 is_stmt 1 view .LVU175
  522              		.loc 1 144 22 is_stmt 0 view .LVU176
  523 0090 4FF07E53 		mov	r3, #1065353216
-ARM GAS  /tmp/ccE2OsQN.s 			page 13
+ARM GAS  /tmp/cc4g5kiH.s 			page 13
 
 
  524 0094 C4F89430 		str	r3, [r4, #148]	@ float
@@ -760,7 +760,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  550              		.loc 1 154 5 is_stmt 1 view .LVU191
  551              		.loc 1 154 23 is_stmt 0 view .LVU192
  552 00bc 4FF47A73 		mov	r3, #1000
- 553 00c0 C4F8AC30 		str	r3, [r4, #172]
+ 553 00c0 A4F8AC30 		strh	r3, [r4, #172]	@ movhi
  155:Core/Src/flash.c **** 
  156:Core/Src/flash.c ****     data->pos_max = 12.5f;
  554              		.loc 1 156 5 is_stmt 1 view .LVU193
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  564 00d0 184B     		ldr	r3, .L27+72
  565 00d2 C4F8B830 		str	r3, [r4, #184]	@ float
  159:Core/Src/flash.c ****     data->kp_min = 0.0f;
-ARM GAS  /tmp/ccE2OsQN.s 			page 14
+ARM GAS  /tmp/cc4g5kiH.s 			page 14
 
 
  566              		.loc 1 159 5 is_stmt 1 view .LVU199
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  614              		.thumb_func
  615              		.fpu fpv4-sp-d16
  617              	flash_read_config:
-ARM GAS  /tmp/ccE2OsQN.s 			page 15
+ARM GAS  /tmp/cc4g5kiH.s 			page 15
 
 
  618              	.LVL34:
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  661 0028 00000E08 		.word	135135232
  662              		.cfi_endproc
  663              	.LFE137:
-ARM GAS  /tmp/ccE2OsQN.s 			page 16
+ARM GAS  /tmp/cc4g5kiH.s 			page 16
 
 
  665              		.section	.text.copy_to_local,"ax",%progbits
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  710              		.loc 1 176 5 is_stmt 1 view .LVU238
  711              		.loc 1 176 28 is_stmt 0 view .LVU239
  712 0028 4269     		ldr	r2, [r0, #20]	@ float
-ARM GAS  /tmp/ccE2OsQN.s 			page 17
+ARM GAS  /tmp/cc4g5kiH.s 			page 17
 
 
  713              		.loc 1 176 22 view .LVU240
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  757 0066 C1ED567A 		vstr.32	s15, [r1, #344]
  187:Core/Src/flash.c ****     hfoc->speed_ctrl.e_deadband = data->speed_e_deadband;
  758              		.loc 1 187 5 is_stmt 1 view .LVU267
-ARM GAS  /tmp/ccE2OsQN.s 			page 18
+ARM GAS  /tmp/cc4g5kiH.s 			page 18
 
 
  759              		.loc 1 187 39 is_stmt 0 view .LVU268
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  796 009a 00BF     		.align	2
  797              	.L36:
  798 009c ACC52738 		.word	942130604
-ARM GAS  /tmp/ccE2OsQN.s 			page 19
+ARM GAS  /tmp/cc4g5kiH.s 			page 19
 
 
  799              		.cfi_endproc
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  846              		.loc 1 213 17 view .LVU307
  847 0022 8361     		str	r3, [r0, #24]	@ float
  214:Core/Src/flash.c ****     data->iq_out_max = hfoc->iq_ctrl.out_max;
-ARM GAS  /tmp/ccE2OsQN.s 			page 20
+ARM GAS  /tmp/cc4g5kiH.s 			page 20
 
 
  848              		.loc 1 214 5 is_stmt 1 view .LVU308
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  890 0054 D1F88031 		ldr	r3, [r1, #384]	@ float
  891              		.loc 1 226 18 view .LVU334
  892 0058 C364     		str	r3, [r0, #76]	@ float
-ARM GAS  /tmp/ccE2OsQN.s 			page 21
+ARM GAS  /tmp/cc4g5kiH.s 			page 21
 
 
  227:Core/Src/flash.c ****     data->pos_out_max = hfoc->pos_ctrl.out_max;
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  235:Core/Src/flash.c ****   if (data->Rs <= 0.0f || data->Rs > 3.0f ||
  939              		.loc 1 235 43 discriminator 2 view .LVU348
  940 0024 B5EEC07A 		vcmpe.f32	s14, #0
-ARM GAS  /tmp/ccE2OsQN.s 			page 22
+ARM GAS  /tmp/cc4g5kiH.s 			page 22
 
 
  941 0028 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  984 0082 C0ED056A 		vstr.32	s13, [r0, #20]
  246:Core/Src/flash.c ****   data->iq_ki = data->Rs * omega;
  985              		.loc 1 246 3 is_stmt 1 view .LVU366
-ARM GAS  /tmp/ccE2OsQN.s 			page 23
+ARM GAS  /tmp/cc4g5kiH.s 			page 23
 
 
  986              		.loc 1 246 15 is_stmt 0 view .LVU367
@@ -1348,33 +1348,33 @@ ARM GAS  /tmp/ccE2OsQN.s 			page 1
  1010              		.file 11 "Core/Inc/flash.h"
  1011              		.file 12 "<built-in>"
  1012              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h"
-ARM GAS  /tmp/ccE2OsQN.s 			page 24
+ARM GAS  /tmp/cc4g5kiH.s 			page 24
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 flash.c
-     /tmp/ccE2OsQN.s:18     .text.flash_save_config:0000000000000000 $t
-     /tmp/ccE2OsQN.s:26     .text.flash_save_config:0000000000000000 flash_save_config
-     /tmp/ccE2OsQN.s:179    .text.flash_save_config:0000000000000078 $d
-     /tmp/ccE2OsQN.s:184    .text.flash_erase_ready:0000000000000000 $t
-     /tmp/ccE2OsQN.s:191    .text.flash_erase_ready:0000000000000000 flash_erase_ready
-     /tmp/ccE2OsQN.s:253    .text.flash_save_emergency:0000000000000000 $t
-     /tmp/ccE2OsQN.s:260    .text.flash_save_emergency:0000000000000000 flash_save_emergency
-     /tmp/ccE2OsQN.s:361    .text.flash_save_emergency:0000000000000048 $d
-     /tmp/ccE2OsQN.s:366    .text.flash_default_config:0000000000000000 $t
-     /tmp/ccE2OsQN.s:373    .text.flash_default_config:0000000000000000 flash_default_config
-     /tmp/ccE2OsQN.s:586    .text.flash_default_config:00000000000000ec $d
-     /tmp/ccE2OsQN.s:610    .text.flash_read_config:0000000000000000 $t
-     /tmp/ccE2OsQN.s:617    .text.flash_read_config:0000000000000000 flash_read_config
-     /tmp/ccE2OsQN.s:661    .text.flash_read_config:0000000000000028 $d
-     /tmp/ccE2OsQN.s:666    .text.copy_to_local:0000000000000000 $t
-     /tmp/ccE2OsQN.s:673    .text.copy_to_local:0000000000000000 copy_to_local
-     /tmp/ccE2OsQN.s:798    .text.copy_to_local:000000000000009c $d
-     /tmp/ccE2OsQN.s:803    .text.copy_from_local:0000000000000000 $t
-     /tmp/ccE2OsQN.s:810    .text.copy_from_local:0000000000000000 copy_from_local
-     /tmp/ccE2OsQN.s:909    .text.flash_auto_tuning_torque_control:0000000000000000 $t
-     /tmp/ccE2OsQN.s:916    .text.flash_auto_tuning_torque_control:0000000000000000 flash_auto_tuning_torque_control
-     /tmp/ccE2OsQN.s:995    .text.flash_auto_tuning_torque_control:000000000000008c $d
+     /tmp/cc4g5kiH.s:18     .text.flash_save_config:0000000000000000 $t
+     /tmp/cc4g5kiH.s:26     .text.flash_save_config:0000000000000000 flash_save_config
+     /tmp/cc4g5kiH.s:179    .text.flash_save_config:0000000000000078 $d
+     /tmp/cc4g5kiH.s:184    .text.flash_erase_ready:0000000000000000 $t
+     /tmp/cc4g5kiH.s:191    .text.flash_erase_ready:0000000000000000 flash_erase_ready
+     /tmp/cc4g5kiH.s:253    .text.flash_save_emergency:0000000000000000 $t
+     /tmp/cc4g5kiH.s:260    .text.flash_save_emergency:0000000000000000 flash_save_emergency
+     /tmp/cc4g5kiH.s:361    .text.flash_save_emergency:0000000000000048 $d
+     /tmp/cc4g5kiH.s:366    .text.flash_default_config:0000000000000000 $t
+     /tmp/cc4g5kiH.s:373    .text.flash_default_config:0000000000000000 flash_default_config
+     /tmp/cc4g5kiH.s:586    .text.flash_default_config:00000000000000ec $d
+     /tmp/cc4g5kiH.s:610    .text.flash_read_config:0000000000000000 $t
+     /tmp/cc4g5kiH.s:617    .text.flash_read_config:0000000000000000 flash_read_config
+     /tmp/cc4g5kiH.s:661    .text.flash_read_config:0000000000000028 $d
+     /tmp/cc4g5kiH.s:666    .text.copy_to_local:0000000000000000 $t
+     /tmp/cc4g5kiH.s:673    .text.copy_to_local:0000000000000000 copy_to_local
+     /tmp/cc4g5kiH.s:798    .text.copy_to_local:000000000000009c $d
+     /tmp/cc4g5kiH.s:803    .text.copy_from_local:0000000000000000 $t
+     /tmp/cc4g5kiH.s:810    .text.copy_from_local:0000000000000000 copy_from_local
+     /tmp/cc4g5kiH.s:909    .text.flash_auto_tuning_torque_control:0000000000000000 $t
+     /tmp/cc4g5kiH.s:916    .text.flash_auto_tuning_torque_control:0000000000000000 flash_auto_tuning_torque_control
+     /tmp/cc4g5kiH.s:995    .text.flash_auto_tuning_torque_control:000000000000008c $d
 
 UNDEFINED SYMBOLS
 HAL_FLASH_Unlock

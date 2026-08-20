@@ -459,9 +459,9 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
   if (hcan->Instance == CAN1)
   {
     if(HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &can_rx.rx_header, can_rx.data) != HAL_OK){
-  
+      return;
     }
-    
+    hfoc.counter = 0;
     Slave_Pack_State_2(&can_tx, &joint_state, &hfoc);
     uint32_t TxMailbox;
     if(HAL_CAN_AddTxMessage(hcan, &can_tx.tx_header, can_tx.data, &TxMailbox) != HAL_OK){
@@ -520,7 +520,7 @@ void StartCalibrationTask(void *argument)
         ENCODER_CHECK();
         if(encoder.is_connected == 0) {
           printf("Encoder not detected. Please check the connection.\r\n");
-          update_fsm(&state, 27);
+          update_fsm(&state, MENU_CMD);
           break;
         }
         DRV8323_Calibrate_Current_Offset(&hfoc.drv8323s);
@@ -530,7 +530,7 @@ void StartCalibrationTask(void *argument)
         calibration_seq();
         if(hfoc.done_cal_encoder == 1 && hfoc.done_orderphase == 1){
           printf("Calibration Successful!\r\n");
-          update_fsm(&state, 27);
+          update_fsm(&state, MENU_CMD);
         }
         break;
       }
@@ -545,11 +545,14 @@ void StartCalibrationTask(void *argument)
         break;
       }
       case ENCODER_MODE: {
-        // printf("Encoder Angle: %.2f\n\r", hfoc.actual_angle);
-        // ENCODER_AutoDetect();
         ENCODER_CHECK();
-        update_fsm(&state, 27);
+        update_fsm(&state, MENU_CMD);
         break;
+      }
+      case MOTOR_MODE:{
+        hfoc.counter++;
+        if(hfoc.counter > 30000) hfoc.counter = 30000;
+
       }
       default:
                   

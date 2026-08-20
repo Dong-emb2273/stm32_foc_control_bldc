@@ -78,7 +78,7 @@ typedef struct {
 
     int32_t can_id;
     int32_t can_master;
-    int32_t can_timeout;
+    int16_t can_timeout;
 
     float pos_max;
     float vel_max;

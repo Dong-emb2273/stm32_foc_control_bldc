@@ -159,16 +159,12 @@ typedef struct {
 
 	uint8_t done_orderphase;
 	uint8_t done_cal_encoder;
+	
 	uint16_t counter;
 
-
-	//debug
-	// int sample_index;
-	// _Bool collect_sample_flag;
 }foc_t;
 
 extern foc_t hfoc; 
-// extern JointRobot_t robot_joints;
 
 void foc_pwm_init(foc_t *hfoc, volatile uint32_t *pwm_a, volatile uint32_t *pwm_b, volatile uint32_t *pwm_c, uint32_t pwm_res);
 
