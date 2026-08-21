@@ -222,7 +222,7 @@ void foc_current_control_update(foc_t *hfoc) {
 	uint32_t da, db, dc;
 	inverse_park_transform(hfoc->vd, hfoc->vq, sin_theta, cos_theta, &valpha, &vbeta);
 	svpwm(valpha, vbeta, hfoc->v_bus, hfoc->pwm_res, &da, &db, &dc);
-    
+
 
 	// pwm limit
 	*(hfoc->pwm_a) = CONSTRAIN(da, 0, hfoc->pwm_res);

@@ -468,7 +468,6 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
       HAL_CAN_AbortTxRequest(hcan, CAN_TX_MAILBOX0 | CAN_TX_MAILBOX1 | CAN_TX_MAILBOX2);
     }
     Slave_Unpack_Cmd_2(&can_rx, &joint_cmd);
-
   }
 }
 /*===========================================================*/
@@ -550,17 +549,17 @@ void StartCalibrationTask(void *argument)
         break;
       }
       case MOTOR_MODE:{
-        hfoc.counter++;
-        if(hfoc.counter > 30000) hfoc.counter = 30000;
-
+        
+        break;
       }
       default:
                   
         break;
-              
     }
     
-    
+    hfoc.counter++;
+    if(hfoc.counter > 30000) hfoc.counter = 30000;
+
     osDelay(1);
   }
   /* USER CODE END 5 */
