@@ -557,8 +557,7 @@ void StartCalibrationTask(void *argument)
         break;
     }
     
-    hfoc.counter++;
-    if(hfoc.counter > 30000) hfoc.counter = 30000;
+    if(hfoc.counter <= 30000) hfoc.counter++;
 
     osDelay(1);
   }
