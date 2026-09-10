@@ -9,13 +9,7 @@ Bạn có thể xem video mạch hoạt động và động cơ chạy thực t�
 
 ## 🛠️ Cấu Hình Phần Cứng
 
-*   **Vi điều khiển:** STM32F405RGT6, DRV8323RS, AS5048A
-*   **Động cơ:** Động cơ BLDC...
-*   **Mạch Driver:** ...
-*   **Giao tiếp:** CAN Bus / UART...
+*   **MCU & IC:** STM32F405RGT6, DRV8323RS, AS5048A, TJA1051
+*   **Động cơ:** Động cơ BLDC
+*   **Giao tiếp:** CAN Bus / UART
 
-## ⚙️ Hướng Dẫn Cài Đặt
-
-1. Tải toàn bộ mã nguồn về máy tính:
-   ```bash
-   git clone https://github.com/Dong-emb2273/stm32_foc_control_bldc.git
