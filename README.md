@@ -1,4 +1,4 @@
-# Robot Joint Actuator 🤖
+# DRIVER BLDC MOTOR
 
 Dự án lập trình điều khiển động cơ không chổi than (BLDC) ứng dụng thuật toán FOC, sử dụng vi điều khiển STM32. Dự án được phát triển để điều khiển các khớp động cơ trên robot một cách linh hoạt và chính xác.
 
