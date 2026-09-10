@@ -5,7 +5,7 @@ Dự án lập trình điều khiển động cơ không chổi than (BLDC) ứn
 ## 🎥 Video Demo Thực Tế
 
 Bạn có thể xem video mạch hoạt động và động cơ chạy thực tế tại liên kết dưới đây:
-👉 **[Xem video thực tế trên Facebook cá nhân](https://www.facebook.com/dong.vothe.7/)**
+# 👉 **[Xem video thực tế trên Facebook cá nhân](https://www.facebook.com/dong.vothe.7/)**
 
 ## 🛠️ Cấu Hình Phần Cứng
 
