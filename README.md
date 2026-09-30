@@ -2,7 +2,7 @@
 
 Dự án lập trình điều khiển động cơ không chổi than (BLDC) ứng dụng thuật toán FOC, sử dụng vi điều khiển STM32. Dự án được phát triển để điều khiển các khớp động cơ trên robot một cách linh hoạt và chính xác.
 
-## 🎥 Video Demo Thực Tế 👉 **[Run Test](https://www.facebook.com/dong.vothe.7/)**
+## 🎥 Video Demo Thực Tế 👉 **[Run Test](https://drive.google.com/drive/folders/1YxzBU-0lqAB-FMQ5-39MSPSBRu6FSUXX?usp=sharing)**
 
 ## 🛠️ Cấu Hình Phần Cứng
 
