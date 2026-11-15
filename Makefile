@@ -76,8 +76,7 @@ Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c \
 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c
 
 
-C_SOURCES += Core/Src/flash.c
-C_SOURCES += Core/Src/config.c
+C_SOURCES += Core/Src/driver.c
 C_SOURCES += Core/Src/as5048a.c
 C_SOURCES += Core/Src/drv8323s.c
 C_SOURCES += Core/Src/encoder.c
@@ -85,10 +84,12 @@ C_SOURCES += Core/Src/foc_math.c
 C_SOURCES += Core/Src/foc_utils.c
 C_SOURCES += Core/Src/fsm.c
 C_SOURCES += Core/Src/pid_utils.c
-C_SOURCES += Core/Src/spi.c
 C_SOURCES += Core/Src/can.c
 C_SOURCES += Core/Src/uart.c
 C_SOURCES += Core/Src/lpf.c
+C_SOURCES += Core/Src/pll_filter.c
+C_SOURCES += Core/Src/storage.c
+
 # ASM sources
 ASM_SOURCES =  \
 startup_stm32f405xx.s

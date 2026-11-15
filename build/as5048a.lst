@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccenbo52.s 			page 1
+ARM GAS  /tmp/ccD7YWui.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -26,677 +26,822 @@ ARM GAS  /tmp/ccenbo52.s 			page 1
   23              		.fpu fpv4-sp-d16
   25              	calc_even_parity:
   26              	.LVL0:
-  27              	.LFB135:
+  27              	.LFB134:
   28              		.file 1 "Core/Src/as5048a.c"
-   1:Core/Src/as5048a.c **** 
-   2:Core/Src/as5048a.c **** 
-   3:Core/Src/as5048a.c **** #include "as5048a.h"
-   4:Core/Src/as5048a.c **** #include "spi.h"
-   5:Core/Src/as5048a.c **** 
-   6:Core/Src/as5048a.c **** 
-   7:Core/Src/as5048a.c **** void AS5048A_Config_CS(void *handle){
-   8:Core/Src/as5048a.c **** 	Encoder_t *encd = (Encoder_t *)handle; // Ép kiểu
-   9:Core/Src/as5048a.c **** 	GPIO_InitTypeDef as5048a = {0};
-  10:Core/Src/as5048a.c **** 	as5048a.Pin = encd->active_port->cs_pin;
-  11:Core/Src/as5048a.c **** 	as5048a.Mode = GPIO_MODE_OUTPUT_PP;
-  12:Core/Src/as5048a.c **** 	as5048a.Pull = GPIO_NOPULL;
-  13:Core/Src/as5048a.c **** 	as5048a.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  14:Core/Src/as5048a.c **** 	HAL_GPIO_Init(encd->active_port->cs_port, &as5048a);
-  15:Core/Src/as5048a.c **** }
-  16:Core/Src/as5048a.c **** //
-  17:Core/Src/as5048a.c **** 
-  18:Core/Src/as5048a.c **** static uint8_t calc_even_parity(uint16_t value){
-  29              		.loc 1 18 48 view -0
+   1:Core/Src/as5048a.c **** #include "as5048a.h"
+   2:Core/Src/as5048a.c **** #include <string.h>
+   3:Core/Src/as5048a.c **** #include <math.h>
+   4:Core/Src/as5048a.c **** 
+   5:Core/Src/as5048a.c **** #ifndef TWO_PI
+   6:Core/Src/as5048a.c **** #define TWO_PI 6.2831853f
+   7:Core/Src/as5048a.c **** #endif
+   8:Core/Src/as5048a.c **** 
+   9:Core/Src/as5048a.c **** #define AS5048A_REG_ANGLE  0x3FFF
+  10:Core/Src/as5048a.c **** #define AS5048A_READ_CMD   0x4000
+  11:Core/Src/as5048a.c **** 
+  12:Core/Src/as5048a.c **** static uint8_t calc_even_parity(uint16_t value) {
+  29              		.loc 1 12 49 view -0
   30              		.cfi_startproc
   31              		@ args = 0, pretend = 0, frame = 0
   32              		@ frame_needed = 0, uses_anonymous_args = 0
   33              		@ link register save eliminated.
-  19:Core/Src/as5048a.c **** 	value ^= value >> 8;
-  34              		.loc 1 19 2 view .LVU1
-  35              		.loc 1 19 8 is_stmt 0 view .LVU2
+  13:Core/Src/as5048a.c ****     value ^= value >> 8;
+  34              		.loc 1 13 5 view .LVU1
+  35              		.loc 1 13 11 is_stmt 0 view .LVU2
   36 0000 80EA1020 		eor	r0, r0, r0, lsr #8
   37              	.LVL1:
-  20:Core/Src/as5048a.c **** 	value ^= value >> 4;
-  38              		.loc 1 20 2 is_stmt 1 view .LVU3
-ARM GAS  /tmp/ccenbo52.s 			page 2
-
-
-  39              		.loc 1 20 8 is_stmt 0 view .LVU4
+  14:Core/Src/as5048a.c ****     value ^= value >> 4;
+  38              		.loc 1 14 5 is_stmt 1 view .LVU3
+  39              		.loc 1 14 11 is_stmt 0 view .LVU4
   40 0004 80EA1010 		eor	r0, r0, r0, lsr #4
   41              	.LVL2:
-  21:Core/Src/as5048a.c **** 	value ^= value >> 2;
-  42              		.loc 1 21 2 is_stmt 1 view .LVU5
-  43              		.loc 1 21 8 is_stmt 0 view .LVU6
+  15:Core/Src/as5048a.c ****     value ^= value >> 2;
+  42              		.loc 1 15 5 is_stmt 1 view .LVU5
+  43              		.loc 1 15 11 is_stmt 0 view .LVU6
+ARM GAS  /tmp/ccD7YWui.s 			page 2
+
+
   44 0008 80EA9000 		eor	r0, r0, r0, lsr #2
   45              	.LVL3:
-  22:Core/Src/as5048a.c **** 	value ^= value >> 1;
-  46              		.loc 1 22 2 is_stmt 1 view .LVU7
-  47              		.loc 1 22 8 is_stmt 0 view .LVU8
+  16:Core/Src/as5048a.c ****     value ^= value >> 1;
+  46              		.loc 1 16 5 is_stmt 1 view .LVU7
+  47              		.loc 1 16 11 is_stmt 0 view .LVU8
   48 000c 80EA5000 		eor	r0, r0, r0, lsr #1
   49              	.LVL4:
-  23:Core/Src/as5048a.c **** 	return value & 1;
-  50              		.loc 1 23 2 is_stmt 1 view .LVU9
-  24:Core/Src/as5048a.c **** }
-  51              		.loc 1 24 1 is_stmt 0 view .LVU10
+  17:Core/Src/as5048a.c ****     return value & 1;
+  50              		.loc 1 17 5 is_stmt 1 view .LVU9
+  18:Core/Src/as5048a.c **** }
+  51              		.loc 1 18 1 is_stmt 0 view .LVU10
   52 0010 00F00100 		and	r0, r0, #1
   53              	.LVL5:
-  54              		.loc 1 24 1 view .LVU11
+  54              		.loc 1 18 1 view .LVU11
   55 0014 7047     		bx	lr
   56              		.cfi_endproc
-  57              	.LFE135:
-  59              		.section	.text.AS5048A_Config_CS,"ax",%progbits
+  57              	.LFE134:
+  59              		.section	.text.AS5048A_start,"ax",%progbits
   60              		.align	1
-  61              		.global	AS5048A_Config_CS
-  62              		.syntax unified
-  63              		.thumb
-  64              		.thumb_func
-  65              		.fpu fpv4-sp-d16
-  67              	AS5048A_Config_CS:
-  68              	.LVL6:
-  69              	.LFB134:
-   7:Core/Src/as5048a.c **** 	Encoder_t *encd = (Encoder_t *)handle; // Ép kiểu
-  70              		.loc 1 7 37 is_stmt 1 view -0
-  71              		.cfi_startproc
-  72              		@ args = 0, pretend = 0, frame = 24
-  73              		@ frame_needed = 0, uses_anonymous_args = 0
-   7:Core/Src/as5048a.c **** 	Encoder_t *encd = (Encoder_t *)handle; // Ép kiểu
-  74              		.loc 1 7 37 is_stmt 0 view .LVU13
-  75 0000 00B5     		push	{lr}
-  76              	.LCFI0:
-  77              		.cfi_def_cfa_offset 4
-  78              		.cfi_offset 14, -4
-  79 0002 87B0     		sub	sp, sp, #28
-  80              	.LCFI1:
-  81              		.cfi_def_cfa_offset 32
-   8:Core/Src/as5048a.c **** 	GPIO_InitTypeDef as5048a = {0};
-  82              		.loc 1 8 2 is_stmt 1 view .LVU14
-  83              	.LVL7:
-   9:Core/Src/as5048a.c **** 	as5048a.Pin = encd->active_port->cs_pin;
-  84              		.loc 1 9 2 view .LVU15
-   9:Core/Src/as5048a.c **** 	as5048a.Pin = encd->active_port->cs_pin;
-  85              		.loc 1 9 19 is_stmt 0 view .LVU16
-  86 0004 0023     		movs	r3, #0
-  87 0006 0193     		str	r3, [sp, #4]
-  88 0008 0293     		str	r3, [sp, #8]
-ARM GAS  /tmp/ccenbo52.s 			page 3
+  61              		.syntax unified
+  62              		.thumb
+  63              		.thumb_func
+  64              		.fpu fpv4-sp-d16
+  66              	AS5048A_start:
+  67              	.LVL6:
+  68              	.LFB138:
+  19:Core/Src/as5048a.c **** 
+  20:Core/Src/as5048a.c **** void AS5048A_Config(AS5048A_t *encd, int (*spi_transfer)(uint8_t*, uint8_t*, uint16_t), void (*spi_
+  21:Core/Src/as5048a.c ****     encd->spi_transfer  = spi_transfer;
+  22:Core/Src/as5048a.c ****     encd->spi_cs_en  = spi_cs_en;
+  23:Core/Src/as5048a.c ****     encd->spi_cs_dis = spi_cs_dis;
+  24:Core/Src/as5048a.c ****     encd->spi_cs_en();
+  25:Core/Src/as5048a.c **** }
+  26:Core/Src/as5048a.c **** 
+  27:Core/Src/as5048a.c **** void AS5048A_Init(AS5048A_t *encd, sensor_dir_t dir, float scale) {
+  28:Core/Src/as5048a.c ****     encd->dir = dir;
+  29:Core/Src/as5048a.c ****     encd->count_to_deg_scale = scale;
+  30:Core/Src/as5048a.c ****     encd->last_count_raw = 0;
+  31:Core/Src/as5048a.c ****     encd->countinuous_count = 0;
+  32:Core/Src/as5048a.c **** }
+  33:Core/Src/as5048a.c **** 
+  34:Core/Src/as5048a.c **** void AS5048A_set_pll_filter(AS5048A_t *encd, float bw_hz, float damping_ratio, float Ts) {
+  35:Core/Src/as5048a.c ****     pll_filter_init(&encd->count_filt, Ts, bw_hz, damping_ratio);
+  36:Core/Src/as5048a.c **** }
+  37:Core/Src/as5048a.c **** 
+  38:Core/Src/as5048a.c **** static int AS5048A_start(AS5048A_t *encd) {
+  69              		.loc 1 38 43 is_stmt 1 view -0
+  70              		.cfi_startproc
+  71              		@ args = 0, pretend = 0, frame = 0
+  72              		@ frame_needed = 0, uses_anonymous_args = 0
+  39:Core/Src/as5048a.c ****     if (encd->spi_transfer_flag) return 0;
+  73              		.loc 1 39 5 view .LVU13
+  74              		.loc 1 39 13 is_stmt 0 view .LVU14
+  75 0000 90F83030 		ldrb	r3, [r0, #48]	@ zero_extendqisi2
+  76              		.loc 1 39 8 view .LVU15
+  77 0004 F3B9     		cbnz	r3, .L5
+  38:Core/Src/as5048a.c ****     if (encd->spi_transfer_flag) return 0;
+ARM GAS  /tmp/ccD7YWui.s 			page 3
 
 
-  89 000a 0393     		str	r3, [sp, #12]
-  90 000c 0493     		str	r3, [sp, #16]
-  91 000e 0593     		str	r3, [sp, #20]
-  10:Core/Src/as5048a.c **** 	as5048a.Mode = GPIO_MODE_OUTPUT_PP;
-  92              		.loc 1 10 2 is_stmt 1 view .LVU17
-  10:Core/Src/as5048a.c **** 	as5048a.Mode = GPIO_MODE_OUTPUT_PP;
-  93              		.loc 1 10 20 is_stmt 0 view .LVU18
-  94 0010 436A     		ldr	r3, [r0, #36]
-  10:Core/Src/as5048a.c **** 	as5048a.Mode = GPIO_MODE_OUTPUT_PP;
-  95              		.loc 1 10 33 view .LVU19
-  96 0012 1A89     		ldrh	r2, [r3, #8]
-  10:Core/Src/as5048a.c **** 	as5048a.Mode = GPIO_MODE_OUTPUT_PP;
-  97              		.loc 1 10 14 view .LVU20
-  98 0014 0192     		str	r2, [sp, #4]
-  11:Core/Src/as5048a.c **** 	as5048a.Pull = GPIO_NOPULL;
-  99              		.loc 1 11 2 is_stmt 1 view .LVU21
-  11:Core/Src/as5048a.c **** 	as5048a.Pull = GPIO_NOPULL;
- 100              		.loc 1 11 15 is_stmt 0 view .LVU22
- 101 0016 0122     		movs	r2, #1
- 102 0018 0292     		str	r2, [sp, #8]
-  12:Core/Src/as5048a.c **** 	as5048a.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
- 103              		.loc 1 12 2 is_stmt 1 view .LVU23
-  13:Core/Src/as5048a.c **** 	HAL_GPIO_Init(encd->active_port->cs_port, &as5048a);
- 104              		.loc 1 13 2 view .LVU24
-  13:Core/Src/as5048a.c **** 	HAL_GPIO_Init(encd->active_port->cs_port, &as5048a);
- 105              		.loc 1 13 16 is_stmt 0 view .LVU25
- 106 001a 0322     		movs	r2, #3
- 107 001c 0492     		str	r2, [sp, #16]
-  14:Core/Src/as5048a.c **** }
- 108              		.loc 1 14 2 is_stmt 1 view .LVU26
- 109 001e 01A9     		add	r1, sp, #4
- 110 0020 5868     		ldr	r0, [r3, #4]
- 111              	.LVL8:
-  14:Core/Src/as5048a.c **** }
- 112              		.loc 1 14 2 is_stmt 0 view .LVU27
- 113 0022 FFF7FEFF 		bl	HAL_GPIO_Init
- 114              	.LVL9:
-  15:Core/Src/as5048a.c **** //
- 115              		.loc 1 15 1 view .LVU28
- 116 0026 07B0     		add	sp, sp, #28
- 117              	.LCFI2:
- 118              		.cfi_def_cfa_offset 4
- 119              		@ sp needed
- 120 0028 5DF804FB 		ldr	pc, [sp], #4
- 121              		.cfi_endproc
- 122              	.LFE134:
- 124              		.section	.text.AS5048A_CheckExist,"ax",%progbits
- 125              		.align	1
- 126              		.global	AS5048A_CheckExist
- 127              		.syntax unified
- 128              		.thumb
- 129              		.thumb_func
- 130              		.fpu fpv4-sp-d16
- 132              	AS5048A_CheckExist:
- 133              	.LVL10:
- 134              	.LFB136:
-  25:Core/Src/as5048a.c **** 
-ARM GAS  /tmp/ccenbo52.s 			page 4
-
-
-  26:Core/Src/as5048a.c **** //
-  27:Core/Src/as5048a.c **** 
-  28:Core/Src/as5048a.c **** 
-  29:Core/Src/as5048a.c **** 
-  30:Core/Src/as5048a.c **** int AS5048A_CheckExist(void *handle) {
- 135              		.loc 1 30 38 is_stmt 1 view -0
- 136              		.cfi_startproc
- 137              		@ args = 0, pretend = 0, frame = 8
- 138              		@ frame_needed = 0, uses_anonymous_args = 0
- 139              		.loc 1 30 38 is_stmt 0 view .LVU30
- 140 0000 70B5     		push	{r4, r5, r6, lr}
- 141              	.LCFI3:
- 142              		.cfi_def_cfa_offset 16
- 143              		.cfi_offset 4, -16
- 144              		.cfi_offset 5, -12
- 145              		.cfi_offset 6, -8
- 146              		.cfi_offset 14, -4
- 147 0002 84B0     		sub	sp, sp, #16
- 148              	.LCFI4:
- 149              		.cfi_def_cfa_offset 32
- 150 0004 0446     		mov	r4, r0
-  31:Core/Src/as5048a.c **** 	Encoder_t *encd = (Encoder_t *)handle;
- 151              		.loc 1 31 2 is_stmt 1 view .LVU31
- 152              	.LVL11:
-  32:Core/Src/as5048a.c **** 	uint16_t cmd = AS5048A_WRITE_CMD | AS5048A_REG_ANGLE;
- 153              		.loc 1 32 2 view .LVU32
- 154              		.loc 1 32 11 is_stmt 0 view .LVU33
- 155 0006 47F6FF75 		movw	r5, #32767
- 156 000a ADF80E50 		strh	r5, [sp, #14]	@ movhi
-  33:Core/Src/as5048a.c **** 	cmd |= (calc_even_parity(cmd) << 15);
- 157              		.loc 1 33 2 is_stmt 1 view .LVU34
- 158              		.loc 1 33 10 is_stmt 0 view .LVU35
- 159 000e 2846     		mov	r0, r5
- 160              	.LVL12:
- 161              		.loc 1 33 10 view .LVU36
- 162 0010 FFF7FEFF 		bl	calc_even_parity
- 163              	.LVL13:
- 164              		.loc 1 33 6 view .LVU37
- 165 0014 45EAC035 		orr	r5, r5, r0, lsl #15
- 166 0018 ADF80E50 		strh	r5, [sp, #14]	@ movhi
-  34:Core/Src/as5048a.c **** 
-  35:Core/Src/as5048a.c **** 	AS5048A_cs_reset(encd);
- 167              		.loc 1 35 2 is_stmt 1 view .LVU38
- 168 001c 626A     		ldr	r2, [r4, #36]
- 169 001e 1389     		ldrh	r3, [r2, #8]
- 170 0020 5268     		ldr	r2, [r2, #4]
- 171 0022 1B04     		lsls	r3, r3, #16
- 172 0024 9361     		str	r3, [r2, #24]
-  36:Core/Src/as5048a.c **** 	HAL_SPI_TransmitReceive(encd->active_port->hspi, (uint8_t*)&cmd, encd->spi_rx_buffer, 2, 100);
- 173              		.loc 1 36 2 view .LVU39
- 174              		.loc 1 36 30 is_stmt 0 view .LVU40
- 175 0026 636A     		ldr	r3, [r4, #36]
- 176              		.loc 1 36 71 view .LVU41
- 177 0028 04F12805 		add	r5, r4, #40
- 178              		.loc 1 36 2 view .LVU42
- 179 002c 1868     		ldr	r0, [r3]
- 180 002e 6426     		movs	r6, #100
-ARM GAS  /tmp/ccenbo52.s 			page 5
-
-
- 181 0030 0096     		str	r6, [sp]
- 182 0032 0223     		movs	r3, #2
- 183 0034 2A46     		mov	r2, r5
- 184 0036 0DF10E01 		add	r1, sp, #14
- 185 003a FFF7FEFF 		bl	HAL_SPI_TransmitReceive
- 186              	.LVL14:
-  37:Core/Src/as5048a.c **** 	AS5048A_cs_set(encd);
- 187              		.loc 1 37 2 is_stmt 1 view .LVU43
- 188 003e 636A     		ldr	r3, [r4, #36]
- 189 0040 5A68     		ldr	r2, [r3, #4]
- 190 0042 1B89     		ldrh	r3, [r3, #8]
- 191 0044 9361     		str	r3, [r2, #24]
-  38:Core/Src/as5048a.c **** 	HAL_Delay(1);
- 192              		.loc 1 38 2 view .LVU44
- 193 0046 0120     		movs	r0, #1
- 194 0048 FFF7FEFF 		bl	HAL_Delay
- 195              	.LVL15:
-  39:Core/Src/as5048a.c **** 	AS5048A_cs_reset(encd);
- 196              		.loc 1 39 2 view .LVU45
- 197 004c 626A     		ldr	r2, [r4, #36]
- 198 004e 1389     		ldrh	r3, [r2, #8]
- 199 0050 5268     		ldr	r2, [r2, #4]
- 200 0052 1B04     		lsls	r3, r3, #16
- 201 0054 9361     		str	r3, [r2, #24]
-  40:Core/Src/as5048a.c **** 	HAL_SPI_TransmitReceive(encd->active_port->hspi, (uint8_t*)&cmd, encd->spi_rx_buffer, 2, 100);
- 202              		.loc 1 40 2 view .LVU46
- 203              		.loc 1 40 30 is_stmt 0 view .LVU47
- 204 0056 636A     		ldr	r3, [r4, #36]
- 205              		.loc 1 40 2 view .LVU48
- 206 0058 1868     		ldr	r0, [r3]
- 207 005a 0096     		str	r6, [sp]
- 208 005c 0223     		movs	r3, #2
- 209 005e 2A46     		mov	r2, r5
- 210 0060 0DF10E01 		add	r1, sp, #14
- 211 0064 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
- 212              	.LVL16:
-  41:Core/Src/as5048a.c **** 	AS5048A_cs_set(encd);
- 213              		.loc 1 41 2 is_stmt 1 view .LVU49
- 214 0068 636A     		ldr	r3, [r4, #36]
- 215 006a 5A68     		ldr	r2, [r3, #4]
- 216 006c 1B89     		ldrh	r3, [r3, #8]
- 217 006e 9361     		str	r3, [r2, #24]
+  78              		.loc 1 38 43 view .LVU16
+  79 0006 10B5     		push	{r4, lr}
+  80              	.LCFI0:
+  81              		.cfi_def_cfa_offset 8
+  82              		.cfi_offset 4, -8
+  83              		.cfi_offset 14, -4
+  84 0008 0446     		mov	r4, r0
+  40:Core/Src/as5048a.c ****     uint16_t cmd = AS5048A_READ_CMD | AS5048A_REG_ANGLE;
+  85              		.loc 1 40 5 is_stmt 1 view .LVU17
+  86              	.LVL7:
+  41:Core/Src/as5048a.c ****     cmd |= (calc_even_parity(cmd) << 15);  // bit 15 parity
+  87              		.loc 1 41 5 view .LVU18
+  88              		.loc 1 41 13 is_stmt 0 view .LVU19
+  89 000a 47F6FF70 		movw	r0, #32767
+  90              	.LVL8:
+  91              		.loc 1 41 13 view .LVU20
+  92 000e FFF7FEFF 		bl	calc_even_parity
+  93              	.LVL9:
+  94              		.loc 1 41 9 view .LVU21
+  95 0012 47F6FF73 		movw	r3, #32767
+  96 0016 43EAC030 		orr	r0, r3, r0, lsl #15
+  97              	.LVL10:
   42:Core/Src/as5048a.c **** 
-  43:Core/Src/as5048a.c **** 	const uint16_t raw_data = ((uint16_t)encd->spi_rx_buffer[0] << 8) | encd->spi_rx_buffer[1];
- 218              		.loc 1 43 2 view .LVU50
- 219              		.loc 1 43 58 is_stmt 0 view .LVU51
- 220 0070 94F82830 		ldrb	r3, [r4, #40]	@ zero_extendqisi2
- 221              		.loc 1 43 89 view .LVU52
- 222 0074 94F82940 		ldrb	r4, [r4, #41]	@ zero_extendqisi2
- 223              	.LVL17:
- 224              		.loc 1 43 17 view .LVU53
- 225 0078 44EA0324 		orr	r4, r4, r3, lsl #8
- 226              	.LVL18:
-  44:Core/Src/as5048a.c **** 	if (raw_data == 0x0000 || raw_data == 0xFFFF) return -1; // No Device
- 227              		.loc 1 44 2 is_stmt 1 view .LVU54
- 228              		.loc 1 44 25 is_stmt 0 view .LVU55
- 229 007c 631E     		subs	r3, r4, #1
-ARM GAS  /tmp/ccenbo52.s 			page 6
-
-
- 230 007e 9BB2     		uxth	r3, r3
- 231              		.loc 1 44 5 view .LVU56
- 232 0080 4FF6FD72 		movw	r2, #65533
- 233 0084 9342     		cmp	r3, r2
- 234 0086 08D8     		bhi	.L6
+  43:Core/Src/as5048a.c ****     encd->spi_tx_buffer[0] = (uint8_t)(cmd >> 8);
+  98              		.loc 1 43 5 is_stmt 1 view .LVU22
+  99              		.loc 1 43 30 is_stmt 0 view .LVU23
+ 100 001a C0F30723 		ubfx	r3, r0, #8, #8
+ 101              		.loc 1 43 28 view .LVU24
+ 102 001e 2370     		strb	r3, [r4]
+  44:Core/Src/as5048a.c ****     encd->spi_tx_buffer[1] = (uint8_t)(cmd & 0xFF);
+ 103              		.loc 1 44 5 is_stmt 1 view .LVU25
+ 104              		.loc 1 44 28 is_stmt 0 view .LVU26
+ 105 0020 6070     		strb	r0, [r4, #1]
   45:Core/Src/as5048a.c **** 
-  46:Core/Src/as5048a.c **** 	uint16_t data_15bit = raw_data & 0x7FFF;
- 235              		.loc 1 46 2 is_stmt 1 view .LVU57
- 236              	.LVL19:
-  47:Core/Src/as5048a.c **** 	if (calc_even_parity(data_15bit) != ((raw_data >> 15) & 0x1)) return 0; // Have Device but error
- 237              		.loc 1 47 2 view .LVU58
- 238              		.loc 1 47 6 is_stmt 0 view .LVU59
- 239 0088 C4F30E00 		ubfx	r0, r4, #0, #15
- 240 008c FFF7FEFF 		bl	calc_even_parity
- 241              	.LVL20:
- 242              		.loc 1 47 5 view .LVU60
- 243 0090 B0EBD43F 		cmp	r0, r4, lsr #15
- 244 0094 05D1     		bne	.L7
-  48:Core/Src/as5048a.c **** 	
-  49:Core/Src/as5048a.c **** 	// Error flag check (bit 14)
-  50:Core/Src/as5048a.c **** 	// if ((raw_data >> 14) & 0x1) {
-  51:Core/Src/as5048a.c **** 	// 	return 0;
-  52:Core/Src/as5048a.c **** 	// }
-  53:Core/Src/as5048a.c **** 
-  54:Core/Src/as5048a.c **** 	return 1;//Have Device
- 245              		.loc 1 54 9 view .LVU61
- 246 0096 0120     		movs	r0, #1
- 247 0098 01E0     		b	.L4
- 248              	.LVL21:
- 249              	.L6:
-  44:Core/Src/as5048a.c **** 
- 250              		.loc 1 44 55 view .LVU62
- 251 009a 4FF0FF30 		mov	r0, #-1
- 252              	.L4:
-  55:Core/Src/as5048a.c **** }
- 253              		.loc 1 55 1 view .LVU63
- 254 009e 04B0     		add	sp, sp, #16
- 255              	.LCFI5:
- 256              		.cfi_remember_state
- 257              		.cfi_def_cfa_offset 16
- 258              		@ sp needed
- 259 00a0 70BD     		pop	{r4, r5, r6, pc}
- 260              	.LVL22:
- 261              	.L7:
- 262              	.LCFI6:
- 263              		.cfi_restore_state
-  47:Core/Src/as5048a.c **** 	
- 264              		.loc 1 47 71 view .LVU64
- 265 00a2 0020     		movs	r0, #0
- 266 00a4 FBE7     		b	.L4
- 267              		.cfi_endproc
- 268              	.LFE136:
- 270              		.section	.text.AS5048A_DetectExit,"ax",%progbits
- 271              		.align	1
- 272              		.global	AS5048A_DetectExit
- 273              		.syntax unified
- 274              		.thumb
-ARM GAS  /tmp/ccenbo52.s 			page 7
+  46:Core/Src/as5048a.c **** 	encd->spi_cs_dis();
+ 106              		.loc 1 46 2 is_stmt 1 view .LVU27
+ 107              		.loc 1 46 6 is_stmt 0 view .LVU28
+ 108 0022 E36B     		ldr	r3, [r4, #60]
+ 109              		.loc 1 46 2 view .LVU29
+ 110 0024 9847     		blx	r3
+ 111              	.LVL11:
+  47:Core/Src/as5048a.c ****     if (encd->spi_transfer(encd->spi_tx_buffer, encd->spi_rx_buffer, 2) != 0) {
+ 112              		.loc 1 47 5 is_stmt 1 view .LVU30
+ 113              		.loc 1 47 13 is_stmt 0 view .LVU31
+ 114 0026 636B     		ldr	r3, [r4, #52]
+ 115              		.loc 1 47 9 view .LVU32
+ 116 0028 0222     		movs	r2, #2
+ 117 002a A118     		adds	r1, r4, r2
+ 118 002c 2046     		mov	r0, r4
+ 119 002e 9847     		blx	r3
+ 120              	.LVL12:
+ 121              		.loc 1 47 8 view .LVU33
+ 122 0030 18B9     		cbnz	r0, .L10
+  48:Core/Src/as5048a.c ****         encd->spi_cs_en();
+  49:Core/Src/as5048a.c ****         return -1;
+  50:Core/Src/as5048a.c ****     }
+  51:Core/Src/as5048a.c **** 
+ARM GAS  /tmp/ccD7YWui.s 			page 4
 
 
- 275              		.thumb_func
- 276              		.fpu fpv4-sp-d16
- 278              	AS5048A_DetectExit:
- 279              	.LVL23:
- 280              	.LFB137:
-  56:Core/Src/as5048a.c **** //
-  57:Core/Src/as5048a.c **** 
-  58:Core/Src/as5048a.c **** int AS5048A_DetectExit(void *handle){
- 281              		.loc 1 58 37 is_stmt 1 view -0
- 282              		.cfi_startproc
- 283              		@ args = 0, pretend = 0, frame = 0
- 284              		@ frame_needed = 0, uses_anonymous_args = 0
- 285              		.loc 1 58 37 is_stmt 0 view .LVU66
- 286 0000 70B5     		push	{r4, r5, r6, lr}
- 287              	.LCFI7:
- 288              		.cfi_def_cfa_offset 16
- 289              		.cfi_offset 4, -16
- 290              		.cfi_offset 5, -12
- 291              		.cfi_offset 6, -8
- 292              		.cfi_offset 14, -4
- 293 0002 0646     		mov	r6, r0
-  59:Core/Src/as5048a.c **** 	int8_t Count = 0;
- 294              		.loc 1 59 2 is_stmt 1 view .LVU67
- 295              	.LVL24:
-  60:Core/Src/as5048a.c **** 	for(uint8_t i = 0; i < 10; i++){
- 296              		.loc 1 60 2 view .LVU68
- 297              	.LBB2:
- 298              		.loc 1 60 6 view .LVU69
- 299              		.loc 1 60 14 is_stmt 0 view .LVU70
- 300 0004 0024     		movs	r4, #0
- 301              	.LBE2:
-  59:Core/Src/as5048a.c **** 	int8_t Count = 0;
- 302              		.loc 1 59 9 view .LVU71
- 303 0006 2546     		mov	r5, r4
- 304              	.LBB3:
- 305              		.loc 1 60 2 view .LVU72
- 306 0008 09E0     		b	.L10
- 307              	.LVL25:
- 308              	.L11:
-  61:Core/Src/as5048a.c **** 		Count += AS5048A_CheckExist(handle);
- 309              		.loc 1 61 3 is_stmt 1 discriminator 3 view .LVU73
- 310              		.loc 1 61 12 is_stmt 0 discriminator 3 view .LVU74
- 311 000a 3046     		mov	r0, r6
- 312 000c FFF7FEFF 		bl	AS5048A_CheckExist
- 313              	.LVL26:
- 314              		.loc 1 61 9 discriminator 3 view .LVU75
- 315 0010 0544     		add	r5, r5, r0
- 316              	.LVL27:
- 317              		.loc 1 61 9 discriminator 3 view .LVU76
- 318 0012 6DB2     		sxtb	r5, r5
- 319              	.LVL28:
-  62:Core/Src/as5048a.c **** 		HAL_Delay(1);
- 320              		.loc 1 62 3 is_stmt 1 discriminator 3 view .LVU77
- 321 0014 0120     		movs	r0, #1
- 322 0016 FFF7FEFF 		bl	HAL_Delay
- 323              	.LVL29:
-  60:Core/Src/as5048a.c **** 	for(uint8_t i = 0; i < 10; i++){
-ARM GAS  /tmp/ccenbo52.s 			page 8
+  52:Core/Src/as5048a.c ****     encd->spi_transfer_flag = 1;
+ 123              		.loc 1 52 5 is_stmt 1 view .LVU34
+ 124              		.loc 1 52 29 is_stmt 0 view .LVU35
+ 125 0032 0123     		movs	r3, #1
+ 126 0034 84F83030 		strb	r3, [r4, #48]
+  53:Core/Src/as5048a.c **** 	return 0;
+ 127              		.loc 1 53 2 is_stmt 1 view .LVU36
+ 128              	.L2:
+  54:Core/Src/as5048a.c **** }
+ 129              		.loc 1 54 1 is_stmt 0 view .LVU37
+ 130 0038 10BD     		pop	{r4, pc}
+ 131              	.LVL13:
+ 132              	.L10:
+  48:Core/Src/as5048a.c ****         encd->spi_cs_en();
+ 133              		.loc 1 48 9 is_stmt 1 view .LVU38
+  48:Core/Src/as5048a.c ****         encd->spi_cs_en();
+ 134              		.loc 1 48 13 is_stmt 0 view .LVU39
+ 135 003a A36B     		ldr	r3, [r4, #56]
+  48:Core/Src/as5048a.c ****         encd->spi_cs_en();
+ 136              		.loc 1 48 9 view .LVU40
+ 137 003c 9847     		blx	r3
+ 138              	.LVL14:
+  49:Core/Src/as5048a.c ****     }
+ 139              		.loc 1 49 9 is_stmt 1 view .LVU41
+  49:Core/Src/as5048a.c ****     }
+ 140              		.loc 1 49 16 is_stmt 0 view .LVU42
+ 141 003e 4FF0FF30 		mov	r0, #-1
+ 142 0042 F9E7     		b	.L2
+ 143              	.LVL15:
+ 144              	.L5:
+ 145              	.LCFI1:
+ 146              		.cfi_def_cfa_offset 0
+ 147              		.cfi_restore 4
+ 148              		.cfi_restore 14
+  39:Core/Src/as5048a.c ****     uint16_t cmd = AS5048A_READ_CMD | AS5048A_REG_ANGLE;
+ 149              		.loc 1 39 41 view .LVU43
+ 150 0044 0020     		movs	r0, #0
+ 151              	.LVL16:
+ 152              		.loc 1 54 1 view .LVU44
+ 153 0046 7047     		bx	lr
+ 154              		.cfi_endproc
+ 155              	.LFE138:
+ 157              		.section	.text.AS5048A_calc_degree,"ax",%progbits
+ 158              		.align	1
+ 159              		.syntax unified
+ 160              		.thumb
+ 161              		.thumb_func
+ 162              		.fpu fpv4-sp-d16
+ 164              	AS5048A_calc_degree:
+ 165              	.LVL17:
+ 166              	.LFB139:
+  55:Core/Src/as5048a.c **** 
+  56:Core/Src/as5048a.c **** static void AS5048A_calc_degree(AS5048A_t *encd) {
+ 167              		.loc 1 56 50 is_stmt 1 view -0
+ 168              		.cfi_startproc
+ 169              		@ args = 0, pretend = 0, frame = 0
+ 170              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccD7YWui.s 			page 5
 
 
- 324              		.loc 1 60 29 discriminator 3 view .LVU78
-  60:Core/Src/as5048a.c **** 	for(uint8_t i = 0; i < 10; i++){
- 325              		.loc 1 60 30 is_stmt 0 discriminator 3 view .LVU79
- 326 001a 0134     		adds	r4, r4, #1
- 327              	.LVL30:
-  60:Core/Src/as5048a.c **** 	for(uint8_t i = 0; i < 10; i++){
- 328              		.loc 1 60 30 discriminator 3 view .LVU80
- 329 001c E4B2     		uxtb	r4, r4
- 330              	.LVL31:
- 331              	.L10:
-  60:Core/Src/as5048a.c **** 	for(uint8_t i = 0; i < 10; i++){
- 332              		.loc 1 60 21 is_stmt 1 discriminator 1 view .LVU81
-  60:Core/Src/as5048a.c **** 	for(uint8_t i = 0; i < 10; i++){
- 333              		.loc 1 60 2 is_stmt 0 discriminator 1 view .LVU82
- 334 001e 092C     		cmp	r4, #9
- 335 0020 F3D9     		bls	.L11
- 336              	.LBE3:
-  63:Core/Src/as5048a.c **** 	}
-  64:Core/Src/as5048a.c **** 	if (Count > 4) return 1; 
- 337              		.loc 1 64 2 is_stmt 1 view .LVU83
- 338              		.loc 1 64 5 is_stmt 0 view .LVU84
- 339 0022 042D     		cmp	r5, #4
- 340 0024 01DC     		bgt	.L13
-  65:Core/Src/as5048a.c **** 	return 0;
- 341              		.loc 1 65 9 view .LVU85
- 342 0026 0020     		movs	r0, #0
- 343              	.L9:
-  66:Core/Src/as5048a.c **** }
- 344              		.loc 1 66 1 view .LVU86
- 345 0028 70BD     		pop	{r4, r5, r6, pc}
- 346              	.LVL32:
- 347              	.L13:
-  64:Core/Src/as5048a.c **** 	return 0;
- 348              		.loc 1 64 24 view .LVU87
- 349 002a 0120     		movs	r0, #1
- 350 002c FCE7     		b	.L9
- 351              		.cfi_endproc
- 352              	.LFE137:
- 354              		.section	.text.AS5048A_StartRead,"ax",%progbits
- 355              		.align	1
- 356              		.global	AS5048A_StartRead
- 357              		.syntax unified
- 358              		.thumb
- 359              		.thumb_func
- 360              		.fpu fpv4-sp-d16
- 362              	AS5048A_StartRead:
- 363              	.LVL33:
- 364              	.LFB138:
-  67:Core/Src/as5048a.c **** //
-  68:Core/Src/as5048a.c **** 
-  69:Core/Src/as5048a.c **** int AS5048A_StartRead(void *handle) {
- 365              		.loc 1 69 37 is_stmt 1 view -0
- 366              		.cfi_startproc
- 367              		@ args = 0, pretend = 0, frame = 8
- 368              		@ frame_needed = 0, uses_anonymous_args = 0
- 369              		.loc 1 69 37 is_stmt 0 view .LVU89
- 370 0000 30B5     		push	{r4, r5, lr}
-ARM GAS  /tmp/ccenbo52.s 			page 9
+ 171              		.loc 1 56 50 is_stmt 0 view .LVU46
+ 172 0000 38B5     		push	{r3, r4, r5, lr}
+ 173              	.LCFI2:
+ 174              		.cfi_def_cfa_offset 16
+ 175              		.cfi_offset 3, -16
+ 176              		.cfi_offset 4, -12
+ 177              		.cfi_offset 5, -8
+ 178              		.cfi_offset 14, -4
+  57:Core/Src/as5048a.c ****     if (!encd->spi_transfer_flag) return;
+ 179              		.loc 1 57 5 is_stmt 1 view .LVU47
+ 180              		.loc 1 57 14 is_stmt 0 view .LVU48
+ 181 0002 90F83030 		ldrb	r3, [r0, #48]	@ zero_extendqisi2
+ 182              		.loc 1 57 8 view .LVU49
+ 183 0006 23B3     		cbz	r3, .L11
+ 184 0008 0446     		mov	r4, r0
+  58:Core/Src/as5048a.c ****     encd->spi_transfer_flag = 0;
+ 185              		.loc 1 58 5 is_stmt 1 view .LVU50
+ 186              		.loc 1 58 29 is_stmt 0 view .LVU51
+ 187 000a 0023     		movs	r3, #0
+ 188 000c 80F83030 		strb	r3, [r0, #48]
+  59:Core/Src/as5048a.c ****     encd->spi_cs_en();
+ 189              		.loc 1 59 5 is_stmt 1 view .LVU52
+ 190              		.loc 1 59 9 is_stmt 0 view .LVU53
+ 191 0010 836B     		ldr	r3, [r0, #56]
+ 192              		.loc 1 59 5 view .LVU54
+ 193 0012 9847     		blx	r3
+ 194              	.LVL18:
+  60:Core/Src/as5048a.c **** 
+  61:Core/Src/as5048a.c ****     const uint16_t raw_data = ((uint16_t)encd->spi_rx_buffer[0] << 8) | encd->spi_rx_buffer[1];
+ 195              		.loc 1 61 5 is_stmt 1 view .LVU55
+ 196              		.loc 1 61 61 is_stmt 0 view .LVU56
+ 197 0014 A378     		ldrb	r3, [r4, #2]	@ zero_extendqisi2
+ 198              		.loc 1 61 92 view .LVU57
+ 199 0016 E578     		ldrb	r5, [r4, #3]	@ zero_extendqisi2
+ 200              		.loc 1 61 20 view .LVU58
+ 201 0018 45EA0325 		orr	r5, r5, r3, lsl #8
+ 202              	.LVL19:
+  62:Core/Src/as5048a.c **** 
+  63:Core/Src/as5048a.c ****     // Parity check (bit 15 = parity)
+  64:Core/Src/as5048a.c ****     const uint16_t data_15bit = raw_data & 0x7FFF;
+ 203              		.loc 1 64 5 is_stmt 1 view .LVU59
+  65:Core/Src/as5048a.c ****     const uint8_t expected_parity = calc_even_parity(data_15bit);
+ 204              		.loc 1 65 5 view .LVU60
+ 205              		.loc 1 65 37 is_stmt 0 view .LVU61
+ 206 001c C5F30E00 		ubfx	r0, r5, #0, #15
+ 207 0020 FFF7FEFF 		bl	calc_even_parity
+ 208              	.LVL20:
+  66:Core/Src/as5048a.c ****     const uint8_t received_parity = (raw_data >> 15) & 0x1;
+ 209              		.loc 1 66 5 is_stmt 1 view .LVU62
+  67:Core/Src/as5048a.c ****     if (expected_parity != received_parity) {
+ 210              		.loc 1 67 5 view .LVU63
+ 211              		.loc 1 67 8 is_stmt 0 view .LVU64
+ 212 0024 B0EBD53F 		cmp	r0, r5, lsr #15
+ 213 0028 13D1     		bne	.L11
+  68:Core/Src/as5048a.c ****         return;
+  69:Core/Src/as5048a.c ****     }
+  70:Core/Src/as5048a.c **** 
+ARM GAS  /tmp/ccD7YWui.s 			page 6
 
 
- 371              	.LCFI8:
- 372              		.cfi_def_cfa_offset 12
- 373              		.cfi_offset 4, -12
- 374              		.cfi_offset 5, -8
- 375              		.cfi_offset 14, -4
- 376 0002 83B0     		sub	sp, sp, #12
- 377              	.LCFI9:
- 378              		.cfi_def_cfa_offset 24
- 379 0004 0446     		mov	r4, r0
-  70:Core/Src/as5048a.c **** 	Encoder_t *self = (Encoder_t *)handle;
- 380              		.loc 1 70 2 is_stmt 1 view .LVU90
- 381              	.LVL34:
-  71:Core/Src/as5048a.c **** 	uint16_t cmd = AS5048A_WRITE_CMD | AS5048A_REG_ANGLE;
- 382              		.loc 1 71 2 view .LVU91
- 383              		.loc 1 71 11 is_stmt 0 view .LVU92
- 384 0006 47F6FF75 		movw	r5, #32767
- 385 000a ADF80650 		strh	r5, [sp, #6]	@ movhi
-  72:Core/Src/as5048a.c **** 	cmd |= (calc_even_parity(cmd) << 15); 
- 386              		.loc 1 72 2 is_stmt 1 view .LVU93
- 387              		.loc 1 72 10 is_stmt 0 view .LVU94
- 388 000e 2846     		mov	r0, r5
- 389              	.LVL35:
- 390              		.loc 1 72 10 view .LVU95
- 391 0010 FFF7FEFF 		bl	calc_even_parity
- 392              	.LVL36:
- 393              		.loc 1 72 6 view .LVU96
- 394 0014 45EAC035 		orr	r5, r5, r0, lsl #15
- 395 0018 ADF80650 		strh	r5, [sp, #6]	@ movhi
-  73:Core/Src/as5048a.c **** 
-  74:Core/Src/as5048a.c **** 	AS5048A_cs_reset(self);
- 396              		.loc 1 74 2 is_stmt 1 view .LVU97
- 397 001c 626A     		ldr	r2, [r4, #36]
- 398 001e 1389     		ldrh	r3, [r2, #8]
- 399 0020 5268     		ldr	r2, [r2, #4]
- 400 0022 1B04     		lsls	r3, r3, #16
- 401 0024 9361     		str	r3, [r2, #24]
-  75:Core/Src/as5048a.c **** 	if (HAL_SPI_TransmitReceive_DMA(self->active_port->hspi, (uint8_t*)&cmd, self->spi_rx_buffer, 2) !
- 402              		.loc 1 75 2 view .LVU98
- 403              		.loc 1 75 38 is_stmt 0 view .LVU99
- 404 0026 606A     		ldr	r0, [r4, #36]
- 405              		.loc 1 75 6 view .LVU100
- 406 0028 0223     		movs	r3, #2
- 407 002a 04F12802 		add	r2, r4, #40
- 408 002e 0DF10601 		add	r1, sp, #6
- 409 0032 0068     		ldr	r0, [r0]
- 410 0034 FFF7FEFF 		bl	HAL_SPI_TransmitReceive_DMA
- 411              	.LVL37:
- 412              		.loc 1 75 5 view .LVU101
- 413 0038 10B9     		cbnz	r0, .L17
-  76:Core/Src/as5048a.c **** 		return 0;
-  77:Core/Src/as5048a.c **** 	}
-  78:Core/Src/as5048a.c **** 	return 1;
- 414              		.loc 1 78 9 view .LVU102
- 415 003a 0120     		movs	r0, #1
- 416              	.L15:
-  79:Core/Src/as5048a.c **** }
- 417              		.loc 1 79 1 view .LVU103
-ARM GAS  /tmp/ccenbo52.s 			page 10
+  71:Core/Src/as5048a.c ****     // Error flag check (bit 14)
+  72:Core/Src/as5048a.c ****     // is this needed?
+  73:Core/Src/as5048a.c ****     // if ((raw_data >> 14) & 0x1) {
+  74:Core/Src/as5048a.c ****     //     return;
+  75:Core/Src/as5048a.c ****     // }
+  76:Core/Src/as5048a.c **** 
+  77:Core/Src/as5048a.c ****     uint16_t pos = raw_data & 0x3FFF;
+ 214              		.loc 1 77 5 is_stmt 1 view .LVU65
+ 215              		.loc 1 77 14 is_stmt 0 view .LVU66
+ 216 002a C5F30D05 		ubfx	r5, r5, #0, #14
+ 217              	.LVL21:
+  78:Core/Src/as5048a.c ****     encd->count_raw = (encd->dir == SENSOR_DIR_NORMAL) ? pos : (uint16_t)((0x4000 - pos) & 0x3FFF);
+ 218              		.loc 1 78 5 is_stmt 1 view .LVU67
+ 219              		.loc 1 78 28 is_stmt 0 view .LVU68
+ 220 002e 94F82830 		ldrb	r3, [r4, #40]	@ zero_extendqisi2
+ 221              		.loc 1 78 62 view .LVU69
+ 222 0032 13B1     		cbz	r3, .L14
+ 223              		.loc 1 78 62 discriminator 2 view .LVU70
+ 224 0034 6D42     		rsbs	r5, r5, #0
+ 225              	.LVL22:
+ 226              		.loc 1 78 62 discriminator 2 view .LVU71
+ 227 0036 C5F30D05 		ubfx	r5, r5, #0, #14
+ 228              	.LVL23:
+ 229              	.L14:
+ 230              		.loc 1 78 21 discriminator 4 view .LVU72
+ 231 003a 6560     		str	r5, [r4, #4]
+  79:Core/Src/as5048a.c **** 
+  80:Core/Src/as5048a.c ****     // The raw angle wraps every 16384 counts. Convert the difference to the
+  81:Core/Src/as5048a.c ****     // shortest signed movement so crossing zero does not look like a full turn.
+  82:Core/Src/as5048a.c ****     int32_t delta = encd->count_raw - encd->last_count_raw;
+ 232              		.loc 1 82 5 is_stmt 1 discriminator 4 view .LVU73
+ 233              		.loc 1 82 43 is_stmt 0 discriminator 4 view .LVU74
+ 234 003c A368     		ldr	r3, [r4, #8]
+ 235              		.loc 1 82 13 discriminator 4 view .LVU75
+ 236 003e EB1A     		subs	r3, r5, r3
+ 237              	.LVL24:
+  83:Core/Src/as5048a.c ****     if (delta > 8192) {
+ 238              		.loc 1 83 5 is_stmt 1 discriminator 4 view .LVU76
+ 239              		.loc 1 83 8 is_stmt 0 discriminator 4 view .LVU77
+ 240 0040 B3F5005F 		cmp	r3, #8192
+ 241 0044 06DD     		ble	.L15
+  84:Core/Src/as5048a.c ****         delta -= 16384;
+ 242              		.loc 1 84 9 is_stmt 1 view .LVU78
+ 243              		.loc 1 84 15 is_stmt 0 view .LVU79
+ 244 0046 A3F58043 		sub	r3, r3, #16384
+ 245              	.LVL25:
+ 246              	.L16:
+  85:Core/Src/as5048a.c ****     } else if (delta < -8192) {
+  86:Core/Src/as5048a.c ****         delta += 16384;
+  87:Core/Src/as5048a.c ****     }
+  88:Core/Src/as5048a.c ****     encd->countinuous_count += delta;
+ 247              		.loc 1 88 5 is_stmt 1 view .LVU80
+ 248              		.loc 1 88 29 is_stmt 0 view .LVU81
+ 249 004a E268     		ldr	r2, [r4, #12]
+ 250 004c 1344     		add	r3, r3, r2
+ 251              	.LVL26:
+ 252              		.loc 1 88 29 view .LVU82
+ARM GAS  /tmp/ccD7YWui.s 			page 7
 
 
- 418 003c 03B0     		add	sp, sp, #12
- 419              	.LCFI10:
- 420              		.cfi_remember_state
- 421              		.cfi_def_cfa_offset 12
- 422              		@ sp needed
- 423 003e 30BD     		pop	{r4, r5, pc}
- 424              	.LVL38:
- 425              	.L17:
- 426              	.LCFI11:
- 427              		.cfi_restore_state
-  76:Core/Src/as5048a.c **** 		return 0;
- 428              		.loc 1 76 10 view .LVU104
- 429 0040 0020     		movs	r0, #0
- 430 0042 FBE7     		b	.L15
- 431              		.cfi_endproc
- 432              	.LFE138:
- 434              		.section	.text.AS5048A_ParseData,"ax",%progbits
- 435              		.align	1
- 436              		.global	AS5048A_ParseData
- 437              		.syntax unified
- 438              		.thumb
- 439              		.thumb_func
- 440              		.fpu fpv4-sp-d16
- 442              	AS5048A_ParseData:
- 443              	.LVL39:
- 444              	.LFB139:
-  80:Core/Src/as5048a.c **** //
-  81:Core/Src/as5048a.c **** float AS5048A_ParseData(void *handle) {
- 445              		.loc 1 81 39 is_stmt 1 view -0
- 446              		.cfi_startproc
- 447              		@ args = 0, pretend = 0, frame = 0
- 448              		@ frame_needed = 0, uses_anonymous_args = 0
- 449              		.loc 1 81 39 is_stmt 0 view .LVU106
- 450 0000 10B5     		push	{r4, lr}
- 451              	.LCFI12:
- 452              		.cfi_def_cfa_offset 8
- 453              		.cfi_offset 4, -8
- 454              		.cfi_offset 14, -4
-  82:Core/Src/as5048a.c **** 	Encoder_t *self = (Encoder_t *)handle;
- 455              		.loc 1 82 2 is_stmt 1 view .LVU107
- 456              	.LVL40:
-  83:Core/Src/as5048a.c **** 	AS5048A_cs_set(self);
- 457              		.loc 1 83 2 view .LVU108
- 458 0002 436A     		ldr	r3, [r0, #36]
- 459 0004 5A68     		ldr	r2, [r3, #4]
- 460 0006 1B89     		ldrh	r3, [r3, #8]
- 461 0008 9361     		str	r3, [r2, #24]
-  84:Core/Src/as5048a.c **** 	
-  85:Core/Src/as5048a.c **** 	const uint16_t raw_data = ((uint16_t)self->spi_rx_buffer[0] << 8) | self->spi_rx_buffer[1];
- 462              		.loc 1 85 2 view .LVU109
- 463              		.loc 1 85 58 is_stmt 0 view .LVU110
- 464 000a 90F82830 		ldrb	r3, [r0, #40]	@ zero_extendqisi2
- 465              		.loc 1 85 89 view .LVU111
- 466 000e 90F82940 		ldrb	r4, [r0, #41]	@ zero_extendqisi2
- 467              		.loc 1 85 17 view .LVU112
- 468 0012 44EA0324 		orr	r4, r4, r3, lsl #8
- 469              	.LVL41:
-ARM GAS  /tmp/ccenbo52.s 			page 11
+ 253 004e E360     		str	r3, [r4, #12]
+  89:Core/Src/as5048a.c ****     encd->last_count_raw = encd->count_raw;
+ 254              		.loc 1 89 5 is_stmt 1 view .LVU83
+ 255              		.loc 1 89 26 is_stmt 0 view .LVU84
+ 256 0050 A560     		str	r5, [r4, #8]
+ 257              	.LVL27:
+ 258              	.L11:
+  90:Core/Src/as5048a.c **** }
+ 259              		.loc 1 90 1 view .LVU85
+ 260 0052 38BD     		pop	{r3, r4, r5, pc}
+ 261              	.LVL28:
+ 262              	.L15:
+  85:Core/Src/as5048a.c ****     } else if (delta < -8192) {
+ 263              		.loc 1 85 12 is_stmt 1 view .LVU86
+  85:Core/Src/as5048a.c ****     } else if (delta < -8192) {
+ 264              		.loc 1 85 15 is_stmt 0 view .LVU87
+ 265 0054 13F5005F 		cmn	r3, #8192
+ 266 0058 F7DA     		bge	.L16
+  86:Core/Src/as5048a.c ****     }
+ 267              		.loc 1 86 9 is_stmt 1 view .LVU88
+  86:Core/Src/as5048a.c ****     }
+ 268              		.loc 1 86 15 is_stmt 0 view .LVU89
+ 269 005a 03F58043 		add	r3, r3, #16384
+ 270              	.LVL29:
+  86:Core/Src/as5048a.c ****     }
+ 271              		.loc 1 86 15 view .LVU90
+ 272 005e F4E7     		b	.L16
+ 273              		.cfi_endproc
+ 274              	.LFE139:
+ 276              		.section	.text.AS5048A_Config,"ax",%progbits
+ 277              		.align	1
+ 278              		.global	AS5048A_Config
+ 279              		.syntax unified
+ 280              		.thumb
+ 281              		.thumb_func
+ 282              		.fpu fpv4-sp-d16
+ 284              	AS5048A_Config:
+ 285              	.LVL30:
+ 286              	.LFB135:
+  20:Core/Src/as5048a.c ****     encd->spi_transfer  = spi_transfer;
+ 287              		.loc 1 20 140 is_stmt 1 view -0
+ 288              		.cfi_startproc
+ 289              		@ args = 0, pretend = 0, frame = 0
+ 290              		@ frame_needed = 0, uses_anonymous_args = 0
+  20:Core/Src/as5048a.c ****     encd->spi_transfer  = spi_transfer;
+ 291              		.loc 1 20 140 is_stmt 0 view .LVU92
+ 292 0000 08B5     		push	{r3, lr}
+ 293              	.LCFI3:
+ 294              		.cfi_def_cfa_offset 8
+ 295              		.cfi_offset 3, -8
+ 296              		.cfi_offset 14, -4
+  21:Core/Src/as5048a.c ****     encd->spi_cs_en  = spi_cs_en;
+ 297              		.loc 1 21 5 is_stmt 1 view .LVU93
+  21:Core/Src/as5048a.c ****     encd->spi_cs_en  = spi_cs_en;
+ 298              		.loc 1 21 25 is_stmt 0 view .LVU94
+ 299 0002 4163     		str	r1, [r0, #52]
+  22:Core/Src/as5048a.c ****     encd->spi_cs_dis = spi_cs_dis;
+ARM GAS  /tmp/ccD7YWui.s 			page 8
 
 
-  86:Core/Src/as5048a.c **** 	const uint16_t data_15bit = raw_data & 0x7FFF;
- 470              		.loc 1 86 2 is_stmt 1 view .LVU113
- 471              		.loc 1 86 17 is_stmt 0 view .LVU114
- 472 0016 C4F30E00 		ubfx	r0, r4, #0, #15
- 473              	.LVL42:
-  87:Core/Src/as5048a.c **** 	
-  88:Core/Src/as5048a.c **** 	if (raw_data == 0x0000 || raw_data == 0xFFFF) return -1; // No Device
- 474              		.loc 1 88 2 is_stmt 1 view .LVU115
- 475              		.loc 1 88 25 is_stmt 0 view .LVU116
- 476 001a 631E     		subs	r3, r4, #1
- 477 001c 9BB2     		uxth	r3, r3
- 478              		.loc 1 88 5 view .LVU117
- 479 001e 4FF6FD72 		movw	r2, #65533
- 480 0022 9342     		cmp	r3, r2
- 481 0024 0FD8     		bhi	.L21
-  89:Core/Src/as5048a.c **** 	if (calc_even_parity(data_15bit) != ((raw_data >> 15) & 0x1)) return -1.0f;
- 482              		.loc 1 89 2 is_stmt 1 view .LVU118
- 483              		.loc 1 89 6 is_stmt 0 view .LVU119
- 484 0026 FFF7FEFF 		bl	calc_even_parity
- 485              	.LVL43:
- 486              		.loc 1 89 5 view .LVU120
- 487 002a B0EBD43F 		cmp	r0, r4, lsr #15
- 488 002e 0DD1     		bne	.L22
-  90:Core/Src/as5048a.c **** 	
-  91:Core/Src/as5048a.c **** 	// Error flag check (bit 14)
-  92:Core/Src/as5048a.c **** 	// if ((raw_data >> 14) & 0x1) {
-  93:Core/Src/as5048a.c **** 	// 	return -1.0f;
-  94:Core/Src/as5048a.c **** 	// }
-  95:Core/Src/as5048a.c **** 	return (float)(raw_data & 0x3FFF) * ANGLE_SCALE_FACTOR;
- 489              		.loc 1 95 2 is_stmt 1 view .LVU121
- 490              		.loc 1 95 26 is_stmt 0 view .LVU122
- 491 0030 C4F30D03 		ubfx	r3, r4, #0, #14
- 492 0034 00EE103A 		vmov	s0, r3	@ int
- 493              		.loc 1 95 9 view .LVU123
- 494 0038 B8EEC00A 		vcvt.f32.s32	s0, s0
- 495              		.loc 1 95 36 view .LVU124
- 496 003c DFED057A 		vldr.32	s15, .L24
- 497 0040 20EE270A 		vmul.f32	s0, s0, s15
- 498 0044 01E0     		b	.L19
- 499              	.LVL44:
- 500              	.L21:
-  88:Core/Src/as5048a.c **** 	if (calc_even_parity(data_15bit) != ((raw_data >> 15) & 0x1)) return -1.0f;
- 501              		.loc 1 88 55 view .LVU125
- 502 0046 BFEE000A 		vmov.f32	s0, #-1.0e+0
- 503              	.LVL45:
- 504              	.L19:
-  96:Core/Src/as5048a.c **** }
- 505              		.loc 1 96 1 view .LVU126
- 506 004a 10BD     		pop	{r4, pc}
- 507              	.LVL46:
- 508              	.L22:
-  89:Core/Src/as5048a.c **** 	
- 509              		.loc 1 89 71 view .LVU127
- 510 004c BFEE000A 		vmov.f32	s0, #-1.0e+0
- 511 0050 FBE7     		b	.L19
- 512              	.L25:
- 513 0052 00BF     		.align	2
-ARM GAS  /tmp/ccenbo52.s 			page 12
+ 300              		.loc 1 22 5 is_stmt 1 view .LVU95
+  22:Core/Src/as5048a.c ****     encd->spi_cs_dis = spi_cs_dis;
+ 301              		.loc 1 22 22 is_stmt 0 view .LVU96
+ 302 0004 8263     		str	r2, [r0, #56]
+  23:Core/Src/as5048a.c ****     encd->spi_cs_en();
+ 303              		.loc 1 23 5 is_stmt 1 view .LVU97
+  23:Core/Src/as5048a.c ****     encd->spi_cs_en();
+ 304              		.loc 1 23 22 is_stmt 0 view .LVU98
+ 305 0006 C363     		str	r3, [r0, #60]
+  24:Core/Src/as5048a.c **** }
+ 306              		.loc 1 24 5 is_stmt 1 view .LVU99
+ 307 0008 9047     		blx	r2
+ 308              	.LVL31:
+  25:Core/Src/as5048a.c **** 
+ 309              		.loc 1 25 1 is_stmt 0 view .LVU100
+ 310 000a 08BD     		pop	{r3, pc}
+ 311              		.cfi_endproc
+ 312              	.LFE135:
+ 314              		.section	.text.AS5048A_Init,"ax",%progbits
+ 315              		.align	1
+ 316              		.global	AS5048A_Init
+ 317              		.syntax unified
+ 318              		.thumb
+ 319              		.thumb_func
+ 320              		.fpu fpv4-sp-d16
+ 322              	AS5048A_Init:
+ 323              	.LVL32:
+ 324              	.LFB136:
+  27:Core/Src/as5048a.c ****     encd->dir = dir;
+ 325              		.loc 1 27 67 is_stmt 1 view -0
+ 326              		.cfi_startproc
+ 327              		@ args = 0, pretend = 0, frame = 0
+ 328              		@ frame_needed = 0, uses_anonymous_args = 0
+ 329              		@ link register save eliminated.
+  28:Core/Src/as5048a.c ****     encd->count_to_deg_scale = scale;
+ 330              		.loc 1 28 5 view .LVU102
+  28:Core/Src/as5048a.c ****     encd->count_to_deg_scale = scale;
+ 331              		.loc 1 28 15 is_stmt 0 view .LVU103
+ 332 0000 80F82810 		strb	r1, [r0, #40]
+  29:Core/Src/as5048a.c ****     encd->last_count_raw = 0;
+ 333              		.loc 1 29 5 is_stmt 1 view .LVU104
+  29:Core/Src/as5048a.c ****     encd->last_count_raw = 0;
+ 334              		.loc 1 29 30 is_stmt 0 view .LVU105
+ 335 0004 80ED0B0A 		vstr.32	s0, [r0, #44]
+  30:Core/Src/as5048a.c ****     encd->countinuous_count = 0;
+ 336              		.loc 1 30 5 is_stmt 1 view .LVU106
+  30:Core/Src/as5048a.c ****     encd->countinuous_count = 0;
+ 337              		.loc 1 30 26 is_stmt 0 view .LVU107
+ 338 0008 0023     		movs	r3, #0
+ 339 000a 8360     		str	r3, [r0, #8]
+  31:Core/Src/as5048a.c **** }
+ 340              		.loc 1 31 5 is_stmt 1 view .LVU108
+  31:Core/Src/as5048a.c **** }
+ 341              		.loc 1 31 29 is_stmt 0 view .LVU109
+ 342 000c C360     		str	r3, [r0, #12]
+  32:Core/Src/as5048a.c **** 
+ 343              		.loc 1 32 1 view .LVU110
+ARM GAS  /tmp/ccD7YWui.s 			page 9
 
 
- 514              	.L24:
- 515 0054 D002B43C 		.word	1018430160
- 516              		.cfi_endproc
- 517              	.LFE139:
- 519              		.text
- 520              	.Letext0:
- 521              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
- 522              		.file 3 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
- 523              		.file 4 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 524              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
- 525              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 526              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h"
- 527              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
- 528              		.file 9 "Core/Inc/encoder.h"
- 529              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
-ARM GAS  /tmp/ccenbo52.s 			page 13
+ 344 000e 7047     		bx	lr
+ 345              		.cfi_endproc
+ 346              	.LFE136:
+ 348              		.section	.text.AS5048A_set_pll_filter,"ax",%progbits
+ 349              		.align	1
+ 350              		.global	AS5048A_set_pll_filter
+ 351              		.syntax unified
+ 352              		.thumb
+ 353              		.thumb_func
+ 354              		.fpu fpv4-sp-d16
+ 356              	AS5048A_set_pll_filter:
+ 357              	.LVL33:
+ 358              	.LFB137:
+  34:Core/Src/as5048a.c ****     pll_filter_init(&encd->count_filt, Ts, bw_hz, damping_ratio);
+ 359              		.loc 1 34 90 is_stmt 1 view -0
+ 360              		.cfi_startproc
+ 361              		@ args = 0, pretend = 0, frame = 0
+ 362              		@ frame_needed = 0, uses_anonymous_args = 0
+  34:Core/Src/as5048a.c ****     pll_filter_init(&encd->count_filt, Ts, bw_hz, damping_ratio);
+ 363              		.loc 1 34 90 is_stmt 0 view .LVU112
+ 364 0000 08B5     		push	{r3, lr}
+ 365              	.LCFI4:
+ 366              		.cfi_def_cfa_offset 8
+ 367              		.cfi_offset 3, -8
+ 368              		.cfi_offset 14, -4
+ 369 0002 F0EE417A 		vmov.f32	s15, s2
+  35:Core/Src/as5048a.c **** }
+ 370              		.loc 1 35 5 is_stmt 1 view .LVU113
+ 371 0006 B0EE601A 		vmov.f32	s2, s1
+ 372              	.LVL34:
+  35:Core/Src/as5048a.c **** }
+ 373              		.loc 1 35 5 is_stmt 0 view .LVU114
+ 374 000a F0EE400A 		vmov.f32	s1, s0
+ 375              	.LVL35:
+  35:Core/Src/as5048a.c **** }
+ 376              		.loc 1 35 5 view .LVU115
+ 377 000e B0EE670A 		vmov.f32	s0, s15
+ 378              	.LVL36:
+  35:Core/Src/as5048a.c **** }
+ 379              		.loc 1 35 5 view .LVU116
+ 380 0012 1030     		adds	r0, r0, #16
+ 381              	.LVL37:
+  35:Core/Src/as5048a.c **** }
+ 382              		.loc 1 35 5 view .LVU117
+ 383 0014 FFF7FEFF 		bl	pll_filter_init
+ 384              	.LVL38:
+  36:Core/Src/as5048a.c **** 
+ 385              		.loc 1 36 1 view .LVU118
+ 386 0018 08BD     		pop	{r3, pc}
+ 387              		.cfi_endproc
+ 388              	.LFE137:
+ 390              		.section	.text.AS5048A_pll_filter_update,"ax",%progbits
+ 391              		.align	1
+ 392              		.global	AS5048A_pll_filter_update
+ 393              		.syntax unified
+ 394              		.thumb
+ 395              		.thumb_func
+ARM GAS  /tmp/ccD7YWui.s 			page 10
+
+
+ 396              		.fpu fpv4-sp-d16
+ 398              	AS5048A_pll_filter_update:
+ 399              	.LVL39:
+ 400              	.LFB140:
+  91:Core/Src/as5048a.c **** 
+  92:Core/Src/as5048a.c **** void AS5048A_pll_filter_update(AS5048A_t *encd) {
+ 401              		.loc 1 92 49 is_stmt 1 view -0
+ 402              		.cfi_startproc
+ 403              		@ args = 0, pretend = 0, frame = 0
+ 404              		@ frame_needed = 0, uses_anonymous_args = 0
+ 405              		.loc 1 92 49 is_stmt 0 view .LVU120
+ 406 0000 08B5     		push	{r3, lr}
+ 407              	.LCFI5:
+ 408              		.cfi_def_cfa_offset 8
+ 409              		.cfi_offset 3, -8
+ 410              		.cfi_offset 14, -4
+  93:Core/Src/as5048a.c ****     pll_filter_update(&encd->count_filt, (float)encd->countinuous_count);
+ 411              		.loc 1 93 5 is_stmt 1 view .LVU121
+ 412 0002 D0ED037A 		vldr.32	s15, [r0, #12]	@ int
+ 413 0006 B8EEE70A 		vcvt.f32.s32	s0, s15
+ 414 000a 1030     		adds	r0, r0, #16
+ 415              	.LVL40:
+ 416              		.loc 1 93 5 is_stmt 0 view .LVU122
+ 417 000c FFF7FEFF 		bl	pll_filter_update
+ 418              	.LVL41:
+  94:Core/Src/as5048a.c **** }
+ 419              		.loc 1 94 1 view .LVU123
+ 420 0010 08BD     		pop	{r3, pc}
+ 421              		.cfi_endproc
+ 422              	.LFE140:
+ 424              		.section	.text.AS5048A_update,"ax",%progbits
+ 425              		.align	1
+ 426              		.global	AS5048A_update
+ 427              		.syntax unified
+ 428              		.thumb
+ 429              		.thumb_func
+ 430              		.fpu fpv4-sp-d16
+ 432              	AS5048A_update:
+ 433              	.LVL42:
+ 434              	.LFB141:
+  95:Core/Src/as5048a.c **** 
+  96:Core/Src/as5048a.c **** void AS5048A_update(AS5048A_t *encd) {
+ 435              		.loc 1 96 38 is_stmt 1 view -0
+ 436              		.cfi_startproc
+ 437              		@ args = 0, pretend = 0, frame = 0
+ 438              		@ frame_needed = 0, uses_anonymous_args = 0
+ 439              		.loc 1 96 38 is_stmt 0 view .LVU125
+ 440 0000 10B5     		push	{r4, lr}
+ 441              	.LCFI6:
+ 442              		.cfi_def_cfa_offset 8
+ 443              		.cfi_offset 4, -8
+ 444              		.cfi_offset 14, -4
+ 445 0002 0446     		mov	r4, r0
+  97:Core/Src/as5048a.c ****     AS5048A_start(encd);
+ 446              		.loc 1 97 5 is_stmt 1 view .LVU126
+ 447 0004 FFF7FEFF 		bl	AS5048A_start
+ 448              	.LVL43:
+ARM GAS  /tmp/ccD7YWui.s 			page 11
+
+
+  98:Core/Src/as5048a.c ****     if (encd->spi_transfer_done_flag) {
+ 449              		.loc 1 98 5 view .LVU127
+ 450              		.loc 1 98 13 is_stmt 0 view .LVU128
+ 451 0008 94F83130 		ldrb	r3, [r4, #49]	@ zero_extendqisi2
+ 452              		.loc 1 98 8 view .LVU129
+ 453 000c 03B9     		cbnz	r3, .L28
+ 454              	.L25:
+  99:Core/Src/as5048a.c ****         encd->spi_transfer_done_flag = 0;
+ 100:Core/Src/as5048a.c ****         AS5048A_calc_degree(encd);
+ 101:Core/Src/as5048a.c ****     }
+ 102:Core/Src/as5048a.c **** }
+ 455              		.loc 1 102 1 view .LVU130
+ 456 000e 10BD     		pop	{r4, pc}
+ 457              	.LVL44:
+ 458              	.L28:
+  99:Core/Src/as5048a.c ****         encd->spi_transfer_done_flag = 0;
+ 459              		.loc 1 99 9 is_stmt 1 view .LVU131
+  99:Core/Src/as5048a.c ****         encd->spi_transfer_done_flag = 0;
+ 460              		.loc 1 99 38 is_stmt 0 view .LVU132
+ 461 0010 0023     		movs	r3, #0
+ 462 0012 84F83130 		strb	r3, [r4, #49]
+ 100:Core/Src/as5048a.c ****     }
+ 463              		.loc 1 100 9 is_stmt 1 view .LVU133
+ 464 0016 2046     		mov	r0, r4
+ 465 0018 FFF7FEFF 		bl	AS5048A_calc_degree
+ 466              	.LVL45:
+ 467              		.loc 1 102 1 is_stmt 0 view .LVU134
+ 468 001c F7E7     		b	.L25
+ 469              		.cfi_endproc
+ 470              	.LFE141:
+ 472              		.section	.text.AS5048A_set_spi_transfer_done,"ax",%progbits
+ 473              		.align	1
+ 474              		.global	AS5048A_set_spi_transfer_done
+ 475              		.syntax unified
+ 476              		.thumb
+ 477              		.thumb_func
+ 478              		.fpu fpv4-sp-d16
+ 480              	AS5048A_set_spi_transfer_done:
+ 481              	.LVL46:
+ 482              	.LFB142:
+ 103:Core/Src/as5048a.c **** 
+ 104:Core/Src/as5048a.c **** void AS5048A_set_spi_transfer_done(AS5048A_t *encd) {
+ 483              		.loc 1 104 53 is_stmt 1 view -0
+ 484              		.cfi_startproc
+ 485              		@ args = 0, pretend = 0, frame = 0
+ 486              		@ frame_needed = 0, uses_anonymous_args = 0
+ 487              		@ link register save eliminated.
+ 105:Core/Src/as5048a.c ****     encd->spi_transfer_done_flag = 1;
+ 488              		.loc 1 105 5 view .LVU136
+ 489              		.loc 1 105 34 is_stmt 0 view .LVU137
+ 490 0000 0123     		movs	r3, #1
+ 491 0002 80F83130 		strb	r3, [r0, #49]
+ 106:Core/Src/as5048a.c **** }
+ 492              		.loc 1 106 1 view .LVU138
+ 493 0006 7047     		bx	lr
+ 494              		.cfi_endproc
+ 495              	.LFE142:
+ARM GAS  /tmp/ccD7YWui.s 			page 12
+
+
+ 497              		.section	.text.AS5048A_get_degree,"ax",%progbits
+ 498              		.align	1
+ 499              		.global	AS5048A_get_degree
+ 500              		.syntax unified
+ 501              		.thumb
+ 502              		.thumb_func
+ 503              		.fpu fpv4-sp-d16
+ 505              	AS5048A_get_degree:
+ 506              	.LVL47:
+ 507              	.LFB143:
+ 107:Core/Src/as5048a.c **** 
+ 108:Core/Src/as5048a.c **** float AS5048A_get_degree(AS5048A_t *encd) {
+ 508              		.loc 1 108 43 is_stmt 1 view -0
+ 509              		.cfi_startproc
+ 510              		@ args = 0, pretend = 0, frame = 0
+ 511              		@ frame_needed = 0, uses_anonymous_args = 0
+ 512              		.loc 1 108 43 is_stmt 0 view .LVU140
+ 513 0000 08B5     		push	{r3, lr}
+ 514              	.LCFI7:
+ 515              		.cfi_def_cfa_offset 8
+ 516              		.cfi_offset 3, -8
+ 517              		.cfi_offset 14, -4
+ 109:Core/Src/as5048a.c ****     float deg = encd->count_raw * encd->count_to_deg_scale;
+ 518              		.loc 1 109 5 is_stmt 1 view .LVU141
+ 519              		.loc 1 109 33 is_stmt 0 view .LVU142
+ 520 0002 D0ED017A 		vldr.32	s15, [r0, #4]	@ int
+ 521 0006 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 522              		.loc 1 109 39 view .LVU143
+ 523 000a 90ED0B0A 		vldr.32	s0, [r0, #44]
+ 524              	.LVL48:
+ 110:Core/Src/as5048a.c ****     deg = fmodf(deg, 360.0f);
+ 525              		.loc 1 110 5 is_stmt 1 view .LVU144
+ 526              		.loc 1 110 11 is_stmt 0 view .LVU145
+ 527 000e DFED080A 		vldr.32	s1, .L36
+ 528 0012 27EE800A 		vmul.f32	s0, s15, s0
+ 529              	.LVL49:
+ 530              		.loc 1 110 11 view .LVU146
+ 531 0016 FFF7FEFF 		bl	fmodf
+ 532              	.LVL50:
+ 111:Core/Src/as5048a.c ****     if (deg < 0.0f) {
+ 533              		.loc 1 111 5 is_stmt 1 view .LVU147
+ 534              		.loc 1 111 8 is_stmt 0 view .LVU148
+ 535 001a B5EEC00A 		vcmpe.f32	s0, #0
+ 536 001e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 537 0022 00D4     		bmi	.L35
+ 538              	.L30:
+ 112:Core/Src/as5048a.c ****         deg += 360.0f;
+ 113:Core/Src/as5048a.c ****     }
+ 114:Core/Src/as5048a.c ****     return deg;
+ 115:Core/Src/as5048a.c **** }
+ 539              		.loc 1 115 1 view .LVU149
+ 540 0024 08BD     		pop	{r3, pc}
+ 541              	.L35:
+ 112:Core/Src/as5048a.c ****         deg += 360.0f;
+ 542              		.loc 1 112 9 is_stmt 1 view .LVU150
+ 112:Core/Src/as5048a.c ****         deg += 360.0f;
+ 543              		.loc 1 112 13 is_stmt 0 view .LVU151
+ARM GAS  /tmp/ccD7YWui.s 			page 13
+
+
+ 544 0026 DFED027A 		vldr.32	s15, .L36
+ 545 002a 30EE270A 		vadd.f32	s0, s0, s15
+ 546              	.LVL51:
+ 114:Core/Src/as5048a.c **** }
+ 547              		.loc 1 114 5 is_stmt 1 view .LVU152
+ 114:Core/Src/as5048a.c **** }
+ 548              		.loc 1 114 12 is_stmt 0 view .LVU153
+ 549 002e F9E7     		b	.L30
+ 550              	.L37:
+ 551              		.align	2
+ 552              	.L36:
+ 553 0030 0000B443 		.word	1135869952
+ 554              		.cfi_endproc
+ 555              	.LFE143:
+ 557              		.section	.text.AS5048A_get_rpm,"ax",%progbits
+ 558              		.align	1
+ 559              		.global	AS5048A_get_rpm
+ 560              		.syntax unified
+ 561              		.thumb
+ 562              		.thumb_func
+ 563              		.fpu fpv4-sp-d16
+ 565              	AS5048A_get_rpm:
+ 566              	.LVL52:
+ 567              	.LFB144:
+ 116:Core/Src/as5048a.c **** 
+ 117:Core/Src/as5048a.c **** float AS5048A_get_rpm(AS5048A_t *encd) {
+ 568              		.loc 1 117 40 is_stmt 1 view -0
+ 569              		.cfi_startproc
+ 570              		@ args = 0, pretend = 0, frame = 0
+ 571              		@ frame_needed = 0, uses_anonymous_args = 0
+ 572              		@ link register save eliminated.
+ 118:Core/Src/as5048a.c ****     float deg_s = encd->count_filt.estimate_velocity * encd->count_to_deg_scale;
+ 573              		.loc 1 118 5 view .LVU155
+ 574              		.loc 1 118 35 is_stmt 0 view .LVU156
+ 575 0000 D0ED057A 		vldr.32	s15, [r0, #20]
+ 576              		.loc 1 118 60 view .LVU157
+ 577 0004 90ED0B0A 		vldr.32	s0, [r0, #44]
+ 578              		.loc 1 118 11 view .LVU158
+ 579 0008 67EE807A 		vmul.f32	s15, s15, s0
+ 580              	.LVL53:
+ 119:Core/Src/as5048a.c ****     return (deg_s / 6.0f);
+ 581              		.loc 1 119 5 is_stmt 1 view .LVU159
+ 120:Core/Src/as5048a.c **** }
+ 582              		.loc 1 120 1 is_stmt 0 view .LVU160
+ 583 000c B1EE080A 		vmov.f32	s0, #6.0e+0
+ 584 0010 87EE800A 		vdiv.f32	s0, s15, s0
+ 585 0014 7047     		bx	lr
+ 586              		.cfi_endproc
+ 587              	.LFE144:
+ 589              		.section	.text.AS5048A_get_continuous_degree,"ax",%progbits
+ 590              		.align	1
+ 591              		.global	AS5048A_get_continuous_degree
+ 592              		.syntax unified
+ 593              		.thumb
+ 594              		.thumb_func
+ 595              		.fpu fpv4-sp-d16
+ 597              	AS5048A_get_continuous_degree:
+ARM GAS  /tmp/ccD7YWui.s 			page 14
+
+
+ 598              	.LVL54:
+ 599              	.LFB145:
+ 121:Core/Src/as5048a.c **** 
+ 122:Core/Src/as5048a.c **** float AS5048A_get_continuous_degree(AS5048A_t *encd) {
+ 600              		.loc 1 122 54 is_stmt 1 view -0
+ 601              		.cfi_startproc
+ 602              		@ args = 0, pretend = 0, frame = 0
+ 603              		@ frame_needed = 0, uses_anonymous_args = 0
+ 604              		@ link register save eliminated.
+ 123:Core/Src/as5048a.c ****     return encd->countinuous_count * encd->count_to_deg_scale;
+ 605              		.loc 1 123 5 view .LVU162
+ 606              		.loc 1 123 16 is_stmt 0 view .LVU163
+ 607 0000 D0ED037A 		vldr.32	s15, [r0, #12]	@ int
+ 608              		.loc 1 123 42 view .LVU164
+ 609 0004 90ED0B0A 		vldr.32	s0, [r0, #44]
+ 610              		.loc 1 123 36 view .LVU165
+ 611 0008 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 124:Core/Src/as5048a.c **** }...
+ 612              		.loc 1 124 1 view .LVU166
+ 613 000c 27EE800A 		vmul.f32	s0, s15, s0
+ 614 0010 7047     		bx	lr
+ 615              		.cfi_endproc
+ 616              	.LFE145:
+ 618              		.text
+ 619              	.Letext0:
+ 620              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
+ 621              		.file 3 "Core/Inc/pll_filter.h"
+ 622              		.file 4 "Core/Inc/as5048a.h"
+ 623              		.file 5 "/usr/include/newlib/math.h"
+ARM GAS  /tmp/ccD7YWui.s 			page 15
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 as5048a.c
-     /tmp/ccenbo52.s:18     .text.calc_even_parity:0000000000000000 $t
-     /tmp/ccenbo52.s:25     .text.calc_even_parity:0000000000000000 calc_even_parity
-     /tmp/ccenbo52.s:60     .text.AS5048A_Config_CS:0000000000000000 $t
-     /tmp/ccenbo52.s:67     .text.AS5048A_Config_CS:0000000000000000 AS5048A_Config_CS
-     /tmp/ccenbo52.s:125    .text.AS5048A_CheckExist:0000000000000000 $t
-     /tmp/ccenbo52.s:132    .text.AS5048A_CheckExist:0000000000000000 AS5048A_CheckExist
-     /tmp/ccenbo52.s:271    .text.AS5048A_DetectExit:0000000000000000 $t
-     /tmp/ccenbo52.s:278    .text.AS5048A_DetectExit:0000000000000000 AS5048A_DetectExit
-     /tmp/ccenbo52.s:355    .text.AS5048A_StartRead:0000000000000000 $t
-     /tmp/ccenbo52.s:362    .text.AS5048A_StartRead:0000000000000000 AS5048A_StartRead
-     /tmp/ccenbo52.s:435    .text.AS5048A_ParseData:0000000000000000 $t
-     /tmp/ccenbo52.s:442    .text.AS5048A_ParseData:0000000000000000 AS5048A_ParseData
-     /tmp/ccenbo52.s:515    .text.AS5048A_ParseData:0000000000000054 $d
+     /tmp/ccD7YWui.s:18     .text.calc_even_parity:0000000000000000 $t
+     /tmp/ccD7YWui.s:25     .text.calc_even_parity:0000000000000000 calc_even_parity
+     /tmp/ccD7YWui.s:60     .text.AS5048A_start:0000000000000000 $t
+     /tmp/ccD7YWui.s:66     .text.AS5048A_start:0000000000000000 AS5048A_start
+     /tmp/ccD7YWui.s:158    .text.AS5048A_calc_degree:0000000000000000 $t
+     /tmp/ccD7YWui.s:164    .text.AS5048A_calc_degree:0000000000000000 AS5048A_calc_degree
+     /tmp/ccD7YWui.s:277    .text.AS5048A_Config:0000000000000000 $t
+     /tmp/ccD7YWui.s:284    .text.AS5048A_Config:0000000000000000 AS5048A_Config
+     /tmp/ccD7YWui.s:315    .text.AS5048A_Init:0000000000000000 $t
+     /tmp/ccD7YWui.s:322    .text.AS5048A_Init:0000000000000000 AS5048A_Init
+     /tmp/ccD7YWui.s:349    .text.AS5048A_set_pll_filter:0000000000000000 $t
+     /tmp/ccD7YWui.s:356    .text.AS5048A_set_pll_filter:0000000000000000 AS5048A_set_pll_filter
+     /tmp/ccD7YWui.s:391    .text.AS5048A_pll_filter_update:0000000000000000 $t
+     /tmp/ccD7YWui.s:398    .text.AS5048A_pll_filter_update:0000000000000000 AS5048A_pll_filter_update
+     /tmp/ccD7YWui.s:425    .text.AS5048A_update:0000000000000000 $t
+     /tmp/ccD7YWui.s:432    .text.AS5048A_update:0000000000000000 AS5048A_update
+     /tmp/ccD7YWui.s:473    .text.AS5048A_set_spi_transfer_done:0000000000000000 $t
+     /tmp/ccD7YWui.s:480    .text.AS5048A_set_spi_transfer_done:0000000000000000 AS5048A_set_spi_transfer_done
+     /tmp/ccD7YWui.s:498    .text.AS5048A_get_degree:0000000000000000 $t
+     /tmp/ccD7YWui.s:505    .text.AS5048A_get_degree:0000000000000000 AS5048A_get_degree
+     /tmp/ccD7YWui.s:553    .text.AS5048A_get_degree:0000000000000030 $d
+     /tmp/ccD7YWui.s:558    .text.AS5048A_get_rpm:0000000000000000 $t
+     /tmp/ccD7YWui.s:565    .text.AS5048A_get_rpm:0000000000000000 AS5048A_get_rpm
+     /tmp/ccD7YWui.s:590    .text.AS5048A_get_continuous_degree:0000000000000000 $t
+     /tmp/ccD7YWui.s:597    .text.AS5048A_get_continuous_degree:0000000000000000 AS5048A_get_continuous_degree
 
 UNDEFINED SYMBOLS
-HAL_GPIO_Init
-HAL_SPI_TransmitReceive
-HAL_Delay
-HAL_SPI_TransmitReceive_DMA
+pll_filter_init
+pll_filter_update
+fmodf

@@ -13,7 +13,6 @@
 
 #include "foc_utils.h"
 #include "user_config.h"
-#include "flash.h"
 #include "encoder.h"
 
 extern motor_config_t m_config;
@@ -191,7 +190,6 @@ void foc_current_control_update(foc_t *hfoc) {
 		return;
 	}
 
-    DRV8323_Get_Current(&hfoc->drv8323s, &hfoc->ia, &hfoc->ib,&hfoc->ic);
     
     if(CAN_TIMEOUT > 0 && hfoc->counter > CAN_TIMEOUT){
         hfoc->iq_ref = 0;

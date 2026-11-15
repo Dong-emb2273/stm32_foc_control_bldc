@@ -27,10 +27,9 @@
 #include "uart.h"
 #include "hw_config.h"
 #include "user_config.h"
-#include "spi.h"
+#include "driver.h"
 #include "as5048a.h"
 #include "drv8323s.h"
-#include "flash.h"
 #include "foc_utils.h"
 #include "can.h"
 #include "joint_acc.h"
@@ -80,8 +79,6 @@ foc_t hfoc;
 
 
 
-motor_config_t m_config;
-
 /* usart setup*/
 
 
@@ -115,55 +112,7 @@ uint32_t dt_us;
 
 
 
-void control_init(void) {
-	hfoc.angle_filtered = &encoder.angle_filtered;
-
-  // Id PI parameter
-  pid_reset(&hfoc.id_ctrl);
-  pid_set_ts(&hfoc.id_ctrl, FOC_TS);
-  pid_set_kp(&hfoc.id_ctrl, m_config.id_kp);
-  pid_set_ki(&hfoc.id_ctrl, m_config.id_ki);
-  pid_set_out_constraint(&hfoc.id_ctrl, V_MAX_VOLTAGE, -V_MAX_VOLTAGE);
-  pid_set_deadband(&hfoc.id_ctrl, m_config.id_e_deadband);
-  // Id PI parameter
-  pid_reset(&hfoc.iq_ctrl);
-  pid_set_ts(&hfoc.iq_ctrl, FOC_TS);
-  pid_set_kp(&hfoc.iq_ctrl, m_config.iq_kp);
-  pid_set_ki(&hfoc.iq_ctrl, m_config.iq_ki);
-  pid_set_out_constraint(&hfoc.iq_ctrl, V_MAX_VOLTAGE, -V_MAX_VOLTAGE);
-  pid_set_deadband(&hfoc.iq_ctrl, m_config.iq_e_deadband);
-  // Speed PID parameter
-  pid_reset(&hfoc.speed_ctrl);
-  pid_set_ts(&hfoc.speed_ctrl, FOC_TS * SPEED_CONTROL_CYCLE);
-  pid_set_kp(&hfoc.speed_ctrl, m_config.speed_kp);
-  pid_set_ki(&hfoc.speed_ctrl, m_config.speed_ki);
-  pid_set_kd(&hfoc.speed_ctrl, 0.0001f);
-  pid_set_d_filter_fc(&hfoc.speed_ctrl, 100.0f);
-  pid_set_max_d(&hfoc.speed_ctrl, 10.0f);
-  pid_set_out_constraint(&hfoc.speed_ctrl, m_config.speed_out_max, -m_config.speed_out_max);
-  pid_set_deadband(&hfoc.speed_ctrl, m_config.speed_e_deadband);
-  // Position PID parameter
-  pid_reset(&hfoc.pos_ctrl);
-  pid_set_ts(&hfoc.pos_ctrl, FOC_TS * SPEED_CONTROL_CYCLE);
-  pid_set_kp(&hfoc.pos_ctrl, m_config.pos_kp);
-  pid_set_ki(&hfoc.pos_ctrl, m_config.pos_ki);
-  pid_set_kd(&hfoc.pos_ctrl, m_config.pos_kd);
-  pid_set_d_filter_fc(&hfoc.pos_ctrl, 20.0f);
-  pid_set_max_d(&hfoc.pos_ctrl, 100.0f);
-  pid_set_out_constraint(&hfoc.pos_ctrl, m_config.pos_out_max, -m_config.pos_out_max);
-  pid_set_deadband(&hfoc.pos_ctrl, m_config.pos_e_deadband);
-
-
-	
-	foc_pwm_init(&hfoc, &(TIM1->CCR3), &(TIM1->CCR2), &(TIM1->CCR1), hfoc.drv8323s.pwm_resolution);
-  foc_set_limit_current(&hfoc, I_MAX);
-  
-  second_order_lpf_init(&hfoc.id_lpf, HFI_ID_LPF_FC, BLDC_PWM_FREQ);
-  second_order_lpf_init(&hfoc.iq_lpf, HFI_IQ_LPF_FC, BLDC_PWM_FREQ);
- 
-}
 uint8_t Serial2RxBuffer[1];
-
 
 
 
@@ -217,41 +166,30 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
   MX_GPIO_Init();
+  GPIO_Init();
   MX_DMA_Init();
 
-	MX_SPI1_Init();
-	MX_SPI2_Init();
-  MX_USART6_UART_Init();
-  MX_CAN1_Init();
 
 
 
-  ADC1_DMA_CONFIG3();
+  ADC_DMA_CONFIG();
 
-  TIM1_PWM_DMA_CONFIG();
+  TIM_PWM_DMA_CONFIG();
 	TIM_IQR_MS_CONGFIG();
   TIM_COUNT_US_CONFIG();
 
 
   
   // Load Config 
-  flash_read_config(&m_config);
+
   // flash_erase_ready();
 
   init_trig_lut();
 
-	bldc_config(&hfoc.drv8323s); 
-	control_init();
 	
 	/*ENCODER setup   */
-	ENCODER_Setup();
-  ENCODER_Init_From_Config();
 
   /*CAN setup   */
-  can_rx_init(&can_rx);
-  can_tx_init(&can_tx);
-	HAL_CAN_Start(&hcan1);
-  HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
 
 
   
@@ -265,16 +203,8 @@ int main(void)
 
 
   /* Start the FSM */
-  hfoc.control_mode = CONTROL_MODE;
-  state.state = DEFAUL_MODE;
-  state.next_state = MENU_MODE;
-  state.ready = 0;
 
   /* FLASH SETUP */
-  CLEAR_BIT(STATUS_FLAGS, BF_RUNNING | BF_POWER | BF_SAVE | BF_VIEW );
-
-  // Output PWM
-  DRV8323_Start_PWM(&hfoc.drv8323s); //  MOE và CCxE
 
   
   /* USER CODE END 2 */
@@ -490,17 +420,7 @@ void ADC_IRQHandler(void) {
 void ErrorTask(void *argument)
 {
   osDelay(1000);
-  if(RF_AUTO_RUN) state.next_state = MOTOR_MODE;
-  osDelay(2000);
-
-  for(;;)
-  {
-    if(encoder.is_connected == 0) printf("Encoder not detected. Please check the connection.\r\n");
-    if (RF_POWER) printf("Power voltage is too low: %.2f V\r\n", hfoc.v_bus);
-    if(RF_SAVE){flash_save_config(&m_config); CF_SAVE; printf("Configuration saved to flash.\r\n");}
-
-    osDelay(1000); 
-  }
+  
 }
 
 void StartCalibrationTask(void *argument)
@@ -522,7 +442,6 @@ void StartCalibrationTask(void *argument)
           update_fsm(&state, MENU_CMD);
           break;
         }
-        DRV8323_Calibrate_Current_Offset(&hfoc.drv8323s);
         foc_auto_calibration(&hfoc);
         foc_cal_encoder(&hfoc);
         

@@ -24,11 +24,8 @@
 /* USER CODE BEGIN Includes */
 #include "foc_utils.h"
 #include "foc_math.h"
-// #include "structs.h"
-#include "spi.h"
-#include "uart.h"
+#include "driver.h"
 #include "fsm.h"
-#include "can.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -182,138 +179,61 @@ void TIM1_TRG_COM_TIM11_IRQHandler(void)
 
 /* USER CODE BEGIN 1 */
 
-
-void DMA2_Stream7_IRQHandler(void)
+void USART_IRQ_FUNCTION(void)
 {
-  /* USER CODE BEGIN DMA1_Stream3_IRQn 0 */
-
-  /* USER CODE END DMA1_Stream3_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_usart_tx);
-  /* USER CODE BEGIN DMA1_Stream3_IRQn 1 */
-
-  /* USER CODE END DMA1_Stream3_IRQn 1 */
-}
-
-/**
-  * @brief This function handles DMA1 stream4 global interrupt.
-  */
-void DMA2_Stream2_IRQHandler(void)
-{
-  /* USER CODE BEGIN DMA1_Stream4_IRQn 0 */
-
-  /* USER CODE END DMA1_Stream4_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_usart_rx);
-  /* USER CODE BEGIN DMA1_Stream4_IRQn 1 */
-
-  /* USER CODE END DMA1_Stream4_IRQn 1 */
-}
-
-/**
-  * @brief This function handles SPI2 global interrupt.
-  */
-
-/**
-  * @brief This function handles SPI2 global interrupt.
-  */
-
-
-void DMA1_Stream3_IRQHandler(void)
-{
-  /* USER CODE BEGIN DMA1_Stream3_IRQn 0 */
-
-  /* USER CODE END DMA1_Stream3_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_spi2_rx);
-
-  /* USER CODE BEGIN DMA1_Stream3_IRQn 1 */
-}
-/**
-  * @brief This function handles DMA1 stream4 global interrupt.
-  */
-void DMA1_Stream4_IRQHandler(void)
-{
-  /* USER CODE BEGIN DMA1_Stream4_IRQn 0 */
-
-  /* USER CODE END DMA1_Stream4_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_spi2_tx);
-  /* USER CODE BEGIN DMA1_Stream4_IRQn 1 */
-
-  /* USER CODE END DMA1_Stream4_IRQn 1 */
-}
-
-void SPI1_IRQHandler(void)
-{
-  /* USER CODE BEGIN SPI1_IRQn 0 */
-
-  /* USER CODE END SPI1_IRQn 0 */
-  HAL_SPI_IRQHandler(&hspi1);
-  /* USER CODE BEGIN SPI1_IRQn 1 */
-
-  /* USER CODE END SPI1_IRQn 1 */
-}
-
-/**
-  * @brief This function handles SPI2 global interrupt.
-  */
-void SPI2_IRQHandler(void)
-{
-  /* USER CODE BEGIN SPI2_IRQn 0 */
-
-  /* USER CODE END SPI2_IRQn 0 */
-  HAL_SPI_IRQHandler(&hspi2);
-  /* USER CODE BEGIN SPI2_IRQn 1 */
-
-  /* USER CODE END SPI2_IRQn 1 */
-}
-void USART6_IRQHandler(void)
-{
-  /* USER CODE BEGIN USART2_IRQn 0 */
-
-  /* USER CODE END USART2_IRQn 0 */
   HAL_UART_IRQHandler(&huart);
-  /* USER CODE BEGIN USART2_IRQn 1 */
-  /* USER CODE END USART2_IRQn 1 */
 }
 
-/**
-  * @brief This function handles DMA2 stream0 global interrupt.
-  */
-void DMA2_Stream0_IRQHandler(void)
+void USART_DMA_TX_IRQ_FUNCTION(void)
 {
-  /* USER CODE BEGIN DMA2_Stream0_IRQn 0 */
-
-  /* USER CODE END DMA2_Stream0_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_spi1_rx);
-  /* USER CODE BEGIN DMA2_Stream0_IRQn 1 */
-
-  /* USER CODE END DMA2_Stream0_IRQn 1 */
+  HAL_DMA_IRQHandler(&hdma_usart_tx);
 }
-void DMA2_Stream3_IRQHandler(void)
+
+void USART_DMA_RX_IRQ_FUNCTION(void)
 {
-  /* USER CODE BEGIN DMA2_Stream3_IRQn 0 */
-
-  /* USER CODE END DMA2_Stream3_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_spi1_tx);
-  /* USER CODE BEGIN DMA2_Stream3_IRQn 1 */
-
-  /* USER CODE END DMA2_Stream3_IRQn 1 */
+  HAL_DMA_IRQHandler(&hdma_usart_rx);
 }
 
-void CAN1_RX0_IRQHandler(void)
+//==========================================================
+
+void SPI_EX_IRQ_FUNCTION(void)
 {
-  /* USER CODE BEGIN CAN1_RX0_IRQn 0 */
-
-  /* USER CODE END CAN1_RX0_IRQn 0 */
-  HAL_CAN_IRQHandler(&hcan1);
-  /* USER CODE BEGIN CAN1_RX0_IRQn 1 */
-
-
-  /* USER CODE END CAN1_RX0_IRQn 1 */
+  HAL_SPI_IRQHandler(&hspi_ex);
 }
 
+void SPI_EX_DMA_RX_IRQ_FUNCTION(void)
+{
+  HAL_DMA_IRQHandler(&hdma_spi_ex_rx);
+}
 
+void SPI_EX_DMA_TX_IRQ_FUNCTION(void)
+{
+  HAL_DMA_IRQHandler(&hdma_spi_ex_tx);
+}
 
+//==========================================================
 
+void SPI_IN_IRQ_FUNCTION(void)
+{
+  HAL_SPI_IRQHandler(&hspi_in);
+}
 
+void SPI_IN_DMA_RX_IRQ_FUNCTION(void)
+{
+  HAL_DMA_IRQHandler(&hdma_spi_in_rx);
+}
+
+void SPI_IN_DMA_TX_IRQ_FUNCTION(void)
+{
+  HAL_DMA_IRQHandler(&hdma_spi_in_tx);
+}
+
+//==========================================================
+
+void CAN_X_IRQ_FUNCTION(void)
+{
+  HAL_CAN_IRQHandler(&hcan);
+}
 
 
 

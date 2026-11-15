@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc6imqjr.s 			page 1
+ARM GAS  /tmp/ccIsCg4y.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -17,1648 +17,1159 @@ ARM GAS  /tmp/cc6imqjr.s 			page 1
   14              		.text
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
-  17              		.section	.text.DRV8323RS_Cs_Ena_faul_Config_Pin,"ax",%progbits
+  17              		.section	.text.DRV832xS_Config,"ax",%progbits
   18              		.align	1
-  19              		.global	DRV8323RS_Cs_Ena_faul_Config_Pin
+  19              		.global	DRV832xS_Config
   20              		.arch armv7e-m
   21              		.syntax unified
   22              		.thumb
   23              		.thumb_func
   24              		.fpu fpv4-sp-d16
-  26              	DRV8323RS_Cs_Ena_faul_Config_Pin:
-  27              	.LFB138:
-  28              		.file 1 "Core/Src/drv8323s.c"
+  26              	DRV832xS_Config:
+  27              	.LVL0:
+  28              	.LFB134:
+  29              		.file 1 "Core/Src/drv8323s.c"
    1:Core/Src/drv8323s.c **** #include "drv8323s.h"
-   2:Core/Src/drv8323s.c **** #include "config.h"
-   3:Core/Src/drv8323s.c **** #include "user_config.h"
-   4:Core/Src/drv8323s.c **** #include "cmsis_os.h"
-   5:Core/Src/drv8323s.c **** 
-   6:Core/Src/drv8323s.c **** extern GPIO_InitTypeDef GPIO_Init;
-   7:Core/Src/drv8323s.c **** 
-   8:Core/Src/drv8323s.c **** void DRV8323RS_Cs_Ena_faul_Config_Pin(void){
-  29              		.loc 1 8 44 view -0
-  30              		.cfi_startproc
-  31              		@ args = 0, pretend = 0, frame = 0
-  32              		@ frame_needed = 0, uses_anonymous_args = 0
-  33 0000 38B5     		push	{r3, r4, r5, lr}
-  34              	.LCFI0:
-  35              		.cfi_def_cfa_offset 16
-  36              		.cfi_offset 3, -16
-  37              		.cfi_offset 4, -12
-  38              		.cfi_offset 5, -8
-  39              		.cfi_offset 14, -4
-   9:Core/Src/drv8323s.c **** 	
-  10:Core/Src/drv8323s.c **** 	GPIO_Init.Pin = DRV8323RS_CS_PIN;
-  40              		.loc 1 10 2 view .LVU1
-  41              		.loc 1 10 16 is_stmt 0 view .LVU2
-  42 0002 104C     		ldr	r4, .L3
-  43 0004 4FF48053 		mov	r3, #4096
-  44 0008 2360     		str	r3, [r4]
-  11:Core/Src/drv8323s.c **** 	GPIO_Init.Mode = GPIO_MODE_OUTPUT_PP;
-  45              		.loc 1 11 2 is_stmt 1 view .LVU3
-  46              		.loc 1 11 17 is_stmt 0 view .LVU4
-  47 000a 0123     		movs	r3, #1
-ARM GAS  /tmp/cc6imqjr.s 			page 2
+   2:Core/Src/drv8323s.c **** 
+   3:Core/Src/drv8323s.c **** 
+   4:Core/Src/drv8323s.c **** //
+   5:Core/Src/drv8323s.c **** void DRV832xS_Config(DRV832xS_t *drv, int (*spi_transfer)(uint8_t*, uint8_t*, uint16_t),
+   6:Core/Src/drv8323s.c **** 	void (*spi_cs_en)(void),void (*spi_cs_dis)(void), 
+   7:Core/Src/drv8323s.c **** 	void (*drv832xs_en)(void), void (*drv832xs_dis)(void)){
+  30              		.loc 1 7 56 view -0
+  31              		.cfi_startproc
+  32              		@ args = 8, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+   8:Core/Src/drv8323s.c **** 	
+   9:Core/Src/drv8323s.c **** 	drv->spi_transfer = spi_transfer;
+  35              		.loc 1 9 2 view .LVU1
+  36              		.loc 1 9 20 is_stmt 0 view .LVU2
+  37 0000 0161     		str	r1, [r0, #16]
+  10:Core/Src/drv8323s.c **** 	drv->spi_cs_en = spi_cs_en;
+  38              		.loc 1 10 2 is_stmt 1 view .LVU3
+  39              		.loc 1 10 17 is_stmt 0 view .LVU4
+  40 0002 4261     		str	r2, [r0, #20]
+  11:Core/Src/drv8323s.c **** 	drv->spi_cs_dis = spi_cs_dis;
+  41              		.loc 1 11 2 is_stmt 1 view .LVU5
+  42              		.loc 1 11 18 is_stmt 0 view .LVU6
+  43 0004 8361     		str	r3, [r0, #24]
+  12:Core/Src/drv8323s.c **** 	drv->drv832xs_en = drv832xs_en;
+  44              		.loc 1 12 2 is_stmt 1 view .LVU7
+  45              		.loc 1 12 19 is_stmt 0 view .LVU8
+  46 0006 009B     		ldr	r3, [sp]
+ARM GAS  /tmp/ccIsCg4y.s 			page 2
 
 
-  48 000c 6360     		str	r3, [r4, #4]
-  12:Core/Src/drv8323s.c **** 	GPIO_Init.Pull = GPIO_NOPULL;
-  49              		.loc 1 12 2 is_stmt 1 view .LVU5
-  50              		.loc 1 12 17 is_stmt 0 view .LVU6
-  51 000e 0023     		movs	r3, #0
-  52 0010 A360     		str	r3, [r4, #8]
-  13:Core/Src/drv8323s.c **** 	GPIO_Init.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  53              		.loc 1 13 2 is_stmt 1 view .LVU7
-  54              		.loc 1 13 18 is_stmt 0 view .LVU8
-  55 0012 0323     		movs	r3, #3
-  56 0014 E360     		str	r3, [r4, #12]
-  14:Core/Src/drv8323s.c **** 	HAL_GPIO_Init(DRV8323RS_CS_PORT, &GPIO_Init);
-  57              		.loc 1 14 2 is_stmt 1 view .LVU9
-  58 0016 0C4D     		ldr	r5, .L3+4
-  59 0018 2146     		mov	r1, r4
-  60 001a 2846     		mov	r0, r5
-  61 001c FFF7FEFF 		bl	HAL_GPIO_Init
-  62              	.LVL0:
-  15:Core/Src/drv8323s.c **** 	
-  16:Core/Src/drv8323s.c **** 	GPIO_Init.Pin = DRV8323RS_ENABLE_PIN;
-  63              		.loc 1 16 2 view .LVU10
-  64              		.loc 1 16 16 is_stmt 0 view .LVU11
-  65 0020 4FF40063 		mov	r3, #2048
-  66 0024 2360     		str	r3, [r4]
-  17:Core/Src/drv8323s.c **** 	HAL_GPIO_Init(DRV8323RS_ENABLE_PORT, &GPIO_Init);
-  67              		.loc 1 17 2 is_stmt 1 view .LVU12
-  68 0026 2146     		mov	r1, r4
-  69 0028 2846     		mov	r0, r5
-  70 002a FFF7FEFF 		bl	HAL_GPIO_Init
-  71              	.LVL1:
-  18:Core/Src/drv8323s.c **** 	
-  19:Core/Src/drv8323s.c **** 	GPIO_Init.Pin = DRV8323RS_FAUL_PIN;
-  72              		.loc 1 19 2 view .LVU13
-  73              		.loc 1 19 16 is_stmt 0 view .LVU14
-  74 002e 4FF40043 		mov	r3, #32768
-  75 0032 2360     		str	r3, [r4]
-  20:Core/Src/drv8323s.c **** 	GPIO_Init.Mode = GPIO_MODE_IT_FALLING;
-  76              		.loc 1 20 2 is_stmt 1 view .LVU15
-  77              		.loc 1 20 17 is_stmt 0 view .LVU16
-  78 0034 4FF40413 		mov	r3, #2162688
-  79 0038 6360     		str	r3, [r4, #4]
-  21:Core/Src/drv8323s.c **** 	HAL_GPIO_Init(DRV8323RS_FAUL_PORT, &GPIO_Init);
-  80              		.loc 1 21 2 is_stmt 1 view .LVU17
-  81 003a 2146     		mov	r1, r4
-  82 003c 0348     		ldr	r0, .L3+8
-  83 003e FFF7FEFF 		bl	HAL_GPIO_Init
-  84              	.LVL2:
-  22:Core/Src/drv8323s.c **** 	
-  23:Core/Src/drv8323s.c **** }
-  85              		.loc 1 23 1 is_stmt 0 view .LVU18
-  86 0042 38BD     		pop	{r3, r4, r5, pc}
-  87              	.L4:
-  88              		.align	2
-  89              	.L3:
-  90 0044 00000000 		.word	GPIO_Init
-  91 0048 00080240 		.word	1073874944
-  92 004c 00000240 		.word	1073872896
-ARM GAS  /tmp/cc6imqjr.s 			page 3
+  47              	.LVL1:
+  48              		.loc 1 12 19 view .LVU9
+  49 0008 C361     		str	r3, [r0, #28]
+  13:Core/Src/drv8323s.c **** 	drv->drv832xs_dis = drv832xs_dis;
+  50              		.loc 1 13 2 is_stmt 1 view .LVU10
+  51              		.loc 1 13 20 is_stmt 0 view .LVU11
+  52 000a 019B     		ldr	r3, [sp, #4]
+  53 000c 0362     		str	r3, [r0, #32]
+  14:Core/Src/drv8323s.c **** 
+  15:Core/Src/drv8323s.c **** }
+  54              		.loc 1 15 1 view .LVU12
+  55 000e 7047     		bx	lr
+  56              		.cfi_endproc
+  57              	.LFE134:
+  59              		.section	.text.DRV832xS_Init,"ax",%progbits
+  60              		.align	1
+  61              		.global	DRV832xS_Init
+  62              		.syntax unified
+  63              		.thumb
+  64              		.thumb_func
+  65              		.fpu fpv4-sp-d16
+  67              	DRV832xS_Init:
+  68              	.LVL2:
+  69              	.LFB135:
+  16:Core/Src/drv8323s.c **** 
+  17:Core/Src/drv8323s.c **** void DRV832xS_Init(DRV832xS_t *drv, uint16_t r1, uint16_t r2 ){
+  70              		.loc 1 17 63 is_stmt 1 view -0
+  71              		.cfi_startproc
+  72              		@ args = 0, pretend = 0, frame = 0
+  73              		@ frame_needed = 0, uses_anonymous_args = 0
+  74              		@ link register save eliminated.
+  18:Core/Src/drv8323s.c **** 
+  19:Core/Src/drv8323s.c **** 
+  20:Core/Src/drv8323s.c **** }
+  75              		.loc 1 20 1 view .LVU14
+  76 0000 7047     		bx	lr
+  77              		.cfi_endproc
+  78              	.LFE135:
+  80              		.section	.text.DRV832xS_Write16,"ax",%progbits
+  81              		.align	1
+  82              		.global	DRV832xS_Write16
+  83              		.syntax unified
+  84              		.thumb
+  85              		.thumb_func
+  86              		.fpu fpv4-sp-d16
+  88              	DRV832xS_Write16:
+  89              	.LVL3:
+  90              	.LFB136:
+  21:Core/Src/drv8323s.c **** 
+  22:Core/Src/drv8323s.c **** 
+  23:Core/Src/drv8323s.c **** uint16_t DRV832xS_Write16(DRV832xS_t *drv, uint8_t addr, uint16_t data){
+  91              		.loc 1 23 72 view -0
+  92              		.cfi_startproc
+  93              		@ args = 0, pretend = 0, frame = 0
+  94              		@ frame_needed = 0, uses_anonymous_args = 0
+  95              		.loc 1 23 72 is_stmt 0 view .LVU16
+  96 0000 10B5     		push	{r4, lr}
+ARM GAS  /tmp/ccIsCg4y.s 			page 3
 
 
-  93              		.cfi_endproc
-  94              	.LFE138:
-  96              		.section	.text.DRV8323_WriteRegister,"ax",%progbits
-  97              		.align	1
-  98              		.global	DRV8323_WriteRegister
-  99              		.syntax unified
- 100              		.thumb
- 101              		.thumb_func
- 102              		.fpu fpv4-sp-d16
- 104              	DRV8323_WriteRegister:
- 105              	.LVL3:
- 106              	.LFB139:
-  24:Core/Src/drv8323s.c **** //
-  25:Core/Src/drv8323s.c **** 
-  26:Core/Src/drv8323s.c **** 
-  27:Core/Src/drv8323s.c **** 
-  28:Core/Src/drv8323s.c **** //
+  97              	.LCFI0:
+  98              		.cfi_def_cfa_offset 8
+  99              		.cfi_offset 4, -8
+ 100              		.cfi_offset 14, -4
+ 101 0002 0446     		mov	r4, r0
+ 102 0004 0846     		mov	r0, r1
+ 103              	.LVL4:
+  24:Core/Src/drv8323s.c **** 
+  25:Core/Src/drv8323s.c **** 	uint16_t command = DRV8323_WRITE_CMD(addr, data);
+ 104              		.loc 1 25 2 is_stmt 1 view .LVU17
+ 105              		.loc 1 25 21 is_stmt 0 view .LVU18
+ 106 0006 1146     		mov	r1, r2
+ 107              	.LVL5:
+ 108              		.loc 1 25 21 view .LVU19
+ 109 0008 FFF7FEFF 		bl	DRV8323_WRITE_CMD
+ 110              	.LVL6:
+  26:Core/Src/drv8323s.c **** 	
+  27:Core/Src/drv8323s.c **** 	drv->spi_tx_buffer[0] = (command >> 8) & 0xFF; // Byte cao
+ 111              		.loc 1 27 2 is_stmt 1 view .LVU20
+ 112              		.loc 1 27 24 is_stmt 0 view .LVU21
+ 113 000c C0F30723 		ubfx	r3, r0, #8, #8
+ 114 0010 2370     		strb	r3, [r4]
+  28:Core/Src/drv8323s.c **** 	drv->spi_tx_buffer[1] = command & 0xFF;        // Byte thap
+ 115              		.loc 1 28 2 is_stmt 1 view .LVU22
+ 116              		.loc 1 28 24 is_stmt 0 view .LVU23
+ 117 0012 6070     		strb	r0, [r4, #1]
   29:Core/Src/drv8323s.c **** 
-  30:Core/Src/drv8323s.c **** uint16_t DRV8323_WriteRegister(uint8_t addr, uint16_t data){
- 107              		.loc 1 30 60 is_stmt 1 view -0
- 108              		.cfi_startproc
- 109              		@ args = 0, pretend = 0, frame = 8
- 110              		@ frame_needed = 0, uses_anonymous_args = 0
- 111              		.loc 1 30 60 is_stmt 0 view .LVU20
- 112 0000 10B5     		push	{r4, lr}
- 113              	.LCFI1:
- 114              		.cfi_def_cfa_offset 8
- 115              		.cfi_offset 4, -8
- 116              		.cfi_offset 14, -4
- 117 0002 84B0     		sub	sp, sp, #16
- 118              	.LCFI2:
- 119              		.cfi_def_cfa_offset 24
-  31:Core/Src/drv8323s.c **** 	uint8_t tx_buffer[2];
- 120              		.loc 1 31 2 is_stmt 1 view .LVU21
-  32:Core/Src/drv8323s.c **** 	uint8_t rx_buffer[2];
- 121              		.loc 1 32 2 view .LVU22
-  33:Core/Src/drv8323s.c **** 
-  34:Core/Src/drv8323s.c **** 	uint16_t command = DRV8323_WRITE_CMD(addr, data);
- 122              		.loc 1 34 2 view .LVU23
- 123              		.loc 1 34 21 is_stmt 0 view .LVU24
- 124 0004 C002     		lsls	r0, r0, #11
- 125              	.LVL4:
- 126              		.loc 1 34 21 view .LVU25
- 127 0006 00F4F040 		and	r0, r0, #30720
- 128 000a C1F30A01 		ubfx	r1, r1, #0, #11
- 129              	.LVL5:
- 130              		.loc 1 34 11 view .LVU26
- 131 000e 0843     		orrs	r0, r0, r1
- 132              	.LVL6:
-  35:Core/Src/drv8323s.c **** 	
-  36:Core/Src/drv8323s.c **** 
-  37:Core/Src/drv8323s.c **** 	tx_buffer[0] = (command >> 8) & 0xFF; // Byte cao
- 133              		.loc 1 37 2 is_stmt 1 view .LVU27
- 134              		.loc 1 37 15 is_stmt 0 view .LVU28
- 135 0010 000A     		lsrs	r0, r0, #8
- 136              	.LVL7:
- 137              		.loc 1 37 15 view .LVU29
-ARM GAS  /tmp/cc6imqjr.s 			page 4
+  30:Core/Src/drv8323s.c **** 	drv->spi_cs_dis();
+ 118              		.loc 1 30 2 is_stmt 1 view .LVU24
+ 119              		.loc 1 30 5 is_stmt 0 view .LVU25
+ 120 0014 A369     		ldr	r3, [r4, #24]
+ 121              		.loc 1 30 2 view .LVU26
+ 122 0016 9847     		blx	r3
+ 123              	.LVL7:
+  31:Core/Src/drv8323s.c **** 	drv->spi_transfer(drv->spi_tx_buffer, drv->spi_rx_buffer, 2);
+ 124              		.loc 1 31 2 is_stmt 1 view .LVU27
+ 125              		.loc 1 31 5 is_stmt 0 view .LVU28
+ 126 0018 2369     		ldr	r3, [r4, #16]
+ 127              		.loc 1 31 2 view .LVU29
+ 128 001a 0222     		movs	r2, #2
+ 129 001c A118     		adds	r1, r4, r2
+ 130 001e 2046     		mov	r0, r4
+ 131 0020 9847     		blx	r3
+ 132              	.LVL8:
+  32:Core/Src/drv8323s.c **** 	while(DRV832xS_SPI.State == HAL_SPI_STATE_BUSY ); 
+ 133              		.loc 1 32 2 is_stmt 1 view .LVU30
+ 134              	.L4:
+ 135              		.loc 1 32 50 discriminator 1 view .LVU31
+ 136              		.loc 1 32 7 discriminator 1 view .LVU32
+ 137              		.loc 1 32 20 is_stmt 0 discriminator 1 view .LVU33
+ 138 0022 064B     		ldr	r3, .L6
+ 139 0024 93F85130 		ldrb	r3, [r3, #81]	@ zero_extendqisi2
+ 140 0028 DBB2     		uxtb	r3, r3
+ 141              		.loc 1 32 7 discriminator 1 view .LVU34
+ 142 002a 022B     		cmp	r3, #2
+ 143 002c F9D0     		beq	.L4
+  33:Core/Src/drv8323s.c **** 	drv->spi_cs_en();
+ARM GAS  /tmp/ccIsCg4y.s 			page 4
 
 
- 138 0012 8DF80C00 		strb	r0, [sp, #12]
-  38:Core/Src/drv8323s.c **** 	tx_buffer[1] = command & 0xFF;        // Byte thap
- 139              		.loc 1 38 2 is_stmt 1 view .LVU30
- 140              		.loc 1 38 15 is_stmt 0 view .LVU31
- 141 0016 8DF80D10 		strb	r1, [sp, #13]
-  39:Core/Src/drv8323s.c **** 
-  40:Core/Src/drv8323s.c **** 	DRV8323RS_cs_reset;
- 142              		.loc 1 40 2 is_stmt 1 view .LVU32
- 143 001a 0B4C     		ldr	r4, .L7
- 144 001c 4FF08053 		mov	r3, #268435456
- 145 0020 A361     		str	r3, [r4, #24]
+ 144              		.loc 1 33 2 is_stmt 1 view .LVU35
+ 145              		.loc 1 33 5 is_stmt 0 view .LVU36
+ 146 002e 6369     		ldr	r3, [r4, #20]
+ 147              		.loc 1 33 2 view .LVU37
+ 148 0030 9847     		blx	r3
+ 149              	.LVL9:
+  34:Core/Src/drv8323s.c **** 
+  35:Core/Src/drv8323s.c **** 	return ((uint16_t)drv->spi_rx_buffer[0] << 8) | drv->spi_rx_buffer[1];
+ 150              		.loc 1 35 2 is_stmt 1 view .LVU38
+ 151              		.loc 1 35 38 is_stmt 0 view .LVU39
+ 152 0032 A078     		ldrb	r0, [r4, #2]	@ zero_extendqisi2
+ 153              		.loc 1 35 68 view .LVU40
+ 154 0034 E378     		ldrb	r3, [r4, #3]	@ zero_extendqisi2
+  36:Core/Src/drv8323s.c **** }
+ 155              		.loc 1 36 1 view .LVU41
+ 156 0036 43EA0020 		orr	r0, r3, r0, lsl #8
+ 157 003a 10BD     		pop	{r4, pc}
+ 158              	.LVL10:
+ 159              	.L7:
+ 160              		.loc 1 36 1 view .LVU42
+ 161              		.align	2
+ 162              	.L6:
+ 163 003c 00000000 		.word	hspi_in
+ 164              		.cfi_endproc
+ 165              	.LFE136:
+ 167              		.section	.text.DRV832xS_Read16,"ax",%progbits
+ 168              		.align	1
+ 169              		.global	DRV832xS_Read16
+ 170              		.syntax unified
+ 171              		.thumb
+ 172              		.thumb_func
+ 173              		.fpu fpv4-sp-d16
+ 175              	DRV832xS_Read16:
+ 176              	.LVL11:
+ 177              	.LFB137:
+  37:Core/Src/drv8323s.c **** 
+  38:Core/Src/drv8323s.c **** uint16_t DRV832xS_Read16(DRV832xS_t *drv, uint8_t addr){
+ 178              		.loc 1 38 56 is_stmt 1 view -0
+ 179              		.cfi_startproc
+ 180              		@ args = 0, pretend = 0, frame = 0
+ 181              		@ frame_needed = 0, uses_anonymous_args = 0
+ 182              		.loc 1 38 56 is_stmt 0 view .LVU44
+ 183 0000 10B5     		push	{r4, lr}
+ 184              	.LCFI1:
+ 185              		.cfi_def_cfa_offset 8
+ 186              		.cfi_offset 4, -8
+ 187              		.cfi_offset 14, -4
+ 188 0002 0446     		mov	r4, r0
+  39:Core/Src/drv8323s.c **** 	uint16_t command;
+ 189              		.loc 1 39 2 is_stmt 1 view .LVU45
+  40:Core/Src/drv8323s.c **** 	uint16_t received_data;
+ 190              		.loc 1 40 2 view .LVU46
   41:Core/Src/drv8323s.c **** 
-  42:Core/Src/drv8323s.c **** 	HAL_SPI_TransmitReceive(&hspi1, tx_buffer, rx_buffer, 2, 100);
- 146              		.loc 1 42 2 view .LVU33
- 147 0022 6423     		movs	r3, #100
- 148 0024 0093     		str	r3, [sp]
- 149 0026 0223     		movs	r3, #2
- 150 0028 02AA     		add	r2, sp, #8
- 151 002a 03A9     		add	r1, sp, #12
- 152 002c 0748     		ldr	r0, .L7+4
- 153 002e FFF7FEFF 		bl	HAL_SPI_TransmitReceive
- 154              	.LVL8:
+  42:Core/Src/drv8323s.c **** 	command = DRV8323_READ_CMD(addr); 
+ 191              		.loc 1 42 2 view .LVU47
+ 192              		.loc 1 42 12 is_stmt 0 view .LVU48
+ 193 0004 0846     		mov	r0, r1
+ARM GAS  /tmp/ccIsCg4y.s 			page 5
+
+
+ 194              	.LVL12:
+ 195              		.loc 1 42 12 view .LVU49
+ 196 0006 FFF7FEFF 		bl	DRV8323_READ_CMD
+ 197              	.LVL13:
   43:Core/Src/drv8323s.c **** 
-  44:Core/Src/drv8323s.c **** 	DRV8323RS_cs_set;
- 155              		.loc 1 44 2 view .LVU34
- 156 0032 4FF48053 		mov	r3, #4096
- 157 0036 A361     		str	r3, [r4, #24]
-  45:Core/Src/drv8323s.c **** 
-  46:Core/Src/drv8323s.c **** 	return ((uint16_t)rx_buffer[0] << 8) | rx_buffer[1];
- 158              		.loc 1 46 2 view .LVU35
- 159              		.loc 1 46 29 is_stmt 0 view .LVU36
- 160 0038 9DF80800 		ldrb	r0, [sp, #8]	@ zero_extendqisi2
- 161              		.loc 1 46 50 view .LVU37
- 162 003c 9DF80930 		ldrb	r3, [sp, #9]	@ zero_extendqisi2
-  47:Core/Src/drv8323s.c **** }
- 163              		.loc 1 47 1 view .LVU38
- 164 0040 43EA0020 		orr	r0, r3, r0, lsl #8
- 165 0044 04B0     		add	sp, sp, #16
- 166              	.LCFI3:
- 167              		.cfi_def_cfa_offset 8
- 168              		@ sp needed
- 169 0046 10BD     		pop	{r4, pc}
- 170              	.L8:
- 171              		.align	2
- 172              	.L7:
- 173 0048 00080240 		.word	1073874944
- 174 004c 00000000 		.word	hspi1
- 175              		.cfi_endproc
- 176              	.LFE139:
- 178              		.section	.text.DRV8323_ReadRegister,"ax",%progbits
- 179              		.align	1
- 180              		.global	DRV8323_ReadRegister
- 181              		.syntax unified
- 182              		.thumb
- 183              		.thumb_func
- 184              		.fpu fpv4-sp-d16
- 186              	DRV8323_ReadRegister:
-ARM GAS  /tmp/cc6imqjr.s 			page 5
+  44:Core/Src/drv8323s.c **** 	drv->spi_tx_buffer[0] = (command >> 8) & 0xFF;
+ 198              		.loc 1 44 2 is_stmt 1 view .LVU50
+ 199              		.loc 1 44 24 is_stmt 0 view .LVU51
+ 200 000a C0F30723 		ubfx	r3, r0, #8, #8
+ 201 000e 2370     		strb	r3, [r4]
+  45:Core/Src/drv8323s.c **** 	drv->spi_tx_buffer[1] = command & 0xFF;
+ 202              		.loc 1 45 2 is_stmt 1 view .LVU52
+ 203              		.loc 1 45 24 is_stmt 0 view .LVU53
+ 204 0010 6070     		strb	r0, [r4, #1]
+  46:Core/Src/drv8323s.c **** 
+  47:Core/Src/drv8323s.c **** 	drv->spi_cs_dis();
+ 205              		.loc 1 47 2 is_stmt 1 view .LVU54
+ 206              		.loc 1 47 5 is_stmt 0 view .LVU55
+ 207 0012 A369     		ldr	r3, [r4, #24]
+ 208              		.loc 1 47 2 view .LVU56
+ 209 0014 9847     		blx	r3
+ 210              	.LVL14:
+  48:Core/Src/drv8323s.c **** 	drv->spi_transfer(drv->spi_tx_buffer, drv->spi_rx_buffer, 2);
+ 211              		.loc 1 48 2 is_stmt 1 view .LVU57
+ 212              		.loc 1 48 5 is_stmt 0 view .LVU58
+ 213 0016 2369     		ldr	r3, [r4, #16]
+ 214              		.loc 1 48 2 view .LVU59
+ 215 0018 0222     		movs	r2, #2
+ 216 001a A118     		adds	r1, r4, r2
+ 217 001c 2046     		mov	r0, r4
+ 218 001e 9847     		blx	r3
+ 219              	.LVL15:
+  49:Core/Src/drv8323s.c **** 	while(DRV832xS_SPI.State == HAL_SPI_STATE_BUSY ); 
+ 220              		.loc 1 49 2 is_stmt 1 view .LVU60
+ 221              	.L9:
+ 222              		.loc 1 49 50 discriminator 1 view .LVU61
+ 223              		.loc 1 49 7 discriminator 1 view .LVU62
+ 224              		.loc 1 49 20 is_stmt 0 discriminator 1 view .LVU63
+ 225 0020 074B     		ldr	r3, .L11
+ 226 0022 93F85130 		ldrb	r3, [r3, #81]	@ zero_extendqisi2
+ 227 0026 DBB2     		uxtb	r3, r3
+ 228              		.loc 1 49 7 discriminator 1 view .LVU64
+ 229 0028 022B     		cmp	r3, #2
+ 230 002a F9D0     		beq	.L9
+  50:Core/Src/drv8323s.c **** 	drv->spi_cs_en();
+ 231              		.loc 1 50 2 is_stmt 1 view .LVU65
+ 232              		.loc 1 50 5 is_stmt 0 view .LVU66
+ 233 002c 6369     		ldr	r3, [r4, #20]
+ 234              		.loc 1 50 2 view .LVU67
+ 235 002e 9847     		blx	r3
+ 236              	.LVL16:
+  51:Core/Src/drv8323s.c **** 
+  52:Core/Src/drv8323s.c **** 	received_data = ((uint16_t)drv->spi_rx_buffer[0] << 8) | drv->spi_rx_buffer[1];
+ 237              		.loc 1 52 2 is_stmt 1 view .LVU68
+ 238              		.loc 1 52 47 is_stmt 0 view .LVU69
+ 239 0030 A378     		ldrb	r3, [r4, #2]	@ zero_extendqisi2
+ 240              		.loc 1 52 77 view .LVU70
+ARM GAS  /tmp/ccIsCg4y.s 			page 6
 
 
- 187              	.LVL9:
- 188              	.LFB140:
-  48:Core/Src/drv8323s.c **** //
-  49:Core/Src/drv8323s.c **** 
-  50:Core/Src/drv8323s.c **** uint16_t DRV8323_ReadRegister(uint8_t addr){
- 189              		.loc 1 50 44 is_stmt 1 view -0
- 190              		.cfi_startproc
- 191              		@ args = 0, pretend = 0, frame = 8
- 192              		@ frame_needed = 0, uses_anonymous_args = 0
- 193              		.loc 1 50 44 is_stmt 0 view .LVU40
- 194 0000 10B5     		push	{r4, lr}
- 195              	.LCFI4:
- 196              		.cfi_def_cfa_offset 8
- 197              		.cfi_offset 4, -8
- 198              		.cfi_offset 14, -4
- 199 0002 84B0     		sub	sp, sp, #16
- 200              	.LCFI5:
- 201              		.cfi_def_cfa_offset 24
-  51:Core/Src/drv8323s.c **** 	uint8_t tx_buffer[2];
- 202              		.loc 1 51 2 is_stmt 1 view .LVU41
-  52:Core/Src/drv8323s.c **** 	uint8_t rx_buffer[2];
- 203              		.loc 1 52 2 view .LVU42
-  53:Core/Src/drv8323s.c **** 	uint16_t command;
- 204              		.loc 1 53 2 view .LVU43
-  54:Core/Src/drv8323s.c **** 	uint16_t received_data;
- 205              		.loc 1 54 2 view .LVU44
-  55:Core/Src/drv8323s.c **** 
-  56:Core/Src/drv8323s.c **** 	command = DRV8323_READ_CMD(addr); 
- 206              		.loc 1 56 2 view .LVU45
- 207              		.loc 1 56 12 is_stmt 0 view .LVU46
- 208 0004 6FEA0070 		mvn	r0, r0, lsl #28
- 209              	.LVL10:
- 210              		.loc 1 56 12 view .LVU47
- 211 0008 6FEA5040 		mvn	r0, r0, lsr #17
- 212              	.LVL11:
-  57:Core/Src/drv8323s.c **** 
-  58:Core/Src/drv8323s.c **** 	tx_buffer[0] = (command >> 8) & 0xFF;
- 213              		.loc 1 58 2 is_stmt 1 view .LVU48
- 214              		.loc 1 58 15 is_stmt 0 view .LVU49
- 215 000c C0F30723 		ubfx	r3, r0, #8, #8
- 216 0010 8DF80C30 		strb	r3, [sp, #12]
-  59:Core/Src/drv8323s.c **** 	tx_buffer[1] = command & 0xFF;
- 217              		.loc 1 59 2 is_stmt 1 view .LVU50
- 218              		.loc 1 59 15 is_stmt 0 view .LVU51
- 219 0014 8DF80D00 		strb	r0, [sp, #13]
-  60:Core/Src/drv8323s.c **** 
-  61:Core/Src/drv8323s.c **** 	DRV8323RS_cs_reset;
- 220              		.loc 1 61 2 is_stmt 1 view .LVU52
- 221 0018 0C4C     		ldr	r4, .L11
- 222 001a 4FF08053 		mov	r3, #268435456
- 223 001e A361     		str	r3, [r4, #24]
-  62:Core/Src/drv8323s.c **** 	
-  63:Core/Src/drv8323s.c **** 	HAL_SPI_TransmitReceive(&hspi1, tx_buffer, rx_buffer, 2, 100);
- 224              		.loc 1 63 2 view .LVU53
- 225 0020 6423     		movs	r3, #100
- 226 0022 0093     		str	r3, [sp]
- 227 0024 0223     		movs	r3, #2
-ARM GAS  /tmp/cc6imqjr.s 			page 6
+ 241 0032 E078     		ldrb	r0, [r4, #3]	@ zero_extendqisi2
+ 242              		.loc 1 52 16 view .LVU71
+ 243 0034 40EA0320 		orr	r0, r0, r3, lsl #8
+ 244              	.LVL17:
+  53:Core/Src/drv8323s.c **** 
+  54:Core/Src/drv8323s.c **** 	return (received_data & 0x07FF);
+ 245              		.loc 1 54 2 is_stmt 1 view .LVU72
+  55:Core/Src/drv8323s.c **** }
+ 246              		.loc 1 55 1 is_stmt 0 view .LVU73
+ 247 0038 C0F30A00 		ubfx	r0, r0, #0, #11
+ 248              	.LVL18:
+ 249              		.loc 1 55 1 view .LVU74
+ 250 003c 10BD     		pop	{r4, pc}
+ 251              	.LVL19:
+ 252              	.L12:
+ 253              		.loc 1 55 1 view .LVU75
+ 254 003e 00BF     		.align	2
+ 255              	.L11:
+ 256 0040 00000000 		.word	hspi_in
+ 257              		.cfi_endproc
+ 258              	.LFE137:
+ 260              		.section	.rodata.DRV832xS_Print_Fault.str1.4,"aMS",%progbits,1
+ 261              		.align	2
+ 262              	.LC0:
+ 263 0000 0A0D5B46 		.ascii	"\012\015[FS1] VDS_LC: Overcurrent on Phase C Low-si"
+ 263      53315D20 
+ 263      5644535F 
+ 263      4C433A20 
+ 263      4F766572 
+ 264 002d 6465204D 		.ascii	"de MOSFET\015\000"
+ 264      4F534645 
+ 264      540D00
+ 265              		.align	2
+ 266              	.LC1:
+ 267 0038 5B465331 		.ascii	"[FS1] VDS_HC: Overcurrent on Phase C High-side MOSF"
+ 267      5D205644 
+ 267      535F4843 
+ 267      3A204F76 
+ 267      65726375 
+ 268 006b 45540D00 		.ascii	"ET\015\000"
+ 269 006f 00       		.align	2
+ 270              	.LC2:
+ 271 0070 5B465331 		.ascii	"[FS1] VDS_LB: Overcurrent on Phase B Low-side MOSFE"
+ 271      5D205644 
+ 271      535F4C42 
+ 271      3A204F76 
+ 271      65726375 
+ 272 00a3 540D00   		.ascii	"T\015\000"
+ 273 00a6 0000     		.align	2
+ 274              	.LC3:
+ 275 00a8 5B465331 		.ascii	"[FS1] VDS_HB: Overcurrent on Phase B High-side MOSF"
+ 275      5D205644 
+ 275      535F4842 
+ 275      3A204F76 
+ 275      65726375 
+ 276 00db 45540D00 		.ascii	"ET\015\000"
+ 277 00df 00       		.align	2
+ARM GAS  /tmp/ccIsCg4y.s 			page 7
 
 
- 228 0026 02AA     		add	r2, sp, #8
- 229 0028 03A9     		add	r1, sp, #12
- 230 002a 0948     		ldr	r0, .L11+4
- 231              	.LVL12:
- 232              		.loc 1 63 2 is_stmt 0 view .LVU54
- 233 002c FFF7FEFF 		bl	HAL_SPI_TransmitReceive
- 234              	.LVL13:
-  64:Core/Src/drv8323s.c **** 
-  65:Core/Src/drv8323s.c **** 	DRV8323RS_cs_set;
- 235              		.loc 1 65 2 is_stmt 1 view .LVU55
- 236 0030 4FF48053 		mov	r3, #4096
- 237 0034 A361     		str	r3, [r4, #24]
-  66:Core/Src/drv8323s.c **** 
-  67:Core/Src/drv8323s.c **** 	received_data = ((uint16_t)rx_buffer[0] << 8) | rx_buffer[1];
- 238              		.loc 1 67 2 view .LVU56
- 239              		.loc 1 67 38 is_stmt 0 view .LVU57
- 240 0036 9DF80830 		ldrb	r3, [sp, #8]	@ zero_extendqisi2
- 241              		.loc 1 67 59 view .LVU58
- 242 003a 9DF80900 		ldrb	r0, [sp, #9]	@ zero_extendqisi2
- 243              		.loc 1 67 16 view .LVU59
- 244 003e 40EA0320 		orr	r0, r0, r3, lsl #8
- 245              	.LVL14:
-  68:Core/Src/drv8323s.c **** 
-  69:Core/Src/drv8323s.c **** 	return (received_data & 0x07FF);
- 246              		.loc 1 69 2 is_stmt 1 view .LVU60
-  70:Core/Src/drv8323s.c **** }
- 247              		.loc 1 70 1 is_stmt 0 view .LVU61
- 248 0042 C0F30A00 		ubfx	r0, r0, #0, #11
- 249              	.LVL15:
- 250              		.loc 1 70 1 view .LVU62
- 251 0046 04B0     		add	sp, sp, #16
- 252              	.LCFI6:
- 253              		.cfi_def_cfa_offset 8
- 254              		@ sp needed
- 255 0048 10BD     		pop	{r4, pc}
- 256              	.LVL16:
- 257              	.L12:
- 258              		.loc 1 70 1 view .LVU63
- 259 004a 00BF     		.align	2
- 260              	.L11:
- 261 004c 00080240 		.word	1073874944
- 262 0050 00000000 		.word	hspi1
- 263              		.cfi_endproc
- 264              	.LFE140:
- 266              		.section	.text.DRV8323_Stop_PWM,"ax",%progbits
- 267              		.align	1
- 268              		.global	DRV8323_Stop_PWM
- 269              		.syntax unified
- 270              		.thumb
- 271              		.thumb_func
- 272              		.fpu fpv4-sp-d16
- 274              	DRV8323_Stop_PWM:
- 275              	.LVL17:
- 276              	.LFB141:
-  71:Core/Src/drv8323s.c **** //
-  72:Core/Src/drv8323s.c **** 
-  73:Core/Src/drv8323s.c **** int DRV8323_Stop_PWM(DRV8323_t *cfg){
-ARM GAS  /tmp/cc6imqjr.s 			page 7
+ 278              	.LC4:
+ 279 00e0 5B465331 		.ascii	"[FS1] VDS_LA: Overcurrent on Phase A Low-side MOSFE"
+ 279      5D205644 
+ 279      535F4C41 
+ 279      3A204F76 
+ 279      65726375 
+ 280 0113 540D00   		.ascii	"T\015\000"
+ 281 0116 0000     		.align	2
+ 282              	.LC5:
+ 283 0118 5B465331 		.ascii	"[FS1] VDS_HA: Overcurrent on Phase A High-side MOSF"
+ 283      5D205644 
+ 283      535F4841 
+ 283      3A204F76 
+ 283      65726375 
+ 284 014b 45540D00 		.ascii	"ET\015\000"
+ 285 014f 00       		.align	2
+ 286              	.LC6:
+ 287 0150 5B465331 		.ascii	"[FS1] OTSD: Overtemperature Shutdown\015\000"
+ 287      5D204F54 
+ 287      53443A20 
+ 287      4F766572 
+ 287      74656D70 
+ 288 0176 0000     		.align	2
+ 289              	.LC7:
+ 290 0178 5B465331 		.ascii	"[FS1] UVLO: Undervoltage Lockout\015\000"
+ 290      5D205556 
+ 290      4C4F3A20 
+ 290      556E6465 
+ 290      72766F6C 
+ 291 019a 0000     		.align	2
+ 292              	.LC8:
+ 293 019c 5B465331 		.ascii	"[FS1] GDF: Gate Drive Fault\015\000"
+ 293      5D204744 
+ 293      463A2047 
+ 293      61746520 
+ 293      44726976 
+ 294 01b9 000000   		.align	2
+ 295              	.LC9:
+ 296 01bc 5B465331 		.ascii	"[FS1] VDS_OCP: VDS Monitor Overcurrent Fault\015\000"
+ 296      5D205644 
+ 296      535F4F43 
+ 296      503A2056 
+ 296      4453204D 
+ 297 01ea 0000     		.align	2
+ 298              	.LC10:
+ 299 01ec 5B465331 		.ascii	"[FS1] FAULT: Fault Status Active (nFAULT)\015\000"
+ 299      5D204641 
+ 299      554C543A 
+ 299      20466175 
+ 299      6C742053 
+ 300 0217 00       		.align	2
+ 301              	.LC11:
+ 302 0218 5B465332 		.ascii	"[FS2] VGS_LC: Gate Drive Fault - Phase C Low-side M"
+ 302      5D205647 
+ 302      535F4C43 
+ 302      3A204761 
+ 302      74652044 
+ARM GAS  /tmp/ccIsCg4y.s 			page 8
 
 
- 277              		.loc 1 73 37 is_stmt 1 view -0
- 278              		.cfi_startproc
- 279              		@ args = 0, pretend = 0, frame = 0
- 280              		@ frame_needed = 0, uses_anonymous_args = 0
- 281              		@ link register save eliminated.
-  74:Core/Src/drv8323s.c **** 	if (cfg == NULL || cfg->Timx == NULL) {
- 282              		.loc 1 74 2 view .LVU65
- 283              		.loc 1 74 5 is_stmt 0 view .LVU66
- 284 0000 98B1     		cbz	r0, .L15
- 285              		.loc 1 74 24 discriminator 1 view .LVU67
- 286 0002 0368     		ldr	r3, [r0]
- 287              		.loc 1 74 18 discriminator 1 view .LVU68
- 288 0004 9BB1     		cbz	r3, .L16
-  75:Core/Src/drv8323s.c **** 		return 0;
-  76:Core/Src/drv8323s.c **** 	}
-  77:Core/Src/drv8323s.c **** 
-  78:Core/Src/drv8323s.c **** 	TIM_TypeDef *tim = cfg->Timx;
- 289              		.loc 1 78 2 is_stmt 1 view .LVU69
- 290              	.LVL18:
-  79:Core/Src/drv8323s.c **** 
-  80:Core/Src/drv8323s.c **** 	tim->BDTR &= ~TIM_BDTR_MOE;
- 291              		.loc 1 80 2 view .LVU70
- 292              		.loc 1 80 12 is_stmt 0 view .LVU71
- 293 0006 5A6C     		ldr	r2, [r3, #68]
- 294 0008 22F40042 		bic	r2, r2, #32768
- 295 000c 5A64     		str	r2, [r3, #68]
+ 303 024b 4F534645 		.ascii	"OSFET\015\000"
+ 303      540D00
+ 304 0252 0000     		.align	2
+ 305              	.LC12:
+ 306 0254 5B465332 		.ascii	"[FS2] VGS_HC: Gate Drive Fault - Phase C High-side "
+ 306      5D205647 
+ 306      535F4843 
+ 306      3A204761 
+ 306      74652044 
+ 307 0287 4D4F5346 		.ascii	"MOSFET\015\000"
+ 307      45540D00 
+ 308 028f 00       		.align	2
+ 309              	.LC13:
+ 310 0290 5B465332 		.ascii	"[FS2] VGS_LB: Gate Drive Fault - Phase B Low-side M"
+ 310      5D205647 
+ 310      535F4C42 
+ 310      3A204761 
+ 310      74652044 
+ 311 02c3 4F534645 		.ascii	"OSFET\015\000"
+ 311      540D00
+ 312 02ca 0000     		.align	2
+ 313              	.LC14:
+ 314 02cc 5B465332 		.ascii	"[FS2] VGS_HB: Gate Drive Fault - Phase B High-side "
+ 314      5D205647 
+ 314      535F4842 
+ 314      3A204761 
+ 314      74652044 
+ 315 02ff 4D4F5346 		.ascii	"MOSFET\015\000"
+ 315      45540D00 
+ 316 0307 00       		.align	2
+ 317              	.LC15:
+ 318 0308 5B465332 		.ascii	"[FS2] VGS_LA: Gate Drive Fault - Phase A Low-side M"
+ 318      5D205647 
+ 318      535F4C41 
+ 318      3A204761 
+ 318      74652044 
+ 319 033b 4F534645 		.ascii	"OSFET\015\000"
+ 319      540D00
+ 320 0342 0000     		.align	2
+ 321              	.LC16:
+ 322 0344 5B465332 		.ascii	"[FS2] VGS_HA: Gate Drive Fault - Phase A High-side "
+ 322      5D205647 
+ 322      535F4841 
+ 322      3A204761 
+ 322      74652044 
+ 323 0377 4D4F5346 		.ascii	"MOSFET\015\000"
+ 323      45540D00 
+ 324 037f 00       		.align	2
+ 325              	.LC17:
+ 326 0380 5B465332 		.ascii	"[FS2] CPUV: Charge Pump Undervoltage Fault\015\000"
+ 326      5D204350 
+ 326      55563A20 
+ 326      43686172 
+ 326      67652050 
+ 327              		.align	2
+ 328              	.LC18:
+ 329 03ac 5B465332 		.ascii	"[FS2] OTW: Overtemperature Warning\015\000"
+ARM GAS  /tmp/ccIsCg4y.s 			page 9
+
+
+ 329      5D204F54 
+ 329      573A204F 
+ 329      76657274 
+ 329      656D7065 
+ 330              		.align	2
+ 331              	.LC19:
+ 332 03d0 5B465332 		.ascii	"[FS2] SC_OC: Overcurrent on Phase C Sense Amplifier"
+ 332      5D205343 
+ 332      5F4F433A 
+ 332      204F7665 
+ 332      72637572 
+ 333 0403 0D00     		.ascii	"\015\000"
+ 334 0405 000000   		.align	2
+ 335              	.LC20:
+ 336 0408 5B465332 		.ascii	"[FS2] SB_OC: Overcurrent on Phase B Sense Amplifier"
+ 336      5D205342 
+ 336      5F4F433A 
+ 336      204F7665 
+ 336      72637572 
+ 337 043b 0D00     		.ascii	"\015\000"
+ 338 043d 000000   		.align	2
+ 339              	.LC21:
+ 340 0440 5B465332 		.ascii	"[FS2] SA_OC: Overcurrent on Phase A Sense Amplifier"
+ 340      5D205341 
+ 340      5F4F433A 
+ 340      204F7665 
+ 340      72637572 
+ 341 0473 0D00     		.ascii	"\015\000"
+ 342 0475 000000   		.align	2
+ 343              	.LC22:
+ 344 0478 5B445256 		.ascii	"[DRV8323] No faults detected\015\000"
+ 344      38333233 
+ 344      5D204E6F 
+ 344      20666175 
+ 344      6C747320 
+ 345              		.section	.text.DRV832xS_Print_Fault,"ax",%progbits
+ 346              		.align	1
+ 347              		.global	DRV832xS_Print_Fault
+ 348              		.syntax unified
+ 349              		.thumb
+ 350              		.thumb_func
+ 351              		.fpu fpv4-sp-d16
+ 353              	DRV832xS_Print_Fault:
+ 354              	.LVL20:
+ 355              	.LFB139:
+  56:Core/Src/drv8323s.c **** 
+  57:Core/Src/drv8323s.c **** void DRV832xS_Check_Error(DRV832xS_t *drv){
+  58:Core/Src/drv8323s.c **** 
+  59:Core/Src/drv8323s.c **** 	uint16_t val1 = DRV832xS_Read16(drv, FS1);
+  60:Core/Src/drv8323s.c **** 	uint16_t val2 = DRV832xS_Read16(drv, FS2);
+  61:Core/Src/drv8323s.c **** 
+  62:Core/Src/drv8323s.c **** 	DRV832xS_Print_Fault(val1, val2);
+  63:Core/Src/drv8323s.c **** 
+  64:Core/Src/drv8323s.c **** }
+  65:Core/Src/drv8323s.c **** 	
+  66:Core/Src/drv8323s.c **** void DRV832xS_Print_Fault(uint16_t val1, uint16_t val2)
+  67:Core/Src/drv8323s.c **** {
+ARM GAS  /tmp/ccIsCg4y.s 			page 10
+
+
+ 356              		.loc 1 67 1 is_stmt 1 view -0
+ 357              		.cfi_startproc
+ 358              		@ args = 0, pretend = 0, frame = 0
+ 359              		@ frame_needed = 0, uses_anonymous_args = 0
+ 360              		.loc 1 67 1 is_stmt 0 view .LVU77
+ 361 0000 38B5     		push	{r3, r4, r5, lr}
+ 362              	.LCFI2:
+ 363              		.cfi_def_cfa_offset 16
+ 364              		.cfi_offset 3, -16
+ 365              		.cfi_offset 4, -12
+ 366              		.cfi_offset 5, -8
+ 367              		.cfi_offset 14, -4
+ 368 0002 0446     		mov	r4, r0
+ 369 0004 0D46     		mov	r5, r1
+  68:Core/Src/drv8323s.c ****     /* ================= FS1: Fault Status Register 1 ================= */
+  69:Core/Src/drv8323s.c **** 
+  70:Core/Src/drv8323s.c **** 	if (val1 & FS1_VDS_LC)	printf("\n\r[FS1] VDS_LC: Overcurrent on Phase C Low-side MOSFET\r\n");
+ 370              		.loc 1 70 2 is_stmt 1 view .LVU78
+ 371              		.loc 1 70 5 is_stmt 0 view .LVU79
+ 372 0006 10F0010F 		tst	r0, #1
+ 373 000a 42D1     		bne	.L38
+ 374              	.LVL21:
+ 375              	.L14:
+  71:Core/Src/drv8323s.c **** 	if (val1 & FS1_VDS_HC)	printf("[FS1] VDS_HC: Overcurrent on Phase C High-side MOSFET\r\n");
+ 376              		.loc 1 71 2 is_stmt 1 view .LVU80
+ 377              		.loc 1 71 5 is_stmt 0 view .LVU81
+ 378 000c 14F0020F 		tst	r4, #2
+ 379 0010 43D1     		bne	.L39
+ 380              	.L15:
+  72:Core/Src/drv8323s.c **** 	if (val1 & FS1_VDS_LB)	printf("[FS1] VDS_LB: Overcurrent on Phase B Low-side MOSFET\r\n");
+ 381              		.loc 1 72 2 is_stmt 1 view .LVU82
+ 382              		.loc 1 72 5 is_stmt 0 view .LVU83
+ 383 0012 14F0040F 		tst	r4, #4
+ 384 0016 44D1     		bne	.L40
+ 385              	.L16:
+  73:Core/Src/drv8323s.c **** 	if (val1 & FS1_VDS_HB)	printf("[FS1] VDS_HB: Overcurrent on Phase B High-side MOSFET\r\n");
+ 386              		.loc 1 73 2 is_stmt 1 view .LVU84
+ 387              		.loc 1 73 5 is_stmt 0 view .LVU85
+ 388 0018 14F0080F 		tst	r4, #8
+ 389 001c 45D1     		bne	.L41
+ 390              	.L17:
+  74:Core/Src/drv8323s.c **** 	if (val1 & FS1_VDS_LA)	printf("[FS1] VDS_LA: Overcurrent on Phase A Low-side MOSFET\r\n");
+ 391              		.loc 1 74 2 is_stmt 1 view .LVU86
+ 392              		.loc 1 74 5 is_stmt 0 view .LVU87
+ 393 001e 14F0100F 		tst	r4, #16
+ 394 0022 46D1     		bne	.L42
+ 395              	.L18:
+  75:Core/Src/drv8323s.c **** 	if (val1 & FS1_VDS_HA)	printf("[FS1] VDS_HA: Overcurrent on Phase A High-side MOSFET\r\n");
+ 396              		.loc 1 75 2 is_stmt 1 view .LVU88
+ 397              		.loc 1 75 5 is_stmt 0 view .LVU89
+ 398 0024 14F0200F 		tst	r4, #32
+ 399 0028 47D1     		bne	.L43
+ 400              	.L19:
+  76:Core/Src/drv8323s.c **** 	if (val1 & FS1_OTSD)	printf("[FS1] OTSD: Overtemperature Shutdown\r\n");
+ 401              		.loc 1 76 2 is_stmt 1 view .LVU90
+ 402              		.loc 1 76 5 is_stmt 0 view .LVU91
+ 403 002a 14F0400F 		tst	r4, #64
+ARM GAS  /tmp/ccIsCg4y.s 			page 11
+
+
+ 404 002e 48D1     		bne	.L44
+ 405              	.L20:
+  77:Core/Src/drv8323s.c **** 	if (val1 & FS1_UVLO)	printf("[FS1] UVLO: Undervoltage Lockout\r\n");
+ 406              		.loc 1 77 2 is_stmt 1 view .LVU92
+ 407              		.loc 1 77 5 is_stmt 0 view .LVU93
+ 408 0030 14F0800F 		tst	r4, #128
+ 409 0034 49D1     		bne	.L45
+ 410              	.L21:
+  78:Core/Src/drv8323s.c **** 	if (val1 & FS1_GDF)		printf("[FS1] GDF: Gate Drive Fault\r\n");
+ 411              		.loc 1 78 2 is_stmt 1 view .LVU94
+ 412              		.loc 1 78 5 is_stmt 0 view .LVU95
+ 413 0036 14F4807F 		tst	r4, #256
+ 414 003a 4AD1     		bne	.L46
+ 415              	.L22:
+  79:Core/Src/drv8323s.c **** 	if (val1 & FS1_VDS_OCP)	printf("[FS1] VDS_OCP: VDS Monitor Overcurrent Fault\r\n");
+ 416              		.loc 1 79 2 is_stmt 1 view .LVU96
+ 417              		.loc 1 79 5 is_stmt 0 view .LVU97
+ 418 003c 14F4007F 		tst	r4, #512
+ 419 0040 4BD1     		bne	.L47
+ 420              	.L23:
+  80:Core/Src/drv8323s.c **** 	if (val1 & FS1_FAULT)	printf("[FS1] FAULT: Fault Status Active (nFAULT)\r\n");
+ 421              		.loc 1 80 2 is_stmt 1 view .LVU98
+ 422              		.loc 1 80 5 is_stmt 0 view .LVU99
+ 423 0042 14F4806F 		tst	r4, #1024
+ 424 0046 4CD1     		bne	.L48
+ 425              	.L24:
   81:Core/Src/drv8323s.c **** 
-  82:Core/Src/drv8323s.c **** 	tim->CCER &= ~(TIM_CCER_CC1E | TIM_CCER_CC2E | TIM_CCER_CC3E | TIM_CCER_CC4E);
- 296              		.loc 1 82 2 is_stmt 1 view .LVU72
- 297              		.loc 1 82 12 is_stmt 0 view .LVU73
- 298 000e 1A6A     		ldr	r2, [r3, #32]
- 299 0010 22F48852 		bic	r2, r2, #4352
- 300 0014 22F01102 		bic	r2, r2, #17
- 301 0018 1A62     		str	r2, [r3, #32]
+  82:Core/Src/drv8323s.c ****     /* ================= FS2: Fault Status Register 2 ================= */
   83:Core/Src/drv8323s.c **** 
-  84:Core/Src/drv8323s.c **** 	tim->CCER &= ~(TIM_CCER_CC1NE | TIM_CCER_CC2NE | TIM_CCER_CC3NE);
- 302              		.loc 1 84 2 is_stmt 1 view .LVU74
- 303              		.loc 1 84 12 is_stmt 0 view .LVU75
- 304 001a 1A6A     		ldr	r2, [r3, #32]
- 305 001c 22F48862 		bic	r2, r2, #1088
- 306 0020 22F00402 		bic	r2, r2, #4
- 307 0024 1A62     		str	r2, [r3, #32]
-  85:Core/Src/drv8323s.c **** 
-  86:Core/Src/drv8323s.c **** 	return 1;
- 308              		.loc 1 86 2 is_stmt 1 view .LVU76
- 309              		.loc 1 86 9 is_stmt 0 view .LVU77
- 310 0026 0120     		movs	r0, #1
- 311              	.LVL19:
- 312              		.loc 1 86 9 view .LVU78
- 313 0028 7047     		bx	lr
- 314              	.LVL20:
- 315              	.L15:
-  75:Core/Src/drv8323s.c **** 	}
- 316              		.loc 1 75 10 view .LVU79
- 317 002a 0020     		movs	r0, #0
- 318              	.LVL21:
-  75:Core/Src/drv8323s.c **** 	}
-ARM GAS  /tmp/cc6imqjr.s 			page 8
+  84:Core/Src/drv8323s.c ****     if (val2 & FS2_VGS_LC)	printf("[FS2] VGS_LC: Gate Drive Fault - Phase C Low-side MOSFET\r\n");
+ 426              		.loc 1 84 5 is_stmt 1 view .LVU100
+ 427              		.loc 1 84 8 is_stmt 0 view .LVU101
+ 428 0048 15F0010F 		tst	r5, #1
+ 429 004c 4DD1     		bne	.L49
+ 430              	.L25:
+  85:Core/Src/drv8323s.c ****     if (val2 & FS2_VGS_HC)	printf("[FS2] VGS_HC: Gate Drive Fault - Phase C High-side MOSFET\r\n");
+ 431              		.loc 1 85 5 is_stmt 1 view .LVU102
+ 432              		.loc 1 85 8 is_stmt 0 view .LVU103
+ 433 004e 15F0020F 		tst	r5, #2
+ 434 0052 4ED1     		bne	.L50
+ 435              	.L26:
+  86:Core/Src/drv8323s.c ****     if (val2 & FS2_VGS_LB)	printf("[FS2] VGS_LB: Gate Drive Fault - Phase B Low-side MOSFET\r\n");
+ 436              		.loc 1 86 5 is_stmt 1 view .LVU104
+ 437              		.loc 1 86 8 is_stmt 0 view .LVU105
+ 438 0054 15F0040F 		tst	r5, #4
+ 439 0058 4FD1     		bne	.L51
+ 440              	.L27:
+  87:Core/Src/drv8323s.c ****     if (val2 & FS2_VGS_HB)	printf("[FS2] VGS_HB: Gate Drive Fault - Phase B High-side MOSFET\r\n");
+ 441              		.loc 1 87 5 is_stmt 1 view .LVU106
+ 442              		.loc 1 87 8 is_stmt 0 view .LVU107
+ 443 005a 15F0080F 		tst	r5, #8
+ 444 005e 50D1     		bne	.L52
+ 445              	.L28:
+  88:Core/Src/drv8323s.c ****     if (val2 & FS2_VGS_LA)	printf("[FS2] VGS_LA: Gate Drive Fault - Phase A Low-side MOSFET\r\n");
+ 446              		.loc 1 88 5 is_stmt 1 view .LVU108
+ 447              		.loc 1 88 8 is_stmt 0 view .LVU109
+ 448 0060 15F0100F 		tst	r5, #16
+ARM GAS  /tmp/ccIsCg4y.s 			page 12
 
 
- 319              		.loc 1 75 10 view .LVU80
- 320 002c 7047     		bx	lr
- 321              	.LVL22:
- 322              	.L16:
-  75:Core/Src/drv8323s.c **** 	}
- 323              		.loc 1 75 10 view .LVU81
- 324 002e 0020     		movs	r0, #0
- 325              	.LVL23:
-  87:Core/Src/drv8323s.c **** }
- 326              		.loc 1 87 1 view .LVU82
- 327 0030 7047     		bx	lr
- 328              		.cfi_endproc
- 329              	.LFE141:
- 331              		.section	.text.DRV8323_Start_PWM,"ax",%progbits
- 332              		.align	1
- 333              		.global	DRV8323_Start_PWM
- 334              		.syntax unified
- 335              		.thumb
- 336              		.thumb_func
- 337              		.fpu fpv4-sp-d16
- 339              	DRV8323_Start_PWM:
- 340              	.LVL24:
- 341              	.LFB142:
-  88:Core/Src/drv8323s.c **** //
-  89:Core/Src/drv8323s.c **** 
-  90:Core/Src/drv8323s.c **** int DRV8323_Start_PWM(DRV8323_t *cfg){
- 342              		.loc 1 90 38 is_stmt 1 view -0
- 343              		.cfi_startproc
- 344              		@ args = 0, pretend = 0, frame = 0
- 345              		@ frame_needed = 0, uses_anonymous_args = 0
- 346              		@ link register save eliminated.
-  91:Core/Src/drv8323s.c **** 	if (cfg == NULL || cfg->Timx == NULL) {
- 347              		.loc 1 91 2 view .LVU84
- 348              		.loc 1 91 5 is_stmt 0 view .LVU85
- 349 0000 F0B1     		cbz	r0, .L19
- 350              		.loc 1 91 24 discriminator 1 view .LVU86
- 351 0002 0368     		ldr	r3, [r0]
- 352              		.loc 1 91 18 discriminator 1 view .LVU87
- 353 0004 F3B1     		cbz	r3, .L20
-  92:Core/Src/drv8323s.c **** 			return 0;
-  93:Core/Src/drv8323s.c **** 	}
-  94:Core/Src/drv8323s.c **** 	TIM_TypeDef *tim = cfg->Timx;
- 354              		.loc 1 94 2 is_stmt 1 view .LVU88
- 355              	.LVL25:
+ 449 0064 51D1     		bne	.L53
+ 450              	.L29:
+  89:Core/Src/drv8323s.c ****     if (val2 & FS2_VGS_HA)	printf("[FS2] VGS_HA: Gate Drive Fault - Phase A High-side MOSFET\r\n");
+ 451              		.loc 1 89 5 is_stmt 1 view .LVU110
+ 452              		.loc 1 89 8 is_stmt 0 view .LVU111
+ 453 0066 15F0200F 		tst	r5, #32
+ 454 006a 52D1     		bne	.L54
+ 455              	.L30:
+  90:Core/Src/drv8323s.c ****     if (val2 & FS2_CPUV)	printf("[FS2] CPUV: Charge Pump Undervoltage Fault\r\n");
+ 456              		.loc 1 90 5 is_stmt 1 view .LVU112
+ 457              		.loc 1 90 8 is_stmt 0 view .LVU113
+ 458 006c 15F0400F 		tst	r5, #64
+ 459 0070 53D1     		bne	.L55
+ 460              	.L31:
+  91:Core/Src/drv8323s.c ****     if (val2 & FS2_OTW)		printf("[FS2] OTW: Overtemperature Warning\r\n");
+ 461              		.loc 1 91 5 is_stmt 1 view .LVU114
+ 462              		.loc 1 91 8 is_stmt 0 view .LVU115
+ 463 0072 15F0800F 		tst	r5, #128
+ 464 0076 54D1     		bne	.L56
+ 465              	.L32:
+  92:Core/Src/drv8323s.c ****     if (val2 & FS2_SC_OC)	printf("[FS2] SC_OC: Overcurrent on Phase C Sense Amplifier\r\n");
+ 466              		.loc 1 92 5 is_stmt 1 view .LVU116
+ 467              		.loc 1 92 8 is_stmt 0 view .LVU117
+ 468 0078 15F4807F 		tst	r5, #256
+ 469 007c 55D1     		bne	.L57
+ 470              	.L33:
+  93:Core/Src/drv8323s.c ****     if (val2 & FS2_SB_OC)	printf("[FS2] SB_OC: Overcurrent on Phase B Sense Amplifier\r\n");
+ 471              		.loc 1 93 5 is_stmt 1 view .LVU118
+ 472              		.loc 1 93 8 is_stmt 0 view .LVU119
+ 473 007e 15F4007F 		tst	r5, #512
+ 474 0082 56D1     		bne	.L58
+ 475              	.L34:
+  94:Core/Src/drv8323s.c ****     if (val2 & FS2_SA_OC)	printf("[FS2] SA_OC: Overcurrent on Phase A Sense Amplifier\r\n");
+ 476              		.loc 1 94 5 is_stmt 1 view .LVU120
+ 477              		.loc 1 94 8 is_stmt 0 view .LVU121
+ 478 0084 15F4806F 		tst	r5, #1024
+ 479 0088 57D1     		bne	.L59
+ 480              	.L35:
   95:Core/Src/drv8323s.c **** 
-  96:Core/Src/drv8323s.c **** 	tim->CCR1 = 0;
- 356              		.loc 1 96 2 view .LVU89
- 357              		.loc 1 96 12 is_stmt 0 view .LVU90
- 358 0006 0022     		movs	r2, #0
- 359 0008 5A63     		str	r2, [r3, #52]
-  97:Core/Src/drv8323s.c **** 	tim->CCR2 = 0;
- 360              		.loc 1 97 2 is_stmt 1 view .LVU91
- 361              		.loc 1 97 12 is_stmt 0 view .LVU92
- 362 000a 9A63     		str	r2, [r3, #56]
-  98:Core/Src/drv8323s.c **** 	tim->CCR3 = 0;
- 363              		.loc 1 98 2 is_stmt 1 view .LVU93
- 364              		.loc 1 98 12 is_stmt 0 view .LVU94
-ARM GAS  /tmp/cc6imqjr.s 			page 9
+  96:Core/Src/drv8323s.c **** 
+  97:Core/Src/drv8323s.c ****     /* ================= Check if no faults ================= */
+  98:Core/Src/drv8323s.c **** 
+  99:Core/Src/drv8323s.c ****     if ((val1 == 0U) && (val2 == 0U))
+ 481              		.loc 1 99 5 is_stmt 1 view .LVU122
+ 482              		.loc 1 99 8 is_stmt 0 view .LVU123
+ 483 008a 0CB9     		cbnz	r4, .L13
+ 484              		.loc 1 99 22 discriminator 1 view .LVU124
+ 485 008c 002D     		cmp	r5, #0
+ 486 008e 58D0     		beq	.L60
+ 487              	.L13:
+ 100:Core/Src/drv8323s.c ****     {
+ 101:Core/Src/drv8323s.c ****         printf("[DRV8323] No faults detected\r\n");
+ 102:Core/Src/drv8323s.c ****     }
+ 103:Core/Src/drv8323s.c **** }
+ 488              		.loc 1 103 1 view .LVU125
+ 489 0090 38BD     		pop	{r3, r4, r5, pc}
+ 490              	.LVL22:
+ARM GAS  /tmp/ccIsCg4y.s 			page 13
 
 
- 365 000c DA63     		str	r2, [r3, #60]
-  99:Core/Src/drv8323s.c **** 	
- 100:Core/Src/drv8323s.c **** 	tim->CCR4 = tim->ARR - 1;
- 366              		.loc 1 100 2 is_stmt 1 view .LVU95
- 367              		.loc 1 100 17 is_stmt 0 view .LVU96
- 368 000e DA6A     		ldr	r2, [r3, #44]
- 369              		.loc 1 100 23 view .LVU97
- 370 0010 013A     		subs	r2, r2, #1
- 371              		.loc 1 100 12 view .LVU98
- 372 0012 1A64     		str	r2, [r3, #64]
- 101:Core/Src/drv8323s.c **** 	tim->CCER |= (TIM_CCER_CC1E | TIM_CCER_CC2E | TIM_CCER_CC3E | TIM_CCER_CC4E);
- 373              		.loc 1 101 2 is_stmt 1 view .LVU99
- 374              		.loc 1 101 12 is_stmt 0 view .LVU100
- 375 0014 1A6A     		ldr	r2, [r3, #32]
- 376 0016 42F48852 		orr	r2, r2, #4352
- 377 001a 42F01102 		orr	r2, r2, #17
- 378 001e 1A62     		str	r2, [r3, #32]
- 102:Core/Src/drv8323s.c **** 	tim->CCER |= (TIM_CCER_CC1NE | TIM_CCER_CC2NE | TIM_CCER_CC3NE);
- 379              		.loc 1 102 2 is_stmt 1 view .LVU101
- 380              		.loc 1 102 12 is_stmt 0 view .LVU102
- 381 0020 1A6A     		ldr	r2, [r3, #32]
- 382 0022 42F48862 		orr	r2, r2, #1088
- 383 0026 42F00402 		orr	r2, r2, #4
- 384 002a 1A62     		str	r2, [r3, #32]
- 103:Core/Src/drv8323s.c **** 
- 104:Core/Src/drv8323s.c **** 	tim->BDTR |= TIM_BDTR_MOE;
- 385              		.loc 1 104 2 is_stmt 1 view .LVU103
- 386              		.loc 1 104 12 is_stmt 0 view .LVU104
- 387 002c 5A6C     		ldr	r2, [r3, #68]
- 388 002e 42F40042 		orr	r2, r2, #32768
- 389 0032 5A64     		str	r2, [r3, #68]
- 105:Core/Src/drv8323s.c **** 	tim->CR1 |= TIM_CR1_CEN;
- 390              		.loc 1 105 2 is_stmt 1 view .LVU105
- 391              		.loc 1 105 11 is_stmt 0 view .LVU106
- 392 0034 1A68     		ldr	r2, [r3]
- 393 0036 42F00102 		orr	r2, r2, #1
- 394 003a 1A60     		str	r2, [r3]
+ 491              	.L38:
+ 492              	.LBB2:
+  70:Core/Src/drv8323s.c **** 	if (val1 & FS1_VDS_HC)	printf("[FS1] VDS_HC: Overcurrent on Phase C High-side MOSFET\r\n");
+ 493              		.loc 1 70 25 is_stmt 1 discriminator 1 view .LVU126
+ 494 0092 2E48     		ldr	r0, .L61
+ 495              	.LVL23:
+  70:Core/Src/drv8323s.c **** 	if (val1 & FS1_VDS_HC)	printf("[FS1] VDS_HC: Overcurrent on Phase C High-side MOSFET\r\n");
+ 496              		.loc 1 70 25 is_stmt 0 discriminator 1 view .LVU127
+ 497 0094 FFF7FEFF 		bl	puts
+ 498              	.LVL24:
+  70:Core/Src/drv8323s.c **** 	if (val1 & FS1_VDS_HC)	printf("[FS1] VDS_HC: Overcurrent on Phase C High-side MOSFET\r\n");
+ 499              		.loc 1 70 25 discriminator 1 view .LVU128
+ 500 0098 B8E7     		b	.L14
+ 501              	.L39:
+ 502              	.LBE2:
+ 503              	.LBB3:
+  71:Core/Src/drv8323s.c **** 	if (val1 & FS1_VDS_LB)	printf("[FS1] VDS_LB: Overcurrent on Phase B Low-side MOSFET\r\n");
+ 504              		.loc 1 71 25 is_stmt 1 discriminator 1 view .LVU129
+ 505 009a 2D48     		ldr	r0, .L61+4
+ 506 009c FFF7FEFF 		bl	puts
+ 507              	.LVL25:
+ 508 00a0 B7E7     		b	.L15
+ 509              	.L40:
+ 510              	.LBE3:
+ 511              	.LBB4:
+  72:Core/Src/drv8323s.c **** 	if (val1 & FS1_VDS_HB)	printf("[FS1] VDS_HB: Overcurrent on Phase B High-side MOSFET\r\n");
+ 512              		.loc 1 72 25 discriminator 1 view .LVU130
+ 513 00a2 2C48     		ldr	r0, .L61+8
+ 514 00a4 FFF7FEFF 		bl	puts
+ 515              	.LVL26:
+ 516 00a8 B6E7     		b	.L16
+ 517              	.L41:
+ 518              	.LBE4:
+ 519              	.LBB5:
+  73:Core/Src/drv8323s.c **** 	if (val1 & FS1_VDS_LA)	printf("[FS1] VDS_LA: Overcurrent on Phase A Low-side MOSFET\r\n");
+ 520              		.loc 1 73 25 discriminator 1 view .LVU131
+ 521 00aa 2B48     		ldr	r0, .L61+12
+ 522 00ac FFF7FEFF 		bl	puts
+ 523              	.LVL27:
+ 524 00b0 B5E7     		b	.L17
+ 525              	.L42:
+ 526              	.LBE5:
+ 527              	.LBB6:
+  74:Core/Src/drv8323s.c **** 	if (val1 & FS1_VDS_HA)	printf("[FS1] VDS_HA: Overcurrent on Phase A High-side MOSFET\r\n");
+ 528              		.loc 1 74 25 discriminator 1 view .LVU132
+ 529 00b2 2A48     		ldr	r0, .L61+16
+ 530 00b4 FFF7FEFF 		bl	puts
+ 531              	.LVL28:
+ 532 00b8 B4E7     		b	.L18
+ 533              	.L43:
+ 534              	.LBE6:
+ 535              	.LBB7:
+  75:Core/Src/drv8323s.c **** 	if (val1 & FS1_OTSD)	printf("[FS1] OTSD: Overtemperature Shutdown\r\n");
+ 536              		.loc 1 75 25 discriminator 1 view .LVU133
+ 537 00ba 2948     		ldr	r0, .L61+20
+ 538 00bc FFF7FEFF 		bl	puts
+ 539              	.LVL29:
+ARM GAS  /tmp/ccIsCg4y.s 			page 14
+
+
+ 540 00c0 B3E7     		b	.L19
+ 541              	.L44:
+ 542              	.LBE7:
+ 543              	.LBB8:
+  76:Core/Src/drv8323s.c **** 	if (val1 & FS1_UVLO)	printf("[FS1] UVLO: Undervoltage Lockout\r\n");
+ 544              		.loc 1 76 23 discriminator 1 view .LVU134
+ 545 00c2 2848     		ldr	r0, .L61+24
+ 546 00c4 FFF7FEFF 		bl	puts
+ 547              	.LVL30:
+ 548 00c8 B2E7     		b	.L20
+ 549              	.L45:
+ 550              	.LBE8:
+ 551              	.LBB9:
+  77:Core/Src/drv8323s.c **** 	if (val1 & FS1_GDF)		printf("[FS1] GDF: Gate Drive Fault\r\n");
+ 552              		.loc 1 77 23 discriminator 1 view .LVU135
+ 553 00ca 2748     		ldr	r0, .L61+28
+ 554 00cc FFF7FEFF 		bl	puts
+ 555              	.LVL31:
+ 556 00d0 B1E7     		b	.L21
+ 557              	.L46:
+ 558              	.LBE9:
+ 559              	.LBB10:
+  78:Core/Src/drv8323s.c **** 	if (val1 & FS1_VDS_OCP)	printf("[FS1] VDS_OCP: VDS Monitor Overcurrent Fault\r\n");
+ 560              		.loc 1 78 23 discriminator 1 view .LVU136
+ 561 00d2 2648     		ldr	r0, .L61+32
+ 562 00d4 FFF7FEFF 		bl	puts
+ 563              	.LVL32:
+ 564 00d8 B0E7     		b	.L22
+ 565              	.L47:
+ 566              	.LBE10:
+ 567              	.LBB11:
+  79:Core/Src/drv8323s.c **** 	if (val1 & FS1_FAULT)	printf("[FS1] FAULT: Fault Status Active (nFAULT)\r\n");
+ 568              		.loc 1 79 26 discriminator 1 view .LVU137
+ 569 00da 2548     		ldr	r0, .L61+36
+ 570 00dc FFF7FEFF 		bl	puts
+ 571              	.LVL33:
+ 572 00e0 AFE7     		b	.L23
+ 573              	.L48:
+ 574              	.LBE11:
+ 575              	.LBB12:
+  80:Core/Src/drv8323s.c **** 
+ 576              		.loc 1 80 24 discriminator 1 view .LVU138
+ 577 00e2 2448     		ldr	r0, .L61+40
+ 578 00e4 FFF7FEFF 		bl	puts
+ 579              	.LVL34:
+ 580 00e8 AEE7     		b	.L24
+ 581              	.L49:
+ 582              	.LBE12:
+ 583              	.LBB13:
+  84:Core/Src/drv8323s.c ****     if (val2 & FS2_VGS_HC)	printf("[FS2] VGS_HC: Gate Drive Fault - Phase C High-side MOSFET\r\n");
+ 584              		.loc 1 84 28 discriminator 1 view .LVU139
+ 585 00ea 2348     		ldr	r0, .L61+44
+ 586 00ec FFF7FEFF 		bl	puts
+ 587              	.LVL35:
+ 588 00f0 ADE7     		b	.L25
+ 589              	.L50:
+ 590              	.LBE13:
+ARM GAS  /tmp/ccIsCg4y.s 			page 15
+
+
+ 591              	.LBB14:
+  85:Core/Src/drv8323s.c ****     if (val2 & FS2_VGS_LB)	printf("[FS2] VGS_LB: Gate Drive Fault - Phase B Low-side MOSFET\r\n");
+ 592              		.loc 1 85 28 discriminator 1 view .LVU140
+ 593 00f2 2248     		ldr	r0, .L61+48
+ 594 00f4 FFF7FEFF 		bl	puts
+ 595              	.LVL36:
+ 596 00f8 ACE7     		b	.L26
+ 597              	.L51:
+ 598              	.LBE14:
+ 599              	.LBB15:
+  86:Core/Src/drv8323s.c ****     if (val2 & FS2_VGS_HB)	printf("[FS2] VGS_HB: Gate Drive Fault - Phase B High-side MOSFET\r\n");
+ 600              		.loc 1 86 28 discriminator 1 view .LVU141
+ 601 00fa 2148     		ldr	r0, .L61+52
+ 602 00fc FFF7FEFF 		bl	puts
+ 603              	.LVL37:
+ 604 0100 ABE7     		b	.L27
+ 605              	.L52:
+ 606              	.LBE15:
+ 607              	.LBB16:
+  87:Core/Src/drv8323s.c ****     if (val2 & FS2_VGS_LA)	printf("[FS2] VGS_LA: Gate Drive Fault - Phase A Low-side MOSFET\r\n");
+ 608              		.loc 1 87 28 discriminator 1 view .LVU142
+ 609 0102 2048     		ldr	r0, .L61+56
+ 610 0104 FFF7FEFF 		bl	puts
+ 611              	.LVL38:
+ 612 0108 AAE7     		b	.L28
+ 613              	.L53:
+ 614              	.LBE16:
+ 615              	.LBB17:
+  88:Core/Src/drv8323s.c ****     if (val2 & FS2_VGS_HA)	printf("[FS2] VGS_HA: Gate Drive Fault - Phase A High-side MOSFET\r\n");
+ 616              		.loc 1 88 28 discriminator 1 view .LVU143
+ 617 010a 1F48     		ldr	r0, .L61+60
+ 618 010c FFF7FEFF 		bl	puts
+ 619              	.LVL39:
+ 620 0110 A9E7     		b	.L29
+ 621              	.L54:
+ 622              	.LBE17:
+ 623              	.LBB18:
+  89:Core/Src/drv8323s.c ****     if (val2 & FS2_CPUV)	printf("[FS2] CPUV: Charge Pump Undervoltage Fault\r\n");
+ 624              		.loc 1 89 28 discriminator 1 view .LVU144
+ 625 0112 1E48     		ldr	r0, .L61+64
+ 626 0114 FFF7FEFF 		bl	puts
+ 627              	.LVL40:
+ 628 0118 A8E7     		b	.L30
+ 629              	.L55:
+ 630              	.LBE18:
+ 631              	.LBB19:
+  90:Core/Src/drv8323s.c ****     if (val2 & FS2_OTW)		printf("[FS2] OTW: Overtemperature Warning\r\n");
+ 632              		.loc 1 90 26 discriminator 1 view .LVU145
+ 633 011a 1D48     		ldr	r0, .L61+68
+ 634 011c FFF7FEFF 		bl	puts
+ 635              	.LVL41:
+ 636 0120 A7E7     		b	.L31
+ 637              	.L56:
+ 638              	.LBE19:
+ 639              	.LBB20:
+  91:Core/Src/drv8323s.c ****     if (val2 & FS2_SC_OC)	printf("[FS2] SC_OC: Overcurrent on Phase C Sense Amplifier\r\n");
+ 640              		.loc 1 91 26 discriminator 1 view .LVU146
+ARM GAS  /tmp/ccIsCg4y.s 			page 16
+
+
+ 641 0122 1C48     		ldr	r0, .L61+72
+ 642 0124 FFF7FEFF 		bl	puts
+ 643              	.LVL42:
+ 644 0128 A6E7     		b	.L32
+ 645              	.L57:
+ 646              	.LBE20:
+ 647              	.LBB21:
+  92:Core/Src/drv8323s.c ****     if (val2 & FS2_SB_OC)	printf("[FS2] SB_OC: Overcurrent on Phase B Sense Amplifier\r\n");
+ 648              		.loc 1 92 27 discriminator 1 view .LVU147
+ 649 012a 1B48     		ldr	r0, .L61+76
+ 650 012c FFF7FEFF 		bl	puts
+ 651              	.LVL43:
+ 652 0130 A5E7     		b	.L33
+ 653              	.L58:
+ 654              	.LBE21:
+ 655              	.LBB22:
+  93:Core/Src/drv8323s.c ****     if (val2 & FS2_SA_OC)	printf("[FS2] SA_OC: Overcurrent on Phase A Sense Amplifier\r\n");
+ 656              		.loc 1 93 27 discriminator 1 view .LVU148
+ 657 0132 1A48     		ldr	r0, .L61+80
+ 658 0134 FFF7FEFF 		bl	puts
+ 659              	.LVL44:
+ 660 0138 A4E7     		b	.L34
+ 661              	.L59:
+ 662              	.LBE22:
+ 663              	.LBB23:
+  94:Core/Src/drv8323s.c **** 
+ 664              		.loc 1 94 27 discriminator 1 view .LVU149
+ 665 013a 1948     		ldr	r0, .L61+84
+ 666 013c FFF7FEFF 		bl	puts
+ 667              	.LVL45:
+ 668 0140 A3E7     		b	.L35
+ 669              	.L60:
+ 670              	.LBE23:
+ 671              	.LBB24:
+ 101:Core/Src/drv8323s.c ****     }
+ 672              		.loc 1 101 9 view .LVU150
+ 673 0142 1848     		ldr	r0, .L61+88
+ 674 0144 FFF7FEFF 		bl	puts
+ 675              	.LVL46:
+ 676              	.LBE24:
+ 677              		.loc 1 103 1 is_stmt 0 view .LVU151
+ 678 0148 A2E7     		b	.L13
+ 679              	.L62:
+ 680 014a 00BF     		.align	2
+ 681              	.L61:
+ 682 014c 00000000 		.word	.LC0
+ 683 0150 38000000 		.word	.LC1
+ 684 0154 70000000 		.word	.LC2
+ 685 0158 A8000000 		.word	.LC3
+ 686 015c E0000000 		.word	.LC4
+ 687 0160 18010000 		.word	.LC5
+ 688 0164 50010000 		.word	.LC6
+ 689 0168 78010000 		.word	.LC7
+ 690 016c 9C010000 		.word	.LC8
+ 691 0170 BC010000 		.word	.LC9
+ 692 0174 EC010000 		.word	.LC10
+ 693 0178 18020000 		.word	.LC11
+ARM GAS  /tmp/ccIsCg4y.s 			page 17
+
+
+ 694 017c 54020000 		.word	.LC12
+ 695 0180 90020000 		.word	.LC13
+ 696 0184 CC020000 		.word	.LC14
+ 697 0188 08030000 		.word	.LC15
+ 698 018c 44030000 		.word	.LC16
+ 699 0190 80030000 		.word	.LC17
+ 700 0194 AC030000 		.word	.LC18
+ 701 0198 D0030000 		.word	.LC19
+ 702 019c 08040000 		.word	.LC20
+ 703 01a0 40040000 		.word	.LC21
+ 704 01a4 78040000 		.word	.LC22
+ 705              		.cfi_endproc
+ 706              	.LFE139:
+ 708              		.section	.text.DRV832xS_Check_Error,"ax",%progbits
+ 709              		.align	1
+ 710              		.global	DRV832xS_Check_Error
+ 711              		.syntax unified
+ 712              		.thumb
+ 713              		.thumb_func
+ 714              		.fpu fpv4-sp-d16
+ 716              	DRV832xS_Check_Error:
+ 717              	.LVL47:
+ 718              	.LFB138:
+  57:Core/Src/drv8323s.c **** 
+ 719              		.loc 1 57 43 is_stmt 1 view -0
+ 720              		.cfi_startproc
+ 721              		@ args = 0, pretend = 0, frame = 0
+ 722              		@ frame_needed = 0, uses_anonymous_args = 0
+  57:Core/Src/drv8323s.c **** 
+ 723              		.loc 1 57 43 is_stmt 0 view .LVU153
+ 724 0000 38B5     		push	{r3, r4, r5, lr}
+ 725              	.LCFI3:
+ 726              		.cfi_def_cfa_offset 16
+ 727              		.cfi_offset 3, -16
+ 728              		.cfi_offset 4, -12
+ 729              		.cfi_offset 5, -8
+ 730              		.cfi_offset 14, -4
+ 731 0002 0546     		mov	r5, r0
+  59:Core/Src/drv8323s.c **** 	uint16_t val2 = DRV832xS_Read16(drv, FS2);
+ 732              		.loc 1 59 2 is_stmt 1 view .LVU154
+  59:Core/Src/drv8323s.c **** 	uint16_t val2 = DRV832xS_Read16(drv, FS2);
+ 733              		.loc 1 59 18 is_stmt 0 view .LVU155
+ 734 0004 0021     		movs	r1, #0
+ 735 0006 FFF7FEFF 		bl	DRV832xS_Read16
+ 736              	.LVL48:
+  59:Core/Src/drv8323s.c **** 	uint16_t val2 = DRV832xS_Read16(drv, FS2);
+ 737              		.loc 1 59 18 view .LVU156
+ 738 000a 0446     		mov	r4, r0
+ 739              	.LVL49:
+  60:Core/Src/drv8323s.c **** 
+ 740              		.loc 1 60 2 is_stmt 1 view .LVU157
+  60:Core/Src/drv8323s.c **** 
+ 741              		.loc 1 60 18 is_stmt 0 view .LVU158
+ 742 000c 0121     		movs	r1, #1
+ 743 000e 2846     		mov	r0, r5
+ 744 0010 FFF7FEFF 		bl	DRV832xS_Read16
+ 745              	.LVL50:
+ARM GAS  /tmp/ccIsCg4y.s 			page 18
+
+
+ 746 0014 0146     		mov	r1, r0
+ 747              	.LVL51:
+  62:Core/Src/drv8323s.c **** 
+ 748              		.loc 1 62 2 is_stmt 1 view .LVU159
+ 749 0016 2046     		mov	r0, r4
+ 750 0018 FFF7FEFF 		bl	DRV832xS_Print_Fault
+ 751              	.LVL52:
+  64:Core/Src/drv8323s.c **** 	
+ 752              		.loc 1 64 1 is_stmt 0 view .LVU160
+ 753 001c 38BD     		pop	{r3, r4, r5, pc}
+  64:Core/Src/drv8323s.c **** 	
+ 754              		.loc 1 64 1 view .LVU161
+ 755              		.cfi_endproc
+ 756              	.LFE138:
+ 758              		.section	.text.DRV832xS_Setup,"ax",%progbits
+ 759              		.align	1
+ 760              		.global	DRV832xS_Setup
+ 761              		.syntax unified
+ 762              		.thumb
+ 763              		.thumb_func
+ 764              		.fpu fpv4-sp-d16
+ 766              	DRV832xS_Setup:
+ 767              	.LVL53:
+ 768              	.LFB140:
+ 104:Core/Src/drv8323s.c **** 
+ 105:Core/Src/drv8323s.c **** void DRV832xS_Setup(DRV832xS_t *drv){
+ 769              		.loc 1 105 37 is_stmt 1 view -0
+ 770              		.cfi_startproc
+ 771              		@ args = 0, pretend = 0, frame = 0
+ 772              		@ frame_needed = 0, uses_anonymous_args = 0
+ 773              		.loc 1 105 37 is_stmt 0 view .LVU163
+ 774 0000 10B5     		push	{r4, lr}
+ 775              	.LCFI4:
+ 776              		.cfi_def_cfa_offset 8
+ 777              		.cfi_offset 4, -8
+ 778              		.cfi_offset 14, -4
+ 779 0002 0446     		mov	r4, r0
  106:Core/Src/drv8323s.c **** 
- 107:Core/Src/drv8323s.c **** 	return 1;
- 395              		.loc 1 107 2 is_stmt 1 view .LVU107
- 396              		.loc 1 107 9 is_stmt 0 view .LVU108
- 397 003c 0120     		movs	r0, #1
- 398              	.LVL26:
- 399              		.loc 1 107 9 view .LVU109
- 400 003e 7047     		bx	lr
- 401              	.LVL27:
- 402              	.L19:
-  92:Core/Src/drv8323s.c **** 	}
- 403              		.loc 1 92 11 view .LVU110
- 404 0040 0020     		movs	r0, #0
- 405              	.LVL28:
-  92:Core/Src/drv8323s.c **** 	}
- 406              		.loc 1 92 11 view .LVU111
- 407 0042 7047     		bx	lr
- 408              	.LVL29:
- 409              	.L20:
-  92:Core/Src/drv8323s.c **** 	}
-ARM GAS  /tmp/cc6imqjr.s 			page 10
+ 107:Core/Src/drv8323s.c **** 	drv->spi_cs_en();
+ 780              		.loc 1 107 2 is_stmt 1 view .LVU164
+ 781              		.loc 1 107 5 is_stmt 0 view .LVU165
+ 782 0004 4369     		ldr	r3, [r0, #20]
+ 783              		.loc 1 107 2 view .LVU166
+ 784 0006 9847     		blx	r3
+ 785              	.LVL54:
+ 108:Core/Src/drv8323s.c **** 	drv->drv832xs_en();
+ 786              		.loc 1 108 2 is_stmt 1 view .LVU167
+ 787              		.loc 1 108 5 is_stmt 0 view .LVU168
+ 788 0008 E369     		ldr	r3, [r4, #28]
+ 789              		.loc 1 108 2 view .LVU169
+ 790 000a 9847     		blx	r3
+ 791              	.LVL55:
+ 109:Core/Src/drv8323s.c **** 
+ 110:Core/Src/drv8323s.c **** 	HAL_Delay(20);
+ 792              		.loc 1 110 2 is_stmt 1 view .LVU170
+ 793 000c 1420     		movs	r0, #20
+ 794 000e FFF7FEFF 		bl	HAL_Delay
+ARM GAS  /tmp/ccIsCg4y.s 			page 19
 
 
- 410              		.loc 1 92 11 view .LVU112
- 411 0044 0020     		movs	r0, #0
- 412              	.LVL30:
- 108:Core/Src/drv8323s.c **** }
- 413              		.loc 1 108 1 view .LVU113
- 414 0046 7047     		bx	lr
- 415              		.cfi_endproc
- 416              	.LFE142:
- 418              		.section	.text.DRV8323_Set_PWM,"ax",%progbits
- 419              		.align	1
- 420              		.global	DRV8323_Set_PWM
- 421              		.syntax unified
- 422              		.thumb
- 423              		.thumb_func
- 424              		.fpu fpv4-sp-d16
- 426              	DRV8323_Set_PWM:
- 427              	.LVL31:
- 428              	.LFB143:
- 109:Core/Src/drv8323s.c **** //
- 110:Core/Src/drv8323s.c **** 
- 111:Core/Src/drv8323s.c **** void DRV8323_Set_PWM(DRV8323_t *cfg, uint32_t pwma, uint32_t pwmb, uint32_t pwmc){
- 429              		.loc 1 111 82 is_stmt 1 view -0
- 430              		.cfi_startproc
- 431              		@ args = 0, pretend = 0, frame = 0
- 432              		@ frame_needed = 0, uses_anonymous_args = 0
- 433              		@ link register save eliminated.
- 434              		.loc 1 111 82 is_stmt 0 view .LVU115
- 435 0000 10B4     		push	{r4}
- 436              	.LCFI7:
- 437              		.cfi_def_cfa_offset 4
- 438              		.cfi_offset 4, -4
- 112:Core/Src/drv8323s.c ****     cfg->Timx->CCR1 = pwma;
- 439              		.loc 1 112 5 is_stmt 1 view .LVU116
- 440              		.loc 1 112 21 is_stmt 0 view .LVU117
- 441 0002 0468     		ldr	r4, [r0]
- 442 0004 6163     		str	r1, [r4, #52]
- 113:Core/Src/drv8323s.c ****     cfg->Timx->CCR2 = pwmb;
- 443              		.loc 1 113 5 is_stmt 1 view .LVU118
- 444              		.loc 1 113 8 is_stmt 0 view .LVU119
- 445 0006 0168     		ldr	r1, [r0]
- 446              	.LVL32:
- 447              		.loc 1 113 21 view .LVU120
- 448 0008 8A63     		str	r2, [r1, #56]
- 449              	.LVL33:
- 114:Core/Src/drv8323s.c ****     cfg->Timx->CCR3 = pwmc;
- 450              		.loc 1 114 5 is_stmt 1 view .LVU121
- 451              		.loc 1 114 8 is_stmt 0 view .LVU122
- 452 000a 0268     		ldr	r2, [r0]
- 453              	.LVL34:
- 454              		.loc 1 114 21 view .LVU123
- 455 000c D363     		str	r3, [r2, #60]
- 456              	.LVL35:
- 115:Core/Src/drv8323s.c **** }
- 457              		.loc 1 115 1 view .LVU124
- 458 000e 5DF8044B 		ldr	r4, [sp], #4
- 459              	.LCFI8:
- 460              		.cfi_restore 4
-ARM GAS  /tmp/cc6imqjr.s 			page 11
-
-
- 461              		.cfi_def_cfa_offset 0
- 462 0012 7047     		bx	lr
- 463              		.cfi_endproc
- 464              	.LFE143:
- 466              		.section	.text.DRV8323_Current_Sens_Config,"ax",%progbits
- 467              		.align	1
- 468              		.global	DRV8323_Current_Sens_Config
- 469              		.syntax unified
- 470              		.thumb
- 471              		.thumb_func
- 472              		.fpu fpv4-sp-d16
- 474              	DRV8323_Current_Sens_Config:
- 475              	.LVL36:
- 476              	.LFB144:
- 116:Core/Src/drv8323s.c **** //
+ 795              	.LVL56:
+ 111:Core/Src/drv8323s.c **** 	DRV832xS_Write16(drv, 0x02, 0x0001);
+ 796              		.loc 1 111 2 view .LVU171
+ 797 0012 0122     		movs	r2, #1
+ 798 0014 0221     		movs	r1, #2
+ 799 0016 2046     		mov	r0, r4
+ 800 0018 FFF7FEFF 		bl	DRV832xS_Write16
+ 801              	.LVL57:
+ 112:Core/Src/drv8323s.c **** 	HAL_Delay(20);
+ 802              		.loc 1 112 2 view .LVU172
+ 803 001c 1420     		movs	r0, #20
+ 804 001e FFF7FEFF 		bl	HAL_Delay
+ 805              	.LVL58:
+ 113:Core/Src/drv8323s.c **** 	DRV832xS_Write16(drv, 0x02, 0x0001);
+ 806              		.loc 1 113 2 view .LVU173
+ 807 0022 0122     		movs	r2, #1
+ 808 0024 0221     		movs	r1, #2
+ 809 0026 2046     		mov	r0, r4
+ 810 0028 FFF7FEFF 		bl	DRV832xS_Write16
+ 811              	.LVL59:
+ 114:Core/Src/drv8323s.c **** 	DRV832xS_Write16(drv, 0x03, 0x03AA);
+ 812              		.loc 1 114 2 view .LVU174
+ 813 002c 40F2AA32 		movw	r2, #938
+ 814 0030 0321     		movs	r1, #3
+ 815 0032 2046     		mov	r0, r4
+ 816 0034 FFF7FEFF 		bl	DRV832xS_Write16
+ 817              	.LVL60:
+ 115:Core/Src/drv8323s.c **** 	DRV832xS_Write16(drv, 0x04, 0x07AA);
+ 818              		.loc 1 115 2 view .LVU175
+ 819 0038 40F2AA72 		movw	r2, #1962
+ 820 003c 0421     		movs	r1, #4
+ 821 003e 2046     		mov	r0, r4
+ 822 0040 FFF7FEFF 		bl	DRV832xS_Write16
+ 823              	.LVL61:
+ 116:Core/Src/drv8323s.c **** 	DRV832xS_Write16(drv, 0x05, 0x0159);
+ 824              		.loc 1 116 2 view .LVU176
+ 825 0044 40F25912 		movw	r2, #345
+ 826 0048 0521     		movs	r1, #5
+ 827 004a 2046     		mov	r0, r4
+ 828 004c FFF7FEFF 		bl	DRV832xS_Write16
+ 829              	.LVL62:
  117:Core/Src/drv8323s.c **** 
- 118:Core/Src/drv8323s.c **** int DRV8323_Current_Sens_Config(DRV8323_t *cfg, float gain, float R_shunt){
- 477              		.loc 1 118 75 is_stmt 1 view -0
- 478              		.cfi_startproc
- 479              		@ args = 0, pretend = 0, frame = 0
- 480              		@ frame_needed = 0, uses_anonymous_args = 0
- 481              		@ link register save eliminated.
- 119:Core/Src/drv8323s.c **** 	if (cfg == NULL || gain > 40.0 || R_shunt <= 0) return 0;
- 482              		.loc 1 119 2 view .LVU126
- 483              		.loc 1 119 5 is_stmt 0 view .LVU127
- 484 0000 E8B1     		cbz	r0, .L25
- 485              		.loc 1 119 18 discriminator 2 view .LVU128
- 486 0002 DFED127A 		vldr.32	s15, .L28
- 487 0006 B4EEE70A 		vcmpe.f32	s0, s15
- 488 000a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 489 000e 18DC     		bgt	.L26
- 490              		.loc 1 119 33 discriminator 4 view .LVU129
- 491 0010 F5EEC00A 		vcmpe.f32	s1, #0
- 492 0014 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 493 0018 15D9     		bls	.L27
- 120:Core/Src/drv8323s.c **** 
- 121:Core/Src/drv8323s.c **** 	cfg->gain = gain;
- 494              		.loc 1 121 2 is_stmt 1 view .LVU130
- 495              		.loc 1 121 12 is_stmt 0 view .LVU131
- 496 001a 80ED050A 		vstr.32	s0, [r0, #20]
- 122:Core/Src/drv8323s.c **** 	cfg->R_shunt = R_shunt;
- 497              		.loc 1 122 2 is_stmt 1 view .LVU132
- 498              		.loc 1 122 15 is_stmt 0 view .LVU133
- 499 001e C0ED060A 		vstr.32	s1, [r0, #24]
- 123:Core/Src/drv8323s.c **** 
- 124:Core/Src/drv8323s.c **** 	cfg->v_to_currenta = 1.0f / (cfg->gain * (cfg->R_shunt)); 
- 500              		.loc 1 124 2 is_stmt 1 view .LVU134
- 501              		.loc 1 124 41 is_stmt 0 view .LVU135
- 502 0022 20EE200A 		vmul.f32	s0, s0, s1
- 503              	.LVL37:
- 504              		.loc 1 124 28 view .LVU136
- 505 0026 B7EE007A 		vmov.f32	s14, #1.0e+0
- 506 002a C7EE007A 		vdiv.f32	s15, s14, s0
- 507              		.loc 1 124 21 view .LVU137
- 508 002e C0ED0A7A 		vstr.32	s15, [r0, #40]
- 125:Core/Src/drv8323s.c **** 	cfg->v_to_currentb = 1.0f / (cfg->gain * (cfg->R_shunt)); 
- 509              		.loc 1 125 2 is_stmt 1 view .LVU138
-ARM GAS  /tmp/cc6imqjr.s 			page 12
+ 118:Core/Src/drv8323s.c **** }
+ 830              		.loc 1 118 1 is_stmt 0 view .LVU177
+ 831 0050 10BD     		pop	{r4, pc}
+ 832              		.loc 1 118 1 view .LVU178
+ 833              		.cfi_endproc
+ 834              	.LFE140:
+ 836              		.text
+ 837              	.Letext0:
+ 838              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
+ 839              		.file 3 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
+ 840              		.file 4 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 841              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 842              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
+ 843              		.file 7 "Core/Inc/drv8323s.h"
+ 844              		.file 8 "<built-in>"
+ARM GAS  /tmp/ccIsCg4y.s 			page 20
 
 
- 510              		.loc 1 125 21 is_stmt 0 view .LVU139
- 511 0032 C0ED0B7A 		vstr.32	s15, [r0, #44]
- 126:Core/Src/drv8323s.c **** 	cfg->v_to_currentc = 1.0f / (cfg->gain * (cfg->R_shunt)); 
- 512              		.loc 1 126 2 is_stmt 1 view .LVU140
- 513              		.loc 1 126 21 is_stmt 0 view .LVU141
- 514 0036 C0ED0C7A 		vstr.32	s15, [r0, #48]
- 127:Core/Src/drv8323s.c **** 
- 128:Core/Src/drv8323s.c **** 	return 1;
- 515              		.loc 1 128 2 is_stmt 1 view .LVU142
- 516              		.loc 1 128 9 is_stmt 0 view .LVU143
- 517 003a 0120     		movs	r0, #1
- 518              	.LVL38:
- 519              		.loc 1 128 9 view .LVU144
- 520 003c 7047     		bx	lr
- 521              	.LVL39:
- 522              	.L25:
- 119:Core/Src/drv8323s.c **** 
- 523              		.loc 1 119 57 view .LVU145
- 524 003e 0020     		movs	r0, #0
- 525              	.LVL40:
- 119:Core/Src/drv8323s.c **** 
- 526              		.loc 1 119 57 view .LVU146
- 527 0040 7047     		bx	lr
- 528              	.LVL41:
- 529              	.L26:
- 119:Core/Src/drv8323s.c **** 
- 530              		.loc 1 119 57 view .LVU147
- 531 0042 0020     		movs	r0, #0
- 532              	.LVL42:
- 119:Core/Src/drv8323s.c **** 
- 533              		.loc 1 119 57 view .LVU148
- 534 0044 7047     		bx	lr
- 535              	.LVL43:
- 536              	.L27:
- 119:Core/Src/drv8323s.c **** 
- 537              		.loc 1 119 57 view .LVU149
- 538 0046 0020     		movs	r0, #0
- 539              	.LVL44:
- 129:Core/Src/drv8323s.c **** }
- 540              		.loc 1 129 1 view .LVU150
- 541 0048 7047     		bx	lr
- 542              	.L29:
- 543 004a 00BF     		.align	2
- 544              	.L28:
- 545 004c 00002042 		.word	1109393408
- 546              		.cfi_endproc
- 547              	.LFE144:
- 549              		.section	.rodata.DRV8323_Calibrate_Current_Offset.str1.4,"aMS",%progbits,1
- 550              		.align	2
- 551              	.LC0:
- 552 0000 53746172 		.ascii	"Starting Current Sensor Calibration...\015\000"
- 552      74696E67 
- 552      20437572 
- 552      72656E74 
- 552      2053656E 
- 553              		.global	__aeabi_f2d
- 554              		.align	2
-ARM GAS  /tmp/cc6imqjr.s 			page 13
-
-
- 555              	.LC1:
- 556 0028 43616C69 		.ascii	"Calibrated Offsets - A: %.2f, B: %.2f, C: %.2f\015\012"
- 556      62726174 
- 556      6564204F 
- 556      66667365 
- 556      7473202D 
- 557 0058 00       		.ascii	"\000"
- 558              		.section	.text.DRV8323_Calibrate_Current_Offset,"ax",%progbits
- 559              		.align	1
- 560              		.global	DRV8323_Calibrate_Current_Offset
- 561              		.syntax unified
- 562              		.thumb
- 563              		.thumb_func
- 564              		.fpu fpv4-sp-d16
- 566              	DRV8323_Calibrate_Current_Offset:
- 567              	.LVL45:
- 568              	.LFB145:
- 130:Core/Src/drv8323s.c **** 
- 131:Core/Src/drv8323s.c **** 
- 132:Core/Src/drv8323s.c **** void DRV8323_Calibrate_Current_Offset(DRV8323_t *cfg){
- 569              		.loc 1 132 54 is_stmt 1 view -0
- 570              		.cfi_startproc
- 571              		@ args = 0, pretend = 0, frame = 0
- 572              		@ frame_needed = 0, uses_anonymous_args = 0
- 573              		.loc 1 132 54 is_stmt 0 view .LVU152
- 574 0000 F0B5     		push	{r4, r5, r6, r7, lr}
- 575              	.LCFI9:
- 576              		.cfi_def_cfa_offset 20
- 577              		.cfi_offset 4, -20
- 578              		.cfi_offset 5, -16
- 579              		.cfi_offset 6, -12
- 580              		.cfi_offset 7, -8
- 581              		.cfi_offset 14, -4
- 582 0002 2DED028B 		vpush.64	{d8}
- 583              	.LCFI10:
- 584              		.cfi_def_cfa_offset 28
- 585              		.cfi_offset 80, -28
- 586              		.cfi_offset 81, -24
- 587 0006 85B0     		sub	sp, sp, #20
- 588              	.LCFI11:
- 589              		.cfi_def_cfa_offset 48
- 590 0008 0446     		mov	r4, r0
- 133:Core/Src/drv8323s.c ****     uint32_t sum_a = 0;
- 591              		.loc 1 133 5 is_stmt 1 view .LVU153
- 592              	.LVL46:
- 134:Core/Src/drv8323s.c ****     uint32_t sum_b = 0;
- 593              		.loc 1 134 5 view .LVU154
- 135:Core/Src/drv8323s.c ****     uint32_t sum_c = 0;
- 594              		.loc 1 135 5 view .LVU155
- 136:Core/Src/drv8323s.c ****     const int num_samples = 2000;
- 595              		.loc 1 136 5 view .LVU156
- 137:Core/Src/drv8323s.c **** 
- 138:Core/Src/drv8323s.c ****     printf("Starting Current Sensor Calibration...\r\n");
- 596              		.loc 1 138 5 view .LVU157
- 597 000a 2B48     		ldr	r0, .L34
- 598              	.LVL47:
- 599              		.loc 1 138 5 is_stmt 0 view .LVU158
-ARM GAS  /tmp/cc6imqjr.s 			page 14
-
-
- 600 000c FFF7FEFF 		bl	puts
- 601              	.LVL48:
- 139:Core/Src/drv8323s.c **** 
- 140:Core/Src/drv8323s.c **** 	DRV8323_Set_PWM(cfg, 0, 0, 0);
- 602              		.loc 1 140 2 is_stmt 1 view .LVU159
- 603 0010 0023     		movs	r3, #0
- 604 0012 1A46     		mov	r2, r3
- 605 0014 1946     		mov	r1, r3
- 606 0016 2046     		mov	r0, r4
- 607 0018 FFF7FEFF 		bl	DRV8323_Set_PWM
- 608              	.LVL49:
- 141:Core/Src/drv8323s.c **** 	osDelay(100);
- 609              		.loc 1 141 2 view .LVU160
- 610 001c 6420     		movs	r0, #100
- 611 001e FFF7FEFF 		bl	osDelay
- 612              	.LVL50:
- 142:Core/Src/drv8323s.c ****     for (int i = 0; i < num_samples; i++) {
- 613              		.loc 1 142 5 view .LVU161
- 614              	.LBB2:
- 615              		.loc 1 142 10 view .LVU162
- 616              		.loc 1 142 14 is_stmt 0 view .LVU163
- 617 0022 0024     		movs	r4, #0
- 618              	.LVL51:
- 619              		.loc 1 142 14 view .LVU164
- 620              	.LBE2:
- 135:Core/Src/drv8323s.c ****     const int num_samples = 2000;
- 621              		.loc 1 135 14 view .LVU165
- 622 0024 2546     		mov	r5, r4
- 134:Core/Src/drv8323s.c ****     uint32_t sum_c = 0;
- 623              		.loc 1 134 14 view .LVU166
- 624 0026 2646     		mov	r6, r4
- 133:Core/Src/drv8323s.c ****     uint32_t sum_b = 0;
- 625              		.loc 1 133 14 view .LVU167
- 626 0028 2746     		mov	r7, r4
- 627              	.LBB3:
- 628              		.loc 1 142 5 view .LVU168
- 629 002a 0CE0     		b	.L31
- 630              	.LVL52:
- 631              	.L32:
- 143:Core/Src/drv8323s.c ****         sum_a += ADC1->JDR1;
- 632              		.loc 1 143 9 is_stmt 1 discriminator 3 view .LVU169
- 633              		.loc 1 143 22 is_stmt 0 discriminator 3 view .LVU170
- 634 002c 234B     		ldr	r3, .L34+4
- 635 002e DB6B     		ldr	r3, [r3, #60]
- 636              		.loc 1 143 15 discriminator 3 view .LVU171
- 637 0030 1F44     		add	r7, r7, r3
- 638              	.LVL53:
- 144:Core/Src/drv8323s.c ****         sum_b += ADC2->JDR1;
- 639              		.loc 1 144 9 is_stmt 1 discriminator 3 view .LVU172
- 640              		.loc 1 144 22 is_stmt 0 discriminator 3 view .LVU173
- 641 0032 234B     		ldr	r3, .L34+8
- 642 0034 DB6B     		ldr	r3, [r3, #60]
- 643              		.loc 1 144 15 discriminator 3 view .LVU174
- 644 0036 1E44     		add	r6, r6, r3
- 645              	.LVL54:
- 145:Core/Src/drv8323s.c ****         sum_c += ADC3->JDR1;
- 646              		.loc 1 145 9 is_stmt 1 discriminator 3 view .LVU175
-ARM GAS  /tmp/cc6imqjr.s 			page 15
-
-
- 647              		.loc 1 145 22 is_stmt 0 discriminator 3 view .LVU176
- 648 0038 224B     		ldr	r3, .L34+12
- 649 003a DB6B     		ldr	r3, [r3, #60]
- 650              		.loc 1 145 15 discriminator 3 view .LVU177
- 651 003c 1D44     		add	r5, r5, r3
- 652              	.LVL55:
- 146:Core/Src/drv8323s.c ****         osDelay(1);
- 653              		.loc 1 146 9 is_stmt 1 discriminator 3 view .LVU178
- 654 003e 0120     		movs	r0, #1
- 655 0040 FFF7FEFF 		bl	osDelay
- 656              	.LVL56:
- 142:Core/Src/drv8323s.c ****         sum_a += ADC1->JDR1;
- 657              		.loc 1 142 38 discriminator 3 view .LVU179
- 142:Core/Src/drv8323s.c ****         sum_a += ADC1->JDR1;
- 658              		.loc 1 142 39 is_stmt 0 discriminator 3 view .LVU180
- 659 0044 0134     		adds	r4, r4, #1
- 660              	.LVL57:
- 661              	.L31:
- 142:Core/Src/drv8323s.c ****         sum_a += ADC1->JDR1;
- 662              		.loc 1 142 21 is_stmt 1 discriminator 1 view .LVU181
- 142:Core/Src/drv8323s.c ****         sum_a += ADC1->JDR1;
- 663              		.loc 1 142 5 is_stmt 0 discriminator 1 view .LVU182
- 664 0046 B4F5FA6F 		cmp	r4, #2000
- 665 004a EFDB     		blt	.L32
- 666              	.LBE3:
- 147:Core/Src/drv8323s.c ****     }
- 148:Core/Src/drv8323s.c **** 
- 149:Core/Src/drv8323s.c ****     V_OFFSET_A = (float)sum_a / (float)num_samples;
- 667              		.loc 1 149 5 is_stmt 1 view .LVU183
- 668              		.loc 1 149 18 is_stmt 0 view .LVU184
- 669 004c 07EE907A 		vmov	s15, r7	@ int
- 670 0050 F8EE677A 		vcvt.f32.u32	s15, s15
- 671              		.loc 1 149 31 view .LVU185
- 672 0054 9FED1C7A 		vldr.32	s14, .L34+16
- 673 0058 C7EE876A 		vdiv.f32	s13, s15, s14
- 674              		.loc 1 149 16 view .LVU186
- 675 005c 1B4B     		ldr	r3, .L34+20
- 676 005e C3ED1C6A 		vstr.32	s13, [r3, #112]
- 150:Core/Src/drv8323s.c ****     V_OFFSET_B = (float)sum_b / (float)num_samples;
- 677              		.loc 1 150 5 is_stmt 1 view .LVU187
- 678              		.loc 1 150 18 is_stmt 0 view .LVU188
- 679 0062 07EE906A 		vmov	s15, r6	@ int
- 680 0066 F8EE677A 		vcvt.f32.u32	s15, s15
- 681              		.loc 1 150 31 view .LVU189
- 682 006a 87EE878A 		vdiv.f32	s16, s15, s14
- 683              		.loc 1 150 16 view .LVU190
- 684 006e 83ED1D8A 		vstr.32	s16, [r3, #116]
- 151:Core/Src/drv8323s.c ****     V_OFFSET_C = (float)sum_c / (float)num_samples;
- 685              		.loc 1 151 5 is_stmt 1 view .LVU191
- 686              		.loc 1 151 18 is_stmt 0 view .LVU192
- 687 0072 07EE905A 		vmov	s15, r5	@ int
- 688 0076 F8EE677A 		vcvt.f32.u32	s15, s15
- 689              		.loc 1 151 31 view .LVU193
- 690 007a C7EE878A 		vdiv.f32	s17, s15, s14
- 691              		.loc 1 151 16 view .LVU194
- 692 007e C3ED1E8A 		vstr.32	s17, [r3, #120]
- 152:Core/Src/drv8323s.c **** 
-ARM GAS  /tmp/cc6imqjr.s 			page 16
-
-
- 153:Core/Src/drv8323s.c ****     printf("Calibrated Offsets - A: %.2f, B: %.2f, C: %.2f\r\n", V_OFFSET_A, V_OFFSET_B, V_OFFSET_C
- 693              		.loc 1 153 5 is_stmt 1 view .LVU195
- 694 0082 16EE900A 		vmov	r0, s13
- 695 0086 FFF7FEFF 		bl	__aeabi_f2d
- 696              	.LVL58:
- 697 008a 0446     		mov	r4, r0
- 698              	.LVL59:
- 699              		.loc 1 153 5 is_stmt 0 view .LVU196
- 700 008c 0D46     		mov	r5, r1
- 701              	.LVL60:
- 702              		.loc 1 153 5 view .LVU197
- 703 008e 18EE900A 		vmov	r0, s17
- 704 0092 FFF7FEFF 		bl	__aeabi_f2d
- 705              	.LVL61:
- 706 0096 CDE90201 		strd	r0, [sp, #8]
- 707 009a 18EE100A 		vmov	r0, s16
- 708 009e FFF7FEFF 		bl	__aeabi_f2d
- 709              	.LVL62:
- 710 00a2 CDE90001 		strd	r0, [sp]
- 711 00a6 2246     		mov	r2, r4
- 712 00a8 2B46     		mov	r3, r5
- 713 00aa 0948     		ldr	r0, .L34+24
- 714 00ac FFF7FEFF 		bl	printf
- 715              	.LVL63:
- 154:Core/Src/drv8323s.c **** }
- 716              		.loc 1 154 1 view .LVU198
- 717 00b0 05B0     		add	sp, sp, #20
- 718              	.LCFI12:
- 719              		.cfi_def_cfa_offset 28
- 720              		@ sp needed
- 721 00b2 BDEC028B 		vldm	sp!, {d8}
- 722              	.LCFI13:
- 723              		.cfi_restore 80
- 724              		.cfi_restore 81
- 725              		.cfi_def_cfa_offset 20
- 726 00b6 F0BD     		pop	{r4, r5, r6, r7, pc}
- 727              	.LVL64:
- 728              	.L35:
- 729              		.loc 1 154 1 view .LVU199
- 730              		.align	2
- 731              	.L34:
- 732 00b8 00000000 		.word	.LC0
- 733 00bc 00200140 		.word	1073815552
- 734 00c0 00210140 		.word	1073815808
- 735 00c4 00220140 		.word	1073816064
- 736 00c8 0000FA44 		.word	1157234688
- 737 00cc 00000000 		.word	m_config
- 738 00d0 28000000 		.word	.LC1
- 739              		.cfi_endproc
- 740              	.LFE145:
- 742              		.section	.text.spike_filter,"ax",%progbits
- 743              		.align	1
- 744              		.global	spike_filter
- 745              		.syntax unified
- 746              		.thumb
- 747              		.thumb_func
- 748              		.fpu fpv4-sp-d16
-ARM GAS  /tmp/cc6imqjr.s 			page 17
-
-
- 750              	spike_filter:
- 751              	.LVL65:
- 752              	.LFB146:
- 155:Core/Src/drv8323s.c **** 
- 156:Core/Src/drv8323s.c **** #define MAX_CURRENT_JUMP 		30
- 157:Core/Src/drv8323s.c **** //
- 158:Core/Src/drv8323s.c **** uint16_t spike_filter(uint16_t new_val, uint16_t prev_val) {
- 753              		.loc 1 158 60 is_stmt 1 view -0
- 754              		.cfi_startproc
- 755              		@ args = 0, pretend = 0, frame = 0
- 756              		@ frame_needed = 0, uses_anonymous_args = 0
- 757              		@ link register save eliminated.
- 159:Core/Src/drv8323s.c ****     float delta = new_val - prev_val;
- 758              		.loc 1 159 5 view .LVU201
- 759              		.loc 1 159 27 is_stmt 0 view .LVU202
- 760 0000 431A     		subs	r3, r0, r1
- 761 0002 07EE903A 		vmov	s15, r3	@ int
- 762              		.loc 1 159 11 view .LVU203
- 763 0006 F8EEE77A 		vcvt.f32.s32	s15, s15
- 764              	.LVL66:
- 160:Core/Src/drv8323s.c **** 
- 161:Core/Src/drv8323s.c ****     if (delta > MAX_CURRENT_JUMP) {
- 765              		.loc 1 161 5 is_stmt 1 view .LVU204
- 766              		.loc 1 161 8 is_stmt 0 view .LVU205
- 767 000a B3EE0E7A 		vmov.f32	s14, #3.0e+1
- 768 000e F4EEC77A 		vcmpe.f32	s15, s14
- 769 0012 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 770 0016 07DC     		bgt	.L46
- 162:Core/Src/drv8323s.c ****         return prev_val + MAX_CURRENT_JUMP; 
- 163:Core/Src/drv8323s.c ****     } else if (delta < -MAX_CURRENT_JUMP) {
- 771              		.loc 1 163 12 is_stmt 1 view .LVU206
- 772              		.loc 1 163 15 is_stmt 0 view .LVU207
- 773 0018 BBEE0E7A 		vmov.f32	s14, #-3.0e+1
- 774 001c F4EEC77A 		vcmpe.f32	s15, s14
- 775 0020 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 776 0024 04D4     		bmi	.L47
- 777              	.LVL67:
- 778              	.L39:
- 164:Core/Src/drv8323s.c ****         return prev_val - MAX_CURRENT_JUMP; 
- 165:Core/Src/drv8323s.c ****     }
- 166:Core/Src/drv8323s.c ****     return new_val;
- 167:Core/Src/drv8323s.c **** }
- 779              		.loc 1 167 1 view .LVU208
- 780 0026 7047     		bx	lr
- 781              	.LVL68:
- 782              	.L46:
- 162:Core/Src/drv8323s.c ****         return prev_val + MAX_CURRENT_JUMP; 
- 783              		.loc 1 162 9 is_stmt 1 view .LVU209
- 162:Core/Src/drv8323s.c ****         return prev_val + MAX_CURRENT_JUMP; 
- 784              		.loc 1 162 25 is_stmt 0 view .LVU210
- 785 0028 01F11E00 		add	r0, r1, #30
- 786              	.LVL69:
- 162:Core/Src/drv8323s.c ****         return prev_val + MAX_CURRENT_JUMP; 
- 787              		.loc 1 162 25 view .LVU211
- 788 002c 80B2     		uxth	r0, r0
- 789 002e 7047     		bx	lr
- 790              	.LVL70:
-ARM GAS  /tmp/cc6imqjr.s 			page 18
-
-
- 791              	.L47:
- 164:Core/Src/drv8323s.c ****         return prev_val - MAX_CURRENT_JUMP; 
- 792              		.loc 1 164 9 is_stmt 1 view .LVU212
- 164:Core/Src/drv8323s.c ****         return prev_val - MAX_CURRENT_JUMP; 
- 793              		.loc 1 164 25 is_stmt 0 view .LVU213
- 794 0030 A1F11E00 		sub	r0, r1, #30
- 795              	.LVL71:
- 164:Core/Src/drv8323s.c ****         return prev_val - MAX_CURRENT_JUMP; 
- 796              		.loc 1 164 25 view .LVU214
- 797 0034 80B2     		uxth	r0, r0
- 798 0036 F6E7     		b	.L39
- 799              		.cfi_endproc
- 800              	.LFE146:
- 802              		.section	.text.DRV8323_Get_Current,"ax",%progbits
- 803              		.align	1
- 804              		.global	DRV8323_Get_Current
- 805              		.syntax unified
- 806              		.thumb
- 807              		.thumb_func
- 808              		.fpu fpv4-sp-d16
- 810              	DRV8323_Get_Current:
- 811              	.LVL72:
- 812              	.LFB147:
- 168:Core/Src/drv8323s.c **** 
- 169:Core/Src/drv8323s.c **** //
- 170:Core/Src/drv8323s.c **** 
- 171:Core/Src/drv8323s.c **** void DRV8323_Get_Current(DRV8323_t *cfg, float *ia, float *ib, float *ic){
- 813              		.loc 1 171 74 is_stmt 1 view -0
- 814              		.cfi_startproc
- 815              		@ args = 0, pretend = 0, frame = 0
- 816              		@ frame_needed = 0, uses_anonymous_args = 0
- 817              		@ link register save eliminated.
- 818              		.loc 1 171 74 is_stmt 0 view .LVU216
- 819 0000 10B4     		push	{r4}
- 820              	.LCFI14:
- 821              		.cfi_def_cfa_offset 4
- 822              		.cfi_offset 4, -4
- 172:Core/Src/drv8323s.c **** 	// Static filter state (retain between calls)
- 173:Core/Src/drv8323s.c **** 	// static float ia_filtered = 0.0f;
- 174:Core/Src/drv8323s.c ****     // static float ib_filtered = 0.0f;
- 175:Core/Src/drv8323s.c ****     // static float ic_filtered = 0.0f;
- 176:Core/Src/drv8323s.c ****     
- 177:Core/Src/drv8323s.c ****     cfg->adc_raw[0] = ADC1->JDR1; 
- 823              		.loc 1 177 5 is_stmt 1 view .LVU217
- 824              		.loc 1 177 27 is_stmt 0 view .LVU218
- 825 0002 274C     		ldr	r4, .L50
- 826 0004 E46B     		ldr	r4, [r4, #60]
- 827              		.loc 1 177 21 view .LVU219
- 828 0006 A4B2     		uxth	r4, r4
- 829 0008 8481     		strh	r4, [r0, #12]	@ movhi
- 178:Core/Src/drv8323s.c ****     cfg->adc_raw[1] = ADC2->JDR1; 
- 830              		.loc 1 178 5 is_stmt 1 view .LVU220
- 831              		.loc 1 178 27 is_stmt 0 view .LVU221
- 832 000a 264C     		ldr	r4, .L50+4
- 833 000c E46B     		ldr	r4, [r4, #60]
- 834              		.loc 1 178 21 view .LVU222
- 835 000e A4B2     		uxth	r4, r4
-ARM GAS  /tmp/cc6imqjr.s 			page 19
-
-
- 836 0010 C481     		strh	r4, [r0, #14]	@ movhi
- 179:Core/Src/drv8323s.c ****     cfg->adc_raw[2] = ADC3->JDR1; 
- 837              		.loc 1 179 5 is_stmt 1 view .LVU223
- 838              		.loc 1 179 27 is_stmt 0 view .LVU224
- 839 0012 254C     		ldr	r4, .L50+8
- 840 0014 E46B     		ldr	r4, [r4, #60]
- 841              		.loc 1 179 21 view .LVU225
- 842 0016 A4B2     		uxth	r4, r4
- 843 0018 0482     		strh	r4, [r0, #16]	@ movhi
- 180:Core/Src/drv8323s.c **** 
- 181:Core/Src/drv8323s.c ****     float ia_raw = ((float)cfg->adc_raw[0] - V_OFFSET_A) * ADC_2_VOLT * cfg->v_to_currenta;
- 844              		.loc 1 181 5 is_stmt 1 view .LVU226
- 845              		.loc 1 181 40 is_stmt 0 view .LVU227
- 846 001a B0F80CC0 		ldrh	ip, [r0, #12]
- 847 001e 1FFA8CF4 		uxth	r4, ip
- 848 0022 06EE904A 		vmov	s13, r4	@ int
- 849              		.loc 1 181 21 view .LVU228
- 850 0026 F8EE666A 		vcvt.f32.u32	s13, s13
- 851              		.loc 1 181 46 view .LVU229
- 852 002a 204C     		ldr	r4, .L50+12
- 853 002c D4ED1C7A 		vldr.32	s15, [r4, #112]
- 854              		.loc 1 181 44 view .LVU230
- 855 0030 76EEE76A 		vsub.f32	s13, s13, s15
- 856              		.loc 1 181 58 view .LVU231
- 857 0034 9FED1E6A 		vldr.32	s12, .L50+16
- 858 0038 66EE866A 		vmul.f32	s13, s13, s12
- 859              		.loc 1 181 76 view .LVU232
- 860 003c D0ED0A7A 		vldr.32	s15, [r0, #40]
- 861              		.loc 1 181 11 view .LVU233
- 862 0040 66EEA76A 		vmul.f32	s13, s13, s15
- 863              	.LVL73:
- 182:Core/Src/drv8323s.c ****     float ib_raw = ((float)cfg->adc_raw[1] - V_OFFSET_B) * ADC_2_VOLT * cfg->v_to_currentb;
- 864              		.loc 1 182 5 is_stmt 1 view .LVU234
- 865              		.loc 1 182 40 is_stmt 0 view .LVU235
- 866 0044 B0F80EC0 		ldrh	ip, [r0, #14]
- 867 0048 1FFA8CFC 		uxth	ip, ip
- 868 004c 07EE10CA 		vmov	s14, ip	@ int
- 869              		.loc 1 182 21 view .LVU236
- 870 0050 B8EE477A 		vcvt.f32.u32	s14, s14
- 871              		.loc 1 182 46 view .LVU237
- 872 0054 D4ED1D7A 		vldr.32	s15, [r4, #116]
- 873              		.loc 1 182 44 view .LVU238
- 874 0058 37EE677A 		vsub.f32	s14, s14, s15
- 875              		.loc 1 182 58 view .LVU239
- 876 005c 27EE067A 		vmul.f32	s14, s14, s12
- 877              		.loc 1 182 76 view .LVU240
- 878 0060 D0ED0B7A 		vldr.32	s15, [r0, #44]
- 879              		.loc 1 182 11 view .LVU241
- 880 0064 27EE277A 		vmul.f32	s14, s14, s15
- 881              	.LVL74:
- 183:Core/Src/drv8323s.c ****     float ic_raw = ((float)cfg->adc_raw[2] - V_OFFSET_C) * ADC_2_VOLT * cfg->v_to_currentc;
- 882              		.loc 1 183 5 is_stmt 1 view .LVU242
- 883              		.loc 1 183 40 is_stmt 0 view .LVU243
- 884 0068 B0F810C0 		ldrh	ip, [r0, #16]
- 885 006c 1FFA8CFC 		uxth	ip, ip
- 886 0070 07EE90CA 		vmov	s15, ip	@ int
- 887              		.loc 1 183 21 view .LVU244
-ARM GAS  /tmp/cc6imqjr.s 			page 20
-
-
- 888 0074 F8EE677A 		vcvt.f32.u32	s15, s15
- 889              		.loc 1 183 46 view .LVU245
- 890 0078 D4ED1E5A 		vldr.32	s11, [r4, #120]
- 891              		.loc 1 183 44 view .LVU246
- 892 007c 77EEE57A 		vsub.f32	s15, s15, s11
- 893              		.loc 1 183 58 view .LVU247
- 894 0080 67EE867A 		vmul.f32	s15, s15, s12
- 895              		.loc 1 183 76 view .LVU248
- 896 0084 90ED0C6A 		vldr.32	s12, [r0, #48]
- 897              		.loc 1 183 11 view .LVU249
- 898 0088 67EE867A 		vmul.f32	s15, s15, s12
- 899              	.LVL75:
- 184:Core/Src/drv8323s.c ****     
- 185:Core/Src/drv8323s.c ****     // IIR Low Pass Filter
- 186:Core/Src/drv8323s.c ****     // ia_filtered = (1.0f - CURRENT_FILTER_ALPHA) * ia_filtered + CURRENT_FILTER_ALPHA * ia_raw;
- 187:Core/Src/drv8323s.c ****     // ib_filtered = (1.0f - CURRENT_FILTER_ALPHA) * ib_filtered + CURRENT_FILTER_ALPHA * ib_raw;
- 188:Core/Src/drv8323s.c ****     // ic_filtered = (1.0f - CURRENT_FILTER_ALPHA) * ic_filtered + CURRENT_FILTER_ALPHA * ic_raw;
- 189:Core/Src/drv8323s.c **** 
- 190:Core/Src/drv8323s.c ****     // Output
- 191:Core/Src/drv8323s.c ****     *ia = ia_raw;
- 900              		.loc 1 191 5 is_stmt 1 view .LVU250
- 901              		.loc 1 191 9 is_stmt 0 view .LVU251
- 902 008c C1ED006A 		vstr.32	s13, [r1]
- 192:Core/Src/drv8323s.c ****     *ib = ib_raw;
- 903              		.loc 1 192 5 is_stmt 1 view .LVU252
- 904              		.loc 1 192 9 is_stmt 0 view .LVU253
- 905 0090 82ED007A 		vstr.32	s14, [r2]
- 193:Core/Src/drv8323s.c ****     *ic = ic_raw;
- 906              		.loc 1 193 5 is_stmt 1 view .LVU254
- 907              		.loc 1 193 9 is_stmt 0 view .LVU255
- 908 0094 C3ED007A 		vstr.32	s15, [r3]
- 194:Core/Src/drv8323s.c **** }
- 909              		.loc 1 194 1 view .LVU256
- 910 0098 5DF8044B 		ldr	r4, [sp], #4
- 911              	.LCFI15:
- 912              		.cfi_restore 4
- 913              		.cfi_def_cfa_offset 0
- 914 009c 7047     		bx	lr
- 915              	.L51:
- 916 009e 00BF     		.align	2
- 917              	.L50:
- 918 00a0 00200140 		.word	1073815552
- 919 00a4 00210140 		.word	1073815808
- 920 00a8 00220140 		.word	1073816064
- 921 00ac 00000000 		.word	m_config
- 922 00b0 3333533A 		.word	978531123
- 923              		.cfi_endproc
- 924              	.LFE147:
- 926              		.section	.text.DRV8302_TIMER_config,"ax",%progbits
- 927              		.align	1
- 928              		.global	DRV8302_TIMER_config
- 929              		.syntax unified
- 930              		.thumb
- 931              		.thumb_func
- 932              		.fpu fpv4-sp-d16
- 934              	DRV8302_TIMER_config:
- 935              	.LVL76:
-ARM GAS  /tmp/cc6imqjr.s 			page 21
-
-
- 936              	.LFB148:
- 195:Core/Src/drv8323s.c **** //
- 196:Core/Src/drv8323s.c **** 
- 197:Core/Src/drv8323s.c **** int DRV8302_TIMER_config(DRV8323_t *cfg, TIM_TypeDef *timer, uint32_t freq) {
- 937              		.loc 1 197 77 is_stmt 1 view -0
- 938              		.cfi_startproc
- 939              		@ args = 0, pretend = 0, frame = 0
- 940              		@ frame_needed = 0, uses_anonymous_args = 0
- 941              		@ link register save eliminated.
- 198:Core/Src/drv8323s.c **** 	if (cfg == NULL || timer == NULL) return 0;
- 942              		.loc 1 198 2 view .LVU258
- 943              		.loc 1 198 5 is_stmt 0 view .LVU259
- 944 0000 8446     		mov	ip, r0
- 945 0002 E8B1     		cbz	r0, .L54
- 946              		.loc 1 198 18 discriminator 2 view .LVU260
- 947 0004 F1B1     		cbz	r1, .L55
- 199:Core/Src/drv8323s.c **** 	ADC1->SR &= ~ADC_SR_OVR; 
- 948              		.loc 1 199 2 is_stmt 1 view .LVU261
- 949              		.loc 1 199 11 is_stmt 0 view .LVU262
- 950 0006 104B     		ldr	r3, .L56
- 951 0008 1868     		ldr	r0, [r3]
- 952              	.LVL77:
- 953              		.loc 1 199 11 view .LVU263
- 954 000a 20F02000 		bic	r0, r0, #32
- 955 000e 1860     		str	r0, [r3]
- 200:Core/Src/drv8323s.c **** 
- 201:Core/Src/drv8323s.c ****   	ADC1->CR2 |= ADC_CR2_SWSTART;
- 956              		.loc 1 201 4 is_stmt 1 view .LVU264
- 957              		.loc 1 201 14 is_stmt 0 view .LVU265
- 958 0010 9868     		ldr	r0, [r3, #8]
- 959 0012 40F08040 		orr	r0, r0, #1073741824
- 960 0016 9860     		str	r0, [r3, #8]
- 202:Core/Src/drv8323s.c **** 
- 203:Core/Src/drv8323s.c **** 	uint32_t prescaler = 0;
- 961              		.loc 1 203 2 is_stmt 1 view .LVU266
- 962              	.LVL78:
- 204:Core/Src/drv8323s.c **** 	uint32_t period = (168000000 / (2 * freq)) - 1;
- 963              		.loc 1 204 2 view .LVU267
- 964              		.loc 1 204 36 is_stmt 0 view .LVU268
- 965 0018 5200     		lsls	r2, r2, #1
- 966              	.LVL79:
- 967              		.loc 1 204 31 view .LVU269
- 968 001a 0C4B     		ldr	r3, .L56+4
- 969 001c B3FBF2F2 		udiv	r2, r3, r2
- 970              		.loc 1 204 11 view .LVU270
- 971 0020 531E     		subs	r3, r2, #1
- 972              	.LVL80:
- 205:Core/Src/drv8323s.c **** 	
- 206:Core/Src/drv8323s.c **** 	cfg->Timx = timer;
- 973              		.loc 1 206 2 is_stmt 1 view .LVU271
- 974              		.loc 1 206 12 is_stmt 0 view .LVU272
- 975 0022 CCF80010 		str	r1, [ip]
- 207:Core/Src/drv8323s.c **** 	cfg->Timx->PSC = prescaler;
- 976              		.loc 1 207 2 is_stmt 1 view .LVU273
- 977              		.loc 1 207 17 is_stmt 0 view .LVU274
- 978 0026 0020     		movs	r0, #0
- 979 0028 8862     		str	r0, [r1, #40]
-ARM GAS  /tmp/cc6imqjr.s 			page 22
-
-
- 208:Core/Src/drv8323s.c **** 	cfg->Timx->ARR = period;
- 980              		.loc 1 208 2 is_stmt 1 view .LVU275
- 981              		.loc 1 208 5 is_stmt 0 view .LVU276
- 982 002a DCF80010 		ldr	r1, [ip]
- 983              	.LVL81:
- 984              		.loc 1 208 17 view .LVU277
- 985 002e CB62     		str	r3, [r1, #44]
- 209:Core/Src/drv8323s.c ****   	cfg->Timx->CCR4 = period - 1;  
- 986              		.loc 1 209 4 is_stmt 1 view .LVU278
- 987              		.loc 1 209 7 is_stmt 0 view .LVU279
- 988 0030 DCF80010 		ldr	r1, [ip]
- 989              		.loc 1 209 29 view .LVU280
- 990 0034 023A     		subs	r2, r2, #2
- 991              		.loc 1 209 20 view .LVU281
- 992 0036 0A64     		str	r2, [r1, #64]
- 210:Core/Src/drv8323s.c **** 	cfg->pwm_resolution = period;
- 993              		.loc 1 210 2 is_stmt 1 view .LVU282
- 994              		.loc 1 210 22 is_stmt 0 view .LVU283
- 995 0038 CCF80830 		str	r3, [ip, #8]
- 211:Core/Src/drv8323s.c **** 
- 212:Core/Src/drv8323s.c **** 	return 1;
- 996              		.loc 1 212 2 is_stmt 1 view .LVU284
- 997              		.loc 1 212 9 is_stmt 0 view .LVU285
- 998 003c 0120     		movs	r0, #1
- 999 003e 7047     		bx	lr
- 1000              	.LVL82:
- 1001              	.L54:
- 198:Core/Src/drv8323s.c **** 	ADC1->SR &= ~ADC_SR_OVR; 
- 1002              		.loc 1 198 43 view .LVU286
- 1003 0040 0020     		movs	r0, #0
- 1004              	.LVL83:
- 198:Core/Src/drv8323s.c **** 	ADC1->SR &= ~ADC_SR_OVR; 
- 1005              		.loc 1 198 43 view .LVU287
- 1006 0042 7047     		bx	lr
- 1007              	.LVL84:
- 1008              	.L55:
- 198:Core/Src/drv8323s.c **** 	ADC1->SR &= ~ADC_SR_OVR; 
- 1009              		.loc 1 198 43 view .LVU288
- 1010 0044 0020     		movs	r0, #0
- 1011              	.LVL85:
- 213:Core/Src/drv8323s.c **** }
- 1012              		.loc 1 213 1 view .LVU289
- 1013 0046 7047     		bx	lr
- 1014              	.L57:
- 1015              		.align	2
- 1016              	.L56:
- 1017 0048 00200140 		.word	1073815552
- 1018 004c 007A030A 		.word	168000000
- 1019              		.cfi_endproc
- 1020              	.LFE148:
- 1022              		.section	.text.DRV8323_V_Ofset,"ax",%progbits
- 1023              		.align	1
- 1024              		.global	DRV8323_V_Ofset
- 1025              		.syntax unified
- 1026              		.thumb
- 1027              		.thumb_func
- 1028              		.fpu fpv4-sp-d16
-ARM GAS  /tmp/cc6imqjr.s 			page 23
-
-
- 1030              	DRV8323_V_Ofset:
- 1031              	.LVL86:
- 1032              	.LFB149:
- 214:Core/Src/drv8323s.c **** //
- 215:Core/Src/drv8323s.c **** 
- 216:Core/Src/drv8323s.c **** int DRV8323_V_Ofset(DRV8323_t *hbldc){
- 1033              		.loc 1 216 38 is_stmt 1 view -0
- 1034              		.cfi_startproc
- 1035              		@ args = 0, pretend = 0, frame = 0
- 1036              		@ frame_needed = 0, uses_anonymous_args = 0
- 1037              		.loc 1 216 38 is_stmt 0 view .LVU291
- 1038 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
- 1039              	.LCFI16:
- 1040              		.cfi_def_cfa_offset 24
- 1041              		.cfi_offset 4, -24
- 1042              		.cfi_offset 5, -20
- 1043              		.cfi_offset 6, -16
- 1044              		.cfi_offset 7, -12
- 1045              		.cfi_offset 8, -8
- 1046              		.cfi_offset 14, -4
- 1047 0004 0546     		mov	r5, r0
- 217:Core/Src/drv8323s.c **** 	uint32_t ofseta = 0, ofsetb = 0,ofsetc = 0;
- 1048              		.loc 1 217 2 is_stmt 1 view .LVU292
- 1049              	.LVL87:
- 218:Core/Src/drv8323s.c **** 	DRV8323_Stop_PWM(hbldc);
- 1050              		.loc 1 218 2 view .LVU293
- 1051 0006 FFF7FEFF 		bl	DRV8323_Stop_PWM
- 1052              	.LVL88:
- 219:Core/Src/drv8323s.c **** 	
- 220:Core/Src/drv8323s.c **** 	DRV8323_WriteRegister(0x06, 0x02DF);
- 1053              		.loc 1 220 2 view .LVU294
- 1054 000a 40F2DF21 		movw	r1, #735
- 1055 000e 0620     		movs	r0, #6
- 1056 0010 FFF7FEFF 		bl	DRV8323_WriteRegister
- 1057              	.LVL89:
- 221:Core/Src/drv8323s.c **** 	
- 222:Core/Src/drv8323s.c **** 	for(uint16_t i = 1; i <= 500; i++){
- 1058              		.loc 1 222 2 view .LVU295
- 1059              	.LBB4:
- 1060              		.loc 1 222 6 view .LVU296
- 1061              		.loc 1 222 15 is_stmt 0 view .LVU297
- 1062 0014 0124     		movs	r4, #1
- 1063              	.LBE4:
- 217:Core/Src/drv8323s.c **** 	DRV8323_Stop_PWM(hbldc);
- 1064              		.loc 1 217 34 view .LVU298
- 1065 0016 0026     		movs	r6, #0
- 217:Core/Src/drv8323s.c **** 	DRV8323_Stop_PWM(hbldc);
- 1066              		.loc 1 217 23 view .LVU299
- 1067 0018 3746     		mov	r7, r6
- 217:Core/Src/drv8323s.c **** 	DRV8323_Stop_PWM(hbldc);
- 1068              		.loc 1 217 11 view .LVU300
- 1069 001a B046     		mov	r8, r6
- 1070              	.LBB5:
- 1071              		.loc 1 222 2 view .LVU301
- 1072 001c 0DE0     		b	.L59
- 1073              	.LVL90:
- 1074              	.L60:
-ARM GAS  /tmp/cc6imqjr.s 			page 24
-
-
- 223:Core/Src/drv8323s.c **** 		
- 224:Core/Src/drv8323s.c **** 		ofseta += hbldc->adc_raw[0];
- 1075              		.loc 1 224 3 is_stmt 1 discriminator 3 view .LVU302
- 1076              		.loc 1 224 27 is_stmt 0 discriminator 3 view .LVU303
- 1077 001e AB89     		ldrh	r3, [r5, #12]
- 1078              		.loc 1 224 10 discriminator 3 view .LVU304
- 1079 0020 18FA83F8 		uxtah	r8, r8, r3
- 1080              	.LVL91:
- 225:Core/Src/drv8323s.c **** 		ofsetb += hbldc->adc_raw[1];
- 1081              		.loc 1 225 3 is_stmt 1 discriminator 3 view .LVU305
- 1082              		.loc 1 225 27 is_stmt 0 discriminator 3 view .LVU306
- 1083 0024 EB89     		ldrh	r3, [r5, #14]
- 1084              		.loc 1 225 10 discriminator 3 view .LVU307
- 1085 0026 17FA83F7 		uxtah	r7, r7, r3
- 1086              	.LVL92:
- 226:Core/Src/drv8323s.c **** 		ofsetc += hbldc->adc_raw[2];
- 1087              		.loc 1 226 3 is_stmt 1 discriminator 3 view .LVU308
- 1088              		.loc 1 226 27 is_stmt 0 discriminator 3 view .LVU309
- 1089 002a 2B8A     		ldrh	r3, [r5, #16]
- 1090              		.loc 1 226 10 discriminator 3 view .LVU310
- 1091 002c 16FA83F6 		uxtah	r6, r6, r3
- 1092              	.LVL93:
- 227:Core/Src/drv8323s.c **** 		HAL_Delay(1);
- 1093              		.loc 1 227 3 is_stmt 1 discriminator 3 view .LVU311
- 1094 0030 0120     		movs	r0, #1
- 1095 0032 FFF7FEFF 		bl	HAL_Delay
- 1096              	.LVL94:
- 222:Core/Src/drv8323s.c **** 		
- 1097              		.loc 1 222 32 discriminator 3 view .LVU312
- 222:Core/Src/drv8323s.c **** 		
- 1098              		.loc 1 222 33 is_stmt 0 discriminator 3 view .LVU313
- 1099 0036 0134     		adds	r4, r4, #1
- 1100              	.LVL95:
- 222:Core/Src/drv8323s.c **** 		
- 1101              		.loc 1 222 33 discriminator 3 view .LVU314
- 1102 0038 A4B2     		uxth	r4, r4
- 1103              	.LVL96:
- 1104              	.L59:
- 222:Core/Src/drv8323s.c **** 		
- 1105              		.loc 1 222 22 is_stmt 1 discriminator 1 view .LVU315
- 222:Core/Src/drv8323s.c **** 		
- 1106              		.loc 1 222 2 is_stmt 0 discriminator 1 view .LVU316
- 1107 003a B4F5FA7F 		cmp	r4, #500
- 1108 003e EED9     		bls	.L60
- 1109              	.LBE5:
- 228:Core/Src/drv8323s.c **** 	}
- 229:Core/Src/drv8323s.c **** 	hbldc->v_offset_a = ofseta/500;
- 1110              		.loc 1 229 2 is_stmt 1 view .LVU317
- 1111              		.loc 1 229 28 is_stmt 0 view .LVU318
- 1112 0040 0B4A     		ldr	r2, .L62
- 1113 0042 A2FB0813 		umull	r1, r3, r2, r8
- 1114 0046 5B09     		lsrs	r3, r3, #5
- 1115              		.loc 1 229 20 view .LVU319
- 1116 0048 6B84     		strh	r3, [r5, #34]	@ movhi
- 230:Core/Src/drv8323s.c **** 	hbldc->v_offset_b = ofsetb/500;
- 1117              		.loc 1 230 2 is_stmt 1 view .LVU320
- 1118              		.loc 1 230 28 is_stmt 0 view .LVU321
-ARM GAS  /tmp/cc6imqjr.s 			page 25
-
-
- 1119 004a A2FB0713 		umull	r1, r3, r2, r7
- 1120 004e 5B09     		lsrs	r3, r3, #5
- 1121              		.loc 1 230 20 view .LVU322
- 1122 0050 AB84     		strh	r3, [r5, #36]	@ movhi
- 231:Core/Src/drv8323s.c **** 	hbldc->v_offset_c = ofsetc/500;
- 1123              		.loc 1 231 2 is_stmt 1 view .LVU323
- 1124              		.loc 1 231 28 is_stmt 0 view .LVU324
- 1125 0052 A2FB0623 		umull	r2, r3, r2, r6
- 1126 0056 5B09     		lsrs	r3, r3, #5
- 1127              		.loc 1 231 20 view .LVU325
- 1128 0058 EB84     		strh	r3, [r5, #38]	@ movhi
- 232:Core/Src/drv8323s.c **** 
- 233:Core/Src/drv8323s.c **** 	DRV8323_WriteRegister(0x06, 0x02C3);
- 1129              		.loc 1 233 2 is_stmt 1 view .LVU326
- 1130 005a 40F2C321 		movw	r1, #707
- 1131 005e 0620     		movs	r0, #6
- 1132 0060 FFF7FEFF 		bl	DRV8323_WriteRegister
- 1133              	.LVL97:
- 234:Core/Src/drv8323s.c **** 	DRV8323_Start_PWM(hbldc);
- 1134              		.loc 1 234 2 view .LVU327
- 1135 0064 2846     		mov	r0, r5
- 1136 0066 FFF7FEFF 		bl	DRV8323_Start_PWM
- 1137              	.LVL98:
- 235:Core/Src/drv8323s.c **** 	
- 236:Core/Src/drv8323s.c **** 	return 1;
- 1138              		.loc 1 236 2 view .LVU328
- 237:Core/Src/drv8323s.c **** }
- 1139              		.loc 1 237 1 is_stmt 0 view .LVU329
- 1140 006a 0120     		movs	r0, #1
- 1141 006c BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
- 1142              	.LVL99:
- 1143              	.L63:
- 1144              		.loc 1 237 1 view .LVU330
- 1145              		.align	2
- 1146              	.L62:
- 1147 0070 D34D6210 		.word	274877907
- 1148              		.cfi_endproc
- 1149              	.LFE149:
- 1151              		.section	.text.bldc_config,"ax",%progbits
- 1152              		.align	1
- 1153              		.global	bldc_config
- 1154              		.syntax unified
- 1155              		.thumb
- 1156              		.thumb_func
- 1157              		.fpu fpv4-sp-d16
- 1159              	bldc_config:
- 1160              	.LVL100:
- 1161              	.LFB150:
- 238:Core/Src/drv8323s.c **** //
- 239:Core/Src/drv8323s.c **** 
- 240:Core/Src/drv8323s.c **** void bldc_config(DRV8323_t *hbldc){
- 1162              		.loc 1 240 35 is_stmt 1 view -0
- 1163              		.cfi_startproc
- 1164              		@ args = 0, pretend = 0, frame = 0
- 1165              		@ frame_needed = 0, uses_anonymous_args = 0
- 1166              		.loc 1 240 35 is_stmt 0 view .LVU332
- 1167 0000 10B5     		push	{r4, lr}
-ARM GAS  /tmp/cc6imqjr.s 			page 26
-
-
- 1168              	.LCFI17:
- 1169              		.cfi_def_cfa_offset 8
- 1170              		.cfi_offset 4, -8
- 1171              		.cfi_offset 14, -4
- 1172 0002 0446     		mov	r4, r0
- 241:Core/Src/drv8323s.c **** 	
- 242:Core/Src/drv8323s.c **** 	DRV8323RS_Cs_Ena_faul_Config_Pin();
- 1173              		.loc 1 242 2 is_stmt 1 view .LVU333
- 1174 0004 FFF7FEFF 		bl	DRV8323RS_Cs_Ena_faul_Config_Pin
- 1175              	.LVL101:
- 243:Core/Src/drv8323s.c **** 	
- 244:Core/Src/drv8323s.c **** 	DRV8323RS_Enable;
- 1176              		.loc 1 244 2 view .LVU334
- 1177 0008 174B     		ldr	r3, .L66
- 1178 000a 4FF40062 		mov	r2, #2048
- 1179 000e 9A61     		str	r2, [r3, #24]
- 245:Core/Src/drv8323s.c **** 	HAL_Delay(20);
- 1180              		.loc 1 245 2 view .LVU335
- 1181 0010 1420     		movs	r0, #20
- 1182 0012 FFF7FEFF 		bl	HAL_Delay
- 1183              	.LVL102:
- 246:Core/Src/drv8323s.c **** 	DRV8323_WriteRegister(0x02, 0x0001);
- 1184              		.loc 1 246 2 view .LVU336
- 1185 0016 0121     		movs	r1, #1
- 1186 0018 0220     		movs	r0, #2
- 1187 001a FFF7FEFF 		bl	DRV8323_WriteRegister
- 1188              	.LVL103:
- 247:Core/Src/drv8323s.c **** 	HAL_Delay(20);
- 1189              		.loc 1 247 2 view .LVU337
- 1190 001e 1420     		movs	r0, #20
- 1191 0020 FFF7FEFF 		bl	HAL_Delay
- 1192              	.LVL104:
- 248:Core/Src/drv8323s.c **** 	DRV8323_WriteRegister(0x02, 0x0001);
- 1193              		.loc 1 248 2 view .LVU338
- 1194 0024 0121     		movs	r1, #1
- 1195 0026 0220     		movs	r0, #2
- 1196 0028 FFF7FEFF 		bl	DRV8323_WriteRegister
- 1197              	.LVL105:
- 249:Core/Src/drv8323s.c **** 	DRV8323_WriteRegister(0x03, 0x03AA);
- 1198              		.loc 1 249 2 view .LVU339
- 1199 002c 40F2AA31 		movw	r1, #938
- 1200 0030 0320     		movs	r0, #3
- 1201 0032 FFF7FEFF 		bl	DRV8323_WriteRegister
- 1202              	.LVL106:
- 250:Core/Src/drv8323s.c **** 	DRV8323_WriteRegister(0x04, 0x07AA);
- 1203              		.loc 1 250 2 view .LVU340
- 1204 0036 40F2AA71 		movw	r1, #1962
- 1205 003a 0420     		movs	r0, #4
- 1206 003c FFF7FEFF 		bl	DRV8323_WriteRegister
- 1207              	.LVL107:
- 251:Core/Src/drv8323s.c **** 	DRV8323_WriteRegister(0x05, 0x0159);
- 1208              		.loc 1 251 2 view .LVU341
- 1209 0040 40F25911 		movw	r1, #345
- 1210 0044 0520     		movs	r0, #5
- 1211 0046 FFF7FEFF 		bl	DRV8323_WriteRegister
- 1212              	.LVL108:
- 252:Core/Src/drv8323s.c **** 	
-ARM GAS  /tmp/cc6imqjr.s 			page 27
-
-
- 253:Core/Src/drv8323s.c ****   DRV8302_TIMER_config(hbldc, BLDC_TIMX, BLDC_PWM_FREQ);
- 1213              		.loc 1 253 3 view .LVU342
- 1214 004a 46F2A812 		movw	r2, #25000
- 1215 004e 0749     		ldr	r1, .L66+4
- 1216 0050 2046     		mov	r0, r4
- 1217 0052 FFF7FEFF 		bl	DRV8302_TIMER_config
- 1218              	.LVL109:
- 254:Core/Src/drv8323s.c **** 	
- 255:Core/Src/drv8323s.c ****   DRV8323_Current_Sens_Config(hbldc, GAIN, R_SHUNT);
- 1219              		.loc 1 255 3 view .LVU343
- 1220 0056 DFED060A 		vldr.32	s1, .L66+8
- 1221 005a 9FED060A 		vldr.32	s0, .L66+12
- 1222 005e 2046     		mov	r0, r4
- 1223 0060 FFF7FEFF 		bl	DRV8323_Current_Sens_Config
- 1224              	.LVL110:
- 256:Core/Src/drv8323s.c **** 	
- 257:Core/Src/drv8323s.c **** 
- 258:Core/Src/drv8323s.c **** }
- 1225              		.loc 1 258 1 is_stmt 0 view .LVU344
- 1226 0064 10BD     		pop	{r4, pc}
- 1227              	.LVL111:
- 1228              	.L67:
- 1229              		.loc 1 258 1 view .LVU345
- 1230 0066 00BF     		.align	2
- 1231              	.L66:
- 1232 0068 00080240 		.word	1073874944
- 1233 006c 00000140 		.word	1073807360
- 1234 0070 6F12033B 		.word	990057071
- 1235 0074 00002042 		.word	1109393408
- 1236              		.cfi_endproc
- 1237              	.LFE150:
- 1239              		.text
- 1240              	.Letext0:
- 1241              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
- 1242              		.file 3 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
- 1243              		.file 4 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 1244              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
- 1245              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 1246              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
- 1247              		.file 8 "Core/Inc/drv8323s.h"
- 1248              		.file 9 "Core/Inc/encoder.h"
- 1249              		.file 10 "Core/Inc/foc_utils.h"
- 1250              		.file 11 "Core/Inc/flash.h"
- 1251              		.file 12 "Core/Inc/spi.h"
- 1252              		.file 13 "Core/Inc/user_config.h"
- 1253              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
- 1254              		.file 15 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
- 1255              		.file 16 "<built-in>"
-ARM GAS  /tmp/cc6imqjr.s 			page 28
+ 845              		.file 9 "Core/Inc/driver.h"
+ 846              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ARM GAS  /tmp/ccIsCg4y.s 			page 21
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 drv8323s.c
-     /tmp/cc6imqjr.s:18     .text.DRV8323RS_Cs_Ena_faul_Config_Pin:0000000000000000 $t
-     /tmp/cc6imqjr.s:26     .text.DRV8323RS_Cs_Ena_faul_Config_Pin:0000000000000000 DRV8323RS_Cs_Ena_faul_Config_Pin
-     /tmp/cc6imqjr.s:90     .text.DRV8323RS_Cs_Ena_faul_Config_Pin:0000000000000044 $d
-     /tmp/cc6imqjr.s:97     .text.DRV8323_WriteRegister:0000000000000000 $t
-     /tmp/cc6imqjr.s:104    .text.DRV8323_WriteRegister:0000000000000000 DRV8323_WriteRegister
-     /tmp/cc6imqjr.s:173    .text.DRV8323_WriteRegister:0000000000000048 $d
-     /tmp/cc6imqjr.s:179    .text.DRV8323_ReadRegister:0000000000000000 $t
-     /tmp/cc6imqjr.s:186    .text.DRV8323_ReadRegister:0000000000000000 DRV8323_ReadRegister
-     /tmp/cc6imqjr.s:261    .text.DRV8323_ReadRegister:000000000000004c $d
-     /tmp/cc6imqjr.s:267    .text.DRV8323_Stop_PWM:0000000000000000 $t
-     /tmp/cc6imqjr.s:274    .text.DRV8323_Stop_PWM:0000000000000000 DRV8323_Stop_PWM
-     /tmp/cc6imqjr.s:332    .text.DRV8323_Start_PWM:0000000000000000 $t
-     /tmp/cc6imqjr.s:339    .text.DRV8323_Start_PWM:0000000000000000 DRV8323_Start_PWM
-     /tmp/cc6imqjr.s:419    .text.DRV8323_Set_PWM:0000000000000000 $t
-     /tmp/cc6imqjr.s:426    .text.DRV8323_Set_PWM:0000000000000000 DRV8323_Set_PWM
-     /tmp/cc6imqjr.s:467    .text.DRV8323_Current_Sens_Config:0000000000000000 $t
-     /tmp/cc6imqjr.s:474    .text.DRV8323_Current_Sens_Config:0000000000000000 DRV8323_Current_Sens_Config
-     /tmp/cc6imqjr.s:545    .text.DRV8323_Current_Sens_Config:000000000000004c $d
-     /tmp/cc6imqjr.s:550    .rodata.DRV8323_Calibrate_Current_Offset.str1.4:0000000000000000 $d
-     /tmp/cc6imqjr.s:559    .text.DRV8323_Calibrate_Current_Offset:0000000000000000 $t
-     /tmp/cc6imqjr.s:566    .text.DRV8323_Calibrate_Current_Offset:0000000000000000 DRV8323_Calibrate_Current_Offset
-     /tmp/cc6imqjr.s:732    .text.DRV8323_Calibrate_Current_Offset:00000000000000b8 $d
-     /tmp/cc6imqjr.s:743    .text.spike_filter:0000000000000000 $t
-     /tmp/cc6imqjr.s:750    .text.spike_filter:0000000000000000 spike_filter
-     /tmp/cc6imqjr.s:803    .text.DRV8323_Get_Current:0000000000000000 $t
-     /tmp/cc6imqjr.s:810    .text.DRV8323_Get_Current:0000000000000000 DRV8323_Get_Current
-     /tmp/cc6imqjr.s:918    .text.DRV8323_Get_Current:00000000000000a0 $d
-     /tmp/cc6imqjr.s:927    .text.DRV8302_TIMER_config:0000000000000000 $t
-     /tmp/cc6imqjr.s:934    .text.DRV8302_TIMER_config:0000000000000000 DRV8302_TIMER_config
-     /tmp/cc6imqjr.s:1017   .text.DRV8302_TIMER_config:0000000000000048 $d
-     /tmp/cc6imqjr.s:1023   .text.DRV8323_V_Ofset:0000000000000000 $t
-     /tmp/cc6imqjr.s:1030   .text.DRV8323_V_Ofset:0000000000000000 DRV8323_V_Ofset
-     /tmp/cc6imqjr.s:1147   .text.DRV8323_V_Ofset:0000000000000070 $d
-     /tmp/cc6imqjr.s:1152   .text.bldc_config:0000000000000000 $t
-     /tmp/cc6imqjr.s:1159   .text.bldc_config:0000000000000000 bldc_config
-     /tmp/cc6imqjr.s:1232   .text.bldc_config:0000000000000068 $d
+     /tmp/ccIsCg4y.s:18     .text.DRV832xS_Config:0000000000000000 $t
+     /tmp/ccIsCg4y.s:26     .text.DRV832xS_Config:0000000000000000 DRV832xS_Config
+     /tmp/ccIsCg4y.s:60     .text.DRV832xS_Init:0000000000000000 $t
+     /tmp/ccIsCg4y.s:67     .text.DRV832xS_Init:0000000000000000 DRV832xS_Init
+     /tmp/ccIsCg4y.s:81     .text.DRV832xS_Write16:0000000000000000 $t
+     /tmp/ccIsCg4y.s:88     .text.DRV832xS_Write16:0000000000000000 DRV832xS_Write16
+     /tmp/ccIsCg4y.s:163    .text.DRV832xS_Write16:000000000000003c $d
+     /tmp/ccIsCg4y.s:168    .text.DRV832xS_Read16:0000000000000000 $t
+     /tmp/ccIsCg4y.s:175    .text.DRV832xS_Read16:0000000000000000 DRV832xS_Read16
+     /tmp/ccIsCg4y.s:256    .text.DRV832xS_Read16:0000000000000040 $d
+     /tmp/ccIsCg4y.s:261    .rodata.DRV832xS_Print_Fault.str1.4:0000000000000000 $d
+     /tmp/ccIsCg4y.s:346    .text.DRV832xS_Print_Fault:0000000000000000 $t
+     /tmp/ccIsCg4y.s:353    .text.DRV832xS_Print_Fault:0000000000000000 DRV832xS_Print_Fault
+     /tmp/ccIsCg4y.s:682    .text.DRV832xS_Print_Fault:000000000000014c $d
+     /tmp/ccIsCg4y.s:709    .text.DRV832xS_Check_Error:0000000000000000 $t
+     /tmp/ccIsCg4y.s:716    .text.DRV832xS_Check_Error:0000000000000000 DRV832xS_Check_Error
+     /tmp/ccIsCg4y.s:759    .text.DRV832xS_Setup:0000000000000000 $t
+     /tmp/ccIsCg4y.s:766    .text.DRV832xS_Setup:0000000000000000 DRV832xS_Setup
 
 UNDEFINED SYMBOLS
-HAL_GPIO_Init
-GPIO_Init
-HAL_SPI_TransmitReceive
-hspi1
-__aeabi_f2d
+DRV8323_WRITE_CMD
+hspi_in
+DRV8323_READ_CMD
 puts
-osDelay
-printf
-m_config
 HAL_Delay

@@ -4,7 +4,6 @@
 #include "main.h" // Thu vi?n HAL STM32
 #include <string.h>
 #include <math.h>
-#include "spi.h"
 #include "as5048a.h"
 
 #define ANGLE_FILTER_ALPHA    0.11539f  //0.71539f //   // Faktor filter
