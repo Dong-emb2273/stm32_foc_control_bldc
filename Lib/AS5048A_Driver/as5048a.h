@@ -3,7 +3,6 @@
 #define AS5048A_H_
 
 #include <stdint.h>
-#include "driver.h"
 #include "pll_filter.h"
 
 typedef enum {
