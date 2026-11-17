@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccffkO7Z.s 			page 1
+ARM GAS  /tmp/cc6DzEK2.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccffkO7Z.s 			page 1
    8:Lib/SMO/sliding_mode_observer.c ****     return x / deadband; // Linear region
   49              		.loc 1 8 5 is_stmt 1 view .LVU7
   50              		.loc 1 8 14 is_stmt 0 view .LVU8
-ARM GAS  /tmp/ccffkO7Z.s 			page 2
+ARM GAS  /tmp/cc6DzEK2.s 			page 2
 
 
   51 001c 87EEA00A 		vdiv.f32	s0, s15, s1
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccffkO7Z.s 			page 1
   13:Lib/SMO/sliding_mode_observer.c **** }
  100              		.loc 1 13 1 view .LVU19
  101 000a 08BD     		pop	{r3, pc}
-ARM GAS  /tmp/ccffkO7Z.s 			page 3
+ARM GAS  /tmp/cc6DzEK2.s 			page 3
 
 
  102              		.cfi_endproc
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccffkO7Z.s 			page 1
  131              		.loc 1 40 5 is_stmt 1 view .LVU27
  132              		.loc 1 40 22 is_stmt 0 view .LVU28
  133 0008 0364     		str	r3, [r0, #64]	@ float
-ARM GAS  /tmp/ccffkO7Z.s 			page 4
+ARM GAS  /tmp/cc6DzEK2.s 			page 4
 
 
   41:Lib/SMO/sliding_mode_observer.c ****     hsmo->e_alpha_est = 0.0f;
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccffkO7Z.s 			page 1
  181 000c 80ED001A 		vstr.32	s2, [r0]
   17:Lib/SMO/sliding_mode_observer.c **** 
  182              		.loc 1 17 5 is_stmt 1 view .LVU42
-ARM GAS  /tmp/ccffkO7Z.s 			page 5
+ARM GAS  /tmp/cc6DzEK2.s 			page 5
 
 
   17:Lib/SMO/sliding_mode_observer.c **** 
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccffkO7Z.s 			page 1
  219 0046 2365     		str	r3, [r4, #80]	@ float
   31:Lib/SMO/sliding_mode_observer.c **** 
  220              		.loc 1 31 5 is_stmt 1 view .LVU61
-ARM GAS  /tmp/ccffkO7Z.s 			page 6
+ARM GAS  /tmp/cc6DzEK2.s 			page 6
 
 
   31:Lib/SMO/sliding_mode_observer.c **** 
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccffkO7Z.s 			page 1
  268 0004 7047     		bx	lr
  269              		.cfi_endproc
  270              	.LFE5:
-ARM GAS  /tmp/ccffkO7Z.s 			page 7
+ARM GAS  /tmp/cc6DzEK2.s 			page 7
 
 
  272              		.section	.text.smo_update_R_L,"ax",%progbits
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccffkO7Z.s 			page 1
  322              	.LCFI6:
  323              		.cfi_restore 80
  324              		.cfi_restore 81
-ARM GAS  /tmp/ccffkO7Z.s 			page 8
+ARM GAS  /tmp/cc6DzEK2.s 			page 8
 
 
  325              		.cfi_def_cfa_offset 8
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccffkO7Z.s 			page 1
  375              	.LVL22:
   61:Lib/SMO/sliding_mode_observer.c ****     float i_beta_error = hsmo->i_beta_est - i_beta_meas;
  376              		.loc 1 61 5 is_stmt 1 view .LVU90
-ARM GAS  /tmp/ccffkO7Z.s 			page 9
+ARM GAS  /tmp/cc6DzEK2.s 			page 9
 
 
  377              		.loc 1 61 30 is_stmt 0 view .LVU91
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccffkO7Z.s 			page 1
  426 0068 C4ED0F7A 		vstr.32	s15, [r4, #60]
   67:Lib/SMO/sliding_mode_observer.c ****     hsmo->i_beta_est  = hsmo->A * hsmo->i_beta_est + hsmo->b * (v_beta - hsmo->e_beta_est) - z_beta
  427              		.loc 1 67 5 is_stmt 1 view .LVU112
-ARM GAS  /tmp/ccffkO7Z.s 			page 10
+ARM GAS  /tmp/cc6DzEK2.s 			page 10
 
 
  428              		.loc 1 67 33 is_stmt 0 view .LVU113
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccffkO7Z.s 			page 1
  476 00c4 77EEAC7A 		vadd.f32	s15, s15, s25
  477              		.loc 1 73 48 view .LVU134
  478 00c8 67EE277A 		vmul.f32	s15, s14, s15
-ARM GAS  /tmp/ccffkO7Z.s 			page 11
+ARM GAS  /tmp/cc6DzEK2.s 			page 11
 
 
  479              		.loc 1 73 23 view .LVU135
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccffkO7Z.s 			page 1
   15:Lib/FOC/FOC_math.h **** #define LUT_SIZE (1024*4)
   16:Lib/FOC/FOC_math.h **** #define LUT_STEP (TWO_PI / (float)LUT_SIZE)
   17:Lib/FOC/FOC_math.h **** 
-ARM GAS  /tmp/ccffkO7Z.s 			page 12
+ARM GAS  /tmp/cc6DzEK2.s 			page 12
 
 
   18:Lib/FOC/FOC_math.h **** #define TWO_BY_SQRT3 1.15470053838f
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccffkO7Z.s 			page 1
  521              		.loc 2 61 44 view .LVU153
  522              	.LBE6:
  523              	.LBE5:
-ARM GAS  /tmp/ccffkO7Z.s 			page 13
+ARM GAS  /tmp/cc6DzEK2.s 			page 13
 
 
   79:Lib/SMO/sliding_mode_observer.c ****                                hsmo->e_beta_est * hsmo->e_beta_est);
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccffkO7Z.s 			page 1
  121:Lib/SMO/sliding_mode_observer.c ****         hsmo->rpm_est = 0.0f;
  537              		.loc 1 121 9 is_stmt 1 view .LVU160
  538              		.loc 1 121 23 is_stmt 0 view .LVU161
-ARM GAS  /tmp/ccffkO7Z.s 			page 14
+ARM GAS  /tmp/cc6DzEK2.s 			page 14
 
 
  539 0124 A363     		str	r3, [r4, #56]	@ float
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccffkO7Z.s 			page 1
   86:Lib/SMO/sliding_mode_observer.c ****             hsmo->theta_est = hsmo->e_theta - 0.5f*PI;
  586              		.loc 1 86 9 is_stmt 1 view .LVU172
   86:Lib/SMO/sliding_mode_observer.c ****             hsmo->theta_est = hsmo->e_theta - 0.5f*PI;
-ARM GAS  /tmp/ccffkO7Z.s 			page 15
+ARM GAS  /tmp/cc6DzEK2.s 			page 15
 
 
  587              		.loc 1 86 17 is_stmt 0 view .LVU173
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccffkO7Z.s 			page 1
   94:Lib/SMO/sliding_mode_observer.c ****         }
  627              		.loc 1 94 13 is_stmt 1 view .LVU188
   94:Lib/SMO/sliding_mode_observer.c ****         }
-ARM GAS  /tmp/ccffkO7Z.s 			page 16
+ARM GAS  /tmp/cc6DzEK2.s 			page 16
 
 
  628              		.loc 1 94 29 is_stmt 0 view .LVU189
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccffkO7Z.s 			page 1
  668              	.LVL45:
  114:Lib/SMO/sliding_mode_observer.c ****                          omega_instant * hsmo->omega_alpha_filter;
  669              		.loc 1 114 9 is_stmt 1 view .LVU204
-ARM GAS  /tmp/ccffkO7Z.s 			page 17
+ARM GAS  /tmp/cc6DzEK2.s 			page 17
 
 
  114:Lib/SMO/sliding_mode_observer.c ****                          omega_instant * hsmo->omega_alpha_filter;
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccffkO7Z.s 			page 1
  127:Lib/SMO/sliding_mode_observer.c **** float smo_get_rotor_angle(smo_t *hsmo) {
  715              		.loc 1 127 40 is_stmt 1 view -0
  716              		.cfi_startproc
-ARM GAS  /tmp/ccffkO7Z.s 			page 18
+ARM GAS  /tmp/cc6DzEK2.s 			page 18
 
 
  717              		@ args = 0, pretend = 0, frame = 0
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccffkO7Z.s 			page 1
  766              		.loc 1 136 5 view .LVU222
  137:Lib/SMO/sliding_mode_observer.c **** }...
  767              		.loc 1 137 1 is_stmt 0 view .LVU223
-ARM GAS  /tmp/ccffkO7Z.s 			page 19
+ARM GAS  /tmp/cc6DzEK2.s 			page 19
 
 
  768 0000 90ED0B0A 		vldr.32	s0, [r0, #44]
@@ -1090,33 +1090,33 @@ ARM GAS  /tmp/ccffkO7Z.s 			page 1
  775              		.file 3 "Lib/SMO/sliding_mode_observer.h"
  776              		.file 4 "/usr/include/newlib/math.h"
  777              		.file 5 "<built-in>"
-ARM GAS  /tmp/ccffkO7Z.s 			page 20
+ARM GAS  /tmp/cc6DzEK2.s 			page 20
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 sliding_mode_observer.c
-     /tmp/ccffkO7Z.s:18     .text.smo_sign:0000000000000000 $t
-     /tmp/ccffkO7Z.s:26     .text.smo_sign:0000000000000000 smo_sign
-     /tmp/ccffkO7Z.s:73     .text.smo_tanh:0000000000000000 $t
-     /tmp/ccffkO7Z.s:80     .text.smo_tanh:0000000000000000 smo_tanh
-     /tmp/ccffkO7Z.s:106    .text.smo_reset:0000000000000000 $t
-     /tmp/ccffkO7Z.s:113    .text.smo_reset:0000000000000000 smo_reset
-     /tmp/ccffkO7Z.s:152    .text.smo_init:0000000000000000 $t
-     /tmp/ccffkO7Z.s:159    .text.smo_init:0000000000000000 smo_init
-     /tmp/ccffkO7Z.s:242    .text.smo_init:000000000000005c $d
-     /tmp/ccffkO7Z.s:249    .text.smo_set_min_emf:0000000000000000 $t
-     /tmp/ccffkO7Z.s:256    .text.smo_set_min_emf:0000000000000000 smo_set_min_emf
-     /tmp/ccffkO7Z.s:273    .text.smo_update_R_L:0000000000000000 $t
-     /tmp/ccffkO7Z.s:280    .text.smo_update_R_L:0000000000000000 smo_update_R_L
-     /tmp/ccffkO7Z.s:334    .text.smo_update_arctan:0000000000000000 $t
-     /tmp/ccffkO7Z.s:341    .text.smo_update_arctan:0000000000000000 smo_update_arctan
-     /tmp/ccffkO7Z.s:694    .text.smo_update_arctan:0000000000000200 $d
-     /tmp/ccffkO7Z.s:705    .text.smo_get_rotor_angle:0000000000000000 $t
-     /tmp/ccffkO7Z.s:712    .text.smo_get_rotor_angle:0000000000000000 smo_get_rotor_angle
-     /tmp/ccffkO7Z.s:728    .text.smo_get_rotor_speed:0000000000000000 $t
-     /tmp/ccffkO7Z.s:735    .text.smo_get_rotor_speed:0000000000000000 smo_get_rotor_speed
-     /tmp/ccffkO7Z.s:751    .text.smo_get_omega:0000000000000000 $t
-     /tmp/ccffkO7Z.s:758    .text.smo_get_omega:0000000000000000 smo_get_omega
+     /tmp/cc6DzEK2.s:18     .text.smo_sign:0000000000000000 $t
+     /tmp/cc6DzEK2.s:26     .text.smo_sign:0000000000000000 smo_sign
+     /tmp/cc6DzEK2.s:73     .text.smo_tanh:0000000000000000 $t
+     /tmp/cc6DzEK2.s:80     .text.smo_tanh:0000000000000000 smo_tanh
+     /tmp/cc6DzEK2.s:106    .text.smo_reset:0000000000000000 $t
+     /tmp/cc6DzEK2.s:113    .text.smo_reset:0000000000000000 smo_reset
+     /tmp/cc6DzEK2.s:152    .text.smo_init:0000000000000000 $t
+     /tmp/cc6DzEK2.s:159    .text.smo_init:0000000000000000 smo_init
+     /tmp/cc6DzEK2.s:242    .text.smo_init:000000000000005c $d
+     /tmp/cc6DzEK2.s:249    .text.smo_set_min_emf:0000000000000000 $t
+     /tmp/cc6DzEK2.s:256    .text.smo_set_min_emf:0000000000000000 smo_set_min_emf
+     /tmp/cc6DzEK2.s:273    .text.smo_update_R_L:0000000000000000 $t
+     /tmp/cc6DzEK2.s:280    .text.smo_update_R_L:0000000000000000 smo_update_R_L
+     /tmp/cc6DzEK2.s:334    .text.smo_update_arctan:0000000000000000 $t
+     /tmp/cc6DzEK2.s:341    .text.smo_update_arctan:0000000000000000 smo_update_arctan
+     /tmp/cc6DzEK2.s:694    .text.smo_update_arctan:0000000000000200 $d
+     /tmp/cc6DzEK2.s:705    .text.smo_get_rotor_angle:0000000000000000 $t
+     /tmp/cc6DzEK2.s:712    .text.smo_get_rotor_angle:0000000000000000 smo_get_rotor_angle
+     /tmp/cc6DzEK2.s:728    .text.smo_get_rotor_speed:0000000000000000 $t
+     /tmp/cc6DzEK2.s:735    .text.smo_get_rotor_speed:0000000000000000 smo_get_rotor_speed
+     /tmp/cc6DzEK2.s:751    .text.smo_get_omega:0000000000000000 $t
+     /tmp/cc6DzEK2.s:758    .text.smo_get_omega:0000000000000000 smo_get_omega
 
 UNDEFINED SYMBOLS
 tanhf

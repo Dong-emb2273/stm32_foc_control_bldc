@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccUGe7qS.s 			page 1
+ARM GAS  /tmp/ccEFhIz2.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
   43 000a C0ED007A 		vstr.32	s15, [r0]
   44              	.L2:
   45              		.loc 1 13 11 is_stmt 1 discriminator 1 view .LVU5
-ARM GAS  /tmp/ccUGe7qS.s 			page 2
+ARM GAS  /tmp/ccEFhIz2.s 			page 2
 
 
   46              		.loc 1 13 12 is_stmt 0 discriminator 1 view .LVU6
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
   98              	.LCFI1:
   99              		.cfi_def_cfa_offset 16
  100 0004 8DED010A 		vstr.32	s0, [sp, #4]
-ARM GAS  /tmp/ccUGe7qS.s 			page 3
+ARM GAS  /tmp/ccEFhIz2.s 			page 3
 
 
   18:Lib/FOC/FOC_math.c **** 	norm_angle_rad(&theta);
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  147 0050 01EB8303 		add	r3, r1, r3, lsl #2
  148              	.LVL9:
  149              		.loc 1 25 52 view .LVU34
-ARM GAS  /tmp/ccUGe7qS.s 			page 4
+ARM GAS  /tmp/ccEFhIz2.s 			page 4
 
 
  150 0054 93ED007A 		vldr.32	s14, [r3]
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  201              		.align	2
  202              	.L14:
  203 0010 DB0FC93F 		.word	1070141403
-ARM GAS  /tmp/ccUGe7qS.s 			page 5
+ARM GAS  /tmp/ccEFhIz2.s 			page 5
 
 
  204              		.cfi_endproc
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  251              		.loc 1 39 5 is_stmt 1 view .LVU51
  252              		.loc 1 39 15 is_stmt 0 view .LVU52
  253 0020 F0EE4A0A 		vmov.f32	s1, s20
-ARM GAS  /tmp/ccUGe7qS.s 			page 6
+ARM GAS  /tmp/ccEFhIz2.s 			page 6
 
 
  254              	.LVL16:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  303              	.L21:
   45:Lib/FOC/FOC_math.c ****     }
   46:Lib/FOC/FOC_math.c ****     
-ARM GAS  /tmp/ccUGe7qS.s 			page 7
+ARM GAS  /tmp/ccEFhIz2.s 			page 7
 
 
   47:Lib/FOC/FOC_math.c ****     if (x < 0.0f) {
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  345              	.L31:
   34:Lib/FOC/FOC_math.c ****     }
  346              		.loc 1 34 37 view .LVU80
-ARM GAS  /tmp/ccUGe7qS.s 			page 8
+ARM GAS  /tmp/ccEFhIz2.s 			page 8
 
 
  347 00a8 9FED090A 		vldr.32	s0, .L36+16
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  394              		.loc 1 58 72 is_stmt 0 view .LVU89
  395 0000 38B5     		push	{r3, r4, r5, lr}
  396              	.LCFI8:
-ARM GAS  /tmp/ccUGe7qS.s 			page 9
+ARM GAS  /tmp/ccEFhIz2.s 			page 9
 
 
  397              		.cfi_def_cfa_offset 16
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  447              		.loc 1 64 74 is_stmt 1 view -0
  448              		.cfi_startproc
  449              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccUGe7qS.s 			page 10
+ARM GAS  /tmp/ccEFhIz2.s 			page 10
 
 
  450              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  499              		.loc 1 71 33 view .LVU111
  500 0008 30EE470A 		vsub.f32	s0, s0, s14
  501              	.LVL42:
-ARM GAS  /tmp/ccUGe7qS.s 			page 11
+ARM GAS  /tmp/ccEFhIz2.s 			page 11
 
 
  502              		.loc 1 71 52 view .LVU112
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  552 0004 20EE817A 		vmul.f32	s14, s1, s2
  553              		.loc 1 77 31 view .LVU126
  554 0008 77EE877A 		vadd.f32	s15, s15, s14
-ARM GAS  /tmp/ccUGe7qS.s 			page 12
+ARM GAS  /tmp/ccEFhIz2.s 			page 12
 
 
  555              		.loc 1 77 9 view .LVU127
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
   88:Lib/FOC/FOC_math.c ****     *id = i_alpha * cos_theta + i_beta * sin_theta;
  601              		.loc 1 88 5 is_stmt 1 view .LVU140
  602              		.loc 1 88 19 is_stmt 0 view .LVU141
-ARM GAS  /tmp/ccUGe7qS.s 			page 13
+ARM GAS  /tmp/ccEFhIz2.s 			page 13
 
 
  603 0014 60EE217A 		vmul.f32	s15, s0, s3
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  654              		.loc 1 93 57 view .LVU155
  655 000c 61EE277A 		vmul.f32	s15, s2, s15
  656              		.loc 1 93 50 view .LVU156
-ARM GAS  /tmp/ccUGe7qS.s 			page 14
+ARM GAS  /tmp/ccEFhIz2.s 			page 14
 
 
  657 0010 30EE670A 		vsub.f32	s0, s0, s15
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  707              		.thumb_func
  708              		.fpu fpv4-sp-d16
  710              	inverse_park_transform:
-ARM GAS  /tmp/ccUGe7qS.s 			page 15
+ARM GAS  /tmp/ccEFhIz2.s 			page 15
 
 
  711              	.LVL61:
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  758              		@ link register save eliminated.
  108:Lib/FOC/FOC_math.c ****     *va = valpha;
  759              		.loc 1 108 5 view .LVU186
-ARM GAS  /tmp/ccUGe7qS.s 			page 16
+ARM GAS  /tmp/ccEFhIz2.s 			page 16
 
 
  760              		.loc 1 108 9 is_stmt 0 view .LVU187
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  810 0004 77EE817A 		vadd.f32	s15, s15, s2
  811              		.loc 1 114 11 view .LVU201
  812 0008 9FED0E7A 		vldr.32	s14, .L58
-ARM GAS  /tmp/ccUGe7qS.s 			page 17
+ARM GAS  /tmp/ccEFhIz2.s 			page 17
 
 
  813 000c 67EE877A 		vmul.f32	s15, s15, s14
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  862              		.align	1
  863              		.global	svpwm
  864              		.syntax unified
-ARM GAS  /tmp/ccUGe7qS.s 			page 18
+ARM GAS  /tmp/ccEFhIz2.s 			page 18
 
 
  865              		.thumb
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  898              		.loc 1 142 12 is_stmt 0 view .LVU229
  899 0014 F5EEC07A 		vcmpe.f32	s15, #0
  900 0018 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
-ARM GAS  /tmp/ccUGe7qS.s 			page 19
+ARM GAS  /tmp/ccEFhIz2.s 			page 19
 
 
  901 001c 29DB     		blt	.L78
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  936              		.loc 1 161 13 is_stmt 1 view .LVU243
  937              		.loc 1 161 34 is_stmt 0 view .LVU244
  938 005e 2518     		adds	r5, r4, r0
-ARM GAS  /tmp/ccUGe7qS.s 			page 20
+ARM GAS  /tmp/ccEFhIz2.s 			page 20
 
 
  939              		.loc 1 161 39 view .LVU245
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  974 008a 67EE266A 		vmul.f32	s13, s14, s13
  975              		.loc 1 175 48 view .LVU262
  976 008e 06EE100A 		vmov	s12, r0	@ int
-ARM GAS  /tmp/ccUGe7qS.s 			page 21
+ARM GAS  /tmp/ccEFhIz2.s 			page 21
 
 
  977 0092 B8EE466A 		vcvt.f32.u32	s12, s12
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  1024              		.loc 1 148 12 is_stmt 0 view .LVU283
  1025 00d2 F5EEC07A 		vcmpe.f32	s15, #0
  1026 00d6 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
-ARM GAS  /tmp/ccUGe7qS.s 			page 22
+ARM GAS  /tmp/ccEFhIz2.s 			page 22
 
 
  1027 00da 2EDB     		blt	.L79
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  1056              		.loc 1 200 35 view .LVU295
  1057 0114 77EE277A 		vadd.f32	s15, s14, s15
  1058              	.LVL98:
-ARM GAS  /tmp/ccUGe7qS.s 			page 23
+ARM GAS  /tmp/ccEFhIz2.s 			page 23
 
 
  1059              		.loc 1 200 58 view .LVU296
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  1102 014c 76EEE77A 		vsub.f32	s15, s13, s15
  1103              	.LVL103:
  183:Lib/FOC/FOC_math.c ****             t2 = (int32_t)(-TWO_BY_SQRT3 * beta * pwm_period);
-ARM GAS  /tmp/ccUGe7qS.s 			page 24
+ARM GAS  /tmp/ccEFhIz2.s 			page 24
 
 
  1104              		.loc 1 183 59 view .LVU317
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  1142 0188 0C60     		str	r4, [r1]
  188:Lib/FOC/FOC_math.c **** 
  1143              		.loc 1 188 13 is_stmt 1 view .LVU334
-ARM GAS  /tmp/ccUGe7qS.s 			page 25
+ARM GAS  /tmp/ccEFhIz2.s 			page 25
 
 
  1144 018a 21E0     		b	.L66
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  1182              		.loc 1 170 13 is_stmt 1 view .LVU350
  170:Lib/FOC/FOC_math.c ****             *pwm_w = *pwm_u - t1;
  1183              		.loc 1 170 29 is_stmt 0 view .LVU351
-ARM GAS  /tmp/ccUGe7qS.s 			page 26
+ARM GAS  /tmp/ccEFhIz2.s 			page 26
 
 
  1184 01c6 2C1B     		subs	r4, r5, r4
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  1226              		.loc 1 211 1 view .LVU369
  1227 01ee 30BC     		pop	{r4, r5}
  1228              	.LCFI12:
-ARM GAS  /tmp/ccUGe7qS.s 			page 27
+ARM GAS  /tmp/ccEFhIz2.s 			page 27
 
 
  1229              		.cfi_remember_state
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  193:Lib/FOC/FOC_math.c ****             *pwm_u = *pwm_w - t1;
  1270              		.loc 1 193 45 view .LVU383
  1271 022a 6D08     		lsrs	r5, r5, #1
-ARM GAS  /tmp/ccUGe7qS.s 			page 28
+ARM GAS  /tmp/ccEFhIz2.s 			page 28
 
 
  193:Lib/FOC/FOC_math.c ****             *pwm_u = *pwm_w - t1;
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  1317 000a 8DED021A 		vstr.32	s2, [sp, #8]
  1318 000e CDED031A 		vstr.32	s3, [sp, #12]
  215:Lib/FOC/FOC_math.c ****     complex_t result;
-ARM GAS  /tmp/ccUGe7qS.s 			page 29
+ARM GAS  /tmp/ccEFhIz2.s 			page 29
 
 
  1319              		.loc 1 215 5 view .LVU393
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  1369              		@ link register save eliminated.
  1370 0000 8AB0     		sub	sp, sp, #40
  1371              	.LCFI16:
-ARM GAS  /tmp/ccUGe7qS.s 			page 30
+ARM GAS  /tmp/ccEFhIz2.s 			page 30
 
 
  1372              		.cfi_def_cfa_offset 40
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  1421              	.LCFI18:
  1422              		.cfi_def_cfa_offset 40
  1423 0002 8DED040A 		vstr.32	s0, [sp, #16]
-ARM GAS  /tmp/ccUGe7qS.s 			page 31
+ARM GAS  /tmp/ccEFhIz2.s 			page 31
 
 
  1424 0006 CDED050A 		vstr.32	s1, [sp, #20]
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  1476 003c 9B7ABC3C 		.word	1018985115
  1477 0040 B00AC93C 		.word	1019808432
  1478 0044 A69AD53C 		.word	1020631718
-ARM GAS  /tmp/ccUGe7qS.s 			page 32
+ARM GAS  /tmp/ccEFhIz2.s 			page 32
 
 
  1479 0048 7B2AE23C 		.word	1021454971
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  1533 0120 2EBCE13D 		.word	1038203950
  1534 0124 76DBE43D 		.word	1038408566
  1535 0128 9AFAE73D 		.word	1038613146
-ARM GAS  /tmp/ccUGe7qS.s 			page 33
+ARM GAS  /tmp/ccEFhIz2.s 			page 33
 
 
  1536 012c 9A19EB3D 		.word	1038817690
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  1590 0204 1850493E 		.word	1044992024
  1591 0208 4FDA4A3E 		.word	1045092943
  1592 020c 67644C3E 		.word	1045193831
-ARM GAS  /tmp/ccUGe7qS.s 			page 34
+ARM GAS  /tmp/ccEFhIz2.s 			page 34
 
 
  1593 0210 60EE4D3E 		.word	1045294688
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  1647 02e8 2C1C903E 		.word	1049631788
  1648 02ec 10DD903E 		.word	1049681168
  1649 02f0 DD9D913E 		.word	1049730525
-ARM GAS  /tmp/ccUGe7qS.s 			page 35
+ARM GAS  /tmp/ccEFhIz2.s 			page 35
 
 
  1650 02f4 945E923E 		.word	1049779860
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  1704 03cc 6E76BA3E 		.word	1052407406
  1705 03d0 A031BB3E 		.word	1052455328
  1706 03d4 B6ECBB3E 		.word	1052503222
-ARM GAS  /tmp/ccUGe7qS.s 			page 36
+ARM GAS  /tmp/ccEFhIz2.s 			page 36
 
 
  1707 03d8 AFA7BC3E 		.word	1052551087
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  1761 04b0 FA63E33E 		.word	1055089658
  1762 04b4 0E18E43E 		.word	1055135758
  1763 04b8 FECBE43E 		.word	1055181822
-ARM GAS  /tmp/ccUGe7qS.s 			page 37
+ARM GAS  /tmp/ccEFhIz2.s 			page 37
 
 
  1764 04bc CB7FE53E 		.word	1055227851
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  1818 0594 624A053F 		.word	1057311330
  1819 0598 2CA0053F 		.word	1057333292
  1820 059c E2F5053F 		.word	1057355234
-ARM GAS  /tmp/ccUGe7qS.s 			page 38
+ARM GAS  /tmp/ccEFhIz2.s 			page 38
 
 
  1821 05a0 824B063F 		.word	1057377154
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  1875 0678 12DE173F 		.word	1058528786
  1876 067c F52E183F 		.word	1058549493
  1877 0680 C07F183F 		.word	1058570176
-ARM GAS  /tmp/ccUGe7qS.s 			page 39
+ARM GAS  /tmp/ccEFhIz2.s 			page 39
 
 
  1878 0684 73D0183F 		.word	1058590835
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  1932 075c B848293F 		.word	1059670200
  1933 0760 1594293F 		.word	1059689493
  1934 0764 57DF293F 		.word	1059708759
-ARM GAS  /tmp/ccUGe7qS.s 			page 40
+ARM GAS  /tmp/ccEFhIz2.s 			page 40
 
 
  1935 0768 802A2A3F 		.word	1059728000
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  1989 0840 4268393F 		.word	1060726850
  1990 0844 85AD393F 		.word	1060744581
  1991 0848 ACF2393F 		.word	1060762284
-ARM GAS  /tmp/ccUGe7qS.s 			page 41
+ARM GAS  /tmp/ccEFhIz2.s 			page 41
 
 
  1992 084c B7373A3F 		.word	1060779959
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  2046 0924 271D483F 		.word	1061690663
  2047 0928 CA5B483F 		.word	1061706698
  2048 092c 4E9A483F 		.word	1061722702
-ARM GAS  /tmp/ccUGe7qS.s 			page 42
+ARM GAS  /tmp/ccEFhIz2.s 			page 42
 
 
  2049 0930 B3D8483F 		.word	1061738675
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  2103 0a08 A44A553F 		.word	1062554276
  2104 0a0c 2C82553F 		.word	1062568492
  2105 0a10 93B9553F 		.word	1062582675
-ARM GAS  /tmp/ccUGe7qS.s 			page 43
+ARM GAS  /tmp/ccEFhIz2.s 			page 43
 
 
  2106 0a14 D9F0553F 		.word	1062596825
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  2160 0aec F2D6603F 		.word	1063311090
  2161 0af0 F206613F 		.word	1063323378
  2162 0af4 D036613F 		.word	1063335632
-ARM GAS  /tmp/ccUGe7qS.s 			page 44
+ARM GAS  /tmp/ccEFhIz2.s 			page 44
 
 
  2163 0af8 8A66613F 		.word	1063347850
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  2217 0bd0 7BAB6A3F 		.word	1063955323
  2218 0bd4 95D36A3F 		.word	1063965589
  2219 0bd8 8CFB6A3F 		.word	1063975820
-ARM GAS  /tmp/ccUGe7qS.s 			page 45
+ARM GAS  /tmp/ccEFhIz2.s 			page 45
 
 
  2220 0bdc 5E236B3F 		.word	1063986014
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  2274 0cb4 04B5723F 		.word	1064482052
  2275 0cb8 EBD4723F 		.word	1064490219
  2276 0cbc ACF4723F 		.word	1064498348
-ARM GAS  /tmp/ccUGe7qS.s 			page 46
+ARM GAS  /tmp/ccEFhIz2.s 			page 46
 
 
  2277 0cc0 4714733F 		.word	1064506439
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  2331 0d98 D6E3783F 		.word	1064887254
  2332 0d9c 4AFB783F 		.word	1064893258
  2333 0da0 9812793F 		.word	1064899224
-ARM GAS  /tmp/ccUGe7qS.s 			page 47
+ARM GAS  /tmp/ccEFhIz2.s 			page 47
 
 
  2334 0da4 BF29793F 		.word	1064905151
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  2388 0e7c D82B7D3F 		.word	1065167832
  2389 0e80 AC3A7D3F 		.word	1065171628
  2390 0e84 59497D3F 		.word	1065175385
-ARM GAS  /tmp/ccUGe7qS.s 			page 48
+ARM GAS  /tmp/ccEFhIz2.s 			page 48
 
 
  2391 0e88 DE577D3F 		.word	1065179102
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  2445 0f60 AB847F3F 		.word	1065321643
  2446 0f64 C28A7F3F 		.word	1065323202
  2447 0f68 B1907F3F 		.word	1065324721
-ARM GAS  /tmp/ccUGe7qS.s 			page 49
+ARM GAS  /tmp/ccEFhIz2.s 			page 49
 
 
  2448 0f6c 78967F3F 		.word	1065326200
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  2502 1044 B8E97F3F 		.word	1065347512
  2503 1048 05E77F3F 		.word	1065346821
  2504 104c 2BE47F3F 		.word	1065346091
-ARM GAS  /tmp/ccUGe7qS.s 			page 50
+ARM GAS  /tmp/ccEFhIz2.s 			page 50
 
 
  2505 1050 29E17F3F 		.word	1065345321
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  2559 1128 385A7E3F 		.word	1065245240
  2560 112c C14E7E3F 		.word	1065242305
  2561 1130 23437E3F 		.word	1065239331
-ARM GAS  /tmp/ccUGe7qS.s 			page 51
+ARM GAS  /tmp/ccEFhIz2.s 			page 51
 
 
  2562 1134 5E377E3F 		.word	1065236318
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  2616 120c 3AD97A3F 		.word	1065015610
  2617 1210 16C57A3F 		.word	1065010454
  2618 1214 CBB07A3F 		.word	1065005259
-ARM GAS  /tmp/ccUGe7qS.s 			page 52
+ARM GAS  /tmp/ccEFhIz2.s 			page 52
 
 
  2619 1218 599C7A3F 		.word	1065000025
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  2673 12f0 976D753F 		.word	1064660375
  2674 12f4 ED50753F 		.word	1064653037
  2675 12f8 1D34753F 		.word	1064645661
-ARM GAS  /tmp/ccUGe7qS.s 			page 53
+ARM GAS  /tmp/ccEFhIz2.s 			page 53
 
 
  2676 12fc 2717753F 		.word	1064638247
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  2730 13d4 EB216E3F 		.word	1064182251
  2731 13d8 F2FC6D3F 		.word	1064172786
  2732 13dc D5D76D3F 		.word	1064163285
-ARM GAS  /tmp/ccUGe7qS.s 			page 54
+ARM GAS  /tmp/ccEFhIz2.s 			page 54
 
 
  2733 13e0 93B26D3F 		.word	1064153747
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  2787 14b8 7904653F 		.word	1063584889
  2788 14bc 7BD7643F 		.word	1063573371
  2789 14c0 59AA643F 		.word	1063561817
-ARM GAS  /tmp/ccUGe7qS.s 			page 55
+ARM GAS  /tmp/ccEFhIz2.s 			page 55
 
 
  2790 14c4 147D643F 		.word	1063550228
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  2844 159c 16275A3F 		.word	1062872854
  2845 15a0 6AF2593F 		.word	1062859370
  2846 15a4 9CBD593F 		.word	1062845852
-ARM GAS  /tmp/ccUGe7qS.s 			page 56
+ARM GAS  /tmp/ccEFhIz2.s 			page 56
 
 
  2847 15a8 AD88593F 		.word	1062832301
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  2901 1680 029F4D3F 		.word	1062051586
  2902 1684 10634D3F 		.word	1062036240
  2903 1688 FD264D3F 		.word	1062020861
-ARM GAS  /tmp/ccUGe7qS.s 			page 57
+ARM GAS  /tmp/ccEFhIz2.s 			page 57
 
 
  2904 168c CBEA4C3F 		.word	1062005451
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  2958 1764 C0843F3F 		.word	1061127360
  2959 1768 FC413F3F 		.word	1061110268
  2960 176c 1BFF3E3F 		.word	1061093147
-ARM GAS  /tmp/ccUGe7qS.s 			page 58
+ARM GAS  /tmp/ccEFhIz2.s 			page 58
 
 
  2961 1770 1BBC3E3F 		.word	1061075995
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  3015 1848 E6F32F3F 		.word	1060107238
  3016 184c D3AA2F3F 		.word	1060088531
  3017 1850 A5612F3F 		.word	1060069797
-ARM GAS  /tmp/ccUGe7qS.s 			page 59
+ARM GAS  /tmp/ccEFhIz2.s 			page 59
 
 
  3018 1854 5B182F3F 		.word	1060051035
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  3072 192c E50A1F3F 		.word	1058999013
  3073 1930 12BC1E3F 		.word	1058978834
  3074 1934 266D1E3F 		.word	1058958630
-ARM GAS  /tmp/ccUGe7qS.s 			page 60
+ARM GAS  /tmp/ccEFhIz2.s 			page 60
 
 
  3075 1938 221E1E3F 		.word	1058938402
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  3129 1a10 D0EA0C3F 		.word	1057811152
  3130 1a14 D7960C3F 		.word	1057789655
  3131 1a18 C9420C3F 		.word	1057768137
-ARM GAS  /tmp/ccUGe7qS.s 			page 61
+ARM GAS  /tmp/ccEFhIz2.s 			page 61
 
 
  3132 1a1c A5EE0B3F 		.word	1057746597
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  3186 1af4 386EF33E 		.word	1056140856
  3187 1af8 43BDF23E 		.word	1056095555
  3188 1afc 290CF23E 		.word	1056050217
-ARM GAS  /tmp/ccUGe7qS.s 			page 62
+ARM GAS  /tmp/ccEFhIz2.s 			page 62
 
 
  3189 1b00 EA5AF13E 		.word	1056004842
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  3243 1bd8 AE2ACB3E 		.word	1053502126
  3244 1bdc 1072CA3E 		.word	1053454864
  3245 1be0 53B9C93E 		.word	1053407571
-ARM GAS  /tmp/ccUGe7qS.s 			page 63
+ARM GAS  /tmp/ccEFhIz2.s 			page 63
 
 
  3246 1be4 7700C93E 		.word	1053360247
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  3300 1cbc C259A13E 		.word	1050761666
  3301 1cc0 E59AA03E 		.word	1050712805
  3302 1cc4 EEDB9F3E 		.word	1050663918
-ARM GAS  /tmp/ccUGe7qS.s 			page 64
+ARM GAS  /tmp/ccEFhIz2.s 			page 64
 
 
  3303 1cc8 DF1C9F3E 		.word	1050615007
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  3357 1da0 7F9A6C3E 		.word	1047304831
  3358 1da4 2F136B3E 		.word	1047204655
  3359 1da8 BA8B693E 		.word	1047104442
-ARM GAS  /tmp/ccUGe7qS.s 			page 65
+ARM GAS  /tmp/ccEFhIz2.s 			page 65
 
 
  3360 1dac 2204683E 		.word	1047004194
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  3414 1e84 B2B2143E 		.word	1041543858
  3415 1e88 CA24133E 		.word	1041441994
  3416 1e8c CC96113E 		.word	1041340108
-ARM GAS  /tmp/ccUGe7qS.s 			page 66
+ARM GAS  /tmp/ccEFhIz2.s 			page 66
 
 
  3417 1e90 B708103E 		.word	1041238199
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  3471 1f68 38A06E3D 		.word	1030660152
  3472 1f6c 625A683D 		.word	1030249058
  3473 1f70 6814623D 		.word	1029837928
-ARM GAS  /tmp/ccUGe7qS.s 			page 67
+ARM GAS  /tmp/ccEFhIz2.s 			page 67
 
 
  3474 1f74 4CCE5B3D 		.word	1029426764
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  3528 204c 2DBAEEBC 		.word	-1125205459
  3529 2050 B949FBBC 		.word	-1124382279
  3530 2054 90EC03BD 		.word	-1123816304
-ARM GAS  /tmp/ccUGe7qS.s 			page 68
+ARM GAS  /tmp/ccEFhIz2.s 			page 68
 
 
  3531 2058 2F340ABD 		.word	-1123404753
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  3585 2130 7638EEBD 		.word	-1108461450
  3586 2134 2E57F1BD 		.word	-1108256978
  3587 2138 C075F4BD 		.word	-1108052544
-ARM GAS  /tmp/ccUGe7qS.s 			page 69
+ARM GAS  /tmp/ccEFhIz2.s 			page 69
 
 
  3588 213c 2C94F7BD 		.word	-1107848148
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  3642 2214 38784FBE 		.word	-1102088136
  3643 2218 F10151BE 		.word	-1101987343
  3644 221c 898B52BE 		.word	-1101886583
-ARM GAS  /tmp/ccUGe7qS.s 			page 70
+ARM GAS  /tmp/ccEFhIz2.s 			page 70
 
 
  3645 2220 011554BE 		.word	-1101785855
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  3699 22f8 351F93BE 		.word	-1097654475
  3700 22fc BFDF93BE 		.word	-1097605185
  3701 2300 31A094BE 		.word	-1097555919
-ARM GAS  /tmp/ccUGe7qS.s 			page 71
+ARM GAS  /tmp/ccEFhIz2.s 			page 71
 
 
  3702 2304 8D6095BE 		.word	-1097506675
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  3756 23dc 8B62BDBE 		.word	-1094884725
  3757 23e0 4A1DBEBE 		.word	-1094836918
  3758 23e4 EBD7BEBE 		.word	-1094789141
-ARM GAS  /tmp/ccUGe7qS.s 			page 72
+ARM GAS  /tmp/ccEFhIz2.s 			page 72
 
 
  3759 23e8 6F92BFBE 		.word	-1094741393
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  3813 24c0 7533E6BE 		.word	-1092209803
  3814 24c4 FBE6E6BE 		.word	-1092163845
  3815 24c8 5D9AE7BE 		.word	-1092117923
-ARM GAS  /tmp/ccUGe7qS.s 			page 73
+ARM GAS  /tmp/ccEFhIz2.s 			page 73
 
 
  3816 24cc 9C4DE8BE 		.word	-1092072036
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  3870 25a4 0EA106BF 		.word	-1090084594
  3871 25a8 86F606BF 		.word	-1090062714
  3872 25ac E84B07BF 		.word	-1090040856
-ARM GAS  /tmp/ccUGe7qS.s 			page 74
+ARM GAS  /tmp/ccEFhIz2.s 			page 74
 
 
  3873 25b0 36A107BF 		.word	-1090019018
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  3927 2688 0F2119BF 		.word	-1088872177
  3928 268c 947119BF 		.word	-1088851564
  3929 2690 00C219BF 		.word	-1088830976
-ARM GAS  /tmp/ccUGe7qS.s 			page 75
+ARM GAS  /tmp/ccEFhIz2.s 			page 75
 
 
  3930 2694 55121ABF 		.word	-1088810411
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  3984 276c 8E752ABF 		.word	-1087736434
  3985 2770 82C02ABF 		.word	-1087717246
  3986 2774 5B0B2BBF 		.word	-1087698085
-ARM GAS  /tmp/ccUGe7qS.s 			page 76
+ARM GAS  /tmp/ccEFhIz2.s 			page 76
 
 
  3987 2778 1B562BBF 		.word	-1087678949
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  4041 2850 A47C3ABF 		.word	-1086686044
  4042 2854 75C13ABF 		.word	-1086668427
  4043 2858 29063BBF 		.word	-1086650839
-ARM GAS  /tmp/ccUGe7qS.s 			page 77
+ARM GAS  /tmp/ccEFhIz2.s 			page 77
 
 
  4044 285c C14A3BBF 		.word	-1086633279
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  4098 2934 FA1649BF 		.word	-1085729030
  4099 2938 215549BF 		.word	-1085713119
  4100 293c 299349BF 		.word	-1085697239
-ARM GAS  /tmp/ccUGe7qS.s 			page 78
+ARM GAS  /tmp/ccEFhIz2.s 			page 78
 
 
  4101 2940 12D149BF 		.word	-1085681390
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  4155 2a18 FE2756BF 		.word	-1084872706
  4156 2a1c 025F56BF 		.word	-1084858622
  4157 2a20 E59556BF 		.word	-1084844571
-ARM GAS  /tmp/ccUGe7qS.s 			page 79
+ARM GAS  /tmp/ccEFhIz2.s 			page 79
 
 
  4158 2a24 A7CC56BF 		.word	-1084830553
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  4212 2afc 229661BF 		.word	-1084123614
  4213 2b00 98C561BF 		.word	-1084111464
  4214 2b04 EAF461BF 		.word	-1084099350
-ARM GAS  /tmp/ccUGe7qS.s 			page 80
+ARM GAS  /tmp/ccEFhIz2.s 			page 80
 
 
  4215 2b08 1A2462BF 		.word	-1084087270
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  4269 2be0 0C4B6BBF 		.word	-1083487476
  4270 2be4 95726BBF 		.word	-1083477355
  4271 2be8 FB996BBF 		.word	-1083467269
-ARM GAS  /tmp/ccUGe7qS.s 			page 81
+ARM GAS  /tmp/ccEFhIz2.s 			page 81
 
 
  4272 2bec 3BC16BBF 		.word	-1083457221
@@ -4858,7 +4858,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  4326 2cc4 BE3373BF 		.word	-1082969154
  4327 2cc8 0E5373BF 		.word	-1082961138
  4328 2ccc 397273BF 		.word	-1082953159
-ARM GAS  /tmp/ccUGe7qS.s 			page 82
+ARM GAS  /tmp/ccEFhIz2.s 			page 82
 
 
  4329 2cd0 3F9173BF 		.word	-1082945217
@@ -4918,7 +4918,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  4383 2da8 C04079BF 		.word	-1082572608
  4384 2dac 9A5779BF 		.word	-1082566758
  4385 2db0 4E6E79BF 		.word	-1082560946
-ARM GAS  /tmp/ccUGe7qS.s 			page 83
+ARM GAS  /tmp/ccEFhIz2.s 			page 83
 
 
  4386 2db4 DC8479BF 		.word	-1082555172
@@ -4978,7 +4978,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  4440 2e8c 3D667DBF 		.word	-1082300867
  4441 2e90 74747DBF 		.word	-1082297228
  4442 2e94 85827DBF 		.word	-1082293627
-ARM GAS  /tmp/ccUGe7qS.s 			page 84
+ARM GAS  /tmp/ccEFhIz2.s 			page 84
 
 
  4443 2e98 6E907DBF 		.word	-1082290066
@@ -5038,7 +5038,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  4497 2f70 189C7FBF 		.word	-1082156008
  4498 2f74 91A17FBF 		.word	-1082154607
  4499 2f78 E3A67FBF 		.word	-1082153245
-ARM GAS  /tmp/ccUGe7qS.s 			page 85
+ARM GAS  /tmp/ccEFhIz2.s 			page 85
 
 
  4500 2f7c 0DAC7FBF 		.word	-1082151923
@@ -5098,7 +5098,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  4554 3054 00DE7FBF 		.word	-1082139136
  4555 3058 AFDA7FBF 		.word	-1082139985
  4556 305c 37D77FBF 		.word	-1082140873
-ARM GAS  /tmp/ccUGe7qS.s 			page 86
+ARM GAS  /tmp/ccEFhIz2.s 			page 86
 
 
  4557 3060 98D37FBF 		.word	-1082141800
@@ -5158,7 +5158,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  4611 3138 722B7EBF 		.word	-1082250382
  4612 313c 5E1F7EBF 		.word	-1082253474
  4613 3140 24137EBF 		.word	-1082256604
-ARM GAS  /tmp/ccUGe7qS.s 			page 87
+ARM GAS  /tmp/ccEFhIz2.s 			page 87
 
 
  4614 3144 C2067EBF 		.word	-1082259774
@@ -5218,7 +5218,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  4668 321c C1877ABF 		.word	-1082488895
  4669 3220 02737ABF 		.word	-1082494206
  4670 3224 1C5E7ABF 		.word	-1082499556
-ARM GAS  /tmp/ccUGe7qS.s 			page 88
+ARM GAS  /tmp/ccEFhIz2.s 			page 88
 
 
  4671 3228 10497ABF 		.word	-1082504944
@@ -5278,7 +5278,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  4725 3300 0BFA74BF 		.word	-1082852853
  4726 3304 C9DC74BF 		.word	-1082860343
  4727 3308 62BF74BF 		.word	-1082867870
-ARM GAS  /tmp/ccUGe7qS.s 			page 89
+ARM GAS  /tmp/ccEFhIz2.s 			page 89
 
 
  4728 330c D5A174BF 		.word	-1082875435
@@ -5338,7 +5338,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  4782 33e4 2D8D6DBF 		.word	-1083339475
  4783 33e8 A1676DBF 		.word	-1083349087
  4784 33ec F2416DBF 		.word	-1083358734
-ARM GAS  /tmp/ccUGe7qS.s 			page 90
+ARM GAS  /tmp/ccEFhIz2.s 			page 90
 
 
  4785 33f0 1D1C6DBF 		.word	-1083368419
@@ -5398,7 +5398,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  4839 34c8 AC4F64BF 		.word	-1083945044
  4840 34cc 212264BF 		.word	-1083956703
  4841 34d0 73F463BF 		.word	-1083968397
-ARM GAS  /tmp/ccUGe7qS.s 			page 91
+ARM GAS  /tmp/ccEFhIz2.s 			page 91
 
 
  4842 34d4 A1C663BF 		.word	-1083980127
@@ -5458,7 +5458,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  4896 35ac 9C5359BF 		.word	-1084664932
  4897 35b0 6A1E59BF 		.word	-1084678550
  4898 35b4 17E958BF 		.word	-1084692201
-ARM GAS  /tmp/ccUGe7qS.s 			page 92
+ARM GAS  /tmp/ccEFhIz2.s 			page 92
 
 
  4899 35b8 A1B358BF 		.word	-1084705887
@@ -5518,7 +5518,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  4953 3690 79AE4CBF 		.word	-1085493639
  4954 3694 08724CBF 		.word	-1085509112
  4955 3698 78354CBF 		.word	-1085524616
-ARM GAS  /tmp/ccUGe7qS.s 			page 93
+ARM GAS  /tmp/ccEFhIz2.s 			page 93
 
 
  4956 369c C7F84BBF 		.word	-1085540153
@@ -5578,7 +5578,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  5010 3774 FF783EBF 		.word	-1086424833
  5011 3778 C5353EBF 		.word	-1086442043
  5012 377c 6EF23DBF 		.word	-1086459282
-ARM GAS  /tmp/ccUGe7qS.s 			page 94
+ARM GAS  /tmp/ccEFhIz2.s 			page 94
 
 
  5013 3780 F9AE3DBF 		.word	-1086476551
@@ -5638,7 +5638,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  5067 3858 F7CE2EBF 		.word	-1087451401
  5068 385c 78852EBF 		.word	-1087470216
  5069 3860 DE3B2EBF 		.word	-1087489058
-ARM GAS  /tmp/ccUGe7qS.s 			page 95
+ARM GAS  /tmp/ccEFhIz2.s 			page 95
 
 
  5070 3864 29F22DBF 		.word	-1087507927
@@ -5698,7 +5698,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  5124 393c 06CF1DBF 		.word	-1088565498
  5125 3940 D17F1DBF 		.word	-1088585775
  5126 3944 84301DBF 		.word	-1088606076
-ARM GAS  /tmp/ccUGe7qS.s 			page 96
+ARM GAS  /tmp/ccEFhIz2.s 			page 96
 
 
  5127 3948 1FE11CBF 		.word	-1088626401
@@ -5758,7 +5758,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  5181 3a20 6B9A0BBF 		.word	-1089758613
  5182 3a24 1C460BBF 		.word	-1089780196
  5183 3a28 B7F10ABF 		.word	-1089801801
-ARM GAS  /tmp/ccUGe7qS.s 			page 97
+ARM GAS  /tmp/ccEFhIz2.s 			page 97
 
 
  5184 3a2c 3D9D0ABF 		.word	-1089823427
@@ -5818,7 +5818,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  5238 3b04 85A9F0BE 		.word	-1091524219
  5239 3b08 FBF7EFBE 		.word	-1091569669
  5240 3b0c 4C46EFBE 		.word	-1091615156
-ARM GAS  /tmp/ccUGe7qS.s 			page 98
+ARM GAS  /tmp/ccEFhIz2.s 			page 98
 
 
  5241 3b10 7994EEBE 		.word	-1091660679
@@ -5878,7 +5878,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  5295 3be8 7C47C8BE 		.word	-1094170756
  5296 3bec 628EC7BE 		.word	-1094218142
  5297 3bf0 29D5C6BE 		.word	-1094265559
-ARM GAS  /tmp/ccUGe7qS.s 			page 99
+ARM GAS  /tmp/ccEFhIz2.s 			page 99
 
 
  5298 3bf4 D21BC6BE 		.word	-1094313006
@@ -5938,7 +5938,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  5352 3ccc B85D9EBE 		.word	-1096917576
  5353 3cd0 789E9DBE 		.word	-1096966536
  5354 3cd4 20DF9CBE 		.word	-1097015520
-ARM GAS  /tmp/ccUGe7qS.s 			page 100
+ARM GAS  /tmp/ccEFhIz2.s 			page 100
 
 
  5355 3cd8 AF1F9CBE 		.word	-1097064529
@@ -5998,7 +5998,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  5409 3db0 667C66BE 		.word	-1100579738
  5410 3db4 86F464BE 		.word	-1100680058
  5411 3db8 836C63BE 		.word	-1100780413
-ARM GAS  /tmp/ccUGe7qS.s 			page 101
+ARM GAS  /tmp/ccEFhIz2.s 			page 101
 
 
  5412 3dbc 5CE461BE 		.word	-1100880804
@@ -6058,7 +6058,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  5466 3e94 8B7A0EBE 		.word	-1106347381
  5467 3e98 4AEC0CBE 		.word	-1106449334
  5468 3e9c F35D0BBE 		.word	-1106551309
-ARM GAS  /tmp/ccUGe7qS.s 			page 102
+ARM GAS  /tmp/ccEFhIz2.s 			page 102
 
 
  5469 3ea0 86CF09BE 		.word	-1106653306
@@ -6118,7 +6118,7 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  5523 3f78 0E8855BD 		.word	-1118468082
  5524 3f7c AF414FBD 		.word	-1118879313
  5525 3f80 2FFB48BD 		.word	-1119290577
-ARM GAS  /tmp/ccUGe7qS.s 			page 103
+ARM GAS  /tmp/ccEFhIz2.s 			page 103
 
 
  5526 3f84 91B442BD 		.word	-1119701871
@@ -6158,58 +6158,58 @@ ARM GAS  /tmp/ccUGe7qS.s 			page 1
  5560              		.file 3 "Lib/FOC/FOC_math.h"
  5561              		.file 4 "/usr/include/newlib/math.h"
  5562              		.file 5 "Lib/FOC/trig_lut_tables.h"
-ARM GAS  /tmp/ccUGe7qS.s 			page 104
+ARM GAS  /tmp/ccEFhIz2.s 			page 104
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 FOC_math.c
-     /tmp/ccUGe7qS.s:18     .text.norm_angle_rad:0000000000000000 $t
-     /tmp/ccUGe7qS.s:26     .text.norm_angle_rad:0000000000000000 norm_angle_rad
-     /tmp/ccUGe7qS.s:73     .text.norm_angle_rad:0000000000000040 $d
-     /tmp/ccUGe7qS.s:78     .text.fast_sin:0000000000000000 $t
-     /tmp/ccUGe7qS.s:85     .text.fast_sin:0000000000000000 fast_sin
-     /tmp/ccUGe7qS.s:164    .text.fast_sin:0000000000000068 $d
-     /tmp/ccUGe7qS.s:1460   .rodata.sin_lut:0000000000000000 sin_lut
-     /tmp/ccUGe7qS.s:170    .text.fast_cos:0000000000000000 $t
-     /tmp/ccUGe7qS.s:177    .text.fast_cos:0000000000000000 fast_cos
-     /tmp/ccUGe7qS.s:203    .text.fast_cos:0000000000000010 $d
-     /tmp/ccUGe7qS.s:208    .text.fast_atan2:0000000000000000 $t
-     /tmp/ccUGe7qS.s:215    .text.fast_atan2:0000000000000000 fast_atan2
-     /tmp/ccUGe7qS.s:370    .text.fast_atan2:00000000000000c0 $d
-     /tmp/ccUGe7qS.s:380    .text.pre_calc_sin_cos:0000000000000000 $t
-     /tmp/ccUGe7qS.s:387    .text.pre_calc_sin_cos:0000000000000000 pre_calc_sin_cos
-     /tmp/ccUGe7qS.s:437    .text.clarke_transform:0000000000000000 $t
-     /tmp/ccUGe7qS.s:444    .text.clarke_transform:0000000000000000 clarke_transform
-     /tmp/ccUGe7qS.s:474    .text.clarke_transform:0000000000000020 $d
-     /tmp/ccUGe7qS.s:480    .text.clarke_transform_3input:0000000000000000 $t
-     /tmp/ccUGe7qS.s:487    .text.clarke_transform_3input:0000000000000000 clarke_transform_3input
-     /tmp/ccUGe7qS.s:527    .text.clarke_transform_3input:0000000000000034 $d
-     /tmp/ccUGe7qS.s:533    .text.park_transform:0000000000000000 $t
-     /tmp/ccUGe7qS.s:540    .text.park_transform:0000000000000000 park_transform
-     /tmp/ccUGe7qS.s:574    .text.clarke_park_transform:0000000000000000 $t
-     /tmp/ccUGe7qS.s:581    .text.clarke_park_transform:0000000000000000 clarke_park_transform
-     /tmp/ccUGe7qS.s:626    .text.clarke_park_transform:0000000000000038 $d
-     /tmp/ccUGe7qS.s:632    .text.clarke_park_transform_3input:0000000000000000 $t
-     /tmp/ccUGe7qS.s:639    .text.clarke_park_transform_3input:0000000000000000 clarke_park_transform_3input
-     /tmp/ccUGe7qS.s:697    .text.clarke_park_transform_3input:000000000000004c $d
-     /tmp/ccUGe7qS.s:703    .text.inverse_park_transform:0000000000000000 $t
-     /tmp/ccUGe7qS.s:710    .text.inverse_park_transform:0000000000000000 inverse_park_transform
-     /tmp/ccUGe7qS.s:744    .text.inverse_clarke_transform:0000000000000000 $t
-     /tmp/ccUGe7qS.s:751    .text.inverse_clarke_transform:0000000000000000 inverse_clarke_transform
-     /tmp/ccUGe7qS.s:786    .text.inverse_clarke_transform:0000000000000028 $d
-     /tmp/ccUGe7qS.s:791    .text.vabc_to_vdq:0000000000000000 $t
-     /tmp/ccUGe7qS.s:798    .text.vabc_to_vdq:0000000000000000 vabc_to_vdq
-     /tmp/ccUGe7qS.s:856    .text.vabc_to_vdq:0000000000000044 $d
-     /tmp/ccUGe7qS.s:862    .text.svpwm:0000000000000000 $t
-     /tmp/ccUGe7qS.s:869    .text.svpwm:0000000000000000 svpwm
-     /tmp/ccUGe7qS.s:1290   .text.svpwm:000000000000023c $d
-     /tmp/ccUGe7qS.s:1298   .text.complex_multiply:0000000000000000 $t
-     /tmp/ccUGe7qS.s:1305   .text.complex_multiply:0000000000000000 complex_multiply
-     /tmp/ccUGe7qS.s:1356   .text.complex_add:0000000000000000 $t
-     /tmp/ccUGe7qS.s:1363   .text.complex_add:0000000000000000 complex_add
-     /tmp/ccUGe7qS.s:1406   .text.complex_subtract:0000000000000000 $t
-     /tmp/ccUGe7qS.s:1413   .text.complex_subtract:0000000000000000 complex_subtract
-     /tmp/ccUGe7qS.s:1457   .rodata.sin_lut:0000000000000000 $d
+     /tmp/ccEFhIz2.s:18     .text.norm_angle_rad:0000000000000000 $t
+     /tmp/ccEFhIz2.s:26     .text.norm_angle_rad:0000000000000000 norm_angle_rad
+     /tmp/ccEFhIz2.s:73     .text.norm_angle_rad:0000000000000040 $d
+     /tmp/ccEFhIz2.s:78     .text.fast_sin:0000000000000000 $t
+     /tmp/ccEFhIz2.s:85     .text.fast_sin:0000000000000000 fast_sin
+     /tmp/ccEFhIz2.s:164    .text.fast_sin:0000000000000068 $d
+     /tmp/ccEFhIz2.s:1460   .rodata.sin_lut:0000000000000000 sin_lut
+     /tmp/ccEFhIz2.s:170    .text.fast_cos:0000000000000000 $t
+     /tmp/ccEFhIz2.s:177    .text.fast_cos:0000000000000000 fast_cos
+     /tmp/ccEFhIz2.s:203    .text.fast_cos:0000000000000010 $d
+     /tmp/ccEFhIz2.s:208    .text.fast_atan2:0000000000000000 $t
+     /tmp/ccEFhIz2.s:215    .text.fast_atan2:0000000000000000 fast_atan2
+     /tmp/ccEFhIz2.s:370    .text.fast_atan2:00000000000000c0 $d
+     /tmp/ccEFhIz2.s:380    .text.pre_calc_sin_cos:0000000000000000 $t
+     /tmp/ccEFhIz2.s:387    .text.pre_calc_sin_cos:0000000000000000 pre_calc_sin_cos
+     /tmp/ccEFhIz2.s:437    .text.clarke_transform:0000000000000000 $t
+     /tmp/ccEFhIz2.s:444    .text.clarke_transform:0000000000000000 clarke_transform
+     /tmp/ccEFhIz2.s:474    .text.clarke_transform:0000000000000020 $d
+     /tmp/ccEFhIz2.s:480    .text.clarke_transform_3input:0000000000000000 $t
+     /tmp/ccEFhIz2.s:487    .text.clarke_transform_3input:0000000000000000 clarke_transform_3input
+     /tmp/ccEFhIz2.s:527    .text.clarke_transform_3input:0000000000000034 $d
+     /tmp/ccEFhIz2.s:533    .text.park_transform:0000000000000000 $t
+     /tmp/ccEFhIz2.s:540    .text.park_transform:0000000000000000 park_transform
+     /tmp/ccEFhIz2.s:574    .text.clarke_park_transform:0000000000000000 $t
+     /tmp/ccEFhIz2.s:581    .text.clarke_park_transform:0000000000000000 clarke_park_transform
+     /tmp/ccEFhIz2.s:626    .text.clarke_park_transform:0000000000000038 $d
+     /tmp/ccEFhIz2.s:632    .text.clarke_park_transform_3input:0000000000000000 $t
+     /tmp/ccEFhIz2.s:639    .text.clarke_park_transform_3input:0000000000000000 clarke_park_transform_3input
+     /tmp/ccEFhIz2.s:697    .text.clarke_park_transform_3input:000000000000004c $d
+     /tmp/ccEFhIz2.s:703    .text.inverse_park_transform:0000000000000000 $t
+     /tmp/ccEFhIz2.s:710    .text.inverse_park_transform:0000000000000000 inverse_park_transform
+     /tmp/ccEFhIz2.s:744    .text.inverse_clarke_transform:0000000000000000 $t
+     /tmp/ccEFhIz2.s:751    .text.inverse_clarke_transform:0000000000000000 inverse_clarke_transform
+     /tmp/ccEFhIz2.s:786    .text.inverse_clarke_transform:0000000000000028 $d
+     /tmp/ccEFhIz2.s:791    .text.vabc_to_vdq:0000000000000000 $t
+     /tmp/ccEFhIz2.s:798    .text.vabc_to_vdq:0000000000000000 vabc_to_vdq
+     /tmp/ccEFhIz2.s:856    .text.vabc_to_vdq:0000000000000044 $d
+     /tmp/ccEFhIz2.s:862    .text.svpwm:0000000000000000 $t
+     /tmp/ccEFhIz2.s:869    .text.svpwm:0000000000000000 svpwm
+     /tmp/ccEFhIz2.s:1290   .text.svpwm:000000000000023c $d
+     /tmp/ccEFhIz2.s:1298   .text.complex_multiply:0000000000000000 $t
+     /tmp/ccEFhIz2.s:1305   .text.complex_multiply:0000000000000000 complex_multiply
+     /tmp/ccEFhIz2.s:1356   .text.complex_add:0000000000000000 $t
+     /tmp/ccEFhIz2.s:1363   .text.complex_add:0000000000000000 complex_add
+     /tmp/ccEFhIz2.s:1406   .text.complex_subtract:0000000000000000 $t
+     /tmp/ccEFhIz2.s:1413   .text.complex_subtract:0000000000000000 complex_subtract
+     /tmp/ccEFhIz2.s:1457   .rodata.sin_lut:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 fminf

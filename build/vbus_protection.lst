@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccdgNRdr.s 			page 1
+ARM GAS  /tmp/ccMADx3p.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccdgNRdr.s 			page 1
   30              		.loc 1 26 50 view -0
   31              		.cfi_startproc
   32              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccdgNRdr.s 			page 2
+ARM GAS  /tmp/ccMADx3p.s 			page 2
 
 
   33              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccdgNRdr.s 			page 1
   77 0050 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
   78 0054 08DB     		blt	.L6
   37:Lib/FOC/vbus_protection.c ****           hvbus->fault |= VBUS_FAULT_UV;
-ARM GAS  /tmp/ccdgNRdr.s 			page 3
+ARM GAS  /tmp/ccMADx3p.s 			page 3
 
 
   79              		.loc 1 37 11 is_stmt 1 view .LVU21
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccdgNRdr.s 			page 1
  110              		.loc 1 60 23 view .LVU35
  111 0084 93ED0B7A 		vldr.32	s14, [r3, #44]
  112 0088 77EE877A 		vadd.f32	s15, s15, s14
-ARM GAS  /tmp/ccdgNRdr.s 			page 4
+ARM GAS  /tmp/ccMADx3p.s 			page 4
 
 
  113 008c C3ED0B7A 		vstr.32	s15, [r3, #44]
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccdgNRdr.s 			page 1
  153              		.loc 1 49 22 is_stmt 0 view .LVU53
  154 00d8 22F00102 		bic	r2, r2, #1
  155 00dc 80F83820 		strb	r2, [r0, #56]
-ARM GAS  /tmp/ccdgNRdr.s 			page 5
+ARM GAS  /tmp/ccMADx3p.s 			page 5
 
 
   50:Lib/FOC/vbus_protection.c ****       }
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccdgNRdr.s 			page 1
  184              		.loc 1 85 5 is_stmt 1 view .LVU66
  185              		.loc 1 85 12 is_stmt 0 view .LVU67
  186 0100 0120     		movs	r0, #1
-ARM GAS  /tmp/ccdgNRdr.s 			page 6
+ARM GAS  /tmp/ccMADx3p.s 			page 6
 
 
  187              	.LVL1:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccdgNRdr.s 			page 1
  226 0140 5A63     		str	r2, [r3, #52]	@ float
  227 0142 D5E7     		b	.L14
  228              	.L19:
-ARM GAS  /tmp/ccdgNRdr.s 			page 7
+ARM GAS  /tmp/ccMADx3p.s 			page 7
 
 
   28:Lib/FOC/vbus_protection.c ****   }
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccdgNRdr.s 			page 1
  278              	.LVL8:
  279              	.LFB3:
   93:Lib/FOC/vbus_protection.c **** 
-ARM GAS  /tmp/ccdgNRdr.s 			page 8
+ARM GAS  /tmp/ccMADx3p.s 			page 8
 
 
   94:Lib/FOC/vbus_protection.c **** void vbus_reset(vbus_t *hvbus) {
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccdgNRdr.s 			page 1
  326              		@ args = 0, pretend = 0, frame = 0
  327              		@ frame_needed = 0, uses_anonymous_args = 0
    6:Lib/FOC/vbus_protection.c ****     return -1;
-ARM GAS  /tmp/ccdgNRdr.s 			page 9
+ARM GAS  /tmp/ccMADx3p.s 			page 9
 
 
  328              		.loc 1 6 3 view .LVU109
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccdgNRdr.s 			page 1
   17:Lib/FOC/vbus_protection.c ****   hvbus->ov_trip_time = 0.0f;     /* immediate */
  365              		.loc 1 17 3 is_stmt 1 view .LVU127
   17:Lib/FOC/vbus_protection.c ****   hvbus->ov_trip_time = 0.0f;     /* immediate */
-ARM GAS  /tmp/ccdgNRdr.s 			page 10
+ARM GAS  /tmp/ccMADx3p.s 			page 10
 
 
  366              		.loc 1 17 23 is_stmt 0 view .LVU128
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccdgNRdr.s 			page 1
  408              	.L44:
  409 0052 00BF     		.align	2
  410              	.L43:
-ARM GAS  /tmp/ccdgNRdr.s 			page 11
+ARM GAS  /tmp/ccMADx3p.s 			page 11
 
 
  411 0054 0AD7A33B 		.word	1000593162
@@ -609,19 +609,19 @@ ARM GAS  /tmp/ccdgNRdr.s 			page 1
  417              	.Letext0:
  418              		.file 2 "Lib/FOC/vbus_protection.h"
  419              		.file 3 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
-ARM GAS  /tmp/ccdgNRdr.s 			page 12
+ARM GAS  /tmp/ccMADx3p.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 vbus_protection.c
-     /tmp/ccdgNRdr.s:18     .text.vbus_update:0000000000000000 $t
-     /tmp/ccdgNRdr.s:26     .text.vbus_update:0000000000000000 vbus_update
-     /tmp/ccdgNRdr.s:245    .text.vbus_get_fault:0000000000000000 $t
-     /tmp/ccdgNRdr.s:252    .text.vbus_get_fault:0000000000000000 vbus_get_fault
-     /tmp/ccdgNRdr.s:270    .text.vbus_reset:0000000000000000 $t
-     /tmp/ccdgNRdr.s:277    .text.vbus_reset:0000000000000000 vbus_reset
-     /tmp/ccdgNRdr.s:314    .text.vbus_init:0000000000000000 $t
-     /tmp/ccdgNRdr.s:321    .text.vbus_init:0000000000000000 vbus_init
-     /tmp/ccdgNRdr.s:411    .text.vbus_init:0000000000000054 $d
+     /tmp/ccMADx3p.s:18     .text.vbus_update:0000000000000000 $t
+     /tmp/ccMADx3p.s:26     .text.vbus_update:0000000000000000 vbus_update
+     /tmp/ccMADx3p.s:245    .text.vbus_get_fault:0000000000000000 $t
+     /tmp/ccMADx3p.s:252    .text.vbus_get_fault:0000000000000000 vbus_get_fault
+     /tmp/ccMADx3p.s:270    .text.vbus_reset:0000000000000000 $t
+     /tmp/ccMADx3p.s:277    .text.vbus_reset:0000000000000000 vbus_reset
+     /tmp/ccMADx3p.s:314    .text.vbus_init:0000000000000000 $t
+     /tmp/ccMADx3p.s:321    .text.vbus_init:0000000000000000 vbus_init
+     /tmp/ccMADx3p.s:411    .text.vbus_init:0000000000000054 $d
 
 NO UNDEFINED SYMBOLS

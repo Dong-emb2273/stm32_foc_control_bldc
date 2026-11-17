@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cchV2Psf.s 			page 1
+ARM GAS  /tmp/ccczyQoM.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cchV2Psf.s 			page 1
   48              		.loc 1 8 5 view .LVU4
   49              		.loc 1 8 16 is_stmt 0 view .LVU5
   50 0006 4C1E     		subs	r4, r1, #1
-ARM GAS  /tmp/cchV2Psf.s 			page 2
+ARM GAS  /tmp/ccczyQoM.s 			page 2
 
 
   51              		.loc 1 8 21 view .LVU6
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cchV2Psf.s 			page 1
   42:Lib/Digital_Filter/moving_average.c **** 
   43:Lib/Digital_Filter/moving_average.c ****             if (++slot == r) slot = 0;
   44:Lib/Digital_Filter/moving_average.c ****         }
-ARM GAS  /tmp/cchV2Psf.s 			page 3
+ARM GAS  /tmp/ccczyQoM.s 			page 3
 
 
   45:Lib/Digital_Filter/moving_average.c ****     }
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cchV2Psf.s 			page 1
   17:Lib/Digital_Filter/moving_average.c ****         /* Save the first r+1 originals before they get overwritten */
  111              		.loc 1 17 18 view .LVU26
  112 003e EDB2     		uxtb	r5, r5
-ARM GAS  /tmp/cchV2Psf.s 			page 4
+ARM GAS  /tmp/ccczyQoM.s 			page 4
 
 
  113              	.LVL10:
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cchV2Psf.s 			page 1
  152              		.loc 1 24 15 view .LVU41
  153 0062 DFED277A 		vldr.32	s15, .L24
  154              	.LBB5:
-ARM GAS  /tmp/cchV2Psf.s 			page 5
+ARM GAS  /tmp/ccczyQoM.s 			page 5
 
 
   25:Lib/Digital_Filter/moving_average.c ****             sum += data[(k + n) % n];
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cchV2Psf.s 			page 1
   33:Lib/Digital_Filter/moving_average.c **** 
  195              		.loc 1 33 48 discriminator 2 view .LVU56
  196 008c 0C44     		add	r4, r4, r1
-ARM GAS  /tmp/cchV2Psf.s 			page 6
+ARM GAS  /tmp/ccczyQoM.s 			page 6
 
 
   33:Lib/Digital_Filter/moving_average.c **** 
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cchV2Psf.s 			page 1
   43:Lib/Digital_Filter/moving_average.c ****         }
  236              		.loc 1 43 16 view .LVU72
  237 00cc 6345     		cmp	r3, ip
-ARM GAS  /tmp/cchV2Psf.s 			page 7
+ARM GAS  /tmp/ccczyQoM.s 			page 7
 
 
  238 00ce 13D0     		beq	.L23
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cchV2Psf.s 			page 1
  277              		.loc 1 43 35 view .LVU87
  278 00f8 4FF0000C 		mov	ip, #0
  279              	.LVL27:
-ARM GAS  /tmp/cchV2Psf.s 			page 8
+ARM GAS  /tmp/ccczyQoM.s 			page 8
 
 
   43:Lib/Digital_Filter/moving_average.c ****         }
@@ -436,13 +436,13 @@ ARM GAS  /tmp/cchV2Psf.s 			page 1
  292              		.text
  293              	.Letext0:
  294              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
-ARM GAS  /tmp/cchV2Psf.s 			page 9
+ARM GAS  /tmp/ccczyQoM.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 moving_average.c
-     /tmp/cchV2Psf.s:18     .text.circular_moving_average:0000000000000000 $t
-     /tmp/cchV2Psf.s:26     .text.circular_moving_average:0000000000000000 circular_moving_average
-     /tmp/cchV2Psf.s:285    .text.circular_moving_average:0000000000000100 $d
+     /tmp/ccczyQoM.s:18     .text.circular_moving_average:0000000000000000 $t
+     /tmp/ccczyQoM.s:26     .text.circular_moving_average:0000000000000000 circular_moving_average
+     /tmp/ccczyQoM.s:285    .text.circular_moving_average:0000000000000100 $d
 
 NO UNDEFINED SYMBOLS

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccWKKE4W.s 			page 1
+ARM GAS  /tmp/ccfWwQET.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
   49              		.section	.text.storage_save_config,"ax",%progbits
   50              		.align	1
   51              		.global	storage_save_config
-ARM GAS  /tmp/ccWKKE4W.s 			page 2
+ARM GAS  /tmp/ccfWwQET.s 			page 2
 
 
   52              		.syntax unified
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
   98              		.section	.text.storage_default_config,"ax",%progbits
   99              		.align	1
  100              		.global	storage_default_config
-ARM GAS  /tmp/ccWKKE4W.s 			page 3
+ARM GAS  /tmp/ccfWwQET.s 			page 3
 
 
  101              		.syntax unified
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
  138 0010 404B     		ldr	r3, .L9
  139 0012 C360     		str	r3, [r0, #12]	@ float
   36:Lib/STORAGE/storage.c ****     s->memory.motor_config.Rs = 0;
-ARM GAS  /tmp/ccWKKE4W.s 			page 4
+ARM GAS  /tmp/ccfWwQET.s 			page 4
 
 
  140              		.loc 1 36 5 is_stmt 1 view .LVU31
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
  181 003e C163     		str	r1, [r0, #60]	@ float
   50:Lib/STORAGE/storage.c ****     s->memory.iq_control.ki = 12.0f;
  182              		.loc 1 50 5 is_stmt 1 view .LVU55
-ARM GAS  /tmp/ccWKKE4W.s 			page 5
+ARM GAS  /tmp/ccfWwQET.s 			page 5
 
 
  183              		.loc 1 50 29 is_stmt 0 view .LVU56
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
  223              		.loc 1 64 5 is_stmt 1 view .LVU78
  224              		.loc 1 64 35 is_stmt 0 view .LVU79
  225 006a DFED317A 		vldr.32	s15, .L9+28
-ARM GAS  /tmp/ccWKKE4W.s 			page 6
+ARM GAS  /tmp/ccfWwQET.s 			page 6
 
 
  226 006e C4ED1B7A 		vstr.32	s15, [r4, #108]
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
  266 00a4 84F89C50 		strb	r5, [r4, #156]
   79:Lib/STORAGE/storage.c ****     
   80:Lib/STORAGE/storage.c ****     s->memory.mtpa.enable = 0;
-ARM GAS  /tmp/ccWKKE4W.s 			page 7
+ARM GAS  /tmp/ccfWwQET.s 			page 7
 
 
  267              		.loc 1 80 5 is_stmt 1 view .LVU104
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
   95:Lib/STORAGE/storage.c ****     s->memory.encoder_config.pll_filt_bandwidth = 500.0f;
  307              		.loc 1 95 5 is_stmt 1 view .LVU128
  308              		.loc 1 95 49 is_stmt 0 view .LVU129
-ARM GAS  /tmp/ccWKKE4W.s 			page 8
+ARM GAS  /tmp/ccfWwQET.s 			page 8
 
 
  309 00e0 1B4B     		ldr	r3, .L9+60
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
  357 0158 00004040 		.word	1077936128
  358 015c 0000A040 		.word	1084227584
  359              		.cfi_endproc
-ARM GAS  /tmp/ccWKKE4W.s 			page 9
+ARM GAS  /tmp/ccfWwQET.s 			page 9
 
 
  360              	.LFE4:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
   23:Lib/STORAGE/storage.c ****         // set default
  406              		.loc 1 23 41 discriminator 1 view .LVU148
  407 0024 552B     		cmp	r3, #85
-ARM GAS  /tmp/ccWKKE4W.s 			page 10
+ARM GAS  /tmp/ccfWwQET.s 			page 10
 
 
  408 0026 02D0     		beq	.L11
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
  457              		.loc 1 105 44 is_stmt 0 view .LVU158
  458 000a 037A     		ldrb	r3, [r0, #8]	@ zero_extendqisi2
  459              		.loc 1 105 20 view .LVU159
-ARM GAS  /tmp/ccWKKE4W.s 			page 11
+ARM GAS  /tmp/ccfWwQET.s 			page 11
 
 
  460 000c 81F8E430 		strb	r3, [r1, #228]
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
  505 0042 C1F86C31 		str	r3, [r1, #364]	@ float
  115:Lib/STORAGE/storage.c ****     hfoc->motor.is_phase_inverted = s->memory.motor_config.is_phase_inverted;
  506              		.loc 1 115 5 is_stmt 1 view .LVU187
-ARM GAS  /tmp/ccWKKE4W.s 			page 12
+ARM GAS  /tmp/ccfWwQET.s 			page 12
 
 
  507              		.loc 1 115 59 is_stmt 0 view .LVU188
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
  550 007a C1F88832 		str	r3, [r1, #648]	@ float
  127:Lib/STORAGE/storage.c ****     pid_set_out_constraint(&hfoc->speed_ctrl, s->memory.speed_control.out_max, -s->memory.speed_con
  551              		.loc 1 127 5 is_stmt 1 view .LVU214
-ARM GAS  /tmp/ccWKKE4W.s 			page 13
+ARM GAS  /tmp/ccfWwQET.s 			page 13
 
 
  552 007e 90ED190A 		vldr.32	s0, [r0, #100]
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
  596              		.loc 1 137 5 view .LVU233
  597 00c8 05F53D76 		add	r6, r5, #756
  598 00cc 94ED210A 		vldr.32	s0, [r4, #132]
-ARM GAS  /tmp/ccWKKE4W.s 			page 14
+ARM GAS  /tmp/ccfWwQET.s 			page 14
 
 
  599 00d0 3046     		mov	r0, r6
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
  642 011e 2B62     		str	r3, [r5, #32]	@ float
  149:Lib/STORAGE/storage.c ****     hfoc->motor.ia_offset = s->memory.current_sens.ia_offset;
  643              		.loc 1 149 5 is_stmt 1 view .LVU252
-ARM GAS  /tmp/ccWKKE4W.s 			page 15
+ARM GAS  /tmp/ccfWwQET.s 			page 15
 
 
  644              		.loc 1 149 51 is_stmt 0 view .LVU253
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
  691              		.thumb
  692              		.thumb_func
  693              		.fpu fpv4-sp-d16
-ARM GAS  /tmp/ccWKKE4W.s 			page 16
+ARM GAS  /tmp/ccfWwQET.s 			page 16
 
 
  695              	storage_copy_from_local:
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
  740              		.loc 1 166 31 view .LVU292
  741 0028 4361     		str	r3, [r0, #20]	@ float
  167:Lib/STORAGE/storage.c ****     s->memory.motor_config.Lq = hfoc->Lq;
-ARM GAS  /tmp/ccWKKE4W.s 			page 17
+ARM GAS  /tmp/ccfWwQET.s 			page 17
 
 
  742              		.loc 1 167 5 is_stmt 1 view .LVU293
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
  784 005c D1F84C32 		ldr	r3, [r1, #588]	@ float
  785              		.loc 1 179 29 view .LVU319
  786 0060 C363     		str	r3, [r0, #60]	@ float
-ARM GAS  /tmp/ccWKKE4W.s 			page 18
+ARM GAS  /tmp/ccfWwQET.s 			page 18
 
 
  180:Lib/STORAGE/storage.c ****     s->memory.iq_control.ki = hfoc->iq_ctrl.ki;
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
  828              		.loc 1 192 50 is_stmt 0 view .LVU345
  829 0092 D1F88832 		ldr	r3, [r1, #648]	@ float
  830              		.loc 1 192 32 view .LVU346
-ARM GAS  /tmp/ccWKKE4W.s 			page 19
+ARM GAS  /tmp/ccfWwQET.s 			page 19
 
 
  831 0096 0366     		str	r3, [r0, #96]	@ float
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
  872              		.loc 1 205 5 is_stmt 1 view .LVU371
  873              		.loc 1 205 38 is_stmt 0 view .LVU372
  874 00ca 01F53D76 		add	r6, r1, #756
-ARM GAS  /tmp/ccWKKE4W.s 			page 20
+ARM GAS  /tmp/ccfWwQET.s 			page 20
 
 
  875 00ce 3046     		mov	r0, r6
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
  918 010c 95F84133 		ldrb	r3, [r5, #833]	@ zero_extendqisi2
  919              		.loc 1 216 27 view .LVU395
  920 0110 84F8A030 		strb	r3, [r4, #160]
-ARM GAS  /tmp/ccWKKE4W.s 			page 21
+ARM GAS  /tmp/ccfWwQET.s 			page 21
 
 
  217:Lib/STORAGE/storage.c **** 
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
  963              	.LFE6:
  965              		.text
  966              	.Letext0:
-ARM GAS  /tmp/ccWKKE4W.s 			page 22
+ARM GAS  /tmp/ccfWwQET.s 			page 22
 
 
  967              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
@@ -1277,25 +1277,25 @@ ARM GAS  /tmp/ccWKKE4W.s 			page 1
  980              		.file 15 "Lib/FOC/FOC_utils.h"
  981              		.file 16 "Lib/STORAGE/storage.h"
  982              		.file 17 "<built-in>"
-ARM GAS  /tmp/ccWKKE4W.s 			page 23
+ARM GAS  /tmp/ccfWwQET.s 			page 23
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 storage.c
-     /tmp/ccWKKE4W.s:18     .text.storage_init:0000000000000000 $t
-     /tmp/ccWKKE4W.s:26     .text.storage_init:0000000000000000 storage_init
-     /tmp/ccWKKE4W.s:50     .text.storage_save_config:0000000000000000 $t
-     /tmp/ccWKKE4W.s:57     .text.storage_save_config:0000000000000000 storage_save_config
-     /tmp/ccWKKE4W.s:99     .text.storage_default_config:0000000000000000 $t
-     /tmp/ccWKKE4W.s:106    .text.storage_default_config:0000000000000000 storage_default_config
-     /tmp/ccWKKE4W.s:340    .text.storage_default_config:0000000000000114 $d
-     /tmp/ccWKKE4W.s:363    .text.storage_read_config:0000000000000000 $t
-     /tmp/ccWKKE4W.s:370    .text.storage_read_config:0000000000000000 storage_read_config
-     /tmp/ccWKKE4W.s:427    .text.storage_copy_to_local:0000000000000000 $t
-     /tmp/ccWKKE4W.s:434    .text.storage_copy_to_local:0000000000000000 storage_copy_to_local
-     /tmp/ccWKKE4W.s:683    .text.storage_copy_to_local:000000000000014c $d
-     /tmp/ccWKKE4W.s:688    .text.storage_copy_from_local:0000000000000000 $t
-     /tmp/ccWKKE4W.s:695    .text.storage_copy_from_local:0000000000000000 storage_copy_from_local
+     /tmp/ccfWwQET.s:18     .text.storage_init:0000000000000000 $t
+     /tmp/ccfWwQET.s:26     .text.storage_init:0000000000000000 storage_init
+     /tmp/ccfWwQET.s:50     .text.storage_save_config:0000000000000000 $t
+     /tmp/ccfWwQET.s:57     .text.storage_save_config:0000000000000000 storage_save_config
+     /tmp/ccfWwQET.s:99     .text.storage_default_config:0000000000000000 $t
+     /tmp/ccfWwQET.s:106    .text.storage_default_config:0000000000000000 storage_default_config
+     /tmp/ccfWwQET.s:340    .text.storage_default_config:0000000000000114 $d
+     /tmp/ccfWwQET.s:363    .text.storage_read_config:0000000000000000 $t
+     /tmp/ccfWwQET.s:370    .text.storage_read_config:0000000000000000 storage_read_config
+     /tmp/ccfWwQET.s:427    .text.storage_copy_to_local:0000000000000000 $t
+     /tmp/ccfWwQET.s:434    .text.storage_copy_to_local:0000000000000000 storage_copy_to_local
+     /tmp/ccfWwQET.s:683    .text.storage_copy_to_local:000000000000014c $d
+     /tmp/ccfWwQET.s:688    .text.storage_copy_from_local:0000000000000000 $t
+     /tmp/ccfWwQET.s:695    .text.storage_copy_from_local:0000000000000000 storage_copy_from_local
 
 UNDEFINED SYMBOLS
 memset

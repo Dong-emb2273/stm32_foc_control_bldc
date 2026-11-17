@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccgRO647.s 			page 1
+ARM GAS  /tmp/ccDSJYRe.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
   53              		.section	.text.s_curve_reset,"ax",%progbits
   54              		.align	1
   55              		.global	s_curve_reset
-ARM GAS  /tmp/ccgRO647.s 			page 2
+ARM GAS  /tmp/ccDSJYRe.s 			page 2
 
 
   56              		.syntax unified
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
   98              		.loc 1 17 5 is_stmt 1 view .LVU25
   99              		.loc 1 17 18 is_stmt 0 view .LVU26
  100 0022 0122     		movs	r2, #1
-ARM GAS  /tmp/ccgRO647.s 			page 3
+ARM GAS  /tmp/ccDSJYRe.s 			page 3
 
 
  101 0024 80F88C20 		strb	r2, [r0, #140]
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  150              		.loc 1 24 3 is_stmt 1 view .LVU36
  151              		.loc 1 24 6 is_stmt 0 view .LVU37
  152 0012 0028     		cmp	r0, #0
-ARM GAS  /tmp/ccgRO647.s 			page 4
+ARM GAS  /tmp/ccDSJYRe.s 			page 4
 
 
  153 0014 00F05281 		beq	.L24
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  196              		.loc 1 35 14 is_stmt 0 discriminator 4 view .LVU55
  197 006c 0023     		movs	r3, #0
  198 006e E367     		str	r3, [r4, #124]	@ float
-ARM GAS  /tmp/ccgRO647.s 			page 5
+ARM GAS  /tmp/ccDSJYRe.s 			page 5
 
 
   36:Lib/Control/trajectory.c ****     sc->pos = start_pos;
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  230              		.loc 1 58 9 is_stmt 1 view .LVU72
  231              		.loc 1 58 14 is_stmt 0 view .LVU73
  232 00a6 8AEE288A 		vdiv.f32	s16, s20, s17
-ARM GAS  /tmp/ccgRO647.s 			page 6
+ARM GAS  /tmp/ccDSJYRe.s 			page 6
 
 
  233              	.LVL12:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
   80:Lib/Control/trajectory.c ****             /* a_max tetap tercapai, tapi tanpa fase kecepatan konstan */
   81:Lib/Control/trajectory.c ****             Tj1 = a_max / j_max;
   82:Lib/Control/trajectory.c ****             Ta  = Tj1 * 0.5f + sqrtf((Tj1 * 0.5f) * (Tj1 * 0.5f) + h_d / a_max);
-ARM GAS  /tmp/ccgRO647.s 			page 7
+ARM GAS  /tmp/ccDSJYRe.s 			page 7
 
 
   83:Lib/Control/trajectory.c ****             alim = a_max;
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  296              	.LVL20:
  107:Lib/Control/trajectory.c ****     float p1 = (1.0f / 6.0f) * j * t1 * t1 * t1;
  297              		.loc 1 107 5 is_stmt 1 view .LVU108
-ARM GAS  /tmp/ccgRO647.s 			page 8
+ARM GAS  /tmp/ccDSJYRe.s 			page 8
 
 
  298              		.loc 1 107 30 is_stmt 0 view .LVU109
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  343              		.loc 1 116 5 is_stmt 1 view .LVU128
  117:Lib/Control/trajectory.c ****     float v3 = v2 + a * t3d - 0.5f * j * t3d * t3d; /* == vlim */
  344              		.loc 1 117 5 view .LVU129
-ARM GAS  /tmp/ccgRO647.s 			page 9
+ARM GAS  /tmp/ccDSJYRe.s 			page 9
 
 
  345              		.loc 1 117 23 is_stmt 0 view .LVU130
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  386              		.loc 1 130 5 is_stmt 1 view .LVU150
  131:Lib/Control/trajectory.c ****     if (dt6 < 0.0f) dt6 = 0.0f;
  387              		.loc 1 131 5 view .LVU151
-ARM GAS  /tmp/ccgRO647.s 			page 10
+ARM GAS  /tmp/ccDSJYRe.s 			page 10
 
 
  132:Lib/Control/trajectory.c ****     float v6 = v5 - a * dt6;
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  435              		.loc 1 138 12 view .LVU180
  436 01be 84ED100A 		vstr.32	s0, [r4, #64]
  437              		.loc 1 138 28 is_stmt 1 view .LVU181
-ARM GAS  /tmp/ccgRO647.s 			page 11
+ARM GAS  /tmp/ccDSJYRe.s 			page 11
 
 
  438              		.loc 1 138 35 is_stmt 0 view .LVU182
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  486              	.LVL38:
  487              	.L41:
  488              	.LCFI3:
-ARM GAS  /tmp/ccgRO647.s 			page 12
+ARM GAS  /tmp/ccDSJYRe.s 			page 12
 
 
  489              		.cfi_restore_state
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  525              		.loc 1 46 9 is_stmt 1 view .LVU221
   46:Lib/Control/trajectory.c ****         sc->p5 = sc->v5 = sc->p6 = sc->v6 = 0.0f;
  526              		.loc 1 46 70 is_stmt 0 view .LVU222
-ARM GAS  /tmp/ccgRO647.s 			page 13
+ARM GAS  /tmp/ccDSJYRe.s 			page 13
 
 
  527 0216 A366     		str	r3, [r4, #104]	@ float
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  563              		.loc 1 63 16 view .LVU240
  564 023a FFF7FEFF 		bl	sqrtf
  565              	.LVL42:
-ARM GAS  /tmp/ccgRO647.s 			page 14
+ARM GAS  /tmp/ccDSJYRe.s 			page 14
 
 
  566 023e B0EE408A 		vmov.f32	s16, s0
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  604              	.LVL49:
   87:Lib/Control/trajectory.c ****             alim = j_max * Tj1;
  605              		.loc 1 87 13 is_stmt 1 view .LVU257
-ARM GAS  /tmp/ccgRO647.s 			page 15
+ARM GAS  /tmp/ccDSJYRe.s 			page 15
 
 
   87:Lib/Control/trajectory.c ****             alim = j_max * Tj1;
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
   82:Lib/Control/trajectory.c ****             alim = a_max;
  644              		.loc 1 82 32 view .LVU274
  645 02a4 30EE270A 		vadd.f32	s0, s0, s15
-ARM GAS  /tmp/ccgRO647.s 			page 16
+ARM GAS  /tmp/ccDSJYRe.s 			page 16
 
 
  646 02a8 FFF7FEFF 		bl	sqrtf
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
   25:Lib/Control/trajectory.c ****   }
  688              		.loc 1 25 14 view .LVU287
  689 02d2 8DE7     		b	.L9
-ARM GAS  /tmp/ccgRO647.s 			page 17
+ARM GAS  /tmp/ccDSJYRe.s 			page 17
 
 
  690              	.L46:
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  153:Lib/Control/trajectory.c ****     float a = sc->alim;
  738              		.loc 1 153 5 is_stmt 1 view .LVU299
  739              		.loc 1 153 11 is_stmt 0 view .LVU300
-ARM GAS  /tmp/ccgRO647.s 			page 18
+ARM GAS  /tmp/ccDSJYRe.s 			page 18
 
 
  740 0022 D0ED0B5A 		vldr.32	s11, [r0, #44]
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  178:Lib/Control/trajectory.c ****                 - (1.0f / 6.0f) * j * tau * tau * tau;
  179:Lib/Control/trajectory.c ****     } else if (t < sc->t4) {
  180:Lib/Control/trajectory.c ****         float tau = t - sc->t3;
-ARM GAS  /tmp/ccgRO647.s 			page 19
+ARM GAS  /tmp/ccDSJYRe.s 			page 19
 
 
  181:Lib/Control/trajectory.c ****         accel = 0.0f;
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  796 006c 7047     		bx	lr
  797              	.LVL80:
  798              	.L73:
-ARM GAS  /tmp/ccgRO647.s 			page 20
+ARM GAS  /tmp/ccDSJYRe.s 			page 20
 
 
  163:Lib/Control/trajectory.c ****         float tau = t;
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  837              	.LVL86:
  838              	.L74:
  168:Lib/Control/trajectory.c ****         float tau = t - sc->t1;
-ARM GAS  /tmp/ccgRO647.s 			page 21
+ARM GAS  /tmp/ccDSJYRe.s 			page 21
 
 
  839              		.loc 1 168 12 is_stmt 1 view .LVU345
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  876              		.loc 1 172 15 view .LVU362
  877 00e0 36EE800A 		vadd.f32	s0, s13, s0
  878              	.LVL91:
-ARM GAS  /tmp/ccgRO647.s 			page 22
+ARM GAS  /tmp/ccDSJYRe.s 			page 22
 
 
  172:Lib/Control/trajectory.c ****     } else if (t < sc->t3) {
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  177:Lib/Control/trajectory.c ****                 - (1.0f / 6.0f) * j * tau * tau * tau;
  917              		.loc 1 177 9 is_stmt 1 view .LVU379
  177:Lib/Control/trajectory.c ****                 - (1.0f / 6.0f) * j * tau * tau * tau;
-ARM GAS  /tmp/ccgRO647.s 			page 23
+ARM GAS  /tmp/ccDSJYRe.s 			page 23
 
 
  918              		.loc 1 177 19 is_stmt 0 view .LVU380
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  956              		.loc 1 179 15 view .LVU396
  957 015a B4EEC70A 		vcmpe.f32	s0, s14
  958 015e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
-ARM GAS  /tmp/ccgRO647.s 			page 24
+ARM GAS  /tmp/ccDSJYRe.s 			page 24
 
 
  959 0162 0CD5     		bpl	.L77
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  997 018c 30EE470A 		vsub.f32	s0, s0, s14
  998              	.LVL106:
  186:Lib/Control/trajectory.c ****         vel   = sc->vlim - 0.5f * j * tau * tau;
-ARM GAS  /tmp/ccgRO647.s 			page 25
+ARM GAS  /tmp/ccDSJYRe.s 			page 25
 
 
  999              		.loc 1 186 9 is_stmt 1 view .LVU413
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  1036              		.loc 1 188 15 view .LVU430
  1037              	.LBE6:
  1038 01d0 39E7     		b	.L51
-ARM GAS  /tmp/ccgRO647.s 			page 26
+ARM GAS  /tmp/ccDSJYRe.s 			page 26
 
 
  1039              	.LVL111:
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  1076 0208 27EE800A 		vmul.f32	s0, s15, s0
  1077              	.LVL115:
  193:Lib/Control/trajectory.c ****     } else {
-ARM GAS  /tmp/ccgRO647.s 			page 27
+ARM GAS  /tmp/ccDSJYRe.s 			page 27
 
 
  1078              		.loc 1 193 15 view .LVU448
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  1116              		.loc 1 198 19 is_stmt 0 view .LVU464
  1117 023e 90ED1D6A 		vldr.32	s12, [r0, #116]
  198:Lib/Control/trajectory.c ****                 + (1.0f / 6.0f) * j * tau * tau * tau;
-ARM GAS  /tmp/ccgRO647.s 			page 28
+ARM GAS  /tmp/ccDSJYRe.s 			page 28
 
 
  1118              		.loc 1 198 33 view .LVU465
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  1157 027c 7047     		bx	lr
  1158              	.LVL128:
  1159              	.L65:
-ARM GAS  /tmp/ccgRO647.s 			page 29
+ARM GAS  /tmp/ccDSJYRe.s 			page 29
 
 
  148:Lib/Control/trajectory.c **** 
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  1210              		@ args = 0, pretend = 0, frame = 0
  1211              		@ frame_needed = 0, uses_anonymous_args = 0
  1212              		@ link register save eliminated.
-ARM GAS  /tmp/ccgRO647.s 			page 30
+ARM GAS  /tmp/ccDSJYRe.s 			page 30
 
 
  214:Lib/Control/trajectory.c ****   sc->a_max = a_max;
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  1263 0000 90ED200A 		vldr.32	s0, [r0, #128]
  1264 0004 7047     		bx	lr
  1265              		.cfi_endproc
-ARM GAS  /tmp/ccgRO647.s 			page 31
+ARM GAS  /tmp/ccDSJYRe.s 			page 31
 
 
  1266              	.LFE7:
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  1324              	.LFB10:
  224:Lib/Control/trajectory.c **** float s_curve_get_duration(const s_curve_t *sc) { return sc->t7; }
  1325              		.loc 1 224 49 is_stmt 1 view -0
-ARM GAS  /tmp/ccgRO647.s 			page 32
+ARM GAS  /tmp/ccDSJYRe.s 			page 32
 
 
  1326              		.cfi_startproc
@@ -1876,35 +1876,35 @@ ARM GAS  /tmp/ccgRO647.s 			page 1
  1339              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
  1340              		.file 3 "Lib/Control/trajectory.h"
  1341              		.file 4 "/usr/include/newlib/math.h"
-ARM GAS  /tmp/ccgRO647.s 			page 33
+ARM GAS  /tmp/ccDSJYRe.s 			page 33
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 trajectory.c
-     /tmp/ccgRO647.s:18     .text.f_abs:0000000000000000 $t
-     /tmp/ccgRO647.s:25     .text.f_abs:0000000000000000 f_abs
-     /tmp/ccgRO647.s:54     .text.s_curve_reset:0000000000000000 $t
-     /tmp/ccgRO647.s:61     .text.s_curve_reset:0000000000000000 s_curve_reset
-     /tmp/ccgRO647.s:109    .text.s_curve_start:0000000000000000 $t
-     /tmp/ccgRO647.s:116    .text.s_curve_start:0000000000000000 s_curve_start
-     /tmp/ccgRO647.s:693    .text.s_curve_start:00000000000002d4 $d
-     /tmp/ccgRO647.s:701    .text.s_curve_update:0000000000000000 $t
-     /tmp/ccgRO647.s:708    .text.s_curve_update:0000000000000000 s_curve_update
-     /tmp/ccgRO647.s:1168   .text.s_curve_update:0000000000000284 $d
-     /tmp/ccgRO647.s:1174   .text.s_curve_set_v_max:0000000000000000 $t
-     /tmp/ccgRO647.s:1181   .text.s_curve_set_v_max:0000000000000000 s_curve_set_v_max
-     /tmp/ccgRO647.s:1198   .text.s_curve_set_a_max:0000000000000000 $t
-     /tmp/ccgRO647.s:1205   .text.s_curve_set_a_max:0000000000000000 s_curve_set_a_max
-     /tmp/ccgRO647.s:1222   .text.s_curve_set_j_max:0000000000000000 $t
-     /tmp/ccgRO647.s:1229   .text.s_curve_set_j_max:0000000000000000 s_curve_set_j_max
-     /tmp/ccgRO647.s:1246   .text.s_curve_get_pos:0000000000000000 $t
-     /tmp/ccgRO647.s:1253   .text.s_curve_get_pos:0000000000000000 s_curve_get_pos
-     /tmp/ccgRO647.s:1269   .text.s_curve_get_vel:0000000000000000 $t
-     /tmp/ccgRO647.s:1276   .text.s_curve_get_vel:0000000000000000 s_curve_get_vel
-     /tmp/ccgRO647.s:1292   .text.s_curve_get_accel:0000000000000000 $t
-     /tmp/ccgRO647.s:1299   .text.s_curve_get_accel:0000000000000000 s_curve_get_accel
-     /tmp/ccgRO647.s:1315   .text.s_curve_get_duration:0000000000000000 $t
-     /tmp/ccgRO647.s:1322   .text.s_curve_get_duration:0000000000000000 s_curve_get_duration
+     /tmp/ccDSJYRe.s:18     .text.f_abs:0000000000000000 $t
+     /tmp/ccDSJYRe.s:25     .text.f_abs:0000000000000000 f_abs
+     /tmp/ccDSJYRe.s:54     .text.s_curve_reset:0000000000000000 $t
+     /tmp/ccDSJYRe.s:61     .text.s_curve_reset:0000000000000000 s_curve_reset
+     /tmp/ccDSJYRe.s:109    .text.s_curve_start:0000000000000000 $t
+     /tmp/ccDSJYRe.s:116    .text.s_curve_start:0000000000000000 s_curve_start
+     /tmp/ccDSJYRe.s:693    .text.s_curve_start:00000000000002d4 $d
+     /tmp/ccDSJYRe.s:701    .text.s_curve_update:0000000000000000 $t
+     /tmp/ccDSJYRe.s:708    .text.s_curve_update:0000000000000000 s_curve_update
+     /tmp/ccDSJYRe.s:1168   .text.s_curve_update:0000000000000284 $d
+     /tmp/ccDSJYRe.s:1174   .text.s_curve_set_v_max:0000000000000000 $t
+     /tmp/ccDSJYRe.s:1181   .text.s_curve_set_v_max:0000000000000000 s_curve_set_v_max
+     /tmp/ccDSJYRe.s:1198   .text.s_curve_set_a_max:0000000000000000 $t
+     /tmp/ccDSJYRe.s:1205   .text.s_curve_set_a_max:0000000000000000 s_curve_set_a_max
+     /tmp/ccDSJYRe.s:1222   .text.s_curve_set_j_max:0000000000000000 $t
+     /tmp/ccDSJYRe.s:1229   .text.s_curve_set_j_max:0000000000000000 s_curve_set_j_max
+     /tmp/ccDSJYRe.s:1246   .text.s_curve_get_pos:0000000000000000 $t
+     /tmp/ccDSJYRe.s:1253   .text.s_curve_get_pos:0000000000000000 s_curve_get_pos
+     /tmp/ccDSJYRe.s:1269   .text.s_curve_get_vel:0000000000000000 $t
+     /tmp/ccDSJYRe.s:1276   .text.s_curve_get_vel:0000000000000000 s_curve_get_vel
+     /tmp/ccDSJYRe.s:1292   .text.s_curve_get_accel:0000000000000000 $t
+     /tmp/ccDSJYRe.s:1299   .text.s_curve_get_accel:0000000000000000 s_curve_get_accel
+     /tmp/ccDSJYRe.s:1315   .text.s_curve_get_duration:0000000000000000 $t
+     /tmp/ccDSJYRe.s:1322   .text.s_curve_get_duration:0000000000000000 s_curve_get_duration
 
 UNDEFINED SYMBOLS
 sqrtf

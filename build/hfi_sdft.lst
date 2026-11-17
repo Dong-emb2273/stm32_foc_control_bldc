@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccRljahR.s 			page 1
+ARM GAS  /tmp/ccT9ohXo.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccRljahR.s 			page 1
   50 0008 B0EE608A 		vmov.f32	s16, s1
   51 000c F0EE418A 		vmov.f32	s17, s2
    7:Lib/HFI/hfi_sdft.c ****     hhfi->omega_h = TWO_PI * f_h;
-ARM GAS  /tmp/ccRljahR.s 			page 2
+ARM GAS  /tmp/ccT9ohXo.s 			page 2
 
 
   52              		.loc 1 7 5 is_stmt 1 view .LVU2
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccRljahR.s 			page 1
   97              		.loc 1 16 39 is_stmt 0 view .LVU23
   98 0054 B0EE480A 		vmov.f32	s0, s16
   99 0058 FFF7FEFF 		bl	fast_cos
-ARM GAS  /tmp/ccRljahR.s 			page 3
+ARM GAS  /tmp/ccT9ohXo.s 			page 3
 
 
  100              	.LVL7:
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccRljahR.s 			page 1
  140 0082 0023     		movs	r3, #0
  141              	.LVL12:
  142              		.loc 1 25 27 view .LVU41
-ARM GAS  /tmp/ccRljahR.s 			page 4
+ARM GAS  /tmp/ccT9ohXo.s 			page 4
 
 
  143 0084 C5F82C32 		str	r3, [r5, #556]	@ float
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccRljahR.s 			page 1
  195              		.cfi_def_cfa_offset 32
  196              		.cfi_offset 80, -32
  197              		.cfi_offset 81, -28
-ARM GAS  /tmp/ccRljahR.s 			page 5
+ARM GAS  /tmp/ccT9ohXo.s 			page 5
 
 
  198              		.cfi_offset 82, -24
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccRljahR.s 			page 1
  241 0040 94ED8B0A 		vldr.32	s0, [r4, #556]
  242 0044 D4ED8C0A 		vldr.32	s1, [r4, #560]
  243 0048 FFF7FEFF 		bl	complex_add
-ARM GAS  /tmp/ccRljahR.s 			page 6
+ARM GAS  /tmp/ccT9ohXo.s 			page 6
 
 
  244              	.LVL21:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccRljahR.s 			page 1
   15:Lib/FOC/FOC_math.h **** #define LUT_SIZE (1024*4)
   16:Lib/FOC/FOC_math.h **** #define LUT_STEP (TWO_PI / (float)LUT_SIZE)
   17:Lib/FOC/FOC_math.h **** 
-ARM GAS  /tmp/ccRljahR.s 			page 7
+ARM GAS  /tmp/ccT9ohXo.s 			page 7
 
 
   18:Lib/FOC/FOC_math.h **** #define TWO_BY_SQRT3 1.15470053838f
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccRljahR.s 			page 1
  287              		.loc 2 61 44 view .LVU78
  288              	.LBE6:
  289              	.LBE5:
-ARM GAS  /tmp/ccRljahR.s 			page 8
+ARM GAS  /tmp/ccT9ohXo.s 			page 8
 
 
  290              		.loc 1 47 33 view .LVU79
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccRljahR.s 			page 1
  334 00e4 FFF7FEFF 		bl	fast_cos
  335              	.LVL32:
  336              		.loc 1 57 11 view .LVU98
-ARM GAS  /tmp/ccRljahR.s 			page 9
+ARM GAS  /tmp/ccT9ohXo.s 			page 9
 
 
  337 00e8 20EE080A 		vmul.f32	s0, s0, s16
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccRljahR.s 			page 1
  365              		.loc 1 83 5 view .LVU112
  366              	.L13:
  367              		.loc 1 83 37 is_stmt 0 discriminator 1 view .LVU113
-ARM GAS  /tmp/ccRljahR.s 			page 10
+ARM GAS  /tmp/ccT9ohXo.s 			page 10
 
 
  368 0110 94ED870A 		vldr.32	s0, [r4, #540]
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccRljahR.s 			page 1
  415              		.cfi_restore 80
  416              		.cfi_restore 81
  417              		.cfi_def_cfa_offset 16
-ARM GAS  /tmp/ccRljahR.s 			page 11
+ARM GAS  /tmp/ccT9ohXo.s 			page 11
 
 
  418              	.LVL39:
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccRljahR.s 			page 1
  461 0178 002B     		cmp	r3, #0
  462 017a 03DB     		blt	.L27
   78:Lib/HFI/hfi_sdft.c ****             p = 1;
-ARM GAS  /tmp/ccRljahR.s 			page 12
+ARM GAS  /tmp/ccT9ohXo.s 			page 12
 
 
  463              		.loc 1 78 13 is_stmt 1 view .LVU144
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccRljahR.s 			page 1
  510 0002 2DED028B 		vpush.64	{d8}
  511              	.LCFI10:
  512              		.cfi_def_cfa_offset 16
-ARM GAS  /tmp/ccRljahR.s 			page 13
+ARM GAS  /tmp/ccT9ohXo.s 			page 13
 
 
  513              		.cfi_offset 80, -16
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccRljahR.s 			page 1
  563              		.thumb
  564              		.thumb_func
  565              		.fpu fpv4-sp-d16
-ARM GAS  /tmp/ccRljahR.s 			page 14
+ARM GAS  /tmp/ccT9ohXo.s 			page 14
 
 
  567              	hfi_get_estimate_omega:
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccRljahR.s 			page 1
  108:Lib/HFI/hfi_sdft.c **** 
  109:Lib/HFI/hfi_sdft.c **** void hfi_reset(hfi_t *hhfi) {
  617              		.loc 1 109 29 is_stmt 1 view -0
-ARM GAS  /tmp/ccRljahR.s 			page 15
+ARM GAS  /tmp/ccT9ohXo.s 			page 15
 
 
  618              		.cfi_startproc
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccRljahR.s 			page 1
  661              		.loc 1 116 20 is_stmt 1 discriminator 1 view .LVU185
  116:Lib/HFI/hfi_sdft.c ****         hhfi->sdft_iq_buffer[i] = 0.0f;
  662              		.loc 1 116 28 is_stmt 0 discriminator 1 view .LVU186
-ARM GAS  /tmp/ccRljahR.s 			page 16
+ARM GAS  /tmp/ccT9ohXo.s 			page 16
 
 
  663 0022 6269     		ldr	r2, [r4, #20]
@@ -934,27 +934,27 @@ ARM GAS  /tmp/ccRljahR.s 			page 1
  687              		.file 5 "Lib/HFI/hfi_sdft.h"
  688              		.file 6 "/usr/include/newlib/string.h"
  689              		.file 7 "<built-in>"
-ARM GAS  /tmp/ccRljahR.s 			page 17
+ARM GAS  /tmp/ccT9ohXo.s 			page 17
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 hfi_sdft.c
-     /tmp/ccRljahR.s:18     .text.hfi_init:0000000000000000 $t
-     /tmp/ccRljahR.s:26     .text.hfi_init:0000000000000000 hfi_init
-     /tmp/ccRljahR.s:163    .text.hfi_init:0000000000000094 $d
-     /tmp/ccRljahR.s:171    .text.hfi_update_estimate_position:0000000000000000 $t
-     /tmp/ccRljahR.s:178    .text.hfi_update_estimate_position:0000000000000000 hfi_update_estimate_position
-     /tmp/ccRljahR.s:484    .text.hfi_update_estimate_position:000000000000018c $d
-     /tmp/ccRljahR.s:490    .text.hfi_get_v_inj:0000000000000000 $t
-     /tmp/ccRljahR.s:497    .text.hfi_get_v_inj:0000000000000000 hfi_get_v_inj
-     /tmp/ccRljahR.s:537    .text.hfi_get_estimate_position:0000000000000000 $t
-     /tmp/ccRljahR.s:544    .text.hfi_get_estimate_position:0000000000000000 hfi_get_estimate_position
-     /tmp/ccRljahR.s:560    .text.hfi_get_estimate_omega:0000000000000000 $t
-     /tmp/ccRljahR.s:567    .text.hfi_get_estimate_omega:0000000000000000 hfi_get_estimate_omega
-     /tmp/ccRljahR.s:583    .text.hfi_force_estimate_position:0000000000000000 $t
-     /tmp/ccRljahR.s:590    .text.hfi_force_estimate_position:0000000000000000 hfi_force_estimate_position
-     /tmp/ccRljahR.s:607    .text.hfi_reset:0000000000000000 $t
-     /tmp/ccRljahR.s:614    .text.hfi_reset:0000000000000000 hfi_reset
+     /tmp/ccT9ohXo.s:18     .text.hfi_init:0000000000000000 $t
+     /tmp/ccT9ohXo.s:26     .text.hfi_init:0000000000000000 hfi_init
+     /tmp/ccT9ohXo.s:163    .text.hfi_init:0000000000000094 $d
+     /tmp/ccT9ohXo.s:171    .text.hfi_update_estimate_position:0000000000000000 $t
+     /tmp/ccT9ohXo.s:178    .text.hfi_update_estimate_position:0000000000000000 hfi_update_estimate_position
+     /tmp/ccT9ohXo.s:484    .text.hfi_update_estimate_position:000000000000018c $d
+     /tmp/ccT9ohXo.s:490    .text.hfi_get_v_inj:0000000000000000 $t
+     /tmp/ccT9ohXo.s:497    .text.hfi_get_v_inj:0000000000000000 hfi_get_v_inj
+     /tmp/ccT9ohXo.s:537    .text.hfi_get_estimate_position:0000000000000000 $t
+     /tmp/ccT9ohXo.s:544    .text.hfi_get_estimate_position:0000000000000000 hfi_get_estimate_position
+     /tmp/ccT9ohXo.s:560    .text.hfi_get_estimate_omega:0000000000000000 $t
+     /tmp/ccT9ohXo.s:567    .text.hfi_get_estimate_omega:0000000000000000 hfi_get_estimate_omega
+     /tmp/ccT9ohXo.s:583    .text.hfi_force_estimate_position:0000000000000000 $t
+     /tmp/ccT9ohXo.s:590    .text.hfi_force_estimate_position:0000000000000000 hfi_force_estimate_position
+     /tmp/ccT9ohXo.s:607    .text.hfi_reset:0000000000000000 $t
+     /tmp/ccT9ohXo.s:614    .text.hfi_reset:0000000000000000 hfi_reset
 
 UNDEFINED SYMBOLS
 pll_init
