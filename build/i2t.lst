@@ -1,0 +1,676 @@
+ARM GAS  /tmp/cc6YwQKb.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"i2t.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.i2t_update,"ax",%progbits
+  18              		.align	1
+  19              		.global	i2t_update
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	i2t_update:
+  27              	.LVL0:
+  28              	.LFB2:
+  29              		.file 1 "Lib/FOC/i2t.c"
+   1:Lib/FOC/i2t.c **** #include "i2t.h"
+   2:Lib/FOC/i2t.c **** 
+   3:Lib/FOC/i2t.c **** int i2t_init(i2t_t *hi2t, float dt) {
+   4:Lib/FOC/i2t.c ****   if (hi2t == 0 || dt <= 0.0f) {
+   5:Lib/FOC/i2t.c ****     return -1;
+   6:Lib/FOC/i2t.c ****   }
+   7:Lib/FOC/i2t.c **** 
+   8:Lib/FOC/i2t.c ****   hi2t->dt = dt;
+   9:Lib/FOC/i2t.c ****   hi2t->cool_gain = 1.0f;
+  10:Lib/FOC/i2t.c ****   hi2t->warn_ratio = 0.8f;
+  11:Lib/FOC/i2t.c ****   hi2t->reset_ratio = 0.5f;
+  12:Lib/FOC/i2t.c **** 
+  13:Lib/FOC/i2t.c ****   i2t_reset(hi2t);
+  14:Lib/FOC/i2t.c ****   return 0;
+  15:Lib/FOC/i2t.c **** }
+  16:Lib/FOC/i2t.c **** 
+  17:Lib/FOC/i2t.c **** int i2t_set_config(i2t_t *hi2t, float i_rated, float i_max, float t_max) {
+  18:Lib/FOC/i2t.c ****   if (i_rated <= 0 || i_max <= 0 || t_max <= 0) {
+  19:Lib/FOC/i2t.c ****     return -1;
+  20:Lib/FOC/i2t.c ****   }
+  21:Lib/FOC/i2t.c **** 
+  22:Lib/FOC/i2t.c ****   hi2t->i_rated = i_rated;
+  23:Lib/FOC/i2t.c ****   hi2t->i_max = i_max;
+  24:Lib/FOC/i2t.c ****   hi2t->t_max = t_max;
+  25:Lib/FOC/i2t.c **** 
+  26:Lib/FOC/i2t.c ****   hi2t->i2_rated = i_rated * i_rated;
+  27:Lib/FOC/i2t.c ****   hi2t->acc_limit = (i_max * i_max - hi2t->i2_rated) * t_max;
+  28:Lib/FOC/i2t.c **** 
+  29:Lib/FOC/i2t.c ****   i2t_reset(hi2t);
+ARM GAS  /tmp/cc6YwQKb.s 			page 2
+
+
+  30:Lib/FOC/i2t.c ****   return 0;
+  31:Lib/FOC/i2t.c **** }
+  32:Lib/FOC/i2t.c **** 
+  33:Lib/FOC/i2t.c **** void i2t_update(i2t_t *hi2t, float id, float iq) {
+  30              		.loc 1 33 50 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  34:Lib/FOC/i2t.c ****   float i_squared = id * id + iq * iq;
+  35              		.loc 1 34 3 view .LVU1
+  36              		.loc 1 34 24 is_stmt 0 view .LVU2
+  37 0000 20EE000A 		vmul.f32	s0, s0, s0
+  38              	.LVL1:
+  39              		.loc 1 34 34 view .LVU3
+  40 0004 60EEA00A 		vmul.f32	s1, s1, s1
+  41              	.LVL2:
+  42              		.loc 1 34 9 view .LVU4
+  43 0008 30EE200A 		vadd.f32	s0, s0, s1
+  44              	.LVL3:
+  35:Lib/FOC/i2t.c ****   float delta = (i_squared - hi2t->i2_rated) * hi2t->dt;
+  45              		.loc 1 35 3 is_stmt 1 view .LVU5
+  46              		.loc 1 35 34 is_stmt 0 view .LVU6
+  47 000c D0ED077A 		vldr.32	s15, [r0, #28]
+  48              		.loc 1 35 28 view .LVU7
+  49 0010 70EE677A 		vsub.f32	s15, s0, s15
+  50              		.loc 1 35 52 view .LVU8
+  51 0014 90ED037A 		vldr.32	s14, [r0, #12]
+  52              		.loc 1 35 9 view .LVU9
+  53 0018 67EE877A 		vmul.f32	s15, s15, s14
+  54              	.LVL4:
+  36:Lib/FOC/i2t.c **** 
+  37:Lib/FOC/i2t.c ****   if (delta < 0.0f) {
+  55              		.loc 1 37 3 is_stmt 1 view .LVU10
+  56              		.loc 1 37 6 is_stmt 0 view .LVU11
+  57 001c F5EEC07A 		vcmpe.f32	s15, #0
+  58 0020 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  59 0024 19D4     		bmi	.L15
+  60              	.L2:
+  38:Lib/FOC/i2t.c ****     delta *= hi2t->cool_gain;      /* cooling phase */
+  39:Lib/FOC/i2t.c ****   }
+  40:Lib/FOC/i2t.c **** 
+  41:Lib/FOC/i2t.c ****   hi2t->acc += delta;
+  61              		.loc 1 41 3 is_stmt 1 view .LVU12
+  62              		.loc 1 41 13 is_stmt 0 view .LVU13
+  63 0026 90ED097A 		vldr.32	s14, [r0, #36]
+  64 002a 77EE877A 		vadd.f32	s15, s15, s14
+  65              	.LVL5:
+  66              		.loc 1 41 13 view .LVU14
+  67 002e C0ED097A 		vstr.32	s15, [r0, #36]
+  42:Lib/FOC/i2t.c **** 
+  43:Lib/FOC/i2t.c ****   if (hi2t->acc < 0.0f) {
+  68              		.loc 1 43 3 is_stmt 1 view .LVU15
+  69              		.loc 1 43 6 is_stmt 0 view .LVU16
+  70 0032 F5EEC07A 		vcmpe.f32	s15, #0
+  71 0036 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  72 003a 13D4     		bmi	.L16
+ARM GAS  /tmp/cc6YwQKb.s 			page 3
+
+
+  73              	.L4:
+  44:Lib/FOC/i2t.c ****     hi2t->acc = 0.0f;              /* motor cannot be "colder than cold" */
+  45:Lib/FOC/i2t.c ****   }
+  46:Lib/FOC/i2t.c **** 
+  47:Lib/FOC/i2t.c ****   if (hi2t->acc >= hi2t->acc_limit) {
+  74              		.loc 1 47 3 is_stmt 1 view .LVU17
+  75              		.loc 1 47 11 is_stmt 0 view .LVU18
+  76 003c 90ED097A 		vldr.32	s14, [r0, #36]
+  77              		.loc 1 47 24 view .LVU19
+  78 0040 D0ED087A 		vldr.32	s15, [r0, #32]
+  79              		.loc 1 47 6 view .LVU20
+  80 0044 B4EEE77A 		vcmpe.f32	s14, s15
+  81 0048 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  82 004c 0DDB     		blt	.L14
+  48:Lib/FOC/i2t.c ****     hi2t->acc = hi2t->acc_limit;  /* clamp so cool-down starts at full */
+  83              		.loc 1 48 5 is_stmt 1 view .LVU21
+  84              		.loc 1 48 15 is_stmt 0 view .LVU22
+  85 004e C0ED097A 		vstr.32	s15, [r0, #36]
+  49:Lib/FOC/i2t.c ****     hi2t->tripped = 1;
+  86              		.loc 1 49 5 is_stmt 1 view .LVU23
+  87              		.loc 1 49 19 is_stmt 0 view .LVU24
+  88 0052 0123     		movs	r3, #1
+  89 0054 80F82830 		strb	r3, [r0, #40]
+  90 0058 7047     		bx	lr
+  91              	.LVL6:
+  92              	.L15:
+  38:Lib/FOC/i2t.c ****   }
+  93              		.loc 1 38 5 is_stmt 1 view .LVU25
+  38:Lib/FOC/i2t.c ****   }
+  94              		.loc 1 38 18 is_stmt 0 view .LVU26
+  95 005a 90ED047A 		vldr.32	s14, [r0, #16]
+  38:Lib/FOC/i2t.c ****   }
+  96              		.loc 1 38 11 view .LVU27
+  97 005e 67EE877A 		vmul.f32	s15, s15, s14
+  98              	.LVL7:
+  38:Lib/FOC/i2t.c ****   }
+  99              		.loc 1 38 11 view .LVU28
+ 100 0062 E0E7     		b	.L2
+ 101              	.LVL8:
+ 102              	.L16:
+  44:Lib/FOC/i2t.c ****   }
+ 103              		.loc 1 44 5 is_stmt 1 view .LVU29
+  44:Lib/FOC/i2t.c ****   }
+ 104              		.loc 1 44 15 is_stmt 0 view .LVU30
+ 105 0064 0023     		movs	r3, #0
+ 106 0066 4362     		str	r3, [r0, #36]	@ float
+ 107 0068 E8E7     		b	.L4
+ 108              	.L14:
+  50:Lib/FOC/i2t.c ****   }
+  51:Lib/FOC/i2t.c ****   else if (hi2t->tripped && hi2t->acc <= hi2t->reset_ratio * hi2t->acc_limit) {
+ 109              		.loc 1 51 8 is_stmt 1 view .LVU31
+ 110              		.loc 1 51 16 is_stmt 0 view .LVU32
+ 111 006a 90F82830 		ldrb	r3, [r0, #40]	@ zero_extendqisi2
+ 112              		.loc 1 51 11 view .LVU33
+ 113 006e 5BB1     		cbz	r3, .L1
+ 114              		.loc 1 51 46 discriminator 1 view .LVU34
+ 115 0070 D0ED066A 		vldr.32	s13, [r0, #24]
+ARM GAS  /tmp/cc6YwQKb.s 			page 4
+
+
+ 116              		.loc 1 51 60 discriminator 1 view .LVU35
+ 117 0074 67EEA67A 		vmul.f32	s15, s15, s13
+ 118              		.loc 1 51 26 discriminator 1 view .LVU36
+ 119 0078 B4EEE77A 		vcmpe.f32	s14, s15
+ 120 007c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 121 0080 02D8     		bhi	.L1
+  52:Lib/FOC/i2t.c ****     hi2t->tripped = 0;         /* cooled enough, auto-clear */
+ 122              		.loc 1 52 5 is_stmt 1 view .LVU37
+ 123              		.loc 1 52 19 is_stmt 0 view .LVU38
+ 124 0082 0023     		movs	r3, #0
+ 125 0084 80F82830 		strb	r3, [r0, #40]
+ 126              	.L1:
+  53:Lib/FOC/i2t.c ****   }
+  54:Lib/FOC/i2t.c **** }
+ 127              		.loc 1 54 1 view .LVU39
+ 128 0088 7047     		bx	lr
+ 129              		.cfi_endproc
+ 130              	.LFE2:
+ 132              		.section	.text.i2t_get_load,"ax",%progbits
+ 133              		.align	1
+ 134              		.global	i2t_get_load
+ 135              		.syntax unified
+ 136              		.thumb
+ 137              		.thumb_func
+ 138              		.fpu fpv4-sp-d16
+ 140              	i2t_get_load:
+ 141              	.LVL9:
+ 142              	.LFB3:
+  55:Lib/FOC/i2t.c **** 
+  56:Lib/FOC/i2t.c **** float i2t_get_load(const i2t_t *hi2t) {
+ 143              		.loc 1 56 39 is_stmt 1 view -0
+ 144              		.cfi_startproc
+ 145              		@ args = 0, pretend = 0, frame = 0
+ 146              		@ frame_needed = 0, uses_anonymous_args = 0
+ 147              		@ link register save eliminated.
+  57:Lib/FOC/i2t.c ****   return hi2t->acc / hi2t->acc_limit;
+ 148              		.loc 1 57 3 view .LVU41
+ 149              		.loc 1 57 14 is_stmt 0 view .LVU42
+ 150 0000 90ED090A 		vldr.32	s0, [r0, #36]
+ 151              		.loc 1 57 26 view .LVU43
+ 152 0004 D0ED087A 		vldr.32	s15, [r0, #32]
+  58:Lib/FOC/i2t.c **** }
+ 153              		.loc 1 58 1 view .LVU44
+ 154 0008 80EE270A 		vdiv.f32	s0, s0, s15
+ 155 000c 7047     		bx	lr
+ 156              		.cfi_endproc
+ 157              	.LFE3:
+ 159              		.section	.text.i2t_get_current_limit,"ax",%progbits
+ 160              		.align	1
+ 161              		.global	i2t_get_current_limit
+ 162              		.syntax unified
+ 163              		.thumb
+ 164              		.thumb_func
+ 165              		.fpu fpv4-sp-d16
+ 167              	i2t_get_current_limit:
+ 168              	.LVL10:
+ 169              	.LFB4:
+ARM GAS  /tmp/cc6YwQKb.s 			page 5
+
+
+  59:Lib/FOC/i2t.c **** 
+  60:Lib/FOC/i2t.c **** float i2t_get_current_limit(const i2t_t *hi2t) {
+ 170              		.loc 1 60 48 is_stmt 1 view -0
+ 171              		.cfi_startproc
+ 172              		@ args = 0, pretend = 0, frame = 0
+ 173              		@ frame_needed = 0, uses_anonymous_args = 0
+ 174              		.loc 1 60 48 is_stmt 0 view .LVU46
+ 175 0000 10B5     		push	{r4, lr}
+ 176              	.LCFI0:
+ 177              		.cfi_def_cfa_offset 8
+ 178              		.cfi_offset 4, -8
+ 179              		.cfi_offset 14, -4
+ 180 0002 0446     		mov	r4, r0
+  61:Lib/FOC/i2t.c ****   float load = i2t_get_load(hi2t);
+ 181              		.loc 1 61 3 is_stmt 1 view .LVU47
+ 182              		.loc 1 61 16 is_stmt 0 view .LVU48
+ 183 0004 FFF7FEFF 		bl	i2t_get_load
+ 184              	.LVL11:
+  62:Lib/FOC/i2t.c **** 
+  63:Lib/FOC/i2t.c ****   if (hi2t->tripped) {
+ 185              		.loc 1 63 3 is_stmt 1 view .LVU49
+ 186              		.loc 1 63 11 is_stmt 0 view .LVU50
+ 187 0008 94F82830 		ldrb	r3, [r4, #40]	@ zero_extendqisi2
+ 188              		.loc 1 63 6 view .LVU51
+ 189 000c 1BBB     		cbnz	r3, .L23
+  64:Lib/FOC/i2t.c ****     return 0.0f;
+  65:Lib/FOC/i2t.c ****   }
+  66:Lib/FOC/i2t.c **** 
+  67:Lib/FOC/i2t.c ****   if (load <= hi2t->warn_ratio) {
+ 190              		.loc 1 67 3 is_stmt 1 view .LVU52
+ 191              		.loc 1 67 19 is_stmt 0 view .LVU53
+ 192 000e D4ED057A 		vldr.32	s15, [r4, #20]
+ 193              		.loc 1 67 6 view .LVU54
+ 194 0012 F4EEC07A 		vcmpe.f32	s15, s0
+ 195 0016 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 196 001a 19DA     		bge	.L28
+  68:Lib/FOC/i2t.c ****     return hi2t->i_max;
+  69:Lib/FOC/i2t.c ****   }
+  70:Lib/FOC/i2t.c **** 
+  71:Lib/FOC/i2t.c ****   /* linear ramp i_max -> i_rated between warn_ratio and 1.0 */
+  72:Lib/FOC/i2t.c ****   float k = (load - hi2t->warn_ratio) / (1.0f - hi2t->warn_ratio);
+ 197              		.loc 1 72 3 is_stmt 1 view .LVU55
+ 198              		.loc 1 72 19 is_stmt 0 view .LVU56
+ 199 001c 30EE670A 		vsub.f32	s0, s0, s15
+ 200              	.LVL12:
+ 201              		.loc 1 72 47 view .LVU57
+ 202 0020 F7EE006A 		vmov.f32	s13, #1.0e+0
+ 203 0024 76EEE77A 		vsub.f32	s15, s13, s15
+ 204              		.loc 1 72 9 view .LVU58
+ 205 0028 80EE277A 		vdiv.f32	s14, s0, s15
+ 206              	.LVL13:
+  73:Lib/FOC/i2t.c ****   if (k > 1.0f) {
+ 207              		.loc 1 73 3 is_stmt 1 view .LVU59
+ 208              		.loc 1 73 6 is_stmt 0 view .LVU60
+ 209 002c B4EEE67A 		vcmpe.f32	s14, s13
+ 210 0030 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 211 0034 01DD     		ble	.L22
+ARM GAS  /tmp/cc6YwQKb.s 			page 6
+
+
+  74:Lib/FOC/i2t.c ****     k = 1.0f;
+ 212              		.loc 1 74 7 view .LVU61
+ 213 0036 B0EE667A 		vmov.f32	s14, s13
+ 214              	.LVL14:
+ 215              	.L22:
+  75:Lib/FOC/i2t.c ****   }
+  76:Lib/FOC/i2t.c **** 
+  77:Lib/FOC/i2t.c ****   return hi2t->i_max - k * (hi2t->i_max - hi2t->i_rated);
+ 216              		.loc 1 77 3 is_stmt 1 view .LVU62
+ 217              		.loc 1 77 14 is_stmt 0 view .LVU63
+ 218 003a 94ED010A 		vldr.32	s0, [r4, #4]
+ 219              		.loc 1 77 47 view .LVU64
+ 220 003e D4ED007A 		vldr.32	s15, [r4]
+ 221              		.loc 1 77 41 view .LVU65
+ 222 0042 70EE677A 		vsub.f32	s15, s0, s15
+ 223              		.loc 1 77 26 view .LVU66
+ 224 0046 67EE877A 		vmul.f32	s15, s15, s14
+ 225              		.loc 1 77 22 view .LVU67
+ 226 004a 30EE670A 		vsub.f32	s0, s0, s15
+ 227              	.LVL15:
+ 228              	.L18:
+  78:Lib/FOC/i2t.c **** }
+ 229              		.loc 1 78 1 view .LVU68
+ 230 004e 10BD     		pop	{r4, pc}
+ 231              	.LVL16:
+ 232              	.L28:
+  68:Lib/FOC/i2t.c ****   }
+ 233              		.loc 1 68 5 is_stmt 1 view .LVU69
+  68:Lib/FOC/i2t.c ****   }
+ 234              		.loc 1 68 16 is_stmt 0 view .LVU70
+ 235 0050 94ED010A 		vldr.32	s0, [r4, #4]
+ 236              	.LVL17:
+  68:Lib/FOC/i2t.c ****   }
+ 237              		.loc 1 68 16 view .LVU71
+ 238 0054 FBE7     		b	.L18
+ 239              	.LVL18:
+ 240              	.L23:
+  64:Lib/FOC/i2t.c ****   }
+ 241              		.loc 1 64 12 view .LVU72
+ 242 0056 9FED010A 		vldr.32	s0, .L29
+ 243              	.LVL19:
+  64:Lib/FOC/i2t.c ****   }
+ 244              		.loc 1 64 12 view .LVU73
+ 245 005a F8E7     		b	.L18
+ 246              	.L30:
+ 247              		.align	2
+ 248              	.L29:
+ 249 005c 00000000 		.word	0
+ 250              		.cfi_endproc
+ 251              	.LFE4:
+ 253              		.section	.text.i2t_is_tripped,"ax",%progbits
+ 254              		.align	1
+ 255              		.global	i2t_is_tripped
+ 256              		.syntax unified
+ 257              		.thumb
+ 258              		.thumb_func
+ 259              		.fpu fpv4-sp-d16
+ARM GAS  /tmp/cc6YwQKb.s 			page 7
+
+
+ 261              	i2t_is_tripped:
+ 262              	.LVL20:
+ 263              	.LFB5:
+  79:Lib/FOC/i2t.c **** 
+  80:Lib/FOC/i2t.c **** _Bool i2t_is_tripped(const i2t_t *hi2t) {
+ 264              		.loc 1 80 41 is_stmt 1 view -0
+ 265              		.cfi_startproc
+ 266              		@ args = 0, pretend = 0, frame = 0
+ 267              		@ frame_needed = 0, uses_anonymous_args = 0
+ 268              		@ link register save eliminated.
+  81:Lib/FOC/i2t.c ****   return hi2t->tripped;
+ 269              		.loc 1 81 3 view .LVU75
+  82:Lib/FOC/i2t.c **** }
+ 270              		.loc 1 82 1 is_stmt 0 view .LVU76
+ 271 0000 90F82800 		ldrb	r0, [r0, #40]	@ zero_extendqisi2
+ 272              	.LVL21:
+ 273              		.loc 1 82 1 view .LVU77
+ 274 0004 7047     		bx	lr
+ 275              		.cfi_endproc
+ 276              	.LFE5:
+ 278              		.section	.text.i2t_reset,"ax",%progbits
+ 279              		.align	1
+ 280              		.global	i2t_reset
+ 281              		.syntax unified
+ 282              		.thumb
+ 283              		.thumb_func
+ 284              		.fpu fpv4-sp-d16
+ 286              	i2t_reset:
+ 287              	.LVL22:
+ 288              	.LFB6:
+  83:Lib/FOC/i2t.c **** 
+  84:Lib/FOC/i2t.c **** void i2t_reset(i2t_t *hi2t) {
+ 289              		.loc 1 84 29 is_stmt 1 view -0
+ 290              		.cfi_startproc
+ 291              		@ args = 0, pretend = 0, frame = 0
+ 292              		@ frame_needed = 0, uses_anonymous_args = 0
+ 293              		@ link register save eliminated.
+  85:Lib/FOC/i2t.c ****   hi2t->acc = 0.0f;
+ 294              		.loc 1 85 3 view .LVU79
+ 295              		.loc 1 85 13 is_stmt 0 view .LVU80
+ 296 0000 0023     		movs	r3, #0
+ 297 0002 4362     		str	r3, [r0, #36]	@ float
+  86:Lib/FOC/i2t.c ****   hi2t->tripped = 0;
+ 298              		.loc 1 86 3 is_stmt 1 view .LVU81
+ 299              		.loc 1 86 17 is_stmt 0 view .LVU82
+ 300 0004 0023     		movs	r3, #0
+ 301 0006 80F82830 		strb	r3, [r0, #40]
+  87:Lib/FOC/i2t.c **** }...
+ 302              		.loc 1 87 1 view .LVU83
+ 303 000a 7047     		bx	lr
+ 304              		.cfi_endproc
+ 305              	.LFE6:
+ 307              		.section	.text.i2t_init,"ax",%progbits
+ 308              		.align	1
+ 309              		.global	i2t_init
+ 310              		.syntax unified
+ 311              		.thumb
+ARM GAS  /tmp/cc6YwQKb.s 			page 8
+
+
+ 312              		.thumb_func
+ 313              		.fpu fpv4-sp-d16
+ 315              	i2t_init:
+ 316              	.LVL23:
+ 317              	.LFB0:
+   3:Lib/FOC/i2t.c **** int i2t_init(i2t_t *hi2t, float dt) {
+ 318              		.loc 1 3 37 is_stmt 1 view -0
+ 319              		.cfi_startproc
+ 320              		@ args = 0, pretend = 0, frame = 0
+ 321              		@ frame_needed = 0, uses_anonymous_args = 0
+   4:Lib/FOC/i2t.c ****   if (hi2t == 0 || dt <= 0.0f) {
+ 322              		.loc 1 4 3 view .LVU85
+   4:Lib/FOC/i2t.c ****   if (hi2t == 0 || dt <= 0.0f) {
+ 323              		.loc 1 4 6 is_stmt 0 view .LVU86
+ 324 0000 98B1     		cbz	r0, .L35
+   3:Lib/FOC/i2t.c **** int i2t_init(i2t_t *hi2t, float dt) {
+ 325              		.loc 1 3 37 discriminator 1 view .LVU87
+ 326 0002 08B5     		push	{r3, lr}
+ 327              	.LCFI1:
+ 328              		.cfi_def_cfa_offset 8
+ 329              		.cfi_offset 3, -8
+ 330              		.cfi_offset 14, -4
+   4:Lib/FOC/i2t.c ****   if (hi2t == 0 || dt <= 0.0f) {
+ 331              		.loc 1 4 17 discriminator 1 view .LVU88
+ 332 0004 B5EEC00A 		vcmpe.f32	s0, #0
+ 333 0008 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 334 000c 10D9     		bls	.L36
+   8:Lib/FOC/i2t.c ****   hi2t->dt = dt;
+ 335              		.loc 1 8 3 is_stmt 1 view .LVU89
+   8:Lib/FOC/i2t.c ****   hi2t->dt = dt;
+ 336              		.loc 1 8 12 is_stmt 0 view .LVU90
+ 337 000e 80ED030A 		vstr.32	s0, [r0, #12]
+   9:Lib/FOC/i2t.c ****   hi2t->cool_gain = 1.0f;
+ 338              		.loc 1 9 3 is_stmt 1 view .LVU91
+   9:Lib/FOC/i2t.c ****   hi2t->cool_gain = 1.0f;
+ 339              		.loc 1 9 19 is_stmt 0 view .LVU92
+ 340 0012 4FF07E52 		mov	r2, #1065353216
+ 341 0016 0261     		str	r2, [r0, #16]	@ float
+  10:Lib/FOC/i2t.c ****   hi2t->warn_ratio = 0.8f;
+ 342              		.loc 1 10 3 is_stmt 1 view .LVU93
+  10:Lib/FOC/i2t.c ****   hi2t->warn_ratio = 0.8f;
+ 343              		.loc 1 10 20 is_stmt 0 view .LVU94
+ 344 0018 074A     		ldr	r2, .L41
+ 345 001a 4261     		str	r2, [r0, #20]	@ float
+  11:Lib/FOC/i2t.c ****   hi2t->reset_ratio = 0.5f;
+ 346              		.loc 1 11 3 is_stmt 1 view .LVU95
+  11:Lib/FOC/i2t.c ****   hi2t->reset_ratio = 0.5f;
+ 347              		.loc 1 11 21 is_stmt 0 view .LVU96
+ 348 001c 4FF07C52 		mov	r2, #1056964608
+ 349 0020 8261     		str	r2, [r0, #24]	@ float
+  13:Lib/FOC/i2t.c ****   i2t_reset(hi2t);
+ 350              		.loc 1 13 3 is_stmt 1 view .LVU97
+ 351 0022 FFF7FEFF 		bl	i2t_reset
+ 352              	.LVL24:
+  14:Lib/FOC/i2t.c ****   return 0;
+ 353              		.loc 1 14 3 view .LVU98
+  14:Lib/FOC/i2t.c ****   return 0;
+ARM GAS  /tmp/cc6YwQKb.s 			page 9
+
+
+ 354              		.loc 1 14 10 is_stmt 0 view .LVU99
+ 355 0026 0020     		movs	r0, #0
+ 356              	.L33:
+  15:Lib/FOC/i2t.c **** }
+ 357              		.loc 1 15 1 view .LVU100
+ 358 0028 08BD     		pop	{r3, pc}
+ 359              	.LVL25:
+ 360              	.L35:
+ 361              	.LCFI2:
+ 362              		.cfi_def_cfa_offset 0
+ 363              		.cfi_restore 3
+ 364              		.cfi_restore 14
+   5:Lib/FOC/i2t.c ****     return -1;
+ 365              		.loc 1 5 12 view .LVU101
+ 366 002a 4FF0FF30 		mov	r0, #-1
+ 367              	.LVL26:
+  15:Lib/FOC/i2t.c **** }
+ 368              		.loc 1 15 1 view .LVU102
+ 369 002e 7047     		bx	lr
+ 370              	.LVL27:
+ 371              	.L36:
+ 372              	.LCFI3:
+ 373              		.cfi_def_cfa_offset 8
+ 374              		.cfi_offset 3, -8
+ 375              		.cfi_offset 14, -4
+   5:Lib/FOC/i2t.c ****     return -1;
+ 376              		.loc 1 5 12 view .LVU103
+ 377 0030 4FF0FF30 		mov	r0, #-1
+ 378              	.LVL28:
+   5:Lib/FOC/i2t.c ****     return -1;
+ 379              		.loc 1 5 12 view .LVU104
+ 380 0034 F8E7     		b	.L33
+ 381              	.L42:
+ 382 0036 00BF     		.align	2
+ 383              	.L41:
+ 384 0038 CDCC4C3F 		.word	1061997773
+ 385              		.cfi_endproc
+ 386              	.LFE0:
+ 388              		.section	.text.i2t_set_config,"ax",%progbits
+ 389              		.align	1
+ 390              		.global	i2t_set_config
+ 391              		.syntax unified
+ 392              		.thumb
+ 393              		.thumb_func
+ 394              		.fpu fpv4-sp-d16
+ 396              	i2t_set_config:
+ 397              	.LVL29:
+ 398              	.LFB1:
+  17:Lib/FOC/i2t.c **** int i2t_set_config(i2t_t *hi2t, float i_rated, float i_max, float t_max) {
+ 399              		.loc 1 17 74 is_stmt 1 view -0
+ 400              		.cfi_startproc
+ 401              		@ args = 0, pretend = 0, frame = 0
+ 402              		@ frame_needed = 0, uses_anonymous_args = 0
+  18:Lib/FOC/i2t.c ****   if (i_rated <= 0 || i_max <= 0 || t_max <= 0) {
+ 403              		.loc 1 18 3 view .LVU106
+  18:Lib/FOC/i2t.c ****   if (i_rated <= 0 || i_max <= 0 || t_max <= 0) {
+ 404              		.loc 1 18 6 is_stmt 0 view .LVU107
+ARM GAS  /tmp/cc6YwQKb.s 			page 10
+
+
+ 405 0000 B5EEC00A 		vcmpe.f32	s0, #0
+ 406 0004 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 407 0008 20D9     		bls	.L45
+  18:Lib/FOC/i2t.c ****   if (i_rated <= 0 || i_max <= 0 || t_max <= 0) {
+ 408              		.loc 1 18 20 discriminator 1 view .LVU108
+ 409 000a F5EEC00A 		vcmpe.f32	s1, #0
+ 410 000e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 411 0012 1ED9     		bls	.L46
+  18:Lib/FOC/i2t.c ****   if (i_rated <= 0 || i_max <= 0 || t_max <= 0) {
+ 412              		.loc 1 18 34 discriminator 2 view .LVU109
+ 413 0014 B5EEC01A 		vcmpe.f32	s2, #0
+ 414 0018 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 415 001c 1CD9     		bls	.L47
+  17:Lib/FOC/i2t.c **** int i2t_set_config(i2t_t *hi2t, float i_rated, float i_max, float t_max) {
+ 416              		.loc 1 17 74 view .LVU110
+ 417 001e 08B5     		push	{r3, lr}
+ 418              	.LCFI4:
+ 419              		.cfi_def_cfa_offset 8
+ 420              		.cfi_offset 3, -8
+ 421              		.cfi_offset 14, -4
+  22:Lib/FOC/i2t.c ****   hi2t->i_rated = i_rated;
+ 422              		.loc 1 22 3 is_stmt 1 view .LVU111
+  22:Lib/FOC/i2t.c ****   hi2t->i_rated = i_rated;
+ 423              		.loc 1 22 17 is_stmt 0 view .LVU112
+ 424 0020 80ED000A 		vstr.32	s0, [r0]
+  23:Lib/FOC/i2t.c ****   hi2t->i_max = i_max;
+ 425              		.loc 1 23 3 is_stmt 1 view .LVU113
+  23:Lib/FOC/i2t.c ****   hi2t->i_max = i_max;
+ 426              		.loc 1 23 15 is_stmt 0 view .LVU114
+ 427 0024 C0ED010A 		vstr.32	s1, [r0, #4]
+  24:Lib/FOC/i2t.c ****   hi2t->t_max = t_max;
+ 428              		.loc 1 24 3 is_stmt 1 view .LVU115
+  24:Lib/FOC/i2t.c ****   hi2t->t_max = t_max;
+ 429              		.loc 1 24 15 is_stmt 0 view .LVU116
+ 430 0028 80ED021A 		vstr.32	s2, [r0, #8]
+  26:Lib/FOC/i2t.c ****   hi2t->i2_rated = i_rated * i_rated;
+ 431              		.loc 1 26 3 is_stmt 1 view .LVU117
+  26:Lib/FOC/i2t.c ****   hi2t->i2_rated = i_rated * i_rated;
+ 432              		.loc 1 26 28 is_stmt 0 view .LVU118
+ 433 002c 20EE000A 		vmul.f32	s0, s0, s0
+ 434              	.LVL30:
+  26:Lib/FOC/i2t.c ****   hi2t->i2_rated = i_rated * i_rated;
+ 435              		.loc 1 26 18 view .LVU119
+ 436 0030 80ED070A 		vstr.32	s0, [r0, #28]
+  27:Lib/FOC/i2t.c ****   hi2t->acc_limit = (i_max * i_max - hi2t->i2_rated) * t_max;
+ 437              		.loc 1 27 3 is_stmt 1 view .LVU120
+  27:Lib/FOC/i2t.c ****   hi2t->acc_limit = (i_max * i_max - hi2t->i2_rated) * t_max;
+ 438              		.loc 1 27 28 is_stmt 0 view .LVU121
+ 439 0034 60EEA00A 		vmul.f32	s1, s1, s1
+ 440              	.LVL31:
+  27:Lib/FOC/i2t.c ****   hi2t->acc_limit = (i_max * i_max - hi2t->i2_rated) * t_max;
+ 441              		.loc 1 27 36 view .LVU122
+ 442 0038 70EEC00A 		vsub.f32	s1, s1, s0
+  27:Lib/FOC/i2t.c ****   hi2t->acc_limit = (i_max * i_max - hi2t->i2_rated) * t_max;
+ 443              		.loc 1 27 54 view .LVU123
+ 444 003c 60EE810A 		vmul.f32	s1, s1, s2
+  27:Lib/FOC/i2t.c ****   hi2t->acc_limit = (i_max * i_max - hi2t->i2_rated) * t_max;
+ARM GAS  /tmp/cc6YwQKb.s 			page 11
+
+
+ 445              		.loc 1 27 19 view .LVU124
+ 446 0040 C0ED080A 		vstr.32	s1, [r0, #32]
+  29:Lib/FOC/i2t.c ****   i2t_reset(hi2t);
+ 447              		.loc 1 29 3 is_stmt 1 view .LVU125
+ 448 0044 FFF7FEFF 		bl	i2t_reset
+ 449              	.LVL32:
+  30:Lib/FOC/i2t.c ****   return 0;
+ 450              		.loc 1 30 3 view .LVU126
+  30:Lib/FOC/i2t.c ****   return 0;
+ 451              		.loc 1 30 10 is_stmt 0 view .LVU127
+ 452 0048 0020     		movs	r0, #0
+  31:Lib/FOC/i2t.c **** }
+ 453              		.loc 1 31 1 view .LVU128
+ 454 004a 08BD     		pop	{r3, pc}
+ 455              	.LVL33:
+ 456              	.L45:
+ 457              	.LCFI5:
+ 458              		.cfi_def_cfa_offset 0
+ 459              		.cfi_restore 3
+ 460              		.cfi_restore 14
+  19:Lib/FOC/i2t.c ****     return -1;
+ 461              		.loc 1 19 12 view .LVU129
+ 462 004c 4FF0FF30 		mov	r0, #-1
+ 463              	.LVL34:
+  19:Lib/FOC/i2t.c ****     return -1;
+ 464              		.loc 1 19 12 view .LVU130
+ 465 0050 7047     		bx	lr
+ 466              	.LVL35:
+ 467              	.L46:
+  19:Lib/FOC/i2t.c ****     return -1;
+ 468              		.loc 1 19 12 view .LVU131
+ 469 0052 4FF0FF30 		mov	r0, #-1
+ 470              	.LVL36:
+  19:Lib/FOC/i2t.c ****     return -1;
+ 471              		.loc 1 19 12 view .LVU132
+ 472 0056 7047     		bx	lr
+ 473              	.LVL37:
+ 474              	.L47:
+  19:Lib/FOC/i2t.c ****     return -1;
+ 475              		.loc 1 19 12 view .LVU133
+ 476 0058 4FF0FF30 		mov	r0, #-1
+ 477              	.LVL38:
+  31:Lib/FOC/i2t.c **** }
+ 478              		.loc 1 31 1 view .LVU134
+ 479 005c 7047     		bx	lr
+ 480              		.cfi_endproc
+ 481              	.LFE1:
+ 483              		.text
+ 484              	.Letext0:
+ 485              		.file 2 "Lib/FOC/i2t.h"
+ARM GAS  /tmp/cc6YwQKb.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 i2t.c
+     /tmp/cc6YwQKb.s:18     .text.i2t_update:0000000000000000 $t
+     /tmp/cc6YwQKb.s:26     .text.i2t_update:0000000000000000 i2t_update
+     /tmp/cc6YwQKb.s:133    .text.i2t_get_load:0000000000000000 $t
+     /tmp/cc6YwQKb.s:140    .text.i2t_get_load:0000000000000000 i2t_get_load
+     /tmp/cc6YwQKb.s:160    .text.i2t_get_current_limit:0000000000000000 $t
+     /tmp/cc6YwQKb.s:167    .text.i2t_get_current_limit:0000000000000000 i2t_get_current_limit
+     /tmp/cc6YwQKb.s:249    .text.i2t_get_current_limit:000000000000005c $d
+     /tmp/cc6YwQKb.s:254    .text.i2t_is_tripped:0000000000000000 $t
+     /tmp/cc6YwQKb.s:261    .text.i2t_is_tripped:0000000000000000 i2t_is_tripped
+     /tmp/cc6YwQKb.s:279    .text.i2t_reset:0000000000000000 $t
+     /tmp/cc6YwQKb.s:286    .text.i2t_reset:0000000000000000 i2t_reset
+     /tmp/cc6YwQKb.s:308    .text.i2t_init:0000000000000000 $t
+     /tmp/cc6YwQKb.s:315    .text.i2t_init:0000000000000000 i2t_init
+     /tmp/cc6YwQKb.s:384    .text.i2t_init:0000000000000038 $d
+     /tmp/cc6YwQKb.s:389    .text.i2t_set_config:0000000000000000 $t
+     /tmp/cc6YwQKb.s:396    .text.i2t_set_config:0000000000000000 i2t_set_config
+
+NO UNDEFINED SYMBOLS

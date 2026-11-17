@@ -1,0 +1,325 @@
+ARM GAS  /tmp/ccKz6Dfj.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"pll.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.pll_init,"ax",%progbits
+  18              		.align	1
+  19              		.global	pll_init
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	pll_init:
+  27              	.LVL0:
+  28              	.LFB1:
+  29              		.file 1 "Lib/PLL/pll.c"
+   1:Lib/PLL/pll.c **** #include "pll.h"
+   2:Lib/PLL/pll.c **** #include "FOC_math.h"
+   3:Lib/PLL/pll.c **** #include <math.h>
+   4:Lib/PLL/pll.c **** 
+   5:Lib/PLL/pll.c **** void pll_init(pll_t* pll, float kp, float ki, float k_h, float omega_max) {
+  30              		.loc 1 5 75 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+   6:Lib/PLL/pll.c ****     pll->kp = kp;
+  35              		.loc 1 6 5 view .LVU1
+  36              		.loc 1 6 13 is_stmt 0 view .LVU2
+  37 0000 80ED000A 		vstr.32	s0, [r0]
+   7:Lib/PLL/pll.c ****     pll->ki = ki;
+  38              		.loc 1 7 5 is_stmt 1 view .LVU3
+  39              		.loc 1 7 13 is_stmt 0 view .LVU4
+  40 0004 C0ED010A 		vstr.32	s1, [r0, #4]
+   8:Lib/PLL/pll.c ****     pll->k_h = k_h;
+  41              		.loc 1 8 5 is_stmt 1 view .LVU5
+  42              		.loc 1 8 14 is_stmt 0 view .LVU6
+  43 0008 80ED021A 		vstr.32	s2, [r0, #8]
+   9:Lib/PLL/pll.c ****     pll->integral = 0.0f;
+  44              		.loc 1 9 5 is_stmt 1 view .LVU7
+  45              		.loc 1 9 19 is_stmt 0 view .LVU8
+  46 000c 0023     		movs	r3, #0
+  47 000e C360     		str	r3, [r0, #12]	@ float
+  10:Lib/PLL/pll.c ****     pll->omega_est = 0.0f;
+  48              		.loc 1 10 5 is_stmt 1 view .LVU9
+ARM GAS  /tmp/ccKz6Dfj.s 			page 2
+
+
+  49              		.loc 1 10 20 is_stmt 0 view .LVU10
+  50 0010 0361     		str	r3, [r0, #16]	@ float
+  11:Lib/PLL/pll.c ****     pll->theta_est = 0.0f;
+  51              		.loc 1 11 5 is_stmt 1 view .LVU11
+  52              		.loc 1 11 20 is_stmt 0 view .LVU12
+  53 0012 4361     		str	r3, [r0, #20]	@ float
+  12:Lib/PLL/pll.c ****     pll->omega_max = omega_max;
+  54              		.loc 1 12 5 is_stmt 1 view .LVU13
+  55              		.loc 1 12 20 is_stmt 0 view .LVU14
+  56 0014 C0ED071A 		vstr.32	s3, [r0, #28]
+  13:Lib/PLL/pll.c **** }
+  57              		.loc 1 13 1 view .LVU15
+  58 0018 7047     		bx	lr
+  59              		.cfi_endproc
+  60              	.LFE1:
+  62              		.section	.text.pll_update,"ax",%progbits
+  63              		.align	1
+  64              		.global	pll_update
+  65              		.syntax unified
+  66              		.thumb
+  67              		.thumb_func
+  68              		.fpu fpv4-sp-d16
+  70              	pll_update:
+  71              	.LVL1:
+  72              	.LFB2:
+  14:Lib/PLL/pll.c **** 
+  15:Lib/PLL/pll.c **** float pll_update(pll_t* pll, float error, float Ts) {
+  73              		.loc 1 15 53 is_stmt 1 view -0
+  74              		.cfi_startproc
+  75              		@ args = 0, pretend = 0, frame = 0
+  76              		@ frame_needed = 0, uses_anonymous_args = 0
+  77              		.loc 1 15 53 is_stmt 0 view .LVU17
+  78 0000 10B5     		push	{r4, lr}
+  79              	.LCFI0:
+  80              		.cfi_def_cfa_offset 8
+  81              		.cfi_offset 4, -8
+  82              		.cfi_offset 14, -4
+  83 0002 0446     		mov	r4, r0
+  16:Lib/PLL/pll.c ****     float scaled_error = pll->k_h * error;
+  84              		.loc 1 16 5 is_stmt 1 view .LVU18
+  85              		.loc 1 16 29 is_stmt 0 view .LVU19
+  86 0004 90ED026A 		vldr.32	s12, [r0, #8]
+  87              		.loc 1 16 11 view .LVU20
+  88 0008 26EE006A 		vmul.f32	s12, s12, s0
+  89              	.LVL2:
+  17:Lib/PLL/pll.c ****     
+  18:Lib/PLL/pll.c ****     // PI Controller
+  19:Lib/PLL/pll.c ****     pll->integral += scaled_error * Ts;
+  90              		.loc 1 19 5 is_stmt 1 view .LVU21
+  91              		.loc 1 19 35 is_stmt 0 view .LVU22
+  92 000c 66EE205A 		vmul.f32	s11, s12, s1
+  93              		.loc 1 19 19 view .LVU23
+  94 0010 D0ED037A 		vldr.32	s15, [r0, #12]
+  95 0014 75EEA75A 		vadd.f32	s11, s11, s15
+  96 0018 C0ED035A 		vstr.32	s11, [r0, #12]
+  20:Lib/PLL/pll.c ****     
+  21:Lib/PLL/pll.c ****     // Anti-windup
+ARM GAS  /tmp/ccKz6Dfj.s 			page 3
+
+
+  22:Lib/PLL/pll.c ****     float integral_max = pll->omega_max / pll->ki;
+  97              		.loc 1 22 5 is_stmt 1 view .LVU24
+  98              		.loc 1 22 29 is_stmt 0 view .LVU25
+  99 001c D0ED077A 		vldr.32	s15, [r0, #28]
+ 100              		.loc 1 22 46 view .LVU26
+ 101 0020 D0ED016A 		vldr.32	s13, [r0, #4]
+ 102              		.loc 1 22 11 view .LVU27
+ 103 0024 87EEA67A 		vdiv.f32	s14, s15, s13
+ 104              	.LVL3:
+  23:Lib/PLL/pll.c ****     if (pll->integral > integral_max) pll->integral = integral_max;
+ 105              		.loc 1 23 5 is_stmt 1 view .LVU28
+ 106              		.loc 1 23 8 is_stmt 0 view .LVU29
+ 107 0028 F4EEC75A 		vcmpe.f32	s11, s14
+ 108 002c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 109 0030 01DD     		ble	.L3
+ 110              		.loc 1 23 39 is_stmt 1 discriminator 1 view .LVU30
+ 111              		.loc 1 23 53 is_stmt 0 discriminator 1 view .LVU31
+ 112 0032 80ED037A 		vstr.32	s14, [r0, #12]
+ 113              	.L3:
+  24:Lib/PLL/pll.c ****     if (pll->integral < -integral_max) pll->integral = -integral_max;
+ 114              		.loc 1 24 5 is_stmt 1 view .LVU32
+ 115              		.loc 1 24 12 is_stmt 0 view .LVU33
+ 116 0036 D4ED035A 		vldr.32	s11, [r4, #12]
+ 117              		.loc 1 24 25 view .LVU34
+ 118 003a B1EE477A 		vneg.f32	s14, s14
+ 119              	.LVL4:
+ 120              		.loc 1 24 8 view .LVU35
+ 121 003e F4EEC75A 		vcmpe.f32	s11, s14
+ 122 0042 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 123 0046 01D5     		bpl	.L5
+ 124              		.loc 1 24 40 is_stmt 1 discriminator 1 view .LVU36
+ 125              		.loc 1 24 54 is_stmt 0 discriminator 1 view .LVU37
+ 126 0048 84ED037A 		vstr.32	s14, [r4, #12]
+ 127              	.L5:
+  25:Lib/PLL/pll.c ****     
+  26:Lib/PLL/pll.c ****     float omega_e = pll->kp * scaled_error + pll->ki * pll->integral;
+ 128              		.loc 1 26 5 is_stmt 1 view .LVU38
+ 129              		.loc 1 26 24 is_stmt 0 view .LVU39
+ 130 004c 94ED000A 		vldr.32	s0, [r4]
+ 131              	.LVL5:
+ 132              		.loc 1 26 29 view .LVU40
+ 133 0050 20EE060A 		vmul.f32	s0, s0, s12
+ 134              		.loc 1 26 59 view .LVU41
+ 135 0054 94ED037A 		vldr.32	s14, [r4, #12]
+ 136              		.loc 1 26 54 view .LVU42
+ 137 0058 66EE876A 		vmul.f32	s13, s13, s14
+ 138              	.LVL6:
+ 139              		.loc 1 26 11 view .LVU43
+ 140 005c 30EE260A 		vadd.f32	s0, s0, s13
+ 141              	.LVL7:
+  27:Lib/PLL/pll.c ****     
+  28:Lib/PLL/pll.c ****     // Speed limiting
+  29:Lib/PLL/pll.c ****     if (omega_e > pll->omega_max) omega_e = pll->omega_max;
+ 142              		.loc 1 29 5 is_stmt 1 view .LVU44
+ 143              		.loc 1 29 8 is_stmt 0 view .LVU45
+ 144 0060 F4EEC07A 		vcmpe.f32	s15, s0
+ 145 0064 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ARM GAS  /tmp/ccKz6Dfj.s 			page 4
+
+
+ 146 0068 01D5     		bpl	.L7
+ 147              		.loc 1 29 43 view .LVU46
+ 148 006a B0EE670A 		vmov.f32	s0, s15
+ 149              	.LVL8:
+ 150              	.L7:
+  30:Lib/PLL/pll.c ****     if (omega_e < -pll->omega_max) omega_e = -pll->omega_max;
+ 151              		.loc 1 30 5 is_stmt 1 view .LVU47
+ 152              		.loc 1 30 19 is_stmt 0 view .LVU48
+ 153 006e F1EE677A 		vneg.f32	s15, s15
+ 154              	.LVL9:
+ 155              		.loc 1 30 8 view .LVU49
+ 156 0072 F4EEC07A 		vcmpe.f32	s15, s0
+ 157 0076 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 158 007a 01DC     		bgt	.L8
+ 159 007c F0EE407A 		vmov.f32	s15, s0
+ 160              	.L8:
+ 161              	.LVL10:
+  31:Lib/PLL/pll.c **** 
+  32:Lib/PLL/pll.c ****     // omega filter
+  33:Lib/PLL/pll.c ****     const float alpha = 0.03f;
+ 162              		.loc 1 33 5 is_stmt 1 view .LVU50
+  34:Lib/PLL/pll.c ****     pll->omega_est = (1.0f - alpha) * pll->omega_est + alpha * omega_e;
+ 163              		.loc 1 34 5 view .LVU51
+ 164              		.loc 1 34 42 is_stmt 0 view .LVU52
+ 165 0080 94ED047A 		vldr.32	s14, [r4, #16]
+ 166              		.loc 1 34 37 view .LVU53
+ 167 0084 DFED0D6A 		vldr.32	s13, .L13
+ 168 0088 27EE267A 		vmul.f32	s14, s14, s13
+ 169              		.loc 1 34 62 view .LVU54
+ 170 008c DFED0C6A 		vldr.32	s13, .L13+4
+ 171 0090 67EEA66A 		vmul.f32	s13, s15, s13
+ 172              		.loc 1 34 54 view .LVU55
+ 173 0094 37EE267A 		vadd.f32	s14, s14, s13
+ 174              		.loc 1 34 20 view .LVU56
+ 175 0098 84ED047A 		vstr.32	s14, [r4, #16]
+  35:Lib/PLL/pll.c **** 
+  36:Lib/PLL/pll.c ****     // Integrator for position
+  37:Lib/PLL/pll.c ****     float theta_diff = omega_e * Ts;
+ 176              		.loc 1 37 5 is_stmt 1 view .LVU57
+ 177              		.loc 1 37 11 is_stmt 0 view .LVU58
+ 178 009c 67EEA07A 		vmul.f32	s15, s15, s1
+ 179              	.LVL11:
+  38:Lib/PLL/pll.c ****     pll->theta_est += theta_diff;
+ 180              		.loc 1 38 5 is_stmt 1 view .LVU59
+ 181              		.loc 1 38 20 is_stmt 0 view .LVU60
+ 182 00a0 D4ED050A 		vldr.32	s1, [r4, #20]
+ 183              	.LVL12:
+ 184              		.loc 1 38 20 view .LVU61
+ 185 00a4 70EEA77A 		vadd.f32	s15, s1, s15
+ 186              	.LVL13:
+ 187              		.loc 1 38 20 view .LVU62
+ 188 00a8 2046     		mov	r0, r4
+ 189              	.LVL14:
+ 190              		.loc 1 38 20 view .LVU63
+ 191 00aa 1430     		adds	r0, r0, #20
+ 192 00ac C0ED007A 		vstr.32	s15, [r0]
+  39:Lib/PLL/pll.c ****     
+ARM GAS  /tmp/ccKz6Dfj.s 			page 5
+
+
+  40:Lib/PLL/pll.c ****     // Wrap angle
+  41:Lib/PLL/pll.c ****     norm_angle_rad(&pll->theta_est);
+ 193              		.loc 1 41 5 is_stmt 1 view .LVU64
+ 194 00b0 FFF7FEFF 		bl	norm_angle_rad
+ 195              	.LVL15:
+  42:Lib/PLL/pll.c ****     
+  43:Lib/PLL/pll.c ****     return pll->theta_est;
+ 196              		.loc 1 43 5 view .LVU65
+  44:Lib/PLL/pll.c **** }
+ 197              		.loc 1 44 1 is_stmt 0 view .LVU66
+ 198 00b4 94ED050A 		vldr.32	s0, [r4, #20]
+ 199 00b8 10BD     		pop	{r4, pc}
+ 200              	.LVL16:
+ 201              	.L14:
+ 202              		.loc 1 44 1 view .LVU67
+ 203 00ba 00BF     		.align	2
+ 204              	.L13:
+ 205 00bc EC51783F 		.word	1064849900
+ 206 00c0 8FC2F53C 		.word	1022739087
+ 207              		.cfi_endproc
+ 208              	.LFE2:
+ 210              		.section	.text.pll_reset,"ax",%progbits
+ 211              		.align	1
+ 212              		.global	pll_reset
+ 213              		.syntax unified
+ 214              		.thumb
+ 215              		.thumb_func
+ 216              		.fpu fpv4-sp-d16
+ 218              	pll_reset:
+ 219              	.LVL17:
+ 220              	.LFB3:
+  45:Lib/PLL/pll.c **** 
+  46:Lib/PLL/pll.c **** void pll_reset(pll_t *pll) {
+ 221              		.loc 1 46 28 is_stmt 1 view -0
+ 222              		.cfi_startproc
+ 223              		@ args = 0, pretend = 0, frame = 0
+ 224              		@ frame_needed = 0, uses_anonymous_args = 0
+ 225              		@ link register save eliminated.
+  47:Lib/PLL/pll.c ****     pll->integral = 0.0f;
+ 226              		.loc 1 47 5 view .LVU69
+ 227              		.loc 1 47 19 is_stmt 0 view .LVU70
+ 228 0000 0023     		movs	r3, #0
+ 229 0002 C360     		str	r3, [r0, #12]	@ float
+  48:Lib/PLL/pll.c ****     pll->omega_est = 0.0f;
+ 230              		.loc 1 48 5 is_stmt 1 view .LVU71
+ 231              		.loc 1 48 20 is_stmt 0 view .LVU72
+ 232 0004 0361     		str	r3, [r0, #16]	@ float
+  49:Lib/PLL/pll.c ****     pll->theta_est = 0.0f;
+ 233              		.loc 1 49 5 is_stmt 1 view .LVU73
+ 234              		.loc 1 49 20 is_stmt 0 view .LVU74
+ 235 0006 4361     		str	r3, [r0, #20]	@ float
+  50:Lib/PLL/pll.c ****     pll->last_theta_est = 0.0f;
+ 236              		.loc 1 50 5 is_stmt 1 view .LVU75
+ 237              		.loc 1 50 25 is_stmt 0 view .LVU76
+ 238 0008 8361     		str	r3, [r0, #24]	@ float
+  51:Lib/PLL/pll.c **** }...
+ 239              		.loc 1 51 1 view .LVU77
+ARM GAS  /tmp/ccKz6Dfj.s 			page 6
+
+
+ 240 000a 7047     		bx	lr
+ 241              		.cfi_endproc
+ 242              	.LFE3:
+ 244              		.text
+ 245              	.Letext0:
+ 246              		.file 2 "Lib/PLL/pll.h"
+ 247              		.file 3 "Lib/FOC/FOC_math.h"
+ARM GAS  /tmp/ccKz6Dfj.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 pll.c
+     /tmp/ccKz6Dfj.s:18     .text.pll_init:0000000000000000 $t
+     /tmp/ccKz6Dfj.s:26     .text.pll_init:0000000000000000 pll_init
+     /tmp/ccKz6Dfj.s:63     .text.pll_update:0000000000000000 $t
+     /tmp/ccKz6Dfj.s:70     .text.pll_update:0000000000000000 pll_update
+     /tmp/ccKz6Dfj.s:205    .text.pll_update:00000000000000bc $d
+     /tmp/ccKz6Dfj.s:211    .text.pll_reset:0000000000000000 $t
+     /tmp/ccKz6Dfj.s:218    .text.pll_reset:0000000000000000 pll_reset
+
+UNDEFINED SYMBOLS
+norm_angle_rad

@@ -1,0 +1,1911 @@
+ARM GAS  /tmp/cc7GIs6c.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"trajectory.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.f_abs,"ax",%progbits
+  18              		.align	1
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	f_abs:
+  26              	.LVL0:
+  27              	.LFB0:
+  28              		.file 1 "Lib/Control/trajectory.c"
+   1:Lib/Control/trajectory.c **** #include "trajectory.h"
+   2:Lib/Control/trajectory.c **** #include <math.h>
+   3:Lib/Control/trajectory.c **** 
+   4:Lib/Control/trajectory.c **** static float f_abs(float x) { return x < 0.0f ? -x : x; }
+  29              		.loc 1 4 29 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34              		.loc 1 4 31 view .LVU1
+  35              		.loc 1 4 52 is_stmt 0 view .LVU2
+  36 0000 B5EEC00A 		vcmpe.f32	s0, #0
+  37 0004 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  38 0008 00D4     		bmi	.L5
+  39              	.LVL1:
+  40              	.L2:
+  41              		.loc 1 4 57 discriminator 4 view .LVU3
+  42 000a 7047     		bx	lr
+  43              	.LVL2:
+  44              	.L5:
+  45              		.loc 1 4 52 discriminator 1 view .LVU4
+  46 000c B1EE400A 		vneg.f32	s0, s0
+  47              	.LVL3:
+  48              		.loc 1 4 52 discriminator 1 view .LVU5
+  49 0010 FBE7     		b	.L2
+  50              		.cfi_endproc
+  51              	.LFE0:
+  53              		.section	.text.s_curve_reset,"ax",%progbits
+  54              		.align	1
+  55              		.global	s_curve_reset
+ARM GAS  /tmp/cc7GIs6c.s 			page 2
+
+
+  56              		.syntax unified
+  57              		.thumb
+  58              		.thumb_func
+  59              		.fpu fpv4-sp-d16
+  61              	s_curve_reset:
+  62              	.LVL4:
+  63              	.LFB1:
+   5:Lib/Control/trajectory.c **** 
+   6:Lib/Control/trajectory.c **** void s_curve_reset(s_curve_t *sc, float initial_pos) {
+  64              		.loc 1 6 54 is_stmt 1 view -0
+  65              		.cfi_startproc
+  66              		@ args = 0, pretend = 0, frame = 0
+  67              		@ frame_needed = 0, uses_anonymous_args = 0
+  68              		@ link register save eliminated.
+   7:Lib/Control/trajectory.c ****     if (!sc) return;
+  69              		.loc 1 7 5 view .LVU7
+  70              		.loc 1 7 8 is_stmt 0 view .LVU8
+  71 0000 90B1     		cbz	r0, .L6
+   8:Lib/Control/trajectory.c **** 
+   9:Lib/Control/trajectory.c ****     sc->start_pos = initial_pos;
+  72              		.loc 1 9 5 is_stmt 1 view .LVU9
+  73              		.loc 1 9 19 is_stmt 0 view .LVU10
+  74 0002 80ED000A 		vstr.32	s0, [r0]
+  10:Lib/Control/trajectory.c ****     sc->target_pos = initial_pos;
+  75              		.loc 1 10 5 is_stmt 1 view .LVU11
+  76              		.loc 1 10 20 is_stmt 0 view .LVU12
+  77 0006 80ED010A 		vstr.32	s0, [r0, #4]
+  11:Lib/Control/trajectory.c ****     sc->direction = 1.0f;
+  78              		.loc 1 11 5 is_stmt 1 view .LVU13
+  79              		.loc 1 11 19 is_stmt 0 view .LVU14
+  80 000a 4FF07E52 		mov	r2, #1065353216
+  81 000e 4261     		str	r2, [r0, #20]	@ float
+  12:Lib/Control/trajectory.c ****     sc->distance = 0.0f;
+  82              		.loc 1 12 5 is_stmt 1 view .LVU15
+  83              		.loc 1 12 18 is_stmt 0 view .LVU16
+  84 0010 0022     		movs	r2, #0
+  85 0012 8261     		str	r2, [r0, #24]	@ float
+  13:Lib/Control/trajectory.c ****     sc->time = 0.0f;
+  86              		.loc 1 13 5 is_stmt 1 view .LVU17
+  87              		.loc 1 13 14 is_stmt 0 view .LVU18
+  88 0014 C267     		str	r2, [r0, #124]	@ float
+  14:Lib/Control/trajectory.c ****     sc->pos = initial_pos;
+  89              		.loc 1 14 5 is_stmt 1 view .LVU19
+  90              		.loc 1 14 13 is_stmt 0 view .LVU20
+  91 0016 80ED200A 		vstr.32	s0, [r0, #128]
+  15:Lib/Control/trajectory.c ****     sc->velocity = 0.0f;
+  92              		.loc 1 15 5 is_stmt 1 view .LVU21
+  93              		.loc 1 15 18 is_stmt 0 view .LVU22
+  94 001a C0F88420 		str	r2, [r0, #132]	@ float
+  16:Lib/Control/trajectory.c ****     sc->acceleration = 0.0f;
+  95              		.loc 1 16 5 is_stmt 1 view .LVU23
+  96              		.loc 1 16 22 is_stmt 0 view .LVU24
+  97 001e C0F88820 		str	r2, [r0, #136]	@ float
+  17:Lib/Control/trajectory.c ****     sc->finished = 1;
+  98              		.loc 1 17 5 is_stmt 1 view .LVU25
+  99              		.loc 1 17 18 is_stmt 0 view .LVU26
+ 100 0022 0122     		movs	r2, #1
+ARM GAS  /tmp/cc7GIs6c.s 			page 3
+
+
+ 101 0024 80F88C20 		strb	r2, [r0, #140]
+ 102              	.L6:
+  18:Lib/Control/trajectory.c **** }
+ 103              		.loc 1 18 1 view .LVU27
+ 104 0028 7047     		bx	lr
+ 105              		.cfi_endproc
+ 106              	.LFE1:
+ 108              		.section	.text.s_curve_start,"ax",%progbits
+ 109              		.align	1
+ 110              		.global	s_curve_start
+ 111              		.syntax unified
+ 112              		.thumb
+ 113              		.thumb_func
+ 114              		.fpu fpv4-sp-d16
+ 116              	s_curve_start:
+ 117              	.LVL5:
+ 118              	.LFB2:
+  19:Lib/Control/trajectory.c **** 
+  20:Lib/Control/trajectory.c **** int8_t s_curve_start(s_curve_t *sc, float start_pos, float target_pos) {
+ 119              		.loc 1 20 72 is_stmt 1 view -0
+ 120              		.cfi_startproc
+ 121              		@ args = 0, pretend = 0, frame = 0
+ 122              		@ frame_needed = 0, uses_anonymous_args = 0
+ 123              		.loc 1 20 72 is_stmt 0 view .LVU29
+ 124 0000 10B5     		push	{r4, lr}
+ 125              	.LCFI0:
+ 126              		.cfi_def_cfa_offset 8
+ 127              		.cfi_offset 4, -8
+ 128              		.cfi_offset 14, -4
+ 129 0002 2DED068B 		vpush.64	{d8, d9, d10}
+ 130              	.LCFI1:
+ 131              		.cfi_def_cfa_offset 32
+ 132              		.cfi_offset 80, -32
+ 133              		.cfi_offset 81, -28
+ 134              		.cfi_offset 82, -24
+ 135              		.cfi_offset 83, -20
+ 136              		.cfi_offset 84, -16
+ 137              		.cfi_offset 85, -12
+  21:Lib/Control/trajectory.c ****   float v_max = sc->v_max;
+ 138              		.loc 1 21 3 is_stmt 1 view .LVU30
+ 139              		.loc 1 21 9 is_stmt 0 view .LVU31
+ 140 0006 D0ED029A 		vldr.32	s19, [r0, #8]
+ 141              	.LVL6:
+  22:Lib/Control/trajectory.c ****   float a_max = sc->a_max;
+ 142              		.loc 1 22 3 is_stmt 1 view .LVU32
+ 143              		.loc 1 22 9 is_stmt 0 view .LVU33
+ 144 000a 90ED03AA 		vldr.32	s20, [r0, #12]
+ 145              	.LVL7:
+  23:Lib/Control/trajectory.c ****   float j_max = sc->j_max;
+ 146              		.loc 1 23 3 is_stmt 1 view .LVU34
+ 147              		.loc 1 23 9 is_stmt 0 view .LVU35
+ 148 000e D0ED048A 		vldr.32	s17, [r0, #16]
+ 149              	.LVL8:
+  24:Lib/Control/trajectory.c ****   if (!sc || v_max <= 0.0f || a_max <= 0.0f || j_max <= 0.0f) {
+ 150              		.loc 1 24 3 is_stmt 1 view .LVU36
+ 151              		.loc 1 24 6 is_stmt 0 view .LVU37
+ 152 0012 0028     		cmp	r0, #0
+ARM GAS  /tmp/cc7GIs6c.s 			page 4
+
+
+ 153 0014 00F05281 		beq	.L24
+ 154 0018 0446     		mov	r4, r0
+ 155 001a B0EE408A 		vmov.f32	s16, s0
+ 156              		.loc 1 24 11 discriminator 1 view .LVU38
+ 157 001e F5EEC09A 		vcmpe.f32	s19, #0
+ 158 0022 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 159 0026 40F24C81 		bls	.L25
+ 160              		.loc 1 24 28 discriminator 2 view .LVU39
+ 161 002a B5EEC0AA 		vcmpe.f32	s20, #0
+ 162 002e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 163 0032 40F24981 		bls	.L26
+ 164              		.loc 1 24 45 discriminator 3 view .LVU40
+ 165 0036 F5EEC08A 		vcmpe.f32	s17, #0
+ 166 003a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 167 003e 40F24681 		bls	.L27
+  25:Lib/Control/trajectory.c ****       return -1;
+  26:Lib/Control/trajectory.c ****   }
+  27:Lib/Control/trajectory.c **** 
+  28:Lib/Control/trajectory.c ****     sc->start_pos = start_pos;
+ 168              		.loc 1 28 5 is_stmt 1 view .LVU41
+ 169              		.loc 1 28 19 is_stmt 0 view .LVU42
+ 170 0042 84ED000A 		vstr.32	s0, [r4]
+  29:Lib/Control/trajectory.c ****     sc->target_pos = target_pos;
+ 171              		.loc 1 29 5 is_stmt 1 view .LVU43
+ 172              		.loc 1 29 20 is_stmt 0 view .LVU44
+ 173 0046 C0ED010A 		vstr.32	s1, [r0, #4]
+  30:Lib/Control/trajectory.c **** 
+  31:Lib/Control/trajectory.c ****     float h = target_pos - start_pos;
+ 174              		.loc 1 31 5 is_stmt 1 view .LVU45
+ 175              		.loc 1 31 11 is_stmt 0 view .LVU46
+ 176 004a 30EEC00A 		vsub.f32	s0, s1, s0
+ 177              	.LVL9:
+  32:Lib/Control/trajectory.c ****     sc->direction = (h < 0.0f) ? -1.0f : 1.0f;
+ 178              		.loc 1 32 5 is_stmt 1 view .LVU47
+ 179              		.loc 1 32 40 is_stmt 0 view .LVU48
+ 180 004e B5EEC00A 		vcmpe.f32	s0, #0
+ 181 0052 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 182 0056 00F1CE80 		bmi	.L41
+ 183 005a 4FF07E53 		mov	r3, #1065353216
+ 184              	.L10:
+ 185              		.loc 1 32 19 discriminator 4 view .LVU49
+ 186 005e 6361     		str	r3, [r4, #20]	@ float
+  33:Lib/Control/trajectory.c ****     sc->distance  = f_abs(h);
+ 187              		.loc 1 33 5 is_stmt 1 discriminator 4 view .LVU50
+ 188              		.loc 1 33 21 is_stmt 0 discriminator 4 view .LVU51
+ 189 0060 FFF7FEFF 		bl	f_abs
+ 190              	.LVL10:
+ 191              		.loc 1 33 21 discriminator 4 view .LVU52
+ 192 0064 B0EE409A 		vmov.f32	s18, s0
+ 193              		.loc 1 33 19 discriminator 4 view .LVU53
+ 194 0068 84ED060A 		vstr.32	s0, [r4, #24]
+  34:Lib/Control/trajectory.c **** 
+  35:Lib/Control/trajectory.c ****     sc->time = 0.0f;
+ 195              		.loc 1 35 5 is_stmt 1 discriminator 4 view .LVU54
+ 196              		.loc 1 35 14 is_stmt 0 discriminator 4 view .LVU55
+ 197 006c 0023     		movs	r3, #0
+ 198 006e E367     		str	r3, [r4, #124]	@ float
+ARM GAS  /tmp/cc7GIs6c.s 			page 5
+
+
+  36:Lib/Control/trajectory.c ****     sc->pos = start_pos;
+ 199              		.loc 1 36 5 is_stmt 1 discriminator 4 view .LVU56
+ 200              		.loc 1 36 13 is_stmt 0 discriminator 4 view .LVU57
+ 201 0070 84ED208A 		vstr.32	s16, [r4, #128]
+  37:Lib/Control/trajectory.c ****     sc->velocity = 0.0f;
+ 202              		.loc 1 37 5 is_stmt 1 discriminator 4 view .LVU58
+ 203              		.loc 1 37 18 is_stmt 0 discriminator 4 view .LVU59
+ 204 0074 C4F88430 		str	r3, [r4, #132]	@ float
+  38:Lib/Control/trajectory.c ****     sc->acceleration = 0.0f;
+ 205              		.loc 1 38 5 is_stmt 1 discriminator 4 view .LVU60
+ 206              		.loc 1 38 22 is_stmt 0 discriminator 4 view .LVU61
+ 207 0078 C4F88830 		str	r3, [r4, #136]	@ float
+  39:Lib/Control/trajectory.c ****     sc->finished = 0;
+ 208              		.loc 1 39 5 is_stmt 1 discriminator 4 view .LVU62
+ 209              		.loc 1 39 18 is_stmt 0 discriminator 4 view .LVU63
+ 210 007c 0023     		movs	r3, #0
+ 211 007e 84F88C30 		strb	r3, [r4, #140]
+  40:Lib/Control/trajectory.c **** 
+  41:Lib/Control/trajectory.c ****     /* zero distance */
+  42:Lib/Control/trajectory.c ****     if (sc->distance < 1e-9f) {
+ 212              		.loc 1 42 5 is_stmt 1 discriminator 4 view .LVU64
+ 213              		.loc 1 42 8 is_stmt 0 discriminator 4 view .LVU65
+ 214 0082 DFED947A 		vldr.32	s15, .L45
+ 215 0086 B4EEE70A 		vcmpe.f32	s0, s15
+ 216 008a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 217 008e 00F1B480 		bmi	.L42
+  43:Lib/Control/trajectory.c ****         sc->Tj1 = sc->Ta = sc->Tv = sc->Td = 0.0f;
+  44:Lib/Control/trajectory.c ****         sc->alim = sc->vlim = 0.0f;
+  45:Lib/Control/trajectory.c ****         sc->t1 = sc->t2 = sc->t3 = sc->t4 = sc->t5 = sc->t6 = sc->t7 = 0.0f;
+  46:Lib/Control/trajectory.c ****         sc->p1 = sc->v1 = sc->p2 = sc->v2 = sc->p3 = sc->v3 = sc->p4 = 0.0f;
+  47:Lib/Control/trajectory.c ****         sc->p5 = sc->v5 = sc->p6 = sc->v6 = 0.0f;
+  48:Lib/Control/trajectory.c ****         sc->finished = 1;
+  49:Lib/Control/trajectory.c ****         return 0;
+  50:Lib/Control/trajectory.c ****     }
+  51:Lib/Control/trajectory.c **** 
+  52:Lib/Control/trajectory.c ****     float h_d = sc->distance;
+ 218              		.loc 1 52 5 is_stmt 1 view .LVU66
+ 219              	.LVL11:
+  53:Lib/Control/trajectory.c **** 
+  54:Lib/Control/trajectory.c ****     /* ---- Langkah 1: asumsikan v_max tercapai, hitung fase percepatan ---- */
+  55:Lib/Control/trajectory.c ****     float Tj1, Ta, alim;
+ 220              		.loc 1 55 5 view .LVU67
+  56:Lib/Control/trajectory.c ****     if ((a_max * a_max) / j_max <= v_max) {
+ 221              		.loc 1 56 5 view .LVU68
+ 222              		.loc 1 56 16 is_stmt 0 view .LVU69
+ 223 0092 6AEE0AAA 		vmul.f32	s21, s20, s20
+ 224              		.loc 1 56 25 view .LVU70
+ 225 0096 CAEEA87A 		vdiv.f32	s15, s21, s17
+ 226              		.loc 1 56 8 view .LVU71
+ 227 009a F4EEE97A 		vcmpe.f32	s15, s19
+ 228 009e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 229 00a2 00F2C880 		bhi	.L37
+  57:Lib/Control/trajectory.c ****         /* a_max tercapai sebelum kecepatan mencapai v_max */
+  58:Lib/Control/trajectory.c ****         Tj1  = a_max / j_max;
+ 230              		.loc 1 58 9 is_stmt 1 view .LVU72
+ 231              		.loc 1 58 14 is_stmt 0 view .LVU73
+ 232 00a6 8AEE288A 		vdiv.f32	s16, s20, s17
+ARM GAS  /tmp/cc7GIs6c.s 			page 6
+
+
+ 233              	.LVL12:
+  59:Lib/Control/trajectory.c ****         Ta   = Tj1 + v_max / a_max;
+ 234              		.loc 1 59 9 is_stmt 1 view .LVU74
+ 235              		.loc 1 59 28 is_stmt 0 view .LVU75
+ 236 00aa 89EE8A0A 		vdiv.f32	s0, s19, s20
+ 237              	.LVL13:
+ 238              		.loc 1 59 14 view .LVU76
+ 239 00ae 30EE080A 		vadd.f32	s0, s0, s16
+ 240              	.LVL14:
+  60:Lib/Control/trajectory.c ****         alim = a_max;
+ 241              		.loc 1 60 9 is_stmt 1 view .LVU77
+ 242              		.loc 1 60 14 is_stmt 0 view .LVU78
+ 243 00b2 F0EE4A6A 		vmov.f32	s13, s20
+ 244              	.LVL15:
+ 245              	.L16:
+  61:Lib/Control/trajectory.c ****     } else {
+  62:Lib/Control/trajectory.c ****         /* v_max tercapai duluan -> percepatan hanya membentuk segitiga */
+  63:Lib/Control/trajectory.c ****         Tj1  = sqrtf(v_max / j_max);
+  64:Lib/Control/trajectory.c ****         Ta   = 2.0f * Tj1;
+  65:Lib/Control/trajectory.c ****         alim = j_max * Tj1;
+  66:Lib/Control/trajectory.c ****     }
+  67:Lib/Control/trajectory.c **** 
+  68:Lib/Control/trajectory.c ****     float dist_accel_decel = v_max * Ta; /* jarak fase percepatan + perlambatan */
+ 246              		.loc 1 68 5 is_stmt 1 view .LVU79
+ 247              		.loc 1 68 11 is_stmt 0 view .LVU80
+ 248 00b6 60EE297A 		vmul.f32	s15, s0, s19
+ 249              	.LVL16:
+  69:Lib/Control/trajectory.c **** 
+  70:Lib/Control/trajectory.c ****     float vlim, Tv, Td;
+ 250              		.loc 1 70 5 is_stmt 1 view .LVU81
+  71:Lib/Control/trajectory.c ****     if (h_d >= dist_accel_decel) {
+ 251              		.loc 1 71 5 view .LVU82
+ 252              		.loc 1 71 8 is_stmt 0 view .LVU83
+ 253 00ba B4EEE79A 		vcmpe.f32	s18, s15
+ 254 00be F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 255 00c2 C0F2C380 		blt	.L38
+  72:Lib/Control/trajectory.c ****         /* v_max benar-benar tercapai -> ada fase kecepatan konstan */
+  73:Lib/Control/trajectory.c ****         vlim = v_max;
+ 256              		.loc 1 73 9 is_stmt 1 view .LVU84
+ 257              	.LVL17:
+  74:Lib/Control/trajectory.c ****         Tv   = h_d / v_max - Ta;
+ 258              		.loc 1 74 9 view .LVU85
+ 259              		.loc 1 74 20 is_stmt 0 view .LVU86
+ 260 00c6 89EE294A 		vdiv.f32	s8, s18, s19
+ 261              		.loc 1 74 14 view .LVU87
+ 262 00ca 34EE404A 		vsub.f32	s8, s8, s0
+ 263              	.LVL18:
+  75:Lib/Control/trajectory.c ****         Td   = Ta;
+ 264              		.loc 1 75 9 is_stmt 1 view .LVU88
+ 265              	.L19:
+  76:Lib/Control/trajectory.c ****     } else {
+  77:Lib/Control/trajectory.c ****         /* Jarak terlalu pendek untuk mencapai v_max -> hitung ulang */
+  78:Lib/Control/trajectory.c ****         Tv = 0.0f;
+  79:Lib/Control/trajectory.c ****         if (h_d >= 2.0f * (a_max * a_max * a_max) / (j_max * j_max)) {
+  80:Lib/Control/trajectory.c ****             /* a_max tetap tercapai, tapi tanpa fase kecepatan konstan */
+  81:Lib/Control/trajectory.c ****             Tj1 = a_max / j_max;
+  82:Lib/Control/trajectory.c ****             Ta  = Tj1 * 0.5f + sqrtf((Tj1 * 0.5f) * (Tj1 * 0.5f) + h_d / a_max);
+ARM GAS  /tmp/cc7GIs6c.s 			page 7
+
+
+  83:Lib/Control/trajectory.c ****             alim = a_max;
+  84:Lib/Control/trajectory.c ****         } else {
+  85:Lib/Control/trajectory.c ****             /* a_max juga tidak tercapai -> profil jerk murni (segitiga ganda) */
+  86:Lib/Control/trajectory.c ****             Ta   = cbrtf(4.0f * h_d / j_max);
+  87:Lib/Control/trajectory.c ****             Tj1  = Ta * 0.5f;
+  88:Lib/Control/trajectory.c ****             alim = j_max * Tj1;
+  89:Lib/Control/trajectory.c ****         }
+  90:Lib/Control/trajectory.c ****         Td   = Ta;
+  91:Lib/Control/trajectory.c ****         vlim = alim * (Ta - Tj1);
+  92:Lib/Control/trajectory.c ****     }
+  93:Lib/Control/trajectory.c **** 
+  94:Lib/Control/trajectory.c ****     sc->Tj1 = Tj1;
+ 266              		.loc 1 94 5 view .LVU89
+ 267              		.loc 1 94 13 is_stmt 0 view .LVU90
+ 268 00ce 84ED078A 		vstr.32	s16, [r4, #28]
+  95:Lib/Control/trajectory.c ****     sc->Ta  = Ta;
+ 269              		.loc 1 95 5 is_stmt 1 view .LVU91
+ 270              		.loc 1 95 13 is_stmt 0 view .LVU92
+ 271 00d2 84ED080A 		vstr.32	s0, [r4, #32]
+  96:Lib/Control/trajectory.c ****     sc->Tv  = Tv;
+ 272              		.loc 1 96 5 is_stmt 1 view .LVU93
+ 273              		.loc 1 96 13 is_stmt 0 view .LVU94
+ 274 00d6 84ED094A 		vstr.32	s8, [r4, #36]
+  97:Lib/Control/trajectory.c ****     sc->Td  = Td;
+ 275              		.loc 1 97 5 is_stmt 1 view .LVU95
+ 276              		.loc 1 97 13 is_stmt 0 view .LVU96
+ 277 00da 84ED0A0A 		vstr.32	s0, [r4, #40]
+  98:Lib/Control/trajectory.c ****     sc->alim = alim;
+ 278              		.loc 1 98 5 is_stmt 1 view .LVU97
+ 279              		.loc 1 98 14 is_stmt 0 view .LVU98
+ 280 00de C4ED0B6A 		vstr.32	s13, [r4, #44]
+  99:Lib/Control/trajectory.c ****     sc->vlim = vlim;
+ 281              		.loc 1 99 5 is_stmt 1 view .LVU99
+ 282              		.loc 1 99 14 is_stmt 0 view .LVU100
+ 283 00e2 C4ED0C9A 		vstr.32	s19, [r4, #48]
+ 100:Lib/Control/trajectory.c **** 
+ 101:Lib/Control/trajectory.c ****     float j = j_max;
+ 284              		.loc 1 101 5 is_stmt 1 view .LVU101
+ 285              	.LVL19:
+ 102:Lib/Control/trajectory.c ****     float a = alim;
+ 286              		.loc 1 102 5 view .LVU102
+ 103:Lib/Control/trajectory.c **** 
+ 104:Lib/Control/trajectory.c ****     /* --- akhir fase 1 (jerk+) --- */
+ 105:Lib/Control/trajectory.c ****     float t1 = Tj1;
+ 287              		.loc 1 105 5 view .LVU103
+ 106:Lib/Control/trajectory.c ****     float v1 = 0.5f * j * t1 * t1;
+ 288              		.loc 1 106 5 view .LVU104
+ 289              		.loc 1 106 21 is_stmt 0 view .LVU105
+ 290 00e6 B6EE006A 		vmov.f32	s12, #5.0e-1
+ 291 00ea 28EE866A 		vmul.f32	s12, s17, s12
+ 292              		.loc 1 106 25 view .LVU106
+ 293 00ee 26EE086A 		vmul.f32	s12, s12, s16
+ 294              		.loc 1 106 11 view .LVU107
+ 295 00f2 26EE086A 		vmul.f32	s12, s12, s16
+ 296              	.LVL20:
+ 107:Lib/Control/trajectory.c ****     float p1 = (1.0f / 6.0f) * j * t1 * t1 * t1;
+ 297              		.loc 1 107 5 is_stmt 1 view .LVU108
+ARM GAS  /tmp/cc7GIs6c.s 			page 8
+
+
+ 298              		.loc 1 107 30 is_stmt 0 view .LVU109
+ 299 00f6 DFED787A 		vldr.32	s15, .L45+4
+ 300 00fa 68EEA78A 		vmul.f32	s17, s17, s15
+ 301              	.LVL21:
+ 302              		.loc 1 107 34 view .LVU110
+ 303 00fe 68EE888A 		vmul.f32	s17, s17, s16
+ 304              		.loc 1 107 39 view .LVU111
+ 305 0102 68EE888A 		vmul.f32	s17, s17, s16
+ 306              		.loc 1 107 11 view .LVU112
+ 307 0106 68EE888A 		vmul.f32	s17, s17, s16
+ 308              	.LVL22:
+ 108:Lib/Control/trajectory.c **** 
+ 109:Lib/Control/trajectory.c ****     /* --- akhir fase 2 (percepatan konstan) --- */
+ 110:Lib/Control/trajectory.c ****     float dt2 = Ta - 2.0f * Tj1;
+ 309              		.loc 1 110 5 is_stmt 1 view .LVU113
+ 310              		.loc 1 110 27 is_stmt 0 view .LVU114
+ 311 010a 38EE087A 		vadd.f32	s14, s16, s16
+ 312              		.loc 1 110 11 view .LVU115
+ 313 010e 30EE477A 		vsub.f32	s14, s0, s14
+ 314              	.LVL23:
+ 111:Lib/Control/trajectory.c ****     if (dt2 < 0.0f) dt2 = 0.0f;
+ 315              		.loc 1 111 5 is_stmt 1 view .LVU116
+ 316              		.loc 1 111 8 is_stmt 0 view .LVU117
+ 317 0112 B5EEC07A 		vcmpe.f32	s14, #0
+ 318 0116 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 319 011a 00F1CC80 		bmi	.L43
+ 320              	.LVL24:
+ 321              	.L23:
+ 112:Lib/Control/trajectory.c ****     float v2 = v1 + a * dt2;
+ 322              		.loc 1 112 5 is_stmt 1 view .LVU118
+ 323              		.loc 1 112 23 is_stmt 0 view .LVU119
+ 324 011e 66EE873A 		vmul.f32	s7, s13, s14
+ 325              		.loc 1 112 11 view .LVU120
+ 326 0122 73EE862A 		vadd.f32	s5, s7, s12
+ 327              	.LVL25:
+ 113:Lib/Control/trajectory.c ****     float p2 = p1 + v1 * dt2 + 0.5f * a * dt2 * dt2;
+ 328              		.loc 1 113 5 is_stmt 1 view .LVU121
+ 329              		.loc 1 113 24 is_stmt 0 view .LVU122
+ 330 0126 27EE065A 		vmul.f32	s10, s14, s12
+ 331              		.loc 1 113 19 view .LVU123
+ 332 012a 35EE285A 		vadd.f32	s10, s10, s17
+ 333              		.loc 1 113 37 view .LVU124
+ 334 012e F6EE007A 		vmov.f32	s15, #5.0e-1
+ 335 0132 66EEA77A 		vmul.f32	s15, s13, s15
+ 336              		.loc 1 113 41 view .LVU125
+ 337 0136 67EE874A 		vmul.f32	s9, s15, s14
+ 338              		.loc 1 113 47 view .LVU126
+ 339 013a 24EE872A 		vmul.f32	s4, s9, s14
+ 340              		.loc 1 113 11 view .LVU127
+ 341 013e 35EE025A 		vadd.f32	s10, s10, s4
+ 342              	.LVL26:
+ 114:Lib/Control/trajectory.c **** 
+ 115:Lib/Control/trajectory.c ****     /* --- akhir fase 3 (jerk-, kecepatan capai vlim) --- */
+ 116:Lib/Control/trajectory.c ****     float t3d = Tj1;
+ 343              		.loc 1 116 5 is_stmt 1 view .LVU128
+ 117:Lib/Control/trajectory.c ****     float v3 = v2 + a * t3d - 0.5f * j * t3d * t3d; /* == vlim */
+ 344              		.loc 1 117 5 view .LVU129
+ARM GAS  /tmp/cc7GIs6c.s 			page 9
+
+
+ 345              		.loc 1 117 23 is_stmt 0 view .LVU130
+ 346 0142 68EE266A 		vmul.f32	s13, s16, s13
+ 347              	.LVL27:
+ 348              		.loc 1 117 19 view .LVU131
+ 349 0146 76EEA26A 		vadd.f32	s13, s13, s5
+ 350              		.loc 1 117 11 view .LVU132
+ 351 014a 76EEC66A 		vsub.f32	s13, s13, s12
+ 352              	.LVL28:
+ 118:Lib/Control/trajectory.c ****     float p3 = p2 + v2 * t3d + 0.5f * a * t3d * t3d
+ 353              		.loc 1 118 5 is_stmt 1 view .LVU133
+ 354              		.loc 1 118 24 is_stmt 0 view .LVU134
+ 355 014e 68EE225A 		vmul.f32	s11, s16, s5
+ 356              		.loc 1 118 19 view .LVU135
+ 357 0152 75EE855A 		vadd.f32	s11, s11, s10
+ 358              		.loc 1 118 41 view .LVU136
+ 359 0156 67EE887A 		vmul.f32	s15, s15, s16
+ 360              		.loc 1 118 47 view .LVU137
+ 361 015a 67EE887A 		vmul.f32	s15, s15, s16
+ 362              		.loc 1 118 30 view .LVU138
+ 363 015e 75EEA75A 		vadd.f32	s11, s11, s15
+ 364              		.loc 1 118 11 view .LVU139
+ 365 0162 75EEE85A 		vsub.f32	s11, s11, s17
+ 366              	.LVL29:
+ 119:Lib/Control/trajectory.c ****                - (1.0f / 6.0f) * j * t3d * t3d * t3d;
+ 120:Lib/Control/trajectory.c **** 
+ 121:Lib/Control/trajectory.c ****     /* --- akhir fase 4 (kecepatan konstan) --- */
+ 122:Lib/Control/trajectory.c ****     float p4 = p3 + vlim * Tv;
+ 367              		.loc 1 122 5 is_stmt 1 view .LVU140
+ 368              		.loc 1 122 26 is_stmt 0 view .LVU141
+ 369 0166 29EE843A 		vmul.f32	s6, s19, s8
+ 370              		.loc 1 122 11 view .LVU142
+ 371 016a 33EE253A 		vadd.f32	s6, s6, s11
+ 372              	.LVL30:
+ 123:Lib/Control/trajectory.c **** 
+ 124:Lib/Control/trajectory.c ****     /* --- akhir fase 5 (jerk-, perlambatan mulai) --- */
+ 125:Lib/Control/trajectory.c ****     float t5d = Tj1;
+ 373              		.loc 1 125 5 is_stmt 1 view .LVU143
+ 126:Lib/Control/trajectory.c ****     float v5 = vlim - 0.5f * j * t5d * t5d;
+ 374              		.loc 1 126 5 view .LVU144
+ 375              		.loc 1 126 11 is_stmt 0 view .LVU145
+ 376 016e 79EEC61A 		vsub.f32	s3, s19, s12
+ 377              	.LVL31:
+ 127:Lib/Control/trajectory.c ****     float p5 = p4 + vlim * t5d - (1.0f / 6.0f) * j * t5d * t5d * t5d;
+ 378              		.loc 1 127 5 is_stmt 1 view .LVU146
+ 379              		.loc 1 127 26 is_stmt 0 view .LVU147
+ 380 0172 68EE297A 		vmul.f32	s15, s16, s19
+ 381              		.loc 1 127 19 view .LVU148
+ 382 0176 77EE837A 		vadd.f32	s15, s15, s6
+ 383              		.loc 1 127 11 view .LVU149
+ 384 017a 77EEE87A 		vsub.f32	s15, s15, s17
+ 385              	.LVL32:
+ 128:Lib/Control/trajectory.c **** 
+ 129:Lib/Control/trajectory.c ****     /* --- akhir fase 6 (perlambatan konstan) --- */
+ 130:Lib/Control/trajectory.c ****     float dt6 = Td - 2.0f * Tj1;
+ 386              		.loc 1 130 5 is_stmt 1 view .LVU150
+ 131:Lib/Control/trajectory.c ****     if (dt6 < 0.0f) dt6 = 0.0f;
+ 387              		.loc 1 131 5 view .LVU151
+ARM GAS  /tmp/cc7GIs6c.s 			page 10
+
+
+ 132:Lib/Control/trajectory.c ****     float v6 = v5 - a * dt6;
+ 388              		.loc 1 132 5 view .LVU152
+ 389              		.loc 1 132 11 is_stmt 0 view .LVU153
+ 390 017e 71EEE33A 		vsub.f32	s7, s3, s7
+ 391              	.LVL33:
+ 133:Lib/Control/trajectory.c ****     float p6 = p5 + v5 * dt6 - 0.5f * a * dt6 * dt6;
+ 392              		.loc 1 133 5 is_stmt 1 view .LVU154
+ 393              		.loc 1 133 24 is_stmt 0 view .LVU155
+ 394 0182 67EE214A 		vmul.f32	s9, s14, s3
+ 395              		.loc 1 133 19 view .LVU156
+ 396 0186 74EEA74A 		vadd.f32	s9, s9, s15
+ 397              		.loc 1 133 11 view .LVU157
+ 398 018a 74EEC24A 		vsub.f32	s9, s9, s4
+ 399              	.LVL34:
+ 134:Lib/Control/trajectory.c **** 
+ 135:Lib/Control/trajectory.c ****     sc->t1 = t1;         sc->v1 = v1; sc->p1 = p1;
+ 400              		.loc 1 135 5 is_stmt 1 view .LVU158
+ 401              		.loc 1 135 12 is_stmt 0 view .LVU159
+ 402 018e 84ED0D8A 		vstr.32	s16, [r4, #52]
+ 403              		.loc 1 135 26 is_stmt 1 view .LVU160
+ 404              		.loc 1 135 33 is_stmt 0 view .LVU161
+ 405 0192 84ED156A 		vstr.32	s12, [r4, #84]
+ 406              		.loc 1 135 39 is_stmt 1 view .LVU162
+ 407              		.loc 1 135 46 is_stmt 0 view .LVU163
+ 408 0196 C4ED148A 		vstr.32	s17, [r4, #80]
+ 136:Lib/Control/trajectory.c ****     sc->t2 = t1 + dt2;   sc->v2 = v2; sc->p2 = p2;
+ 409              		.loc 1 136 5 is_stmt 1 view .LVU164
+ 410              		.loc 1 136 17 is_stmt 0 view .LVU165
+ 411 019a 38EE070A 		vadd.f32	s0, s16, s14
+ 412              	.LVL35:
+ 413              		.loc 1 136 12 view .LVU166
+ 414 019e 84ED0E0A 		vstr.32	s0, [r4, #56]
+ 415              		.loc 1 136 26 is_stmt 1 view .LVU167
+ 416              		.loc 1 136 33 is_stmt 0 view .LVU168
+ 417 01a2 C4ED172A 		vstr.32	s5, [r4, #92]
+ 418              		.loc 1 136 39 is_stmt 1 view .LVU169
+ 419              		.loc 1 136 46 is_stmt 0 view .LVU170
+ 420 01a6 84ED165A 		vstr.32	s10, [r4, #88]
+ 137:Lib/Control/trajectory.c ****     sc->t3 = sc->t2 + t3d; sc->v3 = v3; sc->p3 = p3;
+ 421              		.loc 1 137 5 is_stmt 1 view .LVU171
+ 422              		.loc 1 137 21 is_stmt 0 view .LVU172
+ 423 01aa 30EE080A 		vadd.f32	s0, s0, s16
+ 424              		.loc 1 137 12 view .LVU173
+ 425 01ae 84ED0F0A 		vstr.32	s0, [r4, #60]
+ 426              		.loc 1 137 28 is_stmt 1 view .LVU174
+ 427              		.loc 1 137 35 is_stmt 0 view .LVU175
+ 428 01b2 C4ED196A 		vstr.32	s13, [r4, #100]
+ 429              		.loc 1 137 41 is_stmt 1 view .LVU176
+ 430              		.loc 1 137 48 is_stmt 0 view .LVU177
+ 431 01b6 C4ED185A 		vstr.32	s11, [r4, #96]
+ 138:Lib/Control/trajectory.c ****     sc->t4 = sc->t3 + Tv;  sc->p4 = p4;
+ 432              		.loc 1 138 5 is_stmt 1 view .LVU178
+ 433              		.loc 1 138 21 is_stmt 0 view .LVU179
+ 434 01ba 30EE040A 		vadd.f32	s0, s0, s8
+ 435              		.loc 1 138 12 view .LVU180
+ 436 01be 84ED100A 		vstr.32	s0, [r4, #64]
+ 437              		.loc 1 138 28 is_stmt 1 view .LVU181
+ARM GAS  /tmp/cc7GIs6c.s 			page 11
+
+
+ 438              		.loc 1 138 35 is_stmt 0 view .LVU182
+ 439 01c2 84ED1A3A 		vstr.32	s6, [r4, #104]
+ 139:Lib/Control/trajectory.c ****     sc->t5 = sc->t4 + t5d; sc->v5 = v5; sc->p5 = p5;
+ 440              		.loc 1 139 5 is_stmt 1 view .LVU183
+ 441              		.loc 1 139 21 is_stmt 0 view .LVU184
+ 442 01c6 30EE080A 		vadd.f32	s0, s0, s16
+ 443              		.loc 1 139 12 view .LVU185
+ 444 01ca 84ED110A 		vstr.32	s0, [r4, #68]
+ 445              		.loc 1 139 28 is_stmt 1 view .LVU186
+ 446              		.loc 1 139 35 is_stmt 0 view .LVU187
+ 447 01ce C4ED1C1A 		vstr.32	s3, [r4, #112]
+ 448              		.loc 1 139 41 is_stmt 1 view .LVU188
+ 449              		.loc 1 139 48 is_stmt 0 view .LVU189
+ 450 01d2 C4ED1B7A 		vstr.32	s15, [r4, #108]
+ 140:Lib/Control/trajectory.c ****     sc->t6 = sc->t5 + dt6; sc->v6 = v6; sc->p6 = p6;
+ 451              		.loc 1 140 5 is_stmt 1 view .LVU190
+ 452              		.loc 1 140 21 is_stmt 0 view .LVU191
+ 453 01d6 30EE070A 		vadd.f32	s0, s0, s14
+ 454              		.loc 1 140 12 view .LVU192
+ 455 01da 84ED120A 		vstr.32	s0, [r4, #72]
+ 456              		.loc 1 140 28 is_stmt 1 view .LVU193
+ 457              		.loc 1 140 35 is_stmt 0 view .LVU194
+ 458 01de C4ED1E3A 		vstr.32	s7, [r4, #120]
+ 459              		.loc 1 140 41 is_stmt 1 view .LVU195
+ 460              		.loc 1 140 48 is_stmt 0 view .LVU196
+ 461 01e2 C4ED1D4A 		vstr.32	s9, [r4, #116]
+ 141:Lib/Control/trajectory.c ****     sc->t7 = sc->t6 + Tj1;
+ 462              		.loc 1 141 5 is_stmt 1 view .LVU197
+ 463              		.loc 1 141 21 is_stmt 0 view .LVU198
+ 464 01e6 30EE080A 		vadd.f32	s0, s0, s16
+ 465              		.loc 1 141 12 view .LVU199
+ 466 01ea 84ED130A 		vstr.32	s0, [r4, #76]
+ 142:Lib/Control/trajectory.c **** 
+ 143:Lib/Control/trajectory.c ****     return 0;
+ 467              		.loc 1 143 5 is_stmt 1 view .LVU200
+ 468              		.loc 1 143 12 is_stmt 0 view .LVU201
+ 469 01ee 0020     		movs	r0, #0
+ 470              	.LVL36:
+ 471              	.L9:
+ 144:Lib/Control/trajectory.c **** }
+ 472              		.loc 1 144 1 view .LVU202
+ 473 01f0 BDEC068B 		vldm	sp!, {d8-d10}
+ 474              	.LCFI2:
+ 475              		.cfi_remember_state
+ 476              		.cfi_restore 84
+ 477              		.cfi_restore 85
+ 478              		.cfi_restore 82
+ 479              		.cfi_restore 83
+ 480              		.cfi_restore 80
+ 481              		.cfi_restore 81
+ 482              		.cfi_def_cfa_offset 8
+ 483              	.LVL37:
+ 484              		.loc 1 144 1 view .LVU203
+ 485 01f4 10BD     		pop	{r4, pc}
+ 486              	.LVL38:
+ 487              	.L41:
+ 488              	.LCFI3:
+ARM GAS  /tmp/cc7GIs6c.s 			page 12
+
+
+ 489              		.cfi_restore_state
+  32:Lib/Control/trajectory.c ****     sc->distance  = f_abs(h);
+ 490              		.loc 1 32 40 view .LVU204
+ 491 01f6 394B     		ldr	r3, .L45+8
+ 492 01f8 31E7     		b	.L10
+ 493              	.LVL39:
+ 494              	.L42:
+  43:Lib/Control/trajectory.c ****         sc->alim = sc->vlim = 0.0f;
+ 495              		.loc 1 43 9 is_stmt 1 view .LVU205
+  43:Lib/Control/trajectory.c ****         sc->alim = sc->vlim = 0.0f;
+ 496              		.loc 1 43 44 is_stmt 0 view .LVU206
+ 497 01fa 0023     		movs	r3, #0
+ 498 01fc A362     		str	r3, [r4, #40]	@ float
+  43:Lib/Control/trajectory.c ****         sc->alim = sc->vlim = 0.0f;
+ 499              		.loc 1 43 35 view .LVU207
+ 500 01fe 6362     		str	r3, [r4, #36]	@ float
+  43:Lib/Control/trajectory.c ****         sc->alim = sc->vlim = 0.0f;
+ 501              		.loc 1 43 26 view .LVU208
+ 502 0200 2362     		str	r3, [r4, #32]	@ float
+  43:Lib/Control/trajectory.c ****         sc->alim = sc->vlim = 0.0f;
+ 503              		.loc 1 43 17 view .LVU209
+ 504 0202 E361     		str	r3, [r4, #28]	@ float
+  44:Lib/Control/trajectory.c ****         sc->t1 = sc->t2 = sc->t3 = sc->t4 = sc->t5 = sc->t6 = sc->t7 = 0.0f;
+ 505              		.loc 1 44 9 is_stmt 1 view .LVU210
+  44:Lib/Control/trajectory.c ****         sc->t1 = sc->t2 = sc->t3 = sc->t4 = sc->t5 = sc->t6 = sc->t7 = 0.0f;
+ 506              		.loc 1 44 29 is_stmt 0 view .LVU211
+ 507 0204 2363     		str	r3, [r4, #48]	@ float
+  44:Lib/Control/trajectory.c ****         sc->t1 = sc->t2 = sc->t3 = sc->t4 = sc->t5 = sc->t6 = sc->t7 = 0.0f;
+ 508              		.loc 1 44 18 view .LVU212
+ 509 0206 E362     		str	r3, [r4, #44]	@ float
+  45:Lib/Control/trajectory.c ****         sc->p1 = sc->v1 = sc->p2 = sc->v2 = sc->p3 = sc->v3 = sc->p4 = 0.0f;
+ 510              		.loc 1 45 9 is_stmt 1 view .LVU213
+  45:Lib/Control/trajectory.c ****         sc->p1 = sc->v1 = sc->p2 = sc->v2 = sc->p3 = sc->v3 = sc->p4 = 0.0f;
+ 511              		.loc 1 45 70 is_stmt 0 view .LVU214
+ 512 0208 E364     		str	r3, [r4, #76]	@ float
+  45:Lib/Control/trajectory.c ****         sc->p1 = sc->v1 = sc->p2 = sc->v2 = sc->p3 = sc->v3 = sc->p4 = 0.0f;
+ 513              		.loc 1 45 61 view .LVU215
+ 514 020a A364     		str	r3, [r4, #72]	@ float
+  45:Lib/Control/trajectory.c ****         sc->p1 = sc->v1 = sc->p2 = sc->v2 = sc->p3 = sc->v3 = sc->p4 = 0.0f;
+ 515              		.loc 1 45 52 view .LVU216
+ 516 020c 6364     		str	r3, [r4, #68]	@ float
+  45:Lib/Control/trajectory.c ****         sc->p1 = sc->v1 = sc->p2 = sc->v2 = sc->p3 = sc->v3 = sc->p4 = 0.0f;
+ 517              		.loc 1 45 43 view .LVU217
+ 518 020e 2364     		str	r3, [r4, #64]	@ float
+  45:Lib/Control/trajectory.c ****         sc->p1 = sc->v1 = sc->p2 = sc->v2 = sc->p3 = sc->v3 = sc->p4 = 0.0f;
+ 519              		.loc 1 45 34 view .LVU218
+ 520 0210 E363     		str	r3, [r4, #60]	@ float
+  45:Lib/Control/trajectory.c ****         sc->p1 = sc->v1 = sc->p2 = sc->v2 = sc->p3 = sc->v3 = sc->p4 = 0.0f;
+ 521              		.loc 1 45 25 view .LVU219
+ 522 0212 A363     		str	r3, [r4, #56]	@ float
+  45:Lib/Control/trajectory.c ****         sc->p1 = sc->v1 = sc->p2 = sc->v2 = sc->p3 = sc->v3 = sc->p4 = 0.0f;
+ 523              		.loc 1 45 16 view .LVU220
+ 524 0214 6363     		str	r3, [r4, #52]	@ float
+  46:Lib/Control/trajectory.c ****         sc->p5 = sc->v5 = sc->p6 = sc->v6 = 0.0f;
+ 525              		.loc 1 46 9 is_stmt 1 view .LVU221
+  46:Lib/Control/trajectory.c ****         sc->p5 = sc->v5 = sc->p6 = sc->v6 = 0.0f;
+ 526              		.loc 1 46 70 is_stmt 0 view .LVU222
+ARM GAS  /tmp/cc7GIs6c.s 			page 13
+
+
+ 527 0216 A366     		str	r3, [r4, #104]	@ float
+  46:Lib/Control/trajectory.c ****         sc->p5 = sc->v5 = sc->p6 = sc->v6 = 0.0f;
+ 528              		.loc 1 46 61 view .LVU223
+ 529 0218 6366     		str	r3, [r4, #100]	@ float
+  46:Lib/Control/trajectory.c ****         sc->p5 = sc->v5 = sc->p6 = sc->v6 = 0.0f;
+ 530              		.loc 1 46 52 view .LVU224
+ 531 021a 2366     		str	r3, [r4, #96]	@ float
+  46:Lib/Control/trajectory.c ****         sc->p5 = sc->v5 = sc->p6 = sc->v6 = 0.0f;
+ 532              		.loc 1 46 43 view .LVU225
+ 533 021c E365     		str	r3, [r4, #92]	@ float
+  46:Lib/Control/trajectory.c ****         sc->p5 = sc->v5 = sc->p6 = sc->v6 = 0.0f;
+ 534              		.loc 1 46 34 view .LVU226
+ 535 021e A365     		str	r3, [r4, #88]	@ float
+  46:Lib/Control/trajectory.c ****         sc->p5 = sc->v5 = sc->p6 = sc->v6 = 0.0f;
+ 536              		.loc 1 46 25 view .LVU227
+ 537 0220 6365     		str	r3, [r4, #84]	@ float
+  46:Lib/Control/trajectory.c ****         sc->p5 = sc->v5 = sc->p6 = sc->v6 = 0.0f;
+ 538              		.loc 1 46 16 view .LVU228
+ 539 0222 2365     		str	r3, [r4, #80]	@ float
+  47:Lib/Control/trajectory.c ****         sc->finished = 1;
+ 540              		.loc 1 47 9 is_stmt 1 view .LVU229
+  47:Lib/Control/trajectory.c ****         sc->finished = 1;
+ 541              		.loc 1 47 43 is_stmt 0 view .LVU230
+ 542 0224 A367     		str	r3, [r4, #120]	@ float
+  47:Lib/Control/trajectory.c ****         sc->finished = 1;
+ 543              		.loc 1 47 34 view .LVU231
+ 544 0226 6367     		str	r3, [r4, #116]	@ float
+  47:Lib/Control/trajectory.c ****         sc->finished = 1;
+ 545              		.loc 1 47 25 view .LVU232
+ 546 0228 2367     		str	r3, [r4, #112]	@ float
+  47:Lib/Control/trajectory.c ****         sc->finished = 1;
+ 547              		.loc 1 47 16 view .LVU233
+ 548 022a E366     		str	r3, [r4, #108]	@ float
+  48:Lib/Control/trajectory.c ****         return 0;
+ 549              		.loc 1 48 9 is_stmt 1 view .LVU234
+  48:Lib/Control/trajectory.c ****         return 0;
+ 550              		.loc 1 48 22 is_stmt 0 view .LVU235
+ 551 022c 0123     		movs	r3, #1
+ 552 022e 84F88C30 		strb	r3, [r4, #140]
+  49:Lib/Control/trajectory.c ****     }
+ 553              		.loc 1 49 9 is_stmt 1 view .LVU236
+  49:Lib/Control/trajectory.c ****     }
+ 554              		.loc 1 49 16 is_stmt 0 view .LVU237
+ 555 0232 0020     		movs	r0, #0
+ 556 0234 DCE7     		b	.L9
+ 557              	.LVL40:
+ 558              	.L37:
+  63:Lib/Control/trajectory.c ****         Ta   = 2.0f * Tj1;
+ 559              		.loc 1 63 9 is_stmt 1 view .LVU238
+  63:Lib/Control/trajectory.c ****         Ta   = 2.0f * Tj1;
+ 560              		.loc 1 63 16 is_stmt 0 view .LVU239
+ 561 0236 89EEA80A 		vdiv.f32	s0, s19, s17
+ 562              	.LVL41:
+  63:Lib/Control/trajectory.c ****         Ta   = 2.0f * Tj1;
+ 563              		.loc 1 63 16 view .LVU240
+ 564 023a FFF7FEFF 		bl	sqrtf
+ 565              	.LVL42:
+ARM GAS  /tmp/cc7GIs6c.s 			page 14
+
+
+ 566 023e B0EE408A 		vmov.f32	s16, s0
+ 567              	.LVL43:
+  64:Lib/Control/trajectory.c ****         alim = j_max * Tj1;
+ 568              		.loc 1 64 9 is_stmt 1 view .LVU241
+  64:Lib/Control/trajectory.c ****         alim = j_max * Tj1;
+ 569              		.loc 1 64 14 is_stmt 0 view .LVU242
+ 570 0242 30EE000A 		vadd.f32	s0, s0, s0
+ 571              	.LVL44:
+  65:Lib/Control/trajectory.c ****     }
+ 572              		.loc 1 65 9 is_stmt 1 view .LVU243
+  65:Lib/Control/trajectory.c ****     }
+ 573              		.loc 1 65 14 is_stmt 0 view .LVU244
+ 574 0246 68EE886A 		vmul.f32	s13, s17, s16
+ 575              	.LVL45:
+  65:Lib/Control/trajectory.c ****     }
+ 576              		.loc 1 65 14 view .LVU245
+ 577 024a 34E7     		b	.L16
+ 578              	.LVL46:
+ 579              	.L38:
+  78:Lib/Control/trajectory.c ****         if (h_d >= 2.0f * (a_max * a_max * a_max) / (j_max * j_max)) {
+ 580              		.loc 1 78 9 is_stmt 1 view .LVU246
+  79:Lib/Control/trajectory.c ****             /* a_max tetap tercapai, tapi tanpa fase kecepatan konstan */
+ 581              		.loc 1 79 9 view .LVU247
+  79:Lib/Control/trajectory.c ****             /* a_max tetap tercapai, tapi tanpa fase kecepatan konstan */
+ 582              		.loc 1 79 42 is_stmt 0 view .LVU248
+ 583 024c 6AEE8AAA 		vmul.f32	s21, s21, s20
+  79:Lib/Control/trajectory.c ****             /* a_max tetap tercapai, tapi tanpa fase kecepatan konstan */
+ 584              		.loc 1 79 25 view .LVU249
+ 585 0250 7AEEAAAA 		vadd.f32	s21, s21, s21
+  79:Lib/Control/trajectory.c ****             /* a_max tetap tercapai, tapi tanpa fase kecepatan konstan */
+ 586              		.loc 1 79 60 view .LVU250
+ 587 0254 28EEA87A 		vmul.f32	s14, s17, s17
+  79:Lib/Control/trajectory.c ****             /* a_max tetap tercapai, tapi tanpa fase kecepatan konstan */
+ 588              		.loc 1 79 51 view .LVU251
+ 589 0258 CAEE877A 		vdiv.f32	s15, s21, s14
+ 590              	.LVL47:
+  79:Lib/Control/trajectory.c ****             /* a_max tetap tercapai, tapi tanpa fase kecepatan konstan */
+ 591              		.loc 1 79 12 view .LVU252
+ 592 025c B4EEE79A 		vcmpe.f32	s18, s15
+ 593 0260 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 594 0264 14DA     		bge	.L44
+  86:Lib/Control/trajectory.c ****             Tj1  = Ta * 0.5f;
+ 595              		.loc 1 86 13 is_stmt 1 view .LVU253
+  86:Lib/Control/trajectory.c ****             Tj1  = Ta * 0.5f;
+ 596              		.loc 1 86 31 is_stmt 0 view .LVU254
+ 597 0266 B1EE000A 		vmov.f32	s0, #4.0e+0
+ 598              	.LVL48:
+  86:Lib/Control/trajectory.c ****             Tj1  = Ta * 0.5f;
+ 599              		.loc 1 86 31 view .LVU255
+ 600 026a 29EE000A 		vmul.f32	s0, s18, s0
+  86:Lib/Control/trajectory.c ****             Tj1  = Ta * 0.5f;
+ 601              		.loc 1 86 20 view .LVU256
+ 602 026e 80EE280A 		vdiv.f32	s0, s0, s17
+ 603 0272 FFF7FEFF 		bl	cbrtf
+ 604              	.LVL49:
+  87:Lib/Control/trajectory.c ****             alim = j_max * Tj1;
+ 605              		.loc 1 87 13 is_stmt 1 view .LVU257
+ARM GAS  /tmp/cc7GIs6c.s 			page 15
+
+
+  87:Lib/Control/trajectory.c ****             alim = j_max * Tj1;
+ 606              		.loc 1 87 18 is_stmt 0 view .LVU258
+ 607 0276 B6EE008A 		vmov.f32	s16, #5.0e-1
+ 608              	.LVL50:
+  87:Lib/Control/trajectory.c ****             alim = j_max * Tj1;
+ 609              		.loc 1 87 18 view .LVU259
+ 610 027a 20EE088A 		vmul.f32	s16, s0, s16
+ 611              	.LVL51:
+  88:Lib/Control/trajectory.c ****         }
+ 612              		.loc 1 88 13 is_stmt 1 view .LVU260
+  88:Lib/Control/trajectory.c ****         }
+ 613              		.loc 1 88 18 is_stmt 0 view .LVU261
+ 614 027e 68EE886A 		vmul.f32	s13, s17, s16
+ 615              	.LVL52:
+ 616              	.L22:
+  90:Lib/Control/trajectory.c ****         vlim = alim * (Ta - Tj1);
+ 617              		.loc 1 90 9 is_stmt 1 view .LVU262
+  91:Lib/Control/trajectory.c ****     }
+ 618              		.loc 1 91 9 view .LVU263
+  91:Lib/Control/trajectory.c ****     }
+ 619              		.loc 1 91 27 is_stmt 0 view .LVU264
+ 620 0282 70EE487A 		vsub.f32	s15, s0, s16
+  91:Lib/Control/trajectory.c ****     }
+ 621              		.loc 1 91 14 view .LVU265
+ 622 0286 67EEA69A 		vmul.f32	s19, s15, s13
+ 623              	.LVL53:
+  78:Lib/Control/trajectory.c ****         if (h_d >= 2.0f * (a_max * a_max * a_max) / (j_max * j_max)) {
+ 624              		.loc 1 78 12 view .LVU266
+ 625 028a 9FED154A 		vldr.32	s8, .L45+12
+ 626 028e 1EE7     		b	.L19
+ 627              	.LVL54:
+ 628              	.L44:
+  81:Lib/Control/trajectory.c ****             Ta  = Tj1 * 0.5f + sqrtf((Tj1 * 0.5f) * (Tj1 * 0.5f) + h_d / a_max);
+ 629              		.loc 1 81 13 is_stmt 1 view .LVU267
+  81:Lib/Control/trajectory.c ****             Ta  = Tj1 * 0.5f + sqrtf((Tj1 * 0.5f) * (Tj1 * 0.5f) + h_d / a_max);
+ 630              		.loc 1 81 17 is_stmt 0 view .LVU268
+ 631 0290 8AEE288A 		vdiv.f32	s16, s20, s17
+ 632              	.LVL55:
+  82:Lib/Control/trajectory.c ****             alim = a_max;
+ 633              		.loc 1 82 13 is_stmt 1 view .LVU269
+  82:Lib/Control/trajectory.c ****             alim = a_max;
+ 634              		.loc 1 82 23 is_stmt 0 view .LVU270
+ 635 0294 B6EE000A 		vmov.f32	s0, #5.0e-1
+ 636              	.LVL56:
+  82:Lib/Control/trajectory.c ****             alim = a_max;
+ 637              		.loc 1 82 23 view .LVU271
+ 638 0298 68EE009A 		vmul.f32	s19, s16, s0
+ 639              	.LVL57:
+  82:Lib/Control/trajectory.c ****             alim = a_max;
+ 640              		.loc 1 82 51 view .LVU272
+ 641 029c 29EEA90A 		vmul.f32	s0, s19, s19
+  82:Lib/Control/trajectory.c ****             alim = a_max;
+ 642              		.loc 1 82 72 view .LVU273
+ 643 02a0 C9EE0A7A 		vdiv.f32	s15, s18, s20
+  82:Lib/Control/trajectory.c ****             alim = a_max;
+ 644              		.loc 1 82 32 view .LVU274
+ 645 02a4 30EE270A 		vadd.f32	s0, s0, s15
+ARM GAS  /tmp/cc7GIs6c.s 			page 16
+
+
+ 646 02a8 FFF7FEFF 		bl	sqrtf
+ 647              	.LVL58:
+  82:Lib/Control/trajectory.c ****             alim = a_max;
+ 648              		.loc 1 82 17 view .LVU275
+ 649 02ac 39EE800A 		vadd.f32	s0, s19, s0
+ 650              	.LVL59:
+  83:Lib/Control/trajectory.c ****         } else {
+ 651              		.loc 1 83 13 is_stmt 1 view .LVU276
+  83:Lib/Control/trajectory.c ****         } else {
+ 652              		.loc 1 83 18 is_stmt 0 view .LVU277
+ 653 02b0 F0EE4A6A 		vmov.f32	s13, s20
+ 654 02b4 E5E7     		b	.L22
+ 655              	.LVL60:
+ 656              	.L43:
+ 111:Lib/Control/trajectory.c ****     float v2 = v1 + a * dt2;
+ 657              		.loc 1 111 25 view .LVU278
+ 658 02b6 9FED0A7A 		vldr.32	s14, .L45+12
+ 659              	.LVL61:
+ 111:Lib/Control/trajectory.c ****     float v2 = v1 + a * dt2;
+ 660              		.loc 1 111 25 view .LVU279
+ 661 02ba 30E7     		b	.L23
+ 662              	.LVL62:
+ 663              	.L24:
+  25:Lib/Control/trajectory.c ****   }
+ 664              		.loc 1 25 14 view .LVU280
+ 665 02bc 4FF0FF30 		mov	r0, #-1
+ 666              	.LVL63:
+  25:Lib/Control/trajectory.c ****   }
+ 667              		.loc 1 25 14 view .LVU281
+ 668 02c0 96E7     		b	.L9
+ 669              	.LVL64:
+ 670              	.L25:
+  25:Lib/Control/trajectory.c ****   }
+ 671              		.loc 1 25 14 view .LVU282
+ 672 02c2 4FF0FF30 		mov	r0, #-1
+ 673              	.LVL65:
+  25:Lib/Control/trajectory.c ****   }
+ 674              		.loc 1 25 14 view .LVU283
+ 675 02c6 93E7     		b	.L9
+ 676              	.LVL66:
+ 677              	.L26:
+  25:Lib/Control/trajectory.c ****   }
+ 678              		.loc 1 25 14 view .LVU284
+ 679 02c8 4FF0FF30 		mov	r0, #-1
+ 680              	.LVL67:
+  25:Lib/Control/trajectory.c ****   }
+ 681              		.loc 1 25 14 view .LVU285
+ 682 02cc 90E7     		b	.L9
+ 683              	.LVL68:
+ 684              	.L27:
+  25:Lib/Control/trajectory.c ****   }
+ 685              		.loc 1 25 14 view .LVU286
+ 686 02ce 4FF0FF30 		mov	r0, #-1
+ 687              	.LVL69:
+  25:Lib/Control/trajectory.c ****   }
+ 688              		.loc 1 25 14 view .LVU287
+ 689 02d2 8DE7     		b	.L9
+ARM GAS  /tmp/cc7GIs6c.s 			page 17
+
+
+ 690              	.L46:
+ 691              		.align	2
+ 692              	.L45:
+ 693 02d4 5F708930 		.word	814313567
+ 694 02d8 ABAA2A3E 		.word	1042983595
+ 695 02dc 000080BF 		.word	-1082130432
+ 696 02e0 00000000 		.word	0
+ 697              		.cfi_endproc
+ 698              	.LFE2:
+ 700              		.section	.text.s_curve_update,"ax",%progbits
+ 701              		.align	1
+ 702              		.global	s_curve_update
+ 703              		.syntax unified
+ 704              		.thumb
+ 705              		.thumb_func
+ 706              		.fpu fpv4-sp-d16
+ 708              	s_curve_update:
+ 709              	.LVL70:
+ 710              	.LFB3:
+ 145:Lib/Control/trajectory.c **** 
+ 146:Lib/Control/trajectory.c **** int8_t s_curve_update(s_curve_t *sc, float dt) {
+ 711              		.loc 1 146 48 is_stmt 1 view -0
+ 712              		.cfi_startproc
+ 713              		@ args = 0, pretend = 0, frame = 0
+ 714              		@ frame_needed = 0, uses_anonymous_args = 0
+ 715              		@ link register save eliminated.
+ 147:Lib/Control/trajectory.c ****     if (!sc) return -1;
+ 716              		.loc 1 147 5 view .LVU289
+ 717              		.loc 1 147 8 is_stmt 0 view .LVU290
+ 718 0000 0346     		mov	r3, r0
+ 719 0002 0028     		cmp	r0, #0
+ 720 0004 00F03881 		beq	.L64
+ 148:Lib/Control/trajectory.c ****     if (sc->finished) return -1;
+ 721              		.loc 1 148 5 is_stmt 1 view .LVU291
+ 722              		.loc 1 148 11 is_stmt 0 view .LVU292
+ 723 0008 90F88C20 		ldrb	r2, [r0, #140]	@ zero_extendqisi2
+ 724              		.loc 1 148 8 view .LVU293
+ 725 000c 002A     		cmp	r2, #0
+ 726 000e 40F03681 		bne	.L65
+ 149:Lib/Control/trajectory.c **** 
+ 150:Lib/Control/trajectory.c ****     sc->time += dt;
+ 727              		.loc 1 150 5 is_stmt 1 view .LVU294
+ 728              		.loc 1 150 14 is_stmt 0 view .LVU295
+ 729 0012 D0ED1F7A 		vldr.32	s15, [r0, #124]
+ 730 0016 30EE270A 		vadd.f32	s0, s0, s15
+ 731              	.LVL71:
+ 732              		.loc 1 150 14 view .LVU296
+ 733 001a 80ED1F0A 		vstr.32	s0, [r0, #124]
+ 151:Lib/Control/trajectory.c **** 
+ 152:Lib/Control/trajectory.c ****     float j = sc->j_max;
+ 734              		.loc 1 152 5 is_stmt 1 view .LVU297
+ 735              		.loc 1 152 11 is_stmt 0 view .LVU298
+ 736 001e D0ED046A 		vldr.32	s13, [r0, #16]
+ 737              	.LVL72:
+ 153:Lib/Control/trajectory.c ****     float a = sc->alim;
+ 738              		.loc 1 153 5 is_stmt 1 view .LVU299
+ 739              		.loc 1 153 11 is_stmt 0 view .LVU300
+ARM GAS  /tmp/cc7GIs6c.s 			page 18
+
+
+ 740 0022 D0ED0B5A 		vldr.32	s11, [r0, #44]
+ 741              	.LVL73:
+ 154:Lib/Control/trajectory.c ****     float t = sc->time;
+ 742              		.loc 1 154 5 is_stmt 1 view .LVU301
+ 155:Lib/Control/trajectory.c **** 
+ 156:Lib/Control/trajectory.c ****     float pos, vel, accel;
+ 743              		.loc 1 156 5 view .LVU302
+ 157:Lib/Control/trajectory.c **** 
+ 158:Lib/Control/trajectory.c ****     if (t >= sc->t7) {
+ 744              		.loc 1 158 5 view .LVU303
+ 745              		.loc 1 158 16 is_stmt 0 view .LVU304
+ 746 0026 90ED137A 		vldr.32	s14, [r0, #76]
+ 747              		.loc 1 158 8 view .LVU305
+ 748 002a B4EEC70A 		vcmpe.f32	s0, s14
+ 749 002e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 750 0032 1CDB     		blt	.L73
+ 159:Lib/Control/trajectory.c ****         pos = sc->distance;
+ 751              		.loc 1 159 9 is_stmt 1 view .LVU306
+ 752              		.loc 1 159 13 is_stmt 0 view .LVU307
+ 753 0034 90ED060A 		vldr.32	s0, [r0, #24]
+ 754              	.LVL74:
+ 160:Lib/Control/trajectory.c ****         vel = 0.0f;
+ 755              		.loc 1 160 9 is_stmt 1 view .LVU308
+ 161:Lib/Control/trajectory.c ****         accel = 0.0f;
+ 756              		.loc 1 161 9 view .LVU309
+ 162:Lib/Control/trajectory.c ****         sc->finished = 1;
+ 757              		.loc 1 162 9 view .LVU310
+ 758              		.loc 1 162 22 is_stmt 0 view .LVU311
+ 759 0038 0122     		movs	r2, #1
+ 760 003a 80F88C20 		strb	r2, [r0, #140]
+ 161:Lib/Control/trajectory.c ****         accel = 0.0f;
+ 761              		.loc 1 161 15 view .LVU312
+ 762 003e DFED915A 		vldr.32	s11, .L80
+ 763              	.LVL75:
+ 160:Lib/Control/trajectory.c ****         vel = 0.0f;
+ 764              		.loc 1 160 13 view .LVU313
+ 765 0042 B0EE657A 		vmov.f32	s14, s11
+ 766              	.LVL76:
+ 767              	.L51:
+ 163:Lib/Control/trajectory.c ****     } else if (t < sc->t1) {
+ 164:Lib/Control/trajectory.c ****         float tau = t;
+ 165:Lib/Control/trajectory.c ****         accel = j * tau;
+ 166:Lib/Control/trajectory.c ****         vel   = 0.5f * j * tau * tau;
+ 167:Lib/Control/trajectory.c ****         pos   = (1.0f / 6.0f) * j * tau * tau * tau;
+ 168:Lib/Control/trajectory.c ****     } else if (t < sc->t2) {
+ 169:Lib/Control/trajectory.c ****         float tau = t - sc->t1;
+ 170:Lib/Control/trajectory.c ****         accel = a;
+ 171:Lib/Control/trajectory.c ****         vel   = sc->v1 + a * tau;
+ 172:Lib/Control/trajectory.c ****         pos   = sc->p1 + sc->v1 * tau + 0.5f * a * tau * tau;
+ 173:Lib/Control/trajectory.c ****     } else if (t < sc->t3) {
+ 174:Lib/Control/trajectory.c ****         float tau = t - sc->t2;
+ 175:Lib/Control/trajectory.c ****         accel = a - j * tau;
+ 176:Lib/Control/trajectory.c ****         vel   = sc->v2 + a * tau - 0.5f * j * tau * tau;
+ 177:Lib/Control/trajectory.c ****         pos   = sc->p2 + sc->v2 * tau + 0.5f * a * tau * tau
+ 178:Lib/Control/trajectory.c ****                 - (1.0f / 6.0f) * j * tau * tau * tau;
+ 179:Lib/Control/trajectory.c ****     } else if (t < sc->t4) {
+ 180:Lib/Control/trajectory.c ****         float tau = t - sc->t3;
+ARM GAS  /tmp/cc7GIs6c.s 			page 19
+
+
+ 181:Lib/Control/trajectory.c ****         accel = 0.0f;
+ 182:Lib/Control/trajectory.c ****         vel   = sc->vlim;
+ 183:Lib/Control/trajectory.c ****         pos   = sc->p3 + sc->vlim * tau;
+ 184:Lib/Control/trajectory.c ****     } else if (t < sc->t5) {
+ 185:Lib/Control/trajectory.c ****         float tau = t - sc->t4;
+ 186:Lib/Control/trajectory.c ****         accel = -j * tau;
+ 187:Lib/Control/trajectory.c ****         vel   = sc->vlim - 0.5f * j * tau * tau;
+ 188:Lib/Control/trajectory.c ****         pos   = sc->p4 + sc->vlim * tau - (1.0f / 6.0f) * j * tau * tau * tau;
+ 189:Lib/Control/trajectory.c ****     } else if (t < sc->t6) {
+ 190:Lib/Control/trajectory.c ****         float tau = t - sc->t5;
+ 191:Lib/Control/trajectory.c ****         accel = -a;
+ 192:Lib/Control/trajectory.c ****         vel   = sc->v5 - a * tau;
+ 193:Lib/Control/trajectory.c ****         pos   = sc->p5 + sc->v5 * tau - 0.5f * a * tau * tau;
+ 194:Lib/Control/trajectory.c ****     } else {
+ 195:Lib/Control/trajectory.c ****         float tau = t - sc->t6;
+ 196:Lib/Control/trajectory.c ****         accel = -a + j * tau;
+ 197:Lib/Control/trajectory.c ****         vel   = sc->v6 - a * tau + 0.5f * j * tau * tau;
+ 198:Lib/Control/trajectory.c ****         pos   = sc->p6 + sc->v6 * tau - 0.5f * a * tau * tau
+ 199:Lib/Control/trajectory.c ****                 + (1.0f / 6.0f) * j * tau * tau * tau;
+ 200:Lib/Control/trajectory.c ****     }
+ 201:Lib/Control/trajectory.c **** 
+ 202:Lib/Control/trajectory.c ****     sc->pos         = sc->start_pos + sc->direction * pos;
+ 768              		.loc 1 202 5 is_stmt 1 view .LVU314
+ 769              		.loc 1 202 25 is_stmt 0 view .LVU315
+ 770 0046 D3ED006A 		vldr.32	s13, [r3]
+ 771              		.loc 1 202 41 view .LVU316
+ 772 004a D3ED057A 		vldr.32	s15, [r3, #20]
+ 773              		.loc 1 202 53 view .LVU317
+ 774 004e 27EE800A 		vmul.f32	s0, s15, s0
+ 775              	.LVL77:
+ 776              		.loc 1 202 37 view .LVU318
+ 777 0052 36EE800A 		vadd.f32	s0, s13, s0
+ 778              		.loc 1 202 21 view .LVU319
+ 779 0056 83ED200A 		vstr.32	s0, [r3, #128]
+ 203:Lib/Control/trajectory.c ****     sc->velocity    = sc->direction * vel;
+ 780              		.loc 1 203 5 is_stmt 1 view .LVU320
+ 781              		.loc 1 203 37 is_stmt 0 view .LVU321
+ 782 005a 27EE877A 		vmul.f32	s14, s15, s14
+ 783              	.LVL78:
+ 784              		.loc 1 203 21 view .LVU322
+ 785 005e 83ED217A 		vstr.32	s14, [r3, #132]
+ 204:Lib/Control/trajectory.c ****     sc->acceleration = sc->direction * accel;
+ 786              		.loc 1 204 5 is_stmt 1 view .LVU323
+ 787              		.loc 1 204 38 is_stmt 0 view .LVU324
+ 788 0062 67EEA57A 		vmul.f32	s15, s15, s11
+ 789              		.loc 1 204 22 view .LVU325
+ 790 0066 C3ED227A 		vstr.32	s15, [r3, #136]
+ 205:Lib/Control/trajectory.c **** 
+ 206:Lib/Control/trajectory.c ****     return 0;
+ 791              		.loc 1 206 5 is_stmt 1 view .LVU326
+ 792              		.loc 1 206 12 is_stmt 0 view .LVU327
+ 793 006a 0020     		movs	r0, #0
+ 794              	.LVL79:
+ 795              		.loc 1 206 12 view .LVU328
+ 796 006c 7047     		bx	lr
+ 797              	.LVL80:
+ 798              	.L73:
+ARM GAS  /tmp/cc7GIs6c.s 			page 20
+
+
+ 163:Lib/Control/trajectory.c ****         float tau = t;
+ 799              		.loc 1 163 12 is_stmt 1 view .LVU329
+ 163:Lib/Control/trajectory.c ****         float tau = t;
+ 800              		.loc 1 163 22 is_stmt 0 view .LVU330
+ 801 006e D0ED0D7A 		vldr.32	s15, [r0, #52]
+ 163:Lib/Control/trajectory.c ****         float tau = t;
+ 802              		.loc 1 163 15 view .LVU331
+ 803 0072 B4EEE70A 		vcmpe.f32	s0, s15
+ 804 0076 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 805 007a 14D5     		bpl	.L74
+ 806              	.LBB2:
+ 164:Lib/Control/trajectory.c ****         accel = j * tau;
+ 807              		.loc 1 164 9 is_stmt 1 view .LVU332
+ 808              	.LVL81:
+ 165:Lib/Control/trajectory.c ****         vel   = 0.5f * j * tau * tau;
+ 809              		.loc 1 165 9 view .LVU333
+ 165:Lib/Control/trajectory.c ****         vel   = 0.5f * j * tau * tau;
+ 810              		.loc 1 165 15 is_stmt 0 view .LVU334
+ 811 007c 60EE265A 		vmul.f32	s11, s0, s13
+ 812              	.LVL82:
+ 166:Lib/Control/trajectory.c ****         pos   = (1.0f / 6.0f) * j * tau * tau * tau;
+ 813              		.loc 1 166 9 is_stmt 1 view .LVU335
+ 166:Lib/Control/trajectory.c ****         pos   = (1.0f / 6.0f) * j * tau * tau * tau;
+ 814              		.loc 1 166 22 is_stmt 0 view .LVU336
+ 815 0080 B6EE007A 		vmov.f32	s14, #5.0e-1
+ 816 0084 26EE877A 		vmul.f32	s14, s13, s14
+ 166:Lib/Control/trajectory.c ****         pos   = (1.0f / 6.0f) * j * tau * tau * tau;
+ 817              		.loc 1 166 26 view .LVU337
+ 818 0088 20EE077A 		vmul.f32	s14, s0, s14
+ 166:Lib/Control/trajectory.c ****         pos   = (1.0f / 6.0f) * j * tau * tau * tau;
+ 819              		.loc 1 166 15 view .LVU338
+ 820 008c 20EE077A 		vmul.f32	s14, s0, s14
+ 821              	.LVL83:
+ 167:Lib/Control/trajectory.c ****     } else if (t < sc->t2) {
+ 822              		.loc 1 167 9 is_stmt 1 view .LVU339
+ 167:Lib/Control/trajectory.c ****     } else if (t < sc->t2) {
+ 823              		.loc 1 167 31 is_stmt 0 view .LVU340
+ 824 0090 9FED7D6A 		vldr.32	s12, .L80+4
+ 825 0094 66EE866A 		vmul.f32	s13, s13, s12
+ 826              	.LVL84:
+ 167:Lib/Control/trajectory.c ****     } else if (t < sc->t2) {
+ 827              		.loc 1 167 35 view .LVU341
+ 828 0098 60EE266A 		vmul.f32	s13, s0, s13
+ 167:Lib/Control/trajectory.c ****     } else if (t < sc->t2) {
+ 829              		.loc 1 167 41 view .LVU342
+ 830 009c 60EE266A 		vmul.f32	s13, s0, s13
+ 167:Lib/Control/trajectory.c ****     } else if (t < sc->t2) {
+ 831              		.loc 1 167 15 view .LVU343
+ 832 00a0 20EE260A 		vmul.f32	s0, s0, s13
+ 833              	.LVL85:
+ 167:Lib/Control/trajectory.c ****     } else if (t < sc->t2) {
+ 834              		.loc 1 167 15 view .LVU344
+ 835              	.LBE2:
+ 836 00a4 CFE7     		b	.L51
+ 837              	.LVL86:
+ 838              	.L74:
+ 168:Lib/Control/trajectory.c ****         float tau = t - sc->t1;
+ARM GAS  /tmp/cc7GIs6c.s 			page 21
+
+
+ 839              		.loc 1 168 12 is_stmt 1 view .LVU345
+ 168:Lib/Control/trajectory.c ****         float tau = t - sc->t1;
+ 840              		.loc 1 168 22 is_stmt 0 view .LVU346
+ 841 00a6 90ED0E7A 		vldr.32	s14, [r0, #56]
+ 168:Lib/Control/trajectory.c ****         float tau = t - sc->t1;
+ 842              		.loc 1 168 15 view .LVU347
+ 843 00aa B4EEC70A 		vcmpe.f32	s0, s14
+ 844 00ae F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 845 00b2 18D5     		bpl	.L75
+ 846              	.LBB3:
+ 169:Lib/Control/trajectory.c ****         accel = a;
+ 847              		.loc 1 169 9 is_stmt 1 view .LVU348
+ 169:Lib/Control/trajectory.c ****         accel = a;
+ 848              		.loc 1 169 15 is_stmt 0 view .LVU349
+ 849 00b4 70EE677A 		vsub.f32	s15, s0, s15
+ 850              	.LVL87:
+ 170:Lib/Control/trajectory.c ****         vel   = sc->v1 + a * tau;
+ 851              		.loc 1 170 9 is_stmt 1 view .LVU350
+ 171:Lib/Control/trajectory.c ****         pos   = sc->p1 + sc->v1 * tau + 0.5f * a * tau * tau;
+ 852              		.loc 1 171 9 view .LVU351
+ 171:Lib/Control/trajectory.c ****         pos   = sc->p1 + sc->v1 * tau + 0.5f * a * tau * tau;
+ 853              		.loc 1 171 19 is_stmt 0 view .LVU352
+ 854 00b8 D0ED156A 		vldr.32	s13, [r0, #84]
+ 855              	.LVL88:
+ 171:Lib/Control/trajectory.c ****         pos   = sc->p1 + sc->v1 * tau + 0.5f * a * tau * tau;
+ 856              		.loc 1 171 28 view .LVU353
+ 857 00bc 25EEA77A 		vmul.f32	s14, s11, s15
+ 171:Lib/Control/trajectory.c ****         pos   = sc->p1 + sc->v1 * tau + 0.5f * a * tau * tau;
+ 858              		.loc 1 171 15 view .LVU354
+ 859 00c0 36EE877A 		vadd.f32	s14, s13, s14
+ 860              	.LVL89:
+ 172:Lib/Control/trajectory.c ****     } else if (t < sc->t3) {
+ 861              		.loc 1 172 9 is_stmt 1 view .LVU355
+ 172:Lib/Control/trajectory.c ****     } else if (t < sc->t3) {
+ 862              		.loc 1 172 19 is_stmt 0 view .LVU356
+ 863 00c4 90ED140A 		vldr.32	s0, [r0, #80]
+ 864              	.LVL90:
+ 172:Lib/Control/trajectory.c ****     } else if (t < sc->t3) {
+ 865              		.loc 1 172 33 view .LVU357
+ 866 00c8 66EEA76A 		vmul.f32	s13, s13, s15
+ 172:Lib/Control/trajectory.c ****     } else if (t < sc->t3) {
+ 867              		.loc 1 172 24 view .LVU358
+ 868 00cc 70EE266A 		vadd.f32	s13, s0, s13
+ 172:Lib/Control/trajectory.c ****     } else if (t < sc->t3) {
+ 869              		.loc 1 172 46 view .LVU359
+ 870 00d0 B6EE000A 		vmov.f32	s0, #5.0e-1
+ 871 00d4 25EE800A 		vmul.f32	s0, s11, s0
+ 172:Lib/Control/trajectory.c ****     } else if (t < sc->t3) {
+ 872              		.loc 1 172 50 view .LVU360
+ 873 00d8 20EE270A 		vmul.f32	s0, s0, s15
+ 172:Lib/Control/trajectory.c ****     } else if (t < sc->t3) {
+ 874              		.loc 1 172 56 view .LVU361
+ 875 00dc 20EE270A 		vmul.f32	s0, s0, s15
+ 172:Lib/Control/trajectory.c ****     } else if (t < sc->t3) {
+ 876              		.loc 1 172 15 view .LVU362
+ 877 00e0 36EE800A 		vadd.f32	s0, s13, s0
+ 878              	.LVL91:
+ARM GAS  /tmp/cc7GIs6c.s 			page 22
+
+
+ 172:Lib/Control/trajectory.c ****     } else if (t < sc->t3) {
+ 879              		.loc 1 172 15 view .LVU363
+ 880              	.LBE3:
+ 881 00e4 AFE7     		b	.L51
+ 882              	.LVL92:
+ 883              	.L75:
+ 173:Lib/Control/trajectory.c ****         float tau = t - sc->t2;
+ 884              		.loc 1 173 12 is_stmt 1 view .LVU364
+ 173:Lib/Control/trajectory.c ****         float tau = t - sc->t2;
+ 885              		.loc 1 173 22 is_stmt 0 view .LVU365
+ 886 00e6 D0ED0F7A 		vldr.32	s15, [r0, #60]
+ 173:Lib/Control/trajectory.c ****         float tau = t - sc->t2;
+ 887              		.loc 1 173 15 view .LVU366
+ 888 00ea B4EEE70A 		vcmpe.f32	s0, s15
+ 889 00ee F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 890 00f2 30D5     		bpl	.L76
+ 891              	.LBB4:
+ 174:Lib/Control/trajectory.c ****         accel = a - j * tau;
+ 892              		.loc 1 174 9 is_stmt 1 view .LVU367
+ 174:Lib/Control/trajectory.c ****         accel = a - j * tau;
+ 893              		.loc 1 174 15 is_stmt 0 view .LVU368
+ 894 00f4 70EE477A 		vsub.f32	s15, s0, s14
+ 895              	.LVL93:
+ 175:Lib/Control/trajectory.c ****         vel   = sc->v2 + a * tau - 0.5f * j * tau * tau;
+ 896              		.loc 1 175 9 is_stmt 1 view .LVU369
+ 175:Lib/Control/trajectory.c ****         vel   = sc->v2 + a * tau - 0.5f * j * tau * tau;
+ 897              		.loc 1 175 23 is_stmt 0 view .LVU370
+ 898 00f8 26EEA74A 		vmul.f32	s8, s13, s15
+ 899              	.LVL94:
+ 176:Lib/Control/trajectory.c ****         pos   = sc->p2 + sc->v2 * tau + 0.5f * a * tau * tau
+ 900              		.loc 1 176 9 is_stmt 1 view .LVU371
+ 176:Lib/Control/trajectory.c ****         pos   = sc->p2 + sc->v2 * tau + 0.5f * a * tau * tau
+ 901              		.loc 1 176 19 is_stmt 0 view .LVU372
+ 902 00fc 90ED175A 		vldr.32	s10, [r0, #92]
+ 176:Lib/Control/trajectory.c ****         pos   = sc->p2 + sc->v2 * tau + 0.5f * a * tau * tau
+ 903              		.loc 1 176 28 view .LVU373
+ 904 0100 25EEA77A 		vmul.f32	s14, s11, s15
+ 176:Lib/Control/trajectory.c ****         pos   = sc->p2 + sc->v2 * tau + 0.5f * a * tau * tau
+ 905              		.loc 1 176 24 view .LVU374
+ 906 0104 75EE074A 		vadd.f32	s9, s10, s14
+ 176:Lib/Control/trajectory.c ****         pos   = sc->p2 + sc->v2 * tau + 0.5f * a * tau * tau
+ 907              		.loc 1 176 41 view .LVU375
+ 908 0108 B6EE006A 		vmov.f32	s12, #5.0e-1
+ 909 010c 26EE867A 		vmul.f32	s14, s13, s12
+ 176:Lib/Control/trajectory.c ****         pos   = sc->p2 + sc->v2 * tau + 0.5f * a * tau * tau
+ 910              		.loc 1 176 45 view .LVU376
+ 911 0110 27EE277A 		vmul.f32	s14, s14, s15
+ 176:Lib/Control/trajectory.c ****         pos   = sc->p2 + sc->v2 * tau + 0.5f * a * tau * tau
+ 912              		.loc 1 176 51 view .LVU377
+ 913 0114 27EE277A 		vmul.f32	s14, s14, s15
+ 176:Lib/Control/trajectory.c ****         pos   = sc->p2 + sc->v2 * tau + 0.5f * a * tau * tau
+ 914              		.loc 1 176 15 view .LVU378
+ 915 0118 34EEC77A 		vsub.f32	s14, s9, s14
+ 916              	.LVL95:
+ 177:Lib/Control/trajectory.c ****                 - (1.0f / 6.0f) * j * tau * tau * tau;
+ 917              		.loc 1 177 9 is_stmt 1 view .LVU379
+ 177:Lib/Control/trajectory.c ****                 - (1.0f / 6.0f) * j * tau * tau * tau;
+ARM GAS  /tmp/cc7GIs6c.s 			page 23
+
+
+ 918              		.loc 1 177 19 is_stmt 0 view .LVU380
+ 919 011c 90ED160A 		vldr.32	s0, [r0, #88]
+ 920              	.LVL96:
+ 177:Lib/Control/trajectory.c ****                 - (1.0f / 6.0f) * j * tau * tau * tau;
+ 921              		.loc 1 177 33 view .LVU381
+ 922 0120 25EE275A 		vmul.f32	s10, s10, s15
+ 177:Lib/Control/trajectory.c ****                 - (1.0f / 6.0f) * j * tau * tau * tau;
+ 923              		.loc 1 177 24 view .LVU382
+ 924 0124 30EE050A 		vadd.f32	s0, s0, s10
+ 177:Lib/Control/trajectory.c ****                 - (1.0f / 6.0f) * j * tau * tau * tau;
+ 925              		.loc 1 177 46 view .LVU383
+ 926 0128 25EE866A 		vmul.f32	s12, s11, s12
+ 177:Lib/Control/trajectory.c ****                 - (1.0f / 6.0f) * j * tau * tau * tau;
+ 927              		.loc 1 177 50 view .LVU384
+ 928 012c 26EE276A 		vmul.f32	s12, s12, s15
+ 177:Lib/Control/trajectory.c ****                 - (1.0f / 6.0f) * j * tau * tau * tau;
+ 929              		.loc 1 177 56 view .LVU385
+ 930 0130 26EE276A 		vmul.f32	s12, s12, s15
+ 177:Lib/Control/trajectory.c ****                 - (1.0f / 6.0f) * j * tau * tau * tau;
+ 931              		.loc 1 177 39 view .LVU386
+ 932 0134 30EE066A 		vadd.f32	s12, s0, s12
+ 178:Lib/Control/trajectory.c ****     } else if (t < sc->t4) {
+ 933              		.loc 1 178 33 view .LVU387
+ 934 0138 9FED530A 		vldr.32	s0, .L80+4
+ 935 013c 26EE800A 		vmul.f32	s0, s13, s0
+ 178:Lib/Control/trajectory.c ****     } else if (t < sc->t4) {
+ 936              		.loc 1 178 37 view .LVU388
+ 937 0140 20EE270A 		vmul.f32	s0, s0, s15
+ 178:Lib/Control/trajectory.c ****     } else if (t < sc->t4) {
+ 938              		.loc 1 178 43 view .LVU389
+ 939 0144 20EE270A 		vmul.f32	s0, s0, s15
+ 178:Lib/Control/trajectory.c ****     } else if (t < sc->t4) {
+ 940              		.loc 1 178 49 view .LVU390
+ 941 0148 20EE270A 		vmul.f32	s0, s0, s15
+ 177:Lib/Control/trajectory.c ****                 - (1.0f / 6.0f) * j * tau * tau * tau;
+ 942              		.loc 1 177 15 view .LVU391
+ 943 014c 36EE400A 		vsub.f32	s0, s12, s0
+ 944              	.LVL97:
+ 175:Lib/Control/trajectory.c ****         vel   = sc->v2 + a * tau - 0.5f * j * tau * tau;
+ 945              		.loc 1 175 15 view .LVU392
+ 946 0150 75EEC45A 		vsub.f32	s11, s11, s8
+ 947              	.LVL98:
+ 175:Lib/Control/trajectory.c ****         vel   = sc->v2 + a * tau - 0.5f * j * tau * tau;
+ 948              		.loc 1 175 15 view .LVU393
+ 949              	.LBE4:
+ 950 0154 77E7     		b	.L51
+ 951              	.LVL99:
+ 952              	.L76:
+ 179:Lib/Control/trajectory.c ****         float tau = t - sc->t3;
+ 953              		.loc 1 179 12 is_stmt 1 view .LVU394
+ 179:Lib/Control/trajectory.c ****         float tau = t - sc->t3;
+ 954              		.loc 1 179 22 is_stmt 0 view .LVU395
+ 955 0156 90ED107A 		vldr.32	s14, [r0, #64]
+ 179:Lib/Control/trajectory.c ****         float tau = t - sc->t3;
+ 956              		.loc 1 179 15 view .LVU396
+ 957 015a B4EEC70A 		vcmpe.f32	s0, s14
+ 958 015e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ARM GAS  /tmp/cc7GIs6c.s 			page 24
+
+
+ 959 0162 0CD5     		bpl	.L77
+ 960              	.LBB5:
+ 180:Lib/Control/trajectory.c ****         accel = 0.0f;
+ 961              		.loc 1 180 9 is_stmt 1 view .LVU397
+ 180:Lib/Control/trajectory.c ****         accel = 0.0f;
+ 962              		.loc 1 180 15 is_stmt 0 view .LVU398
+ 963 0164 30EE670A 		vsub.f32	s0, s0, s15
+ 964              	.LVL100:
+ 181:Lib/Control/trajectory.c ****         vel   = sc->vlim;
+ 965              		.loc 1 181 9 is_stmt 1 view .LVU399
+ 182:Lib/Control/trajectory.c ****         pos   = sc->p3 + sc->vlim * tau;
+ 966              		.loc 1 182 9 view .LVU400
+ 182:Lib/Control/trajectory.c ****         pos   = sc->p3 + sc->vlim * tau;
+ 967              		.loc 1 182 15 is_stmt 0 view .LVU401
+ 968 0168 90ED0C7A 		vldr.32	s14, [r0, #48]
+ 969              	.LVL101:
+ 183:Lib/Control/trajectory.c ****     } else if (t < sc->t5) {
+ 970              		.loc 1 183 9 is_stmt 1 view .LVU402
+ 183:Lib/Control/trajectory.c ****     } else if (t < sc->t5) {
+ 971              		.loc 1 183 19 is_stmt 0 view .LVU403
+ 972 016c D0ED187A 		vldr.32	s15, [r0, #96]
+ 183:Lib/Control/trajectory.c ****     } else if (t < sc->t5) {
+ 973              		.loc 1 183 35 view .LVU404
+ 974 0170 20EE070A 		vmul.f32	s0, s0, s14
+ 975              	.LVL102:
+ 183:Lib/Control/trajectory.c ****     } else if (t < sc->t5) {
+ 976              		.loc 1 183 15 view .LVU405
+ 977 0174 37EE800A 		vadd.f32	s0, s15, s0
+ 978              	.LVL103:
+ 181:Lib/Control/trajectory.c ****         vel   = sc->vlim;
+ 979              		.loc 1 181 15 view .LVU406
+ 980 0178 DFED425A 		vldr.32	s11, .L80
+ 981              	.LVL104:
+ 181:Lib/Control/trajectory.c ****         vel   = sc->vlim;
+ 982              		.loc 1 181 15 view .LVU407
+ 983              	.LBE5:
+ 984 017c 63E7     		b	.L51
+ 985              	.LVL105:
+ 986              	.L77:
+ 184:Lib/Control/trajectory.c ****         float tau = t - sc->t4;
+ 987              		.loc 1 184 12 is_stmt 1 view .LVU408
+ 184:Lib/Control/trajectory.c ****         float tau = t - sc->t4;
+ 988              		.loc 1 184 22 is_stmt 0 view .LVU409
+ 989 017e D0ED117A 		vldr.32	s15, [r0, #68]
+ 184:Lib/Control/trajectory.c ****         float tau = t - sc->t4;
+ 990              		.loc 1 184 15 view .LVU410
+ 991 0182 B4EEE70A 		vcmpe.f32	s0, s15
+ 992 0186 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 993 018a 22D5     		bpl	.L78
+ 994              	.LBB6:
+ 185:Lib/Control/trajectory.c ****         accel = -j * tau;
+ 995              		.loc 1 185 9 is_stmt 1 view .LVU411
+ 185:Lib/Control/trajectory.c ****         accel = -j * tau;
+ 996              		.loc 1 185 15 is_stmt 0 view .LVU412
+ 997 018c 30EE470A 		vsub.f32	s0, s0, s14
+ 998              	.LVL106:
+ 186:Lib/Control/trajectory.c ****         vel   = sc->vlim - 0.5f * j * tau * tau;
+ARM GAS  /tmp/cc7GIs6c.s 			page 25
+
+
+ 999              		.loc 1 186 9 is_stmt 1 view .LVU413
+ 186:Lib/Control/trajectory.c ****         vel   = sc->vlim - 0.5f * j * tau * tau;
+ 1000              		.loc 1 186 15 is_stmt 0 view .LVU414
+ 1001 0190 66EEC05A 		vnmul.f32	s11, s13, s0
+ 1002              	.LVL107:
+ 187:Lib/Control/trajectory.c ****         pos   = sc->p4 + sc->vlim * tau - (1.0f / 6.0f) * j * tau * tau * tau;
+ 1003              		.loc 1 187 9 is_stmt 1 view .LVU415
+ 187:Lib/Control/trajectory.c ****         pos   = sc->p4 + sc->vlim * tau - (1.0f / 6.0f) * j * tau * tau * tau;
+ 1004              		.loc 1 187 19 is_stmt 0 view .LVU416
+ 1005 0194 D0ED0C7A 		vldr.32	s15, [r0, #48]
+ 187:Lib/Control/trajectory.c ****         pos   = sc->p4 + sc->vlim * tau - (1.0f / 6.0f) * j * tau * tau * tau;
+ 1006              		.loc 1 187 33 view .LVU417
+ 1007 0198 B6EE007A 		vmov.f32	s14, #5.0e-1
+ 1008 019c 26EE877A 		vmul.f32	s14, s13, s14
+ 187:Lib/Control/trajectory.c ****         pos   = sc->p4 + sc->vlim * tau - (1.0f / 6.0f) * j * tau * tau * tau;
+ 1009              		.loc 1 187 37 view .LVU418
+ 1010 01a0 27EE007A 		vmul.f32	s14, s14, s0
+ 187:Lib/Control/trajectory.c ****         pos   = sc->p4 + sc->vlim * tau - (1.0f / 6.0f) * j * tau * tau * tau;
+ 1011              		.loc 1 187 43 view .LVU419
+ 1012 01a4 27EE007A 		vmul.f32	s14, s14, s0
+ 187:Lib/Control/trajectory.c ****         pos   = sc->p4 + sc->vlim * tau - (1.0f / 6.0f) * j * tau * tau * tau;
+ 1013              		.loc 1 187 15 view .LVU420
+ 1014 01a8 37EEC77A 		vsub.f32	s14, s15, s14
+ 1015              	.LVL108:
+ 188:Lib/Control/trajectory.c ****     } else if (t < sc->t6) {
+ 1016              		.loc 1 188 9 is_stmt 1 view .LVU421
+ 188:Lib/Control/trajectory.c ****     } else if (t < sc->t6) {
+ 1017              		.loc 1 188 19 is_stmt 0 view .LVU422
+ 1018 01ac 90ED1A6A 		vldr.32	s12, [r0, #104]
+ 188:Lib/Control/trajectory.c ****     } else if (t < sc->t6) {
+ 1019              		.loc 1 188 35 view .LVU423
+ 1020 01b0 67EE807A 		vmul.f32	s15, s15, s0
+ 188:Lib/Control/trajectory.c ****     } else if (t < sc->t6) {
+ 1021              		.loc 1 188 24 view .LVU424
+ 1022 01b4 36EE276A 		vadd.f32	s12, s12, s15
+ 188:Lib/Control/trajectory.c ****     } else if (t < sc->t6) {
+ 1023              		.loc 1 188 57 view .LVU425
+ 1024 01b8 DFED337A 		vldr.32	s15, .L80+4
+ 1025 01bc 66EEA77A 		vmul.f32	s15, s13, s15
+ 188:Lib/Control/trajectory.c ****     } else if (t < sc->t6) {
+ 1026              		.loc 1 188 61 view .LVU426
+ 1027 01c0 67EE807A 		vmul.f32	s15, s15, s0
+ 188:Lib/Control/trajectory.c ****     } else if (t < sc->t6) {
+ 1028              		.loc 1 188 67 view .LVU427
+ 1029 01c4 67EE807A 		vmul.f32	s15, s15, s0
+ 188:Lib/Control/trajectory.c ****     } else if (t < sc->t6) {
+ 1030              		.loc 1 188 73 view .LVU428
+ 1031 01c8 27EE800A 		vmul.f32	s0, s15, s0
+ 1032              	.LVL109:
+ 188:Lib/Control/trajectory.c ****     } else if (t < sc->t6) {
+ 1033              		.loc 1 188 15 view .LVU429
+ 1034 01cc 36EE400A 		vsub.f32	s0, s12, s0
+ 1035              	.LVL110:
+ 188:Lib/Control/trajectory.c ****     } else if (t < sc->t6) {
+ 1036              		.loc 1 188 15 view .LVU430
+ 1037              	.LBE6:
+ 1038 01d0 39E7     		b	.L51
+ARM GAS  /tmp/cc7GIs6c.s 			page 26
+
+
+ 1039              	.LVL111:
+ 1040              	.L78:
+ 189:Lib/Control/trajectory.c ****         float tau = t - sc->t5;
+ 1041              		.loc 1 189 12 is_stmt 1 view .LVU431
+ 189:Lib/Control/trajectory.c ****         float tau = t - sc->t5;
+ 1042              		.loc 1 189 22 is_stmt 0 view .LVU432
+ 1043 01d2 90ED127A 		vldr.32	s14, [r0, #72]
+ 189:Lib/Control/trajectory.c ****         float tau = t - sc->t5;
+ 1044              		.loc 1 189 15 view .LVU433
+ 1045 01d6 B4EEC70A 		vcmpe.f32	s0, s14
+ 1046 01da F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 1047 01de 1AD5     		bpl	.L79
+ 1048              	.LBB7:
+ 190:Lib/Control/trajectory.c ****         accel = -a;
+ 1049              		.loc 1 190 9 is_stmt 1 view .LVU434
+ 190:Lib/Control/trajectory.c ****         accel = -a;
+ 1050              		.loc 1 190 15 is_stmt 0 view .LVU435
+ 1051 01e0 30EE670A 		vsub.f32	s0, s0, s15
+ 1052              	.LVL112:
+ 191:Lib/Control/trajectory.c ****         vel   = sc->v5 - a * tau;
+ 1053              		.loc 1 191 9 is_stmt 1 view .LVU436
+ 192:Lib/Control/trajectory.c ****         pos   = sc->p5 + sc->v5 * tau - 0.5f * a * tau * tau;
+ 1054              		.loc 1 192 9 view .LVU437
+ 192:Lib/Control/trajectory.c ****         pos   = sc->p5 + sc->v5 * tau - 0.5f * a * tau * tau;
+ 1055              		.loc 1 192 19 is_stmt 0 view .LVU438
+ 1056 01e4 D0ED1C7A 		vldr.32	s15, [r0, #112]
+ 192:Lib/Control/trajectory.c ****         pos   = sc->p5 + sc->v5 * tau - 0.5f * a * tau * tau;
+ 1057              		.loc 1 192 28 view .LVU439
+ 1058 01e8 25EE807A 		vmul.f32	s14, s11, s0
+ 192:Lib/Control/trajectory.c ****         pos   = sc->p5 + sc->v5 * tau - 0.5f * a * tau * tau;
+ 1059              		.loc 1 192 15 view .LVU440
+ 1060 01ec 37EEC77A 		vsub.f32	s14, s15, s14
+ 1061              	.LVL113:
+ 193:Lib/Control/trajectory.c ****     } else {
+ 1062              		.loc 1 193 9 is_stmt 1 view .LVU441
+ 193:Lib/Control/trajectory.c ****     } else {
+ 1063              		.loc 1 193 19 is_stmt 0 view .LVU442
+ 1064 01f0 D0ED1B6A 		vldr.32	s13, [r0, #108]
+ 1065              	.LVL114:
+ 193:Lib/Control/trajectory.c ****     } else {
+ 1066              		.loc 1 193 33 view .LVU443
+ 1067 01f4 67EE807A 		vmul.f32	s15, s15, s0
+ 193:Lib/Control/trajectory.c ****     } else {
+ 1068              		.loc 1 193 24 view .LVU444
+ 1069 01f8 76EEA76A 		vadd.f32	s13, s13, s15
+ 193:Lib/Control/trajectory.c ****     } else {
+ 1070              		.loc 1 193 46 view .LVU445
+ 1071 01fc F6EE007A 		vmov.f32	s15, #5.0e-1
+ 1072 0200 65EEA77A 		vmul.f32	s15, s11, s15
+ 193:Lib/Control/trajectory.c ****     } else {
+ 1073              		.loc 1 193 50 view .LVU446
+ 1074 0204 67EE807A 		vmul.f32	s15, s15, s0
+ 193:Lib/Control/trajectory.c ****     } else {
+ 1075              		.loc 1 193 56 view .LVU447
+ 1076 0208 27EE800A 		vmul.f32	s0, s15, s0
+ 1077              	.LVL115:
+ 193:Lib/Control/trajectory.c ****     } else {
+ARM GAS  /tmp/cc7GIs6c.s 			page 27
+
+
+ 1078              		.loc 1 193 15 view .LVU448
+ 1079 020c 36EEC00A 		vsub.f32	s0, s13, s0
+ 1080              	.LVL116:
+ 191:Lib/Control/trajectory.c ****         vel   = sc->v5 - a * tau;
+ 1081              		.loc 1 191 15 view .LVU449
+ 1082 0210 F1EE655A 		vneg.f32	s11, s11
+ 1083              	.LVL117:
+ 191:Lib/Control/trajectory.c ****         vel   = sc->v5 - a * tau;
+ 1084              		.loc 1 191 15 view .LVU450
+ 1085              	.LBE7:
+ 1086 0214 17E7     		b	.L51
+ 1087              	.LVL118:
+ 1088              	.L79:
+ 1089              	.LBB8:
+ 195:Lib/Control/trajectory.c ****         accel = -a + j * tau;
+ 1090              		.loc 1 195 9 is_stmt 1 view .LVU451
+ 195:Lib/Control/trajectory.c ****         accel = -a + j * tau;
+ 1091              		.loc 1 195 15 is_stmt 0 view .LVU452
+ 1092 0216 30EE470A 		vsub.f32	s0, s0, s14
+ 1093              	.LVL119:
+ 196:Lib/Control/trajectory.c ****         vel   = sc->v6 - a * tau + 0.5f * j * tau * tau;
+ 1094              		.loc 1 196 9 is_stmt 1 view .LVU453
+ 196:Lib/Control/trajectory.c ****         vel   = sc->v6 - a * tau + 0.5f * j * tau * tau;
+ 1095              		.loc 1 196 24 is_stmt 0 view .LVU454
+ 1096 021a 66EE804A 		vmul.f32	s9, s13, s0
+ 1097              	.LVL120:
+ 197:Lib/Control/trajectory.c ****         pos   = sc->p6 + sc->v6 * tau - 0.5f * a * tau * tau
+ 1098              		.loc 1 197 9 is_stmt 1 view .LVU455
+ 197:Lib/Control/trajectory.c ****         pos   = sc->p6 + sc->v6 * tau - 0.5f * a * tau * tau
+ 1099              		.loc 1 197 19 is_stmt 0 view .LVU456
+ 1100 021e 90ED1E5A 		vldr.32	s10, [r0, #120]
+ 197:Lib/Control/trajectory.c ****         pos   = sc->p6 + sc->v6 * tau - 0.5f * a * tau * tau
+ 1101              		.loc 1 197 28 view .LVU457
+ 1102 0222 25EE807A 		vmul.f32	s14, s11, s0
+ 197:Lib/Control/trajectory.c ****         pos   = sc->p6 + sc->v6 * tau - 0.5f * a * tau * tau
+ 1103              		.loc 1 197 24 view .LVU458
+ 1104 0226 35EE476A 		vsub.f32	s12, s10, s14
+ 197:Lib/Control/trajectory.c ****         pos   = sc->p6 + sc->v6 * tau - 0.5f * a * tau * tau
+ 1105              		.loc 1 197 41 view .LVU459
+ 1106 022a F6EE007A 		vmov.f32	s15, #5.0e-1
+ 1107 022e 26EEA77A 		vmul.f32	s14, s13, s15
+ 197:Lib/Control/trajectory.c ****         pos   = sc->p6 + sc->v6 * tau - 0.5f * a * tau * tau
+ 1108              		.loc 1 197 45 view .LVU460
+ 1109 0232 27EE007A 		vmul.f32	s14, s14, s0
+ 197:Lib/Control/trajectory.c ****         pos   = sc->p6 + sc->v6 * tau - 0.5f * a * tau * tau
+ 1110              		.loc 1 197 51 view .LVU461
+ 1111 0236 27EE007A 		vmul.f32	s14, s14, s0
+ 197:Lib/Control/trajectory.c ****         pos   = sc->p6 + sc->v6 * tau - 0.5f * a * tau * tau
+ 1112              		.loc 1 197 15 view .LVU462
+ 1113 023a 36EE077A 		vadd.f32	s14, s12, s14
+ 1114              	.LVL121:
+ 198:Lib/Control/trajectory.c ****                 + (1.0f / 6.0f) * j * tau * tau * tau;
+ 1115              		.loc 1 198 9 is_stmt 1 view .LVU463
+ 198:Lib/Control/trajectory.c ****                 + (1.0f / 6.0f) * j * tau * tau * tau;
+ 1116              		.loc 1 198 19 is_stmt 0 view .LVU464
+ 1117 023e 90ED1D6A 		vldr.32	s12, [r0, #116]
+ 198:Lib/Control/trajectory.c ****                 + (1.0f / 6.0f) * j * tau * tau * tau;
+ARM GAS  /tmp/cc7GIs6c.s 			page 28
+
+
+ 1118              		.loc 1 198 33 view .LVU465
+ 1119 0242 25EE005A 		vmul.f32	s10, s10, s0
+ 198:Lib/Control/trajectory.c ****                 + (1.0f / 6.0f) * j * tau * tau * tau;
+ 1120              		.loc 1 198 24 view .LVU466
+ 1121 0246 36EE056A 		vadd.f32	s12, s12, s10
+ 198:Lib/Control/trajectory.c ****                 + (1.0f / 6.0f) * j * tau * tau * tau;
+ 1122              		.loc 1 198 46 view .LVU467
+ 1123 024a 65EEA77A 		vmul.f32	s15, s11, s15
+ 198:Lib/Control/trajectory.c ****                 + (1.0f / 6.0f) * j * tau * tau * tau;
+ 1124              		.loc 1 198 50 view .LVU468
+ 1125 024e 67EE807A 		vmul.f32	s15, s15, s0
+ 198:Lib/Control/trajectory.c ****                 + (1.0f / 6.0f) * j * tau * tau * tau;
+ 1126              		.loc 1 198 56 view .LVU469
+ 1127 0252 67EE807A 		vmul.f32	s15, s15, s0
+ 198:Lib/Control/trajectory.c ****                 + (1.0f / 6.0f) * j * tau * tau * tau;
+ 1128              		.loc 1 198 39 view .LVU470
+ 1129 0256 76EE677A 		vsub.f32	s15, s12, s15
+ 199:Lib/Control/trajectory.c ****     }
+ 1130              		.loc 1 199 33 view .LVU471
+ 1131 025a 9FED0B6A 		vldr.32	s12, .L80+4
+ 1132 025e 66EE866A 		vmul.f32	s13, s13, s12
+ 1133              	.LVL122:
+ 199:Lib/Control/trajectory.c ****     }
+ 1134              		.loc 1 199 37 view .LVU472
+ 1135 0262 66EE806A 		vmul.f32	s13, s13, s0
+ 199:Lib/Control/trajectory.c ****     }
+ 1136              		.loc 1 199 43 view .LVU473
+ 1137 0266 66EE806A 		vmul.f32	s13, s13, s0
+ 199:Lib/Control/trajectory.c ****     }
+ 1138              		.loc 1 199 49 view .LVU474
+ 1139 026a 26EE800A 		vmul.f32	s0, s13, s0
+ 1140              	.LVL123:
+ 198:Lib/Control/trajectory.c ****                 + (1.0f / 6.0f) * j * tau * tau * tau;
+ 1141              		.loc 1 198 15 view .LVU475
+ 1142 026e 37EE800A 		vadd.f32	s0, s15, s0
+ 1143              	.LVL124:
+ 196:Lib/Control/trajectory.c ****         vel   = sc->v6 - a * tau + 0.5f * j * tau * tau;
+ 1144              		.loc 1 196 15 view .LVU476
+ 1145 0272 74EEE55A 		vsub.f32	s11, s9, s11
+ 1146              	.LVL125:
+ 196:Lib/Control/trajectory.c ****         vel   = sc->v6 - a * tau + 0.5f * j * tau * tau;
+ 1147              		.loc 1 196 15 view .LVU477
+ 1148 0276 E6E6     		b	.L51
+ 1149              	.LVL126:
+ 1150              	.L64:
+ 196:Lib/Control/trajectory.c ****         vel   = sc->v6 - a * tau + 0.5f * j * tau * tau;
+ 1151              		.loc 1 196 15 view .LVU478
+ 1152              	.LBE8:
+ 147:Lib/Control/trajectory.c ****     if (sc->finished) return -1;
+ 1153              		.loc 1 147 21 view .LVU479
+ 1154 0278 4FF0FF30 		mov	r0, #-1
+ 1155              	.LVL127:
+ 147:Lib/Control/trajectory.c ****     if (sc->finished) return -1;
+ 1156              		.loc 1 147 21 view .LVU480
+ 1157 027c 7047     		bx	lr
+ 1158              	.LVL128:
+ 1159              	.L65:
+ARM GAS  /tmp/cc7GIs6c.s 			page 29
+
+
+ 148:Lib/Control/trajectory.c **** 
+ 1160              		.loc 1 148 30 view .LVU481
+ 1161 027e 4FF0FF30 		mov	r0, #-1
+ 1162              	.LVL129:
+ 207:Lib/Control/trajectory.c **** }
+ 1163              		.loc 1 207 1 view .LVU482
+ 1164 0282 7047     		bx	lr
+ 1165              	.L81:
+ 1166              		.align	2
+ 1167              	.L80:
+ 1168 0284 00000000 		.word	0
+ 1169 0288 ABAA2A3E 		.word	1042983595
+ 1170              		.cfi_endproc
+ 1171              	.LFE3:
+ 1173              		.section	.text.s_curve_set_v_max,"ax",%progbits
+ 1174              		.align	1
+ 1175              		.global	s_curve_set_v_max
+ 1176              		.syntax unified
+ 1177              		.thumb
+ 1178              		.thumb_func
+ 1179              		.fpu fpv4-sp-d16
+ 1181              	s_curve_set_v_max:
+ 1182              	.LVL130:
+ 1183              	.LFB4:
+ 208:Lib/Control/trajectory.c **** 
+ 209:Lib/Control/trajectory.c **** void s_curve_set_v_max(s_curve_t *sc, float v_max) {
+ 1184              		.loc 1 209 52 is_stmt 1 view -0
+ 1185              		.cfi_startproc
+ 1186              		@ args = 0, pretend = 0, frame = 0
+ 1187              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1188              		@ link register save eliminated.
+ 210:Lib/Control/trajectory.c ****   sc->v_max = v_max;
+ 1189              		.loc 1 210 3 view .LVU484
+ 1190              		.loc 1 210 13 is_stmt 0 view .LVU485
+ 1191 0000 80ED020A 		vstr.32	s0, [r0, #8]
+ 211:Lib/Control/trajectory.c **** }
+ 1192              		.loc 1 211 1 view .LVU486
+ 1193 0004 7047     		bx	lr
+ 1194              		.cfi_endproc
+ 1195              	.LFE4:
+ 1197              		.section	.text.s_curve_set_a_max,"ax",%progbits
+ 1198              		.align	1
+ 1199              		.global	s_curve_set_a_max
+ 1200              		.syntax unified
+ 1201              		.thumb
+ 1202              		.thumb_func
+ 1203              		.fpu fpv4-sp-d16
+ 1205              	s_curve_set_a_max:
+ 1206              	.LVL131:
+ 1207              	.LFB5:
+ 212:Lib/Control/trajectory.c **** 
+ 213:Lib/Control/trajectory.c **** void s_curve_set_a_max(s_curve_t *sc, float a_max) {
+ 1208              		.loc 1 213 52 is_stmt 1 view -0
+ 1209              		.cfi_startproc
+ 1210              		@ args = 0, pretend = 0, frame = 0
+ 1211              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1212              		@ link register save eliminated.
+ARM GAS  /tmp/cc7GIs6c.s 			page 30
+
+
+ 214:Lib/Control/trajectory.c ****   sc->a_max = a_max;
+ 1213              		.loc 1 214 3 view .LVU488
+ 1214              		.loc 1 214 13 is_stmt 0 view .LVU489
+ 1215 0000 80ED030A 		vstr.32	s0, [r0, #12]
+ 215:Lib/Control/trajectory.c **** }
+ 1216              		.loc 1 215 1 view .LVU490
+ 1217 0004 7047     		bx	lr
+ 1218              		.cfi_endproc
+ 1219              	.LFE5:
+ 1221              		.section	.text.s_curve_set_j_max,"ax",%progbits
+ 1222              		.align	1
+ 1223              		.global	s_curve_set_j_max
+ 1224              		.syntax unified
+ 1225              		.thumb
+ 1226              		.thumb_func
+ 1227              		.fpu fpv4-sp-d16
+ 1229              	s_curve_set_j_max:
+ 1230              	.LVL132:
+ 1231              	.LFB6:
+ 216:Lib/Control/trajectory.c **** 
+ 217:Lib/Control/trajectory.c **** void s_curve_set_j_max(s_curve_t *sc, float j_max) {
+ 1232              		.loc 1 217 52 is_stmt 1 view -0
+ 1233              		.cfi_startproc
+ 1234              		@ args = 0, pretend = 0, frame = 0
+ 1235              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1236              		@ link register save eliminated.
+ 218:Lib/Control/trajectory.c ****   sc->j_max = j_max;
+ 1237              		.loc 1 218 3 view .LVU492
+ 1238              		.loc 1 218 13 is_stmt 0 view .LVU493
+ 1239 0000 80ED040A 		vstr.32	s0, [r0, #16]
+ 219:Lib/Control/trajectory.c **** }
+ 1240              		.loc 1 219 1 view .LVU494
+ 1241 0004 7047     		bx	lr
+ 1242              		.cfi_endproc
+ 1243              	.LFE6:
+ 1245              		.section	.text.s_curve_get_pos,"ax",%progbits
+ 1246              		.align	1
+ 1247              		.global	s_curve_get_pos
+ 1248              		.syntax unified
+ 1249              		.thumb
+ 1250              		.thumb_func
+ 1251              		.fpu fpv4-sp-d16
+ 1253              	s_curve_get_pos:
+ 1254              	.LVL133:
+ 1255              	.LFB7:
+ 220:Lib/Control/trajectory.c **** 
+ 221:Lib/Control/trajectory.c **** float s_curve_get_pos(s_curve_t *sc)   { return sc->pos; }
+ 1256              		.loc 1 221 40 is_stmt 1 view -0
+ 1257              		.cfi_startproc
+ 1258              		@ args = 0, pretend = 0, frame = 0
+ 1259              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1260              		@ link register save eliminated.
+ 1261              		.loc 1 221 42 view .LVU496
+ 1262              		.loc 1 221 58 is_stmt 0 view .LVU497
+ 1263 0000 90ED200A 		vldr.32	s0, [r0, #128]
+ 1264 0004 7047     		bx	lr
+ 1265              		.cfi_endproc
+ARM GAS  /tmp/cc7GIs6c.s 			page 31
+
+
+ 1266              	.LFE7:
+ 1268              		.section	.text.s_curve_get_vel,"ax",%progbits
+ 1269              		.align	1
+ 1270              		.global	s_curve_get_vel
+ 1271              		.syntax unified
+ 1272              		.thumb
+ 1273              		.thumb_func
+ 1274              		.fpu fpv4-sp-d16
+ 1276              	s_curve_get_vel:
+ 1277              	.LVL134:
+ 1278              	.LFB8:
+ 222:Lib/Control/trajectory.c **** float s_curve_get_vel(s_curve_t *sc)   { return sc->velocity; }
+ 1279              		.loc 1 222 40 is_stmt 1 view -0
+ 1280              		.cfi_startproc
+ 1281              		@ args = 0, pretend = 0, frame = 0
+ 1282              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1283              		@ link register save eliminated.
+ 1284              		.loc 1 222 42 view .LVU499
+ 1285              		.loc 1 222 63 is_stmt 0 view .LVU500
+ 1286 0000 90ED210A 		vldr.32	s0, [r0, #132]
+ 1287 0004 7047     		bx	lr
+ 1288              		.cfi_endproc
+ 1289              	.LFE8:
+ 1291              		.section	.text.s_curve_get_accel,"ax",%progbits
+ 1292              		.align	1
+ 1293              		.global	s_curve_get_accel
+ 1294              		.syntax unified
+ 1295              		.thumb
+ 1296              		.thumb_func
+ 1297              		.fpu fpv4-sp-d16
+ 1299              	s_curve_get_accel:
+ 1300              	.LVL135:
+ 1301              	.LFB9:
+ 223:Lib/Control/trajectory.c **** float s_curve_get_accel(s_curve_t *sc) { return sc->acceleration; }
+ 1302              		.loc 1 223 40 is_stmt 1 view -0
+ 1303              		.cfi_startproc
+ 1304              		@ args = 0, pretend = 0, frame = 0
+ 1305              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1306              		@ link register save eliminated.
+ 1307              		.loc 1 223 42 view .LVU502
+ 1308              		.loc 1 223 67 is_stmt 0 view .LVU503
+ 1309 0000 90ED220A 		vldr.32	s0, [r0, #136]
+ 1310 0004 7047     		bx	lr
+ 1311              		.cfi_endproc
+ 1312              	.LFE9:
+ 1314              		.section	.text.s_curve_get_duration,"ax",%progbits
+ 1315              		.align	1
+ 1316              		.global	s_curve_get_duration
+ 1317              		.syntax unified
+ 1318              		.thumb
+ 1319              		.thumb_func
+ 1320              		.fpu fpv4-sp-d16
+ 1322              	s_curve_get_duration:
+ 1323              	.LVL136:
+ 1324              	.LFB10:
+ 224:Lib/Control/trajectory.c **** float s_curve_get_duration(const s_curve_t *sc) { return sc->t7; }
+ 1325              		.loc 1 224 49 is_stmt 1 view -0
+ARM GAS  /tmp/cc7GIs6c.s 			page 32
+
+
+ 1326              		.cfi_startproc
+ 1327              		@ args = 0, pretend = 0, frame = 0
+ 1328              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1329              		@ link register save eliminated.
+ 1330              		.loc 1 224 51 view .LVU505
+ 1331              		.loc 1 224 66 is_stmt 0 view .LVU506
+ 1332 0000 90ED130A 		vldr.32	s0, [r0, #76]
+ 1333 0004 7047     		bx	lr
+ 1334              		.cfi_endproc
+ 1335              	.LFE10:
+ 1337              		.text
+ 1338              	.Letext0:
+ 1339              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
+ 1340              		.file 3 "Lib/Control/trajectory.h"
+ 1341              		.file 4 "/usr/include/newlib/math.h"
+ARM GAS  /tmp/cc7GIs6c.s 			page 33
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 trajectory.c
+     /tmp/cc7GIs6c.s:18     .text.f_abs:0000000000000000 $t
+     /tmp/cc7GIs6c.s:25     .text.f_abs:0000000000000000 f_abs
+     /tmp/cc7GIs6c.s:54     .text.s_curve_reset:0000000000000000 $t
+     /tmp/cc7GIs6c.s:61     .text.s_curve_reset:0000000000000000 s_curve_reset
+     /tmp/cc7GIs6c.s:109    .text.s_curve_start:0000000000000000 $t
+     /tmp/cc7GIs6c.s:116    .text.s_curve_start:0000000000000000 s_curve_start
+     /tmp/cc7GIs6c.s:693    .text.s_curve_start:00000000000002d4 $d
+     /tmp/cc7GIs6c.s:701    .text.s_curve_update:0000000000000000 $t
+     /tmp/cc7GIs6c.s:708    .text.s_curve_update:0000000000000000 s_curve_update
+     /tmp/cc7GIs6c.s:1168   .text.s_curve_update:0000000000000284 $d
+     /tmp/cc7GIs6c.s:1174   .text.s_curve_set_v_max:0000000000000000 $t
+     /tmp/cc7GIs6c.s:1181   .text.s_curve_set_v_max:0000000000000000 s_curve_set_v_max
+     /tmp/cc7GIs6c.s:1198   .text.s_curve_set_a_max:0000000000000000 $t
+     /tmp/cc7GIs6c.s:1205   .text.s_curve_set_a_max:0000000000000000 s_curve_set_a_max
+     /tmp/cc7GIs6c.s:1222   .text.s_curve_set_j_max:0000000000000000 $t
+     /tmp/cc7GIs6c.s:1229   .text.s_curve_set_j_max:0000000000000000 s_curve_set_j_max
+     /tmp/cc7GIs6c.s:1246   .text.s_curve_get_pos:0000000000000000 $t
+     /tmp/cc7GIs6c.s:1253   .text.s_curve_get_pos:0000000000000000 s_curve_get_pos
+     /tmp/cc7GIs6c.s:1269   .text.s_curve_get_vel:0000000000000000 $t
+     /tmp/cc7GIs6c.s:1276   .text.s_curve_get_vel:0000000000000000 s_curve_get_vel
+     /tmp/cc7GIs6c.s:1292   .text.s_curve_get_accel:0000000000000000 $t
+     /tmp/cc7GIs6c.s:1299   .text.s_curve_get_accel:0000000000000000 s_curve_get_accel
+     /tmp/cc7GIs6c.s:1315   .text.s_curve_get_duration:0000000000000000 $t
+     /tmp/cc7GIs6c.s:1322   .text.s_curve_get_duration:0000000000000000 s_curve_get_duration
+
+UNDEFINED SYMBOLS
+sqrtf
+cbrtf

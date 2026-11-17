@@ -17,6 +17,9 @@ build/stm32f4xx_it.o: Core/Src/stm32f4xx_it.c Core/Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h \
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h \
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_adc.h \
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc_ex.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h \
@@ -29,11 +32,7 @@ build/stm32f4xx_it.o: Core/Src/stm32f4xx_it.c Core/Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- Core/Inc/stm32f4xx_it.h Core/Inc/foc_utils.h Core/Inc/drv8323s.h \
- Core/Inc/main.h Core/Inc/driver.h Core/Inc/as5048a.h \
- Core/Inc/pll_filter.h Core/Inc/foc_math.h Core/Inc/pid_utils.h \
- Core/Inc/joint_acc.h Core/Inc/lpf.h Core/Inc/foc_math.h \
- Core/Inc/driver.h Core/Inc/fsm.h
+ Core/Inc/stm32f4xx_it.h Lib/Driver/driver.h
 Core/Inc/main.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 Core/Inc/stm32f4xx_hal_conf.h:
@@ -55,6 +54,9 @@ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h:
+Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h:
+Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_adc.h:
+Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc_ex.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h:
@@ -68,16 +70,4 @@ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 Core/Inc/stm32f4xx_it.h:
-Core/Inc/foc_utils.h:
-Core/Inc/drv8323s.h:
-Core/Inc/main.h:
-Core/Inc/driver.h:
-Core/Inc/as5048a.h:
-Core/Inc/pll_filter.h:
-Core/Inc/foc_math.h:
-Core/Inc/pid_utils.h:
-Core/Inc/joint_acc.h:
-Core/Inc/lpf.h:
-Core/Inc/foc_math.h:
-Core/Inc/driver.h:
-Core/Inc/fsm.h:
+Lib/Driver/driver.h:

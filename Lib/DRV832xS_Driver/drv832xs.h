@@ -1,10 +1,7 @@
 #ifndef __DRV8323S_H__
 #define __DRV8323S_H__
 
-#include "main.h"
 #include "driver.h"
-
-
 
 
 #define FS1									0x00
@@ -224,8 +221,6 @@
 #define CSAC_FET_SHx						(0x01U << CSAC_FET_Pos)
 
 
-
-
 #define DRV832xS_CS_PIN					GPIO_DRV8323_CS_PIN
 #define DRV832xS_CS_PORT				GPIO_DRV8323_CS_PORT
 #define DRV832xS_ENABLE_PIN				GPIO_DRV8323_ENABLE_PIN
@@ -264,46 +259,9 @@ typedef struct{
 }DRV832xS_t;
 
 
-
-
-
-#define ADC_RES							4096
-#define AVDD							3.3f
-
-
-#define ADC_2_VOLT						0.0008056640625f // = AVDD / ADC_RES
-
-#define ADC_2_POWER_VOLT				0.01651611328125f
-
-#define CURRENT_FILTER_ALPHA			0.71539f //0.466512f //0.71539f 
-
-#define BLDC_PWM_FREQ					25000
-#define BLDC_TIMX						TIM1
-
-#define R_HIGHT							82000.0f
-#define R_LOW							10000.0f
-// #define R_SHUNT	
-
-
-#define R_SHUNT							0.002f
-#define GAIN							40.0f
-
-
-#define SPEED_CONTROL_CYCLE				10
-#define FOC_TS							(1.0f / (float)BLDC_PWM_FREQ)
-
-
-
-
-
-
-
-
 uint16_t DRV832xS_Read16(DRV832xS_t *drv, uint8_t addr);
 
 uint16_t DRV832xS_Write16(DRV832xS_t *drv, uint8_t addr, uint16_t data);
-
-
 
 void DRV832xS_Setup(DRV832xS_t *drv);
 

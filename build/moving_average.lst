@@ -1,0 +1,448 @@
+ARM GAS  /tmp/ccPxoIXd.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"moving_average.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.circular_moving_average,"ax",%progbits
+  18              		.align	1
+  19              		.global	circular_moving_average
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	circular_moving_average:
+  27              	.LVL0:
+  28              	.LFB0:
+  29              		.file 1 "Lib/Digital_Filter/moving_average.c"
+   1:Lib/Digital_Filter/moving_average.c **** #include "moving_average.h"
+   2:Lib/Digital_Filter/moving_average.c **** 
+   3:Lib/Digital_Filter/moving_average.c **** 
+   4:Lib/Digital_Filter/moving_average.c **** inline void circular_moving_average(float *data, int data_size, uint16_t radius, uint8_t passes) {
+  30              		.loc 1 4 98 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 264
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 4 98 is_stmt 0 view .LVU1
+  35 0000 30B5     		push	{r4, r5, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 12
+  38              		.cfi_offset 4, -12
+  39              		.cfi_offset 5, -8
+  40              		.cfi_offset 14, -4
+  41 0002 C3B0     		sub	sp, sp, #268
+  42              	.LCFI1:
+  43              		.cfi_def_cfa_offset 280
+  44 0004 1D46     		mov	r5, r3
+   5:Lib/Digital_Filter/moving_average.c ****     const int32_t n = data_size;
+  45              		.loc 1 5 5 is_stmt 1 view .LVU2
+  46              	.LVL1:
+   6:Lib/Digital_Filter/moving_average.c ****     int32_t r = (int32_t)radius;
+  47              		.loc 1 6 5 view .LVU3
+   7:Lib/Digital_Filter/moving_average.c **** 
+   8:Lib/Digital_Filter/moving_average.c ****     if (r > (n - 1) / 2)    r = (n - 1) / 2;     /* window must not exceed table */
+  48              		.loc 1 8 5 view .LVU4
+  49              		.loc 1 8 16 is_stmt 0 view .LVU5
+  50 0006 4C1E     		subs	r4, r1, #1
+ARM GAS  /tmp/ccPxoIXd.s 			page 2
+
+
+  51              		.loc 1 8 21 view .LVU6
+  52 0008 04EBD474 		add	r4, r4, r4, lsr #31
+  53 000c 6310     		asrs	r3, r4, #1
+  54              	.LVL2:
+  55              		.loc 1 8 8 view .LVU7
+  56 000e B2EB640F 		cmp	r2, r4, asr #1
+  57 0012 00DC     		bgt	.L2
+   6:Lib/Digital_Filter/moving_average.c ****     int32_t r = (int32_t)radius;
+  58              		.loc 1 6 13 view .LVU8
+  59 0014 1346     		mov	r3, r2
+  60              	.L2:
+  61              	.LVL3:
+   9:Lib/Digital_Filter/moving_average.c ****     if (r > CMA_MAX_RADIUS) r = CMA_MAX_RADIUS;
+  62              		.loc 1 9 5 is_stmt 1 view .LVU9
+  63              		.loc 1 9 8 is_stmt 0 view .LVU10
+  64 0016 202B     		cmp	r3, #32
+  65 0018 02DC     		bgt	.L19
+  10:Lib/Digital_Filter/moving_average.c ****     if (r == 0 || passes == 0) return;
+  66              		.loc 1 10 5 is_stmt 1 view .LVU11
+  67              		.loc 1 10 8 is_stmt 0 view .LVU12
+  68 001a 13B9     		cbnz	r3, .L3
+  69              	.LVL4:
+  70              	.L1:
+  11:Lib/Digital_Filter/moving_average.c **** 
+  12:Lib/Digital_Filter/moving_average.c ****     float head[CMA_MAX_RADIUS + 1];  /* original data[0..r]: needed when window wraps past the end 
+  13:Lib/Digital_Filter/moving_average.c ****     float lag[CMA_MAX_RADIUS];       /* original data[i-r .. i-1]: already overwritten in data[] */
+  14:Lib/Digital_Filter/moving_average.c **** 
+  15:Lib/Digital_Filter/moving_average.c ****     const float inv_win = 1.0f / (float)(2 * r + 1);
+  16:Lib/Digital_Filter/moving_average.c **** 
+  17:Lib/Digital_Filter/moving_average.c ****     while (passes--) {
+  18:Lib/Digital_Filter/moving_average.c ****         /* Save the first r+1 originals before they get overwritten */
+  19:Lib/Digital_Filter/moving_average.c ****         for (int32_t k = 0; k <= r; k++) {
+  20:Lib/Digital_Filter/moving_average.c ****             head[k] = data[k];
+  21:Lib/Digital_Filter/moving_average.c ****         }
+  22:Lib/Digital_Filter/moving_average.c **** 
+  23:Lib/Digital_Filter/moving_average.c ****         /* Initial window sum for i = 0 (indices -r .. +r, wrapped) */
+  24:Lib/Digital_Filter/moving_average.c ****         float sum = 0.0f;
+  25:Lib/Digital_Filter/moving_average.c ****         for (int32_t k = -r; k <= r; k++) {
+  26:Lib/Digital_Filter/moving_average.c ****             sum += data[(k + n) % n];
+  27:Lib/Digital_Filter/moving_average.c ****         }
+  28:Lib/Digital_Filter/moving_average.c **** 
+  29:Lib/Digital_Filter/moving_average.c ****         int32_t slot = 0;
+  30:Lib/Digital_Filter/moving_average.c ****         for (int32_t i = 0; i < n; i++) {
+  31:Lib/Digital_Filter/moving_average.c ****             /* Sample leaving the window: x[i - r] */
+  32:Lib/Digital_Filter/moving_average.c ****             float drop = (i >= r) ? lag[slot]            /* already overwritten -> use saved copy *
+  33:Lib/Digital_Filter/moving_average.c ****                                   : data[i - r + n];     /* tail, still original */
+  34:Lib/Digital_Filter/moving_average.c **** 
+  35:Lib/Digital_Filter/moving_average.c ****             /* Sample entering the window: x[i + r + 1] */
+  36:Lib/Digital_Filter/moving_average.c ****             float add  = (i + r + 1 < n) ? data[i + r + 1]        /* not yet overwritten */
+  37:Lib/Digital_Filter/moving_average.c ****                                          : head[i + r + 1 - n];   /* wrapped -> saved head */
+  38:Lib/Digital_Filter/moving_average.c **** 
+  39:Lib/Digital_Filter/moving_average.c ****             lag[slot] = data[i];          /* keep original x[i] for use r steps later */
+  40:Lib/Digital_Filter/moving_average.c ****             data[i]   = sum * inv_win;    /* write smoothed value in place */
+  41:Lib/Digital_Filter/moving_average.c ****             sum      += add - drop;
+  42:Lib/Digital_Filter/moving_average.c **** 
+  43:Lib/Digital_Filter/moving_average.c ****             if (++slot == r) slot = 0;
+  44:Lib/Digital_Filter/moving_average.c ****         }
+ARM GAS  /tmp/ccPxoIXd.s 			page 3
+
+
+  45:Lib/Digital_Filter/moving_average.c ****     }
+  46:Lib/Digital_Filter/moving_average.c **** }
+  71              		.loc 1 46 1 view .LVU13
+  72 001c 43B0     		add	sp, sp, #268
+  73              	.LCFI2:
+  74              		.cfi_remember_state
+  75              		.cfi_def_cfa_offset 12
+  76              		@ sp needed
+  77 001e 30BD     		pop	{r4, r5, pc}
+  78              	.LVL5:
+  79              	.L19:
+  80              	.LCFI3:
+  81              		.cfi_restore_state
+   9:Lib/Digital_Filter/moving_average.c ****     if (r == 0 || passes == 0) return;
+  82              		.loc 1 9 31 view .LVU14
+  83 0020 2023     		movs	r3, #32
+  84              	.LVL6:
+  85              	.L3:
+  10:Lib/Digital_Filter/moving_average.c ****     if (r == 0 || passes == 0) return;
+  86              		.loc 1 10 16 discriminator 2 view .LVU15
+  87 0022 002D     		cmp	r5, #0
+  88 0024 FAD0     		beq	.L1
+  12:Lib/Digital_Filter/moving_average.c ****     float lag[CMA_MAX_RADIUS];       /* original data[i-r .. i-1]: already overwritten in data[] */
+  89              		.loc 1 12 5 is_stmt 1 view .LVU16
+  13:Lib/Digital_Filter/moving_average.c **** 
+  90              		.loc 1 13 5 view .LVU17
+  15:Lib/Digital_Filter/moving_average.c **** 
+  91              		.loc 1 15 5 view .LVU18
+  15:Lib/Digital_Filter/moving_average.c **** 
+  92              		.loc 1 15 44 is_stmt 0 view .LVU19
+  93 0026 5A00     		lsls	r2, r3, #1
+  94              	.LVL7:
+  15:Lib/Digital_Filter/moving_average.c **** 
+  95              		.loc 1 15 48 view .LVU20
+  96 0028 0132     		adds	r2, r2, #1
+  15:Lib/Digital_Filter/moving_average.c **** 
+  97              		.loc 1 15 34 view .LVU21
+  98 002a 07EE902A 		vmov	s15, r2	@ int
+  99 002e F8EEE77A 		vcvt.f32.s32	s15, s15
+  15:Lib/Digital_Filter/moving_average.c **** 
+ 100              		.loc 1 15 17 view .LVU22
+ 101 0032 B7EE007A 		vmov.f32	s14, #1.0e+0
+ 102 0036 C7EE275A 		vdiv.f32	s11, s14, s15
+ 103              	.LVL8:
+  17:Lib/Digital_Filter/moving_average.c ****         /* Save the first r+1 originals before they get overwritten */
+ 104              		.loc 1 17 5 is_stmt 1 view .LVU23
+ 105              	.L7:
+  17:Lib/Digital_Filter/moving_average.c ****         /* Save the first r+1 originals before they get overwritten */
+ 106              		.loc 1 17 11 view .LVU24
+ 107 003a 2A46     		mov	r2, r5
+  17:Lib/Digital_Filter/moving_average.c ****         /* Save the first r+1 originals before they get overwritten */
+ 108              		.loc 1 17 18 is_stmt 0 view .LVU25
+ 109 003c 013D     		subs	r5, r5, #1
+ 110              	.LVL9:
+  17:Lib/Digital_Filter/moving_average.c ****         /* Save the first r+1 originals before they get overwritten */
+ 111              		.loc 1 17 18 view .LVU26
+ 112 003e EDB2     		uxtb	r5, r5
+ARM GAS  /tmp/ccPxoIXd.s 			page 4
+
+
+ 113              	.LVL10:
+  17:Lib/Digital_Filter/moving_average.c ****         /* Save the first r+1 originals before they get overwritten */
+ 114              		.loc 1 17 11 view .LVU27
+ 115 0040 002A     		cmp	r2, #0
+ 116 0042 EBD0     		beq	.L1
+ 117              	.LBB2:
+ 118              	.LBB3:
+  19:Lib/Digital_Filter/moving_average.c ****             head[k] = data[k];
+ 119              		.loc 1 19 22 view .LVU28
+ 120 0044 0022     		movs	r2, #0
+ 121 0046 09E0     		b	.L18
+ 122              	.LVL11:
+ 123              	.L8:
+  20:Lib/Digital_Filter/moving_average.c ****         }
+ 124              		.loc 1 20 13 is_stmt 1 discriminator 3 view .LVU29
+  20:Lib/Digital_Filter/moving_average.c ****         }
+ 125              		.loc 1 20 27 is_stmt 0 discriminator 3 view .LVU30
+ 126 0048 00EB8204 		add	r4, r0, r2, lsl #2
+ 127 004c D4F800C0 		ldr	ip, [r4]	@ float
+  20:Lib/Digital_Filter/moving_average.c ****         }
+ 128              		.loc 1 20 21 discriminator 3 view .LVU31
+ 129 0050 42AC     		add	r4, sp, #264
+ 130 0052 04EB8204 		add	r4, r4, r2, lsl #2
+ 131 0056 44F884CC 		str	ip, [r4, #-132]	@ float
+  19:Lib/Digital_Filter/moving_average.c ****             head[k] = data[k];
+ 132              		.loc 1 19 37 is_stmt 1 discriminator 3 view .LVU32
+  19:Lib/Digital_Filter/moving_average.c ****             head[k] = data[k];
+ 133              		.loc 1 19 38 is_stmt 0 discriminator 3 view .LVU33
+ 134 005a 0132     		adds	r2, r2, #1
+ 135              	.LVL12:
+ 136              	.L18:
+  19:Lib/Digital_Filter/moving_average.c ****             head[k] = data[k];
+ 137              		.loc 1 19 29 is_stmt 1 discriminator 1 view .LVU34
+  19:Lib/Digital_Filter/moving_average.c ****             head[k] = data[k];
+ 138              		.loc 1 19 9 is_stmt 0 discriminator 1 view .LVU35
+ 139 005c 9342     		cmp	r3, r2
+ 140 005e F3DA     		bge	.L8
+ 141              	.LBE3:
+  24:Lib/Digital_Filter/moving_average.c ****         for (int32_t k = -r; k <= r; k++) {
+ 142              		.loc 1 24 9 is_stmt 1 view .LVU36
+ 143              	.LVL13:
+  25:Lib/Digital_Filter/moving_average.c ****             sum += data[(k + n) % n];
+ 144              		.loc 1 25 9 view .LVU37
+ 145              	.LBB4:
+  25:Lib/Digital_Filter/moving_average.c ****             sum += data[(k + n) % n];
+ 146              		.loc 1 25 14 view .LVU38
+  25:Lib/Digital_Filter/moving_average.c ****             sum += data[(k + n) % n];
+ 147              		.loc 1 25 22 is_stmt 0 view .LVU39
+ 148 0060 5C42     		rsbs	r4, r3, #0
+ 149              	.LVL14:
+  25:Lib/Digital_Filter/moving_average.c ****             sum += data[(k + n) % n];
+ 150              		.loc 1 25 22 view .LVU40
+ 151              	.LBE4:
+  24:Lib/Digital_Filter/moving_average.c ****         for (int32_t k = -r; k <= r; k++) {
+ 152              		.loc 1 24 15 view .LVU41
+ 153 0062 DFED277A 		vldr.32	s15, .L24
+ 154              	.LBB5:
+ARM GAS  /tmp/ccPxoIXd.s 			page 5
+
+
+  25:Lib/Digital_Filter/moving_average.c ****             sum += data[(k + n) % n];
+ 155              		.loc 1 25 9 view .LVU42
+ 156 0066 0BE0     		b	.L9
+ 157              	.LVL15:
+ 158              	.L10:
+  26:Lib/Digital_Filter/moving_average.c ****         }
+ 159              		.loc 1 26 13 is_stmt 1 discriminator 3 view .LVU43
+  26:Lib/Digital_Filter/moving_average.c ****         }
+ 160              		.loc 1 26 28 is_stmt 0 discriminator 3 view .LVU44
+ 161 0068 6218     		adds	r2, r4, r1
+  26:Lib/Digital_Filter/moving_average.c ****         }
+ 162              		.loc 1 26 33 discriminator 3 view .LVU45
+ 163 006a 92FBF1FC 		sdiv	ip, r2, r1
+ 164 006e 01FB1C22 		mls	r2, r1, ip, r2
+  26:Lib/Digital_Filter/moving_average.c ****         }
+ 165              		.loc 1 26 24 discriminator 3 view .LVU46
+ 166 0072 00EB8202 		add	r2, r0, r2, lsl #2
+ 167 0076 92ED007A 		vldr.32	s14, [r2]
+  26:Lib/Digital_Filter/moving_average.c ****         }
+ 168              		.loc 1 26 17 discriminator 3 view .LVU47
+ 169 007a 77EE877A 		vadd.f32	s15, s15, s14
+ 170              	.LVL16:
+  25:Lib/Digital_Filter/moving_average.c ****             sum += data[(k + n) % n];
+ 171              		.loc 1 25 38 is_stmt 1 discriminator 3 view .LVU48
+  25:Lib/Digital_Filter/moving_average.c ****             sum += data[(k + n) % n];
+ 172              		.loc 1 25 39 is_stmt 0 discriminator 3 view .LVU49
+ 173 007e 0134     		adds	r4, r4, #1
+ 174              	.LVL17:
+ 175              	.L9:
+  25:Lib/Digital_Filter/moving_average.c ****             sum += data[(k + n) % n];
+ 176              		.loc 1 25 30 is_stmt 1 discriminator 1 view .LVU50
+  25:Lib/Digital_Filter/moving_average.c ****             sum += data[(k + n) % n];
+ 177              		.loc 1 25 9 is_stmt 0 discriminator 1 view .LVU51
+ 178 0080 A342     		cmp	r3, r4
+ 179 0082 F1DA     		bge	.L10
+  25:Lib/Digital_Filter/moving_average.c ****             sum += data[(k + n) % n];
+ 180              		.loc 1 25 9 discriminator 1 view .LVU52
+ 181              	.LBE5:
+ 182              	.LBB6:
+  30:Lib/Digital_Filter/moving_average.c ****             /* Sample leaving the window: x[i - r] */
+ 183              		.loc 1 30 22 view .LVU53
+ 184 0084 0022     		movs	r2, #0
+ 185              	.LBE6:
+  29:Lib/Digital_Filter/moving_average.c ****         for (int32_t i = 0; i < n; i++) {
+ 186              		.loc 1 29 17 view .LVU54
+ 187 0086 9446     		mov	ip, r2
+ 188 0088 23E0     		b	.L11
+ 189              	.LVL18:
+ 190              	.L12:
+ 191              	.LBB9:
+ 192              	.LBB7:
+  33:Lib/Digital_Filter/moving_average.c **** 
+ 193              		.loc 1 33 44 discriminator 2 view .LVU55
+ 194 008a D41A     		subs	r4, r2, r3
+  33:Lib/Digital_Filter/moving_average.c **** 
+ 195              		.loc 1 33 48 discriminator 2 view .LVU56
+ 196 008c 0C44     		add	r4, r4, r1
+ARM GAS  /tmp/ccPxoIXd.s 			page 6
+
+
+  33:Lib/Digital_Filter/moving_average.c **** 
+ 197              		.loc 1 33 41 discriminator 2 view .LVU57
+ 198 008e 00EB8404 		add	r4, r0, r4, lsl #2
+  33:Lib/Digital_Filter/moving_average.c **** 
+ 199              		.loc 1 33 35 discriminator 2 view .LVU58
+ 200 0092 D4ED006A 		vldr.32	s13, [r4]
+ 201 0096 25E0     		b	.L13
+ 202              	.LVL19:
+ 203              	.L14:
+  37:Lib/Digital_Filter/moving_average.c **** 
+ 204              		.loc 1 37 59 discriminator 2 view .LVU59
+ 205 0098 AEEB010E 		sub	lr, lr, r1
+  37:Lib/Digital_Filter/moving_average.c **** 
+ 206              		.loc 1 37 42 discriminator 2 view .LVU60
+ 207 009c 42AC     		add	r4, sp, #264
+ 208 009e 04EB8E0E 		add	lr, r4, lr, lsl #2
+ 209 00a2 1EED217A 		vldr.32	s14, [lr, #-132]
+ 210              	.L15:
+ 211              	.LVL20:
+  39:Lib/Digital_Filter/moving_average.c ****             data[i]   = sum * inv_win;    /* write smoothed value in place */
+ 212              		.loc 1 39 13 is_stmt 1 view .LVU61
+  39:Lib/Digital_Filter/moving_average.c ****             data[i]   = sum * inv_win;    /* write smoothed value in place */
+ 213              		.loc 1 39 29 is_stmt 0 view .LVU62
+ 214 00a6 00EB820E 		add	lr, r0, r2, lsl #2
+ 215 00aa 9EED006A 		vldr.32	s12, [lr]
+  39:Lib/Digital_Filter/moving_average.c ****             data[i]   = sum * inv_win;    /* write smoothed value in place */
+ 216              		.loc 1 39 23 view .LVU63
+ 217 00ae 01AC     		add	r4, sp, #4
+ 218 00b0 04EB8C04 		add	r4, r4, ip, lsl #2
+ 219 00b4 84ED006A 		vstr.32	s12, [r4]
+  40:Lib/Digital_Filter/moving_average.c ****             sum      += add - drop;
+ 220              		.loc 1 40 13 is_stmt 1 view .LVU64
+  40:Lib/Digital_Filter/moving_average.c ****             sum      += add - drop;
+ 221              		.loc 1 40 29 is_stmt 0 view .LVU65
+ 222 00b8 27EEA56A 		vmul.f32	s12, s15, s11
+  40:Lib/Digital_Filter/moving_average.c ****             sum      += add - drop;
+ 223              		.loc 1 40 23 view .LVU66
+ 224 00bc 8EED006A 		vstr.32	s12, [lr]
+  41:Lib/Digital_Filter/moving_average.c **** 
+ 225              		.loc 1 41 13 is_stmt 1 view .LVU67
+  41:Lib/Digital_Filter/moving_average.c **** 
+ 226              		.loc 1 41 29 is_stmt 0 view .LVU68
+ 227 00c0 37EE667A 		vsub.f32	s14, s14, s13
+ 228              	.LVL21:
+  41:Lib/Digital_Filter/moving_average.c **** 
+ 229              		.loc 1 41 22 view .LVU69
+ 230 00c4 77EE877A 		vadd.f32	s15, s15, s14
+ 231              	.LVL22:
+  43:Lib/Digital_Filter/moving_average.c ****         }
+ 232              		.loc 1 43 13 is_stmt 1 view .LVU70
+  43:Lib/Digital_Filter/moving_average.c ****         }
+ 233              		.loc 1 43 16 is_stmt 0 view .LVU71
+ 234 00c8 0CF1010C 		add	ip, ip, #1
+ 235              	.LVL23:
+  43:Lib/Digital_Filter/moving_average.c ****         }
+ 236              		.loc 1 43 16 view .LVU72
+ 237 00cc 6345     		cmp	r3, ip
+ARM GAS  /tmp/ccPxoIXd.s 			page 7
+
+
+ 238 00ce 13D0     		beq	.L23
+ 239              	.LVL24:
+ 240              	.L16:
+  43:Lib/Digital_Filter/moving_average.c ****         }
+ 241              		.loc 1 43 16 view .LVU73
+ 242              	.LBE7:
+  30:Lib/Digital_Filter/moving_average.c ****             /* Sample leaving the window: x[i - r] */
+ 243              		.loc 1 30 36 is_stmt 1 discriminator 2 view .LVU74
+  30:Lib/Digital_Filter/moving_average.c ****             /* Sample leaving the window: x[i - r] */
+ 244              		.loc 1 30 37 is_stmt 0 discriminator 2 view .LVU75
+ 245 00d0 0132     		adds	r2, r2, #1
+ 246              	.LVL25:
+ 247              	.L11:
+  30:Lib/Digital_Filter/moving_average.c ****             /* Sample leaving the window: x[i - r] */
+ 248              		.loc 1 30 29 is_stmt 1 discriminator 1 view .LVU76
+  30:Lib/Digital_Filter/moving_average.c ****             /* Sample leaving the window: x[i - r] */
+ 249              		.loc 1 30 9 is_stmt 0 discriminator 1 view .LVU77
+ 250 00d2 8A42     		cmp	r2, r1
+ 251 00d4 B1DA     		bge	.L7
+ 252              	.LBB8:
+  32:Lib/Digital_Filter/moving_average.c ****                                   : data[i - r + n];     /* tail, still original */
+ 253              		.loc 1 32 13 is_stmt 1 view .LVU78
+  33:Lib/Digital_Filter/moving_average.c **** 
+ 254              		.loc 1 33 35 is_stmt 0 view .LVU79
+ 255 00d6 9342     		cmp	r3, r2
+ 256 00d8 D7DC     		bgt	.L12
+  33:Lib/Digital_Filter/moving_average.c **** 
+ 257              		.loc 1 33 35 discriminator 1 view .LVU80
+ 258 00da 01AC     		add	r4, sp, #4
+ 259 00dc 04EB8C04 		add	r4, r4, ip, lsl #2
+ 260 00e0 D4ED006A 		vldr.32	s13, [r4]
+ 261              	.L13:
+ 262              	.LVL26:
+  36:Lib/Digital_Filter/moving_average.c ****                                          : head[i + r + 1 - n];   /* wrapped -> saved head */
+ 263              		.loc 1 36 13 is_stmt 1 view .LVU81
+  36:Lib/Digital_Filter/moving_average.c ****                                          : head[i + r + 1 - n];   /* wrapped -> saved head */
+ 264              		.loc 1 36 29 is_stmt 0 view .LVU82
+ 265 00e4 9C18     		adds	r4, r3, r2
+  36:Lib/Digital_Filter/moving_average.c ****                                          : head[i + r + 1 - n];   /* wrapped -> saved head */
+ 266              		.loc 1 36 33 view .LVU83
+ 267 00e6 04F1010E 		add	lr, r4, #1
+  37:Lib/Digital_Filter/moving_average.c **** 
+ 268              		.loc 1 37 42 view .LVU84
+ 269 00ea 8E45     		cmp	lr, r1
+ 270 00ec D4DA     		bge	.L14
+  36:Lib/Digital_Filter/moving_average.c ****                                          : head[i + r + 1 - n];   /* wrapped -> saved head */
+ 271              		.loc 1 36 48 discriminator 1 view .LVU85
+ 272 00ee 00EB8E04 		add	r4, r0, lr, lsl #2
+  37:Lib/Digital_Filter/moving_average.c **** 
+ 273              		.loc 1 37 42 discriminator 1 view .LVU86
+ 274 00f2 94ED007A 		vldr.32	s14, [r4]
+ 275 00f6 D6E7     		b	.L15
+ 276              	.L23:
+  43:Lib/Digital_Filter/moving_average.c ****         }
+ 277              		.loc 1 43 35 view .LVU87
+ 278 00f8 4FF0000C 		mov	ip, #0
+ 279              	.LVL27:
+ARM GAS  /tmp/ccPxoIXd.s 			page 8
+
+
+  43:Lib/Digital_Filter/moving_average.c ****         }
+ 280              		.loc 1 43 35 view .LVU88
+ 281 00fc E8E7     		b	.L16
+ 282              	.L25:
+ 283 00fe 00BF     		.align	2
+ 284              	.L24:
+ 285 0100 00000000 		.word	0
+ 286              	.LBE8:
+ 287              	.LBE9:
+ 288              	.LBE2:
+ 289              		.cfi_endproc
+ 290              	.LFE0:
+ 292              		.text
+ 293              	.Letext0:
+ 294              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
+ARM GAS  /tmp/ccPxoIXd.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 moving_average.c
+     /tmp/ccPxoIXd.s:18     .text.circular_moving_average:0000000000000000 $t
+     /tmp/ccPxoIXd.s:26     .text.circular_moving_average:0000000000000000 circular_moving_average
+     /tmp/ccPxoIXd.s:285    .text.circular_moving_average:0000000000000100 $d
+
+NO UNDEFINED SYMBOLS

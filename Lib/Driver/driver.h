@@ -32,7 +32,8 @@
 #define TIM_PWM_CHB             TIM_PWM->CCR2
 #define TIM_PWM_CHC             TIM_PWM->CCR3
 
-                         
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim);
+
 void TIM_PWM_DMA_CONFIG();
 
 void TIM_COUNT_US_CONFIG(void);
@@ -98,10 +99,6 @@ typedef struct {
 
 
 
-#ifndef LINK_ADC_H
-#define LINK_ADC_H
-
-#endif
 
 void ADC_DMA_CONFIG(void);
 
@@ -177,6 +174,21 @@ extern DMA_HandleTypeDef                hdma_spi_ex_tx;
 
 void SPI1_DMA_CONFIG(void);
 void SPI2_DMA_CONFIG(void);
+
+void MX_SPI_IN_Init(void);
+
+void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi);
+
+void HAL_SPI_MspDeInit(SPI_HandleTypeDef* hspi);
+
+void SPI_IN_TransmitReceive_DMA(uint8_t *tx_buffer, uint8_t *rx_buffer, uint16_t size);
+
+void SPI_EX_TransmitReceive_DMA(uint8_t *tx_buffer, uint8_t *rx_buffer, uint16_t size);
+
+void SPI_IN_TransmitReceive(uint8_t *tx_buffer, uint8_t *rx_buffer, uint16_t size);
+
+void SPI_EX_TransmitReceive(uint8_t *tx_buffer, uint8_t *rx_buffer, uint16_t size);
+
 
 #endif
 
@@ -326,7 +338,24 @@ uint32_t CRC_Calculate_DMA(uint8_t *pBuffer, uint32_t length);
 #define GPIO_LED_RED_PIN					GPIO_PIN_14
 #define GPIO_LED_RED_PORT					GPIOC
 
-void GPIO_INIT (void);
+void GPIO_Init(void);
+
+void GPIO_DRV832xS_CS_DIS(void);
+void GPIO_DRV832xS_CS_EN(void);
+
+void GPIO_AS5048A_IN_CS_EN(void);
+void GPIO_AS5048A_IN_CS_DIS(void);
+
+void GPIO_AS5048A_EX_CS_EN(void);
+void GPIO_AS5048A_EX_CS_DIS(void);
+
+void GPIO_LED_GREEN_EN(void);
+void GPIO_LED_GREEN_DIS(void);
+
+void GPIO_LED_RED_EN(void);
+void GPIO_LED_RED_DIS(void);
+
+
 
 #endif
 

@@ -1,0 +1,4 @@
+#ifndef SF_MOTION_REGISTER_H
+#define SF_MOTION_REGISTER_H
+
+#endif /* SF_MOTION_REGISTER_H */

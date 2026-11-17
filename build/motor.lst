@@ -1,0 +1,765 @@
+ARM GAS  /tmp/cctBYiUh.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"motor.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.motor_init_pwm,"ax",%progbits
+  18              		.align	1
+  19              		.global	motor_init_pwm
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	motor_init_pwm:
+  27              	.LVL0:
+  28              	.LFB1:
+  29              		.file 1 "Lib/MOTOR/motor.c"
+   1:Lib/MOTOR/motor.c **** #include "motor.h"
+   2:Lib/MOTOR/motor.c **** 
+   3:Lib/MOTOR/motor.c **** void motor_init_pwm(motor_t *hmotor, volatile uint32_t *pwm_a, volatile uint32_t *pwm_b, volatile u
+  30              		.loc 1 3 116 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+   4:Lib/MOTOR/motor.c ****   hmotor->p_pwm_va = pwm_a;
+  35              		.loc 1 4 3 view .LVU1
+  36              		.loc 1 4 20 is_stmt 0 view .LVU2
+  37 0000 4160     		str	r1, [r0, #4]
+   5:Lib/MOTOR/motor.c ****   hmotor->p_pwm_vb = pwm_b;
+  38              		.loc 1 5 3 is_stmt 1 view .LVU3
+  39              		.loc 1 5 20 is_stmt 0 view .LVU4
+  40 0002 8260     		str	r2, [r0, #8]
+   6:Lib/MOTOR/motor.c ****   hmotor->p_pwm_vc = pwm_c;
+  41              		.loc 1 6 3 is_stmt 1 view .LVU5
+  42              		.loc 1 6 20 is_stmt 0 view .LVU6
+  43 0004 C360     		str	r3, [r0, #12]
+   7:Lib/MOTOR/motor.c **** }
+  44              		.loc 1 7 1 view .LVU7
+  45 0006 7047     		bx	lr
+  46              		.cfi_endproc
+  47              	.LFE1:
+  49              		.section	.text.motor_init_adc_current_sense,"ax",%progbits
+  50              		.align	1
+  51              		.global	motor_init_adc_current_sense
+  52              		.syntax unified
+ARM GAS  /tmp/cctBYiUh.s 			page 2
+
+
+  53              		.thumb
+  54              		.thumb_func
+  55              		.fpu fpv4-sp-d16
+  57              	motor_init_adc_current_sense:
+  58              	.LVL1:
+  59              	.LFB2:
+   8:Lib/MOTOR/motor.c **** 
+   9:Lib/MOTOR/motor.c **** void motor_init_adc_current_sense(motor_t *hmotor, uint32_t *adc_a, uint32_t *adc_b, uint32_t *adc_
+  60              		.loc 1 9 103 is_stmt 1 view -0
+  61              		.cfi_startproc
+  62              		@ args = 0, pretend = 0, frame = 0
+  63              		@ frame_needed = 0, uses_anonymous_args = 0
+  64              		@ link register save eliminated.
+  10:Lib/MOTOR/motor.c ****   hmotor->p_adc_ia = adc_a;
+  65              		.loc 1 10 3 view .LVU9
+  66              		.loc 1 10 20 is_stmt 0 view .LVU10
+  67 0000 0161     		str	r1, [r0, #16]
+  11:Lib/MOTOR/motor.c ****   hmotor->p_adc_ib = adc_b;
+  68              		.loc 1 11 3 is_stmt 1 view .LVU11
+  69              		.loc 1 11 20 is_stmt 0 view .LVU12
+  70 0002 4261     		str	r2, [r0, #20]
+  12:Lib/MOTOR/motor.c ****   hmotor->p_adc_ic = adc_c;
+  71              		.loc 1 12 3 is_stmt 1 view .LVU13
+  72              		.loc 1 12 20 is_stmt 0 view .LVU14
+  73 0004 8361     		str	r3, [r0, #24]
+  13:Lib/MOTOR/motor.c **** }
+  74              		.loc 1 13 1 view .LVU15
+  75 0006 7047     		bx	lr
+  76              		.cfi_endproc
+  77              	.LFE2:
+  79              		.section	.text.motor_init_adc_power_voltage_sense,"ax",%progbits
+  80              		.align	1
+  81              		.global	motor_init_adc_power_voltage_sense
+  82              		.syntax unified
+  83              		.thumb
+  84              		.thumb_func
+  85              		.fpu fpv4-sp-d16
+  87              	motor_init_adc_power_voltage_sense:
+  88              	.LVL2:
+  89              	.LFB3:
+  14:Lib/MOTOR/motor.c **** 
+  15:Lib/MOTOR/motor.c **** void motor_init_adc_power_voltage_sense(motor_t *hmotor, uint32_t *adc_v) {
+  90              		.loc 1 15 75 is_stmt 1 view -0
+  91              		.cfi_startproc
+  92              		@ args = 0, pretend = 0, frame = 0
+  93              		@ frame_needed = 0, uses_anonymous_args = 0
+  94              		@ link register save eliminated.
+  16:Lib/MOTOR/motor.c ****   hmotor->p_adc_vbus = adc_v;
+  95              		.loc 1 16 3 view .LVU17
+  96              		.loc 1 16 22 is_stmt 0 view .LVU18
+  97 0000 C161     		str	r1, [r0, #28]
+  17:Lib/MOTOR/motor.c **** }
+  98              		.loc 1 17 1 view .LVU19
+  99 0002 7047     		bx	lr
+ 100              		.cfi_endproc
+ 101              	.LFE3:
+ 103              		.section	.text.motor_init_lpf_current_sense,"ax",%progbits
+ARM GAS  /tmp/cctBYiUh.s 			page 3
+
+
+ 104              		.align	1
+ 105              		.global	motor_init_lpf_current_sense
+ 106              		.syntax unified
+ 107              		.thumb
+ 108              		.thumb_func
+ 109              		.fpu fpv4-sp-d16
+ 111              	motor_init_lpf_current_sense:
+ 112              	.LVL3:
+ 113              	.LFB4:
+  18:Lib/MOTOR/motor.c **** 
+  19:Lib/MOTOR/motor.c **** void motor_init_lpf_current_sense(motor_t *hmotor, float cutoff_freq, float sampling_freq) {
+ 114              		.loc 1 19 92 is_stmt 1 view -0
+ 115              		.cfi_startproc
+ 116              		@ args = 0, pretend = 0, frame = 0
+ 117              		@ frame_needed = 0, uses_anonymous_args = 0
+ 118              		.loc 1 19 92 is_stmt 0 view .LVU21
+ 119 0000 10B5     		push	{r4, lr}
+ 120              	.LCFI0:
+ 121              		.cfi_def_cfa_offset 8
+ 122              		.cfi_offset 4, -8
+ 123              		.cfi_offset 14, -4
+ 124 0002 2DED028B 		vpush.64	{d8}
+ 125              	.LCFI1:
+ 126              		.cfi_def_cfa_offset 16
+ 127              		.cfi_offset 80, -16
+ 128              		.cfi_offset 81, -12
+ 129 0006 0446     		mov	r4, r0
+ 130 0008 B0EE408A 		vmov.f32	s16, s0
+ 131 000c F0EE608A 		vmov.f32	s17, s1
+  20:Lib/MOTOR/motor.c ****   second_order_lpf_init(&hmotor->ia_lpf, cutoff_freq, sampling_freq);
+ 132              		.loc 1 20 3 is_stmt 1 view .LVU22
+ 133 0010 5030     		adds	r0, r0, #80
+ 134              	.LVL4:
+ 135              		.loc 1 20 3 is_stmt 0 view .LVU23
+ 136 0012 FFF7FEFF 		bl	second_order_lpf_init
+ 137              	.LVL5:
+  21:Lib/MOTOR/motor.c ****   second_order_lpf_init(&hmotor->ib_lpf, cutoff_freq, sampling_freq);
+ 138              		.loc 1 21 3 is_stmt 1 view .LVU24
+ 139 0016 F0EE680A 		vmov.f32	s1, s17
+ 140 001a B0EE480A 		vmov.f32	s0, s16
+ 141 001e 04F17400 		add	r0, r4, #116
+ 142 0022 FFF7FEFF 		bl	second_order_lpf_init
+ 143              	.LVL6:
+  22:Lib/MOTOR/motor.c ****   second_order_lpf_init(&hmotor->ic_lpf, cutoff_freq, sampling_freq);
+ 144              		.loc 1 22 3 view .LVU25
+ 145 0026 F0EE680A 		vmov.f32	s1, s17
+ 146 002a B0EE480A 		vmov.f32	s0, s16
+ 147 002e 04F19800 		add	r0, r4, #152
+ 148 0032 FFF7FEFF 		bl	second_order_lpf_init
+ 149              	.LVL7:
+  23:Lib/MOTOR/motor.c **** }
+ 150              		.loc 1 23 1 is_stmt 0 view .LVU26
+ 151 0036 BDEC028B 		vldm	sp!, {d8}
+ 152              	.LCFI2:
+ 153              		.cfi_restore 80
+ 154              		.cfi_restore 81
+ 155              		.cfi_def_cfa_offset 8
+ARM GAS  /tmp/cctBYiUh.s 			page 4
+
+
+ 156              	.LVL8:
+ 157              		.loc 1 23 1 view .LVU27
+ 158 003a 10BD     		pop	{r4, pc}
+ 159              		.loc 1 23 1 view .LVU28
+ 160              		.cfi_endproc
+ 161              	.LFE4:
+ 163              		.section	.text.motor_init_lpf_power_voltage_sense,"ax",%progbits
+ 164              		.align	1
+ 165              		.global	motor_init_lpf_power_voltage_sense
+ 166              		.syntax unified
+ 167              		.thumb
+ 168              		.thumb_func
+ 169              		.fpu fpv4-sp-d16
+ 171              	motor_init_lpf_power_voltage_sense:
+ 172              	.LVL9:
+ 173              	.LFB5:
+  24:Lib/MOTOR/motor.c **** 
+  25:Lib/MOTOR/motor.c **** void motor_init_lpf_power_voltage_sense(motor_t *hmotor, float cutoff_freq, float sampling_freq) {
+ 174              		.loc 1 25 98 is_stmt 1 view -0
+ 175              		.cfi_startproc
+ 176              		@ args = 0, pretend = 0, frame = 0
+ 177              		@ frame_needed = 0, uses_anonymous_args = 0
+ 178              		.loc 1 25 98 is_stmt 0 view .LVU30
+ 179 0000 08B5     		push	{r3, lr}
+ 180              	.LCFI3:
+ 181              		.cfi_def_cfa_offset 8
+ 182              		.cfi_offset 3, -8
+ 183              		.cfi_offset 14, -4
+  26:Lib/MOTOR/motor.c ****   second_order_lpf_init(&hmotor->vbus_lpf, cutoff_freq, sampling_freq);
+ 184              		.loc 1 26 3 is_stmt 1 view .LVU31
+ 185 0002 BC30     		adds	r0, r0, #188
+ 186              	.LVL10:
+ 187              		.loc 1 26 3 is_stmt 0 view .LVU32
+ 188 0004 FFF7FEFF 		bl	second_order_lpf_init
+ 189              	.LVL11:
+  27:Lib/MOTOR/motor.c **** }
+ 190              		.loc 1 27 1 view .LVU33
+ 191 0008 08BD     		pop	{r3, pc}
+ 192              		.cfi_endproc
+ 193              	.LFE5:
+ 195              		.section	.text.motor_set_current_sense_gain,"ax",%progbits
+ 196              		.align	1
+ 197              		.global	motor_set_current_sense_gain
+ 198              		.syntax unified
+ 199              		.thumb
+ 200              		.thumb_func
+ 201              		.fpu fpv4-sp-d16
+ 203              	motor_set_current_sense_gain:
+ 204              	.LVL12:
+ 205              	.LFB6:
+  28:Lib/MOTOR/motor.c **** 
+  29:Lib/MOTOR/motor.c **** void motor_set_current_sense_gain(motor_t *hmotor, float gain) {
+ 206              		.loc 1 29 64 is_stmt 1 view -0
+ 207              		.cfi_startproc
+ 208              		@ args = 0, pretend = 0, frame = 0
+ 209              		@ frame_needed = 0, uses_anonymous_args = 0
+ 210              		@ link register save eliminated.
+ARM GAS  /tmp/cctBYiUh.s 			page 5
+
+
+  30:Lib/MOTOR/motor.c ****   hmotor->current_sense_gain = gain;
+ 211              		.loc 1 30 3 view .LVU35
+ 212              		.loc 1 30 30 is_stmt 0 view .LVU36
+ 213 0000 80ED080A 		vstr.32	s0, [r0, #32]
+  31:Lib/MOTOR/motor.c **** }
+ 214              		.loc 1 31 1 view .LVU37
+ 215 0004 7047     		bx	lr
+ 216              		.cfi_endproc
+ 217              	.LFE6:
+ 219              		.section	.text.motor_set_power_voltage_sense_gain,"ax",%progbits
+ 220              		.align	1
+ 221              		.global	motor_set_power_voltage_sense_gain
+ 222              		.syntax unified
+ 223              		.thumb
+ 224              		.thumb_func
+ 225              		.fpu fpv4-sp-d16
+ 227              	motor_set_power_voltage_sense_gain:
+ 228              	.LVL13:
+ 229              	.LFB7:
+  32:Lib/MOTOR/motor.c **** 
+  33:Lib/MOTOR/motor.c **** void motor_set_power_voltage_sense_gain(motor_t *hmotor, float gain) {
+ 230              		.loc 1 33 70 is_stmt 1 view -0
+ 231              		.cfi_startproc
+ 232              		@ args = 0, pretend = 0, frame = 0
+ 233              		@ frame_needed = 0, uses_anonymous_args = 0
+ 234              		@ link register save eliminated.
+  34:Lib/MOTOR/motor.c ****   hmotor->vbus_sense_gain = gain;
+ 235              		.loc 1 34 3 view .LVU39
+ 236              		.loc 1 34 27 is_stmt 0 view .LVU40
+ 237 0000 80ED0C0A 		vstr.32	s0, [r0, #48]
+  35:Lib/MOTOR/motor.c **** }
+ 238              		.loc 1 35 1 view .LVU41
+ 239 0004 7047     		bx	lr
+ 240              		.cfi_endproc
+ 241              	.LFE7:
+ 243              		.section	.text.motor_set_power_voltage_sense_offset,"ax",%progbits
+ 244              		.align	1
+ 245              		.global	motor_set_power_voltage_sense_offset
+ 246              		.syntax unified
+ 247              		.thumb
+ 248              		.thumb_func
+ 249              		.fpu fpv4-sp-d16
+ 251              	motor_set_power_voltage_sense_offset:
+ 252              	.LVL14:
+ 253              	.LFB8:
+  36:Lib/MOTOR/motor.c **** 
+  37:Lib/MOTOR/motor.c **** void motor_set_power_voltage_sense_offset(motor_t *hmotor, float offset) {
+ 254              		.loc 1 37 74 is_stmt 1 view -0
+ 255              		.cfi_startproc
+ 256              		@ args = 0, pretend = 0, frame = 0
+ 257              		@ frame_needed = 0, uses_anonymous_args = 0
+ 258              		@ link register save eliminated.
+  38:Lib/MOTOR/motor.c ****   hmotor->vbus_sense_offset = offset;
+ 259              		.loc 1 38 3 view .LVU43
+ 260              		.loc 1 38 29 is_stmt 0 view .LVU44
+ 261 0000 80ED0D0A 		vstr.32	s0, [r0, #52]
+  39:Lib/MOTOR/motor.c **** }
+ARM GAS  /tmp/cctBYiUh.s 			page 6
+
+
+ 262              		.loc 1 39 1 view .LVU45
+ 263 0004 7047     		bx	lr
+ 264              		.cfi_endproc
+ 265              	.LFE8:
+ 267              		.section	.text.motor_set_current_sense_offset,"ax",%progbits
+ 268              		.align	1
+ 269              		.global	motor_set_current_sense_offset
+ 270              		.syntax unified
+ 271              		.thumb
+ 272              		.thumb_func
+ 273              		.fpu fpv4-sp-d16
+ 275              	motor_set_current_sense_offset:
+ 276              	.LVL15:
+ 277              	.LFB9:
+  40:Lib/MOTOR/motor.c **** 
+  41:Lib/MOTOR/motor.c **** void motor_set_current_sense_offset(motor_t *hmotor, float ia_offset, float ib_offset, float ic_off
+ 278              		.loc 1 41 105 is_stmt 1 view -0
+ 279              		.cfi_startproc
+ 280              		@ args = 0, pretend = 0, frame = 0
+ 281              		@ frame_needed = 0, uses_anonymous_args = 0
+ 282              		@ link register save eliminated.
+  42:Lib/MOTOR/motor.c ****   hmotor->ia_offset = ia_offset;
+ 283              		.loc 1 42 3 view .LVU47
+ 284              		.loc 1 42 21 is_stmt 0 view .LVU48
+ 285 0000 80ED090A 		vstr.32	s0, [r0, #36]
+  43:Lib/MOTOR/motor.c ****   hmotor->ib_offset = ib_offset;
+ 286              		.loc 1 43 3 is_stmt 1 view .LVU49
+ 287              		.loc 1 43 21 is_stmt 0 view .LVU50
+ 288 0004 C0ED0A0A 		vstr.32	s1, [r0, #40]
+  44:Lib/MOTOR/motor.c ****   hmotor->ic_offset = ic_offset;
+ 289              		.loc 1 44 3 is_stmt 1 view .LVU51
+ 290              		.loc 1 44 21 is_stmt 0 view .LVU52
+ 291 0008 80ED0B1A 		vstr.32	s2, [r0, #44]
+  45:Lib/MOTOR/motor.c **** }
+ 292              		.loc 1 45 1 view .LVU53
+ 293 000c 7047     		bx	lr
+ 294              		.cfi_endproc
+ 295              	.LFE9:
+ 297              		.section	.text.motor_set_pwm,"ax",%progbits
+ 298              		.align	1
+ 299              		.global	motor_set_pwm
+ 300              		.syntax unified
+ 301              		.thumb
+ 302              		.thumb_func
+ 303              		.fpu fpv4-sp-d16
+ 305              	motor_set_pwm:
+ 306              	.LVL16:
+ 307              	.LFB10:
+  46:Lib/MOTOR/motor.c **** 
+  47:Lib/MOTOR/motor.c **** void motor_set_pwm(motor_t *hmotor, uint32_t pwm_a, uint32_t pwm_b, uint32_t pwm_c) {
+ 308              		.loc 1 47 85 is_stmt 1 view -0
+ 309              		.cfi_startproc
+ 310              		@ args = 0, pretend = 0, frame = 0
+ 311              		@ frame_needed = 0, uses_anonymous_args = 0
+ 312              		@ link register save eliminated.
+ 313              		.loc 1 47 85 is_stmt 0 view .LVU55
+ 314 0000 10B4     		push	{r4}
+ARM GAS  /tmp/cctBYiUh.s 			page 7
+
+
+ 315              	.LCFI4:
+ 316              		.cfi_def_cfa_offset 4
+ 317              		.cfi_offset 4, -4
+  48:Lib/MOTOR/motor.c ****   *hmotor->p_pwm_va = pwm_a;
+ 318              		.loc 1 48 3 is_stmt 1 view .LVU56
+ 319              		.loc 1 48 21 is_stmt 0 view .LVU57
+ 320 0002 4468     		ldr	r4, [r0, #4]
+ 321 0004 2160     		str	r1, [r4]
+  49:Lib/MOTOR/motor.c ****   if (hmotor->is_phase_inverted) {
+ 322              		.loc 1 49 3 is_stmt 1 view .LVU58
+ 323              		.loc 1 49 13 is_stmt 0 view .LVU59
+ 324 0006 90F8E010 		ldrb	r1, [r0, #224]	@ zero_extendqisi2
+ 325              	.LVL17:
+ 326              		.loc 1 49 6 view .LVU60
+ 327 000a 31B1     		cbz	r1, .L13
+  50:Lib/MOTOR/motor.c ****     *hmotor->p_pwm_vb = pwm_c;
+ 328              		.loc 1 50 5 is_stmt 1 view .LVU61
+ 329              		.loc 1 50 12 is_stmt 0 view .LVU62
+ 330 000c 8168     		ldr	r1, [r0, #8]
+ 331              		.loc 1 50 23 view .LVU63
+ 332 000e 0B60     		str	r3, [r1]
+ 333              	.LVL18:
+  51:Lib/MOTOR/motor.c ****     *hmotor->p_pwm_vc = pwm_b;
+ 334              		.loc 1 51 5 is_stmt 1 view .LVU64
+ 335              		.loc 1 51 12 is_stmt 0 view .LVU65
+ 336 0010 C368     		ldr	r3, [r0, #12]
+ 337              	.LVL19:
+ 338              		.loc 1 51 23 view .LVU66
+ 339 0012 1A60     		str	r2, [r3]
+ 340              	.LVL20:
+ 341              	.L12:
+  52:Lib/MOTOR/motor.c ****   }
+  53:Lib/MOTOR/motor.c ****   else {
+  54:Lib/MOTOR/motor.c ****     *hmotor->p_pwm_vb = pwm_b;
+  55:Lib/MOTOR/motor.c ****     *hmotor->p_pwm_vc = pwm_c;
+  56:Lib/MOTOR/motor.c ****   }
+  57:Lib/MOTOR/motor.c **** }
+ 342              		.loc 1 57 1 view .LVU67
+ 343 0014 5DF8044B 		ldr	r4, [sp], #4
+ 344              	.LCFI5:
+ 345              		.cfi_remember_state
+ 346              		.cfi_restore 4
+ 347              		.cfi_def_cfa_offset 0
+ 348 0018 7047     		bx	lr
+ 349              	.LVL21:
+ 350              	.L13:
+ 351              	.LCFI6:
+ 352              		.cfi_restore_state
+  54:Lib/MOTOR/motor.c ****     *hmotor->p_pwm_vc = pwm_c;
+ 353              		.loc 1 54 5 is_stmt 1 view .LVU68
+  54:Lib/MOTOR/motor.c ****     *hmotor->p_pwm_vc = pwm_c;
+ 354              		.loc 1 54 12 is_stmt 0 view .LVU69
+ 355 001a 8168     		ldr	r1, [r0, #8]
+  54:Lib/MOTOR/motor.c ****     *hmotor->p_pwm_vc = pwm_c;
+ 356              		.loc 1 54 23 view .LVU70
+ 357 001c 0A60     		str	r2, [r1]
+ 358              	.LVL22:
+ARM GAS  /tmp/cctBYiUh.s 			page 8
+
+
+  55:Lib/MOTOR/motor.c ****   }
+ 359              		.loc 1 55 5 is_stmt 1 view .LVU71
+  55:Lib/MOTOR/motor.c ****   }
+ 360              		.loc 1 55 12 is_stmt 0 view .LVU72
+ 361 001e C268     		ldr	r2, [r0, #12]
+ 362              	.LVL23:
+  55:Lib/MOTOR/motor.c ****   }
+ 363              		.loc 1 55 23 view .LVU73
+ 364 0020 1360     		str	r3, [r2]
+ 365              	.LVL24:
+ 366              		.loc 1 57 1 view .LVU74
+ 367 0022 F7E7     		b	.L12
+ 368              		.cfi_endproc
+ 369              	.LFE10:
+ 371              		.section	.text.motor_get_current,"ax",%progbits
+ 372              		.align	1
+ 373              		.global	motor_get_current
+ 374              		.syntax unified
+ 375              		.thumb
+ 376              		.thumb_func
+ 377              		.fpu fpv4-sp-d16
+ 379              	motor_get_current:
+ 380              	.LVL25:
+ 381              	.LFB11:
+  58:Lib/MOTOR/motor.c **** 
+  59:Lib/MOTOR/motor.c **** void motor_get_current(motor_t *hmotor, float *ia, float *ib, float *ic) {
+ 382              		.loc 1 59 74 is_stmt 1 view -0
+ 383              		.cfi_startproc
+ 384              		@ args = 0, pretend = 0, frame = 0
+ 385              		@ frame_needed = 0, uses_anonymous_args = 0
+ 386              		@ link register save eliminated.
+  60:Lib/MOTOR/motor.c ****   *ia = hmotor->ia;
+ 387              		.loc 1 60 3 view .LVU76
+ 388              		.loc 1 60 15 is_stmt 0 view .LVU77
+ 389 0000 D0F840C0 		ldr	ip, [r0, #64]	@ float
+ 390              		.loc 1 60 7 view .LVU78
+ 391 0004 C1F800C0 		str	ip, [r1]	@ float
+  61:Lib/MOTOR/motor.c ****   if (hmotor->is_phase_inverted) {
+ 392              		.loc 1 61 3 is_stmt 1 view .LVU79
+ 393              		.loc 1 61 13 is_stmt 0 view .LVU80
+ 394 0008 90F8E010 		ldrb	r1, [r0, #224]	@ zero_extendqisi2
+ 395              	.LVL26:
+ 396              		.loc 1 61 6 view .LVU81
+ 397 000c 21B1     		cbz	r1, .L17
+  62:Lib/MOTOR/motor.c ****     *ib = hmotor->ic;
+ 398              		.loc 1 62 5 is_stmt 1 view .LVU82
+ 399              		.loc 1 62 17 is_stmt 0 view .LVU83
+ 400 000e 816C     		ldr	r1, [r0, #72]	@ float
+ 401              		.loc 1 62 9 view .LVU84
+ 402 0010 1160     		str	r1, [r2]	@ float
+  63:Lib/MOTOR/motor.c ****     *ic = hmotor->ib;
+ 403              		.loc 1 63 5 is_stmt 1 view .LVU85
+ 404              		.loc 1 63 17 is_stmt 0 view .LVU86
+ 405 0012 426C     		ldr	r2, [r0, #68]	@ float
+ 406              	.LVL27:
+ 407              		.loc 1 63 9 view .LVU87
+ 408 0014 1A60     		str	r2, [r3]	@ float
+ARM GAS  /tmp/cctBYiUh.s 			page 9
+
+
+ 409 0016 7047     		bx	lr
+ 410              	.LVL28:
+ 411              	.L17:
+  64:Lib/MOTOR/motor.c ****   }
+  65:Lib/MOTOR/motor.c ****   else {
+  66:Lib/MOTOR/motor.c ****     *ib = hmotor->ib;
+ 412              		.loc 1 66 5 is_stmt 1 view .LVU88
+ 413              		.loc 1 66 17 is_stmt 0 view .LVU89
+ 414 0018 416C     		ldr	r1, [r0, #68]	@ float
+ 415              		.loc 1 66 9 view .LVU90
+ 416 001a 1160     		str	r1, [r2]	@ float
+  67:Lib/MOTOR/motor.c ****     *ic = hmotor->ic;
+ 417              		.loc 1 67 5 is_stmt 1 view .LVU91
+ 418              		.loc 1 67 17 is_stmt 0 view .LVU92
+ 419 001c 826C     		ldr	r2, [r0, #72]	@ float
+ 420              	.LVL29:
+ 421              		.loc 1 67 9 view .LVU93
+ 422 001e 1A60     		str	r2, [r3]	@ float
+  68:Lib/MOTOR/motor.c ****   }
+  69:Lib/MOTOR/motor.c **** }
+ 423              		.loc 1 69 1 view .LVU94
+ 424 0020 7047     		bx	lr
+ 425              		.cfi_endproc
+ 426              	.LFE11:
+ 428              		.section	.text.motor_get_power_voltage,"ax",%progbits
+ 429              		.align	1
+ 430              		.global	motor_get_power_voltage
+ 431              		.syntax unified
+ 432              		.thumb
+ 433              		.thumb_func
+ 434              		.fpu fpv4-sp-d16
+ 436              	motor_get_power_voltage:
+ 437              	.LVL30:
+ 438              	.LFB12:
+  70:Lib/MOTOR/motor.c **** 
+  71:Lib/MOTOR/motor.c **** void motor_get_power_voltage(motor_t *hmotor, float *pv) {
+ 439              		.loc 1 71 58 is_stmt 1 view -0
+ 440              		.cfi_startproc
+ 441              		@ args = 0, pretend = 0, frame = 0
+ 442              		@ frame_needed = 0, uses_anonymous_args = 0
+ 443              		@ link register save eliminated.
+  72:Lib/MOTOR/motor.c ****   *pv = hmotor->vbus_actual_filtered;
+ 444              		.loc 1 72 3 view .LVU96
+ 445              		.loc 1 72 15 is_stmt 0 view .LVU97
+ 446 0000 C36B     		ldr	r3, [r0, #60]	@ float
+ 447              		.loc 1 72 7 view .LVU98
+ 448 0002 0B60     		str	r3, [r1]	@ float
+  73:Lib/MOTOR/motor.c **** }
+ 449              		.loc 1 73 1 view .LVU99
+ 450 0004 7047     		bx	lr
+ 451              		.cfi_endproc
+ 452              	.LFE12:
+ 454              		.section	.text.motor_calculate_current,"ax",%progbits
+ 455              		.align	1
+ 456              		.global	motor_calculate_current
+ 457              		.syntax unified
+ 458              		.thumb
+ARM GAS  /tmp/cctBYiUh.s 			page 10
+
+
+ 459              		.thumb_func
+ 460              		.fpu fpv4-sp-d16
+ 462              	motor_calculate_current:
+ 463              	.LVL31:
+ 464              	.LFB13:
+  74:Lib/MOTOR/motor.c **** 
+  75:Lib/MOTOR/motor.c **** void motor_calculate_current(motor_t *hmotor) {
+ 465              		.loc 1 75 47 is_stmt 1 view -0
+ 466              		.cfi_startproc
+ 467              		@ args = 0, pretend = 0, frame = 0
+ 468              		@ frame_needed = 0, uses_anonymous_args = 0
+ 469              		@ link register save eliminated.
+  76:Lib/MOTOR/motor.c ****   float gain = hmotor->current_sense_gain;
+ 470              		.loc 1 76 3 view .LVU101
+ 471              		.loc 1 76 9 is_stmt 0 view .LVU102
+ 472 0000 90ED086A 		vldr.32	s12, [r0, #32]
+ 473              	.LVL32:
+  77:Lib/MOTOR/motor.c ****   float current_a = (float)((int32_t)*hmotor->p_adc_ia - 2048) * gain - hmotor->ia_offset;
+ 474              		.loc 1 77 3 is_stmt 1 view .LVU103
+ 475              		.loc 1 77 45 is_stmt 0 view .LVU104
+ 476 0004 0369     		ldr	r3, [r0, #16]
+ 477              		.loc 1 77 38 view .LVU105
+ 478 0006 1B68     		ldr	r3, [r3]
+ 479              		.loc 1 77 56 view .LVU106
+ 480 0008 A3F50063 		sub	r3, r3, #2048
+ 481 000c 07EE103A 		vmov	s14, r3	@ int
+ 482              		.loc 1 77 21 view .LVU107
+ 483 0010 B8EEC77A 		vcvt.f32.s32	s14, s14
+ 484              		.loc 1 77 64 view .LVU108
+ 485 0014 27EE067A 		vmul.f32	s14, s14, s12
+ 486              		.loc 1 77 79 view .LVU109
+ 487 0018 D0ED097A 		vldr.32	s15, [r0, #36]
+ 488              		.loc 1 77 9 view .LVU110
+ 489 001c 37EE677A 		vsub.f32	s14, s14, s15
+ 490              	.LVL33:
+  78:Lib/MOTOR/motor.c ****   float current_b = (float)((int32_t)*hmotor->p_adc_ib - 2048) * gain - hmotor->ib_offset;
+ 491              		.loc 1 78 3 is_stmt 1 view .LVU111
+ 492              		.loc 1 78 45 is_stmt 0 view .LVU112
+ 493 0020 4369     		ldr	r3, [r0, #20]
+ 494              		.loc 1 78 38 view .LVU113
+ 495 0022 1B68     		ldr	r3, [r3]
+ 496              		.loc 1 78 56 view .LVU114
+ 497 0024 A3F50063 		sub	r3, r3, #2048
+ 498 0028 07EE903A 		vmov	s15, r3	@ int
+ 499              		.loc 1 78 21 view .LVU115
+ 500 002c F8EEE77A 		vcvt.f32.s32	s15, s15
+ 501              		.loc 1 78 64 view .LVU116
+ 502 0030 67EE867A 		vmul.f32	s15, s15, s12
+ 503              		.loc 1 78 79 view .LVU117
+ 504 0034 D0ED0A6A 		vldr.32	s13, [r0, #40]
+ 505              		.loc 1 78 9 view .LVU118
+ 506 0038 77EEE67A 		vsub.f32	s15, s15, s13
+ 507              	.LVL34:
+  79:Lib/MOTOR/motor.c ****   float current_c = 0.0f;
+ 508              		.loc 1 79 3 is_stmt 1 view .LVU119
+  80:Lib/MOTOR/motor.c ****   if (hmotor->p_adc_ic) {
+ 509              		.loc 1 80 3 view .LVU120
+ARM GAS  /tmp/cctBYiUh.s 			page 11
+
+
+ 510              		.loc 1 80 13 is_stmt 0 view .LVU121
+ 511 003c 8369     		ldr	r3, [r0, #24]
+ 512              		.loc 1 80 6 view .LVU122
+ 513 003e 9BB1     		cbz	r3, .L21
+  81:Lib/MOTOR/motor.c ****     current_c = (float)((int32_t)*hmotor->p_adc_ic - 2048) * gain - hmotor->ic_offset;
+ 514              		.loc 1 81 5 is_stmt 1 view .LVU123
+ 515              		.loc 1 81 34 is_stmt 0 view .LVU124
+ 516 0040 1B68     		ldr	r3, [r3]
+ 517              		.loc 1 81 52 view .LVU125
+ 518 0042 A3F50063 		sub	r3, r3, #2048
+ 519 0046 06EE903A 		vmov	s13, r3	@ int
+ 520              		.loc 1 81 17 view .LVU126
+ 521 004a F8EEE66A 		vcvt.f32.s32	s13, s13
+ 522              		.loc 1 81 60 view .LVU127
+ 523 004e 66EE866A 		vmul.f32	s13, s13, s12
+ 524              		.loc 1 81 75 view .LVU128
+ 525 0052 90ED0B6A 		vldr.32	s12, [r0, #44]
+ 526              	.LVL35:
+ 527              		.loc 1 81 15 view .LVU129
+ 528 0056 76EEC66A 		vsub.f32	s13, s13, s12
+ 529              	.LVL36:
+ 530              	.L22:
+  82:Lib/MOTOR/motor.c ****   }
+  83:Lib/MOTOR/motor.c ****   else {
+  84:Lib/MOTOR/motor.c ****     current_c = -current_a - current_b;
+  85:Lib/MOTOR/motor.c ****   }
+  86:Lib/MOTOR/motor.c ****   hmotor->ia = current_a;
+ 531              		.loc 1 86 3 is_stmt 1 view .LVU130
+ 532              		.loc 1 86 14 is_stmt 0 view .LVU131
+ 533 005a 80ED107A 		vstr.32	s14, [r0, #64]
+  87:Lib/MOTOR/motor.c ****   hmotor->ib = current_b;
+ 534              		.loc 1 87 3 is_stmt 1 view .LVU132
+ 535              		.loc 1 87 14 is_stmt 0 view .LVU133
+ 536 005e C0ED117A 		vstr.32	s15, [r0, #68]
+  88:Lib/MOTOR/motor.c ****   hmotor->ic = current_c;
+ 537              		.loc 1 88 3 is_stmt 1 view .LVU134
+ 538              		.loc 1 88 14 is_stmt 0 view .LVU135
+ 539 0062 C0ED126A 		vstr.32	s13, [r0, #72]
+  89:Lib/MOTOR/motor.c **** }
+ 540              		.loc 1 89 1 view .LVU136
+ 541 0066 7047     		bx	lr
+ 542              	.LVL37:
+ 543              	.L21:
+  84:Lib/MOTOR/motor.c ****   }
+ 544              		.loc 1 84 5 is_stmt 1 view .LVU137
+  84:Lib/MOTOR/motor.c ****   }
+ 545              		.loc 1 84 17 is_stmt 0 view .LVU138
+ 546 0068 F1EE476A 		vneg.f32	s13, s14
+  84:Lib/MOTOR/motor.c ****   }
+ 547              		.loc 1 84 15 view .LVU139
+ 548 006c 76EEE76A 		vsub.f32	s13, s13, s15
+ 549              	.LVL38:
+  84:Lib/MOTOR/motor.c ****   }
+ 550              		.loc 1 84 15 view .LVU140
+ 551 0070 F3E7     		b	.L22
+ 552              		.cfi_endproc
+ 553              	.LFE13:
+ARM GAS  /tmp/cctBYiUh.s 			page 12
+
+
+ 555              		.section	.text.motor_calculate_power_voltage,"ax",%progbits
+ 556              		.align	1
+ 557              		.global	motor_calculate_power_voltage
+ 558              		.syntax unified
+ 559              		.thumb
+ 560              		.thumb_func
+ 561              		.fpu fpv4-sp-d16
+ 563              	motor_calculate_power_voltage:
+ 564              	.LVL39:
+ 565              	.LFB14:
+  90:Lib/MOTOR/motor.c **** 
+  91:Lib/MOTOR/motor.c **** void motor_calculate_power_voltage(motor_t *hmotor) {
+ 566              		.loc 1 91 53 is_stmt 1 view -0
+ 567              		.cfi_startproc
+ 568              		@ args = 0, pretend = 0, frame = 0
+ 569              		@ frame_needed = 0, uses_anonymous_args = 0
+ 570              		.loc 1 91 53 is_stmt 0 view .LVU142
+ 571 0000 10B5     		push	{r4, lr}
+ 572              	.LCFI7:
+ 573              		.cfi_def_cfa_offset 8
+ 574              		.cfi_offset 4, -8
+ 575              		.cfi_offset 14, -4
+ 576 0002 0446     		mov	r4, r0
+  92:Lib/MOTOR/motor.c ****   hmotor->vbus_actual = (float)*hmotor->p_adc_vbus * hmotor->vbus_sense_gain - hmotor->vbus_sense_o
+ 577              		.loc 1 92 3 is_stmt 1 view .LVU143
+ 578              		.loc 1 92 39 is_stmt 0 view .LVU144
+ 579 0004 C369     		ldr	r3, [r0, #28]
+ 580              		.loc 1 92 32 view .LVU145
+ 581 0006 93ED000A 		vldr.32	s0, [r3]	@ int
+ 582              		.loc 1 92 25 view .LVU146
+ 583 000a B8EE400A 		vcvt.f32.u32	s0, s0
+ 584              		.loc 1 92 60 view .LVU147
+ 585 000e D0ED0C7A 		vldr.32	s15, [r0, #48]
+ 586              		.loc 1 92 52 view .LVU148
+ 587 0012 20EE270A 		vmul.f32	s0, s0, s15
+ 588              		.loc 1 92 86 view .LVU149
+ 589 0016 D0ED0D7A 		vldr.32	s15, [r0, #52]
+ 590              		.loc 1 92 78 view .LVU150
+ 591 001a 30EE670A 		vsub.f32	s0, s0, s15
+ 592              		.loc 1 92 23 view .LVU151
+ 593 001e 80ED0E0A 		vstr.32	s0, [r0, #56]
+  93:Lib/MOTOR/motor.c ****   hmotor->vbus_actual_filtered = second_order_lpf_update(&hmotor->vbus_lpf, hmotor->vbus_actual);
+ 594              		.loc 1 93 3 is_stmt 1 view .LVU152
+ 595              		.loc 1 93 34 is_stmt 0 view .LVU153
+ 596 0022 BC30     		adds	r0, r0, #188
+ 597              	.LVL40:
+ 598              		.loc 1 93 34 view .LVU154
+ 599 0024 FFF7FEFF 		bl	second_order_lpf_update
+ 600              	.LVL41:
+ 601              		.loc 1 93 32 view .LVU155
+ 602 0028 84ED0F0A 		vstr.32	s0, [r4, #60]
+  94:Lib/MOTOR/motor.c **** }
+ 603              		.loc 1 94 1 view .LVU156
+ 604 002c 10BD     		pop	{r4, pc}
+ 605              		.loc 1 94 1 view .LVU157
+ 606              		.cfi_endproc
+ 607              	.LFE14:
+ARM GAS  /tmp/cctBYiUh.s 			page 13
+
+
+ 609              		.text
+ 610              	.Letext0:
+ 611              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
+ 612              		.file 3 "Lib/Digital_Filter/lpf.h"
+ 613              		.file 4 "Lib/MOTOR/motor.h"
+ARM GAS  /tmp/cctBYiUh.s 			page 14
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 motor.c
+     /tmp/cctBYiUh.s:18     .text.motor_init_pwm:0000000000000000 $t
+     /tmp/cctBYiUh.s:26     .text.motor_init_pwm:0000000000000000 motor_init_pwm
+     /tmp/cctBYiUh.s:50     .text.motor_init_adc_current_sense:0000000000000000 $t
+     /tmp/cctBYiUh.s:57     .text.motor_init_adc_current_sense:0000000000000000 motor_init_adc_current_sense
+     /tmp/cctBYiUh.s:80     .text.motor_init_adc_power_voltage_sense:0000000000000000 $t
+     /tmp/cctBYiUh.s:87     .text.motor_init_adc_power_voltage_sense:0000000000000000 motor_init_adc_power_voltage_sense
+     /tmp/cctBYiUh.s:104    .text.motor_init_lpf_current_sense:0000000000000000 $t
+     /tmp/cctBYiUh.s:111    .text.motor_init_lpf_current_sense:0000000000000000 motor_init_lpf_current_sense
+     /tmp/cctBYiUh.s:164    .text.motor_init_lpf_power_voltage_sense:0000000000000000 $t
+     /tmp/cctBYiUh.s:171    .text.motor_init_lpf_power_voltage_sense:0000000000000000 motor_init_lpf_power_voltage_sense
+     /tmp/cctBYiUh.s:196    .text.motor_set_current_sense_gain:0000000000000000 $t
+     /tmp/cctBYiUh.s:203    .text.motor_set_current_sense_gain:0000000000000000 motor_set_current_sense_gain
+     /tmp/cctBYiUh.s:220    .text.motor_set_power_voltage_sense_gain:0000000000000000 $t
+     /tmp/cctBYiUh.s:227    .text.motor_set_power_voltage_sense_gain:0000000000000000 motor_set_power_voltage_sense_gain
+     /tmp/cctBYiUh.s:244    .text.motor_set_power_voltage_sense_offset:0000000000000000 $t
+     /tmp/cctBYiUh.s:251    .text.motor_set_power_voltage_sense_offset:0000000000000000 motor_set_power_voltage_sense_offset
+     /tmp/cctBYiUh.s:268    .text.motor_set_current_sense_offset:0000000000000000 $t
+     /tmp/cctBYiUh.s:275    .text.motor_set_current_sense_offset:0000000000000000 motor_set_current_sense_offset
+     /tmp/cctBYiUh.s:298    .text.motor_set_pwm:0000000000000000 $t
+     /tmp/cctBYiUh.s:305    .text.motor_set_pwm:0000000000000000 motor_set_pwm
+     /tmp/cctBYiUh.s:372    .text.motor_get_current:0000000000000000 $t
+     /tmp/cctBYiUh.s:379    .text.motor_get_current:0000000000000000 motor_get_current
+     /tmp/cctBYiUh.s:429    .text.motor_get_power_voltage:0000000000000000 $t
+     /tmp/cctBYiUh.s:436    .text.motor_get_power_voltage:0000000000000000 motor_get_power_voltage
+     /tmp/cctBYiUh.s:455    .text.motor_calculate_current:0000000000000000 $t
+     /tmp/cctBYiUh.s:462    .text.motor_calculate_current:0000000000000000 motor_calculate_current
+     /tmp/cctBYiUh.s:556    .text.motor_calculate_power_voltage:0000000000000000 $t
+     /tmp/cctBYiUh.s:563    .text.motor_calculate_power_voltage:0000000000000000 motor_calculate_power_voltage
+
+UNDEFINED SYMBOLS
+second_order_lpf_init
+second_order_lpf_update

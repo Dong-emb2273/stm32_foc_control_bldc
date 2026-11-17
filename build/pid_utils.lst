@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccOdXKCa.s 			page 1
+ARM GAS  /tmp/ccJWPH9k.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -28,981 +28,1213 @@ ARM GAS  /tmp/ccOdXKCa.s 			page 1
   26              	pi_control:
   27              	.LVL0:
   28              	.LFB0:
-  29              		.file 1 "Core/Src/pid_utils.c"
-   1:Core/Src/pid_utils.c **** /*
-   2:Core/Src/pid_utils.c ****  * pid_utils.c
-   3:Core/Src/pid_utils.c ****  *
-   4:Core/Src/pid_utils.c ****  *  Created on: Jul 12, 2025
-   5:Core/Src/pid_utils.c ****  *      Author: munir
-   6:Core/Src/pid_utils.c ****  */
-   7:Core/Src/pid_utils.c **** 
-   8:Core/Src/pid_utils.c **** #include "pid_utils.h"
-   9:Core/Src/pid_utils.c **** #include <stdint.h>
-  10:Core/Src/pid_utils.c **** 
-  11:Core/Src/pid_utils.c **** #ifndef TWO_PI
-  12:Core/Src/pid_utils.c **** #define TWO_PI 6.2831853f
-  13:Core/Src/pid_utils.c **** #endif
-  14:Core/Src/pid_utils.c **** 
-  15:Core/Src/pid_utils.c **** //
-  16:Core/Src/pid_utils.c **** float pi_control(PID_Controller_t *pi, float error) {
-  30              		.loc 1 16 53 view -0
+  29              		.file 1 "Lib/Control/pid_utils.c"
+   1:Lib/Control/pid_utils.c **** /*
+   2:Lib/Control/pid_utils.c ****  * pid_utils.c
+   3:Lib/Control/pid_utils.c ****  *
+   4:Lib/Control/pid_utils.c ****  *  Created on: Jul 12, 2025
+   5:Lib/Control/pid_utils.c ****  *      Author: munir
+   6:Lib/Control/pid_utils.c ****  */
+   7:Lib/Control/pid_utils.c **** 
+   8:Lib/Control/pid_utils.c **** #include "pid_utils.h"
+   9:Lib/Control/pid_utils.c **** 
+  10:Lib/Control/pid_utils.c **** #ifndef TWO_PI
+  11:Lib/Control/pid_utils.c **** #define TWO_PI 6.2831853f
+  12:Lib/Control/pid_utils.c **** #endif
+  13:Lib/Control/pid_utils.c **** 
+  14:Lib/Control/pid_utils.c **** float pi_control(PID_Controller_t *pi, float error) {
+  30              		.loc 1 14 53 view -0
   31              		.cfi_startproc
   32              		@ args = 0, pretend = 0, frame = 0
   33              		@ frame_needed = 0, uses_anonymous_args = 0
   34              		@ link register save eliminated.
-  35              		.loc 1 16 53 is_stmt 0 view .LVU1
-  36 0000 F0EE407A 		vmov.f32	s15, s0
-  17:Core/Src/pid_utils.c **** 	if (error >= -pi->e_deadband && error <= pi->e_deadband) {
-  37              		.loc 1 17 2 is_stmt 1 view .LVU2
-  38              		.loc 1 17 18 is_stmt 0 view .LVU3
-  39 0004 90ED077A 		vldr.32	s14, [r0, #28]
-  40              		.loc 1 17 15 view .LVU4
-  41 0008 F1EE476A 		vneg.f32	s13, s14
-ARM GAS  /tmp/ccOdXKCa.s 			page 2
+  15:Lib/Control/pid_utils.c ****     if (error >= -pi->e_deadband && error <= pi->e_deadband) {
+  35              		.loc 1 15 5 view .LVU1
+  36              		.loc 1 15 21 is_stmt 0 view .LVU2
+  37 0000 D0ED077A 		vldr.32	s15, [r0, #28]
+  38              		.loc 1 15 18 view .LVU3
+  39 0004 B1EE677A 		vneg.f32	s14, s15
+  40              		.loc 1 15 8 view .LVU4
+  41 0008 B4EEC07A 		vcmpe.f32	s14, s0
+  42 000c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  43 0010 06D8     		bhi	.L2
+ARM GAS  /tmp/ccJWPH9k.s 			page 2
 
 
-  42              		.loc 1 17 5 view .LVU5
-  43 000c F4EEC06A 		vcmpe.f32	s13, s0
-  44 0010 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
-  45 0014 06D8     		bhi	.L2
-  46              		.loc 1 17 31 discriminator 1 view .LVU6
-  47 0016 B4EEC07A 		vcmpe.f32	s14, s0
-  48 001a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
-  49 001e 01DB     		blt	.L2
-  18:Core/Src/pid_utils.c **** 			error = 0.0f;
-  50              		.loc 1 18 10 view .LVU7
-  51 0020 DFED1C7A 		vldr.32	s15, .L20
-  52              	.L2:
-  53              	.LVL1:
-  19:Core/Src/pid_utils.c **** 	}
-  20:Core/Src/pid_utils.c **** 	
-  21:Core/Src/pid_utils.c **** 	float p_term = pi->kp * error;
-  54              		.loc 1 21 2 is_stmt 1 view .LVU8
-  55              		.loc 1 21 19 is_stmt 0 view .LVU9
-  56 0024 90ED007A 		vldr.32	s14, [r0]
-  57              		.loc 1 21 8 view .LVU10
-  58 0028 27EE277A 		vmul.f32	s14, s14, s15
-  59              	.LVL2:
-  22:Core/Src/pid_utils.c **** 	
-  23:Core/Src/pid_utils.c **** 	float integral_candidate = pi->integral + (error * pi->ki * pi->ts);
-  60              		.loc 1 23 2 is_stmt 1 view .LVU11
-  61              		.loc 1 23 31 is_stmt 0 view .LVU12
-  62 002c 90ED036A 		vldr.32	s12, [r0, #12]
-  63              		.loc 1 23 55 view .LVU13
-  64 0030 D0ED016A 		vldr.32	s13, [r0, #4]
-  65              		.loc 1 23 51 view .LVU14
-  66 0034 66EEA76A 		vmul.f32	s13, s13, s15
-  67              		.loc 1 23 64 view .LVU15
-  68 0038 D0ED065A 		vldr.32	s11, [r0, #24]
-  69              		.loc 1 23 60 view .LVU16
-  70 003c 66EEA56A 		vmul.f32	s13, s13, s11
-  71              		.loc 1 23 8 view .LVU17
-  72 0040 76EE266A 		vadd.f32	s13, s12, s13
-  73              	.LVL3:
-  24:Core/Src/pid_utils.c **** 
-  25:Core/Src/pid_utils.c **** 	float output = p_term + integral_candidate;
-  74              		.loc 1 25 2 is_stmt 1 view .LVU18
-  75              		.loc 1 25 8 is_stmt 0 view .LVU19
-  76 0044 37EE267A 		vadd.f32	s14, s14, s13
-  77              	.LVL4:
-  26:Core/Src/pid_utils.c **** 
-  27:Core/Src/pid_utils.c **** 	if (output > pi->out_max) {
-  78              		.loc 1 27 2 is_stmt 1 view .LVU20
-  79              		.loc 1 27 17 is_stmt 0 view .LVU21
-  80 0048 90ED040A 		vldr.32	s0, [r0, #16]
-  81              		.loc 1 27 5 view .LVU22
-  82 004c B4EEC70A 		vcmpe.f32	s0, s14
-  83 0050 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
-  84 0054 0AD5     		bpl	.L17
-  28:Core/Src/pid_utils.c **** 		output = pi->out_max;
-  85              		.loc 1 28 3 is_stmt 1 view .LVU23
-  86              	.LVL5:
-  29:Core/Src/pid_utils.c **** 		
-ARM GAS  /tmp/ccOdXKCa.s 			page 3
+  44              		.loc 1 15 34 discriminator 1 view .LVU5
+  45 0012 F4EEC07A 		vcmpe.f32	s15, s0
+  46 0016 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  47 001a 01DB     		blt	.L2
+  16:Lib/Control/pid_utils.c ****         error = 0.0f;
+  48              		.loc 1 16 15 view .LVU6
+  49 001c 9FED1C0A 		vldr.32	s0, .L18
+  50              	.LVL1:
+  51              	.L2:
+  17:Lib/Control/pid_utils.c ****     }
+  18:Lib/Control/pid_utils.c **** 
+  19:Lib/Control/pid_utils.c ****     float p_term = pi->kp * error;
+  52              		.loc 1 19 5 is_stmt 1 view .LVU7
+  53              		.loc 1 19 22 is_stmt 0 view .LVU8
+  54 0020 90ED007A 		vldr.32	s14, [r0]
+  55              		.loc 1 19 11 view .LVU9
+  56 0024 27EE007A 		vmul.f32	s14, s14, s0
+  57              	.LVL2:
+  20:Lib/Control/pid_utils.c **** 
+  21:Lib/Control/pid_utils.c ****     float new_integral = pi->integral + error * pi->ki * pi->ts;
+  58              		.loc 1 21 5 is_stmt 1 view .LVU10
+  59              		.loc 1 21 28 is_stmt 0 view .LVU11
+  60 0028 D0ED036A 		vldr.32	s13, [r0, #12]
+  61              		.loc 1 21 51 view .LVU12
+  62 002c D0ED017A 		vldr.32	s15, [r0, #4]
+  63              		.loc 1 21 47 view .LVU13
+  64 0030 27EE800A 		vmul.f32	s0, s15, s0
+  65              	.LVL3:
+  66              		.loc 1 21 60 view .LVU14
+  67 0034 D0ED067A 		vldr.32	s15, [r0, #24]
+  68              		.loc 1 21 56 view .LVU15
+  69 0038 20EE270A 		vmul.f32	s0, s0, s15
+  70              		.loc 1 21 11 view .LVU16
+  71 003c 76EE807A 		vadd.f32	s15, s13, s0
+  72              	.LVL4:
+  22:Lib/Control/pid_utils.c **** 
+  23:Lib/Control/pid_utils.c ****     float output = p_term + new_integral;
+  73              		.loc 1 23 5 is_stmt 1 view .LVU17
+  74              		.loc 1 23 11 is_stmt 0 view .LVU18
+  75 0040 77EE276A 		vadd.f32	s13, s14, s15
+  76              	.LVL5:
+  24:Lib/Control/pid_utils.c **** 
+  25:Lib/Control/pid_utils.c ****     _Bool is_saturated = 0;
+  77              		.loc 1 25 5 is_stmt 1 view .LVU19
+  26:Lib/Control/pid_utils.c **** 
+  27:Lib/Control/pid_utils.c ****     // Anti-windup with clamping
+  28:Lib/Control/pid_utils.c ****     if (output > pi->out_max) {
+  78              		.loc 1 28 5 view .LVU20
+  79              		.loc 1 28 20 is_stmt 0 view .LVU21
+  80 0044 90ED040A 		vldr.32	s0, [r0, #16]
+  81              		.loc 1 28 8 view .LVU22
+  82 0048 B4EEE60A 		vcmpe.f32	s0, s13
+  83 004c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  84 0050 09D5     		bpl	.L16
+  29:Lib/Control/pid_utils.c ****         output = pi->out_max;
+  85              		.loc 1 29 9 is_stmt 1 view .LVU23
+  86              	.LVL6:
+ARM GAS  /tmp/ccJWPH9k.s 			page 3
 
 
-  30:Core/Src/pid_utils.c **** 		if (error < 0.0f) {
-  87              		.loc 1 30 3 view .LVU24
-  88              		.loc 1 30 6 is_stmt 0 view .LVU25
-  89 0056 F5EEC07A 		vcmpe.f32	s15, #0
-  90 005a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
-  91 005e 02D4     		bmi	.L19
-  92              	.L6:
-  31:Core/Src/pid_utils.c **** 			pi->integral = integral_candidate;
-  32:Core/Src/pid_utils.c **** 		}
-  33:Core/Src/pid_utils.c **** 	} 
-  34:Core/Src/pid_utils.c **** 	else if (output < -pi->out_max) {
-  35:Core/Src/pid_utils.c **** 		output = -pi->out_max;
-  36:Core/Src/pid_utils.c **** 		
-  37:Core/Src/pid_utils.c **** 		if (error > 0.0f) {
-  38:Core/Src/pid_utils.c **** 			pi->integral = integral_candidate;
-  39:Core/Src/pid_utils.c **** 		}
-  40:Core/Src/pid_utils.c **** 	} 
-  41:Core/Src/pid_utils.c **** 	else {
-  42:Core/Src/pid_utils.c **** 		pi->integral = integral_candidate;
-  43:Core/Src/pid_utils.c **** 	}
-  44:Core/Src/pid_utils.c **** 
-  45:Core/Src/pid_utils.c **** 	pi->mv = output;
-  93              		.loc 1 45 2 is_stmt 1 view .LVU26
-  94              		.loc 1 45 9 is_stmt 0 view .LVU27
-  95 0060 80ED0C0A 		vstr.32	s0, [r0, #48]
-  46:Core/Src/pid_utils.c **** 	return output;
-  96              		.loc 1 46 2 is_stmt 1 view .LVU28
-  47:Core/Src/pid_utils.c **** }
-  97              		.loc 1 47 1 is_stmt 0 view .LVU29
-  98 0064 7047     		bx	lr
-  99              	.L19:
-  31:Core/Src/pid_utils.c **** 			pi->integral = integral_candidate;
- 100              		.loc 1 31 4 is_stmt 1 view .LVU30
-  31:Core/Src/pid_utils.c **** 			pi->integral = integral_candidate;
- 101              		.loc 1 31 17 is_stmt 0 view .LVU31
- 102 0066 C0ED036A 		vstr.32	s13, [r0, #12]
- 103 006a F9E7     		b	.L6
- 104              	.LVL6:
- 105              	.L17:
-  34:Core/Src/pid_utils.c **** 		output = -pi->out_max;
- 106              		.loc 1 34 7 is_stmt 1 view .LVU32
-  34:Core/Src/pid_utils.c **** 		output = -pi->out_max;
- 107              		.loc 1 34 20 is_stmt 0 view .LVU33
- 108 006c B1EE400A 		vneg.f32	s0, s0
-  34:Core/Src/pid_utils.c **** 		output = -pi->out_max;
- 109              		.loc 1 34 10 view .LVU34
- 110 0070 B4EEC70A 		vcmpe.f32	s0, s14
- 111 0074 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 112 0078 07DD     		ble	.L18
-  35:Core/Src/pid_utils.c **** 		
- 113              		.loc 1 35 3 is_stmt 1 view .LVU35
- 114              	.LVL7:
-  37:Core/Src/pid_utils.c **** 			pi->integral = integral_candidate;
- 115              		.loc 1 37 3 view .LVU36
-  37:Core/Src/pid_utils.c **** 			pi->integral = integral_candidate;
- 116              		.loc 1 37 6 is_stmt 0 view .LVU37
- 117 007a F5EEC07A 		vcmpe.f32	s15, #0
-ARM GAS  /tmp/ccOdXKCa.s 			page 4
+  30:Lib/Control/pid_utils.c ****         if (p_term < output) is_saturated = 1;
+  87              		.loc 1 30 9 view .LVU24
+  88              		.loc 1 30 12 is_stmt 0 view .LVU25
+  89 0052 B4EEC70A 		vcmpe.f32	s0, s14
+  90 0056 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  91 005a 10DC     		bgt	.L6
+  92              	.L7:
+  93              	.LVL7:
+  31:Lib/Control/pid_utils.c ****     }
+  32:Lib/Control/pid_utils.c ****     else if (output < pi->out_min) {
+  33:Lib/Control/pid_utils.c ****         output = pi->out_min;
+  34:Lib/Control/pid_utils.c ****         if (p_term > output) is_saturated = 1;
+  35:Lib/Control/pid_utils.c ****     }
+  36:Lib/Control/pid_utils.c **** 
+  37:Lib/Control/pid_utils.c ****     if (is_saturated) {
+  38:Lib/Control/pid_utils.c ****         pi->integral = output - p_term;
+  39:Lib/Control/pid_utils.c ****     }
+  40:Lib/Control/pid_utils.c ****     else {
+  41:Lib/Control/pid_utils.c ****         pi->integral = new_integral;
+  94              		.loc 1 41 9 is_stmt 1 view .LVU26
+  95              		.loc 1 41 22 is_stmt 0 view .LVU27
+  96 005c C0ED037A 		vstr.32	s15, [r0, #12]
+  97              	.LVL8:
+  98              	.L10:
+  42:Lib/Control/pid_utils.c ****     }
+  43:Lib/Control/pid_utils.c **** 
+  44:Lib/Control/pid_utils.c ****     pi->mv = output;
+  99              		.loc 1 44 5 is_stmt 1 view .LVU28
+ 100              		.loc 1 44 12 is_stmt 0 view .LVU29
+ 101 0060 80ED0D0A 		vstr.32	s0, [r0, #52]
+  45:Lib/Control/pid_utils.c **** 
+  46:Lib/Control/pid_utils.c ****     return output;
+ 102              		.loc 1 46 5 is_stmt 1 view .LVU30
+  47:Lib/Control/pid_utils.c **** }
+ 103              		.loc 1 47 1 is_stmt 0 view .LVU31
+ 104 0064 7047     		bx	lr
+ 105              	.LVL9:
+ 106              	.L16:
+  32:Lib/Control/pid_utils.c ****         output = pi->out_min;
+ 107              		.loc 1 32 10 is_stmt 1 view .LVU32
+  32:Lib/Control/pid_utils.c ****         output = pi->out_min;
+ 108              		.loc 1 32 25 is_stmt 0 view .LVU33
+ 109 0066 90ED050A 		vldr.32	s0, [r0, #20]
+  32:Lib/Control/pid_utils.c ****         output = pi->out_min;
+ 110              		.loc 1 32 13 view .LVU34
+ 111 006a B4EEE60A 		vcmpe.f32	s0, s13
+ 112 006e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 113 0072 09DD     		ble	.L17
+  33:Lib/Control/pid_utils.c ****         if (p_term > output) is_saturated = 1;
+ 114              		.loc 1 33 9 is_stmt 1 view .LVU35
+ 115              	.LVL10:
+  34:Lib/Control/pid_utils.c ****     }
+ 116              		.loc 1 34 9 view .LVU36
+  34:Lib/Control/pid_utils.c ****     }
+ 117              		.loc 1 34 12 is_stmt 0 view .LVU37
+ 118 0074 B4EEC70A 		vcmpe.f32	s0, s14
+ 119 0078 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ARM GAS  /tmp/ccJWPH9k.s 			page 4
 
 
- 118 007e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 119 0082 EDDD     		ble	.L6
-  38:Core/Src/pid_utils.c **** 		}
- 120              		.loc 1 38 4 is_stmt 1 view .LVU38
-  38:Core/Src/pid_utils.c **** 		}
- 121              		.loc 1 38 17 is_stmt 0 view .LVU39
- 122 0084 C0ED036A 		vstr.32	s13, [r0, #12]
- 123 0088 EAE7     		b	.L6
- 124              	.LVL8:
- 125              	.L18:
-  42:Core/Src/pid_utils.c **** 	}
- 126              		.loc 1 42 3 is_stmt 1 view .LVU40
-  42:Core/Src/pid_utils.c **** 	}
- 127              		.loc 1 42 16 is_stmt 0 view .LVU41
- 128 008a C0ED036A 		vstr.32	s13, [r0, #12]
-  25:Core/Src/pid_utils.c **** 
- 129              		.loc 1 25 8 view .LVU42
- 130 008e B0EE470A 		vmov.f32	s0, s14
- 131 0092 E5E7     		b	.L6
- 132              	.L21:
- 133              		.align	2
- 134              	.L20:
- 135 0094 00000000 		.word	0
- 136              		.cfi_endproc
- 137              	.LFE0:
- 139              		.section	.text.pd_control,"ax",%progbits
- 140              		.align	1
- 141              		.global	pd_control
- 142              		.syntax unified
- 143              		.thumb
- 144              		.thumb_func
- 145              		.fpu fpv4-sp-d16
- 147              	pd_control:
- 148              	.LVL9:
- 149              	.LFB1:
-  48:Core/Src/pid_utils.c **** 
-  49:Core/Src/pid_utils.c **** float pd_control(PID_Controller_t *pd, float error) {
- 150              		.loc 1 49 53 is_stmt 1 view -0
- 151              		.cfi_startproc
- 152              		@ args = 0, pretend = 0, frame = 0
- 153              		@ frame_needed = 0, uses_anonymous_args = 0
- 154              		@ link register save eliminated.
-  50:Core/Src/pid_utils.c ****     if (error >= -pd->e_deadband && error <= pd->e_deadband) {
- 155              		.loc 1 50 5 view .LVU44
- 156              		.loc 1 50 21 is_stmt 0 view .LVU45
- 157 0000 D0ED077A 		vldr.32	s15, [r0, #28]
- 158              		.loc 1 50 18 view .LVU46
- 159 0004 B1EE677A 		vneg.f32	s14, s15
- 160              		.loc 1 50 8 view .LVU47
- 161 0008 B4EEC07A 		vcmpe.f32	s14, s0
- 162 000c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 163 0010 04D8     		bhi	.L23
- 164              		.loc 1 50 34 discriminator 1 view .LVU48
- 165 0012 F4EEC07A 		vcmpe.f32	s15, s0
- 166 0016 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 167 001a 24DA     		bge	.L29
- 168              	.L23:
-ARM GAS  /tmp/ccOdXKCa.s 			page 5
+ 120 007c EED5     		bpl	.L7
+ 121              	.L6:
+ 122              	.LVL11:
+  38:Lib/Control/pid_utils.c ****     }
+ 123              		.loc 1 38 9 is_stmt 1 view .LVU38
+  38:Lib/Control/pid_utils.c ****     }
+ 124              		.loc 1 38 31 is_stmt 0 view .LVU39
+ 125 007e 30EE477A 		vsub.f32	s14, s0, s14
+ 126              	.LVL12:
+  38:Lib/Control/pid_utils.c ****     }
+ 127              		.loc 1 38 22 view .LVU40
+ 128 0082 80ED037A 		vstr.32	s14, [r0, #12]
+ 129 0086 EBE7     		b	.L10
+ 130              	.LVL13:
+ 131              	.L17:
+  23:Lib/Control/pid_utils.c **** 
+ 132              		.loc 1 23 11 view .LVU41
+ 133 0088 B0EE660A 		vmov.f32	s0, s13
+ 134 008c E6E7     		b	.L7
+ 135              	.L19:
+ 136 008e 00BF     		.align	2
+ 137              	.L18:
+ 138 0090 00000000 		.word	0
+ 139              		.cfi_endproc
+ 140              	.LFE0:
+ 142              		.section	.text.pd_control,"ax",%progbits
+ 143              		.align	1
+ 144              		.global	pd_control
+ 145              		.syntax unified
+ 146              		.thumb
+ 147              		.thumb_func
+ 148              		.fpu fpv4-sp-d16
+ 150              	pd_control:
+ 151              	.LVL14:
+ 152              	.LFB1:
+  48:Lib/Control/pid_utils.c **** 
+  49:Lib/Control/pid_utils.c **** float pd_control(PID_Controller_t *pd, float error) {
+ 153              		.loc 1 49 53 is_stmt 1 view -0
+ 154              		.cfi_startproc
+ 155              		@ args = 0, pretend = 0, frame = 0
+ 156              		@ frame_needed = 0, uses_anonymous_args = 0
+ 157              		@ link register save eliminated.
+  50:Lib/Control/pid_utils.c ****     if (error >= -pd->e_deadband && error <= pd->e_deadband) {
+ 158              		.loc 1 50 5 view .LVU43
+ 159              		.loc 1 50 21 is_stmt 0 view .LVU44
+ 160 0000 D0ED077A 		vldr.32	s15, [r0, #28]
+ 161              		.loc 1 50 18 view .LVU45
+ 162 0004 B1EE677A 		vneg.f32	s14, s15
+ 163              		.loc 1 50 8 view .LVU46
+ 164 0008 B4EEC07A 		vcmpe.f32	s14, s0
+ 165 000c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 166 0010 04D8     		bhi	.L21
+ 167              		.loc 1 50 34 discriminator 1 view .LVU47
+ 168 0012 F4EEC07A 		vcmpe.f32	s15, s0
+ 169 0016 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 170 001a 24DA     		bge	.L27
+ 171              	.L21:
+ARM GAS  /tmp/ccJWPH9k.s 			page 5
 
 
-  51:Core/Src/pid_utils.c ****         pd->last_error = 0.0f;  // Reset last_error ketika dalam deadband
-  52:Core/Src/pid_utils.c ****         return 0.0f;
-  53:Core/Src/pid_utils.c ****     }
-  54:Core/Src/pid_utils.c **** 
-  55:Core/Src/pid_utils.c ****     float derivative = (error - pd->last_error);
- 169              		.loc 1 55 5 is_stmt 1 view .LVU49
- 170              		.loc 1 55 35 is_stmt 0 view .LVU50
- 171 001c D0ED087A 		vldr.32	s15, [r0, #32]
- 172              		.loc 1 55 11 view .LVU51
- 173 0020 30EE677A 		vsub.f32	s14, s0, s15
- 174              	.LVL10:
-  56:Core/Src/pid_utils.c **** 
-  57:Core/Src/pid_utils.c ****     pd->last_error = error;
- 175              		.loc 1 57 5 is_stmt 1 view .LVU52
- 176              		.loc 1 57 20 is_stmt 0 view .LVU53
- 177 0024 80ED080A 		vstr.32	s0, [r0, #32]
-  58:Core/Src/pid_utils.c **** 
-  59:Core/Src/pid_utils.c ****     float p_term = pd->kp * error;
- 178              		.loc 1 59 5 is_stmt 1 view .LVU54
- 179              		.loc 1 59 22 is_stmt 0 view .LVU55
- 180 0028 D0ED007A 		vldr.32	s15, [r0]
- 181              		.loc 1 59 11 view .LVU56
- 182 002c 27EE800A 		vmul.f32	s0, s15, s0
- 183              	.LVL11:
-  60:Core/Src/pid_utils.c ****     float d_term = pd->kd / pd->ts * derivative;
- 184              		.loc 1 60 5 is_stmt 1 view .LVU57
- 185              		.loc 1 60 22 is_stmt 0 view .LVU58
- 186 0030 90ED026A 		vldr.32	s12, [r0, #8]
- 187              		.loc 1 60 31 view .LVU59
- 188 0034 D0ED066A 		vldr.32	s13, [r0, #24]
- 189              		.loc 1 60 27 view .LVU60
- 190 0038 C6EE267A 		vdiv.f32	s15, s12, s13
- 191              		.loc 1 60 11 view .LVU61
- 192 003c 67EE877A 		vmul.f32	s15, s15, s14
- 193              	.LVL12:
-  61:Core/Src/pid_utils.c **** 
-  62:Core/Src/pid_utils.c ****     float output = p_term + d_term;
- 194              		.loc 1 62 5 is_stmt 1 view .LVU62
- 195              		.loc 1 62 11 is_stmt 0 view .LVU63
- 196 0040 70EE277A 		vadd.f32	s15, s0, s15
- 197              	.LVL13:
-  63:Core/Src/pid_utils.c **** 
-  64:Core/Src/pid_utils.c ****     // Output clamping
-  65:Core/Src/pid_utils.c ****     if (output > pd->out_max) {
- 198              		.loc 1 65 5 is_stmt 1 view .LVU64
- 199              		.loc 1 65 20 is_stmt 0 view .LVU65
- 200 0044 90ED040A 		vldr.32	s0, [r0, #16]
- 201              	.LVL14:
- 202              		.loc 1 65 8 view .LVU66
- 203 0048 B4EEE70A 		vcmpe.f32	s0, s15
- 204 004c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 205 0050 08D4     		bmi	.L22
-  66:Core/Src/pid_utils.c ****         output = pd->out_max;
-  67:Core/Src/pid_utils.c ****     }
-  68:Core/Src/pid_utils.c ****     else if (output < pd->out_min) {
- 206              		.loc 1 68 10 is_stmt 1 view .LVU67
- 207              		.loc 1 68 25 is_stmt 0 view .LVU68
-ARM GAS  /tmp/ccOdXKCa.s 			page 6
+  51:Lib/Control/pid_utils.c ****         pd->last_error = 0.0f;  // Reset last_error ketika dalam deadband
+  52:Lib/Control/pid_utils.c ****         return 0.0f;
+  53:Lib/Control/pid_utils.c ****     }
+  54:Lib/Control/pid_utils.c **** 
+  55:Lib/Control/pid_utils.c ****     float derivative = (error - pd->last_error);
+ 172              		.loc 1 55 5 is_stmt 1 view .LVU48
+ 173              		.loc 1 55 35 is_stmt 0 view .LVU49
+ 174 001c D0ED087A 		vldr.32	s15, [r0, #32]
+ 175              		.loc 1 55 11 view .LVU50
+ 176 0020 30EE677A 		vsub.f32	s14, s0, s15
+ 177              	.LVL15:
+  56:Lib/Control/pid_utils.c **** 
+  57:Lib/Control/pid_utils.c ****     pd->last_error = error;
+ 178              		.loc 1 57 5 is_stmt 1 view .LVU51
+ 179              		.loc 1 57 20 is_stmt 0 view .LVU52
+ 180 0024 80ED080A 		vstr.32	s0, [r0, #32]
+  58:Lib/Control/pid_utils.c **** 
+  59:Lib/Control/pid_utils.c ****     float p_term = pd->kp * error;
+ 181              		.loc 1 59 5 is_stmt 1 view .LVU53
+ 182              		.loc 1 59 22 is_stmt 0 view .LVU54
+ 183 0028 D0ED007A 		vldr.32	s15, [r0]
+ 184              		.loc 1 59 11 view .LVU55
+ 185 002c 27EE800A 		vmul.f32	s0, s15, s0
+ 186              	.LVL16:
+  60:Lib/Control/pid_utils.c ****     float d_term = pd->kd / pd->ts * derivative;
+ 187              		.loc 1 60 5 is_stmt 1 view .LVU56
+ 188              		.loc 1 60 22 is_stmt 0 view .LVU57
+ 189 0030 90ED026A 		vldr.32	s12, [r0, #8]
+ 190              		.loc 1 60 31 view .LVU58
+ 191 0034 D0ED066A 		vldr.32	s13, [r0, #24]
+ 192              		.loc 1 60 27 view .LVU59
+ 193 0038 C6EE267A 		vdiv.f32	s15, s12, s13
+ 194              		.loc 1 60 11 view .LVU60
+ 195 003c 67EE877A 		vmul.f32	s15, s15, s14
+ 196              	.LVL17:
+  61:Lib/Control/pid_utils.c **** 
+  62:Lib/Control/pid_utils.c ****     float output = p_term + d_term;
+ 197              		.loc 1 62 5 is_stmt 1 view .LVU61
+ 198              		.loc 1 62 11 is_stmt 0 view .LVU62
+ 199 0040 70EE277A 		vadd.f32	s15, s0, s15
+ 200              	.LVL18:
+  63:Lib/Control/pid_utils.c **** 
+  64:Lib/Control/pid_utils.c ****     // Output clamping
+  65:Lib/Control/pid_utils.c ****     if (output > pd->out_max) {
+ 201              		.loc 1 65 5 is_stmt 1 view .LVU63
+ 202              		.loc 1 65 20 is_stmt 0 view .LVU64
+ 203 0044 90ED040A 		vldr.32	s0, [r0, #16]
+ 204              	.LVL19:
+ 205              		.loc 1 65 8 view .LVU65
+ 206 0048 B4EEE70A 		vcmpe.f32	s0, s15
+ 207 004c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 208 0050 08D4     		bmi	.L20
+  66:Lib/Control/pid_utils.c ****         output = pd->out_max;
+  67:Lib/Control/pid_utils.c ****     }
+  68:Lib/Control/pid_utils.c ****     else if (output < pd->out_min) {
+ 209              		.loc 1 68 10 is_stmt 1 view .LVU66
+ 210              		.loc 1 68 25 is_stmt 0 view .LVU67
+ARM GAS  /tmp/ccJWPH9k.s 			page 6
 
 
- 208 0052 90ED050A 		vldr.32	s0, [r0, #20]
- 209              		.loc 1 68 13 view .LVU69
- 210 0056 B4EEE70A 		vcmpe.f32	s0, s15
- 211 005a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 212 005e 01DC     		bgt	.L22
-  62:Core/Src/pid_utils.c **** 
- 213              		.loc 1 62 11 view .LVU70
- 214 0060 B0EE670A 		vmov.f32	s0, s15
- 215              	.LVL15:
- 216              	.L22:
-  69:Core/Src/pid_utils.c ****         output = pd->out_min;
-  70:Core/Src/pid_utils.c ****     }
-  71:Core/Src/pid_utils.c **** 
-  72:Core/Src/pid_utils.c ****     return output;
-  73:Core/Src/pid_utils.c **** }
- 217              		.loc 1 73 1 view .LVU71
- 218 0064 7047     		bx	lr
- 219              	.LVL16:
- 220              	.L29:
-  51:Core/Src/pid_utils.c ****         return 0.0f;
- 221              		.loc 1 51 9 is_stmt 1 view .LVU72
-  51:Core/Src/pid_utils.c ****         return 0.0f;
- 222              		.loc 1 51 24 is_stmt 0 view .LVU73
- 223 0066 9FED020A 		vldr.32	s0, .L30
- 224              	.LVL17:
-  51:Core/Src/pid_utils.c ****         return 0.0f;
- 225              		.loc 1 51 24 view .LVU74
- 226 006a 80ED080A 		vstr.32	s0, [r0, #32]
-  52:Core/Src/pid_utils.c ****     }
- 227              		.loc 1 52 9 is_stmt 1 view .LVU75
-  52:Core/Src/pid_utils.c ****     }
- 228              		.loc 1 52 16 is_stmt 0 view .LVU76
- 229 006e 7047     		bx	lr
- 230              	.L31:
- 231              		.align	2
- 232              	.L30:
- 233 0070 00000000 		.word	0
- 234              		.cfi_endproc
- 235              	.LFE1:
- 237              		.section	.text.pid_control,"ax",%progbits
- 238              		.align	1
- 239              		.global	pid_control
- 240              		.syntax unified
- 241              		.thumb
- 242              		.thumb_func
- 243              		.fpu fpv4-sp-d16
- 245              	pid_control:
- 246              	.LVL18:
- 247              	.LFB2:
-  74:Core/Src/pid_utils.c **** //
-  75:Core/Src/pid_utils.c **** 
-  76:Core/Src/pid_utils.c **** float pid_control(PID_Controller_t *pid, float error) {
- 248              		.loc 1 76 55 is_stmt 1 view -0
- 249              		.cfi_startproc
- 250              		@ args = 0, pretend = 0, frame = 0
- 251              		@ frame_needed = 0, uses_anonymous_args = 0
- 252              		@ link register save eliminated.
-ARM GAS  /tmp/ccOdXKCa.s 			page 7
+ 211 0052 90ED050A 		vldr.32	s0, [r0, #20]
+ 212              		.loc 1 68 13 view .LVU68
+ 213 0056 B4EEE70A 		vcmpe.f32	s0, s15
+ 214 005a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 215 005e 01DC     		bgt	.L20
+  62:Lib/Control/pid_utils.c **** 
+ 216              		.loc 1 62 11 view .LVU69
+ 217 0060 B0EE670A 		vmov.f32	s0, s15
+ 218              	.LVL20:
+ 219              	.L20:
+  69:Lib/Control/pid_utils.c ****         output = pd->out_min;
+  70:Lib/Control/pid_utils.c ****     }
+  71:Lib/Control/pid_utils.c **** 
+  72:Lib/Control/pid_utils.c ****     return output;
+  73:Lib/Control/pid_utils.c **** }
+ 220              		.loc 1 73 1 view .LVU70
+ 221 0064 7047     		bx	lr
+ 222              	.LVL21:
+ 223              	.L27:
+  51:Lib/Control/pid_utils.c ****         return 0.0f;
+ 224              		.loc 1 51 9 is_stmt 1 view .LVU71
+  51:Lib/Control/pid_utils.c ****         return 0.0f;
+ 225              		.loc 1 51 24 is_stmt 0 view .LVU72
+ 226 0066 9FED020A 		vldr.32	s0, .L28
+ 227              	.LVL22:
+  51:Lib/Control/pid_utils.c ****         return 0.0f;
+ 228              		.loc 1 51 24 view .LVU73
+ 229 006a 80ED080A 		vstr.32	s0, [r0, #32]
+  52:Lib/Control/pid_utils.c ****     }
+ 230              		.loc 1 52 9 is_stmt 1 view .LVU74
+  52:Lib/Control/pid_utils.c ****     }
+ 231              		.loc 1 52 16 is_stmt 0 view .LVU75
+ 232 006e 7047     		bx	lr
+ 233              	.L29:
+ 234              		.align	2
+ 235              	.L28:
+ 236 0070 00000000 		.word	0
+ 237              		.cfi_endproc
+ 238              	.LFE1:
+ 240              		.section	.text.pid_control,"ax",%progbits
+ 241              		.align	1
+ 242              		.global	pid_control
+ 243              		.syntax unified
+ 244              		.thumb
+ 245              		.thumb_func
+ 246              		.fpu fpv4-sp-d16
+ 248              	pid_control:
+ 249              	.LVL23:
+ 250              	.LFB2:
+  74:Lib/Control/pid_utils.c **** 
+  75:Lib/Control/pid_utils.c **** float pid_control(PID_Controller_t *pid, float error) {
+ 251              		.loc 1 75 55 is_stmt 1 view -0
+ 252              		.cfi_startproc
+ 253              		@ args = 0, pretend = 0, frame = 0
+ 254              		@ frame_needed = 0, uses_anonymous_args = 0
+ 255              		@ link register save eliminated.
+  76:Lib/Control/pid_utils.c ****     if (error >= -pid->e_deadband && error <= pid->e_deadband) {
+ARM GAS  /tmp/ccJWPH9k.s 			page 7
 
 
- 253              		.loc 1 76 55 is_stmt 0 view .LVU78
- 254 0000 F0EE406A 		vmov.f32	s13, s0
-  77:Core/Src/pid_utils.c ****  	if (error >= -pid->e_deadband && error <= pid->e_deadband) {
- 255              		.loc 1 77 3 is_stmt 1 view .LVU79
- 256              		.loc 1 77 20 is_stmt 0 view .LVU80
- 257 0004 D0ED077A 		vldr.32	s15, [r0, #28]
- 258              		.loc 1 77 16 view .LVU81
- 259 0008 B1EE677A 		vneg.f32	s14, s15
- 260              		.loc 1 77 6 view .LVU82
- 261 000c B4EEC07A 		vcmpe.f32	s14, s0
- 262 0010 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 263 0014 06D8     		bhi	.L33
- 264              		.loc 1 77 33 discriminator 1 view .LVU83
- 265 0016 F4EEC07A 		vcmpe.f32	s15, s0
- 266 001a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 267 001e 01DB     		blt	.L33
-  78:Core/Src/pid_utils.c **** 		error = 0.0f;
- 268              		.loc 1 78 9 view .LVU84
- 269 0020 DFED2E6A 		vldr.32	s13, .L51
- 270              	.L33:
- 271              	.LVL19:
-  79:Core/Src/pid_utils.c **** 	}
-  80:Core/Src/pid_utils.c **** 
-  81:Core/Src/pid_utils.c **** 	float p_term = pid->kp * error;
- 272              		.loc 1 81 2 is_stmt 1 view .LVU85
- 273              		.loc 1 81 20 is_stmt 0 view .LVU86
- 274 0024 D0ED007A 		vldr.32	s15, [r0]
- 275              		.loc 1 81 8 view .LVU87
- 276 0028 27EEA67A 		vmul.f32	s14, s15, s13
- 277              	.LVL20:
-  82:Core/Src/pid_utils.c **** 
-  83:Core/Src/pid_utils.c **** 	float error_derivative = (error - pid->last_error) / pid->ts;
- 278              		.loc 1 83 2 is_stmt 1 view .LVU88
- 279              		.loc 1 83 39 is_stmt 0 view .LVU89
- 280 002c 90ED085A 		vldr.32	s10, [r0, #32]
- 281              		.loc 1 83 34 view .LVU90
- 282 0030 36EEC55A 		vsub.f32	s10, s13, s10
- 283              		.loc 1 83 58 view .LVU91
- 284 0034 90ED066A 		vldr.32	s12, [r0, #24]
- 285              		.loc 1 83 8 view .LVU92
- 286 0038 C5EE064A 		vdiv.f32	s9, s10, s12
- 287              	.LVL21:
-  84:Core/Src/pid_utils.c **** 	pid->d_filtered = (1.0f - pid->d_alpha_filter) * pid->d_filtered + pid->d_alpha_filter * error_der
- 288              		.loc 1 84 2 is_stmt 1 view .LVU93
- 289              		.loc 1 84 31 is_stmt 0 view .LVU94
- 290 003c D0ED095A 		vldr.32	s11, [r0, #36]
- 291              		.loc 1 84 26 view .LVU95
- 292 0040 F7EE007A 		vmov.f32	s15, #1.0e+0
- 293 0044 77EEE57A 		vsub.f32	s15, s15, s11
- 294              		.loc 1 84 54 view .LVU96
- 295 0048 90ED0A5A 		vldr.32	s10, [r0, #40]
- 296              		.loc 1 84 49 view .LVU97
- 297 004c 67EE857A 		vmul.f32	s15, s15, s10
- 298              		.loc 1 84 89 view .LVU98
- 299 0050 65EEA45A 		vmul.f32	s11, s11, s9
- 300              		.loc 1 84 67 view .LVU99
- 301 0054 77EEA57A 		vadd.f32	s15, s15, s11
-ARM GAS  /tmp/ccOdXKCa.s 			page 8
+ 256              		.loc 1 76 5 view .LVU77
+ 257              		.loc 1 76 22 is_stmt 0 view .LVU78
+ 258 0000 D0ED077A 		vldr.32	s15, [r0, #28]
+ 259              		.loc 1 76 18 view .LVU79
+ 260 0004 B1EE677A 		vneg.f32	s14, s15
+ 261              		.loc 1 76 8 view .LVU80
+ 262 0008 B4EEC07A 		vcmpe.f32	s14, s0
+ 263 000c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 264 0010 06D8     		bhi	.L31
+ 265              		.loc 1 76 35 discriminator 1 view .LVU81
+ 266 0012 F4EEC07A 		vcmpe.f32	s15, s0
+ 267 0016 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 268 001a 01DB     		blt	.L31
+  77:Lib/Control/pid_utils.c ****         error = 0.0f;
+ 269              		.loc 1 77 15 view .LVU82
+ 270 001c 9FED340A 		vldr.32	s0, .L54
+ 271              	.LVL24:
+ 272              	.L31:
+  78:Lib/Control/pid_utils.c ****     }
+  79:Lib/Control/pid_utils.c **** 
+  80:Lib/Control/pid_utils.c ****     float p_term = pid->kp * error;
+ 273              		.loc 1 80 5 is_stmt 1 view .LVU83
+ 274              		.loc 1 80 23 is_stmt 0 view .LVU84
+ 275 0020 D0ED007A 		vldr.32	s15, [r0]
+ 276              		.loc 1 80 11 view .LVU85
+ 277 0024 27EE807A 		vmul.f32	s14, s15, s0
+ 278              	.LVL25:
+  81:Lib/Control/pid_utils.c **** 
+  82:Lib/Control/pid_utils.c ****     float error_derivative = (error - pid->last_error) / pid->ts;
+ 279              		.loc 1 82 5 is_stmt 1 view .LVU86
+ 280              		.loc 1 82 42 is_stmt 0 view .LVU87
+ 281 0028 D0ED085A 		vldr.32	s11, [r0, #32]
+ 282              		.loc 1 82 37 view .LVU88
+ 283 002c 70EE655A 		vsub.f32	s11, s0, s11
+ 284              		.loc 1 82 61 view .LVU89
+ 285 0030 D0ED066A 		vldr.32	s13, [r0, #24]
+ 286              		.loc 1 82 11 view .LVU90
+ 287 0034 85EEA65A 		vdiv.f32	s10, s11, s13
+ 288              	.LVL26:
+  83:Lib/Control/pid_utils.c ****     pid->d_filtered = (1.0f - pid->d_alpha_filter) * pid->d_filtered + pid->d_alpha_filter * error_
+ 289              		.loc 1 83 5 is_stmt 1 view .LVU91
+ 290              		.loc 1 83 34 is_stmt 0 view .LVU92
+ 291 0038 90ED0A6A 		vldr.32	s12, [r0, #40]
+ 292              		.loc 1 83 29 view .LVU93
+ 293 003c F7EE007A 		vmov.f32	s15, #1.0e+0
+ 294 0040 77EEC67A 		vsub.f32	s15, s15, s12
+ 295              		.loc 1 83 57 view .LVU94
+ 296 0044 D0ED0B5A 		vldr.32	s11, [r0, #44]
+ 297              		.loc 1 83 52 view .LVU95
+ 298 0048 67EEA57A 		vmul.f32	s15, s15, s11
+ 299              		.loc 1 83 92 view .LVU96
+ 300 004c 26EE056A 		vmul.f32	s12, s12, s10
+ 301              		.loc 1 83 70 view .LVU97
+ 302 0050 77EE867A 		vadd.f32	s15, s15, s12
+ 303              		.loc 1 83 21 view .LVU98
+ 304 0054 C0ED0B7A 		vstr.32	s15, [r0, #44]
+  84:Lib/Control/pid_utils.c ****     // clamp derivative
+ARM GAS  /tmp/ccJWPH9k.s 			page 8
 
 
- 302              		.loc 1 84 18 view .LVU100
- 303 0058 C0ED0A7A 		vstr.32	s15, [r0, #40]
-  85:Core/Src/pid_utils.c **** 	float d_term = pid->d_filtered * pid->kd;
- 304              		.loc 1 85 2 is_stmt 1 view .LVU101
- 305              		.loc 1 85 38 is_stmt 0 view .LVU102
- 306 005c D0ED025A 		vldr.32	s11, [r0, #8]
- 307              		.loc 1 85 8 view .LVU103
- 308 0060 67EEA57A 		vmul.f32	s15, s15, s11
- 309              	.LVL22:
-  86:Core/Src/pid_utils.c **** 	// float d_term = pid->kd / pid->ts * (error - pid->last_error);
-  87:Core/Src/pid_utils.c **** 	pid->last_error = error;
- 310              		.loc 1 87 2 is_stmt 1 view .LVU104
- 311              		.loc 1 87 18 is_stmt 0 view .LVU105
- 312 0064 C0ED086A 		vstr.32	s13, [r0, #32]
-  88:Core/Src/pid_utils.c **** 
-  89:Core/Src/pid_utils.c **** 	float new_integral = pid->integral + error * pid->ki * pid->ts;
- 313              		.loc 1 89 2 is_stmt 1 view .LVU106
- 314              		.loc 1 89 26 is_stmt 0 view .LVU107
- 315 0068 D0ED035A 		vldr.32	s11, [r0, #12]
- 316              		.loc 1 89 50 view .LVU108
- 317 006c 90ED015A 		vldr.32	s10, [r0, #4]
- 318              		.loc 1 89 45 view .LVU109
- 319 0070 25EE265A 		vmul.f32	s10, s10, s13
- 320              		.loc 1 89 55 view .LVU110
- 321 0074 26EE056A 		vmul.f32	s12, s12, s10
- 322              		.loc 1 89 8 view .LVU111
- 323 0078 35EE866A 		vadd.f32	s12, s11, s12
- 324              	.LVL23:
-  90:Core/Src/pid_utils.c **** 
-  91:Core/Src/pid_utils.c **** 	float output = p_term + d_term + new_integral;
- 325              		.loc 1 91 2 is_stmt 1 view .LVU112
- 326              		.loc 1 91 24 is_stmt 0 view .LVU113
- 327 007c 77EE277A 		vadd.f32	s15, s14, s15
- 328              	.LVL24:
- 329              		.loc 1 91 8 view .LVU114
- 330 0080 37EE867A 		vadd.f32	s14, s15, s12
- 331              	.LVL25:
-  92:Core/Src/pid_utils.c **** 
-  93:Core/Src/pid_utils.c **** 	// Anti-windup with clamping
-  94:Core/Src/pid_utils.c **** 	if (output > pid->out_max) {
- 332              		.loc 1 94 2 is_stmt 1 view .LVU115
- 333              		.loc 1 94 18 is_stmt 0 view .LVU116
- 334 0084 90ED040A 		vldr.32	s0, [r0, #16]
- 335              		.loc 1 94 5 view .LVU117
- 336 0088 B4EEC70A 		vcmpe.f32	s0, s14
- 337 008c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 338 0090 0CD5     		bpl	.L48
-  95:Core/Src/pid_utils.c **** 		output = pid->out_max;
- 339              		.loc 1 95 3 is_stmt 1 view .LVU118
- 340              	.LVL26:
-  96:Core/Src/pid_utils.c **** 		if ((output - (p_term + d_term)) * error <= 0) {
- 341              		.loc 1 96 3 view .LVU119
- 342              		.loc 1 96 15 is_stmt 0 view .LVU120
- 343 0092 70EE677A 		vsub.f32	s15, s0, s15
- 344              		.loc 1 96 36 view .LVU121
- 345 0096 67EEA67A 		vmul.f32	s15, s15, s13
- 346              		.loc 1 96 6 view .LVU122
-ARM GAS  /tmp/ccOdXKCa.s 			page 9
+  85:Lib/Control/pid_utils.c ****     if (pid->d_filtered > pid->d_max) pid->d_filtered = pid->d_max;
+ 305              		.loc 1 85 5 is_stmt 1 view .LVU99
+ 306              		.loc 1 85 30 is_stmt 0 view .LVU100
+ 307 0058 90ED0C6A 		vldr.32	s12, [r0, #48]
+ 308              		.loc 1 85 8 view .LVU101
+ 309 005c F4EEC67A 		vcmpe.f32	s15, s12
+ 310 0060 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 311 0064 26DD     		ble	.L51
+ 312              		.loc 1 85 39 is_stmt 1 discriminator 1 view .LVU102
+ 313              		.loc 1 85 55 is_stmt 0 discriminator 1 view .LVU103
+ 314 0066 80ED0B6A 		vstr.32	s12, [r0, #44]
+ 315              	.L35:
+  86:Lib/Control/pid_utils.c ****     else if (pid->d_filtered < -pid->d_max) pid->d_filtered = -pid->d_max;
+  87:Lib/Control/pid_utils.c ****     float d_term = pid->d_filtered * pid->kd;
+ 316              		.loc 1 87 5 is_stmt 1 view .LVU104
+ 317              		.loc 1 87 23 is_stmt 0 view .LVU105
+ 318 006a D0ED0B7A 		vldr.32	s15, [r0, #44]
+ 319              		.loc 1 87 41 view .LVU106
+ 320 006e 90ED026A 		vldr.32	s12, [r0, #8]
+ 321              		.loc 1 87 11 view .LVU107
+ 322 0072 67EE867A 		vmul.f32	s15, s15, s12
+ 323              	.LVL27:
+  88:Lib/Control/pid_utils.c ****     pid->last_error = error;
+ 324              		.loc 1 88 5 is_stmt 1 view .LVU108
+ 325              		.loc 1 88 21 is_stmt 0 view .LVU109
+ 326 0076 80ED080A 		vstr.32	s0, [r0, #32]
+  89:Lib/Control/pid_utils.c **** 
+  90:Lib/Control/pid_utils.c ****     float new_integral = pid->integral + error * pid->ki * pid->ts;
+ 327              		.loc 1 90 5 is_stmt 1 view .LVU110
+ 328              		.loc 1 90 29 is_stmt 0 view .LVU111
+ 329 007a 90ED036A 		vldr.32	s12, [r0, #12]
+ 330              		.loc 1 90 53 view .LVU112
+ 331 007e D0ED015A 		vldr.32	s11, [r0, #4]
+ 332              		.loc 1 90 48 view .LVU113
+ 333 0082 25EE800A 		vmul.f32	s0, s11, s0
+ 334              	.LVL28:
+ 335              		.loc 1 90 58 view .LVU114
+ 336 0086 66EE806A 		vmul.f32	s13, s13, s0
+ 337              		.loc 1 90 11 view .LVU115
+ 338 008a 76EE266A 		vadd.f32	s13, s12, s13
+ 339              	.LVL29:
+  91:Lib/Control/pid_utils.c ****     float pd_term = p_term + d_term;
+ 340              		.loc 1 91 5 is_stmt 1 view .LVU116
+ 341              		.loc 1 91 11 is_stmt 0 view .LVU117
+ 342 008e 77EE277A 		vadd.f32	s15, s14, s15
+ 343              	.LVL30:
+  92:Lib/Control/pid_utils.c ****     float output = pd_term + new_integral;
+ 344              		.loc 1 92 5 is_stmt 1 view .LVU118
+ 345              		.loc 1 92 11 is_stmt 0 view .LVU119
+ 346 0092 36EEA77A 		vadd.f32	s14, s13, s15
+ 347              	.LVL31:
+  93:Lib/Control/pid_utils.c **** 
+  94:Lib/Control/pid_utils.c ****     _Bool is_saturated = 0;
+ 348              		.loc 1 94 5 is_stmt 1 view .LVU120
+  95:Lib/Control/pid_utils.c **** 
+  96:Lib/Control/pid_utils.c ****     // Anti-windup with clamping
+  97:Lib/Control/pid_utils.c ****     if (output > pid->out_max) {
+ARM GAS  /tmp/ccJWPH9k.s 			page 9
 
 
- 347 009a F5EEC07A 		vcmpe.f32	s15, #0
- 348 009e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 349 00a2 00D9     		bls	.L50
- 350              	.LVL27:
- 351              	.L32:
-  97:Core/Src/pid_utils.c **** 			pid->integral = new_integral; 
-  98:Core/Src/pid_utils.c **** 		}
-  99:Core/Src/pid_utils.c **** 	}
- 100:Core/Src/pid_utils.c **** 	else if (output < -pid->out_max) {
- 101:Core/Src/pid_utils.c **** 		output = -pid->out_max;
- 102:Core/Src/pid_utils.c **** 		if ((output - (p_term + d_term)) * error <= 0) {
- 103:Core/Src/pid_utils.c **** 			pid->integral = new_integral;
- 104:Core/Src/pid_utils.c **** 		}
- 105:Core/Src/pid_utils.c **** 	}
- 106:Core/Src/pid_utils.c **** 	else {
- 107:Core/Src/pid_utils.c **** 		pid->integral = new_integral;
- 108:Core/Src/pid_utils.c **** 	}
- 109:Core/Src/pid_utils.c **** 
- 110:Core/Src/pid_utils.c **** 	return output;
- 111:Core/Src/pid_utils.c **** }
- 352              		.loc 1 111 1 view .LVU123
- 353 00a4 7047     		bx	lr
- 354              	.LVL28:
- 355              	.L50:
-  97:Core/Src/pid_utils.c **** 			pid->integral = new_integral; 
- 356              		.loc 1 97 4 is_stmt 1 view .LVU124
-  97:Core/Src/pid_utils.c **** 			pid->integral = new_integral; 
- 357              		.loc 1 97 18 is_stmt 0 view .LVU125
- 358 00a6 80ED036A 		vstr.32	s12, [r0, #12]
- 359 00aa 7047     		bx	lr
- 360              	.LVL29:
- 361              	.L48:
- 100:Core/Src/pid_utils.c **** 		output = -pid->out_max;
- 362              		.loc 1 100 7 is_stmt 1 view .LVU126
- 100:Core/Src/pid_utils.c **** 		output = -pid->out_max;
- 363              		.loc 1 100 20 is_stmt 0 view .LVU127
- 364 00ac B1EE400A 		vneg.f32	s0, s0
- 100:Core/Src/pid_utils.c **** 		output = -pid->out_max;
- 365              		.loc 1 100 10 view .LVU128
- 366 00b0 B4EEC70A 		vcmpe.f32	s0, s14
- 367 00b4 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 368 00b8 0BDD     		ble	.L49
- 101:Core/Src/pid_utils.c **** 		if ((output - (p_term + d_term)) * error <= 0) {
- 369              		.loc 1 101 3 is_stmt 1 view .LVU129
- 370              	.LVL30:
- 102:Core/Src/pid_utils.c **** 			pid->integral = new_integral;
- 371              		.loc 1 102 3 view .LVU130
- 102:Core/Src/pid_utils.c **** 			pid->integral = new_integral;
- 372              		.loc 1 102 15 is_stmt 0 view .LVU131
- 373 00ba 70EE677A 		vsub.f32	s15, s0, s15
- 102:Core/Src/pid_utils.c **** 			pid->integral = new_integral;
- 374              		.loc 1 102 36 view .LVU132
- 375 00be 67EEA67A 		vmul.f32	s15, s15, s13
- 102:Core/Src/pid_utils.c **** 			pid->integral = new_integral;
- 376              		.loc 1 102 6 view .LVU133
- 377 00c2 F5EEC07A 		vcmpe.f32	s15, #0
- 378 00c6 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
-ARM GAS  /tmp/ccOdXKCa.s 			page 10
+ 349              		.loc 1 97 5 view .LVU121
+ 350              		.loc 1 97 21 is_stmt 0 view .LVU122
+ 351 0096 90ED040A 		vldr.32	s0, [r0, #16]
+ 352              		.loc 1 97 8 view .LVU123
+ 353 009a B4EEC70A 		vcmpe.f32	s0, s14
+ 354 009e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 355 00a2 11D5     		bpl	.L52
+  98:Lib/Control/pid_utils.c ****         output = pid->out_max;
+ 356              		.loc 1 98 9 is_stmt 1 view .LVU124
+ 357              	.LVL32:
+  99:Lib/Control/pid_utils.c ****         if (pd_term < output) is_saturated = 1;
+ 358              		.loc 1 99 9 view .LVU125
+ 359              		.loc 1 99 12 is_stmt 0 view .LVU126
+ 360 00a4 B4EEE70A 		vcmpe.f32	s0, s15
+ 361 00a8 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 362 00ac 18DC     		bgt	.L39
+ 363              	.L40:
+ 364              	.LVL33:
+ 100:Lib/Control/pid_utils.c ****     }
+ 101:Lib/Control/pid_utils.c ****     else if (output < pid->out_min) {
+ 102:Lib/Control/pid_utils.c ****         output = pid->out_min;
+ 103:Lib/Control/pid_utils.c ****         if (pd_term > output) is_saturated = 1;
+ 104:Lib/Control/pid_utils.c ****     }
+ 105:Lib/Control/pid_utils.c **** 
+ 106:Lib/Control/pid_utils.c ****     if (is_saturated) {
+ 107:Lib/Control/pid_utils.c ****         pid->integral = output - pd_term;
+ 108:Lib/Control/pid_utils.c ****     }
+ 109:Lib/Control/pid_utils.c ****     else {
+ 110:Lib/Control/pid_utils.c ****         pid->integral = new_integral;
+ 365              		.loc 1 110 9 is_stmt 1 view .LVU127
+ 366              		.loc 1 110 23 is_stmt 0 view .LVU128
+ 367 00ae C0ED036A 		vstr.32	s13, [r0, #12]
+ 111:Lib/Control/pid_utils.c ****     }
+ 112:Lib/Control/pid_utils.c **** 
+ 113:Lib/Control/pid_utils.c ****     return output;
+ 368              		.loc 1 113 5 is_stmt 1 view .LVU129
+ 114:Lib/Control/pid_utils.c **** }
+ 369              		.loc 1 114 1 is_stmt 0 view .LVU130
+ 370 00b2 7047     		bx	lr
+ 371              	.LVL34:
+ 372              	.L51:
+  86:Lib/Control/pid_utils.c ****     float d_term = pid->d_filtered * pid->kd;
+ 373              		.loc 1 86 10 is_stmt 1 view .LVU131
+  86:Lib/Control/pid_utils.c ****     float d_term = pid->d_filtered * pid->kd;
+ 374              		.loc 1 86 32 is_stmt 0 view .LVU132
+ 375 00b4 B1EE466A 		vneg.f32	s12, s12
+  86:Lib/Control/pid_utils.c ****     float d_term = pid->d_filtered * pid->kd;
+ 376              		.loc 1 86 13 view .LVU133
+ 377 00b8 F4EEC67A 		vcmpe.f32	s15, s12
+ 378 00bc F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 379 00c0 D3D5     		bpl	.L35
+  86:Lib/Control/pid_utils.c ****     float d_term = pid->d_filtered * pid->kd;
+ 380              		.loc 1 86 45 is_stmt 1 discriminator 1 view .LVU134
+  86:Lib/Control/pid_utils.c ****     float d_term = pid->d_filtered * pid->kd;
+ 381              		.loc 1 86 61 is_stmt 0 discriminator 1 view .LVU135
+ 382 00c2 80ED0B6A 		vstr.32	s12, [r0, #44]
+ 383 00c6 D0E7     		b	.L35
+ARM GAS  /tmp/ccJWPH9k.s 			page 10
 
 
- 379 00ca EBD8     		bhi	.L32
- 103:Core/Src/pid_utils.c **** 		}
- 380              		.loc 1 103 4 is_stmt 1 view .LVU134
- 103:Core/Src/pid_utils.c **** 		}
- 381              		.loc 1 103 18 is_stmt 0 view .LVU135
- 382 00cc 80ED036A 		vstr.32	s12, [r0, #12]
- 383 00d0 7047     		bx	lr
- 384              	.LVL31:
- 385              	.L49:
- 107:Core/Src/pid_utils.c **** 	}
- 386              		.loc 1 107 3 is_stmt 1 view .LVU136
- 107:Core/Src/pid_utils.c **** 	}
- 387              		.loc 1 107 17 is_stmt 0 view .LVU137
- 388 00d2 80ED036A 		vstr.32	s12, [r0, #12]
-  91:Core/Src/pid_utils.c **** 
- 389              		.loc 1 91 8 view .LVU138
- 390 00d6 B0EE470A 		vmov.f32	s0, s14
- 391              	.LVL32:
- 110:Core/Src/pid_utils.c **** }
- 392              		.loc 1 110 2 is_stmt 1 view .LVU139
- 110:Core/Src/pid_utils.c **** }
- 393              		.loc 1 110 9 is_stmt 0 view .LVU140
- 394 00da E3E7     		b	.L32
- 395              	.L52:
- 396              		.align	2
- 397              	.L51:
- 398 00dc 00000000 		.word	0
- 399              		.cfi_endproc
- 400              	.LFE2:
- 402              		.section	.text.pid_reset,"ax",%progbits
- 403              		.align	1
- 404              		.global	pid_reset
- 405              		.syntax unified
- 406              		.thumb
- 407              		.thumb_func
- 408              		.fpu fpv4-sp-d16
- 410              	pid_reset:
- 411              	.LVL33:
- 412              	.LFB3:
- 112:Core/Src/pid_utils.c **** 
- 113:Core/Src/pid_utils.c **** 
- 114:Core/Src/pid_utils.c **** 
- 115:Core/Src/pid_utils.c **** void pid_reset(PID_Controller_t *p) {
- 413              		.loc 1 115 37 is_stmt 1 view -0
- 414              		.cfi_startproc
- 415              		@ args = 0, pretend = 0, frame = 0
- 416              		@ frame_needed = 0, uses_anonymous_args = 0
- 417              		@ link register save eliminated.
- 116:Core/Src/pid_utils.c **** 	p->integral = 0;
- 418              		.loc 1 116 2 view .LVU142
- 419              		.loc 1 116 14 is_stmt 0 view .LVU143
- 420 0000 0023     		movs	r3, #0
- 421 0002 C360     		str	r3, [r0, #12]	@ float
- 117:Core/Src/pid_utils.c ****     p->last_error = 0.0f;
- 422              		.loc 1 117 5 is_stmt 1 view .LVU144
- 423              		.loc 1 117 19 is_stmt 0 view .LVU145
- 424 0004 0362     		str	r3, [r0, #32]	@ float
-ARM GAS  /tmp/ccOdXKCa.s 			page 11
+ 384              	.LVL35:
+ 385              	.L52:
+ 101:Lib/Control/pid_utils.c ****         output = pid->out_min;
+ 386              		.loc 1 101 10 is_stmt 1 view .LVU136
+ 101:Lib/Control/pid_utils.c ****         output = pid->out_min;
+ 387              		.loc 1 101 26 is_stmt 0 view .LVU137
+ 388 00c8 90ED050A 		vldr.32	s0, [r0, #20]
+ 101:Lib/Control/pid_utils.c ****         output = pid->out_min;
+ 389              		.loc 1 101 13 view .LVU138
+ 390 00cc B4EEC70A 		vcmpe.f32	s0, s14
+ 391 00d0 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 392 00d4 09DD     		ble	.L53
+ 102:Lib/Control/pid_utils.c ****         if (pd_term > output) is_saturated = 1;
+ 393              		.loc 1 102 9 is_stmt 1 view .LVU139
+ 394              	.LVL36:
+ 103:Lib/Control/pid_utils.c ****     }
+ 395              		.loc 1 103 9 view .LVU140
+ 103:Lib/Control/pid_utils.c ****     }
+ 396              		.loc 1 103 12 is_stmt 0 view .LVU141
+ 397 00d6 B4EEE70A 		vcmpe.f32	s0, s15
+ 398 00da F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 399 00de E6D5     		bpl	.L40
+ 400              	.L39:
+ 401              	.LVL37:
+ 107:Lib/Control/pid_utils.c ****     }
+ 402              		.loc 1 107 9 is_stmt 1 view .LVU142
+ 107:Lib/Control/pid_utils.c ****     }
+ 403              		.loc 1 107 32 is_stmt 0 view .LVU143
+ 404 00e0 70EE677A 		vsub.f32	s15, s0, s15
+ 405              	.LVL38:
+ 107:Lib/Control/pid_utils.c ****     }
+ 406              		.loc 1 107 23 view .LVU144
+ 407 00e4 C0ED037A 		vstr.32	s15, [r0, #12]
+ 408 00e8 7047     		bx	lr
+ 409              	.LVL39:
+ 410              	.L53:
+  92:Lib/Control/pid_utils.c **** 
+ 411              		.loc 1 92 11 view .LVU145
+ 412 00ea B0EE470A 		vmov.f32	s0, s14
+ 413 00ee DEE7     		b	.L40
+ 414              	.L55:
+ 415              		.align	2
+ 416              	.L54:
+ 417 00f0 00000000 		.word	0
+ 418              		.cfi_endproc
+ 419              	.LFE2:
+ 421              		.section	.text.pid_reset,"ax",%progbits
+ 422              		.align	1
+ 423              		.global	pid_reset
+ 424              		.syntax unified
+ 425              		.thumb
+ 426              		.thumb_func
+ 427              		.fpu fpv4-sp-d16
+ 429              	pid_reset:
+ 430              	.LVL40:
+ 431              	.LFB3:
+ 115:Lib/Control/pid_utils.c **** 
+ARM GAS  /tmp/ccJWPH9k.s 			page 11
 
 
- 118:Core/Src/pid_utils.c ****     p->d_filtered = 0.0f; 
- 425              		.loc 1 118 5 is_stmt 1 view .LVU146
- 426              		.loc 1 118 19 is_stmt 0 view .LVU147
- 427 0006 8362     		str	r3, [r0, #40]	@ float
- 119:Core/Src/pid_utils.c ****     p->mv = 0.0f;
- 428              		.loc 1 119 5 is_stmt 1 view .LVU148
- 429              		.loc 1 119 11 is_stmt 0 view .LVU149
- 430 0008 0363     		str	r3, [r0, #48]	@ float
- 120:Core/Src/pid_utils.c **** }
- 431              		.loc 1 120 1 view .LVU150
- 432 000a 7047     		bx	lr
- 433              		.cfi_endproc
- 434              	.LFE3:
- 436              		.section	.text.pid_set_kp,"ax",%progbits
- 437              		.align	1
- 438              		.global	pid_set_kp
- 439              		.syntax unified
- 440              		.thumb
- 441              		.thumb_func
- 442              		.fpu fpv4-sp-d16
- 444              	pid_set_kp:
- 445              	.LVL34:
- 446              	.LFB4:
- 121:Core/Src/pid_utils.c **** 
- 122:Core/Src/pid_utils.c **** void pid_set_kp(PID_Controller_t *pid, float kp) {
- 447              		.loc 1 122 50 is_stmt 1 view -0
- 448              		.cfi_startproc
- 449              		@ args = 0, pretend = 0, frame = 0
- 450              		@ frame_needed = 0, uses_anonymous_args = 0
- 451              		@ link register save eliminated.
- 123:Core/Src/pid_utils.c ****     if (kp < 0) return;
- 452              		.loc 1 123 5 view .LVU152
- 453              		.loc 1 123 8 is_stmt 0 view .LVU153
- 454 0000 B5EEC00A 		vcmpe.f32	s0, #0
- 455 0004 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 456 0008 01D4     		bmi	.L54
- 124:Core/Src/pid_utils.c ****     pid->kp = kp;
- 457              		.loc 1 124 5 is_stmt 1 view .LVU154
- 458              		.loc 1 124 13 is_stmt 0 view .LVU155
- 459 000a 80ED000A 		vstr.32	s0, [r0]
- 460              	.L54:
- 125:Core/Src/pid_utils.c **** }
- 461              		.loc 1 125 1 view .LVU156
- 462 000e 7047     		bx	lr
- 463              		.cfi_endproc
- 464              	.LFE4:
- 466              		.section	.text.pid_set_ki,"ax",%progbits
- 467              		.align	1
- 468              		.global	pid_set_ki
- 469              		.syntax unified
- 470              		.thumb
- 471              		.thumb_func
- 472              		.fpu fpv4-sp-d16
- 474              	pid_set_ki:
- 475              	.LVL35:
- 476              	.LFB5:
- 126:Core/Src/pid_utils.c **** 
-ARM GAS  /tmp/ccOdXKCa.s 			page 12
+ 116:Lib/Control/pid_utils.c **** void pid_reset(PID_Controller_t *p) {
+ 432              		.loc 1 116 37 is_stmt 1 view -0
+ 433              		.cfi_startproc
+ 434              		@ args = 0, pretend = 0, frame = 0
+ 435              		@ frame_needed = 0, uses_anonymous_args = 0
+ 436              		@ link register save eliminated.
+ 117:Lib/Control/pid_utils.c **** 	p->integral = 0;
+ 437              		.loc 1 117 2 view .LVU147
+ 438              		.loc 1 117 14 is_stmt 0 view .LVU148
+ 439 0000 0023     		movs	r3, #0
+ 440 0002 C360     		str	r3, [r0, #12]	@ float
+ 118:Lib/Control/pid_utils.c ****     p->last_error = 0.0f;
+ 441              		.loc 1 118 5 is_stmt 1 view .LVU149
+ 442              		.loc 1 118 19 is_stmt 0 view .LVU150
+ 443 0004 0362     		str	r3, [r0, #32]	@ float
+ 119:Lib/Control/pid_utils.c **** }
+ 444              		.loc 1 119 1 view .LVU151
+ 445 0006 7047     		bx	lr
+ 446              		.cfi_endproc
+ 447              	.LFE3:
+ 449              		.section	.text.pid_set_kp,"ax",%progbits
+ 450              		.align	1
+ 451              		.global	pid_set_kp
+ 452              		.syntax unified
+ 453              		.thumb
+ 454              		.thumb_func
+ 455              		.fpu fpv4-sp-d16
+ 457              	pid_set_kp:
+ 458              	.LVL41:
+ 459              	.LFB4:
+ 120:Lib/Control/pid_utils.c **** 
+ 121:Lib/Control/pid_utils.c **** void pid_set_kp(PID_Controller_t *pid, float kp) {
+ 460              		.loc 1 121 50 is_stmt 1 view -0
+ 461              		.cfi_startproc
+ 462              		@ args = 0, pretend = 0, frame = 0
+ 463              		@ frame_needed = 0, uses_anonymous_args = 0
+ 464              		@ link register save eliminated.
+ 122:Lib/Control/pid_utils.c ****     if (kp < 0) return;
+ 465              		.loc 1 122 5 view .LVU153
+ 466              		.loc 1 122 8 is_stmt 0 view .LVU154
+ 467 0000 B5EEC00A 		vcmpe.f32	s0, #0
+ 468 0004 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 469 0008 01D4     		bmi	.L57
+ 123:Lib/Control/pid_utils.c ****     pid->kp = kp;
+ 470              		.loc 1 123 5 is_stmt 1 view .LVU155
+ 471              		.loc 1 123 13 is_stmt 0 view .LVU156
+ 472 000a 80ED000A 		vstr.32	s0, [r0]
+ 473              	.L57:
+ 124:Lib/Control/pid_utils.c **** }
+ 474              		.loc 1 124 1 view .LVU157
+ 475 000e 7047     		bx	lr
+ 476              		.cfi_endproc
+ 477              	.LFE4:
+ 479              		.section	.text.pid_set_ki,"ax",%progbits
+ 480              		.align	1
+ 481              		.global	pid_set_ki
+ 482              		.syntax unified
+ARM GAS  /tmp/ccJWPH9k.s 			page 12
 
 
- 127:Core/Src/pid_utils.c **** void pid_set_ki(PID_Controller_t *pid, float ki) {
- 477              		.loc 1 127 50 is_stmt 1 view -0
- 478              		.cfi_startproc
- 479              		@ args = 0, pretend = 0, frame = 0
- 480              		@ frame_needed = 0, uses_anonymous_args = 0
- 481              		@ link register save eliminated.
- 128:Core/Src/pid_utils.c ****     if (ki < 0) return;
- 482              		.loc 1 128 5 view .LVU158
- 483              		.loc 1 128 8 is_stmt 0 view .LVU159
- 484 0000 B5EEC00A 		vcmpe.f32	s0, #0
- 485 0004 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 486 0008 01D4     		bmi	.L56
- 129:Core/Src/pid_utils.c ****     pid->ki = ki;
- 487              		.loc 1 129 5 is_stmt 1 view .LVU160
- 488              		.loc 1 129 13 is_stmt 0 view .LVU161
- 489 000a 80ED010A 		vstr.32	s0, [r0, #4]
- 490              	.L56:
- 130:Core/Src/pid_utils.c **** }
- 491              		.loc 1 130 1 view .LVU162
- 492 000e 7047     		bx	lr
- 493              		.cfi_endproc
- 494              	.LFE5:
- 496              		.section	.text.pid_set_kd,"ax",%progbits
- 497              		.align	1
- 498              		.global	pid_set_kd
- 499              		.syntax unified
- 500              		.thumb
- 501              		.thumb_func
- 502              		.fpu fpv4-sp-d16
- 504              	pid_set_kd:
- 505              	.LVL36:
- 506              	.LFB6:
- 131:Core/Src/pid_utils.c **** 
- 132:Core/Src/pid_utils.c **** void pid_set_kd(PID_Controller_t *pid, float kd) {
- 507              		.loc 1 132 50 is_stmt 1 view -0
- 508              		.cfi_startproc
- 509              		@ args = 0, pretend = 0, frame = 0
- 510              		@ frame_needed = 0, uses_anonymous_args = 0
- 511              		@ link register save eliminated.
- 133:Core/Src/pid_utils.c ****     if (kd < 0) return;
- 512              		.loc 1 133 5 view .LVU164
- 513              		.loc 1 133 8 is_stmt 0 view .LVU165
- 514 0000 B5EEC00A 		vcmpe.f32	s0, #0
- 515 0004 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 516 0008 01D4     		bmi	.L58
- 134:Core/Src/pid_utils.c ****     pid->kd = kd;
- 517              		.loc 1 134 5 is_stmt 1 view .LVU166
- 518              		.loc 1 134 13 is_stmt 0 view .LVU167
- 519 000a 80ED020A 		vstr.32	s0, [r0, #8]
- 520              	.L58:
- 135:Core/Src/pid_utils.c **** }
- 521              		.loc 1 135 1 view .LVU168
- 522 000e 7047     		bx	lr
- 523              		.cfi_endproc
- 524              	.LFE6:
- 526              		.section	.text.pid_set_ts,"ax",%progbits
- 527              		.align	1
-ARM GAS  /tmp/ccOdXKCa.s 			page 13
+ 483              		.thumb
+ 484              		.thumb_func
+ 485              		.fpu fpv4-sp-d16
+ 487              	pid_set_ki:
+ 488              	.LVL42:
+ 489              	.LFB5:
+ 125:Lib/Control/pid_utils.c **** 
+ 126:Lib/Control/pid_utils.c **** void pid_set_ki(PID_Controller_t *pid, float ki) {
+ 490              		.loc 1 126 50 is_stmt 1 view -0
+ 491              		.cfi_startproc
+ 492              		@ args = 0, pretend = 0, frame = 0
+ 493              		@ frame_needed = 0, uses_anonymous_args = 0
+ 494              		@ link register save eliminated.
+ 127:Lib/Control/pid_utils.c ****     if (ki < 0) return;
+ 495              		.loc 1 127 5 view .LVU159
+ 496              		.loc 1 127 8 is_stmt 0 view .LVU160
+ 497 0000 B5EEC00A 		vcmpe.f32	s0, #0
+ 498 0004 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 499 0008 01D4     		bmi	.L59
+ 128:Lib/Control/pid_utils.c ****     pid->ki = ki;
+ 500              		.loc 1 128 5 is_stmt 1 view .LVU161
+ 501              		.loc 1 128 13 is_stmt 0 view .LVU162
+ 502 000a 80ED010A 		vstr.32	s0, [r0, #4]
+ 503              	.L59:
+ 129:Lib/Control/pid_utils.c **** }
+ 504              		.loc 1 129 1 view .LVU163
+ 505 000e 7047     		bx	lr
+ 506              		.cfi_endproc
+ 507              	.LFE5:
+ 509              		.section	.text.pid_set_kd,"ax",%progbits
+ 510              		.align	1
+ 511              		.global	pid_set_kd
+ 512              		.syntax unified
+ 513              		.thumb
+ 514              		.thumb_func
+ 515              		.fpu fpv4-sp-d16
+ 517              	pid_set_kd:
+ 518              	.LVL43:
+ 519              	.LFB6:
+ 130:Lib/Control/pid_utils.c **** 
+ 131:Lib/Control/pid_utils.c **** void pid_set_kd(PID_Controller_t *pid, float kd) {
+ 520              		.loc 1 131 50 is_stmt 1 view -0
+ 521              		.cfi_startproc
+ 522              		@ args = 0, pretend = 0, frame = 0
+ 523              		@ frame_needed = 0, uses_anonymous_args = 0
+ 524              		@ link register save eliminated.
+ 132:Lib/Control/pid_utils.c ****     if (kd < 0) return;
+ 525              		.loc 1 132 5 view .LVU165
+ 526              		.loc 1 132 8 is_stmt 0 view .LVU166
+ 527 0000 B5EEC00A 		vcmpe.f32	s0, #0
+ 528 0004 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 529 0008 01D4     		bmi	.L61
+ 133:Lib/Control/pid_utils.c ****     pid->kd = kd;
+ 530              		.loc 1 133 5 is_stmt 1 view .LVU167
+ 531              		.loc 1 133 13 is_stmt 0 view .LVU168
+ 532 000a 80ED020A 		vstr.32	s0, [r0, #8]
+ 533              	.L61:
+ARM GAS  /tmp/ccJWPH9k.s 			page 13
 
 
- 528              		.global	pid_set_ts
- 529              		.syntax unified
- 530              		.thumb
- 531              		.thumb_func
- 532              		.fpu fpv4-sp-d16
- 534              	pid_set_ts:
- 535              	.LVL37:
- 536              	.LFB7:
- 136:Core/Src/pid_utils.c **** 
- 137:Core/Src/pid_utils.c **** void pid_set_ts(PID_Controller_t *pid, float ts) {
- 537              		.loc 1 137 50 is_stmt 1 view -0
- 538              		.cfi_startproc
- 539              		@ args = 0, pretend = 0, frame = 0
- 540              		@ frame_needed = 0, uses_anonymous_args = 0
- 541              		@ link register save eliminated.
- 138:Core/Src/pid_utils.c ****     if (ts <= 0) return;
- 542              		.loc 1 138 5 view .LVU170
- 543              		.loc 1 138 8 is_stmt 0 view .LVU171
- 544 0000 B5EEC00A 		vcmpe.f32	s0, #0
- 545 0004 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 546 0008 01D9     		bls	.L60
- 139:Core/Src/pid_utils.c ****     pid->ts = ts;
- 547              		.loc 1 139 5 is_stmt 1 view .LVU172
- 548              		.loc 1 139 13 is_stmt 0 view .LVU173
- 549 000a 80ED060A 		vstr.32	s0, [r0, #24]
- 550              	.L60:
- 140:Core/Src/pid_utils.c **** }
- 551              		.loc 1 140 1 view .LVU174
- 552 000e 7047     		bx	lr
- 553              		.cfi_endproc
- 554              	.LFE7:
- 556              		.section	.text.pid_set_out_constraint,"ax",%progbits
- 557              		.align	1
- 558              		.global	pid_set_out_constraint
- 559              		.syntax unified
- 560              		.thumb
- 561              		.thumb_func
- 562              		.fpu fpv4-sp-d16
- 564              	pid_set_out_constraint:
- 565              	.LVL38:
- 566              	.LFB8:
- 141:Core/Src/pid_utils.c **** 
- 142:Core/Src/pid_utils.c **** void pid_set_out_constraint(PID_Controller_t *pid, float max, float min) {
- 567              		.loc 1 142 74 is_stmt 1 view -0
- 568              		.cfi_startproc
- 569              		@ args = 0, pretend = 0, frame = 0
- 570              		@ frame_needed = 0, uses_anonymous_args = 0
- 571              		@ link register save eliminated.
- 143:Core/Src/pid_utils.c ****     pid->out_max = max;
- 572              		.loc 1 143 5 view .LVU176
- 573              		.loc 1 143 18 is_stmt 0 view .LVU177
- 574 0000 80ED040A 		vstr.32	s0, [r0, #16]
- 144:Core/Src/pid_utils.c ****     pid->out_min = min;
- 575              		.loc 1 144 5 is_stmt 1 view .LVU178
- 576              		.loc 1 144 18 is_stmt 0 view .LVU179
- 577 0004 C0ED050A 		vstr.32	s1, [r0, #20]
- 145:Core/Src/pid_utils.c **** }
-ARM GAS  /tmp/ccOdXKCa.s 			page 14
+ 134:Lib/Control/pid_utils.c **** }
+ 534              		.loc 1 134 1 view .LVU169
+ 535 000e 7047     		bx	lr
+ 536              		.cfi_endproc
+ 537              	.LFE6:
+ 539              		.section	.text.pid_set_ts,"ax",%progbits
+ 540              		.align	1
+ 541              		.global	pid_set_ts
+ 542              		.syntax unified
+ 543              		.thumb
+ 544              		.thumb_func
+ 545              		.fpu fpv4-sp-d16
+ 547              	pid_set_ts:
+ 548              	.LVL44:
+ 549              	.LFB7:
+ 135:Lib/Control/pid_utils.c **** 
+ 136:Lib/Control/pid_utils.c **** void pid_set_ts(PID_Controller_t *pid, float ts) {
+ 550              		.loc 1 136 50 is_stmt 1 view -0
+ 551              		.cfi_startproc
+ 552              		@ args = 0, pretend = 0, frame = 0
+ 553              		@ frame_needed = 0, uses_anonymous_args = 0
+ 554              		@ link register save eliminated.
+ 137:Lib/Control/pid_utils.c ****     if (ts <= 0) return;
+ 555              		.loc 1 137 5 view .LVU171
+ 556              		.loc 1 137 8 is_stmt 0 view .LVU172
+ 557 0000 B5EEC00A 		vcmpe.f32	s0, #0
+ 558 0004 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 559 0008 01D9     		bls	.L63
+ 138:Lib/Control/pid_utils.c ****     pid->ts = ts;
+ 560              		.loc 1 138 5 is_stmt 1 view .LVU173
+ 561              		.loc 1 138 13 is_stmt 0 view .LVU174
+ 562 000a 80ED060A 		vstr.32	s0, [r0, #24]
+ 563              	.L63:
+ 139:Lib/Control/pid_utils.c **** }
+ 564              		.loc 1 139 1 view .LVU175
+ 565 000e 7047     		bx	lr
+ 566              		.cfi_endproc
+ 567              	.LFE7:
+ 569              		.section	.text.pid_set_out_constraint,"ax",%progbits
+ 570              		.align	1
+ 571              		.global	pid_set_out_constraint
+ 572              		.syntax unified
+ 573              		.thumb
+ 574              		.thumb_func
+ 575              		.fpu fpv4-sp-d16
+ 577              	pid_set_out_constraint:
+ 578              	.LVL45:
+ 579              	.LFB8:
+ 140:Lib/Control/pid_utils.c **** 
+ 141:Lib/Control/pid_utils.c **** void pid_set_out_constraint(PID_Controller_t *pid, float max, float min) {
+ 580              		.loc 1 141 74 is_stmt 1 view -0
+ 581              		.cfi_startproc
+ 582              		@ args = 0, pretend = 0, frame = 0
+ 583              		@ frame_needed = 0, uses_anonymous_args = 0
+ 584              		@ link register save eliminated.
+ 142:Lib/Control/pid_utils.c ****     pid->out_max = max;
+ 585              		.loc 1 142 5 view .LVU177
+ARM GAS  /tmp/ccJWPH9k.s 			page 14
 
 
- 578              		.loc 1 145 1 view .LVU180
- 579 0008 7047     		bx	lr
- 580              		.cfi_endproc
- 581              	.LFE8:
- 583              		.section	.text.pid_set_deadband,"ax",%progbits
- 584              		.align	1
- 585              		.global	pid_set_deadband
- 586              		.syntax unified
- 587              		.thumb
- 588              		.thumb_func
- 589              		.fpu fpv4-sp-d16
- 591              	pid_set_deadband:
- 592              	.LVL39:
- 593              	.LFB9:
- 146:Core/Src/pid_utils.c **** 
- 147:Core/Src/pid_utils.c **** void pid_set_deadband(PID_Controller_t *pid, float deadband) {
- 594              		.loc 1 147 62 is_stmt 1 view -0
- 595              		.cfi_startproc
- 596              		@ args = 0, pretend = 0, frame = 0
- 597              		@ frame_needed = 0, uses_anonymous_args = 0
- 598              		@ link register save eliminated.
- 148:Core/Src/pid_utils.c ****     pid->e_deadband = deadband;
- 599              		.loc 1 148 5 view .LVU182
- 600              		.loc 1 148 21 is_stmt 0 view .LVU183
- 601 0000 80ED070A 		vstr.32	s0, [r0, #28]
- 149:Core/Src/pid_utils.c **** }
- 602              		.loc 1 149 1 view .LVU184
- 603 0004 7047     		bx	lr
- 604              		.cfi_endproc
- 605              	.LFE9:
- 607              		.section	.text.pid_set_d_filter_fc,"ax",%progbits
- 608              		.align	1
- 609              		.global	pid_set_d_filter_fc
- 610              		.syntax unified
- 611              		.thumb
- 612              		.thumb_func
- 613              		.fpu fpv4-sp-d16
- 615              	pid_set_d_filter_fc:
- 616              	.LVL40:
- 617              	.LFB10:
- 150:Core/Src/pid_utils.c **** 
- 151:Core/Src/pid_utils.c **** void pid_set_d_filter_fc(PID_Controller_t *pid, float fc) {
- 618              		.loc 1 151 59 is_stmt 1 view -0
- 619              		.cfi_startproc
- 620              		@ args = 0, pretend = 0, frame = 0
- 621              		@ frame_needed = 0, uses_anonymous_args = 0
- 622              		@ link register save eliminated.
- 152:Core/Src/pid_utils.c ****     float tau = 1.0f / (TWO_PI * fc);
- 623              		.loc 1 152 5 view .LVU186
- 624              		.loc 1 152 32 is_stmt 0 view .LVU187
- 625 0000 DFED0B7A 		vldr.32	s15, .L68
- 626 0004 20EE270A 		vmul.f32	s0, s0, s15
- 627              	.LVL41:
- 628              		.loc 1 152 11 view .LVU188
- 629 0008 B7EE007A 		vmov.f32	s14, #1.0e+0
- 630 000c C7EE007A 		vdiv.f32	s15, s14, s0
- 631              	.LVL42:
-ARM GAS  /tmp/ccOdXKCa.s 			page 15
+ 586              		.loc 1 142 18 is_stmt 0 view .LVU178
+ 587 0000 80ED040A 		vstr.32	s0, [r0, #16]
+ 143:Lib/Control/pid_utils.c ****     pid->out_min = min;
+ 588              		.loc 1 143 5 is_stmt 1 view .LVU179
+ 589              		.loc 1 143 18 is_stmt 0 view .LVU180
+ 590 0004 C0ED050A 		vstr.32	s1, [r0, #20]
+ 144:Lib/Control/pid_utils.c **** }
+ 591              		.loc 1 144 1 view .LVU181
+ 592 0008 7047     		bx	lr
+ 593              		.cfi_endproc
+ 594              	.LFE8:
+ 596              		.section	.text.pid_set_deadband,"ax",%progbits
+ 597              		.align	1
+ 598              		.global	pid_set_deadband
+ 599              		.syntax unified
+ 600              		.thumb
+ 601              		.thumb_func
+ 602              		.fpu fpv4-sp-d16
+ 604              	pid_set_deadband:
+ 605              	.LVL46:
+ 606              	.LFB9:
+ 145:Lib/Control/pid_utils.c **** 
+ 146:Lib/Control/pid_utils.c **** void pid_set_deadband(PID_Controller_t *pid, float deadband) {
+ 607              		.loc 1 146 62 is_stmt 1 view -0
+ 608              		.cfi_startproc
+ 609              		@ args = 0, pretend = 0, frame = 0
+ 610              		@ frame_needed = 0, uses_anonymous_args = 0
+ 611              		@ link register save eliminated.
+ 147:Lib/Control/pid_utils.c ****     pid->e_deadband = deadband;
+ 612              		.loc 1 147 5 view .LVU183
+ 613              		.loc 1 147 21 is_stmt 0 view .LVU184
+ 614 0000 80ED070A 		vstr.32	s0, [r0, #28]
+ 148:Lib/Control/pid_utils.c **** }
+ 615              		.loc 1 148 1 view .LVU185
+ 616 0004 7047     		bx	lr
+ 617              		.cfi_endproc
+ 618              	.LFE9:
+ 620              		.section	.text.pid_set_d_filter_fc,"ax",%progbits
+ 621              		.align	1
+ 622              		.global	pid_set_d_filter_fc
+ 623              		.syntax unified
+ 624              		.thumb
+ 625              		.thumb_func
+ 626              		.fpu fpv4-sp-d16
+ 628              	pid_set_d_filter_fc:
+ 629              	.LVL47:
+ 630              	.LFB10:
+ 149:Lib/Control/pid_utils.c **** 
+ 150:Lib/Control/pid_utils.c **** void pid_set_d_filter_fc(PID_Controller_t *pid, float fc) {
+ 631              		.loc 1 150 59 is_stmt 1 view -0
+ 632              		.cfi_startproc
+ 633              		@ args = 0, pretend = 0, frame = 0
+ 634              		@ frame_needed = 0, uses_anonymous_args = 0
+ 635              		@ link register save eliminated.
+ 151:Lib/Control/pid_utils.c ****     pid->d_fc_lpf = fc;
+ 636              		.loc 1 151 5 view .LVU187
+ 637              		.loc 1 151 19 is_stmt 0 view .LVU188
+ARM GAS  /tmp/ccJWPH9k.s 			page 15
 
 
- 153:Core/Src/pid_utils.c ****     pid->d_alpha_filter = pid->ts / (tau + pid->ts);
- 632              		.loc 1 153 5 is_stmt 1 view .LVU189
- 633              		.loc 1 153 30 is_stmt 0 view .LVU190
- 634 0010 90ED066A 		vldr.32	s12, [r0, #24]
- 635              		.loc 1 153 42 view .LVU191
- 636 0014 76EE277A 		vadd.f32	s15, s12, s15
- 637              	.LVL43:
- 638              		.loc 1 153 35 view .LVU192
- 639 0018 C6EE276A 		vdiv.f32	s13, s12, s15
- 640              		.loc 1 153 25 view .LVU193
- 641 001c C0ED096A 		vstr.32	s13, [r0, #36]
- 154:Core/Src/pid_utils.c ****     if (pid->d_alpha_filter > 1.0f) pid->d_alpha_filter = 1.0f;
- 642              		.loc 1 154 5 is_stmt 1 view .LVU194
- 643              		.loc 1 154 8 is_stmt 0 view .LVU195
- 644 0020 F4EEC76A 		vcmpe.f32	s13, s14
- 645 0024 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 646 0028 01DD     		ble	.L64
- 647              		.loc 1 154 37 is_stmt 1 discriminator 1 view .LVU196
- 648              		.loc 1 154 57 is_stmt 0 discriminator 1 view .LVU197
- 649 002a 80ED097A 		vstr.32	s14, [r0, #36]
- 650              	.L64:
- 155:Core/Src/pid_utils.c **** }
- 651              		.loc 1 155 1 view .LVU198
- 652 002e 7047     		bx	lr
- 653              	.L69:
- 654              		.align	2
- 655              	.L68:
- 656 0030 DB0FC940 		.word	1086918619
- 657              		.cfi_endproc
- 658              	.LFE10:
- 660              		.section	.text.pid_set_max_d,"ax",%progbits
- 661              		.align	1
- 662              		.global	pid_set_max_d
- 663              		.syntax unified
- 664              		.thumb
- 665              		.thumb_func
- 666              		.fpu fpv4-sp-d16
- 668              	pid_set_max_d:
- 669              	.LVL44:
- 670              	.LFB11:
- 156:Core/Src/pid_utils.c **** 
- 157:Core/Src/pid_utils.c **** void pid_set_max_d(PID_Controller_t *pid, float max) {
- 671              		.loc 1 157 54 is_stmt 1 view -0
- 672              		.cfi_startproc
- 673              		@ args = 0, pretend = 0, frame = 0
- 674              		@ frame_needed = 0, uses_anonymous_args = 0
- 675              		@ link register save eliminated.
- 158:Core/Src/pid_utils.c ****     if (max <= 0) return;
- 676              		.loc 1 158 5 view .LVU200
- 677              		.loc 1 158 8 is_stmt 0 view .LVU201
- 678 0000 B5EEC00A 		vcmpe.f32	s0, #0
- 679 0004 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 680 0008 01D9     		bls	.L70
- 159:Core/Src/pid_utils.c ****     pid->d_max = max;
- 681              		.loc 1 159 5 is_stmt 1 view .LVU202
- 682              		.loc 1 159 16 is_stmt 0 view .LVU203
- 683 000a 80ED0B0A 		vstr.32	s0, [r0, #44]
-ARM GAS  /tmp/ccOdXKCa.s 			page 16
+ 638 0000 80ED090A 		vstr.32	s0, [r0, #36]
+ 152:Lib/Control/pid_utils.c ****     float tau = 1.0f / (TWO_PI * fc);
+ 639              		.loc 1 152 5 is_stmt 1 view .LVU189
+ 640              		.loc 1 152 32 is_stmt 0 view .LVU190
+ 641 0004 DFED0B7A 		vldr.32	s15, .L71
+ 642 0008 20EE270A 		vmul.f32	s0, s0, s15
+ 643              	.LVL48:
+ 644              		.loc 1 152 11 view .LVU191
+ 645 000c B7EE007A 		vmov.f32	s14, #1.0e+0
+ 646 0010 C7EE007A 		vdiv.f32	s15, s14, s0
+ 647              	.LVL49:
+ 153:Lib/Control/pid_utils.c ****     pid->d_alpha_filter = pid->ts / (tau + pid->ts);
+ 648              		.loc 1 153 5 is_stmt 1 view .LVU192
+ 649              		.loc 1 153 30 is_stmt 0 view .LVU193
+ 650 0014 90ED066A 		vldr.32	s12, [r0, #24]
+ 651              		.loc 1 153 42 view .LVU194
+ 652 0018 76EE277A 		vadd.f32	s15, s12, s15
+ 653              	.LVL50:
+ 654              		.loc 1 153 35 view .LVU195
+ 655 001c C6EE276A 		vdiv.f32	s13, s12, s15
+ 656              		.loc 1 153 25 view .LVU196
+ 657 0020 C0ED0A6A 		vstr.32	s13, [r0, #40]
+ 154:Lib/Control/pid_utils.c ****     if (pid->d_alpha_filter > 1.0f) pid->d_alpha_filter = 1.0f;
+ 658              		.loc 1 154 5 is_stmt 1 view .LVU197
+ 659              		.loc 1 154 8 is_stmt 0 view .LVU198
+ 660 0024 F4EEC76A 		vcmpe.f32	s13, s14
+ 661 0028 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 662 002c 01DD     		ble	.L67
+ 663              		.loc 1 154 37 is_stmt 1 discriminator 1 view .LVU199
+ 664              		.loc 1 154 57 is_stmt 0 discriminator 1 view .LVU200
+ 665 002e 80ED0A7A 		vstr.32	s14, [r0, #40]
+ 666              	.L67:
+ 155:Lib/Control/pid_utils.c **** }
+ 667              		.loc 1 155 1 view .LVU201
+ 668 0032 7047     		bx	lr
+ 669              	.L72:
+ 670              		.align	2
+ 671              	.L71:
+ 672 0034 DB0FC940 		.word	1086918619
+ 673              		.cfi_endproc
+ 674              	.LFE10:
+ 676              		.section	.text.pid_set_max_d,"ax",%progbits
+ 677              		.align	1
+ 678              		.global	pid_set_max_d
+ 679              		.syntax unified
+ 680              		.thumb
+ 681              		.thumb_func
+ 682              		.fpu fpv4-sp-d16
+ 684              	pid_set_max_d:
+ 685              	.LVL51:
+ 686              	.LFB11:
+ 156:Lib/Control/pid_utils.c **** 
+ 157:Lib/Control/pid_utils.c **** void pid_set_max_d(PID_Controller_t *pid, float max) {
+ 687              		.loc 1 157 54 is_stmt 1 view -0
+ 688              		.cfi_startproc
+ 689              		@ args = 0, pretend = 0, frame = 0
+ 690              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccJWPH9k.s 			page 16
 
 
- 684              	.L70:
- 160:Core/Src/pid_utils.c **** }
- 685              		.loc 1 160 1 view .LVU204
- 686 000e 7047     		bx	lr
- 687              		.cfi_endproc
- 688              	.LFE11:
- 690              		.section	.text.pid_init,"ax",%progbits
- 691              		.align	1
- 692              		.global	pid_init
- 693              		.syntax unified
- 694              		.thumb
- 695              		.thumb_func
- 696              		.fpu fpv4-sp-d16
- 698              	pid_init:
- 699              	.LVL45:
- 700              	.LFB12:
- 161:Core/Src/pid_utils.c **** //
- 162:Core/Src/pid_utils.c **** 
- 163:Core/Src/pid_utils.c **** void pid_init(PID_Controller_t *pid, float kp, float ki, float kd, float Ts, float out_max, float d
- 701              		.loc 1 163 109 is_stmt 1 view -0
- 702              		.cfi_startproc
- 703              		@ args = 0, pretend = 0, frame = 0
- 704              		@ frame_needed = 0, uses_anonymous_args = 0
- 705              		@ link register save eliminated.
- 164:Core/Src/pid_utils.c **** 	pid->kp = kp;
- 706              		.loc 1 164 2 view .LVU206
- 707              		.loc 1 164 10 is_stmt 0 view .LVU207
- 708 0000 80ED000A 		vstr.32	s0, [r0]
- 165:Core/Src/pid_utils.c **** 	pid->ki = ki;
- 709              		.loc 1 165 2 is_stmt 1 view .LVU208
- 710              		.loc 1 165 10 is_stmt 0 view .LVU209
- 711 0004 C0ED010A 		vstr.32	s1, [r0, #4]
- 166:Core/Src/pid_utils.c **** 	pid->kd = kd;
- 712              		.loc 1 166 2 is_stmt 1 view .LVU210
- 713              		.loc 1 166 10 is_stmt 0 view .LVU211
- 714 0008 80ED021A 		vstr.32	s2, [r0, #8]
- 167:Core/Src/pid_utils.c **** 	pid->ts = Ts;
- 715              		.loc 1 167 2 is_stmt 1 view .LVU212
- 716              		.loc 1 167 10 is_stmt 0 view .LVU213
- 717 000c C0ED061A 		vstr.32	s3, [r0, #24]
- 168:Core/Src/pid_utils.c **** 	pid->integral = 0.0f;
- 718              		.loc 1 168 2 is_stmt 1 view .LVU214
- 719              		.loc 1 168 16 is_stmt 0 view .LVU215
- 720 0010 0023     		movs	r3, #0
- 721 0012 C360     		str	r3, [r0, #12]	@ float
- 169:Core/Src/pid_utils.c **** 	pid->out_max = out_max;
- 722              		.loc 1 169 2 is_stmt 1 view .LVU216
- 723              		.loc 1 169 15 is_stmt 0 view .LVU217
- 724 0014 80ED042A 		vstr.32	s4, [r0, #16]
- 170:Core/Src/pid_utils.c **** 	pid->e_deadband = deadband;
- 725              		.loc 1 170 2 is_stmt 1 view .LVU218
- 726              		.loc 1 170 18 is_stmt 0 view .LVU219
- 727 0018 C0ED072A 		vstr.32	s5, [r0, #28]
- 171:Core/Src/pid_utils.c **** 	pid->last_error = 0.0f;
- 728              		.loc 1 171 2 is_stmt 1 view .LVU220
- 729              		.loc 1 171 18 is_stmt 0 view .LVU221
- 730 001c 0362     		str	r3, [r0, #32]	@ float
-ARM GAS  /tmp/ccOdXKCa.s 			page 17
+ 691              		@ link register save eliminated.
+ 158:Lib/Control/pid_utils.c ****     if (max <= 0) return;
+ 692              		.loc 1 158 5 view .LVU203
+ 693              		.loc 1 158 8 is_stmt 0 view .LVU204
+ 694 0000 B5EEC00A 		vcmpe.f32	s0, #0
+ 695 0004 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 696 0008 01D9     		bls	.L73
+ 159:Lib/Control/pid_utils.c ****     pid->d_max = max;
+ 697              		.loc 1 159 5 is_stmt 1 view .LVU205
+ 698              		.loc 1 159 16 is_stmt 0 view .LVU206
+ 699 000a 80ED0C0A 		vstr.32	s0, [r0, #48]
+ 700              	.L73:
+ 160:Lib/Control/pid_utils.c **** }
+ 701              		.loc 1 160 1 view .LVU207
+ 702 000e 7047     		bx	lr
+ 703              		.cfi_endproc
+ 704              	.LFE11:
+ 706              		.section	.text.pid_get_kp,"ax",%progbits
+ 707              		.align	1
+ 708              		.global	pid_get_kp
+ 709              		.syntax unified
+ 710              		.thumb
+ 711              		.thumb_func
+ 712              		.fpu fpv4-sp-d16
+ 714              	pid_get_kp:
+ 715              	.LVL52:
+ 716              	.LFB12:
+ 161:Lib/Control/pid_utils.c **** 
+ 162:Lib/Control/pid_utils.c **** float pid_get_kp(PID_Controller_t *pid) {
+ 717              		.loc 1 162 41 is_stmt 1 view -0
+ 718              		.cfi_startproc
+ 719              		@ args = 0, pretend = 0, frame = 0
+ 720              		@ frame_needed = 0, uses_anonymous_args = 0
+ 721              		@ link register save eliminated.
+ 163:Lib/Control/pid_utils.c ****     return pid->kp;
+ 722              		.loc 1 163 5 view .LVU209
+ 164:Lib/Control/pid_utils.c **** }
+ 723              		.loc 1 164 1 is_stmt 0 view .LVU210
+ 724 0000 90ED000A 		vldr.32	s0, [r0]
+ 725 0004 7047     		bx	lr
+ 726              		.cfi_endproc
+ 727              	.LFE12:
+ 729              		.section	.text.pid_get_ki,"ax",%progbits
+ 730              		.align	1
+ 731              		.global	pid_get_ki
+ 732              		.syntax unified
+ 733              		.thumb
+ 734              		.thumb_func
+ 735              		.fpu fpv4-sp-d16
+ 737              	pid_get_ki:
+ 738              	.LVL53:
+ 739              	.LFB13:
+ 165:Lib/Control/pid_utils.c **** 
+ 166:Lib/Control/pid_utils.c **** float pid_get_ki(PID_Controller_t *pid) {
+ 740              		.loc 1 166 41 is_stmt 1 view -0
+ 741              		.cfi_startproc
+ 742              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /tmp/ccJWPH9k.s 			page 17
 
 
- 172:Core/Src/pid_utils.c **** }
- 731              		.loc 1 172 1 view .LVU222
- 732 001e 7047     		bx	lr
- 733              		.cfi_endproc
- 734              	.LFE12:
- 736              		.text
- 737              	.Letext0:
- 738              		.file 2 "Core/Inc/pid_utils.h"
-ARM GAS  /tmp/ccOdXKCa.s 			page 18
+ 743              		@ frame_needed = 0, uses_anonymous_args = 0
+ 744              		@ link register save eliminated.
+ 167:Lib/Control/pid_utils.c ****     return pid->ki;
+ 745              		.loc 1 167 5 view .LVU212
+ 168:Lib/Control/pid_utils.c **** }
+ 746              		.loc 1 168 1 is_stmt 0 view .LVU213
+ 747 0000 90ED010A 		vldr.32	s0, [r0, #4]
+ 748 0004 7047     		bx	lr
+ 749              		.cfi_endproc
+ 750              	.LFE13:
+ 752              		.section	.text.pid_get_kd,"ax",%progbits
+ 753              		.align	1
+ 754              		.global	pid_get_kd
+ 755              		.syntax unified
+ 756              		.thumb
+ 757              		.thumb_func
+ 758              		.fpu fpv4-sp-d16
+ 760              	pid_get_kd:
+ 761              	.LVL54:
+ 762              	.LFB14:
+ 169:Lib/Control/pid_utils.c **** 
+ 170:Lib/Control/pid_utils.c **** float pid_get_kd(PID_Controller_t *pid) {
+ 763              		.loc 1 170 41 is_stmt 1 view -0
+ 764              		.cfi_startproc
+ 765              		@ args = 0, pretend = 0, frame = 0
+ 766              		@ frame_needed = 0, uses_anonymous_args = 0
+ 767              		@ link register save eliminated.
+ 171:Lib/Control/pid_utils.c ****     return pid->kd;
+ 768              		.loc 1 171 5 view .LVU215
+ 172:Lib/Control/pid_utils.c **** }
+ 769              		.loc 1 172 1 is_stmt 0 view .LVU216
+ 770 0000 90ED020A 		vldr.32	s0, [r0, #8]
+ 771 0004 7047     		bx	lr
+ 772              		.cfi_endproc
+ 773              	.LFE14:
+ 775              		.section	.text.pid_get_ts,"ax",%progbits
+ 776              		.align	1
+ 777              		.global	pid_get_ts
+ 778              		.syntax unified
+ 779              		.thumb
+ 780              		.thumb_func
+ 781              		.fpu fpv4-sp-d16
+ 783              	pid_get_ts:
+ 784              	.LVL55:
+ 785              	.LFB15:
+ 173:Lib/Control/pid_utils.c **** 
+ 174:Lib/Control/pid_utils.c **** float pid_get_ts(PID_Controller_t *pid) {
+ 786              		.loc 1 174 41 is_stmt 1 view -0
+ 787              		.cfi_startproc
+ 788              		@ args = 0, pretend = 0, frame = 0
+ 789              		@ frame_needed = 0, uses_anonymous_args = 0
+ 790              		@ link register save eliminated.
+ 175:Lib/Control/pid_utils.c ****     return pid->ts;
+ 791              		.loc 1 175 5 view .LVU218
+ 176:Lib/Control/pid_utils.c **** }
+ 792              		.loc 1 176 1 is_stmt 0 view .LVU219
+ 793 0000 90ED060A 		vldr.32	s0, [r0, #24]
+ARM GAS  /tmp/ccJWPH9k.s 			page 18
+
+
+ 794 0004 7047     		bx	lr
+ 795              		.cfi_endproc
+ 796              	.LFE15:
+ 798              		.section	.text.pid_get_out_max,"ax",%progbits
+ 799              		.align	1
+ 800              		.global	pid_get_out_max
+ 801              		.syntax unified
+ 802              		.thumb
+ 803              		.thumb_func
+ 804              		.fpu fpv4-sp-d16
+ 806              	pid_get_out_max:
+ 807              	.LVL56:
+ 808              	.LFB16:
+ 177:Lib/Control/pid_utils.c **** 
+ 178:Lib/Control/pid_utils.c **** float pid_get_out_max(PID_Controller_t *pid) {
+ 809              		.loc 1 178 46 is_stmt 1 view -0
+ 810              		.cfi_startproc
+ 811              		@ args = 0, pretend = 0, frame = 0
+ 812              		@ frame_needed = 0, uses_anonymous_args = 0
+ 813              		@ link register save eliminated.
+ 179:Lib/Control/pid_utils.c ****     return pid->out_max;
+ 814              		.loc 1 179 5 view .LVU221
+ 180:Lib/Control/pid_utils.c **** }
+ 815              		.loc 1 180 1 is_stmt 0 view .LVU222
+ 816 0000 90ED040A 		vldr.32	s0, [r0, #16]
+ 817 0004 7047     		bx	lr
+ 818              		.cfi_endproc
+ 819              	.LFE16:
+ 821              		.section	.text.pid_get_out_min,"ax",%progbits
+ 822              		.align	1
+ 823              		.global	pid_get_out_min
+ 824              		.syntax unified
+ 825              		.thumb
+ 826              		.thumb_func
+ 827              		.fpu fpv4-sp-d16
+ 829              	pid_get_out_min:
+ 830              	.LVL57:
+ 831              	.LFB17:
+ 181:Lib/Control/pid_utils.c **** 
+ 182:Lib/Control/pid_utils.c **** float pid_get_out_min(PID_Controller_t *pid) {
+ 832              		.loc 1 182 46 is_stmt 1 view -0
+ 833              		.cfi_startproc
+ 834              		@ args = 0, pretend = 0, frame = 0
+ 835              		@ frame_needed = 0, uses_anonymous_args = 0
+ 836              		@ link register save eliminated.
+ 183:Lib/Control/pid_utils.c ****     return pid->out_min;
+ 837              		.loc 1 183 5 view .LVU224
+ 184:Lib/Control/pid_utils.c **** }
+ 838              		.loc 1 184 1 is_stmt 0 view .LVU225
+ 839 0000 90ED050A 		vldr.32	s0, [r0, #20]
+ 840 0004 7047     		bx	lr
+ 841              		.cfi_endproc
+ 842              	.LFE17:
+ 844              		.section	.text.pid_get_deadband,"ax",%progbits
+ 845              		.align	1
+ 846              		.global	pid_get_deadband
+ 847              		.syntax unified
+ARM GAS  /tmp/ccJWPH9k.s 			page 19
+
+
+ 848              		.thumb
+ 849              		.thumb_func
+ 850              		.fpu fpv4-sp-d16
+ 852              	pid_get_deadband:
+ 853              	.LVL58:
+ 854              	.LFB18:
+ 185:Lib/Control/pid_utils.c **** 
+ 186:Lib/Control/pid_utils.c **** float pid_get_deadband(PID_Controller_t *pid) {
+ 855              		.loc 1 186 47 is_stmt 1 view -0
+ 856              		.cfi_startproc
+ 857              		@ args = 0, pretend = 0, frame = 0
+ 858              		@ frame_needed = 0, uses_anonymous_args = 0
+ 859              		@ link register save eliminated.
+ 187:Lib/Control/pid_utils.c ****     return pid->e_deadband;
+ 860              		.loc 1 187 5 view .LVU227
+ 188:Lib/Control/pid_utils.c **** }
+ 861              		.loc 1 188 1 is_stmt 0 view .LVU228
+ 862 0000 90ED070A 		vldr.32	s0, [r0, #28]
+ 863 0004 7047     		bx	lr
+ 864              		.cfi_endproc
+ 865              	.LFE18:
+ 867              		.section	.text.pid_get_d_filter_fc,"ax",%progbits
+ 868              		.align	1
+ 869              		.global	pid_get_d_filter_fc
+ 870              		.syntax unified
+ 871              		.thumb
+ 872              		.thumb_func
+ 873              		.fpu fpv4-sp-d16
+ 875              	pid_get_d_filter_fc:
+ 876              	.LVL59:
+ 877              	.LFB19:
+ 189:Lib/Control/pid_utils.c **** 
+ 190:Lib/Control/pid_utils.c **** float pid_get_d_filter_fc(PID_Controller_t *pid) {
+ 878              		.loc 1 190 50 is_stmt 1 view -0
+ 879              		.cfi_startproc
+ 880              		@ args = 0, pretend = 0, frame = 0
+ 881              		@ frame_needed = 0, uses_anonymous_args = 0
+ 882              		@ link register save eliminated.
+ 191:Lib/Control/pid_utils.c ****     return pid->d_fc_lpf;
+ 883              		.loc 1 191 5 view .LVU230
+ 192:Lib/Control/pid_utils.c **** }
+ 884              		.loc 1 192 1 is_stmt 0 view .LVU231
+ 885 0000 90ED090A 		vldr.32	s0, [r0, #36]
+ 886 0004 7047     		bx	lr
+ 887              		.cfi_endproc
+ 888              	.LFE19:
+ 890              		.section	.text.pid_get_d_alpha_filter,"ax",%progbits
+ 891              		.align	1
+ 892              		.global	pid_get_d_alpha_filter
+ 893              		.syntax unified
+ 894              		.thumb
+ 895              		.thumb_func
+ 896              		.fpu fpv4-sp-d16
+ 898              	pid_get_d_alpha_filter:
+ 899              	.LVL60:
+ 900              	.LFB20:
+ 193:Lib/Control/pid_utils.c **** 
+ARM GAS  /tmp/ccJWPH9k.s 			page 20
+
+
+ 194:Lib/Control/pid_utils.c **** float pid_get_d_alpha_filter(PID_Controller_t *pid) {
+ 901              		.loc 1 194 53 is_stmt 1 view -0
+ 902              		.cfi_startproc
+ 903              		@ args = 0, pretend = 0, frame = 0
+ 904              		@ frame_needed = 0, uses_anonymous_args = 0
+ 905              		@ link register save eliminated.
+ 195:Lib/Control/pid_utils.c ****     return pid->d_alpha_filter;
+ 906              		.loc 1 195 5 view .LVU233
+ 196:Lib/Control/pid_utils.c **** }
+ 907              		.loc 1 196 1 is_stmt 0 view .LVU234
+ 908 0000 90ED0A0A 		vldr.32	s0, [r0, #40]
+ 909 0004 7047     		bx	lr
+ 910              		.cfi_endproc
+ 911              	.LFE20:
+ 913              		.section	.text.pid_get_max_d,"ax",%progbits
+ 914              		.align	1
+ 915              		.global	pid_get_max_d
+ 916              		.syntax unified
+ 917              		.thumb
+ 918              		.thumb_func
+ 919              		.fpu fpv4-sp-d16
+ 921              	pid_get_max_d:
+ 922              	.LVL61:
+ 923              	.LFB21:
+ 197:Lib/Control/pid_utils.c **** 
+ 198:Lib/Control/pid_utils.c **** float pid_get_max_d(PID_Controller_t *pid) {
+ 924              		.loc 1 198 44 is_stmt 1 view -0
+ 925              		.cfi_startproc
+ 926              		@ args = 0, pretend = 0, frame = 0
+ 927              		@ frame_needed = 0, uses_anonymous_args = 0
+ 928              		@ link register save eliminated.
+ 199:Lib/Control/pid_utils.c ****     return pid->d_max;
+ 929              		.loc 1 199 5 view .LVU236
+ 200:Lib/Control/pid_utils.c **** }...
+ 930              		.loc 1 200 1 is_stmt 0 view .LVU237
+ 931 0000 90ED0C0A 		vldr.32	s0, [r0, #48]
+ 932 0004 7047     		bx	lr
+ 933              		.cfi_endproc
+ 934              	.LFE21:
+ 936              		.text
+ 937              	.Letext0:
+ 938              		.file 2 "Lib/Control/pid_utils.h"
+ARM GAS  /tmp/ccJWPH9k.s 			page 21
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 pid_utils.c
-     /tmp/ccOdXKCa.s:18     .text.pi_control:0000000000000000 $t
-     /tmp/ccOdXKCa.s:26     .text.pi_control:0000000000000000 pi_control
-     /tmp/ccOdXKCa.s:135    .text.pi_control:0000000000000094 $d
-     /tmp/ccOdXKCa.s:140    .text.pd_control:0000000000000000 $t
-     /tmp/ccOdXKCa.s:147    .text.pd_control:0000000000000000 pd_control
-     /tmp/ccOdXKCa.s:233    .text.pd_control:0000000000000070 $d
-     /tmp/ccOdXKCa.s:238    .text.pid_control:0000000000000000 $t
-     /tmp/ccOdXKCa.s:245    .text.pid_control:0000000000000000 pid_control
-     /tmp/ccOdXKCa.s:398    .text.pid_control:00000000000000dc $d
-     /tmp/ccOdXKCa.s:403    .text.pid_reset:0000000000000000 $t
-     /tmp/ccOdXKCa.s:410    .text.pid_reset:0000000000000000 pid_reset
-     /tmp/ccOdXKCa.s:437    .text.pid_set_kp:0000000000000000 $t
-     /tmp/ccOdXKCa.s:444    .text.pid_set_kp:0000000000000000 pid_set_kp
-     /tmp/ccOdXKCa.s:467    .text.pid_set_ki:0000000000000000 $t
-     /tmp/ccOdXKCa.s:474    .text.pid_set_ki:0000000000000000 pid_set_ki
-     /tmp/ccOdXKCa.s:497    .text.pid_set_kd:0000000000000000 $t
-     /tmp/ccOdXKCa.s:504    .text.pid_set_kd:0000000000000000 pid_set_kd
-     /tmp/ccOdXKCa.s:527    .text.pid_set_ts:0000000000000000 $t
-     /tmp/ccOdXKCa.s:534    .text.pid_set_ts:0000000000000000 pid_set_ts
-     /tmp/ccOdXKCa.s:557    .text.pid_set_out_constraint:0000000000000000 $t
-     /tmp/ccOdXKCa.s:564    .text.pid_set_out_constraint:0000000000000000 pid_set_out_constraint
-     /tmp/ccOdXKCa.s:584    .text.pid_set_deadband:0000000000000000 $t
-     /tmp/ccOdXKCa.s:591    .text.pid_set_deadband:0000000000000000 pid_set_deadband
-     /tmp/ccOdXKCa.s:608    .text.pid_set_d_filter_fc:0000000000000000 $t
-     /tmp/ccOdXKCa.s:615    .text.pid_set_d_filter_fc:0000000000000000 pid_set_d_filter_fc
-     /tmp/ccOdXKCa.s:656    .text.pid_set_d_filter_fc:0000000000000030 $d
-     /tmp/ccOdXKCa.s:661    .text.pid_set_max_d:0000000000000000 $t
-     /tmp/ccOdXKCa.s:668    .text.pid_set_max_d:0000000000000000 pid_set_max_d
-     /tmp/ccOdXKCa.s:691    .text.pid_init:0000000000000000 $t
-     /tmp/ccOdXKCa.s:698    .text.pid_init:0000000000000000 pid_init
+     /tmp/ccJWPH9k.s:18     .text.pi_control:0000000000000000 $t
+     /tmp/ccJWPH9k.s:26     .text.pi_control:0000000000000000 pi_control
+     /tmp/ccJWPH9k.s:138    .text.pi_control:0000000000000090 $d
+     /tmp/ccJWPH9k.s:143    .text.pd_control:0000000000000000 $t
+     /tmp/ccJWPH9k.s:150    .text.pd_control:0000000000000000 pd_control
+     /tmp/ccJWPH9k.s:236    .text.pd_control:0000000000000070 $d
+     /tmp/ccJWPH9k.s:241    .text.pid_control:0000000000000000 $t
+     /tmp/ccJWPH9k.s:248    .text.pid_control:0000000000000000 pid_control
+     /tmp/ccJWPH9k.s:417    .text.pid_control:00000000000000f0 $d
+     /tmp/ccJWPH9k.s:422    .text.pid_reset:0000000000000000 $t
+     /tmp/ccJWPH9k.s:429    .text.pid_reset:0000000000000000 pid_reset
+     /tmp/ccJWPH9k.s:450    .text.pid_set_kp:0000000000000000 $t
+     /tmp/ccJWPH9k.s:457    .text.pid_set_kp:0000000000000000 pid_set_kp
+     /tmp/ccJWPH9k.s:480    .text.pid_set_ki:0000000000000000 $t
+     /tmp/ccJWPH9k.s:487    .text.pid_set_ki:0000000000000000 pid_set_ki
+     /tmp/ccJWPH9k.s:510    .text.pid_set_kd:0000000000000000 $t
+     /tmp/ccJWPH9k.s:517    .text.pid_set_kd:0000000000000000 pid_set_kd
+     /tmp/ccJWPH9k.s:540    .text.pid_set_ts:0000000000000000 $t
+     /tmp/ccJWPH9k.s:547    .text.pid_set_ts:0000000000000000 pid_set_ts
+     /tmp/ccJWPH9k.s:570    .text.pid_set_out_constraint:0000000000000000 $t
+     /tmp/ccJWPH9k.s:577    .text.pid_set_out_constraint:0000000000000000 pid_set_out_constraint
+     /tmp/ccJWPH9k.s:597    .text.pid_set_deadband:0000000000000000 $t
+     /tmp/ccJWPH9k.s:604    .text.pid_set_deadband:0000000000000000 pid_set_deadband
+     /tmp/ccJWPH9k.s:621    .text.pid_set_d_filter_fc:0000000000000000 $t
+     /tmp/ccJWPH9k.s:628    .text.pid_set_d_filter_fc:0000000000000000 pid_set_d_filter_fc
+     /tmp/ccJWPH9k.s:672    .text.pid_set_d_filter_fc:0000000000000034 $d
+     /tmp/ccJWPH9k.s:677    .text.pid_set_max_d:0000000000000000 $t
+     /tmp/ccJWPH9k.s:684    .text.pid_set_max_d:0000000000000000 pid_set_max_d
+     /tmp/ccJWPH9k.s:707    .text.pid_get_kp:0000000000000000 $t
+     /tmp/ccJWPH9k.s:714    .text.pid_get_kp:0000000000000000 pid_get_kp
+     /tmp/ccJWPH9k.s:730    .text.pid_get_ki:0000000000000000 $t
+     /tmp/ccJWPH9k.s:737    .text.pid_get_ki:0000000000000000 pid_get_ki
+     /tmp/ccJWPH9k.s:753    .text.pid_get_kd:0000000000000000 $t
+     /tmp/ccJWPH9k.s:760    .text.pid_get_kd:0000000000000000 pid_get_kd
+     /tmp/ccJWPH9k.s:776    .text.pid_get_ts:0000000000000000 $t
+     /tmp/ccJWPH9k.s:783    .text.pid_get_ts:0000000000000000 pid_get_ts
+     /tmp/ccJWPH9k.s:799    .text.pid_get_out_max:0000000000000000 $t
+     /tmp/ccJWPH9k.s:806    .text.pid_get_out_max:0000000000000000 pid_get_out_max
+     /tmp/ccJWPH9k.s:822    .text.pid_get_out_min:0000000000000000 $t
+     /tmp/ccJWPH9k.s:829    .text.pid_get_out_min:0000000000000000 pid_get_out_min
+     /tmp/ccJWPH9k.s:845    .text.pid_get_deadband:0000000000000000 $t
+     /tmp/ccJWPH9k.s:852    .text.pid_get_deadband:0000000000000000 pid_get_deadband
+     /tmp/ccJWPH9k.s:868    .text.pid_get_d_filter_fc:0000000000000000 $t
+     /tmp/ccJWPH9k.s:875    .text.pid_get_d_filter_fc:0000000000000000 pid_get_d_filter_fc
+     /tmp/ccJWPH9k.s:891    .text.pid_get_d_alpha_filter:0000000000000000 $t
+     /tmp/ccJWPH9k.s:898    .text.pid_get_d_alpha_filter:0000000000000000 pid_get_d_alpha_filter
+     /tmp/ccJWPH9k.s:914    .text.pid_get_max_d:0000000000000000 $t
+     /tmp/ccJWPH9k.s:921    .text.pid_get_max_d:0000000000000000 pid_get_max_d
 
 NO UNDEFINED SYMBOLS

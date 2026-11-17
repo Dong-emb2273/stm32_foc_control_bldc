@@ -58,6 +58,8 @@ Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c \
 Core/Src/system_stm32f4xx.c \
 Core/Src/sysmem.c \
 Core/Src/syscalls.c \
@@ -76,19 +78,42 @@ Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c \
 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c
 
 
-C_SOURCES += Core/Src/driver.c
-C_SOURCES += Core/Src/as5048a.c
-C_SOURCES += Core/Src/drv8323s.c
-C_SOURCES += Core/Src/encoder.c
-C_SOURCES += Core/Src/foc_math.c
-C_SOURCES += Core/Src/foc_utils.c
-C_SOURCES += Core/Src/fsm.c
-C_SOURCES += Core/Src/pid_utils.c
-C_SOURCES += Core/Src/can.c
-C_SOURCES += Core/Src/uart.c
-C_SOURCES += Core/Src/lpf.c
-C_SOURCES += Core/Src/pll_filter.c
-C_SOURCES += Core/Src/storage.c
+C_SOURCES += Lib/Driver/driver.c
+
+C_SOURCES += Lib/FOC/FOC_config.c
+C_SOURCES += Lib/FOC/FOC_math.c
+C_SOURCES += Lib/FOC/FOC_utils.c
+C_SOURCES += Lib/FOC/i2t.c
+C_SOURCES += Lib/FOC/vbus_protection.c
+
+C_SOURCES += Lib/Control/pid_utils.c
+C_SOURCES += Lib/Control/impedance_control.c
+C_SOURCES += Lib/Control/trajectory.c
+
+C_SOURCES += Lib/SMO/sliding_mode_observer.c
+C_SOURCES += Lib/PLL/pll.c
+C_SOURCES += Lib/MOTOR/motor.c
+C_SOURCES += Lib/LINK/stm32f405_link.c
+
+
+C_SOURCES += Lib/Digital_Filter/lpf.c
+C_SOURCES += Lib/Digital_Filter/moving_average.c
+C_SOURCES += Lib/Digital_Filter/pll_filter.c
+
+C_SOURCES += Lib/HFI/hfi_lpf.c
+C_SOURCES += Lib/HFI/hfi_sdft.c
+
+C_SOURCES += Lib/SF_MOTION_COM/sf_motion_com.c
+C_SOURCES += Lib/SF_MOTION_COM/sf_motion_usb_com.c
+
+C_SOURCES += Lib/SELF_COMMISSIONING/self_commissioning.c
+
+C_SOURCES += Lib/STORAGE/storage.c
+
+C_SOURCES += Lib/AS5048A_Driver/as5048a.c
+
+
+
 
 # ASM sources
 ASM_SOURCES =  \
@@ -157,6 +182,28 @@ C_INCLUDES =  \
 -IMiddlewares/Third_Party/FreeRTOS/Source/include \
 -IMiddlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 \
 -IMiddlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
+
+C_INCLUDES += -ILib/Driver
+C_INCLUDES += -ILib/FOC
+C_INCLUDES += -ILib/Control
+C_INCLUDES += -ILib/SMO
+C_INCLUDES += -ILib/PLL
+C_INCLUDES += -ILib/Digital_Filter
+C_INCLUDES += -ILib/HFI
+C_INCLUDES += -ILib/MOTOR
+C_INCLUDES += -ILib/_DEVICE_CONFIG
+
+C_INCLUDES += -ILib/LINK
+C_INCLUDES += -ILib/SELF_COMMISSIONING
+C_INCLUDES += -ILib/STORAGE
+
+
+C_INCLUDES += -ILib/SF_MOTION_COM
+
+
+
+C_INCLUDES += -ILib/AS5048A_Driver
+
 
 
 # compile gcc flags

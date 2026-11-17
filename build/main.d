@@ -17,6 +17,9 @@ build/main.o: Core/Src/main.c Core/Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h \
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h \
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_adc.h \
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc_ex.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h \
@@ -40,13 +43,17 @@ build/main.o: Core/Src/main.c Core/Inc/main.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
  Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
- Core/Inc/uart.h Core/Inc/main.h Core/Inc/hw_config.h \
- Core/Inc/user_config.h Core/Inc/driver.h Core/Inc/as5048a.h \
- Core/Inc/driver.h Core/Inc/pll_filter.h Core/Inc/drv8323s.h \
- Core/Inc/foc_utils.h Core/Inc/drv8323s.h Core/Inc/as5048a.h \
- Core/Inc/foc_math.h Core/Inc/pid_utils.h Core/Inc/joint_acc.h \
- Core/Inc/lpf.h Core/Inc/can.h Core/Inc/fsm.h Core/Inc/foc_utils.h \
- Core/Inc/joint_acc.h Core/Inc/encoder.h Core/Inc/fsm.h
+ Lib/Driver/driver.h Lib/_DEVICE_CONFIG/device_config.h \
+ Lib/LINK/stm32f405_link.h Lib/MOTOR/motor.h Lib/FOC/FOC_math.h \
+ Lib/Digital_Filter/lpf.h Lib/AS5048A_Driver/as5048a.h \
+ Lib/Digital_Filter/pll_filter.h Lib/FOC/FOC_utils.h Lib/FOC/FOC_config.h \
+ Lib/FOC/FOC_math.h Lib/Control/pid_utils.h Lib/FOC/i2t.h \
+ Lib/FOC/vbus_protection.h Lib/Control/impedance_control.h \
+ Lib/SMO/sliding_mode_observer.h Lib/PLL/pll.h Lib/HFI/hfi_sdft.h \
+ Lib/HFI/hfi_lpf.h Lib/Control/trajectory.h \
+ Lib/SELF_COMMISSIONING/self_commissioning.h \
+ Lib/Digital_Filter/moving_average.h Lib/STORAGE/storage.h \
+ Lib/SF_MOTION_COM/sf_motion_usb_com.h Lib/SF_MOTION_COM/sf_motion_com.h
 Core/Inc/main.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 Core/Inc/stm32f4xx_hal_conf.h:
@@ -68,6 +75,9 @@ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h:
+Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h:
+Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_adc.h:
+Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc_ex.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h:
@@ -91,25 +101,28 @@ Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
 Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:
-Core/Inc/uart.h:
-Core/Inc/main.h:
-Core/Inc/hw_config.h:
-Core/Inc/user_config.h:
-Core/Inc/driver.h:
-Core/Inc/as5048a.h:
-Core/Inc/driver.h:
-Core/Inc/pll_filter.h:
-Core/Inc/drv8323s.h:
-Core/Inc/foc_utils.h:
-Core/Inc/drv8323s.h:
-Core/Inc/as5048a.h:
-Core/Inc/foc_math.h:
-Core/Inc/pid_utils.h:
-Core/Inc/joint_acc.h:
-Core/Inc/lpf.h:
-Core/Inc/can.h:
-Core/Inc/fsm.h:
-Core/Inc/foc_utils.h:
-Core/Inc/joint_acc.h:
-Core/Inc/encoder.h:
-Core/Inc/fsm.h:
+Lib/Driver/driver.h:
+Lib/_DEVICE_CONFIG/device_config.h:
+Lib/LINK/stm32f405_link.h:
+Lib/MOTOR/motor.h:
+Lib/FOC/FOC_math.h:
+Lib/Digital_Filter/lpf.h:
+Lib/AS5048A_Driver/as5048a.h:
+Lib/Digital_Filter/pll_filter.h:
+Lib/FOC/FOC_utils.h:
+Lib/FOC/FOC_config.h:
+Lib/FOC/FOC_math.h:
+Lib/Control/pid_utils.h:
+Lib/FOC/i2t.h:
+Lib/FOC/vbus_protection.h:
+Lib/Control/impedance_control.h:
+Lib/SMO/sliding_mode_observer.h:
+Lib/PLL/pll.h:
+Lib/HFI/hfi_sdft.h:
+Lib/HFI/hfi_lpf.h:
+Lib/Control/trajectory.h:
+Lib/SELF_COMMISSIONING/self_commissioning.h:
+Lib/Digital_Filter/moving_average.h:
+Lib/STORAGE/storage.h:
+Lib/SF_MOTION_COM/sf_motion_usb_com.h:
+Lib/SF_MOTION_COM/sf_motion_com.h:

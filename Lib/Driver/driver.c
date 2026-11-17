@@ -266,7 +266,7 @@ void GPIO_LED_RED_DIS(void){
 }
 
 
-void GPIO_INIT (void){
+void GPIO_Init (void){
 
   GPIO_DRV8323_INIT();
   GPIO_AS5048A_INIT();
@@ -281,6 +281,25 @@ void GPIO_INIT (void){
 // 					CONFIG TIM & PWM ( EDIT HERE )
 // ==========================================================
 #ifdef __TIM_CONFIG__
+
+
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+  if(htim->Instance==TIM1)
+  {
+    /* USER CODE BEGIN TIM1_MspPostInit 0 */
+    GPIO_TIM_PWM_INIT();
+    /* USER CODE END TIM1_MspPostInit 0 */
+
+    
+
+    /* USER CODE BEGIN TIM1_MspPostInit 1 */
+
+    /* USER CODE END TIM1_MspPostInit 1 */
+  }
+
+}
 
 void TIM_PWM_DMA_CONFIG(void) {
 	// 1. B?t Clock 
@@ -938,172 +957,172 @@ uint32_t CRC_Calculate_DMA(uint8_t *pBuffer, uint32_t length){
 
 #ifdef __LINK_DRIVER__
 
-static uint32_t get_timer_clock(TIM_HandleTypeDef *htim) {
-  if (htim->Instance == TIM1 || htim->Instance == TIM8 || 
-      htim->Instance == TIM9 || htim->Instance == TIM10 || 
-      htim->Instance == TIM11) {
-    // Timer in APB2
-    uint32_t pclk = HAL_RCC_GetPCLK2Freq();
-    if ((RCC->CFGR & RCC_CFGR_PPRE2) != RCC_CFGR_PPRE2_DIV1)
-      return pclk * 2;  // Timer clock doubled if APB prescaler != 1
-    else
-      return pclk;
-  } else {
-    // Timer in APB1
-    uint32_t pclk = HAL_RCC_GetPCLK1Freq();
-    if ((RCC->CFGR & RCC_CFGR_PPRE1) != RCC_CFGR_PPRE1_DIV1)
-      return pclk * 2;
-    else
-      return pclk;
-  }
-}
+// static uint32_t get_timer_clock(TIM_HandleTypeDef *htim) {
+//   if (htim->Instance == TIM1 || htim->Instance == TIM8 || 
+//       htim->Instance == TIM9 || htim->Instance == TIM10 || 
+//       htim->Instance == TIM11) {
+//     // Timer in APB2
+//     uint32_t pclk = HAL_RCC_GetPCLK2Freq();
+//     if ((RCC->CFGR & RCC_CFGR_PPRE2) != RCC_CFGR_PPRE2_DIV1)
+//       return pclk * 2;  // Timer clock doubled if APB prescaler != 1
+//     else
+//       return pclk;
+//   } else {
+//     // Timer in APB1
+//     uint32_t pclk = HAL_RCC_GetPCLK1Freq();
+//     if ((RCC->CFGR & RCC_CFGR_PPRE1) != RCC_CFGR_PPRE1_DIV1)
+//       return pclk * 2;
+//     else
+//       return pclk;
+//   }
+// }
 
-void link_set_pwm_freq(TIM_TypeDef *timx, uint32_t freq) {
-  const uint32_t timer_clock = get_timer_clock(timx);
+// void link_set_pwm_freq(TIM_TypeDef *timx, uint32_t freq) {
+//   const uint32_t timer_clock = get_timer_clock(timx);
 
-  // prescaler and period for center-aligned mode
-  uint32_t prescaler = 0;
-  uint32_t period = (timer_clock / (2 * freq)) - 1;
+//   // prescaler and period for center-aligned mode
+//   uint32_t prescaler = 0;
+//   uint32_t period = (timer_clock / (2 * freq)) - 1;
 
-  if (period > 0xFFFF) {
-    prescaler = period / 0xFFFF;
-    period = (timer_clock / (2 * freq * (prescaler + 1))) - 1;
-  }
+//   if (period > 0xFFFF) {
+//     prescaler = period / 0xFFFF;
+//     period = (timer_clock / (2 * freq * (prescaler + 1))) - 1;
+//   }
 
-  timx->PSC = prescaler;
-  timx->ARR = period;
-}
+//   timx->PSC = prescaler;
+//   timx->ARR = period;
+// }
 
-uint32_t link_get_max_pwm(TIM_TypeDef *timx){
-  return timx->ARR;
-}
+// uint32_t link_get_max_pwm(TIM_TypeDef *timx){
+//   return timx->ARR;
+// }
 
-int link_enable_pwm(TIM_TypeDef *timx){
-  if (timx == NULL) return -1;
+// int link_enable_pwm(TIM_TypeDef *timx){
+//   if (timx == NULL) return -1;
 
-  /* Enable CH1, CH2, CH3 */
-  timx->CCER  |= TIM_CCER_CC1E
-              | TIM_CCER_CC2E
-              | TIM_CCER_CC3E;
+//   /* Enable CH1, CH2, CH3 */
+//   timx->CCER  |= TIM_CCER_CC1E
+//               | TIM_CCER_CC2E
+//               | TIM_CCER_CC3E;
 
-  /* Enable complementary CH1N, CH2N, CH3N */
-  timx->CCER  |= TIM_CCER_CC1NE
-              | TIM_CCER_CC2NE
-              | TIM_CCER_CC3NE;
+//   /* Enable complementary CH1N, CH2N, CH3N */
+//   timx->CCER  |= TIM_CCER_CC1NE
+//               | TIM_CCER_CC2NE
+//               | TIM_CCER_CC3NE;
 
-  /* Enable CH4 for ADC trigger */
-  timx->CCER |= TIM_CCER_CC4E;
+//   /* Enable CH4 for ADC trigger */
+//   timx->CCER |= TIM_CCER_CC4E;
 
-  /* Set CH4 compare value for ADC trigger */
-  timx->CCR4 = timx->ARR - 1U;
+//   /* Set CH4 compare value for ADC trigger */
+//   timx->CCR4 = timx->ARR - 1U;
 
-  /* Enable main output (TIM1/TIM8 advanced timers) */
-  timx->BDTR |= TIM_BDTR_MOE;
+//   /* Enable main output (TIM1/TIM8 advanced timers) */
+//   timx->BDTR |= TIM_BDTR_MOE;
 
-  /* Enable timer counter */
-  timx->CR1 |= TIM_CR1_CEN;
+//   /* Enable timer counter */
+//   timx->CR1 |= TIM_CR1_CEN;
 
-  return 0;
-}
+//   return 0;
+// }
 
-int link_disable_pwm(TIM_TypeDef *timx){
-  if (timx == NULL) return -1;
+// int link_disable_pwm(TIM_TypeDef *timx){
+//   if (timx == NULL) return -1;
 
-  /* Disable main output */
-  timx->BDTR &= ~TIM_BDTR_MOE;
+//   /* Disable main output */
+//   timx->BDTR &= ~TIM_BDTR_MOE;
 
-  /* Disable CH1, CH2, CH3 */
-  timx->CCER &= ~(TIM_CCER_CC1E  |
-                  TIM_CCER_CC1NE |
-                  TIM_CCER_CC2E  |
-                  TIM_CCER_CC2NE |
-                  TIM_CCER_CC3E  |
-                  TIM_CCER_CC3NE |
-                  TIM_CCER_CC4E);
+//   /* Disable CH1, CH2, CH3 */
+//   timx->CCER &= ~(TIM_CCER_CC1E  |
+//                   TIM_CCER_CC1NE |
+//                   TIM_CCER_CC2E  |
+//                   TIM_CCER_CC2NE |
+//                   TIM_CCER_CC3E  |
+//                   TIM_CCER_CC3NE |
+//                   TIM_CCER_CC4E);
 
-  return 0;
-}
+//   return 0;
+// }
 
-int link_enable_adc(ADC_TypeDef *adc){
-  if (adc == NULL) return -1;
+// int link_enable_adc(ADC_TypeDef *adc){
+//   if (adc == NULL) return -1;
 
-  /* Enable ADC */
-  adc->CR2 |= ADC_CR2_ADON;
+//   /* Enable ADC */
+//   adc->CR2 |= ADC_CR2_ADON;
 
-  /* Clear previous injected conversion flag */
-  adc->SR &= ~ADC_SR_JEOC;
+//   /* Clear previous injected conversion flag */
+//   adc->SR &= ~ADC_SR_JEOC;
 
-  /* Enable injected end of conversion interrupt */
-  adc->CR1 |= ADC_CR1_JEOCIE;
+//   /* Enable injected end of conversion interrupt */
+//   adc->CR1 |= ADC_CR1_JEOCIE;
 
-  /* Software trigger if external trigger is disabled */
-  if ((adc->CR2 & ADC_CR2_JEXTEN) == 0U)
-  {
-      adc->CR2 |= ADC_CR2_JSWSTART;
-  }
+//   /* Software trigger if external trigger is disabled */
+//   if ((adc->CR2 & ADC_CR2_JEXTEN) == 0U)
+//   {
+//       adc->CR2 |= ADC_CR2_JSWSTART;
+//   }
 
-  return 0;
-}
+//   return 0;
+// }
 
-int link_disable_adc(ADC_TypeDef *adc){
-  if (adc == NULL) return -1;
+// int link_disable_adc(ADC_TypeDef *adc){
+//   if (adc == NULL) return -1;
 
-  /* Disable injected interrupt */
-  adc->CR1 &= ~ADC_CR1_JEOCIE;
+//   /* Disable injected interrupt */
+//   adc->CR1 &= ~ADC_CR1_JEOCIE;
 
-  /* Disable external injected trigger */
-  adc->CR2 &= ~ADC_CR2_JEXTEN;
+//   /* Disable external injected trigger */
+//   adc->CR2 &= ~ADC_CR2_JEXTEN;
 
-  /* Clear injected conversion flag */
-  adc->SR &= ~ADC_SR_JEOC;
+//   /* Clear injected conversion flag */
+//   adc->SR &= ~ADC_SR_JEOC;
 
-  return 0;
-}
+//   return 0;
+// }
 
-int link_write_flash(void *data, uint32_t len){
-  HAL_StatusTypeDef status;
-  FLASH_EraseInitTypeDef EraseInitStruct;
-  uint32_t SectorError = 0;
+// int link_write_flash(void *data, uint32_t len){
+//   HAL_StatusTypeDef status;
+//   FLASH_EraseInitTypeDef EraseInitStruct;
+//   uint32_t SectorError = 0;
   
-  HAL_FLASH_Unlock();
+//   HAL_FLASH_Unlock();
 
-  EraseInitStruct.TypeErase    = FLASH_TYPEERASE_SECTORS;
-  EraseInitStruct.VoltageRange = FLASH_VOLTAGE_RANGE_3;
-  EraseInitStruct.Sector       = FLASH_SECTOR_NUM;
-  EraseInitStruct.NbSectors    = 1;
+//   EraseInitStruct.TypeErase    = FLASH_TYPEERASE_SECTORS;
+//   EraseInitStruct.VoltageRange = FLASH_VOLTAGE_RANGE_3;
+//   EraseInitStruct.Sector       = FLASH_SECTOR_NUM;
+//   EraseInitStruct.NbSectors    = 1;
 
-  status = HAL_FLASHEx_Erase(&EraseInitStruct, &SectorError);
-  if (status != HAL_OK) {
-    HAL_FLASH_Lock();
-    return -1;
-  }
+//   status = HAL_FLASHEx_Erase(&EraseInitStruct, &SectorError);
+//   if (status != HAL_OK) {
+//     HAL_FLASH_Lock();
+//     return -1;
+//   }
 
-  uint32_t address = FLASH_SECTOR_ADDR;
-  uint8_t *src = (uint8_t *)data;
+//   uint32_t address = FLASH_SECTOR_ADDR;
+//   uint8_t *src = (uint8_t *)data;
 
-  for (uint32_t i = 0; i < len; i += 4) {
-    uint32_t word = *(uint32_t*)(src + i);
-    status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, address, word);
-    if (status != HAL_OK) {
-      HAL_FLASH_Lock();
-      return -1;
-    }
-    address += 4;
-  }
+//   for (uint32_t i = 0; i < len; i += 4) {
+//     uint32_t word = *(uint32_t*)(src + i);
+//     status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, address, word);
+//     if (status != HAL_OK) {
+//       HAL_FLASH_Lock();
+//       return -1;
+//     }
+//     address += 4;
+//   }
 
-  HAL_FLASH_Lock();
-  return 0;
-}
+//   HAL_FLASH_Lock();
+//   return 0;
+// }
 
-int link_get_adc(adc_raw_t*adc_raw){
+// int link_get_adc(adc_raw_t*adc_raw){
 
-  adc_raw->ia    = ADC_IA_DATA;
-  adc_raw->ib    = ADC_IB_DATA;
-  adc_raw->ic    = ADC_IC_DATA;
-  adc_raw->vbus  = ADC_VBUS_DATA;
+//   adc_raw->ia    = ADC_IA_DATA;
+//   adc_raw->ib    = ADC_IB_DATA;
+//   adc_raw->ic    = ADC_IC_DATA;
+//   adc_raw->vbus  = ADC_VBUS_DATA;
 
-  return 0;
-}
+//   return 0;
+// }
 
 
 

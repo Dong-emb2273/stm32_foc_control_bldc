@@ -23,18 +23,17 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-
-#include "uart.h"
-#include "hw_config.h"
-#include "user_config.h"
 #include "driver.h"
+
+#include "device_config.h"
+#include "stm32f405_link.h"
+#include "motor.h"
 #include "as5048a.h"
-#include "drv8323s.h"
-#include "foc_utils.h"
-#include "can.h"
-#include "joint_acc.h"
-#include "encoder.h"
-#include "fsm.h"
+#include "FOC_utils.h"
+#include "self_commissioning.h"
+#include "storage.h"
+#include "sf_motion_usb_com.h"
+#include "sf_motion_com.h"
 
 /* USER CODE END Includes */
 
@@ -50,6 +49,26 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
+
+ADC_HandleTypeDef hadc1;
+
+CAN_HandleTypeDef hcan1;
+
+SPI_HandleTypeDef hspi1;
+DMA_HandleTypeDef hdma_spi1_tx;
+DMA_HandleTypeDef hdma_spi1_rx;
+
+TIM_HandleTypeDef htim1;
+
+
+AS5048A_t hencd1;
+uint32_t adc_buff[4];
+foc_t hfoc1;
+self_commissioning_t hsc1;
+storage_t hstorage1;
+
+sfm_com_t husb_com;
+sfm_com_t hcan_com;
 
 /* USER CODE END PM */
 
@@ -71,25 +90,6 @@ const osThreadAttr_t ErrorTask_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
-
-FSMStruct state;
-
-/* foc control setup*/
-foc_t hfoc;
-
-
-
-/* usart setup*/
-
-
-/* can setup*/
-CANTxMessage can_tx;
-CANRxMessage can_rx;
-
-/* joint setup*/
-// JointRobot_t robot_joints;
-JointCommand_t joint_cmd;
-JointState_t joint_state;
 
 
 
@@ -123,10 +123,206 @@ uint8_t Serial2RxBuffer[1];
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
+static void MX_TIM1_Init(void);
 void StartCalibrationTask(void *argument);
 
 /* USER CODE BEGIN PFP */
 
+int write_flash(void *data, uint32_t len) {
+  return link_write_flash(data, len);
+}
+
+int read_flash(void *data, uint32_t len) {
+  memcpy(data, (void*)FLASH_SECTOR_ADDR, len);
+  return 0;
+}
+uint32_t motor1_get_pwm_res(void) {
+  return link_get_max_pwm(&htim1);
+}
+float motor1_as5047p_get_mech_deg(void) {
+  return AS5048A_get_degree(&hencd1);
+}
+
+float motor1_as5047p_get_continuous_mech_deg(void) {
+  return AS5048A_get_continuous_degree(&hencd1);
+}
+
+float motor1_as5047p_get_rpm(void) {
+  return AS5048A_get_rpm(&hencd1);
+}
+
+static void init_motor(void) {
+  // motor pwm
+  motor_init_pwm(&hfoc1.motor, &TIM1->CCR1, &TIM1->CCR2, &TIM1->CCR3);
+  // current sense
+  motor_init_adc_current_sense(&hfoc1.motor, &adc_buff[0], &adc_buff[1], &adc_buff[2]);
+  // power voltage sense
+  motor_init_adc_power_voltage_sense(&hfoc1.motor, &adc_buff[3]);
+  motor_init_lpf_power_voltage_sense(&hfoc1.motor, hstorage1.memory.voltage_sens.filter_fc, BLDC_PWM_FREQ);
+  // current sense amplifier calibration enable (for internal CSA only)
+  // CSA_CAL1_GPIO_Port->BSRR = CSA_CAL1_Pin << 16;
+}
+
+static void init_encoder(void) {
+  AS5048A_Config(&hencd1, SPI_EX_TransmitReceive_DMA, GPIO_AS5048A_EX_CS_EN, GPIO_AS5048A_EX_CS_DIS);
+  AS5048A_Init(&hencd1, 
+              hstorage1.memory.encoder_config.is_dir_inverted? SENSOR_DIR_REVERSE : SENSOR_DIR_NORMAL, 
+              hstorage1.memory.encoder_config.scale);
+  AS5048A_set_pll_filter(&hencd1, 
+                        hstorage1.memory.encoder_config.pll_filt_bandwidth, 
+                        hstorage1.memory.encoder_config.pll_filt_damping_ratio, 
+                        FOC_TS);
+}
+int can_recv_data(uint8_t *data, uint16_t len) {
+  (void)data;
+  (void)len;
+  return 0;
+}
+
+int can_send_data(uint8_t *data, uint16_t len) {
+  uint32_t can_std_id = (data[0] << 8) | data[1];
+  return link_can_send_data(can_std_id, data + 2, len);
+}
+
+
+static void init_foc(void) {
+#if USB_TO_CAN
+  link_can_init(USB_TO_CAN_DEVICE_ID);
+  sfm_usb_com_init(&hsfm_usb_com, usb_send_data);
+  sfm_com_init(&husb_com, 
+              sfm_com_usb_recv_data, 
+              sfm_com_usb_send_data, 
+              HAL_GetTick,
+              link_system_reset,
+              &hfoc1, &hstorage1, &hsc1);
+  sfm_com_init(&hcan_com, 
+              can_recv_data, 
+              can_send_data, 
+              HAL_GetTick,
+              link_system_reset,
+              &hfoc1, &hstorage1, &hsc1);
+#else
+  storage_init(&hstorage1, write_flash, read_flash);
+  storage_read_config(&hstorage1);
+  storage_copy_to_local(&hstorage1, &hfoc1);
+
+  link_set_pwm_freq(&htim1, BLDC_PWM_FREQ);
+  init_motor();
+  init_encoder();
+  sc_init(&hsc1, &hfoc1);
+
+  i2t_init(&hfoc1.i2t, FOC_TS);
+  i2t_set_config(&hfoc1.i2t, 
+                hstorage1.memory.protection.i2t_i_rated,
+                hstorage1.memory.protection.i2t_i_max,
+                hstorage1.memory.protection.i2t_t_max);
+  float uv = hstorage1.memory.protection.under_voltage;
+  float ov = hstorage1.memory.protection.over_voltage;
+  vbus_init(&hfoc1.vbus_prot, uv, ov, FOC_TS);
+  foc_inverter_init(&hfoc1, GPIO_DRV832xS_CS_EN , GPIO_DRV832xS_CS_DIS, motor1_get_pwm_res);
+  foc_feedback_sensor_init(&hfoc1, 
+                          motor1_as5047p_get_mech_deg, 
+                          motor1_as5047p_get_continuous_mech_deg,
+                          motor1_as5047p_get_rpm, 
+                          hstorage1.memory.encoder_config.error_comp_deg);
+  foc_cogging_comp_init(&hfoc1, hstorage1.memory.cogging_torque.current_LUT);
+  foc_disable(&hfoc1);
+
+  link_can_init(hfoc1.motor.device_id);
+  // sfm_usb_com_init(&hsfm_usb_com, usb_send_data);
+  // sfm_com_init(&husb_com, 
+  //             sfm_com_usb_recv_data, 
+  //             sfm_com_usb_send_data, 
+  //             HAL_GetTick,
+  //             link_system_reset,
+  //             &hfoc1, &hstorage1, &hsc1);
+  sfm_com_init(&hcan_com, 
+              can_recv_data, 
+              can_send_data, 
+              HAL_GetTick,
+              link_system_reset,
+              &hfoc1, &hstorage1, &hsc1);
+
+  // Id PI parameter
+  pid_reset(&hfoc1.id_ctrl);
+  pid_set_ts(&hfoc1.id_ctrl, FOC_TS);
+  // Id PI parameter
+  pid_reset(&hfoc1.iq_ctrl);
+  pid_set_ts(&hfoc1.iq_ctrl, FOC_TS);
+  // Speed PID parameter
+  pid_reset(&hfoc1.speed_ctrl);
+  pid_set_ts(&hfoc1.speed_ctrl, SPEED_TS);
+  // Position PID parameter
+  pid_reset(&hfoc1.pos_ctrl);
+  pid_set_ts(&hfoc1.pos_ctrl, POSITION_TS);
+  pid_set_max_d(&hfoc1.pos_ctrl, 100.0f);
+  // field weakening
+  pid_reset(&hfoc1.fw_ctrl);
+  pid_set_ts(&hfoc1.fw_ctrl, FOC_TS);
+
+  // foc_set_mode(&hfoc1, FOC_MODE_SENSORLESS_SMO_HFI_NEW);
+  foc_sensorless_init(&hfoc1, BLDC_PWM_FREQ);
+
+  // HAL_Delay(500);
+  link_enable_pwm(&htim1);
+  link_enable_adc(&hadc1);
+  foc_enable(&hfoc1);
+  // foc_set_motor_mode(&hfoc1, hstorage1.memory.motor_config.motor_mode);
+#endif
+}
+
+
+
+static void self_commissioning_update(void) {
+  if (sc_is_measure_done(&hsc1)) {
+    switch(sc_get_seq(&hsc1)) {
+      case SC_SEQUENCE_START_MEASURE_RS:
+        foc_set_motor_Rs(&hfoc1, sc_get_Rs(&hsc1));
+        break;
+      case SC_SEQUENCE_START_MEASURE_LD:
+        foc_set_motor_Ld(&hfoc1, sc_get_Ld(&hsc1));
+        break;
+      case SC_SEQUENCE_START_MEASURE_LQ:
+        foc_set_motor_Lq(&hfoc1, sc_get_Lq(&hsc1));
+        break;
+      case SC_SEQUENCE_START_CALIBRATE_ABS_ENCODER:
+        break;
+      case SC_SEQUENCE_START_CALC_POLE_PAIRS:
+        break;
+      case SC_SEQUENCE_START_MEASURE_COGGING_TORQUE:
+        husb_com.show_cogging_torque_lut = 1;
+        break;
+      default:
+        break;
+    }
+    sfm_com_send_event(&hcan_com, SFM_EVENT_SELFCOM_DONE);
+  }
+}
+
+static void event_update(void) {
+  foc_error_t error_code = FOC_ERROR_NONE;
+  if (foc_get_error_flag(&hfoc1, &error_code)) {
+    switch (error_code) {
+      case FOC_ERROR_I2T_TRIPPED: {
+        sfm_com_send_event(&husb_com, SFM_EVENT_I2T_TRIPPED);
+        sfm_com_send_event(&hcan_com, SFM_EVENT_I2T_TRIPPED);
+        break;
+      }
+      case FOC_ERROR_OVER_VOLTAGE: {
+        sfm_com_send_event(&husb_com, SFM_EVENT_OVER_VOLTAGE);
+        sfm_com_send_event(&hcan_com, SFM_EVENT_OVER_VOLTAGE);
+        break;
+      }
+      case FOC_ERROR_UNDER_VOLTAGE: {
+        sfm_com_send_event(&husb_com, SFM_EVENT_UNDER_VOLTAGE);
+        sfm_com_send_event(&hcan_com, SFM_EVENT_UNDER_VOLTAGE);
+        break;
+      }
+      default:
+        break;
+    }
+  }
+}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -166,35 +362,37 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
   MX_GPIO_Init();
-  GPIO_Init();
+//  GPIO_Init();
   MX_DMA_Init();
-
-
+  MX_SPI_IN_Init();
+  MX_SPI_EX_Init();
+  MX_USART_UART_Init();
+  MX_CAN_Init();
+  MX_TIM1_Init();
 
 
   ADC_DMA_CONFIG();
-
   TIM_PWM_DMA_CONFIG();
+
 	TIM_IQR_MS_CONGFIG();
   TIM_COUNT_US_CONFIG();
 
 
+  init_foc();
   
   // Load Config 
 
   // flash_erase_ready();
+  foc_position_control_update(&hfoc1,1);
 
-  init_trig_lut();
 
 	
 	/*ENCODER setup   */
 
+
   /*CAN setup   */
 
-
   
-
-  HAL_UART_Receive_IT(&huart, (uint8_t *)Serial2RxBuffer, 1);
 
   // Enable Timer
   TIM_COUNTER_ENABLE(TIM10);
@@ -253,6 +451,18 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
+    // indicator_update();
+    #if USB_TO_CAN
+        usb_to_can_update();
+    #else
+        AS5048A_update(&hencd1);
+        event_update();
+        sfm_com_update(&husb_com);
+        sfm_com_update(&hcan_com);
+        self_commissioning_update();
+    #endif
+
   }
   /* USER CODE END 3 */
 }
@@ -371,7 +581,87 @@ void TIM3_IRQHandler(void){
 	
 }
 //
+static void MX_TIM1_Init(void)
+{
 
+  /* USER CODE BEGIN TIM1_Init 0 */
+
+  /* USER CODE END TIM1_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+  TIM_OC_InitTypeDef sConfigOC = {0};
+  TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
+
+  /* USER CODE BEGIN TIM1_Init 1 */
+
+  /* USER CODE END TIM1_Init 1 */
+  htim1.Instance = TIM1;
+  htim1.Init.Prescaler = 0;
+  htim1.Init.CounterMode = TIM_COUNTERMODE_CENTERALIGNED1;
+  htim1.Init.Period = 1024;
+  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim1.Init.RepetitionCounter = 0;
+  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sConfigOC.OCMode = TIM_OCMODE_PWM1;
+  sConfigOC.Pulse = 0;
+  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+  sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
+  sConfigOC.OCFastMode = TIM_OCFAST_ENABLE;
+  sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
+  sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
+  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_ENABLE;
+  sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_ENABLE;
+  sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
+  sBreakDeadTimeConfig.DeadTime = 25;
+  sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
+  sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
+  sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_ENABLE;
+  if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM1_Init 2 */
+
+  /* USER CODE END TIM1_Init 2 */
+  HAL_TIM_MspPostInit(&htim1);
+
+}
 
 /*===========================================================*/
 
@@ -379,7 +669,6 @@ void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
 {
 	if (hspi->Instance == SPI2 || hspi->Instance == SPI1)
 	{
-		foc_sensored_calc_electric_angle(&hfoc);
 
 	}
 }
@@ -388,16 +677,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
   if (hcan->Instance == CAN1)
   {
-    if(HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &can_rx.rx_header, can_rx.data) != HAL_OK){
-      return;
-    }
-    hfoc.counter = 0;
-    Slave_Pack_State_2(&can_tx, &joint_state, &hfoc);
-    uint32_t TxMailbox;
-    if(HAL_CAN_AddTxMessage(hcan, &can_tx.tx_header, can_tx.data, &TxMailbox) != HAL_OK){
-      HAL_CAN_AbortTxRequest(hcan, CAN_TX_MAILBOX0 | CAN_TX_MAILBOX1 | CAN_TX_MAILBOX2);
-    }
-    Slave_Unpack_Cmd_2(&can_rx, &joint_cmd);
+
   }
 }
 /*===========================================================*/
@@ -405,15 +685,7 @@ void ADC_IRQHandler(void) {
 
 	if (ADC1->SR & ADC_SR_JEOC) {
 		ADC1->SR &= ~ADC_SR_JEOC;
-	
-		if (ENCODER_GetFlag()) {
-      ENCODER_Reset_Flag();
-      encoder.start_read(&encoder);
-		}
-
-    foc_get_power_voltage(&hfoc);
-
-    run_fsm(&state);
+    
 	}
 }
 
@@ -426,57 +698,11 @@ void ErrorTask(void *argument)
 void StartCalibrationTask(void *argument)
 {
   /* USER CODE BEGIN 5 */
-  hfoc.done_orderphase = 1;
-  hfoc.done_cal_encoder = 1;
-  float tx[3] = {0};
   osDelay(3000);
   /* Infinite loop */
   for(;;)
   {   
-    switch (state.state) {
-      case CALIBRATION_MODE: {
-        ENCODER_AutoDetect();
-        ENCODER_CHECK();
-        if(encoder.is_connected == 0) {
-          printf("Encoder not detected. Please check the connection.\r\n");
-          update_fsm(&state, MENU_CMD);
-          break;
-        }
-        foc_auto_calibration(&hfoc);
-        foc_cal_encoder(&hfoc);
-        
-        calibration_seq();
-        if(hfoc.done_cal_encoder == 1 && hfoc.done_orderphase == 1){
-          printf("Calibration Successful!\r\n");
-          update_fsm(&state, MENU_CMD);
-        }
-        break;
-      }
-      
-      case TEST_MODE: {
-        TestModeView();
-        osDelay(9);
-        break;
-      }
-      case MENU_MODE: {
-      
-        break;
-      }
-      case ENCODER_MODE: {
-        ENCODER_CHECK();
-        update_fsm(&state, MENU_CMD);
-        break;
-      }
-      case MOTOR_MODE:{
-        
-        break;
-      }
-      default:
-                  
-        break;
-    }
     
-    if(hfoc.counter <= 30000) hfoc.counter++;
 
     osDelay(1);
   }
