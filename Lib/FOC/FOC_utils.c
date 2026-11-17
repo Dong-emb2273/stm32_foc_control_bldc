@@ -66,7 +66,7 @@ void foc_reset(foc_t *hfoc) {
         }
         else if (hfoc->foc_mode == FOC_MODE_SENSORLESS_SMO_HFI) {
             hfi_lpf_reset(&hfoc->hfi_lpf);
-        }
+        } 
 
         hfoc->pd_time = 20;
         hfoc->pd_v_pulse = 0.0f;

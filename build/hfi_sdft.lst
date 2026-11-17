@@ -1,0 +1,969 @@
+ARM GAS  /tmp/ccRljahR.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"hfi_sdft.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.hfi_init,"ax",%progbits
+  18              		.align	1
+  19              		.global	hfi_init
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	hfi_init:
+  27              	.LVL0:
+  28              	.LFB1:
+  29              		.file 1 "Lib/HFI/hfi_sdft.c"
+   1:Lib/HFI/hfi_sdft.c **** #include "hfi_sdft.h"
+   2:Lib/HFI/hfi_sdft.c **** #include "math.h"
+   3:Lib/HFI/hfi_sdft.c **** #include <string.h>
+   4:Lib/HFI/hfi_sdft.c **** // Reference: https://www.sciencedirect.com/science/article/pii/S2214914723002155
+   5:Lib/HFI/hfi_sdft.c **** 
+   6:Lib/HFI/hfi_sdft.c **** void hfi_init(hfi_t *hhfi, float v_h, float f_h, float sampling_freq) {
+  30              		.loc 1 6 71 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 6 71 is_stmt 0 view .LVU1
+  35 0000 38B5     		push	{r3, r4, r5, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 16
+  38              		.cfi_offset 3, -16
+  39              		.cfi_offset 4, -12
+  40              		.cfi_offset 5, -8
+  41              		.cfi_offset 14, -4
+  42 0002 2DED048B 		vpush.64	{d8, d9}
+  43              	.LCFI1:
+  44              		.cfi_def_cfa_offset 32
+  45              		.cfi_offset 80, -32
+  46              		.cfi_offset 81, -28
+  47              		.cfi_offset 82, -24
+  48              		.cfi_offset 83, -20
+  49 0006 0546     		mov	r5, r0
+  50 0008 B0EE608A 		vmov.f32	s16, s1
+  51 000c F0EE418A 		vmov.f32	s17, s2
+   7:Lib/HFI/hfi_sdft.c ****     hhfi->omega_h = TWO_PI * f_h;
+ARM GAS  /tmp/ccRljahR.s 			page 2
+
+
+  52              		.loc 1 7 5 is_stmt 1 view .LVU2
+  53              		.loc 1 7 28 is_stmt 0 view .LVU3
+  54 0010 9FED209A 		vldr.32	s18, .L5
+  55 0014 60EE897A 		vmul.f32	s15, s1, s18
+  56              		.loc 1 7 19 view .LVU4
+  57 0018 C0ED047A 		vstr.32	s15, [r0, #16]
+   8:Lib/HFI/hfi_sdft.c ****     hhfi->v_h = v_h;
+  58              		.loc 1 8 5 is_stmt 1 view .LVU5
+  59              		.loc 1 8 15 is_stmt 0 view .LVU6
+  60 001c 80ED020A 		vstr.32	s0, [r0, #8]
+   9:Lib/HFI/hfi_sdft.c ****     hhfi->f_h = f_h;
+  61              		.loc 1 9 5 is_stmt 1 view .LVU7
+  62              		.loc 1 9 15 is_stmt 0 view .LVU8
+  63 0020 C0ED030A 		vstr.32	s1, [r0, #12]
+  10:Lib/HFI/hfi_sdft.c ****     pll_init(&hhfi->pll, 2000.0f, 6000.0f, 1.0f, 50000.0f);
+  64              		.loc 1 10 5 is_stmt 1 view .LVU9
+  65 0024 DFED1C1A 		vldr.32	s3, .L5+4
+  66 0028 B7EE001A 		vmov.f32	s2, #1.0e+0
+  67              	.LVL1:
+  68              		.loc 1 10 5 is_stmt 0 view .LVU10
+  69 002c DFED1B0A 		vldr.32	s1, .L5+8
+  70              	.LVL2:
+  71              		.loc 1 10 5 view .LVU11
+  72 0030 9FED1B0A 		vldr.32	s0, .L5+12
+  73              	.LVL3:
+  74              		.loc 1 10 5 view .LVU12
+  75 0034 00F50F70 		add	r0, r0, #572
+  76              	.LVL4:
+  77              		.loc 1 10 5 view .LVU13
+  78 0038 FFF7FEFF 		bl	pll_init
+  79              	.LVL5:
+  11:Lib/HFI/hfi_sdft.c ****     
+  12:Lib/HFI/hfi_sdft.c ****     hhfi->sdft_buff_idx = 0;
+  80              		.loc 1 12 5 is_stmt 1 view .LVU14
+  81              		.loc 1 12 25 is_stmt 0 view .LVU15
+  82 003c 0024     		movs	r4, #0
+  83 003e AC61     		str	r4, [r5, #24]
+  13:Lib/HFI/hfi_sdft.c ****     hhfi->sdft_window_size = sampling_freq / f_h;
+  84              		.loc 1 13 5 is_stmt 1 view .LVU16
+  85              		.loc 1 13 44 is_stmt 0 view .LVU17
+  86 0040 C8EE887A 		vdiv.f32	s15, s17, s16
+  87              		.loc 1 13 28 view .LVU18
+  88 0044 FDEEE77A 		vcvt.s32.f32	s15, s15
+  89 0048 C5ED057A 		vstr.32	s15, [r5, #20]	@ int
+  14:Lib/HFI/hfi_sdft.c ****     // calculate rotation factor: e^(j2pi/N) for k=1
+  15:Lib/HFI/hfi_sdft.c ****     float theta = TWO_PI / (float)hhfi->sdft_window_size;
+  90              		.loc 1 15 5 is_stmt 1 view .LVU19
+  91              		.loc 1 15 28 is_stmt 0 view .LVU20
+  92 004c F8EEE77A 		vcvt.f32.s32	s15, s15
+  93              		.loc 1 15 11 view .LVU21
+  94 0050 89EE278A 		vdiv.f32	s16, s18, s15
+  95              	.LVL6:
+  16:Lib/HFI/hfi_sdft.c ****     hhfi->sdft_rotation_factor.real = fast_cos(theta);
+  96              		.loc 1 16 5 is_stmt 1 view .LVU22
+  97              		.loc 1 16 39 is_stmt 0 view .LVU23
+  98 0054 B0EE480A 		vmov.f32	s0, s16
+  99 0058 FFF7FEFF 		bl	fast_cos
+ARM GAS  /tmp/ccRljahR.s 			page 3
+
+
+ 100              	.LVL7:
+ 101              		.loc 1 16 37 view .LVU24
+ 102 005c 85ED8D0A 		vstr.32	s0, [r5, #564]
+  17:Lib/HFI/hfi_sdft.c ****     hhfi->sdft_rotation_factor.imag = fast_sin(theta);
+ 103              		.loc 1 17 5 is_stmt 1 view .LVU25
+ 104              		.loc 1 17 39 is_stmt 0 view .LVU26
+ 105 0060 B0EE480A 		vmov.f32	s0, s16
+ 106 0064 FFF7FEFF 		bl	fast_sin
+ 107              	.LVL8:
+ 108              		.loc 1 17 37 view .LVU27
+ 109 0068 85ED8E0A 		vstr.32	s0, [r5, #568]
+  18:Lib/HFI/hfi_sdft.c **** 
+  19:Lib/HFI/hfi_sdft.c ****     // Reset buffer
+  20:Lib/HFI/hfi_sdft.c ****     for(int i = 0; i < hhfi->sdft_window_size; i++) {
+ 110              		.loc 1 20 5 is_stmt 1 view .LVU28
+ 111              	.LBB4:
+ 112              		.loc 1 20 9 view .LVU29
+ 113              	.LVL9:
+ 114              		.loc 1 20 13 is_stmt 0 view .LVU30
+ 115 006c 2346     		mov	r3, r4
+ 116              		.loc 1 20 5 view .LVU31
+ 117 006e 05E0     		b	.L2
+ 118              	.LVL10:
+ 119              	.L3:
+  21:Lib/HFI/hfi_sdft.c ****         hhfi->sdft_iq_buffer[i] = 0.0f;
+ 120              		.loc 1 21 9 is_stmt 1 discriminator 3 view .LVU32
+ 121              		.loc 1 21 33 is_stmt 0 discriminator 3 view .LVU33
+ 122 0070 9A1D     		adds	r2, r3, #6
+ 123 0072 05EB8202 		add	r2, r5, r2, lsl #2
+ 124 0076 0021     		movs	r1, #0
+ 125 0078 5160     		str	r1, [r2, #4]	@ float
+  20:Lib/HFI/hfi_sdft.c ****         hhfi->sdft_iq_buffer[i] = 0.0f;
+ 126              		.loc 1 20 48 is_stmt 1 discriminator 3 view .LVU34
+  20:Lib/HFI/hfi_sdft.c ****         hhfi->sdft_iq_buffer[i] = 0.0f;
+ 127              		.loc 1 20 49 is_stmt 0 discriminator 3 view .LVU35
+ 128 007a 0133     		adds	r3, r3, #1
+ 129              	.LVL11:
+ 130              	.L2:
+  20:Lib/HFI/hfi_sdft.c ****         hhfi->sdft_iq_buffer[i] = 0.0f;
+ 131              		.loc 1 20 20 is_stmt 1 discriminator 1 view .LVU36
+  20:Lib/HFI/hfi_sdft.c ****         hhfi->sdft_iq_buffer[i] = 0.0f;
+ 132              		.loc 1 20 28 is_stmt 0 discriminator 1 view .LVU37
+ 133 007c 6A69     		ldr	r2, [r5, #20]
+  20:Lib/HFI/hfi_sdft.c ****         hhfi->sdft_iq_buffer[i] = 0.0f;
+ 134              		.loc 1 20 5 discriminator 1 view .LVU38
+ 135 007e 9A42     		cmp	r2, r3
+ 136 0080 F6DC     		bgt	.L3
+ 137              	.LBE4:
+  22:Lib/HFI/hfi_sdft.c ****     }
+  23:Lib/HFI/hfi_sdft.c ****     
+  24:Lib/HFI/hfi_sdft.c ****     // Reset SDFT state
+  25:Lib/HFI/hfi_sdft.c ****     hhfi->last_Xk_iq.real = 0.0f;
+ 138              		.loc 1 25 5 is_stmt 1 view .LVU39
+ 139              		.loc 1 25 27 is_stmt 0 view .LVU40
+ 140 0082 0023     		movs	r3, #0
+ 141              	.LVL12:
+ 142              		.loc 1 25 27 view .LVU41
+ARM GAS  /tmp/ccRljahR.s 			page 4
+
+
+ 143 0084 C5F82C32 		str	r3, [r5, #556]	@ float
+  26:Lib/HFI/hfi_sdft.c ****     hhfi->last_Xk_iq.imag = 0.0f;
+ 144              		.loc 1 26 5 is_stmt 1 view .LVU42
+ 145              		.loc 1 26 27 is_stmt 0 view .LVU43
+ 146 0088 C5F83032 		str	r3, [r5, #560]	@ float
+  27:Lib/HFI/hfi_sdft.c **** }
+ 147              		.loc 1 27 1 view .LVU44
+ 148 008c BDEC048B 		vldm	sp!, {d8-d9}
+ 149              	.LCFI2:
+ 150              		.cfi_restore 82
+ 151              		.cfi_restore 83
+ 152              		.cfi_restore 80
+ 153              		.cfi_restore 81
+ 154              		.cfi_def_cfa_offset 16
+ 155              	.LVL13:
+ 156              		.loc 1 27 1 view .LVU45
+ 157 0090 38BD     		pop	{r3, r4, r5, pc}
+ 158              	.LVL14:
+ 159              	.L6:
+ 160              		.loc 1 27 1 view .LVU46
+ 161 0092 00BF     		.align	2
+ 162              	.L5:
+ 163 0094 DB0FC940 		.word	1086918619
+ 164 0098 00504347 		.word	1195593728
+ 165 009c 0080BB45 		.word	1169915904
+ 166 00a0 0000FA44 		.word	1157234688
+ 167              		.cfi_endproc
+ 168              	.LFE1:
+ 170              		.section	.text.hfi_update_estimate_position,"ax",%progbits
+ 171              		.align	1
+ 172              		.global	hfi_update_estimate_position
+ 173              		.syntax unified
+ 174              		.thumb
+ 175              		.thumb_func
+ 176              		.fpu fpv4-sp-d16
+ 178              	hfi_update_estimate_position:
+ 179              	.LVL15:
+ 180              	.LFB2:
+  28:Lib/HFI/hfi_sdft.c **** 
+  29:Lib/HFI/hfi_sdft.c **** void hfi_update_estimate_position(hfi_t *hhfi, float iq, float Ts) {
+ 181              		.loc 1 29 68 is_stmt 1 view -0
+ 182              		.cfi_startproc
+ 183              		@ args = 0, pretend = 0, frame = 24
+ 184              		@ frame_needed = 0, uses_anonymous_args = 0
+ 185              		.loc 1 29 68 is_stmt 0 view .LVU48
+ 186 0000 70B5     		push	{r4, r5, r6, lr}
+ 187              	.LCFI3:
+ 188              		.cfi_def_cfa_offset 16
+ 189              		.cfi_offset 4, -16
+ 190              		.cfi_offset 5, -12
+ 191              		.cfi_offset 6, -8
+ 192              		.cfi_offset 14, -4
+ 193 0002 2DED048B 		vpush.64	{d8, d9}
+ 194              	.LCFI4:
+ 195              		.cfi_def_cfa_offset 32
+ 196              		.cfi_offset 80, -32
+ 197              		.cfi_offset 81, -28
+ARM GAS  /tmp/ccRljahR.s 			page 5
+
+
+ 198              		.cfi_offset 82, -24
+ 199              		.cfi_offset 83, -20
+ 200 0006 86B0     		sub	sp, sp, #24
+ 201              	.LCFI5:
+ 202              		.cfi_def_cfa_offset 56
+ 203 0008 0446     		mov	r4, r0
+ 204 000a B0EE408A 		vmov.f32	s16, s0
+ 205 000e F0EE609A 		vmov.f32	s19, s1
+  30:Lib/HFI/hfi_sdft.c ****     int N = hhfi->sdft_window_size;
+ 206              		.loc 1 30 5 is_stmt 1 view .LVU49
+ 207              		.loc 1 30 9 is_stmt 0 view .LVU50
+ 208 0012 4569     		ldr	r5, [r0, #20]
+ 209              	.LVL16:
+  31:Lib/HFI/hfi_sdft.c **** 
+  32:Lib/HFI/hfi_sdft.c ****     // SDFT update
+  33:Lib/HFI/hfi_sdft.c ****     float oldest_iq = hhfi->sdft_iq_buffer[0];
+ 210              		.loc 1 33 5 is_stmt 1 view .LVU51
+ 211              		.loc 1 33 11 is_stmt 0 view .LVU52
+ 212 0014 1C30     		adds	r0, r0, #28
+ 213              	.LVL17:
+ 214              		.loc 1 33 11 view .LVU53
+ 215 0016 D0ED008A 		vldr.32	s17, [r0]
+ 216              	.LVL18:
+  34:Lib/HFI/hfi_sdft.c ****     memmove(hhfi->sdft_iq_buffer, &hhfi->sdft_iq_buffer[1], (N-1) * sizeof(float));
+ 217              		.loc 1 34 5 is_stmt 1 view .LVU54
+ 218              		.loc 1 34 63 is_stmt 0 view .LVU55
+ 219 001a 6E1E     		subs	r6, r5, #1
+ 220              		.loc 1 34 5 view .LVU56
+ 221 001c B200     		lsls	r2, r6, #2
+ 222 001e 04F12001 		add	r1, r4, #32
+ 223 0022 FFF7FEFF 		bl	memmove
+ 224              	.LVL19:
+  35:Lib/HFI/hfi_sdft.c ****     hhfi->sdft_iq_buffer[N - 1] = iq;
+ 225              		.loc 1 35 5 is_stmt 1 view .LVU57
+ 226              		.loc 1 35 33 is_stmt 0 view .LVU58
+ 227 0026 6B1D     		adds	r3, r5, #5
+ 228 0028 04EB8303 		add	r3, r4, r3, lsl #2
+ 229 002c 83ED018A 		vstr.32	s16, [r3, #4]
+  36:Lib/HFI/hfi_sdft.c ****     
+  37:Lib/HFI/hfi_sdft.c ****     // SDFT: X_k[n] = e^(j2pik/N) * (X_k[n-1] + x[n] - x[n-N])
+  38:Lib/HFI/hfi_sdft.c ****     float delta = iq - oldest_iq;
+ 230              		.loc 1 38 5 is_stmt 1 view .LVU59
+ 231              		.loc 1 38 11 is_stmt 0 view .LVU60
+ 232 0030 38EE681A 		vsub.f32	s2, s16, s17
+ 233              	.LVL20:
+  39:Lib/HFI/hfi_sdft.c ****     complex_t delta_complex = {delta, 0.0f};
+ 234              		.loc 1 39 5 is_stmt 1 view .LVU61
+ 235              		.loc 1 39 15 is_stmt 0 view .LVU62
+ 236 0034 8DED041A 		vstr.32	s2, [sp, #16]
+ 237 0038 DFED541A 		vldr.32	s3, .L28
+ 238 003c CDED051A 		vstr.32	s3, [sp, #20]
+  40:Lib/HFI/hfi_sdft.c ****     complex_t sum = complex_add(hhfi->last_Xk_iq, delta_complex);
+ 239              		.loc 1 40 5 is_stmt 1 view .LVU63
+ 240              		.loc 1 40 21 is_stmt 0 view .LVU64
+ 241 0040 94ED8B0A 		vldr.32	s0, [r4, #556]
+ 242 0044 D4ED8C0A 		vldr.32	s1, [r4, #560]
+ 243 0048 FFF7FEFF 		bl	complex_add
+ARM GAS  /tmp/ccRljahR.s 			page 6
+
+
+ 244              	.LVL21:
+ 245              		.loc 1 40 21 view .LVU65
+ 246 004c 8DED020A 		vstr.32	s0, [sp, #8]
+ 247 0050 CDED030A 		vstr.32	s1, [sp, #12]
+  41:Lib/HFI/hfi_sdft.c ****     
+  42:Lib/HFI/hfi_sdft.c ****     // Multiply with rotation factor
+  43:Lib/HFI/hfi_sdft.c ****     complex_t Xk_new = complex_multiply(sum, hhfi->sdft_rotation_factor);
+ 248              		.loc 1 43 5 is_stmt 1 view .LVU66
+ 249              		.loc 1 43 24 is_stmt 0 view .LVU67
+ 250 0054 94ED8D1A 		vldr.32	s2, [r4, #564]
+ 251 0058 D4ED8E1A 		vldr.32	s3, [r4, #568]
+ 252 005c FFF7FEFF 		bl	complex_multiply
+ 253              	.LVL22:
+ 254 0060 B0EE409A 		vmov.f32	s18, s0
+ 255 0064 F0EE608A 		vmov.f32	s17, s1
+ 256              	.LVL23:
+ 257              		.loc 1 43 24 view .LVU68
+ 258 0068 8DED000A 		vstr.32	s0, [sp]
+ 259 006c CDED010A 		vstr.32	s1, [sp, #4]
+  44:Lib/HFI/hfi_sdft.c ****     hhfi->last_Xk_iq = Xk_new;
+ 260              		.loc 1 44 5 is_stmt 1 view .LVU69
+ 261              		.loc 1 44 22 is_stmt 0 view .LVU70
+ 262 0070 04F50B73 		add	r3, r4, #556
+ 263 0074 6A46     		mov	r2, sp
+ 264 0076 92E80300 		ldm	r2, {r0, r1}
+ 265 007a 83E80300 		stm	r3, {r0, r1}
+  45:Lib/HFI/hfi_sdft.c ****     
+  46:Lib/HFI/hfi_sdft.c ****     // Extract amplitude (eq 14)
+  47:Lib/HFI/hfi_sdft.c ****     hhfi->sdft_amplitude = 2.0f * fast_sqrt(Xk_new.real * Xk_new.real + Xk_new.imag * Xk_new.imag) 
+ 266              		.loc 1 47 5 is_stmt 1 view .LVU71
+ 267              		.loc 1 47 57 is_stmt 0 view .LVU72
+ 268 007e 20EE000A 		vmul.f32	s0, s0, s0
+ 269              		.loc 1 47 85 view .LVU73
+ 270 0082 60EEA07A 		vmul.f32	s15, s1, s1
+ 271              		.loc 1 47 35 view .LVU74
+ 272 0086 30EE270A 		vadd.f32	s0, s0, s15
+ 273              	.LVL24:
+ 274              	.LBB5:
+ 275              	.LBI5:
+ 276              		.file 2 "Lib/FOC/FOC_math.h"
+   1:Lib/FOC/FOC_math.h **** /*
+   2:Lib/FOC/FOC_math.h ****  * FOC_math.h
+   3:Lib/FOC/FOC_math.h ****  *
+   4:Lib/FOC/FOC_math.h ****  *  Created on: Jul 12, 2025
+   5:Lib/FOC/FOC_math.h ****  *      Author: munir
+   6:Lib/FOC/FOC_math.h ****  */
+   7:Lib/FOC/FOC_math.h **** 
+   8:Lib/FOC/FOC_math.h **** #ifndef FOC_INC_FOC_MATH_H_
+   9:Lib/FOC/FOC_math.h **** #define FOC_INC_FOC_MATH_H_
+  10:Lib/FOC/FOC_math.h **** 
+  11:Lib/FOC/FOC_math.h **** 
+  12:Lib/FOC/FOC_math.h **** #include <stdint.h>
+  13:Lib/FOC/FOC_math.h **** #include <complex.h>
+  14:Lib/FOC/FOC_math.h **** 
+  15:Lib/FOC/FOC_math.h **** #define LUT_SIZE (1024*4)
+  16:Lib/FOC/FOC_math.h **** #define LUT_STEP (TWO_PI / (float)LUT_SIZE)
+  17:Lib/FOC/FOC_math.h **** 
+ARM GAS  /tmp/ccRljahR.s 			page 7
+
+
+  18:Lib/FOC/FOC_math.h **** #define TWO_BY_SQRT3 1.15470053838f
+  19:Lib/FOC/FOC_math.h **** #define ONE_BY_SQRT3 0.57735026919f
+  20:Lib/FOC/FOC_math.h **** #define SQRT3_BY_TWO 0.86602540378f
+  21:Lib/FOC/FOC_math.h **** #define SQRT3 1.73205080757f
+  22:Lib/FOC/FOC_math.h **** #define TWO_PI 6.2831853f
+  23:Lib/FOC/FOC_math.h **** #define PI 3.1415926f
+  24:Lib/FOC/FOC_math.h **** 
+  25:Lib/FOC/FOC_math.h **** #define CONSTRAIN(val, min, max) \
+  26:Lib/FOC/FOC_math.h ****     ((val) <= (min) ? (min) : ((val) >= (max) ? (max) : (val)))
+  27:Lib/FOC/FOC_math.h **** 
+  28:Lib/FOC/FOC_math.h **** #define RAD_TO_DEG(rad) ((rad) * 57.29577951308232f)  // 180/π
+  29:Lib/FOC/FOC_math.h **** 
+  30:Lib/FOC/FOC_math.h **** #define DEG_TO_RAD(deg) ((deg) * 0.017453292519943f)  // π/180
+  31:Lib/FOC/FOC_math.h **** 
+  32:Lib/FOC/FOC_math.h **** typedef struct {
+  33:Lib/FOC/FOC_math.h ****     float real;
+  34:Lib/FOC/FOC_math.h ****     float imag;
+  35:Lib/FOC/FOC_math.h **** } complex_t;
+  36:Lib/FOC/FOC_math.h **** 
+  37:Lib/FOC/FOC_math.h **** extern const float sin_lut[LUT_SIZE];
+  38:Lib/FOC/FOC_math.h **** 
+  39:Lib/FOC/FOC_math.h **** void norm_angle_rad(float *theta);
+  40:Lib/FOC/FOC_math.h **** float fast_sin(float theta);
+  41:Lib/FOC/FOC_math.h **** float fast_cos(float theta);
+  42:Lib/FOC/FOC_math.h **** float fast_atan2(float y, float x);
+  43:Lib/FOC/FOC_math.h **** complex_t complex_multiply(complex_t a, complex_t b);
+  44:Lib/FOC/FOC_math.h **** complex_t complex_add(complex_t a, complex_t b);
+  45:Lib/FOC/FOC_math.h **** complex_t complex_subtract(complex_t a, complex_t b);
+  46:Lib/FOC/FOC_math.h **** void pre_calc_sin_cos(float theta, float *sin_theta, float *cos_theta);
+  47:Lib/FOC/FOC_math.h **** 
+  48:Lib/FOC/FOC_math.h **** void clarke_transform(float ia, float ib, float *i_alpha, float *i_beta);
+  49:Lib/FOC/FOC_math.h **** void clarke_transform_3input(float ia, float ib, float ic, float *i_alpha, float *i_beta);
+  50:Lib/FOC/FOC_math.h **** void park_transform(float i_alpha, float i_beta, float sin_theta, float cos_theta, float *id, float
+  51:Lib/FOC/FOC_math.h **** void clarke_park_transform(float ia, float ib, float sin_theta, float cos_theta, float *id, float *
+  52:Lib/FOC/FOC_math.h **** void clarke_park_transform_3input(float ia, float ib, float ic, float sin_theta, float cos_theta, f
+  53:Lib/FOC/FOC_math.h **** void inverse_park_transform(float vd, float vq, float sin_theta, float cos_theta, float *valpha, fl
+  54:Lib/FOC/FOC_math.h **** void inverse_clarke_transform(float valpha, float vbeta, float *va, float *vb, float *vc);
+  55:Lib/FOC/FOC_math.h **** void svpwm(float valpha, float vbeta, float vbus, uint32_t pwm_period,
+  56:Lib/FOC/FOC_math.h **** 			uint32_t *pwm_u, uint32_t *pwm_v, uint32_t *pwm_w);
+  57:Lib/FOC/FOC_math.h **** 
+  58:Lib/FOC/FOC_math.h **** void vabc_to_vdq(float va, float vb, float vc, float sin_theta, float cos_theta, float *vd, float *
+  59:Lib/FOC/FOC_math.h **** 
+  60:Lib/FOC/FOC_math.h **** static inline float fast_sqrt(float x) {
+ 277              		.loc 2 60 21 is_stmt 1 view .LVU75
+ 278              	.LBB6:
+  61:Lib/FOC/FOC_math.h ****     return (x > 0.0f) ? __builtin_sqrtf(x) : 0.0f;
+ 279              		.loc 2 61 5 view .LVU76
+ 280              		.loc 2 61 44 is_stmt 0 view .LVU77
+ 281 008a B5EEC00A 		vcmpe.f32	s0, #0
+ 282 008e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 283 0092 62DC     		bgt	.L26
+ 284 0094 9FED3D0A 		vldr.32	s0, .L28
+ 285              	.LVL25:
+ 286              	.L8:
+ 287              		.loc 2 61 44 view .LVU78
+ 288              	.LBE6:
+ 289              	.LBE5:
+ARM GAS  /tmp/ccRljahR.s 			page 8
+
+
+ 290              		.loc 1 47 33 view .LVU79
+ 291 0098 30EE000A 		vadd.f32	s0, s0, s0
+ 292              		.loc 1 47 102 view .LVU80
+ 293 009c 07EE905A 		vmov	s15, r5	@ int
+ 294 00a0 B8EEE78A 		vcvt.f32.s32	s16, s15
+ 295              	.LVL26:
+ 296              		.loc 1 47 100 view .LVU81
+ 297 00a4 C0EE087A 		vdiv.f32	s15, s0, s16
+ 298              		.loc 1 47 26 view .LVU82
+ 299 00a8 C4ED877A 		vstr.32	s15, [r4, #540]
+  48:Lib/HFI/hfi_sdft.c **** 
+  49:Lib/HFI/hfi_sdft.c ****     // i_gamma1 (eq 17)
+  50:Lib/HFI/hfi_sdft.c ****     float theta_0 = fast_atan2(Xk_new.imag, Xk_new.real);
+ 300              		.loc 1 50 5 is_stmt 1 view .LVU83
+ 301              		.loc 1 50 21 is_stmt 0 view .LVU84
+ 302 00ac F0EE490A 		vmov.f32	s1, s18
+ 303 00b0 B0EE680A 		vmov.f32	s0, s17
+ 304 00b4 FFF7FEFF 		bl	fast_atan2
+ 305              	.LVL27:
+  51:Lib/HFI/hfi_sdft.c ****     float phase_correction = (float)(N - 1) / (float)N * TWO_PI;
+ 306              		.loc 1 51 5 is_stmt 1 view .LVU85
+ 307              		.loc 1 51 30 is_stmt 0 view .LVU86
+ 308 00b8 07EE906A 		vmov	s15, r6	@ int
+ 309 00bc F8EEE77A 		vcvt.f32.s32	s15, s15
+ 310              		.loc 1 51 45 view .LVU87
+ 311 00c0 87EE887A 		vdiv.f32	s14, s15, s16
+ 312              		.loc 1 51 11 view .LVU88
+ 313 00c4 DFED327A 		vldr.32	s15, .L28+4
+ 314 00c8 67EE277A 		vmul.f32	s15, s14, s15
+ 315              	.LVL28:
+  52:Lib/HFI/hfi_sdft.c ****     float i_gamma1 = hhfi->sdft_amplitude * fast_cos(theta_0 + phase_correction);
+ 316              		.loc 1 52 5 is_stmt 1 view .LVU89
+ 317              		.loc 1 52 26 is_stmt 0 view .LVU90
+ 318 00cc 94ED878A 		vldr.32	s16, [r4, #540]
+ 319              		.loc 1 52 45 view .LVU91
+ 320 00d0 30EE270A 		vadd.f32	s0, s0, s15
+ 321              	.LVL29:
+ 322              		.loc 1 52 45 view .LVU92
+ 323 00d4 FFF7FEFF 		bl	fast_cos
+ 324              	.LVL30:
+ 325              		.loc 1 52 11 view .LVU93
+ 326 00d8 28EE008A 		vmul.f32	s16, s16, s0
+ 327              	.LVL31:
+  53:Lib/HFI/hfi_sdft.c ****     
+  54:Lib/HFI/hfi_sdft.c ****     hhfi->sdft_fundamental = i_gamma1;
+ 328              		.loc 1 54 5 is_stmt 1 view .LVU94
+ 329              		.loc 1 54 28 is_stmt 0 view .LVU95
+ 330 00dc 84ED898A 		vstr.32	s16, [r4, #548]
+  55:Lib/HFI/hfi_sdft.c ****     
+  56:Lib/HFI/hfi_sdft.c ****     // sign detector (eq 18)
+  57:Lib/HFI/hfi_sdft.c ****     float sign_product = i_gamma1 * fast_cos(hhfi->last_phase_h);
+ 331              		.loc 1 57 5 is_stmt 1 view .LVU96
+ 332              		.loc 1 57 37 is_stmt 0 view .LVU97
+ 333 00e0 94ED010A 		vldr.32	s0, [r4, #4]
+ 334 00e4 FFF7FEFF 		bl	fast_cos
+ 335              	.LVL32:
+ 336              		.loc 1 57 11 view .LVU98
+ARM GAS  /tmp/ccRljahR.s 			page 9
+
+
+ 337 00e8 20EE080A 		vmul.f32	s0, s0, s16
+ 338              	.LVL33:
+  58:Lib/HFI/hfi_sdft.c ****     hhfi->sdft_phase = sign_product;
+ 339              		.loc 1 58 5 is_stmt 1 view .LVU99
+ 340              		.loc 1 58 22 is_stmt 0 view .LVU100
+ 341 00ec 84ED880A 		vstr.32	s0, [r4, #544]
+  59:Lib/HFI/hfi_sdft.c ****     int8_t p;
+ 342              		.loc 1 59 5 is_stmt 1 view .LVU101
+  60:Lib/HFI/hfi_sdft.c ****     if (sign_product >= 0) {
+ 343              		.loc 1 60 5 view .LVU102
+ 344              		.loc 1 60 8 is_stmt 0 view .LVU103
+ 345 00f0 B5EEC00A 		vcmpe.f32	s0, #0
+ 346 00f4 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 347 00f8 38DB     		blt	.L24
+  61:Lib/HFI/hfi_sdft.c ****         hhfi->s++;
+ 348              		.loc 1 61 9 is_stmt 1 view .LVU104
+ 349              		.loc 1 61 13 is_stmt 0 view .LVU105
+ 350 00fa 94F95C32 		ldrsb	r3, [r4, #604]
+ 351              		.loc 1 61 16 view .LVU106
+ 352 00fe 0133     		adds	r3, r3, #1
+ 353 0100 5BB2     		sxtb	r3, r3
+ 354 0102 84F85C32 		strb	r3, [r4, #604]
+  62:Lib/HFI/hfi_sdft.c ****         if (hhfi->s >= 1) {
+ 355              		.loc 1 62 9 is_stmt 1 view .LVU107
+ 356              		.loc 1 62 12 is_stmt 0 view .LVU108
+ 357 0106 002B     		cmp	r3, #0
+ 358 0108 2ADD     		ble	.L12
+  63:Lib/HFI/hfi_sdft.c ****             hhfi->s = 1;
+ 359              		.loc 1 63 13 is_stmt 1 view .LVU109
+ 360              		.loc 1 63 21 is_stmt 0 view .LVU110
+ 361 010a 0123     		movs	r3, #1
+ 362 010c 84F85C32 		strb	r3, [r4, #604]
+  64:Lib/HFI/hfi_sdft.c ****             p = 1;
+ 363              		.loc 1 64 13 is_stmt 1 view .LVU111
+ 364              	.LVL34:
+  65:Lib/HFI/hfi_sdft.c ****         }
+  66:Lib/HFI/hfi_sdft.c ****         else {
+  67:Lib/HFI/hfi_sdft.c ****             hhfi->s = 0;
+  68:Lib/HFI/hfi_sdft.c ****             p = -1;
+  69:Lib/HFI/hfi_sdft.c ****         }
+  70:Lib/HFI/hfi_sdft.c ****     }
+  71:Lib/HFI/hfi_sdft.c ****     else {
+  72:Lib/HFI/hfi_sdft.c ****         hhfi->s--;
+  73:Lib/HFI/hfi_sdft.c ****         if (hhfi->s <= -1) {
+  74:Lib/HFI/hfi_sdft.c ****             hhfi->s = -1;
+  75:Lib/HFI/hfi_sdft.c ****             p = -1;
+  76:Lib/HFI/hfi_sdft.c ****         }
+  77:Lib/HFI/hfi_sdft.c ****         else {
+  78:Lib/HFI/hfi_sdft.c ****             hhfi->s = 0;
+  79:Lib/HFI/hfi_sdft.c ****             p = 1;
+  80:Lib/HFI/hfi_sdft.c ****         }
+  81:Lib/HFI/hfi_sdft.c ****     }
+  82:Lib/HFI/hfi_sdft.c ****     
+  83:Lib/HFI/hfi_sdft.c ****     float hfi_error = (p > 0)? -hhfi->sdft_amplitude : hhfi->sdft_amplitude;
+ 365              		.loc 1 83 5 view .LVU112
+ 366              	.L13:
+ 367              		.loc 1 83 37 is_stmt 0 discriminator 1 view .LVU113
+ARM GAS  /tmp/ccRljahR.s 			page 10
+
+
+ 368 0110 94ED870A 		vldr.32	s0, [r4, #540]
+ 369              	.LVL35:
+ 370              		.loc 1 83 54 discriminator 1 view .LVU114
+ 371 0114 B1EE400A 		vneg.f32	s0, s0
+ 372              	.LVL36:
+ 373              	.L16:
+  84:Lib/HFI/hfi_sdft.c ****     pll_update(&hhfi->pll, hfi_error, Ts);
+ 374              		.loc 1 84 5 is_stmt 1 discriminator 4 view .LVU115
+ 375 0118 F0EE690A 		vmov.f32	s1, s19
+ 376 011c 04F50F70 		add	r0, r4, #572
+ 377 0120 FFF7FEFF 		bl	pll_update
+ 378              	.LVL37:
+  85:Lib/HFI/hfi_sdft.c **** 
+  86:Lib/HFI/hfi_sdft.c ****     // update phase
+  87:Lib/HFI/hfi_sdft.c ****     hhfi->last_phase_h = hhfi->phase_h;
+ 379              		.loc 1 87 5 discriminator 4 view .LVU116
+ 380              		.loc 1 87 30 is_stmt 0 discriminator 4 view .LVU117
+ 381 0124 D4ED007A 		vldr.32	s15, [r4]
+ 382              		.loc 1 87 24 discriminator 4 view .LVU118
+ 383 0128 C4ED017A 		vstr.32	s15, [r4, #4]
+  88:Lib/HFI/hfi_sdft.c ****     hhfi->phase_h += (hhfi->omega_h * Ts);
+ 384              		.loc 1 88 5 is_stmt 1 discriminator 4 view .LVU119
+ 385              		.loc 1 88 27 is_stmt 0 discriminator 4 view .LVU120
+ 386 012c D4ED040A 		vldr.32	s1, [r4, #16]
+ 387              		.loc 1 88 37 discriminator 4 view .LVU121
+ 388 0130 60EEA90A 		vmul.f32	s1, s1, s19
+ 389              		.loc 1 88 19 discriminator 4 view .LVU122
+ 390 0134 77EEA00A 		vadd.f32	s1, s15, s1
+ 391 0138 C4ED000A 		vstr.32	s1, [r4]
+  89:Lib/HFI/hfi_sdft.c ****     if (hhfi->phase_h >= TWO_PI) hhfi->phase_h -= TWO_PI;
+ 392              		.loc 1 89 5 is_stmt 1 discriminator 4 view .LVU123
+ 393              		.loc 1 89 8 is_stmt 0 discriminator 4 view .LVU124
+ 394 013c DFED147A 		vldr.32	s15, .L28+4
+ 395              	.LVL38:
+ 396              		.loc 1 89 8 discriminator 4 view .LVU125
+ 397 0140 F4EEE70A 		vcmpe.f32	s1, s15
+ 398 0144 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 399 0148 03DB     		blt	.L7
+ 400              		.loc 1 89 34 is_stmt 1 discriminator 1 view .LVU126
+ 401              		.loc 1 89 48 is_stmt 0 discriminator 1 view .LVU127
+ 402 014a 70EEE70A 		vsub.f32	s1, s1, s15
+ 403 014e C4ED000A 		vstr.32	s1, [r4]
+ 404              	.L7:
+  90:Lib/HFI/hfi_sdft.c **** }
+ 405              		.loc 1 90 1 view .LVU128
+ 406 0152 06B0     		add	sp, sp, #24
+ 407              	.LCFI6:
+ 408              		.cfi_remember_state
+ 409              		.cfi_def_cfa_offset 32
+ 410              		@ sp needed
+ 411 0154 BDEC048B 		vldm	sp!, {d8-d9}
+ 412              	.LCFI7:
+ 413              		.cfi_restore 82
+ 414              		.cfi_restore 83
+ 415              		.cfi_restore 80
+ 416              		.cfi_restore 81
+ 417              		.cfi_def_cfa_offset 16
+ARM GAS  /tmp/ccRljahR.s 			page 11
+
+
+ 418              	.LVL39:
+ 419              		.loc 1 90 1 view .LVU129
+ 420 0158 70BD     		pop	{r4, r5, r6, pc}
+ 421              	.LVL40:
+ 422              	.L26:
+ 423              	.LCFI8:
+ 424              		.cfi_restore_state
+ 425              	.LBB8:
+ 426              	.LBB7:
+ 427              		.loc 2 61 25 view .LVU130
+ 428 015a FFF7FEFF 		bl	sqrtf
+ 429              	.LVL41:
+ 430              		.loc 2 61 25 view .LVU131
+ 431 015e 9BE7     		b	.L8
+ 432              	.LVL42:
+ 433              	.L12:
+ 434              		.loc 2 61 25 view .LVU132
+ 435              	.LBE7:
+ 436              	.LBE8:
+  67:Lib/HFI/hfi_sdft.c ****             p = -1;
+ 437              		.loc 1 67 13 is_stmt 1 view .LVU133
+  67:Lib/HFI/hfi_sdft.c ****             p = -1;
+ 438              		.loc 1 67 21 is_stmt 0 view .LVU134
+ 439 0160 0023     		movs	r3, #0
+ 440 0162 84F85C32 		strb	r3, [r4, #604]
+  68:Lib/HFI/hfi_sdft.c ****         }
+ 441              		.loc 1 68 13 is_stmt 1 view .LVU135
+ 442              	.LVL43:
+  83:Lib/HFI/hfi_sdft.c ****     pll_update(&hhfi->pll, hfi_error, Ts);
+ 443              		.loc 1 83 5 view .LVU136
+ 444              	.L14:
+  83:Lib/HFI/hfi_sdft.c ****     pll_update(&hhfi->pll, hfi_error, Ts);
+ 445              		.loc 1 83 54 is_stmt 0 discriminator 2 view .LVU137
+ 446 0166 94ED870A 		vldr.32	s0, [r4, #540]
+ 447              	.LVL44:
+  83:Lib/HFI/hfi_sdft.c ****     pll_update(&hhfi->pll, hfi_error, Ts);
+ 448              		.loc 1 83 54 discriminator 2 view .LVU138
+ 449 016a D5E7     		b	.L16
+ 450              	.LVL45:
+ 451              	.L24:
+  72:Lib/HFI/hfi_sdft.c ****         if (hhfi->s <= -1) {
+ 452              		.loc 1 72 9 is_stmt 1 view .LVU139
+  72:Lib/HFI/hfi_sdft.c ****         if (hhfi->s <= -1) {
+ 453              		.loc 1 72 13 is_stmt 0 view .LVU140
+ 454 016c 94F95C32 		ldrsb	r3, [r4, #604]
+  72:Lib/HFI/hfi_sdft.c ****         if (hhfi->s <= -1) {
+ 455              		.loc 1 72 16 view .LVU141
+ 456 0170 013B     		subs	r3, r3, #1
+ 457 0172 5BB2     		sxtb	r3, r3
+ 458 0174 84F85C32 		strb	r3, [r4, #604]
+  73:Lib/HFI/hfi_sdft.c ****             hhfi->s = -1;
+ 459              		.loc 1 73 9 is_stmt 1 view .LVU142
+  73:Lib/HFI/hfi_sdft.c ****             hhfi->s = -1;
+ 460              		.loc 1 73 12 is_stmt 0 view .LVU143
+ 461 0178 002B     		cmp	r3, #0
+ 462 017a 03DB     		blt	.L27
+  78:Lib/HFI/hfi_sdft.c ****             p = 1;
+ARM GAS  /tmp/ccRljahR.s 			page 12
+
+
+ 463              		.loc 1 78 13 is_stmt 1 view .LVU144
+  78:Lib/HFI/hfi_sdft.c ****             p = 1;
+ 464              		.loc 1 78 21 is_stmt 0 view .LVU145
+ 465 017c 0023     		movs	r3, #0
+ 466 017e 84F85C32 		strb	r3, [r4, #604]
+  79:Lib/HFI/hfi_sdft.c ****         }
+ 467              		.loc 1 79 13 is_stmt 1 view .LVU146
+ 468              	.LVL46:
+  83:Lib/HFI/hfi_sdft.c ****     pll_update(&hhfi->pll, hfi_error, Ts);
+ 469              		.loc 1 83 5 view .LVU147
+ 470 0182 C5E7     		b	.L13
+ 471              	.LVL47:
+ 472              	.L27:
+  74:Lib/HFI/hfi_sdft.c ****             p = -1;
+ 473              		.loc 1 74 13 view .LVU148
+  74:Lib/HFI/hfi_sdft.c ****             p = -1;
+ 474              		.loc 1 74 21 is_stmt 0 view .LVU149
+ 475 0184 FF23     		movs	r3, #255
+ 476 0186 84F85C32 		strb	r3, [r4, #604]
+  75:Lib/HFI/hfi_sdft.c ****         }
+ 477              		.loc 1 75 13 is_stmt 1 view .LVU150
+ 478              	.LVL48:
+  83:Lib/HFI/hfi_sdft.c ****     pll_update(&hhfi->pll, hfi_error, Ts);
+ 479              		.loc 1 83 5 view .LVU151
+ 480 018a ECE7     		b	.L14
+ 481              	.L29:
+ 482              		.align	2
+ 483              	.L28:
+ 484 018c 00000000 		.word	0
+ 485 0190 DB0FC940 		.word	1086918619
+ 486              		.cfi_endproc
+ 487              	.LFE2:
+ 489              		.section	.text.hfi_get_v_inj,"ax",%progbits
+ 490              		.align	1
+ 491              		.global	hfi_get_v_inj
+ 492              		.syntax unified
+ 493              		.thumb
+ 494              		.thumb_func
+ 495              		.fpu fpv4-sp-d16
+ 497              	hfi_get_v_inj:
+ 498              	.LVL49:
+ 499              	.LFB3:
+  91:Lib/HFI/hfi_sdft.c **** 
+  92:Lib/HFI/hfi_sdft.c **** float hfi_get_v_inj(hfi_t *hhfi) {
+ 500              		.loc 1 92 34 view -0
+ 501              		.cfi_startproc
+ 502              		@ args = 0, pretend = 0, frame = 0
+ 503              		@ frame_needed = 0, uses_anonymous_args = 0
+ 504              		.loc 1 92 34 is_stmt 0 view .LVU153
+ 505 0000 08B5     		push	{r3, lr}
+ 506              	.LCFI9:
+ 507              		.cfi_def_cfa_offset 8
+ 508              		.cfi_offset 3, -8
+ 509              		.cfi_offset 14, -4
+ 510 0002 2DED028B 		vpush.64	{d8}
+ 511              	.LCFI10:
+ 512              		.cfi_def_cfa_offset 16
+ARM GAS  /tmp/ccRljahR.s 			page 13
+
+
+ 513              		.cfi_offset 80, -16
+ 514              		.cfi_offset 81, -12
+  93:Lib/HFI/hfi_sdft.c ****     float v_inj = hhfi->v_h * fast_sin(hhfi->phase_h);
+ 515              		.loc 1 93 5 is_stmt 1 view .LVU154
+ 516              		.loc 1 93 23 is_stmt 0 view .LVU155
+ 517 0006 90ED028A 		vldr.32	s16, [r0, #8]
+ 518              		.loc 1 93 31 view .LVU156
+ 519 000a 90ED000A 		vldr.32	s0, [r0]
+ 520 000e FFF7FEFF 		bl	fast_sin
+ 521              	.LVL50:
+  94:Lib/HFI/hfi_sdft.c ****     return v_inj;
+ 522              		.loc 1 94 5 is_stmt 1 view .LVU157
+  95:Lib/HFI/hfi_sdft.c **** }
+ 523              		.loc 1 95 1 is_stmt 0 view .LVU158
+ 524 0012 28EE000A 		vmul.f32	s0, s16, s0
+ 525              	.LVL51:
+ 526              		.loc 1 95 1 view .LVU159
+ 527 0016 BDEC028B 		vldm	sp!, {d8}
+ 528              	.LCFI11:
+ 529              		.cfi_restore 80
+ 530              		.cfi_restore 81
+ 531              		.cfi_def_cfa_offset 8
+ 532 001a 08BD     		pop	{r3, pc}
+ 533              		.cfi_endproc
+ 534              	.LFE3:
+ 536              		.section	.text.hfi_get_estimate_position,"ax",%progbits
+ 537              		.align	1
+ 538              		.global	hfi_get_estimate_position
+ 539              		.syntax unified
+ 540              		.thumb
+ 541              		.thumb_func
+ 542              		.fpu fpv4-sp-d16
+ 544              	hfi_get_estimate_position:
+ 545              	.LVL52:
+ 546              	.LFB4:
+  96:Lib/HFI/hfi_sdft.c **** 
+  97:Lib/HFI/hfi_sdft.c **** float hfi_get_estimate_position(hfi_t *hhfi) {
+ 547              		.loc 1 97 46 is_stmt 1 view -0
+ 548              		.cfi_startproc
+ 549              		@ args = 0, pretend = 0, frame = 0
+ 550              		@ frame_needed = 0, uses_anonymous_args = 0
+ 551              		@ link register save eliminated.
+  98:Lib/HFI/hfi_sdft.c ****     return hhfi->pll.theta_est;
+ 552              		.loc 1 98 5 view .LVU161
+  99:Lib/HFI/hfi_sdft.c **** }
+ 553              		.loc 1 99 1 is_stmt 0 view .LVU162
+ 554 0000 90ED940A 		vldr.32	s0, [r0, #592]
+ 555 0004 7047     		bx	lr
+ 556              		.cfi_endproc
+ 557              	.LFE4:
+ 559              		.section	.text.hfi_get_estimate_omega,"ax",%progbits
+ 560              		.align	1
+ 561              		.global	hfi_get_estimate_omega
+ 562              		.syntax unified
+ 563              		.thumb
+ 564              		.thumb_func
+ 565              		.fpu fpv4-sp-d16
+ARM GAS  /tmp/ccRljahR.s 			page 14
+
+
+ 567              	hfi_get_estimate_omega:
+ 568              	.LVL53:
+ 569              	.LFB5:
+ 100:Lib/HFI/hfi_sdft.c **** 
+ 101:Lib/HFI/hfi_sdft.c **** float hfi_get_estimate_omega(hfi_t *hhfi) {
+ 570              		.loc 1 101 43 is_stmt 1 view -0
+ 571              		.cfi_startproc
+ 572              		@ args = 0, pretend = 0, frame = 0
+ 573              		@ frame_needed = 0, uses_anonymous_args = 0
+ 574              		@ link register save eliminated.
+ 102:Lib/HFI/hfi_sdft.c ****     return hhfi->pll.omega_est;
+ 575              		.loc 1 102 5 view .LVU164
+ 103:Lib/HFI/hfi_sdft.c **** }
+ 576              		.loc 1 103 1 is_stmt 0 view .LVU165
+ 577 0000 90ED930A 		vldr.32	s0, [r0, #588]
+ 578 0004 7047     		bx	lr
+ 579              		.cfi_endproc
+ 580              	.LFE5:
+ 582              		.section	.text.hfi_force_estimate_position,"ax",%progbits
+ 583              		.align	1
+ 584              		.global	hfi_force_estimate_position
+ 585              		.syntax unified
+ 586              		.thumb
+ 587              		.thumb_func
+ 588              		.fpu fpv4-sp-d16
+ 590              	hfi_force_estimate_position:
+ 591              	.LVL54:
+ 592              	.LFB6:
+ 104:Lib/HFI/hfi_sdft.c **** 
+ 105:Lib/HFI/hfi_sdft.c **** void hfi_force_estimate_position(hfi_t *hhfi, float theta) {
+ 593              		.loc 1 105 60 is_stmt 1 view -0
+ 594              		.cfi_startproc
+ 595              		@ args = 0, pretend = 0, frame = 0
+ 596              		@ frame_needed = 0, uses_anonymous_args = 0
+ 597              		@ link register save eliminated.
+ 106:Lib/HFI/hfi_sdft.c ****     hhfi->pll.theta_est = theta;
+ 598              		.loc 1 106 5 view .LVU167
+ 599              		.loc 1 106 25 is_stmt 0 view .LVU168
+ 600 0000 80ED940A 		vstr.32	s0, [r0, #592]
+ 107:Lib/HFI/hfi_sdft.c **** }
+ 601              		.loc 1 107 1 view .LVU169
+ 602 0004 7047     		bx	lr
+ 603              		.cfi_endproc
+ 604              	.LFE6:
+ 606              		.section	.text.hfi_reset,"ax",%progbits
+ 607              		.align	1
+ 608              		.global	hfi_reset
+ 609              		.syntax unified
+ 610              		.thumb
+ 611              		.thumb_func
+ 612              		.fpu fpv4-sp-d16
+ 614              	hfi_reset:
+ 615              	.LVL55:
+ 616              	.LFB7:
+ 108:Lib/HFI/hfi_sdft.c **** 
+ 109:Lib/HFI/hfi_sdft.c **** void hfi_reset(hfi_t *hhfi) {
+ 617              		.loc 1 109 29 is_stmt 1 view -0
+ARM GAS  /tmp/ccRljahR.s 			page 15
+
+
+ 618              		.cfi_startproc
+ 619              		@ args = 0, pretend = 0, frame = 0
+ 620              		@ frame_needed = 0, uses_anonymous_args = 0
+ 621              		.loc 1 109 29 is_stmt 0 view .LVU171
+ 622 0000 10B5     		push	{r4, lr}
+ 623              	.LCFI12:
+ 624              		.cfi_def_cfa_offset 8
+ 625              		.cfi_offset 4, -8
+ 626              		.cfi_offset 14, -4
+ 627 0002 0446     		mov	r4, r0
+ 110:Lib/HFI/hfi_sdft.c ****     pll_reset(&hhfi->pll);
+ 628              		.loc 1 110 5 is_stmt 1 view .LVU172
+ 629 0004 00F50F70 		add	r0, r0, #572
+ 630              	.LVL56:
+ 631              		.loc 1 110 5 is_stmt 0 view .LVU173
+ 632 0008 FFF7FEFF 		bl	pll_reset
+ 633              	.LVL57:
+ 111:Lib/HFI/hfi_sdft.c **** 
+ 112:Lib/HFI/hfi_sdft.c ****     hhfi->phase_h = 0.0f;
+ 634              		.loc 1 112 5 is_stmt 1 view .LVU174
+ 635              		.loc 1 112 19 is_stmt 0 view .LVU175
+ 636 000c 0023     		movs	r3, #0
+ 637 000e 2360     		str	r3, [r4]	@ float
+ 113:Lib/HFI/hfi_sdft.c ****     hhfi->sdft_buff_idx = 0;
+ 638              		.loc 1 113 5 is_stmt 1 view .LVU176
+ 639              		.loc 1 113 25 is_stmt 0 view .LVU177
+ 640 0010 0023     		movs	r3, #0
+ 641 0012 A361     		str	r3, [r4, #24]
+ 114:Lib/HFI/hfi_sdft.c **** 
+ 115:Lib/HFI/hfi_sdft.c ****     // Reset buffer
+ 116:Lib/HFI/hfi_sdft.c ****     for(int i = 0; i < hhfi->sdft_window_size; i++) {
+ 642              		.loc 1 116 5 is_stmt 1 view .LVU178
+ 643              	.LBB9:
+ 644              		.loc 1 116 9 view .LVU179
+ 645              	.LVL58:
+ 646              		.loc 1 116 5 is_stmt 0 view .LVU180
+ 647 0014 05E0     		b	.L36
+ 648              	.LVL59:
+ 649              	.L37:
+ 117:Lib/HFI/hfi_sdft.c ****         hhfi->sdft_iq_buffer[i] = 0.0f;
+ 650              		.loc 1 117 9 is_stmt 1 discriminator 3 view .LVU181
+ 651              		.loc 1 117 33 is_stmt 0 discriminator 3 view .LVU182
+ 652 0016 9A1D     		adds	r2, r3, #6
+ 653 0018 04EB8202 		add	r2, r4, r2, lsl #2
+ 654 001c 0021     		movs	r1, #0
+ 655 001e 5160     		str	r1, [r2, #4]	@ float
+ 116:Lib/HFI/hfi_sdft.c ****         hhfi->sdft_iq_buffer[i] = 0.0f;
+ 656              		.loc 1 116 48 is_stmt 1 discriminator 3 view .LVU183
+ 116:Lib/HFI/hfi_sdft.c ****         hhfi->sdft_iq_buffer[i] = 0.0f;
+ 657              		.loc 1 116 49 is_stmt 0 discriminator 3 view .LVU184
+ 658 0020 0133     		adds	r3, r3, #1
+ 659              	.LVL60:
+ 660              	.L36:
+ 116:Lib/HFI/hfi_sdft.c ****         hhfi->sdft_iq_buffer[i] = 0.0f;
+ 661              		.loc 1 116 20 is_stmt 1 discriminator 1 view .LVU185
+ 116:Lib/HFI/hfi_sdft.c ****         hhfi->sdft_iq_buffer[i] = 0.0f;
+ 662              		.loc 1 116 28 is_stmt 0 discriminator 1 view .LVU186
+ARM GAS  /tmp/ccRljahR.s 			page 16
+
+
+ 663 0022 6269     		ldr	r2, [r4, #20]
+ 116:Lib/HFI/hfi_sdft.c ****         hhfi->sdft_iq_buffer[i] = 0.0f;
+ 664              		.loc 1 116 5 discriminator 1 view .LVU187
+ 665 0024 9A42     		cmp	r2, r3
+ 666 0026 F6DC     		bgt	.L37
+ 667              	.LBE9:
+ 118:Lib/HFI/hfi_sdft.c ****     }
+ 119:Lib/HFI/hfi_sdft.c ****     
+ 120:Lib/HFI/hfi_sdft.c ****     // Reset SDFT state
+ 121:Lib/HFI/hfi_sdft.c ****     hhfi->last_Xk_iq.real = 0.0f;
+ 668              		.loc 1 121 5 is_stmt 1 view .LVU188
+ 669              		.loc 1 121 27 is_stmt 0 view .LVU189
+ 670 0028 0023     		movs	r3, #0
+ 671              	.LVL61:
+ 672              		.loc 1 121 27 view .LVU190
+ 673 002a C4F82C32 		str	r3, [r4, #556]	@ float
+ 122:Lib/HFI/hfi_sdft.c ****     hhfi->last_Xk_iq.imag = 0.0f;
+ 674              		.loc 1 122 5 is_stmt 1 view .LVU191
+ 675              		.loc 1 122 27 is_stmt 0 view .LVU192
+ 676 002e C4F83032 		str	r3, [r4, #560]	@ float
+ 123:Lib/HFI/hfi_sdft.c **** }...
+ 677              		.loc 1 123 1 view .LVU193
+ 678 0032 10BD     		pop	{r4, pc}
+ 679              		.loc 1 123 1 view .LVU194
+ 680              		.cfi_endproc
+ 681              	.LFE7:
+ 683              		.text
+ 684              	.Letext0:
+ 685              		.file 3 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
+ 686              		.file 4 "Lib/PLL/pll.h"
+ 687              		.file 5 "Lib/HFI/hfi_sdft.h"
+ 688              		.file 6 "/usr/include/newlib/string.h"
+ 689              		.file 7 "<built-in>"
+ARM GAS  /tmp/ccRljahR.s 			page 17
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 hfi_sdft.c
+     /tmp/ccRljahR.s:18     .text.hfi_init:0000000000000000 $t
+     /tmp/ccRljahR.s:26     .text.hfi_init:0000000000000000 hfi_init
+     /tmp/ccRljahR.s:163    .text.hfi_init:0000000000000094 $d
+     /tmp/ccRljahR.s:171    .text.hfi_update_estimate_position:0000000000000000 $t
+     /tmp/ccRljahR.s:178    .text.hfi_update_estimate_position:0000000000000000 hfi_update_estimate_position
+     /tmp/ccRljahR.s:484    .text.hfi_update_estimate_position:000000000000018c $d
+     /tmp/ccRljahR.s:490    .text.hfi_get_v_inj:0000000000000000 $t
+     /tmp/ccRljahR.s:497    .text.hfi_get_v_inj:0000000000000000 hfi_get_v_inj
+     /tmp/ccRljahR.s:537    .text.hfi_get_estimate_position:0000000000000000 $t
+     /tmp/ccRljahR.s:544    .text.hfi_get_estimate_position:0000000000000000 hfi_get_estimate_position
+     /tmp/ccRljahR.s:560    .text.hfi_get_estimate_omega:0000000000000000 $t
+     /tmp/ccRljahR.s:567    .text.hfi_get_estimate_omega:0000000000000000 hfi_get_estimate_omega
+     /tmp/ccRljahR.s:583    .text.hfi_force_estimate_position:0000000000000000 $t
+     /tmp/ccRljahR.s:590    .text.hfi_force_estimate_position:0000000000000000 hfi_force_estimate_position
+     /tmp/ccRljahR.s:607    .text.hfi_reset:0000000000000000 $t
+     /tmp/ccRljahR.s:614    .text.hfi_reset:0000000000000000 hfi_reset
+
+UNDEFINED SYMBOLS
+pll_init
+fast_cos
+fast_sin
+memmove
+complex_add
+complex_multiply
+fast_atan2
+pll_update
+sqrtf
+pll_reset

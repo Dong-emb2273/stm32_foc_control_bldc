@@ -1,5 +1,5 @@
 #include "stm32f405_link.h"
-#include <string.h>
+// #include <string.h>
 
 // low level implementation on stm32f405rgt6
 
@@ -194,4 +194,49 @@ _Bool link_can_is_mailboxes_free(void) {
   }
   return 0;
 }
+
+
+
+
+
+void GPIO_DRV832xS_CS_EN(void){
+  DRV8323_CS_GPIO_Port->BSRR = DRV8323_CS_Pin;
+}
+
+void GPIO_DRV832xS_CS_DIS(void){
+  DRV8323_CS_GPIO_Port->BSRR = DRV8323_CS_Pin << 16U;
+}
+
+void GPIO_AS5048A_IN_CS_EN(void){
+  AS5048A_IN_CS_GPIO_Port->BSRR = AS5048A_IN_CS_Pin;
+}
+
+void GPIO_AS5048A_IN_CS_DIS(void){
+  AS5048A_IN_CS_GPIO_Port->BSRR = AS5048A_IN_CS_Pin << 16U;
+}
+
+void GPIO_AS5048A_EX_CS_EN(void){
+  AS5048A_EX_CS_GPIO_Port->BSRR = AS5048A_EX_CS_Pin;
+}
+
+void GPIO_AS5048A_EX_CS_DIS(void){
+  AS5048A_EX_CS_GPIO_Port->BSRR = AS5048A_EX_CS_Pin << 16U;
+}
+
+// void GPIO_LED_GREEN_EN(void){
+//   GPIO_LED_GREEN_PORT->BSRR = GPIO_LED_GREEN_PIN;
+// }
+
+// void GPIO_LED_GREEN_DIS(void){
+//   GPIO_LED_GREEN_PORT->BSRR = GPIO_LED_GREEN_PIN << 16U;
+// }
+
+// void GPIO_LED_RED_EN(void){
+//   GPIO_LED_RED_PORT->BSRR = GPIO_LED_RED_PIN;
+// }
+
+// void GPIO_LED_RED_DIS(void){
+//   GPIO_LED_RED_PORT->BSRR = GPIO_LED_RED_PIN << 16U;
+// }
+
 

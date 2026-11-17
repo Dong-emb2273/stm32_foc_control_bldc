@@ -1,0 +1,627 @@
+ARM GAS  /tmp/ccdgNRdr.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"vbus_protection.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.vbus_update,"ax",%progbits
+  18              		.align	1
+  19              		.global	vbus_update
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	vbus_update:
+  27              	.LVL0:
+  28              	.LFB1:
+  29              		.file 1 "Lib/FOC/vbus_protection.c"
+   1:Lib/FOC/vbus_protection.c **** #include "vbus_protection.h"
+   2:Lib/FOC/vbus_protection.c **** 
+   3:Lib/FOC/vbus_protection.c **** #define VBUS_TWO_PI  6.28318530718f
+   4:Lib/FOC/vbus_protection.c **** 
+   5:Lib/FOC/vbus_protection.c **** int vbus_init(vbus_t *hvbus, float uv, float ov, float dt) {
+   6:Lib/FOC/vbus_protection.c ****   if (hvbus == 0 || dt <= 0.0f) {
+   7:Lib/FOC/vbus_protection.c ****     return -1;
+   8:Lib/FOC/vbus_protection.c ****   }
+   9:Lib/FOC/vbus_protection.c **** 
+  10:Lib/FOC/vbus_protection.c ****   hvbus->uv_trip = uv;
+  11:Lib/FOC/vbus_protection.c ****   hvbus->uv_clear = uv + VBUS_UV_HYSTERESIS;
+  12:Lib/FOC/vbus_protection.c ****   hvbus->ov_clear = ov - VBUS_OV_HYSTERESIS;
+  13:Lib/FOC/vbus_protection.c ****   hvbus->ov_trip = ov;
+  14:Lib/FOC/vbus_protection.c ****   hvbus->dt = dt;
+  15:Lib/FOC/vbus_protection.c ****   hvbus->filt_alpha = 1.0f;
+  16:Lib/FOC/vbus_protection.c **** 
+  17:Lib/FOC/vbus_protection.c ****   hvbus->uv_trip_time = 0.005f;   /* 5 ms  */
+  18:Lib/FOC/vbus_protection.c ****   hvbus->ov_trip_time = 0.0f;     /* immediate */
+  19:Lib/FOC/vbus_protection.c ****   hvbus->clear_time = 0.050f;     /* 50 ms */
+  20:Lib/FOC/vbus_protection.c **** 
+  21:Lib/FOC/vbus_protection.c ****   vbus_reset(hvbus);
+  22:Lib/FOC/vbus_protection.c **** 
+  23:Lib/FOC/vbus_protection.c ****   return 0;
+  24:Lib/FOC/vbus_protection.c **** }
+  25:Lib/FOC/vbus_protection.c **** 
+  26:Lib/FOC/vbus_protection.c **** _Bool vbus_update(vbus_t *hvbus, float vbus_raw) {
+  30              		.loc 1 26 50 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /tmp/ccdgNRdr.s 			page 2
+
+
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  27:Lib/FOC/vbus_protection.c ****   if (hvbus == 0) {
+  35              		.loc 1 27 3 view .LVU1
+  36              		.loc 1 27 6 is_stmt 0 view .LVU2
+  37 0000 0346     		mov	r3, r0
+  38 0002 0028     		cmp	r0, #0
+  39 0004 00F09E80 		beq	.L19
+  28:Lib/FOC/vbus_protection.c ****     return 0;
+  29:Lib/FOC/vbus_protection.c ****   }
+  30:Lib/FOC/vbus_protection.c **** 
+  31:Lib/FOC/vbus_protection.c ****   hvbus->v += hvbus->filt_alpha * (vbus_raw - hvbus->v);
+  40              		.loc 1 31 3 is_stmt 1 view .LVU3
+  41              		.loc 1 31 12 is_stmt 0 view .LVU4
+  42 0008 D0ED097A 		vldr.32	s15, [r0, #36]
+  43              		.loc 1 31 20 view .LVU5
+  44 000c 90ED077A 		vldr.32	s14, [r0, #28]
+  45              		.loc 1 31 45 view .LVU6
+  46 0010 70EE676A 		vsub.f32	s13, s0, s15
+  47              		.loc 1 31 33 view .LVU7
+  48 0014 27EE267A 		vmul.f32	s14, s14, s13
+  49              		.loc 1 31 12 view .LVU8
+  50 0018 77EE877A 		vadd.f32	s15, s15, s14
+  51 001c C0ED097A 		vstr.32	s15, [r0, #36]
+  32:Lib/FOC/vbus_protection.c **** 
+  33:Lib/FOC/vbus_protection.c ****   if (!(hvbus->fault & VBUS_FAULT_UV)) {
+  52              		.loc 1 33 3 is_stmt 1 view .LVU9
+  53              		.loc 1 33 14 is_stmt 0 view .LVU10
+  54 0020 90F83820 		ldrb	r2, [r0, #56]	@ zero_extendqisi2
+  55              		.loc 1 33 6 view .LVU11
+  56 0024 12F0010F 		tst	r2, #1
+  57 0028 40D1     		bne	.L3
+  34:Lib/FOC/vbus_protection.c ****     if (hvbus->v < hvbus->uv_trip) {
+  58              		.loc 1 34 5 is_stmt 1 view .LVU12
+  59              		.loc 1 34 25 is_stmt 0 view .LVU13
+  60 002a 90ED007A 		vldr.32	s14, [r0]
+  61              		.loc 1 34 8 view .LVU14
+  62 002e F4EEC77A 		vcmpe.f32	s15, s14
+  63 0032 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  64 0036 15D5     		bpl	.L29
+  35:Lib/FOC/vbus_protection.c ****       hvbus->uv_timer += hvbus->dt;
+  65              		.loc 1 35 7 is_stmt 1 view .LVU15
+  66              		.loc 1 35 31 is_stmt 0 view .LVU16
+  67 0038 D0ED087A 		vldr.32	s15, [r0, #32]
+  68              		.loc 1 35 23 view .LVU17
+  69 003c 90ED0A7A 		vldr.32	s14, [r0, #40]
+  70 0040 77EE877A 		vadd.f32	s15, s15, s14
+  71 0044 C0ED0A7A 		vstr.32	s15, [r0, #40]
+  36:Lib/FOC/vbus_protection.c ****       if (hvbus->uv_timer >= hvbus->uv_trip_time) {
+  72              		.loc 1 36 7 is_stmt 1 view .LVU18
+  73              		.loc 1 36 35 is_stmt 0 view .LVU19
+  74 0048 90ED047A 		vldr.32	s14, [r0, #16]
+  75              		.loc 1 36 10 view .LVU20
+  76 004c F4EEC77A 		vcmpe.f32	s15, s14
+  77 0050 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  78 0054 08DB     		blt	.L6
+  37:Lib/FOC/vbus_protection.c ****           hvbus->fault |= VBUS_FAULT_UV;
+ARM GAS  /tmp/ccdgNRdr.s 			page 3
+
+
+  79              		.loc 1 37 11 is_stmt 1 view .LVU21
+  80              		.loc 1 37 24 is_stmt 0 view .LVU22
+  81 0056 42F00102 		orr	r2, r2, #1
+  82 005a 80F83820 		strb	r2, [r0, #56]
+  38:Lib/FOC/vbus_protection.c ****           hvbus->uv_ok_timer = 0.0f;
+  83              		.loc 1 38 11 is_stmt 1 view .LVU23
+  84              		.loc 1 38 30 is_stmt 0 view .LVU24
+  85 005e 0022     		movs	r2, #0
+  86 0060 0263     		str	r2, [r0, #48]	@ float
+  87 0062 01E0     		b	.L6
+  88              	.L29:
+  39:Lib/FOC/vbus_protection.c ****       }
+  40:Lib/FOC/vbus_protection.c ****     }
+  41:Lib/FOC/vbus_protection.c ****     else {
+  42:Lib/FOC/vbus_protection.c ****       hvbus->uv_timer = 0.0f;
+  89              		.loc 1 42 7 is_stmt 1 view .LVU25
+  90              		.loc 1 42 23 is_stmt 0 view .LVU26
+  91 0064 0022     		movs	r2, #0
+  92 0066 8262     		str	r2, [r0, #40]	@ float
+  93              	.L6:
+  43:Lib/FOC/vbus_protection.c ****     }
+  44:Lib/FOC/vbus_protection.c ****   }
+  45:Lib/FOC/vbus_protection.c ****   else {
+  46:Lib/FOC/vbus_protection.c ****     if (hvbus->v > hvbus->uv_clear) {
+  47:Lib/FOC/vbus_protection.c ****       hvbus->uv_ok_timer += hvbus->dt;
+  48:Lib/FOC/vbus_protection.c ****       if (hvbus->uv_ok_timer >= hvbus->clear_time) {
+  49:Lib/FOC/vbus_protection.c ****         hvbus->fault &= (uint8_t)~VBUS_FAULT_UV;
+  50:Lib/FOC/vbus_protection.c ****         hvbus->uv_timer = 0.0f;
+  51:Lib/FOC/vbus_protection.c ****       }
+  52:Lib/FOC/vbus_protection.c ****     }
+  53:Lib/FOC/vbus_protection.c ****     else {
+  54:Lib/FOC/vbus_protection.c ****       hvbus->uv_ok_timer = 0.0f;
+  55:Lib/FOC/vbus_protection.c ****     }
+  56:Lib/FOC/vbus_protection.c ****   }
+  57:Lib/FOC/vbus_protection.c **** 
+  58:Lib/FOC/vbus_protection.c ****   if (!(hvbus->fault & VBUS_FAULT_OV)) {
+  94              		.loc 1 58 3 is_stmt 1 view .LVU27
+  95              		.loc 1 58 14 is_stmt 0 view .LVU28
+  96 0068 93F83820 		ldrb	r2, [r3, #56]	@ zero_extendqisi2
+  97              		.loc 1 58 6 view .LVU29
+  98 006c 12F0020F 		tst	r2, #2
+  99 0070 48D1     		bne	.L11
+  59:Lib/FOC/vbus_protection.c ****     if (vbus_raw > hvbus->ov_trip) {
+ 100              		.loc 1 59 5 is_stmt 1 view .LVU30
+ 101              		.loc 1 59 25 is_stmt 0 view .LVU31
+ 102 0072 D3ED027A 		vldr.32	s15, [r3, #8]
+ 103              		.loc 1 59 8 view .LVU32
+ 104 0076 F4EEC07A 		vcmpe.f32	s15, s0
+ 105 007a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 106 007e 35D5     		bpl	.L31
+  60:Lib/FOC/vbus_protection.c ****       hvbus->ov_timer += hvbus->dt;
+ 107              		.loc 1 60 7 is_stmt 1 view .LVU33
+ 108              		.loc 1 60 31 is_stmt 0 view .LVU34
+ 109 0080 D3ED087A 		vldr.32	s15, [r3, #32]
+ 110              		.loc 1 60 23 view .LVU35
+ 111 0084 93ED0B7A 		vldr.32	s14, [r3, #44]
+ 112 0088 77EE877A 		vadd.f32	s15, s15, s14
+ARM GAS  /tmp/ccdgNRdr.s 			page 4
+
+
+ 113 008c C3ED0B7A 		vstr.32	s15, [r3, #44]
+  61:Lib/FOC/vbus_protection.c ****       if (hvbus->ov_timer >= hvbus->ov_trip_time) {
+ 114              		.loc 1 61 7 is_stmt 1 view .LVU36
+ 115              		.loc 1 61 35 is_stmt 0 view .LVU37
+ 116 0090 93ED057A 		vldr.32	s14, [r3, #20]
+ 117              		.loc 1 61 10 view .LVU38
+ 118 0094 F4EEC77A 		vcmpe.f32	s15, s14
+ 119 0098 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 120 009c 28DB     		blt	.L14
+  62:Lib/FOC/vbus_protection.c ****           hvbus->fault |= VBUS_FAULT_OV;
+ 121              		.loc 1 62 11 is_stmt 1 view .LVU39
+ 122              		.loc 1 62 24 is_stmt 0 view .LVU40
+ 123 009e 42F00202 		orr	r2, r2, #2
+ 124 00a2 83F83820 		strb	r2, [r3, #56]
+  63:Lib/FOC/vbus_protection.c ****           hvbus->ov_ok_timer = 0.0f;
+ 125              		.loc 1 63 11 is_stmt 1 view .LVU41
+ 126              		.loc 1 63 30 is_stmt 0 view .LVU42
+ 127 00a6 0022     		movs	r2, #0
+ 128 00a8 5A63     		str	r2, [r3, #52]	@ float
+ 129 00aa 21E0     		b	.L14
+ 130              	.L3:
+  46:Lib/FOC/vbus_protection.c ****       hvbus->uv_ok_timer += hvbus->dt;
+ 131              		.loc 1 46 5 is_stmt 1 view .LVU43
+  46:Lib/FOC/vbus_protection.c ****       hvbus->uv_ok_timer += hvbus->dt;
+ 132              		.loc 1 46 25 is_stmt 0 view .LVU44
+ 133 00ac 90ED017A 		vldr.32	s14, [r0, #4]
+  46:Lib/FOC/vbus_protection.c ****       hvbus->uv_ok_timer += hvbus->dt;
+ 134              		.loc 1 46 8 view .LVU45
+ 135 00b0 F4EEC77A 		vcmpe.f32	s15, s14
+ 136 00b4 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 137 00b8 15DD     		ble	.L30
+  47:Lib/FOC/vbus_protection.c ****       if (hvbus->uv_ok_timer >= hvbus->clear_time) {
+ 138              		.loc 1 47 7 is_stmt 1 view .LVU46
+  47:Lib/FOC/vbus_protection.c ****       if (hvbus->uv_ok_timer >= hvbus->clear_time) {
+ 139              		.loc 1 47 34 is_stmt 0 view .LVU47
+ 140 00ba D0ED087A 		vldr.32	s15, [r0, #32]
+  47:Lib/FOC/vbus_protection.c ****       if (hvbus->uv_ok_timer >= hvbus->clear_time) {
+ 141              		.loc 1 47 26 view .LVU48
+ 142 00be 90ED0C7A 		vldr.32	s14, [r0, #48]
+ 143 00c2 77EE877A 		vadd.f32	s15, s15, s14
+ 144 00c6 C0ED0C7A 		vstr.32	s15, [r0, #48]
+  48:Lib/FOC/vbus_protection.c ****         hvbus->fault &= (uint8_t)~VBUS_FAULT_UV;
+ 145              		.loc 1 48 7 is_stmt 1 view .LVU49
+  48:Lib/FOC/vbus_protection.c ****         hvbus->fault &= (uint8_t)~VBUS_FAULT_UV;
+ 146              		.loc 1 48 38 is_stmt 0 view .LVU50
+ 147 00ca 90ED067A 		vldr.32	s14, [r0, #24]
+  48:Lib/FOC/vbus_protection.c ****         hvbus->fault &= (uint8_t)~VBUS_FAULT_UV;
+ 148              		.loc 1 48 10 view .LVU51
+ 149 00ce F4EEC77A 		vcmpe.f32	s15, s14
+ 150 00d2 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 151 00d6 C7DB     		blt	.L6
+  49:Lib/FOC/vbus_protection.c ****         hvbus->uv_timer = 0.0f;
+ 152              		.loc 1 49 9 is_stmt 1 view .LVU52
+  49:Lib/FOC/vbus_protection.c ****         hvbus->uv_timer = 0.0f;
+ 153              		.loc 1 49 22 is_stmt 0 view .LVU53
+ 154 00d8 22F00102 		bic	r2, r2, #1
+ 155 00dc 80F83820 		strb	r2, [r0, #56]
+ARM GAS  /tmp/ccdgNRdr.s 			page 5
+
+
+  50:Lib/FOC/vbus_protection.c ****       }
+ 156              		.loc 1 50 9 is_stmt 1 view .LVU54
+  50:Lib/FOC/vbus_protection.c ****       }
+ 157              		.loc 1 50 25 is_stmt 0 view .LVU55
+ 158 00e0 0022     		movs	r2, #0
+ 159 00e2 8262     		str	r2, [r0, #40]	@ float
+ 160 00e4 C0E7     		b	.L6
+ 161              	.L30:
+  54:Lib/FOC/vbus_protection.c ****     }
+ 162              		.loc 1 54 7 is_stmt 1 view .LVU56
+  54:Lib/FOC/vbus_protection.c ****     }
+ 163              		.loc 1 54 26 is_stmt 0 view .LVU57
+ 164 00e6 0022     		movs	r2, #0
+ 165 00e8 0263     		str	r2, [r0, #48]	@ float
+ 166 00ea BDE7     		b	.L6
+ 167              	.L31:
+  64:Lib/FOC/vbus_protection.c ****       }
+  65:Lib/FOC/vbus_protection.c ****     }
+  66:Lib/FOC/vbus_protection.c ****     else {
+  67:Lib/FOC/vbus_protection.c ****       hvbus->ov_timer = 0.0f;
+ 168              		.loc 1 67 7 is_stmt 1 view .LVU58
+ 169              		.loc 1 67 23 is_stmt 0 view .LVU59
+ 170 00ec 0022     		movs	r2, #0
+ 171 00ee DA62     		str	r2, [r3, #44]	@ float
+ 172              	.L14:
+  68:Lib/FOC/vbus_protection.c ****     }
+  69:Lib/FOC/vbus_protection.c ****   }
+  70:Lib/FOC/vbus_protection.c ****   else {
+  71:Lib/FOC/vbus_protection.c ****     if (vbus_raw < hvbus->ov_clear) {
+  72:Lib/FOC/vbus_protection.c ****       hvbus->ov_ok_timer += hvbus->dt;
+  73:Lib/FOC/vbus_protection.c ****       if (hvbus->ov_ok_timer >= hvbus->clear_time) {
+  74:Lib/FOC/vbus_protection.c ****         hvbus->fault &= (uint8_t)~VBUS_FAULT_OV;
+  75:Lib/FOC/vbus_protection.c ****         hvbus->ov_timer = 0.0f;
+  76:Lib/FOC/vbus_protection.c ****       }
+  77:Lib/FOC/vbus_protection.c ****     }
+  78:Lib/FOC/vbus_protection.c ****     else {
+  79:Lib/FOC/vbus_protection.c ****       hvbus->ov_ok_timer = 0.0f;
+  80:Lib/FOC/vbus_protection.c ****     }
+  81:Lib/FOC/vbus_protection.c ****   }
+  82:Lib/FOC/vbus_protection.c **** 
+  83:Lib/FOC/vbus_protection.c ****   if (hvbus->last_fault != hvbus->fault) {
+ 173              		.loc 1 83 3 is_stmt 1 view .LVU60
+ 174              		.loc 1 83 12 is_stmt 0 view .LVU61
+ 175 00f0 93F83910 		ldrb	r1, [r3, #57]	@ zero_extendqisi2
+ 176              		.loc 1 83 33 view .LVU62
+ 177 00f4 93F83820 		ldrb	r2, [r3, #56]	@ zero_extendqisi2
+ 178              		.loc 1 83 6 view .LVU63
+ 179 00f8 9142     		cmp	r1, r2
+ 180 00fa 25D0     		beq	.L20
+  84:Lib/FOC/vbus_protection.c ****     hvbus->last_fault = hvbus->fault;
+ 181              		.loc 1 84 5 is_stmt 1 view .LVU64
+ 182              		.loc 1 84 23 is_stmt 0 view .LVU65
+ 183 00fc 83F83920 		strb	r2, [r3, #57]
+  85:Lib/FOC/vbus_protection.c ****     return 1;
+ 184              		.loc 1 85 5 is_stmt 1 view .LVU66
+ 185              		.loc 1 85 12 is_stmt 0 view .LVU67
+ 186 0100 0120     		movs	r0, #1
+ARM GAS  /tmp/ccdgNRdr.s 			page 6
+
+
+ 187              	.LVL1:
+ 188              		.loc 1 85 12 view .LVU68
+ 189 0102 7047     		bx	lr
+ 190              	.LVL2:
+ 191              	.L11:
+  71:Lib/FOC/vbus_protection.c ****       hvbus->ov_ok_timer += hvbus->dt;
+ 192              		.loc 1 71 5 is_stmt 1 view .LVU69
+  71:Lib/FOC/vbus_protection.c ****       hvbus->ov_ok_timer += hvbus->dt;
+ 193              		.loc 1 71 25 is_stmt 0 view .LVU70
+ 194 0104 D3ED037A 		vldr.32	s15, [r3, #12]
+  71:Lib/FOC/vbus_protection.c ****       hvbus->ov_ok_timer += hvbus->dt;
+ 195              		.loc 1 71 8 view .LVU71
+ 196 0108 F4EEC07A 		vcmpe.f32	s15, s0
+ 197 010c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 198 0110 15DD     		ble	.L32
+  72:Lib/FOC/vbus_protection.c ****       if (hvbus->ov_ok_timer >= hvbus->clear_time) {
+ 199              		.loc 1 72 7 is_stmt 1 view .LVU72
+  72:Lib/FOC/vbus_protection.c ****       if (hvbus->ov_ok_timer >= hvbus->clear_time) {
+ 200              		.loc 1 72 34 is_stmt 0 view .LVU73
+ 201 0112 D3ED087A 		vldr.32	s15, [r3, #32]
+  72:Lib/FOC/vbus_protection.c ****       if (hvbus->ov_ok_timer >= hvbus->clear_time) {
+ 202              		.loc 1 72 26 view .LVU74
+ 203 0116 93ED0D7A 		vldr.32	s14, [r3, #52]
+ 204 011a 77EE877A 		vadd.f32	s15, s15, s14
+ 205 011e C3ED0D7A 		vstr.32	s15, [r3, #52]
+  73:Lib/FOC/vbus_protection.c ****         hvbus->fault &= (uint8_t)~VBUS_FAULT_OV;
+ 206              		.loc 1 73 7 is_stmt 1 view .LVU75
+  73:Lib/FOC/vbus_protection.c ****         hvbus->fault &= (uint8_t)~VBUS_FAULT_OV;
+ 207              		.loc 1 73 38 is_stmt 0 view .LVU76
+ 208 0122 93ED067A 		vldr.32	s14, [r3, #24]
+  73:Lib/FOC/vbus_protection.c ****         hvbus->fault &= (uint8_t)~VBUS_FAULT_OV;
+ 209              		.loc 1 73 10 view .LVU77
+ 210 0126 F4EEC77A 		vcmpe.f32	s15, s14
+ 211 012a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 212 012e DFDB     		blt	.L14
+  74:Lib/FOC/vbus_protection.c ****         hvbus->ov_timer = 0.0f;
+ 213              		.loc 1 74 9 is_stmt 1 view .LVU78
+  74:Lib/FOC/vbus_protection.c ****         hvbus->ov_timer = 0.0f;
+ 214              		.loc 1 74 22 is_stmt 0 view .LVU79
+ 215 0130 22F00202 		bic	r2, r2, #2
+ 216 0134 83F83820 		strb	r2, [r3, #56]
+  75:Lib/FOC/vbus_protection.c ****       }
+ 217              		.loc 1 75 9 is_stmt 1 view .LVU80
+  75:Lib/FOC/vbus_protection.c ****       }
+ 218              		.loc 1 75 25 is_stmt 0 view .LVU81
+ 219 0138 0022     		movs	r2, #0
+ 220 013a DA62     		str	r2, [r3, #44]	@ float
+ 221 013c D8E7     		b	.L14
+ 222              	.L32:
+  79:Lib/FOC/vbus_protection.c ****     }
+ 223              		.loc 1 79 7 is_stmt 1 view .LVU82
+  79:Lib/FOC/vbus_protection.c ****     }
+ 224              		.loc 1 79 26 is_stmt 0 view .LVU83
+ 225 013e 0022     		movs	r2, #0
+ 226 0140 5A63     		str	r2, [r3, #52]	@ float
+ 227 0142 D5E7     		b	.L14
+ 228              	.L19:
+ARM GAS  /tmp/ccdgNRdr.s 			page 7
+
+
+  28:Lib/FOC/vbus_protection.c ****   }
+ 229              		.loc 1 28 12 view .LVU84
+ 230 0144 0020     		movs	r0, #0
+ 231              	.LVL3:
+  28:Lib/FOC/vbus_protection.c ****   }
+ 232              		.loc 1 28 12 view .LVU85
+ 233 0146 7047     		bx	lr
+ 234              	.LVL4:
+ 235              	.L20:
+  86:Lib/FOC/vbus_protection.c ****   }
+  87:Lib/FOC/vbus_protection.c ****   return 0;
+ 236              		.loc 1 87 10 view .LVU86
+ 237 0148 0020     		movs	r0, #0
+ 238              	.LVL5:
+  88:Lib/FOC/vbus_protection.c **** }
+ 239              		.loc 1 88 1 view .LVU87
+ 240 014a 7047     		bx	lr
+ 241              		.cfi_endproc
+ 242              	.LFE1:
+ 244              		.section	.text.vbus_get_fault,"ax",%progbits
+ 245              		.align	1
+ 246              		.global	vbus_get_fault
+ 247              		.syntax unified
+ 248              		.thumb
+ 249              		.thumb_func
+ 250              		.fpu fpv4-sp-d16
+ 252              	vbus_get_fault:
+ 253              	.LVL6:
+ 254              	.LFB2:
+  89:Lib/FOC/vbus_protection.c **** 
+  90:Lib/FOC/vbus_protection.c **** uint8_t vbus_get_fault(vbus_t *hvbus) {
+ 255              		.loc 1 90 39 is_stmt 1 view -0
+ 256              		.cfi_startproc
+ 257              		@ args = 0, pretend = 0, frame = 0
+ 258              		@ frame_needed = 0, uses_anonymous_args = 0
+ 259              		@ link register save eliminated.
+  91:Lib/FOC/vbus_protection.c ****   return hvbus->fault;
+ 260              		.loc 1 91 3 view .LVU89
+  92:Lib/FOC/vbus_protection.c **** }
+ 261              		.loc 1 92 1 is_stmt 0 view .LVU90
+ 262 0000 90F83800 		ldrb	r0, [r0, #56]	@ zero_extendqisi2
+ 263              	.LVL7:
+ 264              		.loc 1 92 1 view .LVU91
+ 265 0004 7047     		bx	lr
+ 266              		.cfi_endproc
+ 267              	.LFE2:
+ 269              		.section	.text.vbus_reset,"ax",%progbits
+ 270              		.align	1
+ 271              		.global	vbus_reset
+ 272              		.syntax unified
+ 273              		.thumb
+ 274              		.thumb_func
+ 275              		.fpu fpv4-sp-d16
+ 277              	vbus_reset:
+ 278              	.LVL8:
+ 279              	.LFB3:
+  93:Lib/FOC/vbus_protection.c **** 
+ARM GAS  /tmp/ccdgNRdr.s 			page 8
+
+
+  94:Lib/FOC/vbus_protection.c **** void vbus_reset(vbus_t *hvbus) {
+ 280              		.loc 1 94 32 is_stmt 1 view -0
+ 281              		.cfi_startproc
+ 282              		@ args = 0, pretend = 0, frame = 0
+ 283              		@ frame_needed = 0, uses_anonymous_args = 0
+ 284              		@ link register save eliminated.
+  95:Lib/FOC/vbus_protection.c ****   hvbus->v = 0.0f;
+ 285              		.loc 1 95 3 view .LVU93
+ 286              		.loc 1 95 12 is_stmt 0 view .LVU94
+ 287 0000 0023     		movs	r3, #0
+ 288 0002 4362     		str	r3, [r0, #36]	@ float
+  96:Lib/FOC/vbus_protection.c ****   hvbus->fault = VBUS_FAULT_NONE;
+ 289              		.loc 1 96 3 is_stmt 1 view .LVU95
+ 290              		.loc 1 96 16 is_stmt 0 view .LVU96
+ 291 0004 0022     		movs	r2, #0
+ 292 0006 80F83820 		strb	r2, [r0, #56]
+  97:Lib/FOC/vbus_protection.c ****   hvbus->last_fault = VBUS_FAULT_NONE;
+ 293              		.loc 1 97 3 is_stmt 1 view .LVU97
+ 294              		.loc 1 97 21 is_stmt 0 view .LVU98
+ 295 000a 80F83920 		strb	r2, [r0, #57]
+  98:Lib/FOC/vbus_protection.c ****   hvbus->uv_timer = 0.0f;
+ 296              		.loc 1 98 3 is_stmt 1 view .LVU99
+ 297              		.loc 1 98 19 is_stmt 0 view .LVU100
+ 298 000e 8362     		str	r3, [r0, #40]	@ float
+  99:Lib/FOC/vbus_protection.c ****   hvbus->ov_timer = 0.0f;
+ 299              		.loc 1 99 3 is_stmt 1 view .LVU101
+ 300              		.loc 1 99 19 is_stmt 0 view .LVU102
+ 301 0010 C362     		str	r3, [r0, #44]	@ float
+ 100:Lib/FOC/vbus_protection.c ****   hvbus->uv_ok_timer = 0.0f;
+ 302              		.loc 1 100 3 is_stmt 1 view .LVU103
+ 303              		.loc 1 100 22 is_stmt 0 view .LVU104
+ 304 0012 0363     		str	r3, [r0, #48]	@ float
+ 101:Lib/FOC/vbus_protection.c ****   hvbus->ov_ok_timer = 0.0f;
+ 305              		.loc 1 101 3 is_stmt 1 view .LVU105
+ 306              		.loc 1 101 22 is_stmt 0 view .LVU106
+ 307 0014 4363     		str	r3, [r0, #52]	@ float
+ 102:Lib/FOC/vbus_protection.c **** }
+ 308              		.loc 1 102 1 view .LVU107
+ 309 0016 7047     		bx	lr
+ 310              		.cfi_endproc
+ 311              	.LFE3:
+ 313              		.section	.text.vbus_init,"ax",%progbits
+ 314              		.align	1
+ 315              		.global	vbus_init
+ 316              		.syntax unified
+ 317              		.thumb
+ 318              		.thumb_func
+ 319              		.fpu fpv4-sp-d16
+ 321              	vbus_init:
+ 322              	.LVL9:
+ 323              	.LFB0:
+   5:Lib/FOC/vbus_protection.c ****   if (hvbus == 0 || dt <= 0.0f) {
+ 324              		.loc 1 5 60 is_stmt 1 view -0
+ 325              		.cfi_startproc
+ 326              		@ args = 0, pretend = 0, frame = 0
+ 327              		@ frame_needed = 0, uses_anonymous_args = 0
+   6:Lib/FOC/vbus_protection.c ****     return -1;
+ARM GAS  /tmp/ccdgNRdr.s 			page 9
+
+
+ 328              		.loc 1 6 3 view .LVU109
+   6:Lib/FOC/vbus_protection.c ****     return -1;
+ 329              		.loc 1 6 6 is_stmt 0 view .LVU110
+ 330 0000 08B3     		cbz	r0, .L37
+   5:Lib/FOC/vbus_protection.c ****   if (hvbus == 0 || dt <= 0.0f) {
+ 331              		.loc 1 5 60 discriminator 1 view .LVU111
+ 332 0002 08B5     		push	{r3, lr}
+ 333              	.LCFI0:
+ 334              		.cfi_def_cfa_offset 8
+ 335              		.cfi_offset 3, -8
+ 336              		.cfi_offset 14, -4
+   6:Lib/FOC/vbus_protection.c ****     return -1;
+ 337              		.loc 1 6 18 discriminator 1 view .LVU112
+ 338 0004 B5EEC01A 		vcmpe.f32	s2, #0
+ 339 0008 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 340 000c 1ED9     		bls	.L38
+  10:Lib/FOC/vbus_protection.c ****   hvbus->uv_clear = uv + VBUS_UV_HYSTERESIS;
+ 341              		.loc 1 10 3 is_stmt 1 view .LVU113
+  10:Lib/FOC/vbus_protection.c ****   hvbus->uv_clear = uv + VBUS_UV_HYSTERESIS;
+ 342              		.loc 1 10 18 is_stmt 0 view .LVU114
+ 343 000e 80ED000A 		vstr.32	s0, [r0]
+  11:Lib/FOC/vbus_protection.c ****   hvbus->ov_clear = ov - VBUS_OV_HYSTERESIS;
+ 344              		.loc 1 11 3 is_stmt 1 view .LVU115
+  11:Lib/FOC/vbus_protection.c ****   hvbus->ov_clear = ov - VBUS_OV_HYSTERESIS;
+ 345              		.loc 1 11 24 is_stmt 0 view .LVU116
+ 346 0012 F7EE007A 		vmov.f32	s15, #1.0e+0
+ 347 0016 30EE270A 		vadd.f32	s0, s0, s15
+ 348              	.LVL10:
+  11:Lib/FOC/vbus_protection.c ****   hvbus->ov_clear = ov - VBUS_OV_HYSTERESIS;
+ 349              		.loc 1 11 19 view .LVU117
+ 350 001a 80ED010A 		vstr.32	s0, [r0, #4]
+  12:Lib/FOC/vbus_protection.c ****   hvbus->ov_trip = ov;
+ 351              		.loc 1 12 3 is_stmt 1 view .LVU118
+  12:Lib/FOC/vbus_protection.c ****   hvbus->ov_trip = ov;
+ 352              		.loc 1 12 24 is_stmt 0 view .LVU119
+ 353 001e 30EEE77A 		vsub.f32	s14, s1, s15
+  12:Lib/FOC/vbus_protection.c ****   hvbus->ov_trip = ov;
+ 354              		.loc 1 12 19 view .LVU120
+ 355 0022 80ED037A 		vstr.32	s14, [r0, #12]
+  13:Lib/FOC/vbus_protection.c ****   hvbus->dt = dt;
+ 356              		.loc 1 13 3 is_stmt 1 view .LVU121
+  13:Lib/FOC/vbus_protection.c ****   hvbus->dt = dt;
+ 357              		.loc 1 13 18 is_stmt 0 view .LVU122
+ 358 0026 C0ED020A 		vstr.32	s1, [r0, #8]
+  14:Lib/FOC/vbus_protection.c ****   hvbus->filt_alpha = 1.0f;
+ 359              		.loc 1 14 3 is_stmt 1 view .LVU123
+  14:Lib/FOC/vbus_protection.c ****   hvbus->filt_alpha = 1.0f;
+ 360              		.loc 1 14 13 is_stmt 0 view .LVU124
+ 361 002a 80ED081A 		vstr.32	s2, [r0, #32]
+  15:Lib/FOC/vbus_protection.c **** 
+ 362              		.loc 1 15 3 is_stmt 1 view .LVU125
+  15:Lib/FOC/vbus_protection.c **** 
+ 363              		.loc 1 15 21 is_stmt 0 view .LVU126
+ 364 002e C0ED077A 		vstr.32	s15, [r0, #28]
+  17:Lib/FOC/vbus_protection.c ****   hvbus->ov_trip_time = 0.0f;     /* immediate */
+ 365              		.loc 1 17 3 is_stmt 1 view .LVU127
+  17:Lib/FOC/vbus_protection.c ****   hvbus->ov_trip_time = 0.0f;     /* immediate */
+ARM GAS  /tmp/ccdgNRdr.s 			page 10
+
+
+ 366              		.loc 1 17 23 is_stmt 0 view .LVU128
+ 367 0032 084A     		ldr	r2, .L43
+ 368 0034 0261     		str	r2, [r0, #16]	@ float
+  18:Lib/FOC/vbus_protection.c ****   hvbus->clear_time = 0.050f;     /* 50 ms */
+ 369              		.loc 1 18 3 is_stmt 1 view .LVU129
+  18:Lib/FOC/vbus_protection.c ****   hvbus->clear_time = 0.050f;     /* 50 ms */
+ 370              		.loc 1 18 23 is_stmt 0 view .LVU130
+ 371 0036 0022     		movs	r2, #0
+ 372 0038 4261     		str	r2, [r0, #20]	@ float
+  19:Lib/FOC/vbus_protection.c **** 
+ 373              		.loc 1 19 3 is_stmt 1 view .LVU131
+  19:Lib/FOC/vbus_protection.c **** 
+ 374              		.loc 1 19 21 is_stmt 0 view .LVU132
+ 375 003a 074A     		ldr	r2, .L43+4
+ 376 003c 8261     		str	r2, [r0, #24]	@ float
+  21:Lib/FOC/vbus_protection.c **** 
+ 377              		.loc 1 21 3 is_stmt 1 view .LVU133
+ 378 003e FFF7FEFF 		bl	vbus_reset
+ 379              	.LVL11:
+  23:Lib/FOC/vbus_protection.c **** }
+ 380              		.loc 1 23 3 view .LVU134
+  23:Lib/FOC/vbus_protection.c **** }
+ 381              		.loc 1 23 10 is_stmt 0 view .LVU135
+ 382 0042 0020     		movs	r0, #0
+ 383              	.L35:
+  24:Lib/FOC/vbus_protection.c **** 
+ 384              		.loc 1 24 1 view .LVU136
+ 385 0044 08BD     		pop	{r3, pc}
+ 386              	.LVL12:
+ 387              	.L37:
+ 388              	.LCFI1:
+ 389              		.cfi_def_cfa_offset 0
+ 390              		.cfi_restore 3
+ 391              		.cfi_restore 14
+   7:Lib/FOC/vbus_protection.c ****   }
+ 392              		.loc 1 7 12 view .LVU137
+ 393 0046 4FF0FF30 		mov	r0, #-1
+ 394              	.LVL13:
+  24:Lib/FOC/vbus_protection.c **** 
+ 395              		.loc 1 24 1 view .LVU138
+ 396 004a 7047     		bx	lr
+ 397              	.LVL14:
+ 398              	.L38:
+ 399              	.LCFI2:
+ 400              		.cfi_def_cfa_offset 8
+ 401              		.cfi_offset 3, -8
+ 402              		.cfi_offset 14, -4
+   7:Lib/FOC/vbus_protection.c ****   }
+ 403              		.loc 1 7 12 view .LVU139
+ 404 004c 4FF0FF30 		mov	r0, #-1
+ 405              	.LVL15:
+   7:Lib/FOC/vbus_protection.c ****   }
+ 406              		.loc 1 7 12 view .LVU140
+ 407 0050 F8E7     		b	.L35
+ 408              	.L44:
+ 409 0052 00BF     		.align	2
+ 410              	.L43:
+ARM GAS  /tmp/ccdgNRdr.s 			page 11
+
+
+ 411 0054 0AD7A33B 		.word	1000593162
+ 412 0058 CDCC4C3D 		.word	1028443341
+ 413              		.cfi_endproc
+ 414              	.LFE0:
+ 416              		.text
+ 417              	.Letext0:
+ 418              		.file 2 "Lib/FOC/vbus_protection.h"
+ 419              		.file 3 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
+ARM GAS  /tmp/ccdgNRdr.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 vbus_protection.c
+     /tmp/ccdgNRdr.s:18     .text.vbus_update:0000000000000000 $t
+     /tmp/ccdgNRdr.s:26     .text.vbus_update:0000000000000000 vbus_update
+     /tmp/ccdgNRdr.s:245    .text.vbus_get_fault:0000000000000000 $t
+     /tmp/ccdgNRdr.s:252    .text.vbus_get_fault:0000000000000000 vbus_get_fault
+     /tmp/ccdgNRdr.s:270    .text.vbus_reset:0000000000000000 $t
+     /tmp/ccdgNRdr.s:277    .text.vbus_reset:0000000000000000 vbus_reset
+     /tmp/ccdgNRdr.s:314    .text.vbus_init:0000000000000000 $t
+     /tmp/ccdgNRdr.s:321    .text.vbus_init:0000000000000000 vbus_init
+     /tmp/ccdgNRdr.s:411    .text.vbus_init:0000000000000054 $d
+
+NO UNDEFINED SYMBOLS

@@ -2,6 +2,7 @@
 #define STM32F405_LINK_H
 
 #include "stm32f4xx_hal.h"
+#include "main.h"
 #include "device_config.h"
 
 #define FLASH_SECTOR_ADDR  ((uint32_t)0x080E0000)
@@ -20,5 +21,21 @@ int link_can_init(uint32_t id);
 int link_can_send_data(uint32_t id, uint8_t *data, uint32_t len);
 int link_can_recv_data(uint32_t *id, uint8_t *data, uint32_t *len);
 _Bool link_can_is_mailboxes_free(void);
+
+
+void GPIO_DRV832xS_CS_EN(void);
+
+void GPIO_DRV832xS_CS_DIS(void);
+
+void GPIO_AS5048A_IN_CS_EN(void);
+
+void GPIO_AS5048A_IN_CS_DIS(void);
+
+void GPIO_AS5048A_EX_CS_EN(void);
+
+void GPIO_AS5048A_EX_CS_DIS(void);
+
+
+
 
 #endif // STM32F405_LINK_H

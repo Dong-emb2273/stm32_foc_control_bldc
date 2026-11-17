@@ -1,0 +1,1125 @@
+ARM GAS  /tmp/ccffkO7Z.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"sliding_mode_observer.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.smo_sign,"ax",%progbits
+  18              		.align	1
+  19              		.global	smo_sign
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	smo_sign:
+  27              	.LVL0:
+  28              	.LFB1:
+  29              		.file 1 "Lib/SMO/sliding_mode_observer.c"
+   1:Lib/SMO/sliding_mode_observer.c **** #include "sliding_mode_observer.h"
+   2:Lib/SMO/sliding_mode_observer.c **** #include "FOC_math.h"
+   3:Lib/SMO/sliding_mode_observer.c **** #include <math.h>
+   4:Lib/SMO/sliding_mode_observer.c **** 
+   5:Lib/SMO/sliding_mode_observer.c **** float smo_sign(float x, float deadband) {
+  30              		.loc 1 5 41 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  35              		.loc 1 5 41 is_stmt 0 view .LVU1
+  36 0000 F0EE407A 		vmov.f32	s15, s0
+   6:Lib/SMO/sliding_mode_observer.c ****     if (x >= deadband) return 1.0f;
+  37              		.loc 1 6 5 is_stmt 1 view .LVU2
+  38              		.loc 1 6 8 is_stmt 0 view .LVU3
+  39 0004 B4EEE00A 		vcmpe.f32	s0, s1
+  40 0008 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  41 000c 09DA     		bge	.L3
+   7:Lib/SMO/sliding_mode_observer.c ****     if (x <= -deadband) return -1.0f;
+  42              		.loc 1 7 5 is_stmt 1 view .LVU4
+  43              		.loc 1 7 14 is_stmt 0 view .LVU5
+  44 000e B1EE607A 		vneg.f32	s14, s1
+  45              		.loc 1 7 8 view .LVU6
+  46 0012 B4EEC07A 		vcmpe.f32	s14, s0
+  47 0016 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  48 001a 05DA     		bge	.L4
+   8:Lib/SMO/sliding_mode_observer.c ****     return x / deadband; // Linear region
+  49              		.loc 1 8 5 is_stmt 1 view .LVU7
+  50              		.loc 1 8 14 is_stmt 0 view .LVU8
+ARM GAS  /tmp/ccffkO7Z.s 			page 2
+
+
+  51 001c 87EEA00A 		vdiv.f32	s0, s15, s1
+  52              	.LVL1:
+  53              		.loc 1 8 14 view .LVU9
+  54 0020 7047     		bx	lr
+  55              	.LVL2:
+  56              	.L3:
+   6:Lib/SMO/sliding_mode_observer.c ****     if (x >= deadband) return 1.0f;
+  57              		.loc 1 6 31 view .LVU10
+  58 0022 B7EE000A 		vmov.f32	s0, #1.0e+0
+  59              	.LVL3:
+   6:Lib/SMO/sliding_mode_observer.c ****     if (x >= deadband) return 1.0f;
+  60              		.loc 1 6 31 view .LVU11
+  61 0026 7047     		bx	lr
+  62              	.LVL4:
+  63              	.L4:
+   7:Lib/SMO/sliding_mode_observer.c ****     if (x <= -deadband) return -1.0f;
+  64              		.loc 1 7 32 view .LVU12
+  65 0028 BFEE000A 		vmov.f32	s0, #-1.0e+0
+  66              	.LVL5:
+   9:Lib/SMO/sliding_mode_observer.c **** }
+  67              		.loc 1 9 1 view .LVU13
+  68 002c 7047     		bx	lr
+  69              		.cfi_endproc
+  70              	.LFE1:
+  72              		.section	.text.smo_tanh,"ax",%progbits
+  73              		.align	1
+  74              		.global	smo_tanh
+  75              		.syntax unified
+  76              		.thumb
+  77              		.thumb_func
+  78              		.fpu fpv4-sp-d16
+  80              	smo_tanh:
+  81              	.LVL6:
+  82              	.LFB2:
+  10:Lib/SMO/sliding_mode_observer.c **** 
+  11:Lib/SMO/sliding_mode_observer.c **** float smo_tanh(float x, float scale) {
+  83              		.loc 1 11 38 is_stmt 1 view -0
+  84              		.cfi_startproc
+  85              		@ args = 0, pretend = 0, frame = 0
+  86              		@ frame_needed = 0, uses_anonymous_args = 0
+  87              		.loc 1 11 38 is_stmt 0 view .LVU15
+  88 0000 08B5     		push	{r3, lr}
+  89              	.LCFI0:
+  90              		.cfi_def_cfa_offset 8
+  91              		.cfi_offset 3, -8
+  92              		.cfi_offset 14, -4
+  12:Lib/SMO/sliding_mode_observer.c ****     return tanhf(scale * x);
+  93              		.loc 1 12 5 is_stmt 1 view .LVU16
+  94              		.loc 1 12 12 is_stmt 0 view .LVU17
+  95 0002 20EE800A 		vmul.f32	s0, s1, s0
+  96              	.LVL7:
+  97              		.loc 1 12 12 view .LVU18
+  98 0006 FFF7FEFF 		bl	tanhf
+  99              	.LVL8:
+  13:Lib/SMO/sliding_mode_observer.c **** }
+ 100              		.loc 1 13 1 view .LVU19
+ 101 000a 08BD     		pop	{r3, pc}
+ARM GAS  /tmp/ccffkO7Z.s 			page 3
+
+
+ 102              		.cfi_endproc
+ 103              	.LFE2:
+ 105              		.section	.text.smo_reset,"ax",%progbits
+ 106              		.align	1
+ 107              		.global	smo_reset
+ 108              		.syntax unified
+ 109              		.thumb
+ 110              		.thumb_func
+ 111              		.fpu fpv4-sp-d16
+ 113              	smo_reset:
+ 114              	.LVL9:
+ 115              	.LFB4:
+  14:Lib/SMO/sliding_mode_observer.c **** 
+  15:Lib/SMO/sliding_mode_observer.c **** void smo_init(smo_t *hsmo, float Rs, float Ls, float pole_pairs, float Ts) {
+  16:Lib/SMO/sliding_mode_observer.c ****     hsmo->pole_pairs = pole_pairs;
+  17:Lib/SMO/sliding_mode_observer.c ****     hsmo->Ts = Ts;
+  18:Lib/SMO/sliding_mode_observer.c **** 
+  19:Lib/SMO/sliding_mode_observer.c ****     hsmo->A = expf(-(Rs / Ls) * Ts);
+  20:Lib/SMO/sliding_mode_observer.c ****     hsmo->b = (1.0f - hsmo->A) / Rs;
+  21:Lib/SMO/sliding_mode_observer.c ****     hsmo->b_inv = 1.0f / hsmo->b;
+  22:Lib/SMO/sliding_mode_observer.c ****     
+  23:Lib/SMO/sliding_mode_observer.c ****     // sliding mode control gain
+  24:Lib/SMO/sliding_mode_observer.c ****     hsmo->k_gain = 5.0f; //2.0f;
+  25:Lib/SMO/sliding_mode_observer.c ****     
+  26:Lib/SMO/sliding_mode_observer.c ****     // back-emf observer gain (0 < g < 1)
+  27:Lib/SMO/sliding_mode_observer.c ****     hsmo->g = 0.1f;
+  28:Lib/SMO/sliding_mode_observer.c ****     
+  29:Lib/SMO/sliding_mode_observer.c ****     hsmo->omega_alpha_filter = 0.05f; //0.02f;
+  30:Lib/SMO/sliding_mode_observer.c ****     
+  31:Lib/SMO/sliding_mode_observer.c ****     hsmo->min_operating_emf = 0.25f;
+  32:Lib/SMO/sliding_mode_observer.c **** 
+  33:Lib/SMO/sliding_mode_observer.c ****     smo_reset(hsmo);
+  34:Lib/SMO/sliding_mode_observer.c **** }
+  35:Lib/SMO/sliding_mode_observer.c **** 
+  36:Lib/SMO/sliding_mode_observer.c **** void smo_reset(smo_t *hsmo) {
+ 116              		.loc 1 36 29 is_stmt 1 view -0
+ 117              		.cfi_startproc
+ 118              		@ args = 0, pretend = 0, frame = 0
+ 119              		@ frame_needed = 0, uses_anonymous_args = 0
+ 120              		@ link register save eliminated.
+  37:Lib/SMO/sliding_mode_observer.c ****     hsmo->theta_est = 0.0f;
+ 121              		.loc 1 37 5 view .LVU21
+ 122              		.loc 1 37 21 is_stmt 0 view .LVU22
+ 123 0000 0023     		movs	r3, #0
+ 124 0002 8362     		str	r3, [r0, #40]	@ float
+  38:Lib/SMO/sliding_mode_observer.c ****     hsmo->omega_est = 0.0f;
+ 125              		.loc 1 38 5 is_stmt 1 view .LVU23
+ 126              		.loc 1 38 21 is_stmt 0 view .LVU24
+ 127 0004 C362     		str	r3, [r0, #44]	@ float
+  39:Lib/SMO/sliding_mode_observer.c ****     hsmo->i_alpha_est = 0.0f;
+ 128              		.loc 1 39 5 is_stmt 1 view .LVU25
+ 129              		.loc 1 39 23 is_stmt 0 view .LVU26
+ 130 0006 C363     		str	r3, [r0, #60]	@ float
+  40:Lib/SMO/sliding_mode_observer.c ****     hsmo->i_beta_est = 0.0f;
+ 131              		.loc 1 40 5 is_stmt 1 view .LVU27
+ 132              		.loc 1 40 22 is_stmt 0 view .LVU28
+ 133 0008 0364     		str	r3, [r0, #64]	@ float
+ARM GAS  /tmp/ccffkO7Z.s 			page 4
+
+
+  41:Lib/SMO/sliding_mode_observer.c ****     hsmo->e_alpha_est = 0.0f;
+ 134              		.loc 1 41 5 is_stmt 1 view .LVU29
+ 135              		.loc 1 41 23 is_stmt 0 view .LVU30
+ 136 000a 4364     		str	r3, [r0, #68]	@ float
+  42:Lib/SMO/sliding_mode_observer.c ****     hsmo->e_beta_est = 0.0f;
+ 137              		.loc 1 42 5 is_stmt 1 view .LVU31
+ 138              		.loc 1 42 22 is_stmt 0 view .LVU32
+ 139 000c 8364     		str	r3, [r0, #72]	@ float
+  43:Lib/SMO/sliding_mode_observer.c ****     hsmo->last_i_alpha_error = 0.0f;
+ 140              		.loc 1 43 5 is_stmt 1 view .LVU33
+ 141              		.loc 1 43 30 is_stmt 0 view .LVU34
+ 142 000e 0362     		str	r3, [r0, #32]	@ float
+  44:Lib/SMO/sliding_mode_observer.c ****     hsmo->last_i_beta_error = 0.0f;
+ 143              		.loc 1 44 5 is_stmt 1 view .LVU35
+ 144              		.loc 1 44 29 is_stmt 0 view .LVU36
+ 145 0010 4362     		str	r3, [r0, #36]	@ float
+  45:Lib/SMO/sliding_mode_observer.c **** }
+ 146              		.loc 1 45 1 view .LVU37
+ 147 0012 7047     		bx	lr
+ 148              		.cfi_endproc
+ 149              	.LFE4:
+ 151              		.section	.text.smo_init,"ax",%progbits
+ 152              		.align	1
+ 153              		.global	smo_init
+ 154              		.syntax unified
+ 155              		.thumb
+ 156              		.thumb_func
+ 157              		.fpu fpv4-sp-d16
+ 159              	smo_init:
+ 160              	.LVL10:
+ 161              	.LFB3:
+  15:Lib/SMO/sliding_mode_observer.c ****     hsmo->pole_pairs = pole_pairs;
+ 162              		.loc 1 15 76 is_stmt 1 view -0
+ 163              		.cfi_startproc
+ 164              		@ args = 0, pretend = 0, frame = 0
+ 165              		@ frame_needed = 0, uses_anonymous_args = 0
+  15:Lib/SMO/sliding_mode_observer.c ****     hsmo->pole_pairs = pole_pairs;
+ 166              		.loc 1 15 76 is_stmt 0 view .LVU39
+ 167 0000 10B5     		push	{r4, lr}
+ 168              	.LCFI1:
+ 169              		.cfi_def_cfa_offset 8
+ 170              		.cfi_offset 4, -8
+ 171              		.cfi_offset 14, -4
+ 172 0002 2DED028B 		vpush.64	{d8}
+ 173              	.LCFI2:
+ 174              		.cfi_def_cfa_offset 16
+ 175              		.cfi_offset 80, -16
+ 176              		.cfi_offset 81, -12
+ 177 0006 0446     		mov	r4, r0
+ 178 0008 B0EE408A 		vmov.f32	s16, s0
+  16:Lib/SMO/sliding_mode_observer.c ****     hsmo->Ts = Ts;
+ 179              		.loc 1 16 5 is_stmt 1 view .LVU40
+  16:Lib/SMO/sliding_mode_observer.c ****     hsmo->Ts = Ts;
+ 180              		.loc 1 16 22 is_stmt 0 view .LVU41
+ 181 000c 80ED001A 		vstr.32	s2, [r0]
+  17:Lib/SMO/sliding_mode_observer.c **** 
+ 182              		.loc 1 17 5 is_stmt 1 view .LVU42
+ARM GAS  /tmp/ccffkO7Z.s 			page 5
+
+
+  17:Lib/SMO/sliding_mode_observer.c **** 
+ 183              		.loc 1 17 14 is_stmt 0 view .LVU43
+ 184 0010 C0ED021A 		vstr.32	s3, [r0, #8]
+  19:Lib/SMO/sliding_mode_observer.c ****     hsmo->b = (1.0f - hsmo->A) / Rs;
+ 185              		.loc 1 19 5 is_stmt 1 view .LVU44
+  19:Lib/SMO/sliding_mode_observer.c ****     hsmo->b = (1.0f - hsmo->A) / Rs;
+ 186              		.loc 1 19 25 is_stmt 0 view .LVU45
+ 187 0014 88EE200A 		vdiv.f32	s0, s16, s1
+ 188              	.LVL11:
+  19:Lib/SMO/sliding_mode_observer.c ****     hsmo->b = (1.0f - hsmo->A) / Rs;
+ 189              		.loc 1 19 15 view .LVU46
+ 190 0018 20EE610A 		vnmul.f32	s0, s0, s3
+ 191 001c FFF7FEFF 		bl	expf
+ 192              	.LVL12:
+  19:Lib/SMO/sliding_mode_observer.c ****     hsmo->b = (1.0f - hsmo->A) / Rs;
+ 193              		.loc 1 19 13 view .LVU47
+ 194 0020 84ED030A 		vstr.32	s0, [r4, #12]
+  20:Lib/SMO/sliding_mode_observer.c ****     hsmo->b_inv = 1.0f / hsmo->b;
+ 195              		.loc 1 20 5 is_stmt 1 view .LVU48
+  20:Lib/SMO/sliding_mode_observer.c ****     hsmo->b_inv = 1.0f / hsmo->b;
+ 196              		.loc 1 20 21 is_stmt 0 view .LVU49
+ 197 0024 F7EE006A 		vmov.f32	s13, #1.0e+0
+ 198 0028 76EEC07A 		vsub.f32	s15, s13, s0
+  20:Lib/SMO/sliding_mode_observer.c ****     hsmo->b_inv = 1.0f / hsmo->b;
+ 199              		.loc 1 20 32 view .LVU50
+ 200 002c 87EE887A 		vdiv.f32	s14, s15, s16
+  20:Lib/SMO/sliding_mode_observer.c ****     hsmo->b_inv = 1.0f / hsmo->b;
+ 201              		.loc 1 20 13 view .LVU51
+ 202 0030 84ED047A 		vstr.32	s14, [r4, #16]
+  21:Lib/SMO/sliding_mode_observer.c ****     
+ 203              		.loc 1 21 5 is_stmt 1 view .LVU52
+  21:Lib/SMO/sliding_mode_observer.c ****     
+ 204              		.loc 1 21 24 is_stmt 0 view .LVU53
+ 205 0034 C6EE877A 		vdiv.f32	s15, s13, s14
+  21:Lib/SMO/sliding_mode_observer.c ****     
+ 206              		.loc 1 21 17 view .LVU54
+ 207 0038 C4ED057A 		vstr.32	s15, [r4, #20]
+  24:Lib/SMO/sliding_mode_observer.c ****     
+ 208              		.loc 1 24 5 is_stmt 1 view .LVU55
+  24:Lib/SMO/sliding_mode_observer.c ****     
+ 209              		.loc 1 24 18 is_stmt 0 view .LVU56
+ 210 003c 074B     		ldr	r3, .L10
+ 211 003e A361     		str	r3, [r4, #24]	@ float
+  27:Lib/SMO/sliding_mode_observer.c ****     
+ 212              		.loc 1 27 5 is_stmt 1 view .LVU57
+  27:Lib/SMO/sliding_mode_observer.c ****     
+ 213              		.loc 1 27 13 is_stmt 0 view .LVU58
+ 214 0040 074B     		ldr	r3, .L10+4
+ 215 0042 E361     		str	r3, [r4, #28]	@ float
+  29:Lib/SMO/sliding_mode_observer.c ****     
+ 216              		.loc 1 29 5 is_stmt 1 view .LVU59
+  29:Lib/SMO/sliding_mode_observer.c ****     
+ 217              		.loc 1 29 30 is_stmt 0 view .LVU60
+ 218 0044 074B     		ldr	r3, .L10+8
+ 219 0046 2365     		str	r3, [r4, #80]	@ float
+  31:Lib/SMO/sliding_mode_observer.c **** 
+ 220              		.loc 1 31 5 is_stmt 1 view .LVU61
+ARM GAS  /tmp/ccffkO7Z.s 			page 6
+
+
+  31:Lib/SMO/sliding_mode_observer.c **** 
+ 221              		.loc 1 31 29 is_stmt 0 view .LVU62
+ 222 0048 4FF07A53 		mov	r3, #1048576000
+ 223 004c 6360     		str	r3, [r4, #4]	@ float
+  33:Lib/SMO/sliding_mode_observer.c **** }
+ 224              		.loc 1 33 5 is_stmt 1 view .LVU63
+ 225 004e 2046     		mov	r0, r4
+ 226 0050 FFF7FEFF 		bl	smo_reset
+ 227              	.LVL13:
+  34:Lib/SMO/sliding_mode_observer.c **** 
+ 228              		.loc 1 34 1 is_stmt 0 view .LVU64
+ 229 0054 BDEC028B 		vldm	sp!, {d8}
+ 230              	.LCFI3:
+ 231              		.cfi_restore 80
+ 232              		.cfi_restore 81
+ 233              		.cfi_def_cfa_offset 8
+ 234              	.LVL14:
+  34:Lib/SMO/sliding_mode_observer.c **** 
+ 235              		.loc 1 34 1 view .LVU65
+ 236 0058 10BD     		pop	{r4, pc}
+ 237              	.LVL15:
+ 238              	.L11:
+  34:Lib/SMO/sliding_mode_observer.c **** 
+ 239              		.loc 1 34 1 view .LVU66
+ 240 005a 00BF     		.align	2
+ 241              	.L10:
+ 242 005c 0000A040 		.word	1084227584
+ 243 0060 CDCCCC3D 		.word	1036831949
+ 244 0064 CDCC4C3D 		.word	1028443341
+ 245              		.cfi_endproc
+ 246              	.LFE3:
+ 248              		.section	.text.smo_set_min_emf,"ax",%progbits
+ 249              		.align	1
+ 250              		.global	smo_set_min_emf
+ 251              		.syntax unified
+ 252              		.thumb
+ 253              		.thumb_func
+ 254              		.fpu fpv4-sp-d16
+ 256              	smo_set_min_emf:
+ 257              	.LVL16:
+ 258              	.LFB5:
+  46:Lib/SMO/sliding_mode_observer.c **** 
+  47:Lib/SMO/sliding_mode_observer.c **** void smo_set_min_emf(smo_t *hsmo, float min_emf) {
+ 259              		.loc 1 47 50 is_stmt 1 view -0
+ 260              		.cfi_startproc
+ 261              		@ args = 0, pretend = 0, frame = 0
+ 262              		@ frame_needed = 0, uses_anonymous_args = 0
+ 263              		@ link register save eliminated.
+  48:Lib/SMO/sliding_mode_observer.c ****     hsmo->min_operating_emf = min_emf;
+ 264              		.loc 1 48 5 view .LVU68
+ 265              		.loc 1 48 29 is_stmt 0 view .LVU69
+ 266 0000 80ED010A 		vstr.32	s0, [r0, #4]
+  49:Lib/SMO/sliding_mode_observer.c **** }
+ 267              		.loc 1 49 1 view .LVU70
+ 268 0004 7047     		bx	lr
+ 269              		.cfi_endproc
+ 270              	.LFE5:
+ARM GAS  /tmp/ccffkO7Z.s 			page 7
+
+
+ 272              		.section	.text.smo_update_R_L,"ax",%progbits
+ 273              		.align	1
+ 274              		.global	smo_update_R_L
+ 275              		.syntax unified
+ 276              		.thumb
+ 277              		.thumb_func
+ 278              		.fpu fpv4-sp-d16
+ 280              	smo_update_R_L:
+ 281              	.LVL17:
+ 282              	.LFB6:
+  50:Lib/SMO/sliding_mode_observer.c **** 
+  51:Lib/SMO/sliding_mode_observer.c **** void smo_update_R_L(smo_t *hsmo, float Rs, float Ls) {
+ 283              		.loc 1 51 54 is_stmt 1 view -0
+ 284              		.cfi_startproc
+ 285              		@ args = 0, pretend = 0, frame = 0
+ 286              		@ frame_needed = 0, uses_anonymous_args = 0
+ 287              		.loc 1 51 54 is_stmt 0 view .LVU72
+ 288 0000 10B5     		push	{r4, lr}
+ 289              	.LCFI4:
+ 290              		.cfi_def_cfa_offset 8
+ 291              		.cfi_offset 4, -8
+ 292              		.cfi_offset 14, -4
+ 293 0002 2DED028B 		vpush.64	{d8}
+ 294              	.LCFI5:
+ 295              		.cfi_def_cfa_offset 16
+ 296              		.cfi_offset 80, -16
+ 297              		.cfi_offset 81, -12
+ 298 0006 0446     		mov	r4, r0
+ 299 0008 B0EE408A 		vmov.f32	s16, s0
+  52:Lib/SMO/sliding_mode_observer.c ****     hsmo->A = expf(-(Rs / Ls) * hsmo->Ts);
+ 300              		.loc 1 52 5 is_stmt 1 view .LVU73
+ 301              		.loc 1 52 25 is_stmt 0 view .LVU74
+ 302 000c 88EE200A 		vdiv.f32	s0, s16, s1
+ 303              	.LVL18:
+ 304              		.loc 1 52 37 view .LVU75
+ 305 0010 D0ED027A 		vldr.32	s15, [r0, #8]
+ 306              		.loc 1 52 15 view .LVU76
+ 307 0014 20EE670A 		vnmul.f32	s0, s0, s15
+ 308 0018 FFF7FEFF 		bl	expf
+ 309              	.LVL19:
+ 310              		.loc 1 52 13 view .LVU77
+ 311 001c 84ED030A 		vstr.32	s0, [r4, #12]
+  53:Lib/SMO/sliding_mode_observer.c ****     hsmo->b = (1.0f - hsmo->A) / Rs;
+ 312              		.loc 1 53 5 is_stmt 1 view .LVU78
+ 313              		.loc 1 53 21 is_stmt 0 view .LVU79
+ 314 0020 F7EE007A 		vmov.f32	s15, #1.0e+0
+ 315 0024 37EEC00A 		vsub.f32	s0, s15, s0
+ 316              		.loc 1 53 32 view .LVU80
+ 317 0028 C0EE087A 		vdiv.f32	s15, s0, s16
+ 318              		.loc 1 53 13 view .LVU81
+ 319 002c C4ED047A 		vstr.32	s15, [r4, #16]
+  54:Lib/SMO/sliding_mode_observer.c **** }
+ 320              		.loc 1 54 1 view .LVU82
+ 321 0030 BDEC028B 		vldm	sp!, {d8}
+ 322              	.LCFI6:
+ 323              		.cfi_restore 80
+ 324              		.cfi_restore 81
+ARM GAS  /tmp/ccffkO7Z.s 			page 8
+
+
+ 325              		.cfi_def_cfa_offset 8
+ 326              	.LVL20:
+ 327              		.loc 1 54 1 view .LVU83
+ 328 0034 10BD     		pop	{r4, pc}
+ 329              		.loc 1 54 1 view .LVU84
+ 330              		.cfi_endproc
+ 331              	.LFE6:
+ 333              		.section	.text.smo_update_arctan,"ax",%progbits
+ 334              		.align	1
+ 335              		.global	smo_update_arctan
+ 336              		.syntax unified
+ 337              		.thumb
+ 338              		.thumb_func
+ 339              		.fpu fpv4-sp-d16
+ 341              	smo_update_arctan:
+ 342              	.LVL21:
+ 343              	.LFB7:
+  55:Lib/SMO/sliding_mode_observer.c **** 
+  56:Lib/SMO/sliding_mode_observer.c **** // reference: https://www.mathworks.com/help/mcb/ref/slidingmodeobserver.html#mw_753c13aa-dd04-4172
+  57:Lib/SMO/sliding_mode_observer.c **** int smo_update_arctan(smo_t *hsmo, float v_alpha, float v_beta,
+  58:Lib/SMO/sliding_mode_observer.c ****                       float i_alpha_meas, float i_beta_meas) {
+ 344              		.loc 1 58 62 is_stmt 1 view -0
+ 345              		.cfi_startproc
+ 346              		@ args = 0, pretend = 0, frame = 0
+ 347              		@ frame_needed = 0, uses_anonymous_args = 0
+ 348              		.loc 1 58 62 is_stmt 0 view .LVU86
+ 349 0000 10B5     		push	{r4, lr}
+ 350              	.LCFI7:
+ 351              		.cfi_def_cfa_offset 8
+ 352              		.cfi_offset 4, -8
+ 353              		.cfi_offset 14, -4
+ 354 0002 2DED0A8B 		vpush.64	{d8, d9, d10, d11, d12}
+ 355              	.LCFI8:
+ 356              		.cfi_def_cfa_offset 48
+ 357              		.cfi_offset 80, -48
+ 358              		.cfi_offset 81, -44
+ 359              		.cfi_offset 82, -40
+ 360              		.cfi_offset 83, -36
+ 361              		.cfi_offset 84, -32
+ 362              		.cfi_offset 85, -28
+ 363              		.cfi_offset 86, -24
+ 364              		.cfi_offset 87, -20
+ 365              		.cfi_offset 88, -16
+ 366              		.cfi_offset 89, -12
+ 367 0006 0446     		mov	r4, r0
+ 368 0008 F0EE409A 		vmov.f32	s19, s0
+ 369 000c B0EE60CA 		vmov.f32	s24, s1
+  59:Lib/SMO/sliding_mode_observer.c ****     // estimate I in alpha beta frame
+  60:Lib/SMO/sliding_mode_observer.c ****     float i_alpha_error = hsmo->i_alpha_est - i_alpha_meas;
+ 370              		.loc 1 60 5 is_stmt 1 view .LVU87
+ 371              		.loc 1 60 31 is_stmt 0 view .LVU88
+ 372 0010 90ED0F8A 		vldr.32	s16, [r0, #60]
+ 373              		.loc 1 60 11 view .LVU89
+ 374 0014 78EE41AA 		vsub.f32	s21, s16, s2
+ 375              	.LVL22:
+  61:Lib/SMO/sliding_mode_observer.c ****     float i_beta_error = hsmo->i_beta_est - i_beta_meas;
+ 376              		.loc 1 61 5 is_stmt 1 view .LVU90
+ARM GAS  /tmp/ccffkO7Z.s 			page 9
+
+
+ 377              		.loc 1 61 30 is_stmt 0 view .LVU91
+ 378 0018 90ED109A 		vldr.32	s18, [r0, #64]
+ 379              		.loc 1 61 11 view .LVU92
+ 380 001c 39EE61AA 		vsub.f32	s20, s18, s3
+ 381              	.LVL23:
+  62:Lib/SMO/sliding_mode_observer.c **** 
+  63:Lib/SMO/sliding_mode_observer.c ****     float z_alpha = hsmo->k_gain * smo_sign(i_alpha_error, 0.1f);
+ 382              		.loc 1 63 5 is_stmt 1 view .LVU93
+ 383              		.loc 1 63 25 is_stmt 0 view .LVU94
+ 384 0020 90ED06BA 		vldr.32	s22, [r0, #24]
+ 385              		.loc 1 63 36 view .LVU95
+ 386 0024 DFED76BA 		vldr.32	s23, .L48
+ 387 0028 F0EE6B0A 		vmov.f32	s1, s23
+ 388              	.LVL24:
+ 389              		.loc 1 63 36 view .LVU96
+ 390 002c B0EE6A0A 		vmov.f32	s0, s21
+ 391              	.LVL25:
+ 392              		.loc 1 63 36 view .LVU97
+ 393 0030 FFF7FEFF 		bl	smo_sign
+ 394              	.LVL26:
+ 395              		.loc 1 63 11 view .LVU98
+ 396 0034 6BEE00CA 		vmul.f32	s25, s22, s0
+ 397              	.LVL27:
+  64:Lib/SMO/sliding_mode_observer.c ****     float z_beta = hsmo->k_gain * smo_sign(i_beta_error, 0.1f);
+ 398              		.loc 1 64 5 is_stmt 1 view .LVU99
+ 399              		.loc 1 64 35 is_stmt 0 view .LVU100
+ 400 0038 F0EE6B0A 		vmov.f32	s1, s23
+ 401 003c B0EE4A0A 		vmov.f32	s0, s20
+ 402 0040 FFF7FEFF 		bl	smo_sign
+ 403              	.LVL28:
+ 404              		.loc 1 64 11 view .LVU101
+ 405 0044 6BEE006A 		vmul.f32	s13, s22, s0
+ 406              	.LVL29:
+  65:Lib/SMO/sliding_mode_observer.c ****     
+  66:Lib/SMO/sliding_mode_observer.c ****     hsmo->i_alpha_est = hsmo->A * hsmo->i_alpha_est + hsmo->b * (v_alpha - hsmo->e_alpha_est) - z_a
+ 407              		.loc 1 66 5 is_stmt 1 view .LVU102
+ 408              		.loc 1 66 29 is_stmt 0 view .LVU103
+ 409 0048 D4ED038A 		vldr.32	s17, [r4, #12]
+ 410              		.loc 1 66 33 view .LVU104
+ 411 004c 68EE287A 		vmul.f32	s15, s16, s17
+ 412              		.loc 1 66 59 view .LVU105
+ 413 0050 94ED047A 		vldr.32	s14, [r4, #16]
+ 414              		.loc 1 66 80 view .LVU106
+ 415 0054 94ED118A 		vldr.32	s16, [r4, #68]
+ 416              		.loc 1 66 74 view .LVU107
+ 417 0058 79EEC89A 		vsub.f32	s19, s19, s16
+ 418              	.LVL30:
+ 419              		.loc 1 66 63 view .LVU108
+ 420 005c 67EE299A 		vmul.f32	s19, s14, s19
+ 421              		.loc 1 66 53 view .LVU109
+ 422 0060 77EEA97A 		vadd.f32	s15, s15, s19
+ 423              		.loc 1 66 95 view .LVU110
+ 424 0064 77EEEC7A 		vsub.f32	s15, s15, s25
+ 425              		.loc 1 66 23 view .LVU111
+ 426 0068 C4ED0F7A 		vstr.32	s15, [r4, #60]
+  67:Lib/SMO/sliding_mode_observer.c ****     hsmo->i_beta_est  = hsmo->A * hsmo->i_beta_est + hsmo->b * (v_beta - hsmo->e_beta_est) - z_beta
+ 427              		.loc 1 67 5 is_stmt 1 view .LVU112
+ARM GAS  /tmp/ccffkO7Z.s 			page 10
+
+
+ 428              		.loc 1 67 33 is_stmt 0 view .LVU113
+ 429 006c 29EE289A 		vmul.f32	s18, s18, s17
+ 430              		.loc 1 67 78 view .LVU114
+ 431 0070 D4ED129A 		vldr.32	s19, [r4, #72]
+ 432              		.loc 1 67 72 view .LVU115
+ 433 0074 3CEE690A 		vsub.f32	s0, s24, s19
+ 434              		.loc 1 67 62 view .LVU116
+ 435 0078 27EE000A 		vmul.f32	s0, s14, s0
+ 436              		.loc 1 67 52 view .LVU117
+ 437 007c 39EE000A 		vadd.f32	s0, s18, s0
+ 438              		.loc 1 67 92 view .LVU118
+ 439 0080 30EE660A 		vsub.f32	s0, s0, s13
+ 440              		.loc 1 67 23 view .LVU119
+ 441 0084 84ED100A 		vstr.32	s0, [r4, #64]
+  68:Lib/SMO/sliding_mode_observer.c **** 
+  69:Lib/SMO/sliding_mode_observer.c ****     // estimate back-emf in alpha beta frame    
+  70:Lib/SMO/sliding_mode_observer.c ****     float last_z_alpha = hsmo->k_gain * smo_sign(hsmo->last_i_alpha_error, 0.1f);
+ 442              		.loc 1 70 5 is_stmt 1 view .LVU120
+ 443              		.loc 1 70 41 is_stmt 0 view .LVU121
+ 444 0088 94ED089A 		vldr.32	s18, [r4, #32]
+ 445 008c F0EE6B0A 		vmov.f32	s1, s23
+ 446 0090 B0EE490A 		vmov.f32	s0, s18
+ 447 0094 FFF7FEFF 		bl	smo_sign
+ 448              	.LVL31:
+ 449              		.loc 1 70 11 view .LVU122
+ 450 0098 6BEE00CA 		vmul.f32	s25, s22, s0
+ 451              	.LVL32:
+  71:Lib/SMO/sliding_mode_observer.c ****     float last_z_beta = hsmo->k_gain * smo_sign(hsmo->last_i_beta_error, 0.1f);
+ 452              		.loc 1 71 5 is_stmt 1 view .LVU123
+ 453              		.loc 1 71 40 is_stmt 0 view .LVU124
+ 454 009c 94ED09CA 		vldr.32	s24, [r4, #36]
+ 455              	.LVL33:
+ 456              		.loc 1 71 40 view .LVU125
+ 457 00a0 F0EE6B0A 		vmov.f32	s1, s23
+ 458 00a4 B0EE4C0A 		vmov.f32	s0, s24
+ 459 00a8 FFF7FEFF 		bl	smo_sign
+ 460              	.LVL34:
+ 461              		.loc 1 71 11 view .LVU126
+ 462 00ac 2BEE00BA 		vmul.f32	s22, s22, s0
+ 463              	.LVL35:
+  72:Lib/SMO/sliding_mode_observer.c **** 
+  73:Lib/SMO/sliding_mode_observer.c ****     hsmo->e_alpha_est += hsmo->b_inv * hsmo->g * (i_alpha_error - hsmo->A * hsmo->last_i_alpha_erro
+ 464              		.loc 1 73 5 is_stmt 1 view .LVU127
+ 465              		.loc 1 73 30 is_stmt 0 view .LVU128
+ 466 00b0 94ED057A 		vldr.32	s14, [r4, #20]
+ 467              		.loc 1 73 44 view .LVU129
+ 468 00b4 94ED070A 		vldr.32	s0, [r4, #28]
+ 469              		.loc 1 73 38 view .LVU130
+ 470 00b8 27EE007A 		vmul.f32	s14, s14, s0
+ 471              		.loc 1 73 75 view .LVU131
+ 472 00bc 68EE897A 		vmul.f32	s15, s17, s18
+ 473              		.loc 1 73 65 view .LVU132
+ 474 00c0 7AEEE77A 		vsub.f32	s15, s21, s15
+ 475              		.loc 1 73 102 view .LVU133
+ 476 00c4 77EEAC7A 		vadd.f32	s15, s15, s25
+ 477              		.loc 1 73 48 view .LVU134
+ 478 00c8 67EE277A 		vmul.f32	s15, s14, s15
+ARM GAS  /tmp/ccffkO7Z.s 			page 11
+
+
+ 479              		.loc 1 73 23 view .LVU135
+ 480 00cc 78EE277A 		vadd.f32	s15, s16, s15
+ 481 00d0 C4ED117A 		vstr.32	s15, [r4, #68]
+  74:Lib/SMO/sliding_mode_observer.c ****     hsmo->e_beta_est += hsmo->b_inv * hsmo->g * (i_beta_error - hsmo->A * hsmo->last_i_beta_error +
+ 482              		.loc 1 74 5 is_stmt 1 view .LVU136
+ 483              		.loc 1 74 73 is_stmt 0 view .LVU137
+ 484 00d4 68EE8C8A 		vmul.f32	s17, s17, s24
+ 485              		.loc 1 74 63 view .LVU138
+ 486 00d8 7AEE688A 		vsub.f32	s17, s20, s17
+ 487              		.loc 1 74 99 view .LVU139
+ 488 00dc 78EE8B8A 		vadd.f32	s17, s17, s22
+ 489              		.loc 1 74 47 view .LVU140
+ 490 00e0 27EE280A 		vmul.f32	s0, s14, s17
+ 491              		.loc 1 74 22 view .LVU141
+ 492 00e4 39EE800A 		vadd.f32	s0, s19, s0
+ 493 00e8 84ED120A 		vstr.32	s0, [r4, #72]
+  75:Lib/SMO/sliding_mode_observer.c **** 
+  76:Lib/SMO/sliding_mode_observer.c ****     hsmo->last_i_alpha_error = i_alpha_error;
+ 494              		.loc 1 76 5 is_stmt 1 view .LVU142
+ 495              		.loc 1 76 30 is_stmt 0 view .LVU143
+ 496 00ec C4ED08AA 		vstr.32	s21, [r4, #32]
+  77:Lib/SMO/sliding_mode_observer.c ****     hsmo->last_i_beta_error = i_beta_error;
+ 497              		.loc 1 77 5 is_stmt 1 view .LVU144
+ 498              		.loc 1 77 29 is_stmt 0 view .LVU145
+ 499 00f0 84ED09AA 		vstr.32	s20, [r4, #36]
+  78:Lib/SMO/sliding_mode_observer.c **** 
+  79:Lib/SMO/sliding_mode_observer.c ****     hsmo->emf_magnitude = fast_sqrt(hsmo->e_alpha_est * hsmo->e_alpha_est + 
+ 500              		.loc 1 79 5 is_stmt 1 view .LVU146
+ 501              		.loc 1 79 55 is_stmt 0 view .LVU147
+ 502 00f4 67EEA77A 		vmul.f32	s15, s15, s15
+  80:Lib/SMO/sliding_mode_observer.c ****                                hsmo->e_beta_est * hsmo->e_beta_est);
+ 503              		.loc 1 80 49 view .LVU148
+ 504 00f8 20EE000A 		vmul.f32	s0, s0, s0
+  79:Lib/SMO/sliding_mode_observer.c ****                                hsmo->e_beta_est * hsmo->e_beta_est);
+ 505              		.loc 1 79 27 view .LVU149
+ 506 00fc 37EE800A 		vadd.f32	s0, s15, s0
+ 507              	.LVL36:
+ 508              	.LBB5:
+ 509              	.LBI5:
+ 510              		.file 2 "Lib/FOC/FOC_math.h"
+   1:Lib/FOC/FOC_math.h **** /*
+   2:Lib/FOC/FOC_math.h ****  * FOC_math.h
+   3:Lib/FOC/FOC_math.h ****  *
+   4:Lib/FOC/FOC_math.h ****  *  Created on: Jul 12, 2025
+   5:Lib/FOC/FOC_math.h ****  *      Author: munir
+   6:Lib/FOC/FOC_math.h ****  */
+   7:Lib/FOC/FOC_math.h **** 
+   8:Lib/FOC/FOC_math.h **** #ifndef FOC_INC_FOC_MATH_H_
+   9:Lib/FOC/FOC_math.h **** #define FOC_INC_FOC_MATH_H_
+  10:Lib/FOC/FOC_math.h **** 
+  11:Lib/FOC/FOC_math.h **** 
+  12:Lib/FOC/FOC_math.h **** #include <stdint.h>
+  13:Lib/FOC/FOC_math.h **** #include <complex.h>
+  14:Lib/FOC/FOC_math.h **** 
+  15:Lib/FOC/FOC_math.h **** #define LUT_SIZE (1024*4)
+  16:Lib/FOC/FOC_math.h **** #define LUT_STEP (TWO_PI / (float)LUT_SIZE)
+  17:Lib/FOC/FOC_math.h **** 
+ARM GAS  /tmp/ccffkO7Z.s 			page 12
+
+
+  18:Lib/FOC/FOC_math.h **** #define TWO_BY_SQRT3 1.15470053838f
+  19:Lib/FOC/FOC_math.h **** #define ONE_BY_SQRT3 0.57735026919f
+  20:Lib/FOC/FOC_math.h **** #define SQRT3_BY_TWO 0.86602540378f
+  21:Lib/FOC/FOC_math.h **** #define SQRT3 1.73205080757f
+  22:Lib/FOC/FOC_math.h **** #define TWO_PI 6.2831853f
+  23:Lib/FOC/FOC_math.h **** #define PI 3.1415926f
+  24:Lib/FOC/FOC_math.h **** 
+  25:Lib/FOC/FOC_math.h **** #define CONSTRAIN(val, min, max) \
+  26:Lib/FOC/FOC_math.h ****     ((val) <= (min) ? (min) : ((val) >= (max) ? (max) : (val)))
+  27:Lib/FOC/FOC_math.h **** 
+  28:Lib/FOC/FOC_math.h **** #define RAD_TO_DEG(rad) ((rad) * 57.29577951308232f)  // 180/π
+  29:Lib/FOC/FOC_math.h **** 
+  30:Lib/FOC/FOC_math.h **** #define DEG_TO_RAD(deg) ((deg) * 0.017453292519943f)  // π/180
+  31:Lib/FOC/FOC_math.h **** 
+  32:Lib/FOC/FOC_math.h **** typedef struct {
+  33:Lib/FOC/FOC_math.h ****     float real;
+  34:Lib/FOC/FOC_math.h ****     float imag;
+  35:Lib/FOC/FOC_math.h **** } complex_t;
+  36:Lib/FOC/FOC_math.h **** 
+  37:Lib/FOC/FOC_math.h **** extern const float sin_lut[LUT_SIZE];
+  38:Lib/FOC/FOC_math.h **** 
+  39:Lib/FOC/FOC_math.h **** void norm_angle_rad(float *theta);
+  40:Lib/FOC/FOC_math.h **** float fast_sin(float theta);
+  41:Lib/FOC/FOC_math.h **** float fast_cos(float theta);
+  42:Lib/FOC/FOC_math.h **** float fast_atan2(float y, float x);
+  43:Lib/FOC/FOC_math.h **** complex_t complex_multiply(complex_t a, complex_t b);
+  44:Lib/FOC/FOC_math.h **** complex_t complex_add(complex_t a, complex_t b);
+  45:Lib/FOC/FOC_math.h **** complex_t complex_subtract(complex_t a, complex_t b);
+  46:Lib/FOC/FOC_math.h **** void pre_calc_sin_cos(float theta, float *sin_theta, float *cos_theta);
+  47:Lib/FOC/FOC_math.h **** 
+  48:Lib/FOC/FOC_math.h **** void clarke_transform(float ia, float ib, float *i_alpha, float *i_beta);
+  49:Lib/FOC/FOC_math.h **** void clarke_transform_3input(float ia, float ib, float ic, float *i_alpha, float *i_beta);
+  50:Lib/FOC/FOC_math.h **** void park_transform(float i_alpha, float i_beta, float sin_theta, float cos_theta, float *id, float
+  51:Lib/FOC/FOC_math.h **** void clarke_park_transform(float ia, float ib, float sin_theta, float cos_theta, float *id, float *
+  52:Lib/FOC/FOC_math.h **** void clarke_park_transform_3input(float ia, float ib, float ic, float sin_theta, float cos_theta, f
+  53:Lib/FOC/FOC_math.h **** void inverse_park_transform(float vd, float vq, float sin_theta, float cos_theta, float *valpha, fl
+  54:Lib/FOC/FOC_math.h **** void inverse_clarke_transform(float valpha, float vbeta, float *va, float *vb, float *vc);
+  55:Lib/FOC/FOC_math.h **** void svpwm(float valpha, float vbeta, float vbus, uint32_t pwm_period,
+  56:Lib/FOC/FOC_math.h **** 			uint32_t *pwm_u, uint32_t *pwm_v, uint32_t *pwm_w);
+  57:Lib/FOC/FOC_math.h **** 
+  58:Lib/FOC/FOC_math.h **** void vabc_to_vdq(float va, float vb, float vc, float sin_theta, float cos_theta, float *vd, float *
+  59:Lib/FOC/FOC_math.h **** 
+  60:Lib/FOC/FOC_math.h **** static inline float fast_sqrt(float x) {
+ 511              		.loc 2 60 21 is_stmt 1 view .LVU150
+ 512              	.LBB6:
+  61:Lib/FOC/FOC_math.h ****     return (x > 0.0f) ? __builtin_sqrtf(x) : 0.0f;
+ 513              		.loc 2 61 5 view .LVU151
+ 514              		.loc 2 61 44 is_stmt 0 view .LVU152
+ 515 0100 B5EEC00A 		vcmpe.f32	s0, #0
+ 516 0104 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 517 0108 11DC     		bgt	.L45
+ 518 010a 9FED3E0A 		vldr.32	s0, .L48+4
+ 519              	.LVL37:
+ 520              	.L16:
+ 521              		.loc 2 61 44 view .LVU153
+ 522              	.LBE6:
+ 523              	.LBE5:
+ARM GAS  /tmp/ccffkO7Z.s 			page 13
+
+
+  79:Lib/SMO/sliding_mode_observer.c ****                                hsmo->e_beta_est * hsmo->e_beta_est);
+ 524              		.loc 1 79 25 view .LVU154
+ 525 010e 84ED130A 		vstr.32	s0, [r4, #76]
+  81:Lib/SMO/sliding_mode_observer.c ****     
+  82:Lib/SMO/sliding_mode_observer.c ****     // estimate angle position and speed
+  83:Lib/SMO/sliding_mode_observer.c ****     if (hsmo->emf_magnitude > hsmo->min_operating_emf) {
+ 526              		.loc 1 83 5 is_stmt 1 view .LVU155
+ 527              		.loc 1 83 35 is_stmt 0 view .LVU156
+ 528 0112 D4ED017A 		vldr.32	s15, [r4, #4]
+ 529              		.loc 1 83 8 view .LVU157
+ 530 0116 F4EEC07A 		vcmpe.f32	s15, s0
+ 531 011a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 532 011e 09D4     		bmi	.L46
+  84:Lib/SMO/sliding_mode_observer.c ****         hsmo->e_theta = fast_atan2(hsmo->e_beta_est, hsmo->e_alpha_est);
+  85:Lib/SMO/sliding_mode_observer.c **** 
+  86:Lib/SMO/sliding_mode_observer.c ****         if (hsmo->omega_est > 0) {
+  87:Lib/SMO/sliding_mode_observer.c ****             hsmo->theta_est = hsmo->e_theta - 0.5f*PI;
+  88:Lib/SMO/sliding_mode_observer.c ****         }
+  89:Lib/SMO/sliding_mode_observer.c ****         else {
+  90:Lib/SMO/sliding_mode_observer.c ****             hsmo->theta_est = hsmo->e_theta + 0.5f*PI;
+  91:Lib/SMO/sliding_mode_observer.c ****         }
+  92:Lib/SMO/sliding_mode_observer.c **** 
+  93:Lib/SMO/sliding_mode_observer.c ****         if (hsmo->theta_est < 0.0f) {
+  94:Lib/SMO/sliding_mode_observer.c ****             hsmo->theta_est += TWO_PI;
+  95:Lib/SMO/sliding_mode_observer.c ****         }
+  96:Lib/SMO/sliding_mode_observer.c ****         else if (hsmo->theta_est > TWO_PI) {
+  97:Lib/SMO/sliding_mode_observer.c ****             hsmo->theta_est -= TWO_PI;
+  98:Lib/SMO/sliding_mode_observer.c ****         }
+  99:Lib/SMO/sliding_mode_observer.c ****         
+ 100:Lib/SMO/sliding_mode_observer.c ****         float delta_theta = hsmo->e_theta - hsmo->last_e_theta;
+ 101:Lib/SMO/sliding_mode_observer.c ****         
+ 102:Lib/SMO/sliding_mode_observer.c ****         if (delta_theta > PI) delta_theta -= TWO_PI;
+ 103:Lib/SMO/sliding_mode_observer.c ****         if (delta_theta < -PI) delta_theta += TWO_PI;
+ 104:Lib/SMO/sliding_mode_observer.c ****         
+ 105:Lib/SMO/sliding_mode_observer.c ****         // float delta_theta_mech = delta_theta / hsmo->pole_pairs;
+ 106:Lib/SMO/sliding_mode_observer.c ****         // float omega_instant = delta_theta_mech / hsmo->Ts;
+ 107:Lib/SMO/sliding_mode_observer.c ****         
+ 108:Lib/SMO/sliding_mode_observer.c ****         // hsmo->omega_est = hsmo->omega_est * (1.0f - hsmo->omega_alpha_filter) + 
+ 109:Lib/SMO/sliding_mode_observer.c ****         //                  omega_instant * hsmo->omega_alpha_filter;
+ 110:Lib/SMO/sliding_mode_observer.c **** 
+ 111:Lib/SMO/sliding_mode_observer.c ****         // hsmo->rpm_est = hsmo->omega_est * 60.0 / TWO_PI;
+ 112:Lib/SMO/sliding_mode_observer.c **** 
+ 113:Lib/SMO/sliding_mode_observer.c ****         float omega_instant = delta_theta / hsmo->Ts;
+ 114:Lib/SMO/sliding_mode_observer.c ****         hsmo->omega_est = hsmo->omega_est * (1.0f - hsmo->omega_alpha_filter) + 
+ 115:Lib/SMO/sliding_mode_observer.c ****                          omega_instant * hsmo->omega_alpha_filter;
+ 116:Lib/SMO/sliding_mode_observer.c ****         
+ 117:Lib/SMO/sliding_mode_observer.c ****         hsmo->last_e_theta = hsmo->e_theta;
+ 118:Lib/SMO/sliding_mode_observer.c ****         return 1;
+ 119:Lib/SMO/sliding_mode_observer.c ****     } else {
+ 120:Lib/SMO/sliding_mode_observer.c ****         hsmo->omega_est = 0.0f;
+ 533              		.loc 1 120 9 is_stmt 1 view .LVU158
+ 534              		.loc 1 120 25 is_stmt 0 view .LVU159
+ 535 0120 0023     		movs	r3, #0
+ 536 0122 E362     		str	r3, [r4, #44]	@ float
+ 121:Lib/SMO/sliding_mode_observer.c ****         hsmo->rpm_est = 0.0f;
+ 537              		.loc 1 121 9 is_stmt 1 view .LVU160
+ 538              		.loc 1 121 23 is_stmt 0 view .LVU161
+ARM GAS  /tmp/ccffkO7Z.s 			page 14
+
+
+ 539 0124 A363     		str	r3, [r4, #56]	@ float
+ 122:Lib/SMO/sliding_mode_observer.c ****         // hsmo->theta_est = 0.0f;
+ 123:Lib/SMO/sliding_mode_observer.c ****     }
+ 124:Lib/SMO/sliding_mode_observer.c ****     return 0;
+ 540              		.loc 1 124 5 is_stmt 1 view .LVU162
+ 541              		.loc 1 124 12 is_stmt 0 view .LVU163
+ 542 0126 0020     		movs	r0, #0
+ 543              	.L15:
+ 125:Lib/SMO/sliding_mode_observer.c **** }
+ 544              		.loc 1 125 1 view .LVU164
+ 545 0128 BDEC0A8B 		vldm	sp!, {d8-d12}
+ 546              	.LCFI9:
+ 547              		.cfi_remember_state
+ 548              		.cfi_restore 88
+ 549              		.cfi_restore 89
+ 550              		.cfi_restore 86
+ 551              		.cfi_restore 87
+ 552              		.cfi_restore 84
+ 553              		.cfi_restore 85
+ 554              		.cfi_restore 82
+ 555              		.cfi_restore 83
+ 556              		.cfi_restore 80
+ 557              		.cfi_restore 81
+ 558              		.cfi_def_cfa_offset 8
+ 559              	.LVL38:
+ 560              		.loc 1 125 1 view .LVU165
+ 561 012c 10BD     		pop	{r4, pc}
+ 562              	.LVL39:
+ 563              	.L45:
+ 564              	.LCFI10:
+ 565              		.cfi_restore_state
+ 566              	.LBB8:
+ 567              	.LBB7:
+ 568              		.loc 2 61 25 view .LVU166
+ 569 012e FFF7FEFF 		bl	sqrtf
+ 570              	.LVL40:
+ 571              		.loc 2 61 25 view .LVU167
+ 572 0132 ECE7     		b	.L16
+ 573              	.L46:
+ 574              		.loc 2 61 25 view .LVU168
+ 575              	.LBE7:
+ 576              	.LBE8:
+ 577              	.LBB9:
+  84:Lib/SMO/sliding_mode_observer.c **** 
+ 578              		.loc 1 84 9 is_stmt 1 view .LVU169
+  84:Lib/SMO/sliding_mode_observer.c **** 
+ 579              		.loc 1 84 25 is_stmt 0 view .LVU170
+ 580 0134 D4ED110A 		vldr.32	s1, [r4, #68]
+ 581 0138 94ED120A 		vldr.32	s0, [r4, #72]
+ 582 013c FFF7FEFF 		bl	fast_atan2
+ 583              	.LVL41:
+  84:Lib/SMO/sliding_mode_observer.c **** 
+ 584              		.loc 1 84 23 view .LVU171
+ 585 0140 84ED0C0A 		vstr.32	s0, [r4, #48]
+  86:Lib/SMO/sliding_mode_observer.c ****             hsmo->theta_est = hsmo->e_theta - 0.5f*PI;
+ 586              		.loc 1 86 9 is_stmt 1 view .LVU172
+  86:Lib/SMO/sliding_mode_observer.c ****             hsmo->theta_est = hsmo->e_theta - 0.5f*PI;
+ARM GAS  /tmp/ccffkO7Z.s 			page 15
+
+
+ 587              		.loc 1 86 17 is_stmt 0 view .LVU173
+ 588 0144 94ED0B7A 		vldr.32	s14, [r4, #44]
+  86:Lib/SMO/sliding_mode_observer.c ****             hsmo->theta_est = hsmo->e_theta - 0.5f*PI;
+ 589              		.loc 1 86 12 view .LVU174
+ 590 0148 B5EEC07A 		vcmpe.f32	s14, #0
+ 591 014c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 592 0150 18DD     		ble	.L42
+  87:Lib/SMO/sliding_mode_observer.c ****         }
+ 593              		.loc 1 87 13 is_stmt 1 view .LVU175
+  87:Lib/SMO/sliding_mode_observer.c ****         }
+ 594              		.loc 1 87 45 is_stmt 0 view .LVU176
+ 595 0152 DFED2D7A 		vldr.32	s15, .L48+8
+ 596 0156 70EE677A 		vsub.f32	s15, s0, s15
+  87:Lib/SMO/sliding_mode_observer.c ****         }
+ 597              		.loc 1 87 29 view .LVU177
+ 598 015a C4ED0A7A 		vstr.32	s15, [r4, #40]
+ 599              	.L22:
+  93:Lib/SMO/sliding_mode_observer.c ****             hsmo->theta_est += TWO_PI;
+ 600              		.loc 1 93 9 is_stmt 1 view .LVU178
+  93:Lib/SMO/sliding_mode_observer.c ****             hsmo->theta_est += TWO_PI;
+ 601              		.loc 1 93 17 is_stmt 0 view .LVU179
+ 602 015e D4ED0A7A 		vldr.32	s15, [r4, #40]
+  93:Lib/SMO/sliding_mode_observer.c ****             hsmo->theta_est += TWO_PI;
+ 603              		.loc 1 93 12 view .LVU180
+ 604 0162 F5EEC07A 		vcmpe.f32	s15, #0
+ 605 0166 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 606 016a 12D4     		bmi	.L47
+  96:Lib/SMO/sliding_mode_observer.c ****             hsmo->theta_est -= TWO_PI;
+ 607              		.loc 1 96 14 is_stmt 1 view .LVU181
+  96:Lib/SMO/sliding_mode_observer.c ****             hsmo->theta_est -= TWO_PI;
+ 608              		.loc 1 96 17 is_stmt 0 view .LVU182
+ 609 016c DFED276A 		vldr.32	s13, .L48+12
+ 610 0170 F4EEE67A 		vcmpe.f32	s15, s13
+ 611 0174 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 612 0178 11DD     		ble	.L25
+  97:Lib/SMO/sliding_mode_observer.c ****         }
+ 613              		.loc 1 97 13 is_stmt 1 view .LVU183
+  97:Lib/SMO/sliding_mode_observer.c ****         }
+ 614              		.loc 1 97 29 is_stmt 0 view .LVU184
+ 615 017a 77EEE67A 		vsub.f32	s15, s15, s13
+ 616 017e C4ED0A7A 		vstr.32	s15, [r4, #40]
+ 617 0182 0CE0     		b	.L25
+ 618              	.L42:
+  90:Lib/SMO/sliding_mode_observer.c ****         }
+ 619              		.loc 1 90 13 is_stmt 1 view .LVU185
+  90:Lib/SMO/sliding_mode_observer.c ****         }
+ 620              		.loc 1 90 45 is_stmt 0 view .LVU186
+ 621 0184 DFED207A 		vldr.32	s15, .L48+8
+ 622 0188 70EE277A 		vadd.f32	s15, s0, s15
+  90:Lib/SMO/sliding_mode_observer.c ****         }
+ 623              		.loc 1 90 29 view .LVU187
+ 624 018c C4ED0A7A 		vstr.32	s15, [r4, #40]
+ 625 0190 E5E7     		b	.L22
+ 626              	.L47:
+  94:Lib/SMO/sliding_mode_observer.c ****         }
+ 627              		.loc 1 94 13 is_stmt 1 view .LVU188
+  94:Lib/SMO/sliding_mode_observer.c ****         }
+ARM GAS  /tmp/ccffkO7Z.s 			page 16
+
+
+ 628              		.loc 1 94 29 is_stmt 0 view .LVU189
+ 629 0192 DFED1E6A 		vldr.32	s13, .L48+12
+ 630 0196 77EEA67A 		vadd.f32	s15, s15, s13
+ 631 019a C4ED0A7A 		vstr.32	s15, [r4, #40]
+ 632              	.L25:
+ 100:Lib/SMO/sliding_mode_observer.c ****         
+ 633              		.loc 1 100 9 is_stmt 1 view .LVU190
+ 100:Lib/SMO/sliding_mode_observer.c ****         
+ 634              		.loc 1 100 49 is_stmt 0 view .LVU191
+ 635 019e D4ED0D7A 		vldr.32	s15, [r4, #52]
+ 100:Lib/SMO/sliding_mode_observer.c ****         
+ 636              		.loc 1 100 15 view .LVU192
+ 637 01a2 70EE677A 		vsub.f32	s15, s0, s15
+ 638              	.LVL42:
+ 102:Lib/SMO/sliding_mode_observer.c ****         if (delta_theta < -PI) delta_theta += TWO_PI;
+ 639              		.loc 1 102 9 is_stmt 1 view .LVU193
+ 102:Lib/SMO/sliding_mode_observer.c ****         if (delta_theta < -PI) delta_theta += TWO_PI;
+ 640              		.loc 1 102 12 is_stmt 0 view .LVU194
+ 641 01a6 DFED1A6A 		vldr.32	s13, .L48+16
+ 642 01aa F4EEE67A 		vcmpe.f32	s15, s13
+ 643 01ae F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 644 01b2 03DD     		ble	.L27
+ 102:Lib/SMO/sliding_mode_observer.c ****         if (delta_theta < -PI) delta_theta += TWO_PI;
+ 645              		.loc 1 102 31 is_stmt 1 discriminator 1 view .LVU195
+ 102:Lib/SMO/sliding_mode_observer.c ****         if (delta_theta < -PI) delta_theta += TWO_PI;
+ 646              		.loc 1 102 43 is_stmt 0 discriminator 1 view .LVU196
+ 647 01b4 DFED156A 		vldr.32	s13, .L48+12
+ 648 01b8 77EEE67A 		vsub.f32	s15, s15, s13
+ 649              	.LVL43:
+ 650              	.L27:
+ 103:Lib/SMO/sliding_mode_observer.c ****         
+ 651              		.loc 1 103 9 is_stmt 1 view .LVU197
+ 103:Lib/SMO/sliding_mode_observer.c ****         
+ 652              		.loc 1 103 12 is_stmt 0 view .LVU198
+ 653 01bc DFED156A 		vldr.32	s13, .L48+20
+ 654 01c0 F4EEE67A 		vcmpe.f32	s15, s13
+ 655 01c4 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 656 01c8 03D5     		bpl	.L29
+ 103:Lib/SMO/sliding_mode_observer.c ****         
+ 657              		.loc 1 103 32 is_stmt 1 discriminator 1 view .LVU199
+ 103:Lib/SMO/sliding_mode_observer.c ****         
+ 658              		.loc 1 103 44 is_stmt 0 discriminator 1 view .LVU200
+ 659 01ca DFED106A 		vldr.32	s13, .L48+12
+ 660 01ce 77EEA67A 		vadd.f32	s15, s15, s13
+ 661              	.LVL44:
+ 662              	.L29:
+ 113:Lib/SMO/sliding_mode_observer.c ****         hsmo->omega_est = hsmo->omega_est * (1.0f - hsmo->omega_alpha_filter) + 
+ 663              		.loc 1 113 9 is_stmt 1 view .LVU201
+ 113:Lib/SMO/sliding_mode_observer.c ****         hsmo->omega_est = hsmo->omega_est * (1.0f - hsmo->omega_alpha_filter) + 
+ 664              		.loc 1 113 49 is_stmt 0 view .LVU202
+ 665 01d2 D4ED026A 		vldr.32	s13, [r4, #8]
+ 113:Lib/SMO/sliding_mode_observer.c ****         hsmo->omega_est = hsmo->omega_est * (1.0f - hsmo->omega_alpha_filter) + 
+ 666              		.loc 1 113 15 view .LVU203
+ 667 01d6 87EEA66A 		vdiv.f32	s12, s15, s13
+ 668              	.LVL45:
+ 114:Lib/SMO/sliding_mode_observer.c ****                          omega_instant * hsmo->omega_alpha_filter;
+ 669              		.loc 1 114 9 is_stmt 1 view .LVU204
+ARM GAS  /tmp/ccffkO7Z.s 			page 17
+
+
+ 114:Lib/SMO/sliding_mode_observer.c ****                          omega_instant * hsmo->omega_alpha_filter;
+ 670              		.loc 1 114 57 is_stmt 0 view .LVU205
+ 671 01da D4ED147A 		vldr.32	s15, [r4, #80]
+ 672              	.LVL46:
+ 114:Lib/SMO/sliding_mode_observer.c ****                          omega_instant * hsmo->omega_alpha_filter;
+ 673              		.loc 1 114 51 view .LVU206
+ 674 01de F7EE006A 		vmov.f32	s13, #1.0e+0
+ 675 01e2 76EEE76A 		vsub.f32	s13, s13, s15
+ 114:Lib/SMO/sliding_mode_observer.c ****                          omega_instant * hsmo->omega_alpha_filter;
+ 676              		.loc 1 114 43 view .LVU207
+ 677 01e6 27EE267A 		vmul.f32	s14, s14, s13
+ 115:Lib/SMO/sliding_mode_observer.c ****         
+ 678              		.loc 1 115 40 view .LVU208
+ 679 01ea 67EE867A 		vmul.f32	s15, s15, s12
+ 114:Lib/SMO/sliding_mode_observer.c ****                          omega_instant * hsmo->omega_alpha_filter;
+ 680              		.loc 1 114 79 view .LVU209
+ 681 01ee 37EE277A 		vadd.f32	s14, s14, s15
+ 114:Lib/SMO/sliding_mode_observer.c ****                          omega_instant * hsmo->omega_alpha_filter;
+ 682              		.loc 1 114 25 view .LVU210
+ 683 01f2 84ED0B7A 		vstr.32	s14, [r4, #44]
+ 117:Lib/SMO/sliding_mode_observer.c ****         return 1;
+ 684              		.loc 1 117 9 is_stmt 1 view .LVU211
+ 117:Lib/SMO/sliding_mode_observer.c ****         return 1;
+ 685              		.loc 1 117 28 is_stmt 0 view .LVU212
+ 686 01f6 84ED0D0A 		vstr.32	s0, [r4, #52]
+ 118:Lib/SMO/sliding_mode_observer.c ****     } else {
+ 687              		.loc 1 118 9 is_stmt 1 view .LVU213
+ 118:Lib/SMO/sliding_mode_observer.c ****     } else {
+ 688              		.loc 1 118 16 is_stmt 0 view .LVU214
+ 689 01fa 0120     		movs	r0, #1
+ 690 01fc 94E7     		b	.L15
+ 691              	.L49:
+ 692 01fe 00BF     		.align	2
+ 693              	.L48:
+ 694 0200 CDCCCC3D 		.word	1036831949
+ 695 0204 00000000 		.word	0
+ 696 0208 DA0FC93F 		.word	1070141402
+ 697 020c DB0FC940 		.word	1086918619
+ 698 0210 DA0F4940 		.word	1078530010
+ 699 0214 DA0F49C0 		.word	-1068953638
+ 700              	.LBE9:
+ 701              		.cfi_endproc
+ 702              	.LFE7:
+ 704              		.section	.text.smo_get_rotor_angle,"ax",%progbits
+ 705              		.align	1
+ 706              		.global	smo_get_rotor_angle
+ 707              		.syntax unified
+ 708              		.thumb
+ 709              		.thumb_func
+ 710              		.fpu fpv4-sp-d16
+ 712              	smo_get_rotor_angle:
+ 713              	.LVL47:
+ 714              	.LFB8:
+ 126:Lib/SMO/sliding_mode_observer.c **** 
+ 127:Lib/SMO/sliding_mode_observer.c **** float smo_get_rotor_angle(smo_t *hsmo) {
+ 715              		.loc 1 127 40 is_stmt 1 view -0
+ 716              		.cfi_startproc
+ARM GAS  /tmp/ccffkO7Z.s 			page 18
+
+
+ 717              		@ args = 0, pretend = 0, frame = 0
+ 718              		@ frame_needed = 0, uses_anonymous_args = 0
+ 719              		@ link register save eliminated.
+ 128:Lib/SMO/sliding_mode_observer.c ****     return hsmo->theta_est;
+ 720              		.loc 1 128 5 view .LVU216
+ 129:Lib/SMO/sliding_mode_observer.c **** }
+ 721              		.loc 1 129 1 is_stmt 0 view .LVU217
+ 722 0000 90ED0A0A 		vldr.32	s0, [r0, #40]
+ 723 0004 7047     		bx	lr
+ 724              		.cfi_endproc
+ 725              	.LFE8:
+ 727              		.section	.text.smo_get_rotor_speed,"ax",%progbits
+ 728              		.align	1
+ 729              		.global	smo_get_rotor_speed
+ 730              		.syntax unified
+ 731              		.thumb
+ 732              		.thumb_func
+ 733              		.fpu fpv4-sp-d16
+ 735              	smo_get_rotor_speed:
+ 736              	.LVL48:
+ 737              	.LFB9:
+ 130:Lib/SMO/sliding_mode_observer.c **** 
+ 131:Lib/SMO/sliding_mode_observer.c **** float smo_get_rotor_speed(smo_t *hsmo) {
+ 738              		.loc 1 131 40 is_stmt 1 view -0
+ 739              		.cfi_startproc
+ 740              		@ args = 0, pretend = 0, frame = 0
+ 741              		@ frame_needed = 0, uses_anonymous_args = 0
+ 742              		@ link register save eliminated.
+ 132:Lib/SMO/sliding_mode_observer.c ****     return hsmo->rpm_est;
+ 743              		.loc 1 132 5 view .LVU219
+ 133:Lib/SMO/sliding_mode_observer.c **** }
+ 744              		.loc 1 133 1 is_stmt 0 view .LVU220
+ 745 0000 90ED0E0A 		vldr.32	s0, [r0, #56]
+ 746 0004 7047     		bx	lr
+ 747              		.cfi_endproc
+ 748              	.LFE9:
+ 750              		.section	.text.smo_get_omega,"ax",%progbits
+ 751              		.align	1
+ 752              		.global	smo_get_omega
+ 753              		.syntax unified
+ 754              		.thumb
+ 755              		.thumb_func
+ 756              		.fpu fpv4-sp-d16
+ 758              	smo_get_omega:
+ 759              	.LVL49:
+ 760              	.LFB10:
+ 134:Lib/SMO/sliding_mode_observer.c **** 
+ 135:Lib/SMO/sliding_mode_observer.c **** float smo_get_omega(smo_t *hsmo) {
+ 761              		.loc 1 135 34 is_stmt 1 view -0
+ 762              		.cfi_startproc
+ 763              		@ args = 0, pretend = 0, frame = 0
+ 764              		@ frame_needed = 0, uses_anonymous_args = 0
+ 765              		@ link register save eliminated.
+ 136:Lib/SMO/sliding_mode_observer.c ****     return hsmo->omega_est;
+ 766              		.loc 1 136 5 view .LVU222
+ 137:Lib/SMO/sliding_mode_observer.c **** }...
+ 767              		.loc 1 137 1 is_stmt 0 view .LVU223
+ARM GAS  /tmp/ccffkO7Z.s 			page 19
+
+
+ 768 0000 90ED0B0A 		vldr.32	s0, [r0, #44]
+ 769 0004 7047     		bx	lr
+ 770              		.cfi_endproc
+ 771              	.LFE10:
+ 773              		.text
+ 774              	.Letext0:
+ 775              		.file 3 "Lib/SMO/sliding_mode_observer.h"
+ 776              		.file 4 "/usr/include/newlib/math.h"
+ 777              		.file 5 "<built-in>"
+ARM GAS  /tmp/ccffkO7Z.s 			page 20
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 sliding_mode_observer.c
+     /tmp/ccffkO7Z.s:18     .text.smo_sign:0000000000000000 $t
+     /tmp/ccffkO7Z.s:26     .text.smo_sign:0000000000000000 smo_sign
+     /tmp/ccffkO7Z.s:73     .text.smo_tanh:0000000000000000 $t
+     /tmp/ccffkO7Z.s:80     .text.smo_tanh:0000000000000000 smo_tanh
+     /tmp/ccffkO7Z.s:106    .text.smo_reset:0000000000000000 $t
+     /tmp/ccffkO7Z.s:113    .text.smo_reset:0000000000000000 smo_reset
+     /tmp/ccffkO7Z.s:152    .text.smo_init:0000000000000000 $t
+     /tmp/ccffkO7Z.s:159    .text.smo_init:0000000000000000 smo_init
+     /tmp/ccffkO7Z.s:242    .text.smo_init:000000000000005c $d
+     /tmp/ccffkO7Z.s:249    .text.smo_set_min_emf:0000000000000000 $t
+     /tmp/ccffkO7Z.s:256    .text.smo_set_min_emf:0000000000000000 smo_set_min_emf
+     /tmp/ccffkO7Z.s:273    .text.smo_update_R_L:0000000000000000 $t
+     /tmp/ccffkO7Z.s:280    .text.smo_update_R_L:0000000000000000 smo_update_R_L
+     /tmp/ccffkO7Z.s:334    .text.smo_update_arctan:0000000000000000 $t
+     /tmp/ccffkO7Z.s:341    .text.smo_update_arctan:0000000000000000 smo_update_arctan
+     /tmp/ccffkO7Z.s:694    .text.smo_update_arctan:0000000000000200 $d
+     /tmp/ccffkO7Z.s:705    .text.smo_get_rotor_angle:0000000000000000 $t
+     /tmp/ccffkO7Z.s:712    .text.smo_get_rotor_angle:0000000000000000 smo_get_rotor_angle
+     /tmp/ccffkO7Z.s:728    .text.smo_get_rotor_speed:0000000000000000 $t
+     /tmp/ccffkO7Z.s:735    .text.smo_get_rotor_speed:0000000000000000 smo_get_rotor_speed
+     /tmp/ccffkO7Z.s:751    .text.smo_get_omega:0000000000000000 $t
+     /tmp/ccffkO7Z.s:758    .text.smo_get_omega:0000000000000000 smo_get_omega
+
+UNDEFINED SYMBOLS
+tanhf
+expf
+sqrtf
+fast_atan2

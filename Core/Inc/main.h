@@ -36,18 +36,7 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-#define LED_R_Pin GPIO_PIN_13
-#define LED_R_GPIO_Port GPIOC
-#define LED_G_Pin GPIO_PIN_14
-#define LED_G_GPIO_Port GPIOC
-#define CSA_CAL1_Pin GPIO_PIN_4
-#define CSA_CAL1_GPIO_Port GPIOC
-#define NFAULT1_Pin GPIO_PIN_11
-#define NFAULT1_GPIO_Port GPIOB
-#define EN_GATE1_Pin GPIO_PIN_9
-#define EN_GATE1_GPIO_Port GPIOC
-#define SPI_CS_Pin GPIO_PIN_10
-#define SPI_CS_GPIO_Port GPIOC
+
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
@@ -60,6 +49,8 @@ extern "C" {
 
 /* USER CODE END EM */
 
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
@@ -68,6 +59,16 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define AS5048A_EX_CS_Pin GPIO_PIN_11
+#define AS5048A_EX_CS_GPIO_Port GPIOB
+#define DRV832xS_FAULT_Pin GPIO_PIN_15
+#define DRV832xS_FAULT_GPIO_Port GPIOA
+#define DRV832xS_ENABLE_Pin GPIO_PIN_11
+#define DRV832xS_ENABLE_GPIO_Port GPIOC
+#define DRV8323_CS_Pin GPIO_PIN_12
+#define DRV8323_CS_GPIO_Port GPIOC
+#define AS5048A_IN_CS_Pin GPIO_PIN_9
+#define AS5048A_IN_CS_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

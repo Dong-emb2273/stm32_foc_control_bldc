@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccD7YWui.s 			page 1
+ARM GAS  /tmp/ccGUyyq4.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -26,58 +26,58 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
   23              		.fpu fpv4-sp-d16
   25              	calc_even_parity:
   26              	.LVL0:
-  27              	.LFB134:
-  28              		.file 1 "Core/Src/as5048a.c"
-   1:Core/Src/as5048a.c **** #include "as5048a.h"
-   2:Core/Src/as5048a.c **** #include <string.h>
-   3:Core/Src/as5048a.c **** #include <math.h>
-   4:Core/Src/as5048a.c **** 
-   5:Core/Src/as5048a.c **** #ifndef TWO_PI
-   6:Core/Src/as5048a.c **** #define TWO_PI 6.2831853f
-   7:Core/Src/as5048a.c **** #endif
-   8:Core/Src/as5048a.c **** 
-   9:Core/Src/as5048a.c **** #define AS5048A_REG_ANGLE  0x3FFF
-  10:Core/Src/as5048a.c **** #define AS5048A_READ_CMD   0x4000
-  11:Core/Src/as5048a.c **** 
-  12:Core/Src/as5048a.c **** static uint8_t calc_even_parity(uint16_t value) {
+  27              	.LFB0:
+  28              		.file 1 "Lib/AS5048A_Driver/as5048a.c"
+   1:Lib/AS5048A_Driver/as5048a.c **** #include "as5048a.h"
+   2:Lib/AS5048A_Driver/as5048a.c **** #include <string.h>
+   3:Lib/AS5048A_Driver/as5048a.c **** #include <math.h>
+   4:Lib/AS5048A_Driver/as5048a.c **** 
+   5:Lib/AS5048A_Driver/as5048a.c **** #ifndef TWO_PI
+   6:Lib/AS5048A_Driver/as5048a.c **** #define TWO_PI 6.2831853f
+   7:Lib/AS5048A_Driver/as5048a.c **** #endif
+   8:Lib/AS5048A_Driver/as5048a.c **** 
+   9:Lib/AS5048A_Driver/as5048a.c **** #define AS5048A_REG_ANGLE  0x3FFF
+  10:Lib/AS5048A_Driver/as5048a.c **** #define AS5048A_READ_CMD   0x4000
+  11:Lib/AS5048A_Driver/as5048a.c **** 
+  12:Lib/AS5048A_Driver/as5048a.c **** static uint8_t calc_even_parity(uint16_t value) {
   29              		.loc 1 12 49 view -0
   30              		.cfi_startproc
   31              		@ args = 0, pretend = 0, frame = 0
   32              		@ frame_needed = 0, uses_anonymous_args = 0
   33              		@ link register save eliminated.
-  13:Core/Src/as5048a.c ****     value ^= value >> 8;
+  13:Lib/AS5048A_Driver/as5048a.c ****     value ^= value >> 8;
   34              		.loc 1 13 5 view .LVU1
   35              		.loc 1 13 11 is_stmt 0 view .LVU2
   36 0000 80EA1020 		eor	r0, r0, r0, lsr #8
   37              	.LVL1:
-  14:Core/Src/as5048a.c ****     value ^= value >> 4;
+  14:Lib/AS5048A_Driver/as5048a.c ****     value ^= value >> 4;
   38              		.loc 1 14 5 is_stmt 1 view .LVU3
   39              		.loc 1 14 11 is_stmt 0 view .LVU4
   40 0004 80EA1010 		eor	r0, r0, r0, lsr #4
   41              	.LVL2:
-  15:Core/Src/as5048a.c ****     value ^= value >> 2;
+  15:Lib/AS5048A_Driver/as5048a.c ****     value ^= value >> 2;
   42              		.loc 1 15 5 is_stmt 1 view .LVU5
   43              		.loc 1 15 11 is_stmt 0 view .LVU6
-ARM GAS  /tmp/ccD7YWui.s 			page 2
+ARM GAS  /tmp/ccGUyyq4.s 			page 2
 
 
   44 0008 80EA9000 		eor	r0, r0, r0, lsr #2
   45              	.LVL3:
-  16:Core/Src/as5048a.c ****     value ^= value >> 1;
+  16:Lib/AS5048A_Driver/as5048a.c ****     value ^= value >> 1;
   46              		.loc 1 16 5 is_stmt 1 view .LVU7
   47              		.loc 1 16 11 is_stmt 0 view .LVU8
   48 000c 80EA5000 		eor	r0, r0, r0, lsr #1
   49              	.LVL4:
-  17:Core/Src/as5048a.c ****     return value & 1;
+  17:Lib/AS5048A_Driver/as5048a.c ****     return value & 1;
   50              		.loc 1 17 5 is_stmt 1 view .LVU9
-  18:Core/Src/as5048a.c **** }
+  18:Lib/AS5048A_Driver/as5048a.c **** }
   51              		.loc 1 18 1 is_stmt 0 view .LVU10
   52 0010 00F00100 		and	r0, r0, #1
   53              	.LVL5:
   54              		.loc 1 18 1 view .LVU11
   55 0014 7047     		bx	lr
   56              		.cfi_endproc
-  57              	.LFE134:
+  57              	.LFE0:
   59              		.section	.text.AS5048A_start,"ax",%progbits
   60              		.align	1
   61              		.syntax unified
@@ -86,39 +86,39 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
   64              		.fpu fpv4-sp-d16
   66              	AS5048A_start:
   67              	.LVL6:
-  68              	.LFB138:
-  19:Core/Src/as5048a.c **** 
-  20:Core/Src/as5048a.c **** void AS5048A_Config(AS5048A_t *encd, int (*spi_transfer)(uint8_t*, uint8_t*, uint16_t), void (*spi_
-  21:Core/Src/as5048a.c ****     encd->spi_transfer  = spi_transfer;
-  22:Core/Src/as5048a.c ****     encd->spi_cs_en  = spi_cs_en;
-  23:Core/Src/as5048a.c ****     encd->spi_cs_dis = spi_cs_dis;
-  24:Core/Src/as5048a.c ****     encd->spi_cs_en();
-  25:Core/Src/as5048a.c **** }
-  26:Core/Src/as5048a.c **** 
-  27:Core/Src/as5048a.c **** void AS5048A_Init(AS5048A_t *encd, sensor_dir_t dir, float scale) {
-  28:Core/Src/as5048a.c ****     encd->dir = dir;
-  29:Core/Src/as5048a.c ****     encd->count_to_deg_scale = scale;
-  30:Core/Src/as5048a.c ****     encd->last_count_raw = 0;
-  31:Core/Src/as5048a.c ****     encd->countinuous_count = 0;
-  32:Core/Src/as5048a.c **** }
-  33:Core/Src/as5048a.c **** 
-  34:Core/Src/as5048a.c **** void AS5048A_set_pll_filter(AS5048A_t *encd, float bw_hz, float damping_ratio, float Ts) {
-  35:Core/Src/as5048a.c ****     pll_filter_init(&encd->count_filt, Ts, bw_hz, damping_ratio);
-  36:Core/Src/as5048a.c **** }
-  37:Core/Src/as5048a.c **** 
-  38:Core/Src/as5048a.c **** static int AS5048A_start(AS5048A_t *encd) {
+  68              	.LFB4:
+  19:Lib/AS5048A_Driver/as5048a.c **** 
+  20:Lib/AS5048A_Driver/as5048a.c **** void AS5048A_Config(AS5048A_t *encd, int (*spi_transfer)(uint8_t*, uint8_t*, uint16_t), void (*spi_
+  21:Lib/AS5048A_Driver/as5048a.c ****     encd->spi_transfer  = spi_transfer;
+  22:Lib/AS5048A_Driver/as5048a.c ****     encd->spi_cs_en  = spi_cs_en;
+  23:Lib/AS5048A_Driver/as5048a.c ****     encd->spi_cs_dis = spi_cs_dis;
+  24:Lib/AS5048A_Driver/as5048a.c ****     encd->spi_cs_en();
+  25:Lib/AS5048A_Driver/as5048a.c **** }
+  26:Lib/AS5048A_Driver/as5048a.c **** 
+  27:Lib/AS5048A_Driver/as5048a.c **** void AS5048A_Init(AS5048A_t *encd, sensor_dir_t dir, float scale) {
+  28:Lib/AS5048A_Driver/as5048a.c ****     encd->dir = dir;
+  29:Lib/AS5048A_Driver/as5048a.c ****     encd->count_to_deg_scale = scale;
+  30:Lib/AS5048A_Driver/as5048a.c ****     encd->last_count_raw = 0;
+  31:Lib/AS5048A_Driver/as5048a.c ****     encd->countinuous_count = 0;
+  32:Lib/AS5048A_Driver/as5048a.c **** }
+  33:Lib/AS5048A_Driver/as5048a.c **** 
+  34:Lib/AS5048A_Driver/as5048a.c **** void AS5048A_set_pll_filter(AS5048A_t *encd, float bw_hz, float damping_ratio, float Ts) {
+  35:Lib/AS5048A_Driver/as5048a.c ****     pll_filter_init(&encd->count_filt, Ts, bw_hz, damping_ratio);
+  36:Lib/AS5048A_Driver/as5048a.c **** }
+  37:Lib/AS5048A_Driver/as5048a.c **** 
+  38:Lib/AS5048A_Driver/as5048a.c **** static int AS5048A_start(AS5048A_t *encd) {
   69              		.loc 1 38 43 is_stmt 1 view -0
   70              		.cfi_startproc
   71              		@ args = 0, pretend = 0, frame = 0
   72              		@ frame_needed = 0, uses_anonymous_args = 0
-  39:Core/Src/as5048a.c ****     if (encd->spi_transfer_flag) return 0;
+  39:Lib/AS5048A_Driver/as5048a.c ****     if (encd->spi_transfer_flag) return 0;
   73              		.loc 1 39 5 view .LVU13
   74              		.loc 1 39 13 is_stmt 0 view .LVU14
   75 0000 90F83030 		ldrb	r3, [r0, #48]	@ zero_extendqisi2
   76              		.loc 1 39 8 view .LVU15
   77 0004 F3B9     		cbnz	r3, .L5
-  38:Core/Src/as5048a.c ****     if (encd->spi_transfer_flag) return 0;
-ARM GAS  /tmp/ccD7YWui.s 			page 3
+  38:Lib/AS5048A_Driver/as5048a.c ****     if (encd->spi_transfer_flag) return 0;
+ARM GAS  /tmp/ccGUyyq4.s 			page 3
 
 
   78              		.loc 1 38 43 view .LVU16
@@ -128,10 +128,10 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
   82              		.cfi_offset 4, -8
   83              		.cfi_offset 14, -4
   84 0008 0446     		mov	r4, r0
-  40:Core/Src/as5048a.c ****     uint16_t cmd = AS5048A_READ_CMD | AS5048A_REG_ANGLE;
+  40:Lib/AS5048A_Driver/as5048a.c ****     uint16_t cmd = AS5048A_READ_CMD | AS5048A_REG_ANGLE;
   85              		.loc 1 40 5 is_stmt 1 view .LVU17
   86              	.LVL7:
-  41:Core/Src/as5048a.c ****     cmd |= (calc_even_parity(cmd) << 15);  // bit 15 parity
+  41:Lib/AS5048A_Driver/as5048a.c ****     cmd |= (calc_even_parity(cmd) << 15);  // bit 15 parity
   87              		.loc 1 41 5 view .LVU18
   88              		.loc 1 41 13 is_stmt 0 view .LVU19
   89 000a 47F6FF70 		movw	r0, #32767
@@ -143,26 +143,26 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
   95 0012 47F6FF73 		movw	r3, #32767
   96 0016 43EAC030 		orr	r0, r3, r0, lsl #15
   97              	.LVL10:
-  42:Core/Src/as5048a.c **** 
-  43:Core/Src/as5048a.c ****     encd->spi_tx_buffer[0] = (uint8_t)(cmd >> 8);
+  42:Lib/AS5048A_Driver/as5048a.c **** 
+  43:Lib/AS5048A_Driver/as5048a.c ****     encd->spi_tx_buffer[0] = (uint8_t)(cmd >> 8);
   98              		.loc 1 43 5 is_stmt 1 view .LVU22
   99              		.loc 1 43 30 is_stmt 0 view .LVU23
  100 001a C0F30723 		ubfx	r3, r0, #8, #8
  101              		.loc 1 43 28 view .LVU24
  102 001e 2370     		strb	r3, [r4]
-  44:Core/Src/as5048a.c ****     encd->spi_tx_buffer[1] = (uint8_t)(cmd & 0xFF);
+  44:Lib/AS5048A_Driver/as5048a.c ****     encd->spi_tx_buffer[1] = (uint8_t)(cmd & 0xFF);
  103              		.loc 1 44 5 is_stmt 1 view .LVU25
  104              		.loc 1 44 28 is_stmt 0 view .LVU26
  105 0020 6070     		strb	r0, [r4, #1]
-  45:Core/Src/as5048a.c **** 
-  46:Core/Src/as5048a.c **** 	encd->spi_cs_dis();
+  45:Lib/AS5048A_Driver/as5048a.c **** 
+  46:Lib/AS5048A_Driver/as5048a.c **** 	encd->spi_cs_dis();
  106              		.loc 1 46 2 is_stmt 1 view .LVU27
  107              		.loc 1 46 6 is_stmt 0 view .LVU28
  108 0022 E36B     		ldr	r3, [r4, #60]
  109              		.loc 1 46 2 view .LVU29
  110 0024 9847     		blx	r3
  111              	.LVL11:
-  47:Core/Src/as5048a.c ****     if (encd->spi_transfer(encd->spi_tx_buffer, encd->spi_rx_buffer, 2) != 0) {
+  47:Lib/AS5048A_Driver/as5048a.c ****     if (encd->spi_transfer(encd->spi_tx_buffer, encd->spi_rx_buffer, 2) != 0) {
  112              		.loc 1 47 5 is_stmt 1 view .LVU30
  113              		.loc 1 47 13 is_stmt 0 view .LVU31
  114 0026 636B     		ldr	r3, [r4, #52]
@@ -174,38 +174,38 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  120              	.LVL12:
  121              		.loc 1 47 8 view .LVU33
  122 0030 18B9     		cbnz	r0, .L10
-  48:Core/Src/as5048a.c ****         encd->spi_cs_en();
-  49:Core/Src/as5048a.c ****         return -1;
-  50:Core/Src/as5048a.c ****     }
-  51:Core/Src/as5048a.c **** 
-ARM GAS  /tmp/ccD7YWui.s 			page 4
+  48:Lib/AS5048A_Driver/as5048a.c ****         encd->spi_cs_en();
+  49:Lib/AS5048A_Driver/as5048a.c ****         return -1;
+  50:Lib/AS5048A_Driver/as5048a.c ****     }
+  51:Lib/AS5048A_Driver/as5048a.c **** 
+ARM GAS  /tmp/ccGUyyq4.s 			page 4
 
 
-  52:Core/Src/as5048a.c ****     encd->spi_transfer_flag = 1;
+  52:Lib/AS5048A_Driver/as5048a.c ****     encd->spi_transfer_flag = 1;
  123              		.loc 1 52 5 is_stmt 1 view .LVU34
  124              		.loc 1 52 29 is_stmt 0 view .LVU35
  125 0032 0123     		movs	r3, #1
  126 0034 84F83030 		strb	r3, [r4, #48]
-  53:Core/Src/as5048a.c **** 	return 0;
+  53:Lib/AS5048A_Driver/as5048a.c **** 	return 0;
  127              		.loc 1 53 2 is_stmt 1 view .LVU36
  128              	.L2:
-  54:Core/Src/as5048a.c **** }
+  54:Lib/AS5048A_Driver/as5048a.c **** }
  129              		.loc 1 54 1 is_stmt 0 view .LVU37
  130 0038 10BD     		pop	{r4, pc}
  131              	.LVL13:
  132              	.L10:
-  48:Core/Src/as5048a.c ****         encd->spi_cs_en();
+  48:Lib/AS5048A_Driver/as5048a.c ****         encd->spi_cs_en();
  133              		.loc 1 48 9 is_stmt 1 view .LVU38
-  48:Core/Src/as5048a.c ****         encd->spi_cs_en();
+  48:Lib/AS5048A_Driver/as5048a.c ****         encd->spi_cs_en();
  134              		.loc 1 48 13 is_stmt 0 view .LVU39
  135 003a A36B     		ldr	r3, [r4, #56]
-  48:Core/Src/as5048a.c ****         encd->spi_cs_en();
+  48:Lib/AS5048A_Driver/as5048a.c ****         encd->spi_cs_en();
  136              		.loc 1 48 9 view .LVU40
  137 003c 9847     		blx	r3
  138              	.LVL14:
-  49:Core/Src/as5048a.c ****     }
+  49:Lib/AS5048A_Driver/as5048a.c ****     }
  139              		.loc 1 49 9 is_stmt 1 view .LVU41
-  49:Core/Src/as5048a.c ****     }
+  49:Lib/AS5048A_Driver/as5048a.c ****     }
  140              		.loc 1 49 16 is_stmt 0 view .LVU42
  141 003e 4FF0FF30 		mov	r0, #-1
  142 0042 F9E7     		b	.L2
@@ -215,14 +215,14 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  146              		.cfi_def_cfa_offset 0
  147              		.cfi_restore 4
  148              		.cfi_restore 14
-  39:Core/Src/as5048a.c ****     uint16_t cmd = AS5048A_READ_CMD | AS5048A_REG_ANGLE;
+  39:Lib/AS5048A_Driver/as5048a.c ****     uint16_t cmd = AS5048A_READ_CMD | AS5048A_REG_ANGLE;
  149              		.loc 1 39 41 view .LVU43
  150 0044 0020     		movs	r0, #0
  151              	.LVL16:
  152              		.loc 1 54 1 view .LVU44
  153 0046 7047     		bx	lr
  154              		.cfi_endproc
- 155              	.LFE138:
+ 155              	.LFE4:
  157              		.section	.text.AS5048A_calc_degree,"ax",%progbits
  158              		.align	1
  159              		.syntax unified
@@ -231,14 +231,14 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  162              		.fpu fpv4-sp-d16
  164              	AS5048A_calc_degree:
  165              	.LVL17:
- 166              	.LFB139:
-  55:Core/Src/as5048a.c **** 
-  56:Core/Src/as5048a.c **** static void AS5048A_calc_degree(AS5048A_t *encd) {
+ 166              	.LFB5:
+  55:Lib/AS5048A_Driver/as5048a.c **** 
+  56:Lib/AS5048A_Driver/as5048a.c **** static void AS5048A_calc_degree(AS5048A_t *encd) {
  167              		.loc 1 56 50 is_stmt 1 view -0
  168              		.cfi_startproc
  169              		@ args = 0, pretend = 0, frame = 0
  170              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccD7YWui.s 			page 5
+ARM GAS  /tmp/ccGUyyq4.s 			page 5
 
 
  171              		.loc 1 56 50 is_stmt 0 view .LVU46
@@ -249,27 +249,27 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  176              		.cfi_offset 4, -12
  177              		.cfi_offset 5, -8
  178              		.cfi_offset 14, -4
-  57:Core/Src/as5048a.c ****     if (!encd->spi_transfer_flag) return;
+  57:Lib/AS5048A_Driver/as5048a.c ****     if (!encd->spi_transfer_flag) return;
  179              		.loc 1 57 5 is_stmt 1 view .LVU47
  180              		.loc 1 57 14 is_stmt 0 view .LVU48
  181 0002 90F83030 		ldrb	r3, [r0, #48]	@ zero_extendqisi2
  182              		.loc 1 57 8 view .LVU49
  183 0006 23B3     		cbz	r3, .L11
  184 0008 0446     		mov	r4, r0
-  58:Core/Src/as5048a.c ****     encd->spi_transfer_flag = 0;
+  58:Lib/AS5048A_Driver/as5048a.c ****     encd->spi_transfer_flag = 0;
  185              		.loc 1 58 5 is_stmt 1 view .LVU50
  186              		.loc 1 58 29 is_stmt 0 view .LVU51
  187 000a 0023     		movs	r3, #0
  188 000c 80F83030 		strb	r3, [r0, #48]
-  59:Core/Src/as5048a.c ****     encd->spi_cs_en();
+  59:Lib/AS5048A_Driver/as5048a.c ****     encd->spi_cs_en();
  189              		.loc 1 59 5 is_stmt 1 view .LVU52
  190              		.loc 1 59 9 is_stmt 0 view .LVU53
  191 0010 836B     		ldr	r3, [r0, #56]
  192              		.loc 1 59 5 view .LVU54
  193 0012 9847     		blx	r3
  194              	.LVL18:
-  60:Core/Src/as5048a.c **** 
-  61:Core/Src/as5048a.c ****     const uint16_t raw_data = ((uint16_t)encd->spi_rx_buffer[0] << 8) | encd->spi_rx_buffer[1];
+  60:Lib/AS5048A_Driver/as5048a.c **** 
+  61:Lib/AS5048A_Driver/as5048a.c ****     const uint16_t raw_data = ((uint16_t)encd->spi_rx_buffer[0] << 8) | encd->spi_rx_buffer[1];
  195              		.loc 1 61 5 is_stmt 1 view .LVU55
  196              		.loc 1 61 61 is_stmt 0 view .LVU56
  197 0014 A378     		ldrb	r3, [r4, #2]	@ zero_extendqisi2
@@ -278,41 +278,41 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  200              		.loc 1 61 20 view .LVU58
  201 0018 45EA0325 		orr	r5, r5, r3, lsl #8
  202              	.LVL19:
-  62:Core/Src/as5048a.c **** 
-  63:Core/Src/as5048a.c ****     // Parity check (bit 15 = parity)
-  64:Core/Src/as5048a.c ****     const uint16_t data_15bit = raw_data & 0x7FFF;
+  62:Lib/AS5048A_Driver/as5048a.c **** 
+  63:Lib/AS5048A_Driver/as5048a.c ****     // Parity check (bit 15 = parity)
+  64:Lib/AS5048A_Driver/as5048a.c ****     const uint16_t data_15bit = raw_data & 0x7FFF;
  203              		.loc 1 64 5 is_stmt 1 view .LVU59
-  65:Core/Src/as5048a.c ****     const uint8_t expected_parity = calc_even_parity(data_15bit);
+  65:Lib/AS5048A_Driver/as5048a.c ****     const uint8_t expected_parity = calc_even_parity(data_15bit);
  204              		.loc 1 65 5 view .LVU60
  205              		.loc 1 65 37 is_stmt 0 view .LVU61
  206 001c C5F30E00 		ubfx	r0, r5, #0, #15
  207 0020 FFF7FEFF 		bl	calc_even_parity
  208              	.LVL20:
-  66:Core/Src/as5048a.c ****     const uint8_t received_parity = (raw_data >> 15) & 0x1;
+  66:Lib/AS5048A_Driver/as5048a.c ****     const uint8_t received_parity = (raw_data >> 15) & 0x1;
  209              		.loc 1 66 5 is_stmt 1 view .LVU62
-  67:Core/Src/as5048a.c ****     if (expected_parity != received_parity) {
+  67:Lib/AS5048A_Driver/as5048a.c ****     if (expected_parity != received_parity) {
  210              		.loc 1 67 5 view .LVU63
  211              		.loc 1 67 8 is_stmt 0 view .LVU64
  212 0024 B0EBD53F 		cmp	r0, r5, lsr #15
  213 0028 13D1     		bne	.L11
-  68:Core/Src/as5048a.c ****         return;
-  69:Core/Src/as5048a.c ****     }
-  70:Core/Src/as5048a.c **** 
-ARM GAS  /tmp/ccD7YWui.s 			page 6
+  68:Lib/AS5048A_Driver/as5048a.c ****         return;
+  69:Lib/AS5048A_Driver/as5048a.c ****     }
+  70:Lib/AS5048A_Driver/as5048a.c **** 
+ARM GAS  /tmp/ccGUyyq4.s 			page 6
 
 
-  71:Core/Src/as5048a.c ****     // Error flag check (bit 14)
-  72:Core/Src/as5048a.c ****     // is this needed?
-  73:Core/Src/as5048a.c ****     // if ((raw_data >> 14) & 0x1) {
-  74:Core/Src/as5048a.c ****     //     return;
-  75:Core/Src/as5048a.c ****     // }
-  76:Core/Src/as5048a.c **** 
-  77:Core/Src/as5048a.c ****     uint16_t pos = raw_data & 0x3FFF;
+  71:Lib/AS5048A_Driver/as5048a.c ****     // Error flag check (bit 14)
+  72:Lib/AS5048A_Driver/as5048a.c ****     // is this needed?
+  73:Lib/AS5048A_Driver/as5048a.c ****     // if ((raw_data >> 14) & 0x1) {
+  74:Lib/AS5048A_Driver/as5048a.c ****     //     return;
+  75:Lib/AS5048A_Driver/as5048a.c ****     // }
+  76:Lib/AS5048A_Driver/as5048a.c **** 
+  77:Lib/AS5048A_Driver/as5048a.c ****     uint16_t pos = raw_data & 0x3FFF;
  214              		.loc 1 77 5 is_stmt 1 view .LVU65
  215              		.loc 1 77 14 is_stmt 0 view .LVU66
  216 002a C5F30D05 		ubfx	r5, r5, #0, #14
  217              	.LVL21:
-  78:Core/Src/as5048a.c ****     encd->count_raw = (encd->dir == SENSOR_DIR_NORMAL) ? pos : (uint16_t)((0x4000 - pos) & 0x3FFF);
+  78:Lib/AS5048A_Driver/as5048a.c ****     encd->count_raw = (encd->dir == SENSOR_DIR_NORMAL) ? pos : (uint16_t)((0x4000 - pos) & 0x3FFF);
  218              		.loc 1 78 5 is_stmt 1 view .LVU67
  219              		.loc 1 78 28 is_stmt 0 view .LVU68
  220 002e 94F82830 		ldrb	r3, [r4, #40]	@ zero_extendqisi2
@@ -327,69 +327,69 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  229              	.L14:
  230              		.loc 1 78 21 discriminator 4 view .LVU72
  231 003a 6560     		str	r5, [r4, #4]
-  79:Core/Src/as5048a.c **** 
-  80:Core/Src/as5048a.c ****     // The raw angle wraps every 16384 counts. Convert the difference to the
-  81:Core/Src/as5048a.c ****     // shortest signed movement so crossing zero does not look like a full turn.
-  82:Core/Src/as5048a.c ****     int32_t delta = encd->count_raw - encd->last_count_raw;
+  79:Lib/AS5048A_Driver/as5048a.c **** 
+  80:Lib/AS5048A_Driver/as5048a.c ****     // The raw angle wraps every 16384 counts. Convert the difference to the
+  81:Lib/AS5048A_Driver/as5048a.c ****     // shortest signed movement so crossing zero does not look like a full turn.
+  82:Lib/AS5048A_Driver/as5048a.c ****     int32_t delta = encd->count_raw - encd->last_count_raw;
  232              		.loc 1 82 5 is_stmt 1 discriminator 4 view .LVU73
  233              		.loc 1 82 43 is_stmt 0 discriminator 4 view .LVU74
  234 003c A368     		ldr	r3, [r4, #8]
  235              		.loc 1 82 13 discriminator 4 view .LVU75
  236 003e EB1A     		subs	r3, r5, r3
  237              	.LVL24:
-  83:Core/Src/as5048a.c ****     if (delta > 8192) {
+  83:Lib/AS5048A_Driver/as5048a.c ****     if (delta > 8192) {
  238              		.loc 1 83 5 is_stmt 1 discriminator 4 view .LVU76
  239              		.loc 1 83 8 is_stmt 0 discriminator 4 view .LVU77
  240 0040 B3F5005F 		cmp	r3, #8192
  241 0044 06DD     		ble	.L15
-  84:Core/Src/as5048a.c ****         delta -= 16384;
+  84:Lib/AS5048A_Driver/as5048a.c ****         delta -= 16384;
  242              		.loc 1 84 9 is_stmt 1 view .LVU78
  243              		.loc 1 84 15 is_stmt 0 view .LVU79
  244 0046 A3F58043 		sub	r3, r3, #16384
  245              	.LVL25:
  246              	.L16:
-  85:Core/Src/as5048a.c ****     } else if (delta < -8192) {
-  86:Core/Src/as5048a.c ****         delta += 16384;
-  87:Core/Src/as5048a.c ****     }
-  88:Core/Src/as5048a.c ****     encd->countinuous_count += delta;
+  85:Lib/AS5048A_Driver/as5048a.c ****     } else if (delta < -8192) {
+  86:Lib/AS5048A_Driver/as5048a.c ****         delta += 16384;
+  87:Lib/AS5048A_Driver/as5048a.c ****     }
+  88:Lib/AS5048A_Driver/as5048a.c ****     encd->countinuous_count += delta;
  247              		.loc 1 88 5 is_stmt 1 view .LVU80
  248              		.loc 1 88 29 is_stmt 0 view .LVU81
  249 004a E268     		ldr	r2, [r4, #12]
  250 004c 1344     		add	r3, r3, r2
  251              	.LVL26:
  252              		.loc 1 88 29 view .LVU82
-ARM GAS  /tmp/ccD7YWui.s 			page 7
+ARM GAS  /tmp/ccGUyyq4.s 			page 7
 
 
  253 004e E360     		str	r3, [r4, #12]
-  89:Core/Src/as5048a.c ****     encd->last_count_raw = encd->count_raw;
+  89:Lib/AS5048A_Driver/as5048a.c ****     encd->last_count_raw = encd->count_raw;
  254              		.loc 1 89 5 is_stmt 1 view .LVU83
  255              		.loc 1 89 26 is_stmt 0 view .LVU84
  256 0050 A560     		str	r5, [r4, #8]
  257              	.LVL27:
  258              	.L11:
-  90:Core/Src/as5048a.c **** }
+  90:Lib/AS5048A_Driver/as5048a.c **** }
  259              		.loc 1 90 1 view .LVU85
  260 0052 38BD     		pop	{r3, r4, r5, pc}
  261              	.LVL28:
  262              	.L15:
-  85:Core/Src/as5048a.c ****     } else if (delta < -8192) {
+  85:Lib/AS5048A_Driver/as5048a.c ****     } else if (delta < -8192) {
  263              		.loc 1 85 12 is_stmt 1 view .LVU86
-  85:Core/Src/as5048a.c ****     } else if (delta < -8192) {
+  85:Lib/AS5048A_Driver/as5048a.c ****     } else if (delta < -8192) {
  264              		.loc 1 85 15 is_stmt 0 view .LVU87
  265 0054 13F5005F 		cmn	r3, #8192
  266 0058 F7DA     		bge	.L16
-  86:Core/Src/as5048a.c ****     }
+  86:Lib/AS5048A_Driver/as5048a.c ****     }
  267              		.loc 1 86 9 is_stmt 1 view .LVU88
-  86:Core/Src/as5048a.c ****     }
+  86:Lib/AS5048A_Driver/as5048a.c ****     }
  268              		.loc 1 86 15 is_stmt 0 view .LVU89
  269 005a 03F58043 		add	r3, r3, #16384
  270              	.LVL29:
-  86:Core/Src/as5048a.c ****     }
+  86:Lib/AS5048A_Driver/as5048a.c ****     }
  271              		.loc 1 86 15 view .LVU90
  272 005e F4E7     		b	.L16
  273              		.cfi_endproc
- 274              	.LFE139:
+ 274              	.LFE5:
  276              		.section	.text.AS5048A_Config,"ax",%progbits
  277              		.align	1
  278              		.global	AS5048A_Config
@@ -399,46 +399,46 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  282              		.fpu fpv4-sp-d16
  284              	AS5048A_Config:
  285              	.LVL30:
- 286              	.LFB135:
-  20:Core/Src/as5048a.c ****     encd->spi_transfer  = spi_transfer;
+ 286              	.LFB1:
+  20:Lib/AS5048A_Driver/as5048a.c ****     encd->spi_transfer  = spi_transfer;
  287              		.loc 1 20 140 is_stmt 1 view -0
  288              		.cfi_startproc
  289              		@ args = 0, pretend = 0, frame = 0
  290              		@ frame_needed = 0, uses_anonymous_args = 0
-  20:Core/Src/as5048a.c ****     encd->spi_transfer  = spi_transfer;
+  20:Lib/AS5048A_Driver/as5048a.c ****     encd->spi_transfer  = spi_transfer;
  291              		.loc 1 20 140 is_stmt 0 view .LVU92
  292 0000 08B5     		push	{r3, lr}
  293              	.LCFI3:
  294              		.cfi_def_cfa_offset 8
  295              		.cfi_offset 3, -8
  296              		.cfi_offset 14, -4
-  21:Core/Src/as5048a.c ****     encd->spi_cs_en  = spi_cs_en;
+  21:Lib/AS5048A_Driver/as5048a.c ****     encd->spi_cs_en  = spi_cs_en;
  297              		.loc 1 21 5 is_stmt 1 view .LVU93
-  21:Core/Src/as5048a.c ****     encd->spi_cs_en  = spi_cs_en;
+  21:Lib/AS5048A_Driver/as5048a.c ****     encd->spi_cs_en  = spi_cs_en;
  298              		.loc 1 21 25 is_stmt 0 view .LVU94
  299 0002 4163     		str	r1, [r0, #52]
-  22:Core/Src/as5048a.c ****     encd->spi_cs_dis = spi_cs_dis;
-ARM GAS  /tmp/ccD7YWui.s 			page 8
+  22:Lib/AS5048A_Driver/as5048a.c ****     encd->spi_cs_dis = spi_cs_dis;
+ARM GAS  /tmp/ccGUyyq4.s 			page 8
 
 
  300              		.loc 1 22 5 is_stmt 1 view .LVU95
-  22:Core/Src/as5048a.c ****     encd->spi_cs_dis = spi_cs_dis;
+  22:Lib/AS5048A_Driver/as5048a.c ****     encd->spi_cs_dis = spi_cs_dis;
  301              		.loc 1 22 22 is_stmt 0 view .LVU96
  302 0004 8263     		str	r2, [r0, #56]
-  23:Core/Src/as5048a.c ****     encd->spi_cs_en();
+  23:Lib/AS5048A_Driver/as5048a.c ****     encd->spi_cs_en();
  303              		.loc 1 23 5 is_stmt 1 view .LVU97
-  23:Core/Src/as5048a.c ****     encd->spi_cs_en();
+  23:Lib/AS5048A_Driver/as5048a.c ****     encd->spi_cs_en();
  304              		.loc 1 23 22 is_stmt 0 view .LVU98
  305 0006 C363     		str	r3, [r0, #60]
-  24:Core/Src/as5048a.c **** }
+  24:Lib/AS5048A_Driver/as5048a.c **** }
  306              		.loc 1 24 5 is_stmt 1 view .LVU99
  307 0008 9047     		blx	r2
  308              	.LVL31:
-  25:Core/Src/as5048a.c **** 
+  25:Lib/AS5048A_Driver/as5048a.c **** 
  309              		.loc 1 25 1 is_stmt 0 view .LVU100
  310 000a 08BD     		pop	{r3, pc}
  311              		.cfi_endproc
- 312              	.LFE135:
+ 312              	.LFE1:
  314              		.section	.text.AS5048A_Init,"ax",%progbits
  315              		.align	1
  316              		.global	AS5048A_Init
@@ -448,42 +448,42 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  320              		.fpu fpv4-sp-d16
  322              	AS5048A_Init:
  323              	.LVL32:
- 324              	.LFB136:
-  27:Core/Src/as5048a.c ****     encd->dir = dir;
+ 324              	.LFB2:
+  27:Lib/AS5048A_Driver/as5048a.c ****     encd->dir = dir;
  325              		.loc 1 27 67 is_stmt 1 view -0
  326              		.cfi_startproc
  327              		@ args = 0, pretend = 0, frame = 0
  328              		@ frame_needed = 0, uses_anonymous_args = 0
  329              		@ link register save eliminated.
-  28:Core/Src/as5048a.c ****     encd->count_to_deg_scale = scale;
+  28:Lib/AS5048A_Driver/as5048a.c ****     encd->count_to_deg_scale = scale;
  330              		.loc 1 28 5 view .LVU102
-  28:Core/Src/as5048a.c ****     encd->count_to_deg_scale = scale;
+  28:Lib/AS5048A_Driver/as5048a.c ****     encd->count_to_deg_scale = scale;
  331              		.loc 1 28 15 is_stmt 0 view .LVU103
  332 0000 80F82810 		strb	r1, [r0, #40]
-  29:Core/Src/as5048a.c ****     encd->last_count_raw = 0;
+  29:Lib/AS5048A_Driver/as5048a.c ****     encd->last_count_raw = 0;
  333              		.loc 1 29 5 is_stmt 1 view .LVU104
-  29:Core/Src/as5048a.c ****     encd->last_count_raw = 0;
+  29:Lib/AS5048A_Driver/as5048a.c ****     encd->last_count_raw = 0;
  334              		.loc 1 29 30 is_stmt 0 view .LVU105
  335 0004 80ED0B0A 		vstr.32	s0, [r0, #44]
-  30:Core/Src/as5048a.c ****     encd->countinuous_count = 0;
+  30:Lib/AS5048A_Driver/as5048a.c ****     encd->countinuous_count = 0;
  336              		.loc 1 30 5 is_stmt 1 view .LVU106
-  30:Core/Src/as5048a.c ****     encd->countinuous_count = 0;
+  30:Lib/AS5048A_Driver/as5048a.c ****     encd->countinuous_count = 0;
  337              		.loc 1 30 26 is_stmt 0 view .LVU107
  338 0008 0023     		movs	r3, #0
  339 000a 8360     		str	r3, [r0, #8]
-  31:Core/Src/as5048a.c **** }
+  31:Lib/AS5048A_Driver/as5048a.c **** }
  340              		.loc 1 31 5 is_stmt 1 view .LVU108
-  31:Core/Src/as5048a.c **** }
+  31:Lib/AS5048A_Driver/as5048a.c **** }
  341              		.loc 1 31 29 is_stmt 0 view .LVU109
  342 000c C360     		str	r3, [r0, #12]
-  32:Core/Src/as5048a.c **** 
+  32:Lib/AS5048A_Driver/as5048a.c **** 
  343              		.loc 1 32 1 view .LVU110
-ARM GAS  /tmp/ccD7YWui.s 			page 9
+ARM GAS  /tmp/ccGUyyq4.s 			page 9
 
 
  344 000e 7047     		bx	lr
  345              		.cfi_endproc
- 346              	.LFE136:
+ 346              	.LFE2:
  348              		.section	.text.AS5048A_set_pll_filter,"ax",%progbits
  349              		.align	1
  350              		.global	AS5048A_set_pll_filter
@@ -493,13 +493,13 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  354              		.fpu fpv4-sp-d16
  356              	AS5048A_set_pll_filter:
  357              	.LVL33:
- 358              	.LFB137:
-  34:Core/Src/as5048a.c ****     pll_filter_init(&encd->count_filt, Ts, bw_hz, damping_ratio);
+ 358              	.LFB3:
+  34:Lib/AS5048A_Driver/as5048a.c ****     pll_filter_init(&encd->count_filt, Ts, bw_hz, damping_ratio);
  359              		.loc 1 34 90 is_stmt 1 view -0
  360              		.cfi_startproc
  361              		@ args = 0, pretend = 0, frame = 0
  362              		@ frame_needed = 0, uses_anonymous_args = 0
-  34:Core/Src/as5048a.c ****     pll_filter_init(&encd->count_filt, Ts, bw_hz, damping_ratio);
+  34:Lib/AS5048A_Driver/as5048a.c ****     pll_filter_init(&encd->count_filt, Ts, bw_hz, damping_ratio);
  363              		.loc 1 34 90 is_stmt 0 view .LVU112
  364 0000 08B5     		push	{r3, lr}
  365              	.LCFI4:
@@ -507,46 +507,46 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  367              		.cfi_offset 3, -8
  368              		.cfi_offset 14, -4
  369 0002 F0EE417A 		vmov.f32	s15, s2
-  35:Core/Src/as5048a.c **** }
+  35:Lib/AS5048A_Driver/as5048a.c **** }
  370              		.loc 1 35 5 is_stmt 1 view .LVU113
  371 0006 B0EE601A 		vmov.f32	s2, s1
  372              	.LVL34:
-  35:Core/Src/as5048a.c **** }
+  35:Lib/AS5048A_Driver/as5048a.c **** }
  373              		.loc 1 35 5 is_stmt 0 view .LVU114
  374 000a F0EE400A 		vmov.f32	s1, s0
  375              	.LVL35:
-  35:Core/Src/as5048a.c **** }
+  35:Lib/AS5048A_Driver/as5048a.c **** }
  376              		.loc 1 35 5 view .LVU115
  377 000e B0EE670A 		vmov.f32	s0, s15
  378              	.LVL36:
-  35:Core/Src/as5048a.c **** }
+  35:Lib/AS5048A_Driver/as5048a.c **** }
  379              		.loc 1 35 5 view .LVU116
  380 0012 1030     		adds	r0, r0, #16
  381              	.LVL37:
-  35:Core/Src/as5048a.c **** }
+  35:Lib/AS5048A_Driver/as5048a.c **** }
  382              		.loc 1 35 5 view .LVU117
  383 0014 FFF7FEFF 		bl	pll_filter_init
  384              	.LVL38:
-  36:Core/Src/as5048a.c **** 
+  36:Lib/AS5048A_Driver/as5048a.c **** 
  385              		.loc 1 36 1 view .LVU118
  386 0018 08BD     		pop	{r3, pc}
  387              		.cfi_endproc
- 388              	.LFE137:
+ 388              	.LFE3:
  390              		.section	.text.AS5048A_pll_filter_update,"ax",%progbits
  391              		.align	1
  392              		.global	AS5048A_pll_filter_update
  393              		.syntax unified
  394              		.thumb
  395              		.thumb_func
-ARM GAS  /tmp/ccD7YWui.s 			page 10
+ARM GAS  /tmp/ccGUyyq4.s 			page 10
 
 
  396              		.fpu fpv4-sp-d16
  398              	AS5048A_pll_filter_update:
  399              	.LVL39:
- 400              	.LFB140:
-  91:Core/Src/as5048a.c **** 
-  92:Core/Src/as5048a.c **** void AS5048A_pll_filter_update(AS5048A_t *encd) {
+ 400              	.LFB6:
+  91:Lib/AS5048A_Driver/as5048a.c **** 
+  92:Lib/AS5048A_Driver/as5048a.c **** void AS5048A_pll_filter_update(AS5048A_t *encd) {
  401              		.loc 1 92 49 is_stmt 1 view -0
  402              		.cfi_startproc
  403              		@ args = 0, pretend = 0, frame = 0
@@ -557,7 +557,7 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  408              		.cfi_def_cfa_offset 8
  409              		.cfi_offset 3, -8
  410              		.cfi_offset 14, -4
-  93:Core/Src/as5048a.c ****     pll_filter_update(&encd->count_filt, (float)encd->countinuous_count);
+  93:Lib/AS5048A_Driver/as5048a.c ****     pll_filter_update(&encd->count_filt, (float)encd->countinuous_count);
  411              		.loc 1 93 5 is_stmt 1 view .LVU121
  412 0002 D0ED037A 		vldr.32	s15, [r0, #12]	@ int
  413 0006 B8EEE70A 		vcvt.f32.s32	s0, s15
@@ -566,11 +566,11 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  416              		.loc 1 93 5 is_stmt 0 view .LVU122
  417 000c FFF7FEFF 		bl	pll_filter_update
  418              	.LVL41:
-  94:Core/Src/as5048a.c **** }
+  94:Lib/AS5048A_Driver/as5048a.c **** }
  419              		.loc 1 94 1 view .LVU123
  420 0010 08BD     		pop	{r3, pc}
  421              		.cfi_endproc
- 422              	.LFE140:
+ 422              	.LFE6:
  424              		.section	.text.AS5048A_update,"ax",%progbits
  425              		.align	1
  426              		.global	AS5048A_update
@@ -580,9 +580,9 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  430              		.fpu fpv4-sp-d16
  432              	AS5048A_update:
  433              	.LVL42:
- 434              	.LFB141:
-  95:Core/Src/as5048a.c **** 
-  96:Core/Src/as5048a.c **** void AS5048A_update(AS5048A_t *encd) {
+ 434              	.LFB7:
+  95:Lib/AS5048A_Driver/as5048a.c **** 
+  96:Lib/AS5048A_Driver/as5048a.c **** void AS5048A_update(AS5048A_t *encd) {
  435              		.loc 1 96 38 is_stmt 1 view -0
  436              		.cfi_startproc
  437              		@ args = 0, pretend = 0, frame = 0
@@ -594,35 +594,35 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  443              		.cfi_offset 4, -8
  444              		.cfi_offset 14, -4
  445 0002 0446     		mov	r4, r0
-  97:Core/Src/as5048a.c ****     AS5048A_start(encd);
+  97:Lib/AS5048A_Driver/as5048a.c ****     AS5048A_start(encd);
  446              		.loc 1 97 5 is_stmt 1 view .LVU126
  447 0004 FFF7FEFF 		bl	AS5048A_start
  448              	.LVL43:
-ARM GAS  /tmp/ccD7YWui.s 			page 11
+ARM GAS  /tmp/ccGUyyq4.s 			page 11
 
 
-  98:Core/Src/as5048a.c ****     if (encd->spi_transfer_done_flag) {
+  98:Lib/AS5048A_Driver/as5048a.c ****     if (encd->spi_transfer_done_flag) {
  449              		.loc 1 98 5 view .LVU127
  450              		.loc 1 98 13 is_stmt 0 view .LVU128
  451 0008 94F83130 		ldrb	r3, [r4, #49]	@ zero_extendqisi2
  452              		.loc 1 98 8 view .LVU129
  453 000c 03B9     		cbnz	r3, .L28
  454              	.L25:
-  99:Core/Src/as5048a.c ****         encd->spi_transfer_done_flag = 0;
- 100:Core/Src/as5048a.c ****         AS5048A_calc_degree(encd);
- 101:Core/Src/as5048a.c ****     }
- 102:Core/Src/as5048a.c **** }
+  99:Lib/AS5048A_Driver/as5048a.c ****         encd->spi_transfer_done_flag = 0;
+ 100:Lib/AS5048A_Driver/as5048a.c ****         AS5048A_calc_degree(encd);
+ 101:Lib/AS5048A_Driver/as5048a.c ****     }
+ 102:Lib/AS5048A_Driver/as5048a.c **** }
  455              		.loc 1 102 1 view .LVU130
  456 000e 10BD     		pop	{r4, pc}
  457              	.LVL44:
  458              	.L28:
-  99:Core/Src/as5048a.c ****         encd->spi_transfer_done_flag = 0;
+  99:Lib/AS5048A_Driver/as5048a.c ****         encd->spi_transfer_done_flag = 0;
  459              		.loc 1 99 9 is_stmt 1 view .LVU131
-  99:Core/Src/as5048a.c ****         encd->spi_transfer_done_flag = 0;
+  99:Lib/AS5048A_Driver/as5048a.c ****         encd->spi_transfer_done_flag = 0;
  460              		.loc 1 99 38 is_stmt 0 view .LVU132
  461 0010 0023     		movs	r3, #0
  462 0012 84F83130 		strb	r3, [r4, #49]
- 100:Core/Src/as5048a.c ****     }
+ 100:Lib/AS5048A_Driver/as5048a.c ****     }
  463              		.loc 1 100 9 is_stmt 1 view .LVU133
  464 0016 2046     		mov	r0, r4
  465 0018 FFF7FEFF 		bl	AS5048A_calc_degree
@@ -630,7 +630,7 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  467              		.loc 1 102 1 is_stmt 0 view .LVU134
  468 001c F7E7     		b	.L25
  469              		.cfi_endproc
- 470              	.LFE141:
+ 470              	.LFE7:
  472              		.section	.text.AS5048A_set_spi_transfer_done,"ax",%progbits
  473              		.align	1
  474              		.global	AS5048A_set_spi_transfer_done
@@ -640,25 +640,25 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  478              		.fpu fpv4-sp-d16
  480              	AS5048A_set_spi_transfer_done:
  481              	.LVL46:
- 482              	.LFB142:
- 103:Core/Src/as5048a.c **** 
- 104:Core/Src/as5048a.c **** void AS5048A_set_spi_transfer_done(AS5048A_t *encd) {
+ 482              	.LFB8:
+ 103:Lib/AS5048A_Driver/as5048a.c **** 
+ 104:Lib/AS5048A_Driver/as5048a.c **** void AS5048A_set_spi_transfer_done(AS5048A_t *encd) {
  483              		.loc 1 104 53 is_stmt 1 view -0
  484              		.cfi_startproc
  485              		@ args = 0, pretend = 0, frame = 0
  486              		@ frame_needed = 0, uses_anonymous_args = 0
  487              		@ link register save eliminated.
- 105:Core/Src/as5048a.c ****     encd->spi_transfer_done_flag = 1;
+ 105:Lib/AS5048A_Driver/as5048a.c ****     encd->spi_transfer_done_flag = 1;
  488              		.loc 1 105 5 view .LVU136
  489              		.loc 1 105 34 is_stmt 0 view .LVU137
  490 0000 0123     		movs	r3, #1
  491 0002 80F83130 		strb	r3, [r0, #49]
- 106:Core/Src/as5048a.c **** }
+ 106:Lib/AS5048A_Driver/as5048a.c **** }
  492              		.loc 1 106 1 view .LVU138
  493 0006 7047     		bx	lr
  494              		.cfi_endproc
- 495              	.LFE142:
-ARM GAS  /tmp/ccD7YWui.s 			page 12
+ 495              	.LFE8:
+ARM GAS  /tmp/ccGUyyq4.s 			page 12
 
 
  497              		.section	.text.AS5048A_get_degree,"ax",%progbits
@@ -670,9 +670,9 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  503              		.fpu fpv4-sp-d16
  505              	AS5048A_get_degree:
  506              	.LVL47:
- 507              	.LFB143:
- 107:Core/Src/as5048a.c **** 
- 108:Core/Src/as5048a.c **** float AS5048A_get_degree(AS5048A_t *encd) {
+ 507              	.LFB9:
+ 107:Lib/AS5048A_Driver/as5048a.c **** 
+ 108:Lib/AS5048A_Driver/as5048a.c **** float AS5048A_get_degree(AS5048A_t *encd) {
  508              		.loc 1 108 43 is_stmt 1 view -0
  509              		.cfi_startproc
  510              		@ args = 0, pretend = 0, frame = 0
@@ -683,7 +683,7 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  515              		.cfi_def_cfa_offset 8
  516              		.cfi_offset 3, -8
  517              		.cfi_offset 14, -4
- 109:Core/Src/as5048a.c ****     float deg = encd->count_raw * encd->count_to_deg_scale;
+ 109:Lib/AS5048A_Driver/as5048a.c ****     float deg = encd->count_raw * encd->count_to_deg_scale;
  518              		.loc 1 109 5 is_stmt 1 view .LVU141
  519              		.loc 1 109 33 is_stmt 0 view .LVU142
  520 0002 D0ED017A 		vldr.32	s15, [r0, #4]	@ int
@@ -691,7 +691,7 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  522              		.loc 1 109 39 view .LVU143
  523 000a 90ED0B0A 		vldr.32	s0, [r0, #44]
  524              	.LVL48:
- 110:Core/Src/as5048a.c ****     deg = fmodf(deg, 360.0f);
+ 110:Lib/AS5048A_Driver/as5048a.c ****     deg = fmodf(deg, 360.0f);
  525              		.loc 1 110 5 is_stmt 1 view .LVU144
  526              		.loc 1 110 11 is_stmt 0 view .LVU145
  527 000e DFED080A 		vldr.32	s1, .L36
@@ -700,33 +700,33 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  530              		.loc 1 110 11 view .LVU146
  531 0016 FFF7FEFF 		bl	fmodf
  532              	.LVL50:
- 111:Core/Src/as5048a.c ****     if (deg < 0.0f) {
+ 111:Lib/AS5048A_Driver/as5048a.c ****     if (deg < 0.0f) {
  533              		.loc 1 111 5 is_stmt 1 view .LVU147
  534              		.loc 1 111 8 is_stmt 0 view .LVU148
  535 001a B5EEC00A 		vcmpe.f32	s0, #0
  536 001e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
  537 0022 00D4     		bmi	.L35
  538              	.L30:
- 112:Core/Src/as5048a.c ****         deg += 360.0f;
- 113:Core/Src/as5048a.c ****     }
- 114:Core/Src/as5048a.c ****     return deg;
- 115:Core/Src/as5048a.c **** }
+ 112:Lib/AS5048A_Driver/as5048a.c ****         deg += 360.0f;
+ 113:Lib/AS5048A_Driver/as5048a.c ****     }
+ 114:Lib/AS5048A_Driver/as5048a.c ****     return deg;
+ 115:Lib/AS5048A_Driver/as5048a.c **** }
  539              		.loc 1 115 1 view .LVU149
  540 0024 08BD     		pop	{r3, pc}
  541              	.L35:
- 112:Core/Src/as5048a.c ****         deg += 360.0f;
+ 112:Lib/AS5048A_Driver/as5048a.c ****         deg += 360.0f;
  542              		.loc 1 112 9 is_stmt 1 view .LVU150
- 112:Core/Src/as5048a.c ****         deg += 360.0f;
+ 112:Lib/AS5048A_Driver/as5048a.c ****         deg += 360.0f;
  543              		.loc 1 112 13 is_stmt 0 view .LVU151
-ARM GAS  /tmp/ccD7YWui.s 			page 13
+ARM GAS  /tmp/ccGUyyq4.s 			page 13
 
 
  544 0026 DFED027A 		vldr.32	s15, .L36
  545 002a 30EE270A 		vadd.f32	s0, s0, s15
  546              	.LVL51:
- 114:Core/Src/as5048a.c **** }
+ 114:Lib/AS5048A_Driver/as5048a.c **** }
  547              		.loc 1 114 5 is_stmt 1 view .LVU152
- 114:Core/Src/as5048a.c **** }
+ 114:Lib/AS5048A_Driver/as5048a.c **** }
  548              		.loc 1 114 12 is_stmt 0 view .LVU153
  549 002e F9E7     		b	.L30
  550              	.L37:
@@ -734,7 +734,7 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  552              	.L36:
  553 0030 0000B443 		.word	1135869952
  554              		.cfi_endproc
- 555              	.LFE143:
+ 555              	.LFE9:
  557              		.section	.text.AS5048A_get_rpm,"ax",%progbits
  558              		.align	1
  559              		.global	AS5048A_get_rpm
@@ -744,15 +744,15 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  563              		.fpu fpv4-sp-d16
  565              	AS5048A_get_rpm:
  566              	.LVL52:
- 567              	.LFB144:
- 116:Core/Src/as5048a.c **** 
- 117:Core/Src/as5048a.c **** float AS5048A_get_rpm(AS5048A_t *encd) {
+ 567              	.LFB10:
+ 116:Lib/AS5048A_Driver/as5048a.c **** 
+ 117:Lib/AS5048A_Driver/as5048a.c **** float AS5048A_get_rpm(AS5048A_t *encd) {
  568              		.loc 1 117 40 is_stmt 1 view -0
  569              		.cfi_startproc
  570              		@ args = 0, pretend = 0, frame = 0
  571              		@ frame_needed = 0, uses_anonymous_args = 0
  572              		@ link register save eliminated.
- 118:Core/Src/as5048a.c ****     float deg_s = encd->count_filt.estimate_velocity * encd->count_to_deg_scale;
+ 118:Lib/AS5048A_Driver/as5048a.c ****     float deg_s = encd->count_filt.estimate_velocity * encd->count_to_deg_scale;
  573              		.loc 1 118 5 view .LVU155
  574              		.loc 1 118 35 is_stmt 0 view .LVU156
  575 0000 D0ED057A 		vldr.32	s15, [r0, #20]
@@ -761,15 +761,15 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  578              		.loc 1 118 11 view .LVU158
  579 0008 67EE807A 		vmul.f32	s15, s15, s0
  580              	.LVL53:
- 119:Core/Src/as5048a.c ****     return (deg_s / 6.0f);
+ 119:Lib/AS5048A_Driver/as5048a.c ****     return (deg_s / 6.0f);
  581              		.loc 1 119 5 is_stmt 1 view .LVU159
- 120:Core/Src/as5048a.c **** }
+ 120:Lib/AS5048A_Driver/as5048a.c **** }
  582              		.loc 1 120 1 is_stmt 0 view .LVU160
  583 000c B1EE080A 		vmov.f32	s0, #6.0e+0
  584 0010 87EE800A 		vdiv.f32	s0, s15, s0
  585 0014 7047     		bx	lr
  586              		.cfi_endproc
- 587              	.LFE144:
+ 587              	.LFE10:
  589              		.section	.text.AS5048A_get_continuous_degree,"ax",%progbits
  590              		.align	1
  591              		.global	AS5048A_get_continuous_degree
@@ -778,19 +778,19 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  594              		.thumb_func
  595              		.fpu fpv4-sp-d16
  597              	AS5048A_get_continuous_degree:
-ARM GAS  /tmp/ccD7YWui.s 			page 14
+ARM GAS  /tmp/ccGUyyq4.s 			page 14
 
 
  598              	.LVL54:
- 599              	.LFB145:
- 121:Core/Src/as5048a.c **** 
- 122:Core/Src/as5048a.c **** float AS5048A_get_continuous_degree(AS5048A_t *encd) {
+ 599              	.LFB11:
+ 121:Lib/AS5048A_Driver/as5048a.c **** 
+ 122:Lib/AS5048A_Driver/as5048a.c **** float AS5048A_get_continuous_degree(AS5048A_t *encd) {
  600              		.loc 1 122 54 is_stmt 1 view -0
  601              		.cfi_startproc
  602              		@ args = 0, pretend = 0, frame = 0
  603              		@ frame_needed = 0, uses_anonymous_args = 0
  604              		@ link register save eliminated.
- 123:Core/Src/as5048a.c ****     return encd->countinuous_count * encd->count_to_deg_scale;
+ 123:Lib/AS5048A_Driver/as5048a.c ****     return encd->countinuous_count * encd->count_to_deg_scale;
  605              		.loc 1 123 5 view .LVU162
  606              		.loc 1 123 16 is_stmt 0 view .LVU163
  607 0000 D0ED037A 		vldr.32	s15, [r0, #12]	@ int
@@ -798,48 +798,48 @@ ARM GAS  /tmp/ccD7YWui.s 			page 1
  609 0004 90ED0B0A 		vldr.32	s0, [r0, #44]
  610              		.loc 1 123 36 view .LVU165
  611 0008 F8EEE77A 		vcvt.f32.s32	s15, s15
- 124:Core/Src/as5048a.c **** }...
+ 124:Lib/AS5048A_Driver/as5048a.c **** }...
  612              		.loc 1 124 1 view .LVU166
  613 000c 27EE800A 		vmul.f32	s0, s15, s0
  614 0010 7047     		bx	lr
  615              		.cfi_endproc
- 616              	.LFE145:
+ 616              	.LFE11:
  618              		.text
  619              	.Letext0:
  620              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
- 621              		.file 3 "Core/Inc/pll_filter.h"
- 622              		.file 4 "Core/Inc/as5048a.h"
+ 621              		.file 3 "Lib/Digital_Filter/pll_filter.h"
+ 622              		.file 4 "Lib/AS5048A_Driver/as5048a.h"
  623              		.file 5 "/usr/include/newlib/math.h"
-ARM GAS  /tmp/ccD7YWui.s 			page 15
+ARM GAS  /tmp/ccGUyyq4.s 			page 15
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 as5048a.c
-     /tmp/ccD7YWui.s:18     .text.calc_even_parity:0000000000000000 $t
-     /tmp/ccD7YWui.s:25     .text.calc_even_parity:0000000000000000 calc_even_parity
-     /tmp/ccD7YWui.s:60     .text.AS5048A_start:0000000000000000 $t
-     /tmp/ccD7YWui.s:66     .text.AS5048A_start:0000000000000000 AS5048A_start
-     /tmp/ccD7YWui.s:158    .text.AS5048A_calc_degree:0000000000000000 $t
-     /tmp/ccD7YWui.s:164    .text.AS5048A_calc_degree:0000000000000000 AS5048A_calc_degree
-     /tmp/ccD7YWui.s:277    .text.AS5048A_Config:0000000000000000 $t
-     /tmp/ccD7YWui.s:284    .text.AS5048A_Config:0000000000000000 AS5048A_Config
-     /tmp/ccD7YWui.s:315    .text.AS5048A_Init:0000000000000000 $t
-     /tmp/ccD7YWui.s:322    .text.AS5048A_Init:0000000000000000 AS5048A_Init
-     /tmp/ccD7YWui.s:349    .text.AS5048A_set_pll_filter:0000000000000000 $t
-     /tmp/ccD7YWui.s:356    .text.AS5048A_set_pll_filter:0000000000000000 AS5048A_set_pll_filter
-     /tmp/ccD7YWui.s:391    .text.AS5048A_pll_filter_update:0000000000000000 $t
-     /tmp/ccD7YWui.s:398    .text.AS5048A_pll_filter_update:0000000000000000 AS5048A_pll_filter_update
-     /tmp/ccD7YWui.s:425    .text.AS5048A_update:0000000000000000 $t
-     /tmp/ccD7YWui.s:432    .text.AS5048A_update:0000000000000000 AS5048A_update
-     /tmp/ccD7YWui.s:473    .text.AS5048A_set_spi_transfer_done:0000000000000000 $t
-     /tmp/ccD7YWui.s:480    .text.AS5048A_set_spi_transfer_done:0000000000000000 AS5048A_set_spi_transfer_done
-     /tmp/ccD7YWui.s:498    .text.AS5048A_get_degree:0000000000000000 $t
-     /tmp/ccD7YWui.s:505    .text.AS5048A_get_degree:0000000000000000 AS5048A_get_degree
-     /tmp/ccD7YWui.s:553    .text.AS5048A_get_degree:0000000000000030 $d
-     /tmp/ccD7YWui.s:558    .text.AS5048A_get_rpm:0000000000000000 $t
-     /tmp/ccD7YWui.s:565    .text.AS5048A_get_rpm:0000000000000000 AS5048A_get_rpm
-     /tmp/ccD7YWui.s:590    .text.AS5048A_get_continuous_degree:0000000000000000 $t
-     /tmp/ccD7YWui.s:597    .text.AS5048A_get_continuous_degree:0000000000000000 AS5048A_get_continuous_degree
+     /tmp/ccGUyyq4.s:18     .text.calc_even_parity:0000000000000000 $t
+     /tmp/ccGUyyq4.s:25     .text.calc_even_parity:0000000000000000 calc_even_parity
+     /tmp/ccGUyyq4.s:60     .text.AS5048A_start:0000000000000000 $t
+     /tmp/ccGUyyq4.s:66     .text.AS5048A_start:0000000000000000 AS5048A_start
+     /tmp/ccGUyyq4.s:158    .text.AS5048A_calc_degree:0000000000000000 $t
+     /tmp/ccGUyyq4.s:164    .text.AS5048A_calc_degree:0000000000000000 AS5048A_calc_degree
+     /tmp/ccGUyyq4.s:277    .text.AS5048A_Config:0000000000000000 $t
+     /tmp/ccGUyyq4.s:284    .text.AS5048A_Config:0000000000000000 AS5048A_Config
+     /tmp/ccGUyyq4.s:315    .text.AS5048A_Init:0000000000000000 $t
+     /tmp/ccGUyyq4.s:322    .text.AS5048A_Init:0000000000000000 AS5048A_Init
+     /tmp/ccGUyyq4.s:349    .text.AS5048A_set_pll_filter:0000000000000000 $t
+     /tmp/ccGUyyq4.s:356    .text.AS5048A_set_pll_filter:0000000000000000 AS5048A_set_pll_filter
+     /tmp/ccGUyyq4.s:391    .text.AS5048A_pll_filter_update:0000000000000000 $t
+     /tmp/ccGUyyq4.s:398    .text.AS5048A_pll_filter_update:0000000000000000 AS5048A_pll_filter_update
+     /tmp/ccGUyyq4.s:425    .text.AS5048A_update:0000000000000000 $t
+     /tmp/ccGUyyq4.s:432    .text.AS5048A_update:0000000000000000 AS5048A_update
+     /tmp/ccGUyyq4.s:473    .text.AS5048A_set_spi_transfer_done:0000000000000000 $t
+     /tmp/ccGUyyq4.s:480    .text.AS5048A_set_spi_transfer_done:0000000000000000 AS5048A_set_spi_transfer_done
+     /tmp/ccGUyyq4.s:498    .text.AS5048A_get_degree:0000000000000000 $t
+     /tmp/ccGUyyq4.s:505    .text.AS5048A_get_degree:0000000000000000 AS5048A_get_degree
+     /tmp/ccGUyyq4.s:553    .text.AS5048A_get_degree:0000000000000030 $d
+     /tmp/ccGUyyq4.s:558    .text.AS5048A_get_rpm:0000000000000000 $t
+     /tmp/ccGUyyq4.s:565    .text.AS5048A_get_rpm:0000000000000000 AS5048A_get_rpm
+     /tmp/ccGUyyq4.s:590    .text.AS5048A_get_continuous_degree:0000000000000000 $t
+     /tmp/ccGUyyq4.s:597    .text.AS5048A_get_continuous_degree:0000000000000000 AS5048A_get_continuous_degree
 
 UNDEFINED SYMBOLS
 pll_filter_init
